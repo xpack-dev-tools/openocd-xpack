@@ -58,7 +58,7 @@ source "${host_functions_script_path}"
 # Array where the remaining args will be stored.
 declare -a rest
 
-host_options "    bash $0 [--win32] [--win64] [--linux32] [--linux64] [--osx] [--all] [clean|cleanlibs|cleanall|preload-images] [--env-file file] [--date YYYYmmdd-HHMM] [--disable-strip] [--without-pdf] [--with-html] [--develop] [--debug] [--jobs N] [--help]" $@
+host_options "    bash $0 [--win32] [--win64] [--linux32] [--linux64] [--osx] [--all] [clean|cleanlibs|cleanall|preload-images] [--env-file file] [--disable-strip] [--without-pdf] [--with-html] [--develop] [--debug] [--jobs N] [--help]" $@
 
 echo
 echo "Host helper functions source script: \"${host_functions_script_path}\"."
@@ -182,9 +182,6 @@ host_show_sha
 host_stop_timer
 
 host_notify_completed
-
-echo
-echo "Use --date ${DISTRIBUTION_FILE_DATE} if needed for a related build."
 
 # Completed successfully.
 exit 0
