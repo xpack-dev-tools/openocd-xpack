@@ -355,8 +355,8 @@ function copy_distro_files()
   (
     xbb_activate
 
-    rm -rf "${APP_PREFIX}/${DISTRO_LC_NAME}"
-    mkdir -p "${APP_PREFIX}/${DISTRO_LC_NAME}"
+    rm -rf "${APP_PREFIX}/${DISTRO_INFO_NAME}"
+    mkdir -p "${APP_PREFIX}/${DISTRO_INFO_NAME}"
 
     echo
     echo "Copying license files..."
