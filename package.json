@@ -1,6 +1,6 @@
 {
   "name": "@xpack-dev-tool/openocd",
-  "version": "0.0.1",
+  "version": "0.10.0-12.1",
   "description": "A binary xPack with OpenOCD",
   "main": "",
   "scripts": {
@@ -28,5 +28,36 @@
   "peerDependencies": {},
   "bundledDependencies": [],
   "optionalDependencies": {},
-  "xpack": {}
+  "xpack": {
+    "binaries": {
+      "destination": "./.content",
+      "baseUrl": "https://github.com/gnu-mcu-eclipse/openocd/releases/download/v0.10.0-12-20190422",
+      "skip": 3,
+      "platforms": {
+        "linux-x86": {
+          "sha256": "d8267cbd463a7a7691b573f95fd920c3d7cdf59747ce2571cb334b3247265106",
+          "fileName": "gnu-mcu-eclipse-openocd-0.10.0-12-20190422-2015-centos32.tgz"
+        },
+        "linux-x64": {
+          "sha256": "9a601ded65cc5a8c3537f5bc8e14b2c71c01188d4cd2e5192833fcd6950e992f",
+          "fileName": "gnu-mcu-eclipse-openocd-0.10.0-12-20190422-2015-centos64.tgz"
+        },
+        "darwin-x64": {
+          "sha256": "bd06c5fb26ed506eb98444504d218ce759c26c09f837925f16d2981f7e2e5c08",
+          "fileName": "gnu-mcu-eclipse-openocd-0.10.0-12-20190422-2015-macos.tgz"
+        },
+        "win32-x86": {
+          "sha256": "48317eaec7ea8e100a676fc7e2d99a476760317d5a20d774c77ba7a1d2260dfc",
+          "fileName": "gnu-mcu-eclipse-openocd-0.10.0-12-20190422-2015-win32.zip"
+        },
+        "win32-x64": {
+          "sha256": "96cf095435c2fbed4616a903b294d758f3b1df14c6ba36224fa05fdc7ce93c1b",
+          "fileName": "gnu-mcu-eclipse-openocd-0.10.0-12-20190422-2015-win64.zip"
+        }
+      }
+    },
+    "bin": {
+      "openocd": "./.content/bin/openocd"
+    }
+  }
 }
