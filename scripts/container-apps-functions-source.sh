@@ -393,7 +393,7 @@ function copy_distro_files()
     echo "Copying GME files..."
 
     cd "${WORK_FOLDER_PATH}/build.git"
-    install -v -c -m 644 "${README_OUT_FILE_NAME}" \
+    install -v -c -m 644 "scripts/${README_OUT_FILE_NAME}" \
       "${APP_PREFIX}/README.md"
   )
 }
