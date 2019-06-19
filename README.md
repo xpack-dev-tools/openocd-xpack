@@ -8,7 +8,7 @@
 This binary xPack installs the platform specific binaries for the
 [xPack OpenOCD](https://xpack.github.io/dev-tools/openocd/).
 
-## How to use
+## User info
 
 This section is intended as a shortcut for developers who plan 
 to use the OpenOCD binaries.
@@ -81,6 +81,11 @@ For more details please check the [Install](https://xpack.github.io/dev-tools/op
 For the JTAG probes implemented as USB devices (actually most of them), the last installation step on GNU/Linux is to configure the UDEV subsystem. 
 
 For more details please check the [Install](https://xpack.github.io/dev-tools/openocd/install/) page.
+
+## Developer info
+
+- [how to build](https://github.com/xpack-dev-tools/openocd-xpack/blob/xpack/README-BUILD.md) 
+- [how to publish](https://github.com/xpack-dev-tools/openocd-xpack/blob/xpack/README-PUBISH.md)
 
 ## Support
 
