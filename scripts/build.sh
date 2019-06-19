@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # -----------------------------------------------------------------------------
-# This file is part of the GNU MCU Eclipse distribution.
-#   (https://gnu-mcu-eclipse.github.io)
+# This file is part of the xPack distribution.
+#   (https://xpack.github.io)
 # Copyright (c) 2019 Liviu Ionescu.
 #
 # Permission to use, copy, modify, and/or distribute this software 
@@ -40,7 +40,7 @@ script_folder_name="$(basename "${script_folder_path}")"
 
 # =============================================================================
 
-# Script to build the GNU MCU Eclipse OpenOCD distribution packages.
+# Script to build the xPack OpenOCD distribution packages.
 #
 # Developed on macOS 10.13 High Sierra, but intended to run on
 # macOS 10.10 Yosemite and CentOS 6 XBB. 
@@ -48,7 +48,7 @@ script_folder_name="$(basename "${script_folder_path}")"
 # -----------------------------------------------------------------------------
 
 echo
-echo "GNU MCU Eclipse OpenOCD distribution build script."
+echo "xPack OpenOCD distribution build script."
 
 host_functions_script_path="${script_folder_path}/helper/host-functions-source.sh"
 source "${host_functions_script_path}"

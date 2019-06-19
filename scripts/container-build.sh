@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # -----------------------------------------------------------------------------
-# This file is part of the GNU MCU Eclipse distribution.
-#   (https://gnu-mcu-eclipse.github.io)
+# This file is part of the xPack distribution.
+#   (https://xpack.github.io)
 # Copyright (c) 2019 Liviu Ionescu.
 #
 # Permission to use, copy, modify, and/or distribute this software 

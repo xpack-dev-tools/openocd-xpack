@@ -31,7 +31,7 @@
   "xpack": {
     "binaries": {
       "destination": "./.content",
-      "baseUrl": "https://github.com/gnu-mcu-eclipse/openocd/releases/download/v0.10.0-12-20190422",
+      "baseUrl": "https://github.com/xpack-dev-tools/openocd/releases/download/v0.10.0-12",
       "skip": 3,
       "platforms": {
         "linux-x86": {
