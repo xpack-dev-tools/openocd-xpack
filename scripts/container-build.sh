@@ -300,7 +300,7 @@ then
   
   OPENOCD_VERSION="0.10.0-12"
 
-  OPENOCD_GIT_BRANCH=${OPENOCD_GIT_BRANCH:-"gnu-mcu-eclipse-dev"}
+  OPENOCD_GIT_BRANCH=${OPENOCD_GIT_BRANCH:-"xpack"}
   OPENOCD_GIT_COMMIT=${OPENOCD_GIT_COMMIT:-"23ad80df43ac31ce147359f18f2ef9e0e62df794"}
   
   # ---------------------------------------------------------------------------
@@ -324,7 +324,7 @@ fi
 # -----------------------------------------------------------------------------
 
 OPENOCD_SRC_FOLDER_NAME=${OPENOCD_SRC_FOLDER_NAME:-"${OPENOCD_PROJECT_NAME}.git"}
-OPENOCD_GIT_URL=${OPENOCD_GIT_URL:-"https://github.com/gnu-mcu-eclipse/openocd.git"}
+OPENOCD_GIT_URL=${OPENOCD_GIT_URL:-"https://github.com/xpack-dev-tools/openocd.git"}
 
 # Used in the licenses folder.
 OPENOCD_FOLDER_NAME="openocd-${OPENOCD_VERSION}"
