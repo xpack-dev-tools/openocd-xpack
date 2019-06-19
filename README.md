@@ -5,18 +5,22 @@
 
 # The xPack OpenOCD
 
-This binary xPack installs the platform specific binaries for the
+This open source project is hosted on 
+[GitHub](https://github.com/xpack-dev-tools/openocd-xpack) 
+and provides the platform specific binaries for the
 [xPack OpenOCD](https://xpack.github.io/dev-tools/openocd/). 
 
-The open source project is hosted on 
-[GitHub](https://github.com/xpack-dev-tools/openocd-xpack). 
-In addition to the package meta data, it also includes
+The binaries can be installed automatically as binary xPacks or manually as
+portable archives.
+
+In addition to the package meta data, this project also includes
 the build scripts.
 
 ## User info
 
 This section is intended as a shortcut for those who plan 
-to use the OpenOCD binaries.
+to use the OpenOCD binaries. For full details please read the 
+[xPack OpenOCD](https://xpack.github.io/dev-tools/openocd/) pages.
 
 ### Easy install
 
@@ -74,18 +78,18 @@ archives that can be installed in any location.
 The archives can be downloaded from the
 [GitHub Releases](https://github.com/xpack-dev-tools/openocd-xpack/releases/) page.
 
-For more details please check the [Install](https://xpack.github.io/dev-tools/openocd/install/) page. 
+For more details please read the [Install](https://xpack.github.io/dev-tools/openocd/install/) page. 
 
 ### Windows drivers
 
 Most JTAG probes require separate drivers on Windows. 
-For more details please check the [Install](https://xpack.github.io/dev-tools/openocd/install/) page.
+For more details please read the [Install](https://xpack.github.io/dev-tools/openocd/install/) page.
 
 ### GNU/Linux UDEV subsystem
 
 For the JTAG probes implemented as USB devices (actually most of them), the last installation step on GNU/Linux is to configure the UDEV subsystem. 
 
-For more details please check the [Install](https://xpack.github.io/dev-tools/openocd/install/) page.
+For more details please read the [Install](https://xpack.github.io/dev-tools/openocd/install/) page.
 
 ## Developer info
 
@@ -97,7 +101,7 @@ For more details please check the [Install](https://xpack.github.io/dev-tools/op
 The quick answer is to use the [forum](https://www.tapatalk.com/groups/xpack/);
 please select the correct forum.
 
-For more details please check the [Support](https://xpack.github.io/dev-tools/openocd/support/) page.
+For more details please read the [Support](https://xpack.github.io/dev-tools/openocd/support/) page.
 
 ## License
 
