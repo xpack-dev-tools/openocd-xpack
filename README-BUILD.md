@@ -30,7 +30,7 @@ changes from upstream it is necessary to add a remote named
 ## Download the build scripts
 
 The build scripts are available in the `scripts` folder of the 
-[xpack-dev-tools/openocd-xpack](https://github.com/xpack-dev-tools/openocd-xpack) 
+[`xpack-dev-tools/openocd-xpack`](https://github.com/xpack-dev-tools/openocd-xpack) 
 Git repo.
 
 To download them, the following shortcut is available: 
@@ -109,7 +109,7 @@ the package on the npm server.
 Add a new set of definitions in the `scripts/container-build.sh`, with 
 the versions of various components.
 
-### Update README.md
+### Update `README.md`
 
 If necessary, update the main `README.md` with informations related to the
 build. Information related to the new version should not be included here,
@@ -120,7 +120,7 @@ but in the version specific file (below).
 In the `scripts` folder create a copy of the previous one and update the
 Git commit and possible other details.
 
-### Update CHANGELOG.md
+### Update `CHANGELOG.md`
 
 Check `CHANGELOG.md` and add the new release.
 
@@ -217,7 +217,7 @@ $ rm -rf ~/Work/openocd-*
 $ caffeinate bash ~/Downloads/openocd-xpack.git/scripts/build.sh --osx
 ```
 
-Some minutes later, the output of the build script is a compressed 
+Several minutes later, the output of the build script is a compressed 
 archive and its SHA signature, created in the `deploy` folder:
 
 ```console
@@ -246,7 +246,7 @@ Instead of `--all`, you can use any combination of:
 --win32 --win64 --linux32 --linux64
 ```
 
-#### clean
+#### `clean`
 
 To remove most build temporary files, use:
 
@@ -271,7 +271,7 @@ will remove the more specific folders.
 
 For production builds it is recommended to completely remove the build folder.
 
-#### --develop
+#### `--develop`
 
 For performance reasons, the actual build folders are internal to each 
 Docker run, and are not persistent. This gives the best speed, but has 
@@ -280,7 +280,7 @@ the disadvantage that interrupted builds cannot be resumed.
 For development builds, it is possible to define the build folders in 
 the host file system, and resume an interrupted build.
 
-#### --debug
+#### `--debug`
 
 For development builds, it is also possible to create everything with 
 `-g -O0` and be able to run debug sessions.
@@ -366,4 +366,3 @@ Both scripts include several other helper scripts. The entire process
 is quite complex, and an attempt to explain its functionality in a few 
 words would not be realistic. Thus, the authoritative source of details 
 remains the source code.
-
