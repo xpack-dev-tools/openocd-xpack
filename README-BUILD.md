@@ -117,7 +117,7 @@ but in the version specific file (below).
 
 ### Create `README-<version>.md`
 
-In the `screipts` folder create a copy of the previous one and update the
+In the `scripts` folder create a copy of the previous one and update the
 Git commit and possible other details.
 
 ### Update CHANGELOG.md
@@ -179,7 +179,7 @@ $ bash ~/Downloads/openocd-xpack.git/scripts/build.sh --all
 To detach from the session, use `Ctrl-a` `Ctrl-d`; to reattach use
 `screen -r openocd`; to kill the session use `Ctrl-a` `Ctrl-\` and confirm.
 
-Some tens of minutes later, the output of the build script is a set of 4 
+About 10-15 minutes later, the output of the build script is a set of 4 
 archives and their SHA signatures, created in the `deploy` folder:
 
 ```console
