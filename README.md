@@ -5,13 +5,15 @@
 
 # The xPack OpenOCD
 
-This open source project is hosted on 
-[GitHub](https://github.com/xpack-dev-tools/openocd-xpack) 
+This open source project is hosted on GitHub as
+[`xpack-dev-tools/openocd-xpack`](https://github.com/xpack-dev-tools/openocd-xpack) 
 and provides the platform specific binaries for the
 [xPack OpenOCD](https://xpack.github.io/dev-tools/openocd/). 
 
-The binaries can be installed automatically as binary xPacks or manually as
-portable archives.
+This distribution follows the official [OpenOCD](http://openocd.org).
+
+The binaries can be installed automatically as **binary xPacks** or manually as
+**portable archives**.
 
 In addition to the package meta data, this project also includes
 the build scripts.
@@ -24,7 +26,7 @@ to use the OpenOCD binaries. For full details please read the
 
 ### Easy install
 
-The easiest way is to install the binary xPack, available as 
+The easiest way is to install the **binary xPack**, available as 
 [`@xpack-dev-tools/openocd`](https://www.npmjs.com/package/@xpack-dev-tools/openocd)
 from the `npmjs.com` repository.
 
@@ -33,7 +35,7 @@ from the `npmjs.com` repository.
 The only requirement is a recent 
 `xpm`, which is a portable 
 [Node.js](https://nodejs.org) command line application. To install it,
-follow the instructions from the 
+follow the instructions in the 
 [`xpm`](https://xpack.github.io/core/xpm/install/) page.
 
 #### Install
