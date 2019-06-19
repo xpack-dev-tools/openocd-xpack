@@ -26,6 +26,7 @@ APP_EXECUTABLE_NAME=${APP_EXECUTABLE_NAME:-"openocd"}
 
 DISTRO_UC_NAME=${DISTRO_UC_NAME:-"xPack"}
 DISTRO_LC_NAME=${DISTRO_LC_NAME:-"xpack"}
+DISTRO_TOP_FOLDER=${DISTRO_TOP_FOLDER:-"xPacks"}
 
 # Use the new xPack naming convention.
 HAS_NAME_ARCH="y"
