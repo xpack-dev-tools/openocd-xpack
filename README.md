@@ -6,11 +6,16 @@
 # The xPack OpenOCD
 
 This binary xPack installs the platform specific binaries for the
-[xPack OpenOCD](https://xpack.github.io/dev-tools/openocd/).
+[xPack OpenOCD](https://xpack.github.io/dev-tools/openocd/). 
+
+The open source project is hosted on 
+[GitHub](https://github.com/xpack-dev-tools/openocd-xpack). 
+In addition to the package meta data, it also includes
+the build scripts.
 
 ## User info
 
-This section is intended as a shortcut for developers who plan 
+This section is intended as a shortcut for those who plan 
 to use the OpenOCD binaries.
 
 ### Easy install
