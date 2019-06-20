@@ -6,13 +6,13 @@ Before starting the build, perform some checks.
 
 ### Check the CHANGELOG file
 
-Open the `CHANGELOG.txt` file and and check if all 
+Open the `CHANGELOG.md` file and and check if all 
 new entries are in.
 
 Generally, apart from packing, there should be no local changes compared 
 to the original OpenOCD distribution.
 
-Note: if you missed to update the `CHANGELOG.txt` before starting the build, 
+Note: if you missed to update the `CHANGELOG.md` before starting the build, 
 edit the file and rerun the build, it should take only a few minutes to 
 recreate the archives with the correct file.
 
@@ -22,12 +22,11 @@ The `VERSION` file should refer to the actual release.
 
 ### Push the build script git
 
-In the `xpack-dev-tools/openocd-project` Git repo, if necessary, merge 
-the `xpack-develop` branch into `xpack`.
+In the `xpack-dev-tools/openocd-project` Git repo:
 
-Push it to GitHub.
-
-Possibly push the helper project too.
+- if necessary, merge the `xpack-develop` branch into `xpack`.
+- push it to GitHub.
+- possibly push the helper project too.
 
 ### Run the build scripts
 
@@ -43,7 +42,7 @@ functional.
 ## Create a new GitHub release
 
 - go to the [GitHub Releases](https://github.com/xpack-dev-tools/openocd-xpack/releases) page
-- click **Draft a new release**
+- click the **Draft a new release** button
 - name the tag like **v0.10.0-12** (mind the dash in the middle!)
 - select the `xpack` branch
 - name the release like **xPack OpenOCD v0.10.0-12** 
@@ -83,7 +82,7 @@ $ cat *.sha
 ```
 
 - **attach binaries** and SHA (drag and drop will do it)
-- do not enable the **pre-release** button
+- do not enable the **Pre-release** button
 - click the **Publish Release** button
 
 Note: at this moment the system should send a notification to all clients watching this project.
@@ -101,7 +100,7 @@ In the `xpack/xpack.github.io` web Git:
   like **xPack OpenOCD v0.10.0-12 released**
 - push the project
 - wait a few moments for the Jekyll build to complete
-- check if the new post is published at [`xpack.github.io/xpack/news`](http://xpack.github.io/xpack/news/)
+- check if the new post is published at [`xpack.github.io/xpack/news`](https://xpack.github.io/xpack/news/)
 
 ## Publish on the npmjs server
 
@@ -112,20 +111,16 @@ In the `xpack/xpack.github.io` web Git:
 - commit all changes, use a message like `package.json: update urls for 0.10.0-12 release` (without `v`)
 - update `CHANGELOG.md`; commit with a message like 
   _CHANGELOG: prepare npm v0.10.0-12.1_
-- `npm version 0.10.0-12.1`; the first 2 numbers are the same as the 
-  GitHub release; the final number is the npm specific version
+- `npm version 0.10.0-12.1`; the first 4 numbers are the same as the 
+  GitHub release; the fifth number is the npm specific version
 - push all changes to GitHub
-- `npm publish`
+- `npm publish` (use `--access public` when publishing for the first time)
 
 ## Share on Twitter
 
-- go to the new post and follow the Tweet link (not yet available)
-- copy the content to the clipboard
-- DO NOT click the Tweet button here, it'll not use the right account
 - in a separate browser windows, open [TweetDeck](https://tweetdeck.twitter.com/)
-- using the `@xpack_project` account, paste the content
+- using the `@xpack_project` account
+- paste the release name like **xPack OpenOCD v0.10.0-12 released**
+- paste the link to the Github release
 - click the **Tweet** button
 
-## Links
-
-- [Submitting patches to the OpenOCD Gerrit server](http://openocd.org/doc-release/doxygen/patchguide.html)

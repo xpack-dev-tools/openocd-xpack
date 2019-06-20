@@ -18,13 +18,13 @@ for GNU/Linux and Windows or a custom folder for MacOS).
 - `git://git.code.sf.net/p/openocd/code` - the URL of the 
   [upstream OpenOCD](http://openocd.org).
 
-The build scripts use the first; to merge
+The build scripts use the first repo; to merge
 changes from upstream it is necessary to add a remote named
-`upstream`, and merge the upstream master into the local master.
+`upstream`, and merge the `upstream/master` into the local `master`.
 
 ## Branches
 
-- `xpack` - the updated content, used during the builds
+- `xpack` - the updated content, used during builds
 - `xpack-develop` - the updated content, used during development
 - `master` - the original content; it follows the upstream master.
 
@@ -40,7 +40,7 @@ To download them, the following shortcut is available:
 $ curl -L https://github.com/xpack-dev-tools/openocd-xpack/raw/xpack/scripts/git-clone.sh | bash
 ```
 
-The small script issues the following two commands:
+This small script issues the following two commands:
 
 ```console
 $ rm -rf ~/Downloads/openocd-xpack.git
@@ -55,7 +55,7 @@ To use the `xpack-develop` branch of the build scripts, use:
 
 ```console
 $ rm -rf ~/Downloads/openocd-xpack.git
-$ git clone --recurse-submodules -b xpack-develop https://github.com/xpack-dev-tools/openocd-xpack.git \
+$ git clone --recurse-submodules --branch xpack-develop https://github.com/xpack-dev-tools/openocd-xpack.git \
 ~/Downloads/openocd-xpack.git
 ```
 

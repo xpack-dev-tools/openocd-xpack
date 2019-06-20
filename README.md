@@ -93,10 +93,10 @@ For the JTAG probes implemented as USB devices (actually most of them), the last
 
 For more details please read the [Install](https://xpack.github.io/dev-tools/openocd/install/) page.
 
-## Developer info
+## Maintainer info
 
 - [How to build?](https://github.com/xpack-dev-tools/openocd-xpack/blob/xpack/README-BUILD.md) 
-- [How to publish?](https://github.com/xpack-dev-tools/openocd-xpack/blob/xpack/README-PUBISH.md)
+- [How to publish?](https://github.com/xpack-dev-tools/openocd-xpack/blob/xpack/README-PUBLISH.md)
 
 ## Support
 
@@ -117,17 +117,17 @@ corresponding licenses are available in the installed
 
 ## Download analytics
 
-* GitHub [`xpack-dev-tools/openocd.git`](https://github.com/xpack-dev-tools/openocd/)
+* GitHub [`xpack-dev-tools/openocd`](https://github.com/xpack-dev-tools/openocd/) repo
   * latest xPack release
 [![Github All Releases](https://img.shields.io/github/downloads/xpack-dev-tools/openocd/latest/total.svg)](https://github.com/xpack-dev-tools/openocd/releases/)
   * all xPack releases [![Github All Releases](https://img.shields.io/github/downloads/xpack-dev-tools/openocd/total.svg)](https://github.com/xpack-dev-tools/openocd/releases/)
-  * previous GNU MCU Eclipse all releases [![Github All Releases](https://img.shields.io/github/downloads/xpack-dev-tools/openocd/total.svg)](https://github.com/xpack-dev-tools/openocd/releases/)
-* xPack [`@xpack-dev-tools/openocd`](https://github.com/xpack-dev-tools/openocd-xpack/)
+  * previous GNU MCU Eclipse all releases [![Github All Releases](https://img.shields.io/github/downloads/gnu-mcu-eclipse/openocd/total.svg)](https://github.com/gnu-mcu-eclipse/openocd/releases/)
+* npmjs [`@xpack-dev-tools/openocd`](https://github.com/xpack-dev-tools/openocd-xpack/) xPack
   * latest release, per month 
 [![npm (scoped)](https://img.shields.io/npm/v/@xpack-dev-tools/openocd.svg)](https://www.npmjs.com/package/@xpack-dev-tools/openocd/)
 [![npm](https://img.shields.io/npm/dm/@xpack-dev-tools/openocd.svg)](https://www.npmjs.com/package/@xpack-dev-tools/openocd/)
   * all releases [![npm](https://img.shields.io/npm/dt/@xpack-dev-tools/openocd.svg)](https://www.npmjs.com/package/@xpack-dev-tools/openocd/)
-* [individual file counters](https://www.somsubhra.com/github-release-stats/?username=xpack-dev-tools&repository=openocd) (grouped per release)
+* GitHub [individual file counters](https://www.somsubhra.com/github-release-stats/?username=xpack-dev-tools&repository=openocd) (grouped per release)
   
 Credit to [Shields IO](https://shields.io) and [Somsubhra/github-release-stats](https://github.com/Somsubhra/github-release-stats).
 
