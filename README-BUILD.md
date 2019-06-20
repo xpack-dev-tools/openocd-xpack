@@ -25,6 +25,7 @@ changes from upstream it is necessary to add a remote named
 ## Branches
 
 - `xpack` - the updated content, used during the builds
+- `xpack-develop` - the updated content, used during development
 - `master` - the original content; it follows the upstream master.
 
 ## Download the build scripts
@@ -50,11 +51,11 @@ $ git clone --recurse-submodules https://github.com/xpack-dev-tools/openocd-xpac
 > Note: the repository uses submodules; for a successful build it is 
 > mandatory to recurse the submodules.
 
-To use the `develop` branch of the build scripts, use:
+To use the `xpack-develop` branch of the build scripts, use:
 
 ```console
 $ rm -rf ~/Downloads/openocd-xpack.git
-$ git clone --recurse-submodules -b develop https://github.com/xpack-dev-tools/openocd-xpack.git \
+$ git clone --recurse-submodules -b xpack-develop https://github.com/xpack-dev-tools/openocd-xpack.git \
 ~/Downloads/openocd-xpack.git
 ```
 
@@ -89,22 +90,22 @@ page and return when ready.
 ### Update git repos
 
 To keep the development repository in sync with the original OpenOCD 
-repository and the RISC-V repository:
+repository, in the `xpack-dev-tools/openocd` Git repo:
 
 - checkout `master`
 - merge from `upstream/master`
 - checkout `xpack`
 - merge `master`
-- add a tag like `v0.10.0-8` after each public release (mind the 
-inner version `-8`)
+- add a tag like `v0.10.0-12` after each public release (mind the 
+inner version `-12`)
 
 ### Prepare release
 
 To prepare a new release, first determine the OpenOCD version 
 (like `0.10.0`) and update the `scripts/VERSION` file. The format is 
-`0.10.0-8`. The fourth digit is the xPack release number 
-of this version. A fifth digit will be used when publishing 
-the package on the npm server.
+`0.10.0-12`. The fourth number is the xPack release number 
+of this version. A fifth number will be added when publishing 
+the package on the `npm` server.
 
 Add a new set of definitions in the `scripts/container-build.sh`, with 
 the versions of various components.
@@ -307,8 +308,8 @@ look like:
 ```console
 $ xpm install --global @xpack-dev-tools/openocd
 
-$ /Users/ilg/Library/xPacks/\@xpack-dev-tools/openocd/0.10.0-8.1/.content/bin/openocd --version
-xPack 64-bit Open On-Chip Debugger 0.10.0+dev-00487-gaf359c18 (2018-05-12-23:16)
+$ /Users/ilg/Library/xPacks/\@xpack-dev-tools/openocd/0.10.0-12.1/.content/bin/openocd --version
+xPack OpenOCD, 64-bitOpen On-Chip Debugger 0.10.0+dev-00593-g23ad80df4 (2019-06-19-19:02)
 ```
 
 ## Installed folders
@@ -317,37 +318,45 @@ After install, the package should create a structure like this (only the
 first two depth levels are shown):
 
 ```console
-$ tree -L 2 /Users/ilg/Library/xPacks/\@xpack-dev-tools/openocd/0.10.0-8.1/.content/
-/Users/ilg/Library/xPacks/\@xpack-dev-tools/openocd/0.10.0-8.1/.content/
+$ tree -L 2 /Users/ilg/Library/xPacks/\@xpack-dev-tools/openocd/0.10.0-12.1/.content/
+/Users/ilg/Library/xPacks/\@xpack-dev-tools/openocd/0.10.0-12.1/.content/
 ├── OpenULINK
-│   └── ulink_firmware.hex
+│   └── ulink_firmware.hex
 ├── README.md
 ├── bin
-│   └── openocd
+│   ├── libftdi1.2.4.0.dylib
+│   ├── libftdi1.2.dylib -> libftdi1.2.4.0.dylib
+│   ├── libgcc_s.1.dylib
+│   ├── libhidapi.0.dylib
+│   ├── libusb-0.1.4.dylib
+│   ├── libusb-1.0.0.dylib
+│   └── openocd
 ├── contrib
-│   ├── 60-openocd.rules
-│   └── libdcc
+│   ├── 60-openocd.rules
+│   └── libdcc
 ├── distro-info
-│   ├── CHANGELOG.txt
-│   ├── licenses
-│   ├── patches
-│   └── scripts
+│   ├── CHANGELOG.md
+│   ├── licenses
+│   ├── patches
+│   └── scripts
 ├── scripts
-│   ├── bitsbytes.tcl
-│   ├── board
-│   ├── chip
-│   ├── cpld
-│   ├── cpu
-│   ├── fpga
-│   ├── interface
-│   ├── mem_helper.tcl
-│   ├── memory.tcl
-│   ├── mmr_helpers.tcl
-│   ├── target
-│   ├── test
-│   └── tools
+│   ├── bitsbytes.tcl
+│   ├── board
+│   ├── chip
+│   ├── cpld
+│   ├── cpu
+│   ├── fpga
+│   ├── interface
+│   ├── mem_helper.tcl
+│   ├── memory.tcl
+│   ├── mmr_helpers.tcl
+│   ├── target
+│   ├── test
+│   └── tools
 └── share
-└── doc
+    └── doc
+
+20 directories, 15 files
 ```
 
 No other files are installed in any system folders or other locations.
