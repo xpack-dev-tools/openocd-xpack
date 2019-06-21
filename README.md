@@ -8,7 +8,7 @@
 This open source project is hosted on GitHub as
 [`xpack-dev-tools/openocd-xpack`](https://github.com/xpack-dev-tools/openocd-xpack) 
 and provides the platform specific binaries for the
-[xPack OpenOCD](https://xpack.github.io/dev-tools/openocd/). 
+[xPack OpenOCD](https://xpack.github.io/openocd/). 
 
 This distribution follows the official [OpenOCD](http://openocd.org).
 
@@ -22,13 +22,13 @@ the build scripts.
 
 This section is intended as a shortcut for those who plan 
 to use the OpenOCD binaries. For full details please read the 
-[xPack OpenOCD](https://xpack.github.io/dev-tools/openocd/) pages.
+[xPack OpenOCD](https://xpack.github.io/openocd/) pages.
 
 ### Easy install
 
-The easiest way is to install the **binary xPack**, available as 
+The easiest way to install OpenOCD is using the **binary xPack**, available as 
 [`@xpack-dev-tools/openocd`](https://www.npmjs.com/package/@xpack-dev-tools/openocd)
-from the [`npmjs.com`](https://www.npmjs.com) repository.
+from the [`npmjs.com`](https://www.npmjs.com) registry.
 
 #### Prerequisites
 
@@ -80,18 +80,18 @@ archives that can be installed in any location.
 The archives can be downloaded from the
 [GitHub Releases](https://github.com/xpack-dev-tools/openocd-xpack/releases/) page.
 
-For more details please read the [Install](https://xpack.github.io/dev-tools/openocd/install/) page. 
+For more details please read the [Install](https://xpack.github.io/openocd/install/) page. 
 
 ### Windows drivers
 
 Most JTAG probes require separate drivers on Windows. 
-For more details please read the [Install](https://xpack.github.io/dev-tools/openocd/install/) page.
+For more details please read the [Install](https://xpack.github.io/openocd/install/) page.
 
 ### GNU/Linux UDEV subsystem
 
 For the JTAG probes implemented as USB devices (actually most of them), the last installation step on GNU/Linux is to configure the UDEV subsystem. 
 
-For more details please read the [Install](https://xpack.github.io/dev-tools/openocd/install/) page.
+For more details please read the [Install](https://xpack.github.io/openocd/install/) page.
 
 ## Maintainer info
 
@@ -103,7 +103,7 @@ For more details please read the [Install](https://xpack.github.io/dev-tools/ope
 The quick answer is to use the [xPack forums](https://www.tapatalk.com/groups/xpack/);
 please select the correct forum.
 
-For more details please read the [Support](https://xpack.github.io/dev-tools/openocd/support/) page.
+For more details please read the [Support](https://xpack.github.io/openocd/support/) page.
 
 ## License
 
