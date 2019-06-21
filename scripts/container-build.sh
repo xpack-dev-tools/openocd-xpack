@@ -301,7 +301,7 @@ then
   OPENOCD_VERSION="0.10.0-12"
 
   OPENOCD_GIT_BRANCH=${OPENOCD_GIT_BRANCH:-"xpack"}
-  OPENOCD_GIT_COMMIT=${OPENOCD_GIT_COMMIT:-"23ad80df43ac31ce147359f18f2ef9e0e62df794"}
+  OPENOCD_GIT_COMMIT=${OPENOCD_GIT_COMMIT:-"6c8f302fabcddbb27a699f6dee3be4ac08090683"}
   
   # ---------------------------------------------------------------------------
 
