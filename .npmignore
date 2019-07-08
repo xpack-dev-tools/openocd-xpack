@@ -1,7 +1,10 @@
 .DS_Store
 .git/
+.github/
 .gitignore
 .gitmodules
+
+.vscode/
 
 patches/
 pkgconfig/
