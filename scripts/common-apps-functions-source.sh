@@ -184,7 +184,6 @@ function do_openocd()
             ${PARPORT_GIVEIO} \
             --enable-presto \
             --enable-remote-bitbang \
-            --enable-riscv \
             --enable-rlink \
             --enable-stlink \
             ${SYSFSGPIO} \
