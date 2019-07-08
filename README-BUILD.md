@@ -364,7 +364,8 @@ No other files are installed in any system folders or other locations.
 ## Uninstall
 
 The binaries are distributed as portable archives; thus they do not need 
-to run a setup and do not require an uninstall.
+to run a setup and do not require an uninstall; simply removing the
+folder is enough.
 
 ## More build details
 

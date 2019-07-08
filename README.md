@@ -1,6 +1,5 @@
 
 [![npm (scoped)](https://img.shields.io/npm/v/@xpack-dev-tools/openocd.svg)](https://www.npmjs.com/package/@xpack-dev-tools/openocd) 
-[![license](https://img.shields.io/github/license/xpack-dev-tools/openocd-xpack.svg)](https://github.com/xpack-dev-tools/openocd-xpack/blob/xpack/LICENSE)
 [![npm](https://img.shields.io/npm/dt/@xpack-dev-tools/openocd.svg)](https://www.npmjs.com/package/@xpack-dev-tools/openocd/)
 
 # The xPack OpenOCD
@@ -35,12 +34,12 @@ from the [`npmjs.com`](https://www.npmjs.com) registry.
 The only requirement is a recent 
 `xpm`, which is a portable 
 [Node.js](https://nodejs.org) command line application. To install it,
-follow the instructions in the 
-[`xpm`](https://xpack.github.io/core/xpm/install/) page.
+follow the instructions from the 
+[xpm](https://xpack.github.io/xpm/install/) page.
 
 #### Install
 
-With `xpm` available, installing 
+With the `xpm` tool available, installing 
 the latest version of the package is quite easy:
 
 ```console
@@ -48,13 +47,13 @@ $ xpm install --global @xpack-dev-tools/openocd
 ```
 
 This command will always install the latest available version, 
-in the central xPacks repository, which is a platform dependent folder 
+into the central xPacks repository, which is a platform dependent folder 
 (check the output of the `xpm` command or the actual folder used on 
 your platform).
 
 This location is configurable using the environment variable 
 `XPACKS_REPO_FOLDER`; for more details please check the 
-[xpm folders](https://xpack.github.io/core/xpm/folders/) page.
+[xpm folders](https://xpack.github.io/xpm/folders/) page.
 
 xPacks aware tools, like the **GNU MCU Eclipse plug-ins** automatically 
 identify binaries installed with
@@ -78,20 +77,25 @@ For all platforms, the **xPack OpenOCD** binaries are released as portable
 archives that can be installed in any location.
 
 The archives can be downloaded from the
-[GitHub Releases](https://github.com/xpack-dev-tools/openocd-xpack/releases/) page.
+[GitHub Releases](https://github.com/xpack-dev-tools/openocd-xpack/releases/)
+page.
 
-For more details please read the [Install](https://xpack.github.io/openocd/install/) page. 
+For more details please read the 
+[Install](https://xpack.github.io/openocd/install/) page. 
 
 ### Windows drivers
 
 Most JTAG probes require separate drivers on Windows. 
-For more details please read the [Install](https://xpack.github.io/openocd/install/) page.
+For more details please read the 
+[Install](https://xpack.github.io/openocd/install/) page.
 
 ### GNU/Linux UDEV subsystem
 
-For the JTAG probes implemented as USB devices (actually most of them), the last installation step on GNU/Linux is to configure the UDEV subsystem. 
+For the JTAG probes implemented as USB devices (actually most of them), 
+the last installation step on GNU/Linux is to configure the UDEV subsystem. 
 
-For more details please read the [Install](https://xpack.github.io/openocd/install/) page.
+For more details please read the 
+[Install](https://xpack.github.io/openocd/install/) page.
 
 ## Maintainer info
 
@@ -100,10 +104,12 @@ For more details please read the [Install](https://xpack.github.io/openocd/insta
 
 ## Support
 
-The quick answer is to use the [xPack forums](https://www.tapatalk.com/groups/xpack/);
+The quick answer is to use the 
+[xPack forums](https://www.tapatalk.com/groups/xpack/);
 please select the correct forum.
 
-For more details please read the [Support](https://xpack.github.io/openocd/support/) page.
+For more details please read the 
+[Support](https://xpack.github.io/openocd/support/) page.
 
 ## License
 
@@ -117,17 +123,17 @@ corresponding licenses are available in the installed
 
 ## Download analytics
 
-* GitHub [`xpack-dev-tools/openocd-xpack`](https://github.com/xpack-dev-tools/openocd-xpack/) repo
-  * latest xPack release
+- GitHub [`xpack-dev-tools/openocd-xpack`](https://github.com/xpack-dev-tools/openocd-xpack/) repo
+  - latest xPack release
 [![Github All Releases](https://img.shields.io/github/downloads/xpack-dev-tools/openocd-xpack/latest/total.svg)](https://github.com/xpack-dev-tools/openocd-xpack/releases/)
-  * all xPack releases [![Github All Releases](https://img.shields.io/github/downloads/xpack-dev-tools/openocd-xpack/total.svg)](https://github.com/xpack-dev-tools/openocd-xpack/releases/)
-  * previous GNU MCU Eclipse all releases [![Github All Releases](https://img.shields.io/github/downloads/gnu-mcu-eclipse/openocd/total.svg)](https://github.com/gnu-mcu-eclipse/openocd/releases/)
-* npmjs [`@xpack-dev-tools/openocd`](https://www.npmjs.com/package/@xpack-dev-tools/openocd/) xPack
-  * latest release, per month 
+  - all xPack releases [![Github All Releases](https://img.shields.io/github/downloads/xpack-dev-tools/openocd-xpack/total.svg)](https://github.com/xpack-dev-tools/openocd-xpack/releases/)
+  - previous GNU MCU Eclipse all releases [![Github All Releases](https://img.shields.io/github/downloads/gnu-mcu-eclipse/openocd/total.svg)](https://github.com/gnu-mcu-eclipse/openocd/releases/)
+- npmjs [`@xpack-dev-tools/openocd`](https://www.npmjs.com/package/@xpack-dev-tools/openocd/) xPack
+  - latest release, per month 
 [![npm (scoped)](https://img.shields.io/npm/v/@xpack-dev-tools/openocd.svg)](https://www.npmjs.com/package/@xpack-dev-tools/openocd/)
 [![npm](https://img.shields.io/npm/dm/@xpack-dev-tools/openocd.svg)](https://www.npmjs.com/package/@xpack-dev-tools/openocd/)
-  * all releases [![npm](https://img.shields.io/npm/dt/@xpack-dev-tools/openocd.svg)](https://www.npmjs.com/package/@xpack-dev-tools/openocd/)
-* GitHub [individual file counters](https://www.somsubhra.com/github-release-stats/?username=xpack-dev-tools&repository=openocd-xpack) (grouped per release)
+  - all releases [![npm](https://img.shields.io/npm/dt/@xpack-dev-tools/openocd.svg)](https://www.npmjs.com/package/@xpack-dev-tools/openocd/)
+- GitHub [individual file counters](https://www.somsubhra.com/github-release-stats/?username=xpack-dev-tools&repository=openocd-xpack) (grouped per release)
   
 Credit to [Shields IO](https://shields.io) and [Somsubhra/github-release-stats](https://github.com/Somsubhra/github-release-stats).
 
