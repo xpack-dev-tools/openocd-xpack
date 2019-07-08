@@ -101,7 +101,8 @@ For more details please read the
 
 - [How to build?](https://github.com/xpack-dev-tools/openocd-xpack/blob/xpack/README-BUILD.md) 
 - [How to publish?](https://github.com/xpack-dev-tools/openocd-xpack/blob/xpack/README-PUBLISH.md)
-
+- [How to publish?](https://github.com/xpack-dev-tools/openocd-xpack/blob/xpack/README-DEVELOP.md)
+ 
 ## Support
 
 The quick answer is to use the 

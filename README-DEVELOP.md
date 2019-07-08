@@ -2,7 +2,7 @@
 
 ## Prerequisites
 
-For active development of QEMU, the supported environments are macOS and 
+For active development of OpenOCD, the supported environments are macOS and 
 Ubuntu 18 LTS (native or on top of WSL).
 
 To create these environments, these instructions use the scripts 
@@ -253,7 +253,8 @@ To select the one appropriate for your environment, open a C/C++ file and
 click the bottom right **C/C++ Configuration** selector; in the
 selection window that appears on top, select the desired configuration.
 
-Note: VSC configurations not available yet.
+Note: VSC configurations are not available yet; see the QEMU similar
+configurations for an example.
 
 ### Debug
 
@@ -275,7 +276,8 @@ There are separate launchers using LLDB (for macOS) and GDB (for Ubuntu and
 Windows); both start the Debug elf from the `f407-disc-blink-tutorial` project,
 described above.
 
-Note: VSC launchers not available yet.
+Note: VSC launchers are not available yet; see the QEMU similar launchers
+for an example.
 
 #### `HOME` vs `USERPROFILE`
 
@@ -329,8 +331,8 @@ Contributions are welcomed, preferably as GitHub pull requests.
 
 For this, the workflow is:
 
-- fork the [xpack-dev-tools/openocd.git](https://github.com/xpack-dev-tools/openocd) 
-project
+- fork the [xpack-dev-tools/openocd](https://github.com/xpack-dev-tools/openocd) 
+  Git project
 - clone it to a place of your choice
 - create a new branch based on the `xpack-develop` branch
 - link the fork folder to `${HOME}/Work/openocd-dev/` instead of the 
