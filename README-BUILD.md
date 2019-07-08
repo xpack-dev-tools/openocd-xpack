@@ -76,7 +76,10 @@ The actual changes for each version are documented in the
 
 ## How to build local/native binaries
 
-TBD
+### README-DEVELOP.md
+
+The details on how to prepare the development environment for OpenOCD are in the
+[`README-DEVELOP.md`](https://github.com/xpack-dev-tools/openocd-xpack/blob/xpack/README-DEVELOP.md) file.
 
 ## How to build distributions
 
@@ -96,14 +99,14 @@ repository, in the `xpack-dev-tools/openocd` Git repo:
 - merge from `upstream/master`
 - checkout `xpack`
 - merge `master`
-- add a tag like `v0.10.0-12` after each public release (mind the 
+- add a tag like `v0.10.0-13` after each public release (mind the 
 inner version `-12`)
 
 ### Prepare release
 
 To prepare a new release, first determine the OpenOCD version 
 (like `0.10.0`) and update the `scripts/VERSION` file. The format is 
-`0.10.0-12`. The fourth number is the xPack release number 
+`0.10.0-13`. The fourth number is the xPack release number 
 of this version. A fifth number will be added when publishing 
 the package on the `npm` server.
 
@@ -186,14 +189,14 @@ archives and their SHA signatures, created in the `deploy` folder:
 ```console
 $ ls -l deploy
 total 12952
--rw-rw-rw- 1 ilg ilg 3542064 Jun 19 14:21 xpack-openocd-0.10.0-12-linux-x32.tgz
--rw-rw-rw- 1 ilg ilg     104 Jun 19 14:21 xpack-openocd-0.10.0-12-linux-x32.tgz.sha
--rw-rw-rw- 1 ilg ilg 3465777 Jun 19 14:14 xpack-openocd-0.10.0-12-linux-x64.tgz
--rw-rw-rw- 1 ilg ilg     104 Jun 19 14:14 xpack-openocd-0.10.0-12-linux-x64.tgz.sha
--rw-rw-rw- 1 ilg ilg 3117732 Jun 19 14:24 xpack-openocd-0.10.0-12-win32-x32.zip
--rw-rw-rw- 1 ilg ilg     104 Jun 19 14:24 xpack-openocd-0.10.0-12-win32-x32.zip.sha
--rw-rw-rw- 1 ilg ilg 3109501 Jun 19 14:18 xpack-openocd-0.10.0-12-win32-x64.zip
--rw-rw-rw- 1 ilg ilg     104 Jun 19 14:18 xpack-openocd-0.10.0-12-win32-x64.zip.sha
+-rw-rw-rw- 1 ilg ilg 3542064 Jun 19 14:21 xpack-openocd-0.10.0-13-linux-x32.tgz
+-rw-rw-rw- 1 ilg ilg     104 Jun 19 14:21 xpack-openocd-0.10.0-13-linux-x32.tgz.sha
+-rw-rw-rw- 1 ilg ilg 3465777 Jun 19 14:14 xpack-openocd-0.10.0-13-linux-x64.tgz
+-rw-rw-rw- 1 ilg ilg     104 Jun 19 14:14 xpack-openocd-0.10.0-13-linux-x64.tgz.sha
+-rw-rw-rw- 1 ilg ilg 3117732 Jun 19 14:24 xpack-openocd-0.10.0-13-win32-x32.zip
+-rw-rw-rw- 1 ilg ilg     104 Jun 19 14:24 xpack-openocd-0.10.0-13-win32-x32.zip.sha
+-rw-rw-rw- 1 ilg ilg 3109501 Jun 19 14:18 xpack-openocd-0.10.0-13-win32-x64.zip
+-rw-rw-rw- 1 ilg ilg     104 Jun 19 14:18 xpack-openocd-0.10.0-13-win32-x64.zip.sha
 ```
 
 To copy the files from the build machine to the current development 
@@ -224,8 +227,8 @@ archive and its SHA signature, created in the `deploy` folder:
 ```console
 $ ls -l deploy
 total 6280
--rw-r--r--  1 ilg  staff  2855153 Jun 17 20:19 xpack-openocd-0.10.0-12-darwin-x64.tgz
--rw-r--r--  1 ilg  staff      105 Jun 17 20:19 xpack-openocd-0.10.0-12-darwin-x64.tgz.sha
+-rw-r--r--  1 ilg  staff  2855153 Jun 17 20:19 xpack-openocd-0.10.0-13-darwin-x64.tgz
+-rw-r--r--  1 ilg  staff      105 Jun 17 20:19 xpack-openocd-0.10.0-13-darwin-x64.tgz.sha
 ```
 
 To copy the files from the build machine to the current development 
@@ -308,7 +311,7 @@ look like:
 ```console
 $ xpm install --global @xpack-dev-tools/openocd
 
-$ /Users/ilg/Library/xPacks/\@xpack-dev-tools/openocd/0.10.0-12.1/.content/bin/openocd --version
+$ /Users/ilg/Library/xPacks/\@xpack-dev-tools/openocd/0.10.0-13.1/.content/bin/openocd --version
 xPack OpenOCD, 64-bitOpen On-Chip Debugger 0.10.0+dev-00593-g23ad80df4 (2019-06-19-19:02)
 ```
 
@@ -318,8 +321,8 @@ After install, the package should create a structure like this (only the
 first two depth levels are shown):
 
 ```console
-$ tree -L 2 /Users/ilg/Library/xPacks/\@xpack-dev-tools/openocd/0.10.0-12.1/.content/
-/Users/ilg/Library/xPacks/\@xpack-dev-tools/openocd/0.10.0-12.1/.content/
+$ tree -L 2 /Users/ilg/Library/xPacks/\@xpack-dev-tools/openocd/0.10.0-13.1/.content/
+/Users/ilg/Library/xPacks/\@xpack-dev-tools/openocd/0.10.0-13.1/.content/
 ├── OpenULINK
 │   └── ulink_firmware.hex
 ├── README.md
