@@ -24,7 +24,16 @@ Compared to the master branch, the following changes were applied:
 - a configure option was added to configure branding (`--enable-branding`)
 - the src/openocd.c file was edited to display the branding string
 - the contrib/60-openocd.rules file was simplified to avoid protection related issues.
-  
+
+## Build
+
+The scripts used to build this distribution are in:
+
+- `distro-info/scripts`
+
+For the prerequisites and more details on the build procedure, please see the 
+[How to build?](https://github.com/xpack-dev-tools/openocd-xpack/blob/xpack/README-BUILD.md) page. 
+
 ## Documentation
 
 The original documentation is available in the `share/doc` folder.
