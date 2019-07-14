@@ -370,6 +370,19 @@ The binaries are distributed as portable archives; thus they do not need
 to run a setup and do not require an uninstall; simply removing the
 folder is enough.
 
+## Files cache
+
+The XBB build scripts use a local cache such that files are downloaded only
+during the first run, later runs being able to use the cached files.
+
+However, occasionally some servers may not be available, and the builds
+may fail.
+
+The workaround is to manually download the files from an alternate
+location (like 
+https://github.com/xpack-dev-tools/files-cache/tree/master/libs),
+place them in the XBB cache (`Work/cache`) and restart the build.
+
 ## More build details
 
 The build process is split into several scripts. The build starts on 
