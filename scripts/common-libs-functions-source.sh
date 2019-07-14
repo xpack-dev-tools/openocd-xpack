@@ -25,7 +25,6 @@ function do_libusb1()
   LIBUSB1_FOLDER_NAME="${LIBUSB1_SRC_FOLDER_NAME}"
   local libusb1_archive="${LIBUSB1_SRC_FOLDER_NAME}.tar.bz2"
   local libusb1_url="http://sourceforge.net/projects/libusb/files/libusb-1.0/${LIBUSB1_FOLDER_NAME}/${libusb1_archive}"
-  # local libusb1_url="https://github.com/gnu-mcu-eclipse/files/raw/master/libs/${libusb1_archive}"
 
   local libusb1_stamp_file_path="${INSTALL_FOLDER_PATH}/stamp-libusb1-${LIBUSB1_VERSION}-installed"
   if [ ! -f "${libusb1_stamp_file_path}" ]
@@ -114,7 +113,6 @@ function do_libusb0()
   LIBUSB0_FOLDER_NAME="${LIBUSB0_SRC_FOLDER_NAME}"
   local libusb0_archive="${LIBUSB0_SRC_FOLDER_NAME}.tar.bz2"
   local libusb0_url="http://sourceforge.net/projects/libusb/files/libusb-compat-0.1/${LIBUSB0_FOLDER_NAME}/${libusb0_archive}"
-  # local libusb0_url="https://github.com/gnu-mcu-eclipse/files/raw/master/libs/${libusb0_archive}"
 
   local libusb0_stamp_file_path="${INSTALL_FOLDER_PATH}/stamp-libusb0-${LIBUSB0_VERSION}-installed"
   if [ ! -f "${libusb0_stamp_file_path}" ]
@@ -196,7 +194,6 @@ function do_libusb_w32()
   LIBUSB_W32_FOLDER_NAME="${LIBUSB_W32_SRC_FOLDER_NAME}"
   local libusb_w32_archive="${LIBUSB_W32_SRC_FOLDER_NAME}.zip"
   local linusb_w32_url="http://sourceforge.net/projects/libusb-win32/files/libusb-win32-releases/${LIBUSB_W32_VERSION}/${libusb_w32_archive}"
-  # local linusb_w32_url="https://github.com/gnu-mcu-eclipse/files/raw/master/libs/${libusb_w32_archive}"
 
   local libusb_w32_stamp_file_path="${INSTALL_FOLDER_PATH}/stamp-libusb-w32-${LIBUSB_W32_VERSION}-installed"
   if [ ! -f "${libusb_w32_stamp_file_path}" ]
@@ -288,7 +285,6 @@ function do_libftdi()
   local libftdi_archive="${LIBFTDI_SRC_FOLDER_NAME}.tar.bz2"
 
   libftdi_url="http://www.intra2net.com/en/developer/libftdi/download/${libftdi_archive}"
-  # local libftdi_url="https://github.com/gnu-mcu-eclipse/files/raw/master/libs/${libftdi_archive}"
 
   local libftdi_stamp_file_path="${INSTALL_FOLDER_PATH}/stamp-libftdi-${LIBFTDI_VERSION}-installed"
   if [ ! -f "${libftdi_stamp_file_path}" ]
@@ -465,7 +461,6 @@ function do_hidapi()
 
   local hidapi_archive="hidapi-${HIDAPI_VERSION}.zip"
   local hidapi_url="https://github.com/signal11/hidapi/archive/${hidapi_archive}"
-  # local hidapi_url="https://github.com/gnu-mcu-eclipse/files/raw/master/libs/${hidapi_archive}"
 
   local hidapi_stamp_file_path="${INSTALL_FOLDER_PATH}/stamp-hidapi-${HIDAPI_VERSION}-installed"
   if [ ! -f "${hidapi_stamp_file_path}" ]
