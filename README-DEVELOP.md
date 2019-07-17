@@ -53,12 +53,15 @@ PS> Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsyst
 
 #### Install Ubuntu
 
-Then follow the instruction in the [WSL](https://docs.microsoft.com/en-us/windows/wsl/install-win10)
+Then follow the instruction in the 
+[WSL](https://docs.microsoft.com/en-us/windows/wsl/install-win10)
 page and install Ubuntu.
 
 Start the new `ubuntu.exe` (there is also a graphical shortcut).
 
-This step should [initialise the new distro](https://docs.microsoft.com/en-us/windows/wsl/initialize-distro), and when completed, ask for the separate UNIX name.
+This step should 
+[initialise the new distro](https://docs.microsoft.com/en-us/windows/wsl/initialize-distro), 
+and when completed, ask for the separate UNIX name.
 Any name is accepted, but to keep things consistent, preferably use the same 
 name as for Windows.
 

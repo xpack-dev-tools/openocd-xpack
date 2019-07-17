@@ -43,7 +43,7 @@ With the `xpm` tool available, installing
 the latest version of the package is quite easy:
 
 ```console
-$ xpm install --global @xpack-dev-tools/openocd
+$ xpm install --global @xpack-dev-tools/openocd@latest
 ```
 
 This command will always install the latest available version, 

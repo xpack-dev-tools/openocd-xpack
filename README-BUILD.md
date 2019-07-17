@@ -100,7 +100,7 @@ repository, in the `xpack-dev-tools/openocd` Git repo:
 - checkout `xpack`
 - merge `master`
 - add a tag like `v0.10.0-13` after each public release (mind the 
-inner version `-12`)
+inner version `-13`)
 
 ### Prepare release
 
@@ -113,10 +113,10 @@ the package on the `npm` server.
 Add a new set of definitions in the `scripts/container-build.sh`, with 
 the versions of various components.
 
-### Update `README.md`
+### Check `README.md`
 
-If necessary, update the main `README.md` with informations related to the
-build. Information related to the new version should not be included here,
+Normally `README.md` should not need changes, but better check. 
+Information related to the new version should not be included here,
 but in the version specific file (below).
 
 ### Create `README-<version>.md`
@@ -309,7 +309,7 @@ program from the final location. For example on macOS the output should
 look like:
 
 ```console
-$ xpm install --global @xpack-dev-tools/openocd
+$ xpm install --global @xpack-dev-tools/openocd@latest
 
 $ /Users/ilg/Library/xPacks/\@xpack-dev-tools/openocd/0.10.0-13.1/.content/bin/openocd --version
 xPack OpenOCD, 64-bitOpen On-Chip Debugger 0.10.0+dev-00593-g23ad80df4 (2019-06-19-19:02)

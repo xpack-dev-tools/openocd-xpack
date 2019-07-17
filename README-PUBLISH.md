@@ -20,9 +20,9 @@ recreate the archives with the correct file.
 
 The `VERSION` file should refer to the actual release.
 
-### Push the build script git
+### Push the build script
 
-In the `xpack-dev-tools/openocd-xpack` Git repo:
+In this Git repo:
 
 - if necessary, merge the `xpack-develop` branch into `xpack`.
 - push it to GitHub.
@@ -60,7 +60,7 @@ Note: at this moment the system should send a notification to all clients watchi
 In the `xpack.github.io` web Git:
 
 - add a new file to `_posts/openocd/releases`
-- name the file like `2018-05-23-openocd-v0-10-0-13-released.md`
+- name the file like `2019-07-17-openocd-v0-10-0-13-released.md`
 - name the post like: **xPack OpenOCD v0.10.0-13 released**.
 - as `download_url` use the tagged URL like `https://github.com/xpack-dev-tools/openocd-xpack/releases/tag/v0.10.0-13/` 
 - update the `date:` field with the current date
