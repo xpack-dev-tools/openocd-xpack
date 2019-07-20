@@ -2,9 +2,13 @@
 
 Releases in reverse chronological order.
 
+### 2019-07-20
+
+- v0.10.0-13.1 published on npmjs.com
+
 ### 2019-07-17
 
-- v0.10.0-13.1 released
+- v0.10.0-13 released
 
 ### 2019-07-08
 
