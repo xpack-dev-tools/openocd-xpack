@@ -1,6 +1,6 @@
 {
   "name": "@xpack-dev-tool/openocd",
-  "version": "0.10.0-12.1",
+  "version": "0.10.0-13.1",
   "description": "A binary xPack with OpenOCD",
   "main": "",
   "scripts": {
