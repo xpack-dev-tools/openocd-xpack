@@ -127,6 +127,14 @@ $ cat *.sha
 - push all changes to GitHub
 - `npm publish` (use `--access public` when publishing for the first time)
 
+## Test npm binaries
+
+Install the binaries on all platforms.
+
+```console
+$ xpm install --global @xpack-dev-tools/openocd@latest
+```
+
 ## Create the final GitHub release
 
 - go to the [GitHub Releases](https://github.com/xpack-dev-tools/openocd-xpack/releases) page
@@ -140,6 +148,6 @@ $ cat *.sha
 - in a separate browser windows, open [TweetDeck](https://tweetdeck.twitter.com/)
 - using the `@xpack_project` account
 - paste the release name like **xPack OpenOCD v0.10.0-13 released**
-- paste the link to the Github release
+- paste the link to the web release
 - click the **Tweet** button
 
