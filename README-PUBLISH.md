@@ -4,7 +4,7 @@
 
 Before starting the build, perform some checks.
 
-### Check the CHANGELOG file
+### Check the `CHANGELOG.md` file
 
 Open the `CHANGELOG.md` file and and check if all 
 new entries are in.
@@ -37,7 +37,8 @@ page.
 ## Test
 
 Install the binaries on all supported platforms and check if they are 
-functional, using the Eclipse STM32F4DISCOVERY blinky test.
+functional, using the Eclipse STM32F4DISCOVERY blinky test and the
+`-f "board/stm32f4discovery.cfg"` configuration file.
 
 ## Create a new GitHub pre-release
 

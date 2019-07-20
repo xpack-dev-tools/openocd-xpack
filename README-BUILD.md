@@ -181,22 +181,23 @@ $ bash ~/Downloads/openocd-xpack.git/scripts/build.sh --all
 ```
 
 To detach from the session, use `Ctrl-a` `Ctrl-d`; to reattach use
-`screen -r openocd`; to kill the session use `Ctrl-a` `Ctrl-\` and confirm.
+`screen -r openocd`; to kill the session use `Ctrl-a` `Ctrl-\` or 
+`Ctrl-a` `Ctrl-k` and confirm.
 
 About 10-15 minutes later, the output of the build script is a set of 4 
 archives and their SHA signatures, created in the `deploy` folder:
 
 ```console
 $ ls -l deploy
-total 12952
--rw-rw-rw- 1 ilg ilg 3542064 Jun 19 14:21 xpack-openocd-0.10.0-13-linux-x32.tgz
--rw-rw-rw- 1 ilg ilg     104 Jun 19 14:21 xpack-openocd-0.10.0-13-linux-x32.tgz.sha
--rw-rw-rw- 1 ilg ilg 3465777 Jun 19 14:14 xpack-openocd-0.10.0-13-linux-x64.tgz
--rw-rw-rw- 1 ilg ilg     104 Jun 19 14:14 xpack-openocd-0.10.0-13-linux-x64.tgz.sha
--rw-rw-rw- 1 ilg ilg 3117732 Jun 19 14:24 xpack-openocd-0.10.0-13-win32-x32.zip
--rw-rw-rw- 1 ilg ilg     104 Jun 19 14:24 xpack-openocd-0.10.0-13-win32-x32.zip.sha
--rw-rw-rw- 1 ilg ilg 3109501 Jun 19 14:18 xpack-openocd-0.10.0-13-win32-x64.zip
--rw-rw-rw- 1 ilg ilg     104 Jun 19 14:18 xpack-openocd-0.10.0-13-win32-x64.zip.sha
+total 13028
+-rw-rw-rw- 1 ilg ilg 3558106 Jul 17 11:33 xpack-openocd-0.10.0-13-linux-x32.tgz
+-rw-rw-rw- 1 ilg ilg     104 Jul 17 11:33 xpack-openocd-0.10.0-13-linux-x32.tgz.sha
+-rw-rw-rw- 1 ilg ilg 3486228 Jul 17 11:26 xpack-openocd-0.10.0-13-linux-x64.tgz
+-rw-rw-rw- 1 ilg ilg     104 Jul 17 11:26 xpack-openocd-0.10.0-13-linux-x64.tgz.sha
+-rw-rw-rw- 1 ilg ilg 3139052 Jul 17 11:37 xpack-openocd-0.10.0-13-win32-x32.zip
+-rw-rw-rw- 1 ilg ilg     104 Jul 17 11:37 xpack-openocd-0.10.0-13-win32-x32.zip.sha
+-rw-rw-rw- 1 ilg ilg 3130915 Jul 17 11:31 xpack-openocd-0.10.0-13-win32-x64.zip
+-rw-rw-rw- 1 ilg ilg     104 Jul 17 11:31 xpack-openocd-0.10.0-13-win32-x64.zip.sha
 ```
 
 To copy the files from the build machine to the current development 
@@ -214,21 +215,31 @@ The current platform for macOS production builds is a macOS 10.10.5
 VirtualBox image running on a macMini with 16 GB of RAM and a 
 fast SSD.
 
+```console
+$ ssh ilg-xbb-mac.local
+```
+
 To build the latest macOS version:
 
 ```console
+$ screen -S openocd
+
 $ rm -rf ~/Work/openocd-*
 $ caffeinate bash ~/Downloads/openocd-xpack.git/scripts/build.sh --osx
 ```
+
+To detach from the session, use `Ctrl-a` `Ctrl-d`; to reattach use
+`screen -r openocd`; to kill the session use `Ctrl-a` `Ctrl-\` or 
+`Ctrl-a` `Ctrl-k` and confirm.
 
 Several minutes later, the output of the build script is a compressed 
 archive and its SHA signature, created in the `deploy` folder:
 
 ```console
 $ ls -l deploy
-total 6280
--rw-r--r--  1 ilg  staff  2855153 Jun 17 20:19 xpack-openocd-0.10.0-13-darwin-x64.tgz
--rw-r--r--  1 ilg  staff      105 Jun 17 20:19 xpack-openocd-0.10.0-13-darwin-x64.tgz.sha
+total 5528
+-rw-r--r--  1 ilg  staff  2822538 Jul 17 15:30 xpack-openocd-0.10.0-13-darwin-x64.tgz
+-rw-r--r--  1 ilg  staff      105 Jul 17 15:30 xpack-openocd-0.10.0-13-darwin-x64.tgz.sha
 ```
 
 To copy the files from the build machine to the current development 
@@ -317,8 +328,8 @@ xPack OpenOCD, 64-bitOpen On-Chip Debugger 0.10.0+dev-00593-g23ad80df4 (2019-06-
 
 ## Installed folders
 
-After install, the package should create a structure like this (only the 
-first two depth levels are shown):
+After install, the package should create a structure like this (macOS files;
+only the first two depth levels are shown):
 
 ```console
 $ tree -L 2 /Users/ilg/Library/xPacks/\@xpack-dev-tools/openocd/0.10.0-13.1/.content/
