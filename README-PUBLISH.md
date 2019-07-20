@@ -48,10 +48,10 @@ functional, using the Eclipse STM32F4DISCOVERY blinky test and the
 - select the `xpack` branch
 - name the release like **xPack OpenOCD v0.10.0-13** (mind the dash)
 - as description
-  - add a downloads badge like `[![Github Releases (by Release)](https://img.shields.io/github/downloads/xpack-dev-tools/openocd-xpack/v0.10.0-13/total.svg)](https://github.com/xpack-dev-tools/openocd-xpack/releases/tag/v0.10.0-13/)`;
+  - add a downloads badge like `![Github Releases (by Release)](https://img.shields.io/github/downloads/xpack-dev-tools/openocd-xpack/v0.10.0-13/total.svg)`;
   - draft a short paragraph explaining what are the main changes
 - **attach binaries** and SHA (drag and drop from the archives folder will do it)
-- enable the pre-release button
+- **enable** the **pre-release** button
 - click the **Publish Release** button
 
 Note: at this moment the system should send a notification to all clients watching this project.
@@ -117,7 +117,7 @@ $ cat *.sha
 - open [GitHub Releases](https://github.com/xpack-dev-tools/openocd-xpack/releases) 
   and select the latest release
 - update the `baseUrl:` with the file URLs (including the tag/version)
-- from the release, copy the SHA & file names
+- from the web release, copy the SHA & file names
 - commit all changes, use a message like 
   `package.json: update urls for 0.10.0-13 release` (without `v`)
 - update `CHANGELOG.md`; commit with a message like 
@@ -132,7 +132,7 @@ $ cat *.sha
 - go to the [GitHub Releases](https://github.com/xpack-dev-tools/openocd-xpack/releases) page
 - update the link behind the badge with the blog URL
 - add a link to the Web page `[Continue reading »]()`; use an same blog URL
-- disable the pre-release button
+- **disable** the **pre-release** button
 - click the **Update Release** button
 
 ## Share on Twitter
