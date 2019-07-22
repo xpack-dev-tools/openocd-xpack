@@ -99,8 +99,8 @@ repository, in the `xpack-dev-tools/openocd` Git repo:
 - merge from `upstream/master`
 - checkout `xpack`
 - merge `master`
-- add a tag like `v0.10.0-13` after each public release (mind the 
-inner version `-13`)
+
+No need to add a tag here, it'll be added when the release is created.
 
 ### Prepare release
 
