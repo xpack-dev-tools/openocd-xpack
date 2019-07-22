@@ -315,15 +315,14 @@ the build folder, it might be necessary to run a recursive `chown`.
 A simple test is performed by the script at the end, by launching the 
 executable to check if all shared/dynamic libraries are correctly used.
 
-For a true test you need to first install the package and then run the 
-program from the final location. For example on macOS the output should 
+For a true test you need to unpack the archive in a temporary location 
+(like `~/Downloads`) and then run the 
+program from there. For example on macOS the output should 
 look like:
 
 ```console
-$ xpm install --global @xpack-dev-tools/openocd@latest
-
-$ /Users/ilg/Library/xPacks/\@xpack-dev-tools/openocd/0.10.0-13.1/.content/bin/openocd --version
-xPack OpenOCD, 64-bitOpen On-Chip Debugger 0.10.0+dev-00593-g23ad80df4 (2019-06-19-19:02)
+$ /Users/ilg/Downloads/xPacks/openocd/0.10.0-13/bin/openocd --version
+xPack OpenOCD, 64-bit Open On-Chip Debugger 0.10.0+dev (2019-07-17-15:21)
 ```
 
 ## Installed folders
