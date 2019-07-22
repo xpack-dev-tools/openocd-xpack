@@ -389,7 +389,7 @@ function copy_distro_files()
     copy_build_files
 
     echo
-    echo "Copying GME files..."
+    echo "Copying xPack files..."
 
     cd "${WORK_FOLDER_PATH}/build.git"
     install -v -c -m 644 "scripts/${README_OUT_FILE_NAME}" \
