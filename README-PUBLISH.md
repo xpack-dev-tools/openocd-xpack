@@ -116,6 +116,7 @@ $ cat *.sha
 
 - open [GitHub Releases](https://github.com/xpack-dev-tools/openocd-xpack/releases) 
   and select the latest release
+- check the download counter, it should match the number of tests
 - update the `baseUrl:` with the file URLs (including the tag/version)
 - from the web release, copy the SHA & file names
 - commit all changes, use a message like 
@@ -148,6 +149,6 @@ $ xpm install --global @xpack-dev-tools/openocd@latest
 - in a separate browser windows, open [TweetDeck](https://tweetdeck.twitter.com/)
 - using the `@xpack_project` account
 - paste the release name like **xPack OpenOCD v0.10.0-13 released**
-- paste the link to the web release
+- paste the link to the blog release URL
 - click the **Tweet** button
 
