@@ -13,7 +13,7 @@ Releases in reverse chronological order.
 ### 2019-07-08
 
 - update to 263deb380 from 7 Jul 2019
-  
+ 
 ___
 
 ## Historical GNU MCU Eclipse change log
@@ -108,7 +108,7 @@ ___
 ### 2017-06-22
 
 - v0.10.0-2-20170622-1535-dev released
-- merge RISC-V tag v20170621 
+- merge RISC-V tag v20170621
 
 ### 2017-06-15
 
@@ -117,7 +117,7 @@ ___
 ### 2017-06-12
 
 - add --enable-riscv and #if BUILD_RISCV
-- add --enable-branding 
+- add --enable-branding
 
 ### 2017-06-07
 
@@ -175,7 +175,7 @@ using Docker, was added to the main gnuarmeclipse-se.git/scripts.
 
 ### 2015-03-22
 
-- the NSIS script was fixed to prevent removing the keys when 
+- the NSIS script was fixed to prevent removing the keys when
 uninstalling an older version.
 
 ### 2015-03-20
@@ -185,13 +185,13 @@ uninstalling an older version.
 
 ### 2015-03-18
 
-- the build scripts were extended to generate both the stable and the 
+- the build scripts were extended to generate both the stable and the
 development version.
 
-- multiple versions of the package can be installed in separate folders, 
+- multiple versions of the package can be installed in separate folders,
 named using the version.
 
-- for Windows, more accurate keys were stored, so remember separate locations 
+- for Windows, more accurate keys were stored, so remember separate locations
 for 32/64-bit versions.
 
 ### 2015-01-31
@@ -217,16 +217,13 @@ in the SourceForge Git web browser.
 
 - src/openocd.c
 
-Add branding 'GNU ARM Eclipse' to the greeting message, to 
+Add branding 'GNU ARM Eclipse' to the greeting message, to
 more easily identify this custom version.
 
 - helper/options.c
 
-Update the logic used to locate the 'scripts' folder, by 
+Update the logic used to locate the 'scripts' folder, by
 using the argv[0], as on Windows. The logic is a bit more
 complicated, to accomodate 3 cases (no path, relative path
 and absolute path).
-
-
-Liviu Ionescu
 

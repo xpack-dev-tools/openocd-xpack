@@ -1,20 +1,20 @@
 # The xPack OpenOCD
 
-This is the **xPack** version of **OpenOCD** (formerly part of the 
+This is the **xPack** version of **OpenOCD** (formerly part of the
 GNU MCU Eclipse project).
 
-For details, see 
+For details, see
 [The xPack OpenOCD](https://xpack.github.io/openocd/) pages.
 
 ## Compliance
 
-The xPack OpenOCD generally follows the official 
+The xPack OpenOCD generally follows the official
 [OpenOCD](http://openocd.org) releases.
 
 The current version is based on:
 
-- OpenOCD version 0.10.0, the development commit 
-[263deb380](https://github.com/xpack-dev-tools/openocd/commit/263deb3802a515ba8155b6c59146f0f539de4e43) 
+- OpenOCD version 0.10.0, the development commit
+[263deb380](https://github.com/xpack-dev-tools/openocd/commit/263deb3802a515ba8155b6c59146f0f539de4e43)
 from 7 July 2019
 
 ## Changes
@@ -31,8 +31,8 @@ The scripts used to build this distribution are in:
 
 - `distro-info/scripts`
 
-For the prerequisites and more details on the build procedure, please see the 
-[How to build?](https://github.com/xpack-dev-tools/openocd-xpack/blob/xpack/README-BUILD.md) page. 
+For the prerequisites and more details on the build procedure, please see the
+[How to build?](https://github.com/xpack-dev-tools/openocd-xpack/blob/xpack/README-BUILD.md) page.
 
 ## Documentation
 
