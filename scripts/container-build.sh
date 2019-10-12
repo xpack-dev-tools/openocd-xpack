@@ -206,6 +206,14 @@ fi
 
 # -----------------------------------------------------------------------------
 
+if [ ! -f "${BUILD_GIT_PATH}/scripts/${README_OUT_FILE_NAME}" ]
+then
+  echo "Missing ${README_OUT_FILE_NAME}, quit."
+  exit 1
+fi
+
+# -----------------------------------------------------------------------------
+
 OPENOCD_SRC_FOLDER_NAME=${OPENOCD_SRC_FOLDER_NAME:-"${OPENOCD_PROJECT_NAME}.git"}
 OPENOCD_GIT_URL=${OPENOCD_GIT_URL:-"https://github.com/xpack-dev-tools/openocd.git"}
 
