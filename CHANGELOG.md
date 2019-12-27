@@ -2,6 +2,12 @@
 
 Releases in reverse chronological order.
 
+### 2019-07-27
+
+- bump v0.10.0-14
+- add support for Arm binaries
+- based on openocd.git e1e63ef30cea39aceda40daf194377c89c570101
+
 ### 2019-07-20
 
 - v0.10.0-13.1 published on npmjs.com
@@ -13,7 +19,7 @@ Releases in reverse chronological order.
 ### 2019-07-08
 
 - update to 263deb380 from 7 Jul 2019
- 
+
 ___
 
 ## Historical GNU MCU Eclipse change log

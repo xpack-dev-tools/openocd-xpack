@@ -51,14 +51,23 @@ echo
 echo "xPack OpenOCD distribution build script."
 
 host_functions_script_path="${script_folder_path}/helper/host-functions-source.sh"
+echo
 source "${host_functions_script_path}"
+
+common_functions_script_path="${script_folder_path}/common-functions-source.sh"
+echo "Common functions source script: \"${common_functions_script_path}\"."
+source "${common_functions_script_path}"
+
+defines_script_path="${script_folder_path}/defs-source.sh"
+echo "Definitions source script: \"${defines_script_path}\"."
+source "${defines_script_path}"
 
 # -----------------------------------------------------------------------------
 
 # Array where the remaining args will be stored.
 declare -a rest
 
-host_options "    bash $0 [--win32] [--win64] [--linux32] [--linux64] [--osx] [--all] [clean|cleanlibs|cleanall|preload-images] [--env-file file] [--disable-strip] [--without-pdf] [--with-html] [--develop] [--debug] [--jobs N] [--help]" $@
+host_options "    bash $0 [--win32] [--win64] [--linux32] [--linux64] [--arm32] [--arm64] [--osx] [--all] [clean|cleanlibs|cleanall|preload-images] [--env-file file] [--disable-strip] [--without-pdf] [--with-html] [--develop] [--debug] [--jobs N] [--help]" $@
 
 echo
 echo "Host helper functions source script: \"${host_functions_script_path}\"."
@@ -169,6 +178,36 @@ else
       --target-arch "x32" \
       --target-bits 32 \
       --docker-image "${docker_linux32_image}" \
+      -- \
+      ${rest[@]-}
+  fi
+
+  # ----- Build the GNU/Linux Arm 64-bit distribution. ---------------------------
+
+  if [ "${DO_BUILD_LINUX_ARM64}" == "y" ]
+  then
+    host_build_target "Creating the GNU/Linux Arm 64-bit distribution..." \
+      --script "${CONTAINER_WORK_FOLDER_PATH}/${CONTAINER_BUILD_SCRIPT_REL_PATH}" \
+      --env-file "${ENV_FILE}" \
+      --target-platform "linux" \
+      --target-arch "arm64" \
+      --target-bits 64 \
+      --docker-image "${docker_linux_arm64_image}" \
+      -- \
+      ${rest[@]-}
+  fi
+
+  # ----- Build the GNU/Linux Arm 32-bit distribution. ---------------------------
+
+  if [ "${DO_BUILD_LINUX_ARM32}" == "y" ]
+  then
+    host_build_target "Creating the GNU/Linux Arm 32-bit distribution..." \
+      --script "${CONTAINER_WORK_FOLDER_PATH}/${CONTAINER_BUILD_SCRIPT_REL_PATH}" \
+      --env-file "${ENV_FILE}" \
+      --target-platform "linux" \
+      --target-arch "arm" \
+      --target-bits 32 \
+      --docker-image "${docker_linux_arm32_image}" \
       -- \
       ${rest[@]-}
   fi
