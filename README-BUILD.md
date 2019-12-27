@@ -177,7 +177,7 @@ network connection or a computer entering sleep.
 $ screen -S openocd
 
 $ sudo rm -rf ~/Work/openocd-*
-$ bash ~/Downloads/openocd-xpack.git/scripts/build.sh --all
+$ bash ~/Downloads/openocd-xpack.git/scripts/build.sh --all --jobs=$(nproc)
 ```
 
 To detach from the session, use `Ctrl-a` `Ctrl-d`; to reattach use
@@ -224,7 +224,8 @@ To build the latest macOS version:
 $ screen -S openocd
 
 $ rm -rf ~/Work/openocd-*
-$ caffeinate bash ~/Downloads/openocd-xpack.git/scripts/build.sh --osx
+$ nproc=$(sysctl hw.ncpu | sed 's/hw.ncpu: //')
+$ caffeinate bash ~/Downloads/openocd-xpack.git/scripts/build.sh --osx --jobs ${nproc}
 ```
 
 To detach from the session, use `Ctrl-a` `Ctrl-d`; to reattach use
