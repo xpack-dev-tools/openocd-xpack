@@ -177,7 +177,7 @@ network connection or a computer entering sleep.
 $ screen -S openocd
 
 $ sudo rm -rf ~/Work/openocd-*
-$ bash ~/Downloads/openocd-xpack.git/scripts/build.sh --all --jobs=$(nproc)
+$ bash ~/Downloads/openocd-xpack.git/scripts/build.sh --all --jobs $(nproc)
 ```
 
 To detach from the session, use `Ctrl-a` `Ctrl-d`; to reattach use
