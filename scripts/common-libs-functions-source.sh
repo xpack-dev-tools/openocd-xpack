@@ -629,5 +629,35 @@ function do_copy_libudev()
       echo "No libudev.so; abort."
       exit 1
     fi
+  elif [ "${TARGET_ARCH}" == "arm64" ] 
+  then
+    if [ -f "/usr/lib/aarch64-linux-gnu/libudev.so" ]
+    then
+      cp "/usr/lib/aarch64-linux-gnu/libudev.so" "${LIBS_INSTALL_FOLDER_PATH}/lib"
+      cp "/usr/lib/aarch64-linux-gnu/pkgconfig/libudev.pc" "${LIBS_INSTALL_FOLDER_PATH}/lib/pkgconfig"
+    elif [ -f "/lib/aarch64-linux-gnu/libudev.so" ]
+    then
+      # In Debian 9 the location changed to /lib
+      cp "/lib/aarch64-linux-gnu/libudev.so" "${LIBS_INSTALL_FOLDER_PATH}/lib"
+      cp "/usr/lib/aarch64-linux-gnu/pkgconfig/libudev.pc" "${LIBS_INSTALL_FOLDER_PATH}/lib/pkgconfig"
+    else
+      echo "No libudev.so; abort."
+      exit 1
+    fi
+  elif [ "${TARGET_ARCH}" == "arm" ] 
+  then
+    if [ -f "/usr/lib/arm-linux-gnueabihf/libudev.so" ]
+    then
+      cp "/usr/lib/arm-linux-gnueabihf/libudev.so" "${LIBS_INSTALL_FOLDER_PATH}/lib"
+      cp "/usr/lib/arm-linux-gnueabihf/pkgconfig/libudev.pc" "${LIBS_INSTALL_FOLDER_PATH}/lib/pkgconfig"
+    elif [ -f "/lib/arm-linux-gnueabihf/libudev.so" ]
+    then
+      # In Debian 9 the location changed to /lib
+      cp "/lib/arm-linux-gnueabihf/libudev.so" "${LIBS_INSTALL_FOLDER_PATH}/lib"
+      cp "/usr/lib/arm-linux-gnueabihf/pkgconfig/libudev.pc" "${LIBS_INSTALL_FOLDER_PATH}/lib/pkgconfig"
+    else
+      echo "No libudev.so; abort."
+      exit 1
+    fi
   fi
 }
