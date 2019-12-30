@@ -169,11 +169,6 @@ prepare_xbb_extras
 
 prepare_versions
 
-if [ ${TARGET_ARCH} == "arm64" -o ${TARGET_ARCH} == "arm" ]
-then
-  apt install libudev-dev
-fi
-
 # -----------------------------------------------------------------------------
 
 if [ ! -f "${BUILD_GIT_PATH}/scripts/${README_OUT_FILE_NAME}" ]
