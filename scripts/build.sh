@@ -51,16 +51,12 @@ echo
 echo "xPack OpenOCD distribution build script."
 
 host_functions_script_path="${script_folder_path}/helper/host-functions-source.sh"
-echo
-echo "Host helper functions source script: \"${host_functions_script_path}\"."
 source "${host_functions_script_path}"
 
 common_functions_script_path="${script_folder_path}/common-functions-source.sh"
-echo "Common functions source script: \"${common_functions_script_path}\"."
 source "${common_functions_script_path}"
 
 defines_script_path="${script_folder_path}/defs-source.sh"
-echo "Definitions source script: \"${defines_script_path}\"."
 source "${defines_script_path}"
 
 host_detect
@@ -74,6 +70,12 @@ declare -a rest
 
 help_message="    bash $0 [--win32] [--win64] [--linux32] [--linux64] [--arm32] [--arm64] [--osx] [--all] [clean|cleanlibs|cleanall|preload-images] [--env-file file] [--disable-strip] [--without-pdf] [--with-html] [--develop] [--debug] [--jobs N] [--help]"
 host_options "${help_message}" $@
+
+# Intentionally moved after option parsing.
+echo
+echo "Host helper functions source script: \"${host_functions_script_path}\"."
+echo "Common functions source script: \"${common_functions_script_path}\"."
+echo "Definitions source script: \"${defines_script_path}\"."
 
 host_common
 
