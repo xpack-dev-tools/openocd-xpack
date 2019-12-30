@@ -130,6 +130,7 @@ else
       --env-file "${ENV_FILE}" \
       --target-platform "linux" \
       --target-arch "x64" \
+      --target-machine "x86_64" \
       --target-bits 64 \
       --docker-image "${docker_linux64_image}" \
       -- \
@@ -145,6 +146,7 @@ else
       --env-file "${ENV_FILE}" \
       --target-platform "win32" \
       --target-arch "x64" \
+      --target-machine "x86_64" \
       --target-bits 64 \
       --docker-image "${docker_linux64_image}" \
       -- \
@@ -160,6 +162,7 @@ else
       --env-file "${ENV_FILE}" \
       --target-platform "linux" \
       --target-arch "x32" \
+      --target-machine "i386" \
       --target-bits 32 \
       --docker-image "${docker_linux32_image}" \
       -- \
@@ -176,6 +179,7 @@ else
       --env-file "${ENV_FILE}" \
       --target-platform "win32" \
       --target-arch "x32" \
+      --target-machine "i386" \
       --target-bits 32 \
       --docker-image "${docker_linux32_image}" \
       -- \
@@ -191,6 +195,7 @@ else
       --env-file "${ENV_FILE}" \
       --target-platform "linux" \
       --target-arch "arm64" \
+      --target-machine "aarch64" \
       --target-bits 64 \
       --docker-image "${docker_linux_arm64_image}" \
       -- \
@@ -206,6 +211,7 @@ else
       --env-file "${ENV_FILE}" \
       --target-platform "linux" \
       --target-arch "arm" \
+      --target-machine "armhf" \
       --target-bits 32 \
       --docker-image "${docker_linux_arm32_image}" \
       -- \

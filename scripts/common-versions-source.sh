@@ -18,7 +18,7 @@ function prepare_versions()
   # The \x2C is a comma in hex; without this trick the regular expression
   # that processes this string in the Makefile, silently fails and the 
   # bfdver.h file remains empty.
-  BRANDING="${BRANDING}\x2C ${TARGET_BITS}-bit"
+  BRANDING="${BRANDING}\x2C ${TARGET_MACHINE}"
 
   OPENOCD_PROJECT_NAME="openocd"
   OPENOCD_GIT_COMMIT=${OPENOCD_GIT_COMMIT:-""}
