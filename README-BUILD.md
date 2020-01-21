@@ -11,7 +11,7 @@ The build scripts use the
 a set of elaborate build environments based on GCC 7.4 (Docker containers
 for GNU/Linux and Windows or a custom folder for MacOS).
 
-## Repository URLs
+## Repositories
 
 - `https://github.com/xpack-dev-tools/openocd.git` - the URL of the
   [xPack OpenOCD fork](https://github.com/xpack-dev-tools/openocd)
@@ -22,11 +22,18 @@ The build scripts use the first repo; to merge
 changes from upstream it is necessary to add a remote named
 `upstream`, and merge the `upstream/master` into the local `master`.
 
-## Branches
+### Branches
 
 - `xpack` - the updated content, used during builds
 - `xpack-develop` - the updated content, used during development
 - `master` - the original content; it follows the upstream master.
+
+## Prerequisites
+
+The prerequisites are common to all binary builds. Please follow the
+instructions in the separate
+[Prerequisites for building binaries](https://xpack.github.io/xbb/prerequisites/)
+page and return when ready.
 
 ## Download the build scripts
 
@@ -82,13 +89,6 @@ The details on how to prepare the development environment for OpenOCD are in the
 [`README-DEVELOP.md`](https://github.com/xpack-dev-tools/openocd-xpack/blob/xpack/README-DEVELOP.md) file.
 
 ## How to build distributions
-
-### Prerequisites
-
-The prerequisites are common to all binary builds. Please follow the
-instructions in the separate
-[Prerequisites for building binaries](https://xpack.github.io/xbb/prerequisites/)
-page and return when ready.
 
 ### Update git repos
 
