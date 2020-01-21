@@ -39,3 +39,11 @@ COMMON_LIBS_FUNCTIONS_SCRIPT_NAME=${COMMON_LIBS_FUNCTIONS_SCRIPT_NAME:-"common-l
 COMMON_APPS_FUNCTIONS_SCRIPT_NAME=${COMMON_APPS_FUNCTIONS_SCRIPT_NAME:-"common-apps-functions-source.sh"}
 
 # -----------------------------------------------------------------------------
+
+# If you want to build OpenOCD from the OpenOCD upstream/master repo rather
+# than the xPack Project repo then uncomment the following defines and tweak
+# as needed.
+
+# OPENOCD_GIT_URL=git://git.code.sf.net/p/openocd/code
+# OPENOCD_GIT_BRANCH=master
+# OPENOCD_GIT_COMMIT=HEAD
