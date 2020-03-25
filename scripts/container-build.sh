@@ -94,7 +94,7 @@ WITH_HTML="n"
 IS_DEVELOP=""
 IS_DEBUG=""
 
-JOBS=""
+JOBS="1"
 
 while [ $# -gt 0 ]
 do
