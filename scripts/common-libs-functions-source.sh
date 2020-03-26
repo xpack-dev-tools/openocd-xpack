@@ -543,6 +543,10 @@ function do_hidapi()
           do_copy_libudev
 
           export LIBS="-liconv"
+        elif [ "${TARGET_PLATFORM}" == "darwin" ]
+        then
+          # error: unknown type name ‘dispatch_block_t’
+          export CC="clang"
         fi
 
         echo
