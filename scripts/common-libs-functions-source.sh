@@ -93,6 +93,10 @@ function do_libusb1()
           make install
         fi
       ) 2>&1 | tee "${LOGS_FOLDER_PATH}/make-libusb1-output.txt"
+
+      copy_license \
+        "${SOURCES_FOLDER_PATH}/${LIBUSB1_SRC_FOLDER_NAME}" \
+        "${LIBUSB1_FOLDER_NAME}"
     )
 
     touch "${libusb1_stamp_file_path}"
@@ -171,6 +175,10 @@ function do_libusb0()
           make install
         fi
       ) 2>&1 | tee "${LOGS_FOLDER_PATH}/make-libusb0-output.txt"
+
+      copy_license \
+        "${SOURCES_FOLDER_PATH}/${LIBUSB0_SRC_FOLDER_NAME}" \
+        "${LIBUSB0_FOLDER_NAME}"
     )
 
     touch "${libusb0_stamp_file_path}"
@@ -241,28 +249,32 @@ function do_libusb_w32()
             host_prefix_x86=i686-w64-mingw32 \
             dll
           
+          # Manually install, could not find a make target.
+          mkdir -p "${LIBS_INSTALL_FOLDER_PATH}/bin"
+
+          # Skipping it does not remove the reference from openocd, so for the
+          # moment it is preserved.
+          cp -v "${LIBS_BUILD_FOLDER_PATH}/${LIBUSB_W32_FOLDER_NAME}/libusb0.dll" \
+            "${LIBS_INSTALL_FOLDER_PATH}/bin"
+
+          mkdir -p "${LIBS_INSTALL_FOLDER_PATH}/lib"
+          cp -v "${LIBS_BUILD_FOLDER_PATH}/${LIBUSB_W32_FOLDER_NAME}/libusb.a" \
+            "${LIBS_INSTALL_FOLDER_PATH}/lib"
+
+          mkdir -p "${LIBS_INSTALL_FOLDER_PATH}/lib/pkgconfig"
+          sed -e "s|XXX|${LIBS_INSTALL_FOLDER_PATH}|" \
+            "${BUILD_GIT_PATH}/pkgconfig/${LIBUSB_W32}.pc" \
+            > "${LIBS_INSTALL_FOLDER_PATH}/lib/pkgconfig/libusb.pc"
+
+          mkdir -p "${LIBS_INSTALL_FOLDER_PATH}/include/libusb"
+          cp -v "${LIBS_BUILD_FOLDER_PATH}/${LIBUSB_W32_FOLDER_NAME}/src/lusb0_usb.h" \
+            "${LIBS_INSTALL_FOLDER_PATH}/include/libusb/usb.h"
+
       ) 2>&1 | tee "${LOGS_FOLDER_PATH}/make-libusb-w32-output.txt"
 
-      # Manually install, could not find a make target.
-      mkdir -p "${LIBS_INSTALL_FOLDER_PATH}/bin"
-
-      # Skipping it does not remove the reference from openocd, so for the
-      # moment it is preserved.
-      cp -v "${LIBS_BUILD_FOLDER_PATH}/${LIBUSB_W32_FOLDER_NAME}/libusb0.dll" \
-        "${LIBS_INSTALL_FOLDER_PATH}/bin"
-
-      mkdir -p "${LIBS_INSTALL_FOLDER_PATH}/lib"
-      cp -v "${LIBS_BUILD_FOLDER_PATH}/${LIBUSB_W32_FOLDER_NAME}/libusb.a" \
-        "${LIBS_INSTALL_FOLDER_PATH}/lib"
-
-      mkdir -p "${LIBS_INSTALL_FOLDER_PATH}/lib/pkgconfig"
-      sed -e "s|XXX|${LIBS_INSTALL_FOLDER_PATH}|" \
-        "${BUILD_GIT_PATH}/pkgconfig/${LIBUSB_W32}.pc" \
-        > "${LIBS_INSTALL_FOLDER_PATH}/lib/pkgconfig/libusb.pc"
-
-      mkdir -p "${LIBS_INSTALL_FOLDER_PATH}/include/libusb"
-      cp -v "${LIBS_BUILD_FOLDER_PATH}/${LIBUSB_W32_FOLDER_NAME}/src/lusb0_usb.h" \
-        "${LIBS_INSTALL_FOLDER_PATH}/include/libusb/usb.h"
+      copy_license \
+        "${SOURCES_FOLDER_PATH}/${LIBUSB_W32_SRC_FOLDER_NAME}" \
+        "${LIBUSB_W32_FOLDER_NAME}"
     )
 
     touch "${libusb_w32_stamp_file_path}"
@@ -355,6 +367,10 @@ function do_libftdi()
         make install
 
       ) 2>&1 | tee "${LOGS_FOLDER_PATH}/make-libftdi-output.txt"
+
+      copy_license \
+        "${SOURCES_FOLDER_PATH}/${LIBFTDI_SRC_FOLDER_NAME}" \
+        "${LIBFTDI_FOLDER_NAME}"
     )
 
     touch "${libftdi_stamp_file_path}"
@@ -438,6 +454,10 @@ function do_libiconv()
           make install
         fi
       ) 2>&1 | tee "${LOGS_FOLDER_PATH}/make-libiconv-output.txt"
+
+      copy_license \
+        "${SOURCES_FOLDER_PATH}/${LIBICONV_SRC_FOLDER_NAME}" \
+        "${LIBICONV_FOLDER_NAME}"
     )
 
     touch "${libiconv_stamp_file_path}"
@@ -571,6 +591,10 @@ function do_hidapi()
       fi
 
       rm -f "${LIBS_INSTALL_FOLDER_PATH}"/lib*/libhidapi-hidraw.la
+
+      copy_license \
+        "${SOURCES_FOLDER_PATH}/${HIDAPI_SRC_FOLDER_NAME}" \
+        "${HIDAPI_FOLDER_NAME}"
     )
 
     touch "${hidapi_stamp_file_path}"

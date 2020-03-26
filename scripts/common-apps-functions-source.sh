@@ -297,6 +297,10 @@ function do_openocd()
         )
 
       ) 2>&1 | tee "${LOGS_FOLDER_PATH}/make-openocd-output.txt"
+
+      copy_license \
+        "${WORK_FOLDER_PATH}/${OPENOCD_SRC_FOLDER_NAME}" \
+        "${OPENOCD_FOLDER_NAME}"
     )
 }
 
@@ -367,35 +371,6 @@ function copy_distro_files()
 
     rm -rf "${APP_PREFIX}/${DISTRO_INFO_NAME}"
     mkdir -p "${APP_PREFIX}/${DISTRO_INFO_NAME}"
-
-    echo
-    echo "Copying license files..."
-
-    copy_license \
-      "${SOURCES_FOLDER_PATH}/${LIBUSB1_SRC_FOLDER_NAME}" \
-      "${LIBUSB1_FOLDER_NAME}"
-
-    if [ "${TARGET_PLATFORM}" != "win32" ]
-    then
-      copy_license \
-        "${SOURCES_FOLDER_PATH}/${LIBUSB0_SRC_FOLDER_NAME}" \
-        "${LIBUSB0_FOLDER_NAME}"
-    else
-      copy_license \
-        "${SOURCES_FOLDER_PATH}/${LIBUSB_W32_SRC_FOLDER_NAME}" \
-        "${LIBUSB_W32_FOLDER_NAME}"
-    fi
-
-    copy_license \
-      "${SOURCES_FOLDER_PATH}/${LIBFTDI_SRC_FOLDER_NAME}" \
-      "${LIBFTDI_FOLDER_NAME}"
-    copy_license \
-      "${SOURCES_FOLDER_PATH}/${LIBICONV_SRC_FOLDER_NAME}" \
-      "${LIBICONV_FOLDER_NAME}"
-
-    copy_license \
-      "${WORK_FOLDER_PATH}/${OPENOCD_SRC_FOLDER_NAME}" \
-      "${OPENOCD_FOLDER_NAME}"
 
     copy_build_files
 
