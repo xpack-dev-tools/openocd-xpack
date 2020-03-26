@@ -39,7 +39,7 @@ function prepare_versions()
     OPENOCD_VERSION="0.10.0-14"
 
     OPENOCD_GIT_BRANCH=${OPENOCD_GIT_BRANCH:-"xpack"}
-    OPENOCD_GIT_COMMIT=${OPENOCD_GIT_COMMIT:-"e1e63ef30cea39aceda40daf194377c89c570101"}
+    OPENOCD_GIT_COMMIT=${OPENOCD_GIT_COMMIT:-"99773a64ce0ce1ff1687c4df57da8fdf6df7d0c3"}
     
     # -------------------------------------------------------------------------
 
