@@ -2,6 +2,11 @@
 
 Releases in reverse chronological order.
 
+### 2020-03-26
+
+- update for XBB v3.1
+- based on openocd.git d9ffe75e257aa4005dd34603860e45c57b1765b6
+
 ### 2019-07-27
 
 - bump v0.10.0-14
