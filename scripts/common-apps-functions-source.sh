@@ -62,9 +62,12 @@ function do_openocd()
 
         export OUTPUT_DIR="${BUILD_FOLDER_PATH}"
         
-        export CFLAGS="${XBB_CXXFLAGS} -Wno-pointer-to-int-cast" 
-        export CXXFLAGS="${XBB_CXXFLAGS}" 
-        export LDFLAGS="${XBB_LDFLAGS_APP}"
+        # Without it, mingw redefines it as 0.
+        CPPFLAGS="${XBB_CPPFLAGS} -D__USE_MINGW_ANSI_STDIO=1"
+        CFLAGS="${XBB_CXXFLAGS} -Wno-pointer-to-int-cast" 
+        CXXFLAGS="${XBB_CXXFLAGS}" 
+        LDFLAGS="${XBB_LDFLAGS_APP}"
+        LIBS=""
 
         AMTJTAGACCEL="--enable-amtjtagaccel"
         # --enable-buspirate -> not supported on mingw
@@ -84,10 +87,11 @@ function do_openocd()
         # --enable-presto_libftdi -> --enable-presto
         # --enable-usb_blaster_libftdi -> --enable-usb_blaster
 
-        export CFLAGS="${XBB_CFLAGS} -Wno-format-truncation -Wno-format-overflow"
-        export CXXFLAGS="${XBB_CXXFLAGS}"
-        export LDFLAGS="${XBB_LDFLAGS_APP}" 
-        export LIBS="-lpthread -lrt -ludev"
+        CPPFLAGS="${XBB_CPPFLAGS}"
+        CFLAGS="${XBB_CFLAGS} -Wno-format-truncation -Wno-format-overflow"
+        CXXFLAGS="${XBB_CXXFLAGS}"
+        LDFLAGS="${XBB_LDFLAGS_APP}" 
+        LIBS="-lpthread -lrt -ludev"
 
         AMTJTAGACCEL="--enable-amtjtagaccel"
         BUSPIRATE="--enable-buspirate"
@@ -105,10 +109,11 @@ function do_openocd()
         # --enable-presto_libftdi -> --enable-presto
         # --enable-usb_blaster_libftdi -> --enable-usb_blaster
 
-        export CFLAGS="${XBB_CFLAGS}"
-        export CXXFLAGS="${XBB_CXXFLAGS}"
-        export LDFLAGS="${XBB_LDFLAGS_APP}"
-        # export LIBS="-lobjc"
+        CPPFLAGS="${XBB_CPPFLAGS}"
+        CFLAGS="${XBB_CFLAGS}"
+        CXXFLAGS="${XBB_CXXFLAGS}"
+        LDFLAGS="${XBB_LDFLAGS_APP}"
+        LIBS="" # "-lobjc"
 
         # --enable-amtjtagaccel -> 'sys/io.h' file not found
         AMTJTAGACCEL="--disable-amtjtagaccel"
@@ -126,6 +131,12 @@ function do_openocd()
         exit 1
 
       fi
+
+      export CPPFLAGS 
+      export CFLAGS 
+      export CXXFLAGS 
+      export LDFLAGS
+      export LIBS
 
       if [ ! -f "config.status" ]
       then
