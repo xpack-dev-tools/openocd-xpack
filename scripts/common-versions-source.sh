@@ -27,8 +27,8 @@ function prepare_versions()
   LIBFTDI_PATCH=""
   LIBUSB_W32_PATCH=""
 
-  USE_SINGLE_FOLDER="y"
   USE_TAR_GZ="y"
+  USE_SINGLE_FOLDER_PATH="y"
 
   # Keep them in sync with combo archive content.
   if [[ "${RELEASE_VERSION}" =~ 0\.10\.0-14 ]]
@@ -76,7 +76,7 @@ function prepare_versions()
     LIBFTDI_PATCH="libftdi1-${LIBFTDI_VERSION}-cmake-FindUSB1.patch"
     LIBUSB_W32_PATCH="libusb-win32-${LIBUSB_W32_VERSION}-mingw-w64.patch"
 
-    USE_SINGLE_FOLDER=""
+    USE_SINGLE_FOLDER_PATH="y"
     USE_TAR_GZ=""
 
     # -------------------------------------------------------------------------
