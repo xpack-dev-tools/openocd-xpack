@@ -142,7 +142,7 @@ Ubuntu Server 18 LTS, running on an Intel NUC8i7BEH mini PC with 32 GB of RAM
 and 512 GB of fast M.2 SSD.
 
 ```console
-$ ssh ilg-xbb-linux.local
+$ ssh xbbi
 ```
 
 Before starting a build, check if Docker is started:
@@ -215,7 +215,7 @@ VirtualBox image running on a macMini with 16 GB of RAM and a
 fast SSD.
 
 ```console
-$ ssh ilg-xbb-mac.local
+$ ssh xbbm
 ```
 
 To build the latest macOS version:
