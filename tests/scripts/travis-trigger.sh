@@ -49,7 +49,7 @@ data_file_path="$(mktemp)"
 cat <<__EOF__ > "${data_file_path}"
 {
   "request": {
-    "message": "Test the OpenOCD xPack",
+    "message": "Test the OpenOCD binary xPack",
     "branch": "xpack-develop",
     "config": {
       "merge_mode": "replace",
