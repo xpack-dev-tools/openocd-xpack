@@ -46,3 +46,5 @@ script_base=$(echo "${script_name}" | sed -e 's/\(.*\)[.]mac[.]command/\1/')
 # echo "${script_base}"
 
 DEBUG=${DEBUG} bash "${script_folder_path}/${script_base}.sh"
+
+# -----------------------------------------------------------------------------
