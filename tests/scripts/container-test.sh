@@ -73,7 +73,7 @@ if [[ ${image_name} == *ubuntu* ]] || [[ ${image_name} == *debian* ]] || [[ ${im
 then
   apt-get -qq update 
   apt-get -qq install -y git-core curl tar gzip lsb-release binutils
-elif [[ ${image_name} == *centos* ]]
+elif [[ ${image_name} == *centos* ]] || [[ ${image_name} == *fedora* ]]
 then
   yum install -y -q git curl tar gzip redhat-lsb-core binutils
 elif [[ ${image_name} == *opensuse* ]]
@@ -82,8 +82,18 @@ then
 elif [[ ${image_name} == *manjaro* ]]
 then
   pacman-mirrors -g
-  pacman --noconfirm -Syyuq
-  pacman --noconfirm -Sq git curl tar gzip lsb-release binutils
+  pacman -S -y -q --noconfirm 
+
+    # Update even if up to date (-yy) & upgrade (-u).
+  # pacman -S -yy -u -q --noconfirm 
+  pacman -S -q --noconfirm --noprogressbar   git curl tar gzip lsb-release binutils
+elif [[ ${image_name} == *archlinux* ]]
+then
+  pacman -S -y -q --noconfirm 
+
+    # Update even if up to date (-yy) & upgrade (-u).
+  # pacman -S -yy -u -q --noconfirm 
+  pacman -S -q --noconfirm --noprogressbar   git curl tar gzip lsb-release binutils
 fi
 
 # -----------------------------------------------------------------------------
