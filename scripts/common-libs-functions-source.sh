@@ -69,6 +69,8 @@ function do_libusb1()
       export CXXFLAGS
       export LDFLAGS
 
+      env | sort
+
       if [ ! -f "config.status" ]
       then 
 
@@ -170,6 +172,8 @@ function do_libusb0()
       export CFLAGS
       export CXXFLAGS
       export LDFLAGS
+
+      env | sort
 
       if [ ! -f "config.status" ]
       then 
@@ -299,7 +303,9 @@ function do_libusb_w32()
           export CFLAGS
           export CXXFLAGS
           export LDFLAGS
-          
+
+          env | sort
+
           run_verbose make \
             host_prefix=${CROSS_COMPILE_PREFIX} \
             host_prefix_x86=i686-w64-mingw32 \
@@ -392,6 +398,8 @@ function do_libftdi()
       export CFLAGS
       export CXXFLAGS
       export LDFLAGS
+
+      env | sort
 
       (
         echo
@@ -518,6 +526,8 @@ function do_hidapi()
         export CXXFLAGS
         export LDFLAGS
 
+        env | sort
+
         run_verbose make -f Makefile.mingw \
           CC=${CROSS_COMPILE_PREFIX}-gcc \
           "${hidapi_OBJECT}"
@@ -572,6 +582,8 @@ function do_hidapi()
         export CFLAGS
         export CXXFLAGS
         export LDFLAGS
+
+        env | sort
 
         (
           echo

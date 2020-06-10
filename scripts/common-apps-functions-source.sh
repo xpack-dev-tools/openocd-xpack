@@ -138,6 +138,8 @@ function do_openocd()
       export LDFLAGS
       export LIBS
 
+      env | sort
+      
       if [ ! -f "config.status" ]
       then
 
