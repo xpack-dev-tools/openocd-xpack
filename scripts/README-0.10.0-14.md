@@ -14,8 +14,8 @@ The xPack OpenOCD generally follows the official
 The current version is based on:
 
 - OpenOCD version 0.10.0, the development commit
-[99773a6](https://github.com/xpack-dev-tools/openocd/commit/99773a64ce0ce1ff1687c4df57da8fdf6df7d0c3)
-from Mar 24, 2020.
+[f0909fe9e](https://github.com/xpack-dev-tools/openocd/commit/f0909fe9e5f819d83c90c2622e27d98fa1b59046)
+from May 6, 2020.
 
 ## Changes
 

@@ -44,8 +44,8 @@ function prepare_versions()
     # Used in the licenses folder.
     OPENOCD_FOLDER_NAME="openocd-${OPENOCD_VERSION}"
 
-    OPENOCD_GIT_BRANCH=${OPENOCD_GIT_BRANCH:-"xpack"}
-    OPENOCD_GIT_COMMIT=${OPENOCD_GIT_COMMIT:-"99773a64ce0ce1ff1687c4df57da8fdf6df7d0c3"}
+    OPENOCD_GIT_BRANCH=${OPENOCD_GIT_BRANCH:-"xpack-develop"}
+    OPENOCD_GIT_COMMIT=${OPENOCD_GIT_COMMIT:-"5141dcd83b614bef7b6813841644b730236b7ae1"}
     
     # -------------------------------------------------------------------------
 
