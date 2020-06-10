@@ -276,6 +276,9 @@ function do_openocd()
 function run_openocd()
 {
   run_app "${APP_PREFIX}/bin/openocd" --version
+
+  # Does not return 0.
+  run_app "${APP_PREFIX}/bin/openocd" --help || true
 }
 
 # -----------------------------------------------------------------------------
