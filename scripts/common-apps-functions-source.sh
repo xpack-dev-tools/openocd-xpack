@@ -71,7 +71,7 @@ function do_openocd()
             
       config_options+=("--enable-branding=${BRANDING}")
     
-      # Functionality.
+      # Add explicit functionality.
       config_options+=("--enable-aice")
       config_options+=("--enable-armjtagew")
       config_options+=("--enable-at91rm9200")
@@ -79,9 +79,13 @@ function do_openocd()
       config_options+=("--enable-cmsis-dap")
       config_options+=("--enable-dummy")
       config_options+=("--enable-ep93xx")
+      config_options+=("--enable-ft232r")
       config_options+=("--enable-ftdi")
+      config_options+=("--enable-imx_gpio")
       config_options+=("--enable-jlink")
       config_options+=("--enable-jtag_vpi")
+      config_options+=("--enable-kitprog")
+      config_options+=("--enable-oocd_trace")
       config_options+=("--enable-opendous")
       config_options+=("--enable-openjtag")
       config_options+=("--enable-osbdm")
@@ -95,23 +99,17 @@ function do_openocd()
       config_options+=("--enable-usb_blaster_2")
       config_options+=("--enable-usbprog")
       config_options+=("--enable-vsllink")
+      config_options+=("--enable-xds110")
 
+      # Disable drivers that apparently failed to build on all platforms.
       config_options+=("--disable-zy1000-master")
       config_options+=("--disable-zy1000")
       config_options+=("--disable-ioutil")
       config_options+=("--disable-minidriver-dummy")
-      config_options+=("--disable-oocd_trace")
       config_options+=("--disable-parport-ppdev")
 
       if [ "${TARGET_PLATFORM}" == "win32" ]
       then
-
-        # --enable-minidriver-dummy -> configure error
-        # --enable-zy1000 -> netinet/tcp.h: No such file or directory
-
-        # --enable-openjtag_ftdi -> --enable-openjtag
-        # --enable-presto_libftdi -> --enable-presto
-        # --enable-usb_blaster_libftdi -> --enable-usb_blaster
 
         export OUTPUT_DIR="${BUILD_FOLDER_PATH}"
         
@@ -121,6 +119,13 @@ function do_openocd()
         CXXFLAGS="${XBB_CXXFLAGS_NO_W}" 
         LDFLAGS="${XBB_LDFLAGS_APP}"
         LIBS=""
+
+        # --enable-minidriver-dummy -> configure error
+        # --enable-zy1000 -> netinet/tcp.h: No such file or directory
+
+        # --enable-openjtag_ftdi -> --enable-openjtag
+        # --enable-presto_libftdi -> --enable-presto
+        # --enable-usb_blaster_libftdi -> --enable-usb_blaster
 
         config_options+=("--enable-amtjtagaccel")
         config_options+=("--enable-gw16012")
@@ -132,20 +137,23 @@ function do_openocd()
         # --enable-buspirate -> not supported on mingw
         config_options+=("--disable-buspirate")
 
+        # oocd_trace.h:22:10: fatal error: termios.h: No such file or directory
+        config_options+=("--disable-oocd_trace")
+
       elif [ "${TARGET_PLATFORM}" == "linux" ]
       then
-
-        # --enable-minidriver-dummy -> configure error
-
-        # --enable-openjtag_ftdi -> --enable-openjtag
-        # --enable-presto_libftdi -> --enable-presto
-        # --enable-usb_blaster_libftdi -> --enable-usb_blaster
 
         CPPFLAGS="${XBB_CPPFLAGS}"
         CFLAGS="${XBB_CFLAGS_NO_W}"
         CXXFLAGS="${XBB_CXXFLAGS_NO_W}"
         LDFLAGS="${XBB_LDFLAGS_APP}" 
         LIBS="-lpthread -lrt -ludev"
+
+        # --enable-minidriver-dummy -> configure error
+
+        # --enable-openjtag_ftdi -> --enable-openjtag
+        # --enable-presto_libftdi -> --enable-presto
+        # --enable-usb_blaster_libftdi -> --enable-usb_blaster
 
         config_options+=("--enable-amtjtagaccel")
         config_options+=("--enable-buspirate")
@@ -154,20 +162,22 @@ function do_openocd()
         config_options+=("--enable-parport-giveio")
         config_options+=("--enable-sysfsgpio")
 
+        config_options+=("--enable-oocd_trace")
+
       elif [ "${TARGET_PLATFORM}" == "darwin" ]
       then
-
-        # --enable-minidriver-dummy -> configure error
-
-        # --enable-openjtag_ftdi -> --enable-openjtag
-        # --enable-presto_libftdi -> --enable-presto
-        # --enable-usb_blaster_libftdi -> --enable-usb_blaster
 
         CPPFLAGS="${XBB_CPPFLAGS}"
         CFLAGS="${XBB_CFLAGS_NO_W}"
         CXXFLAGS="${XBB_CXXFLAGS_NO_W}"
         LDFLAGS="${XBB_LDFLAGS_APP}"
         LIBS="" # "-lobjc"
+
+        # --enable-minidriver-dummy -> configure error
+
+        # --enable-openjtag_ftdi -> --enable-openjtag
+        # --enable-presto_libftdi -> --enable-presto
+        # --enable-usb_blaster_libftdi -> --enable-usb_blaster
 
         config_options+=("--enable-buspirate")
 
@@ -179,6 +189,8 @@ function do_openocd()
         config_options+=("--disable-parport-giveio")
         # --enable-sysfsgpio -> available only on Linux
         config_options+=("--disable-sysfsgpio")
+
+        config_options+=("--enable-oocd_trace")
 
       else
 
