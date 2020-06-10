@@ -80,12 +80,16 @@ function do_libusb1()
 
           bash "${SOURCES_FOLDER_PATH}/${libusb1_src_folder_name}/configure" --help
 
+          config_options=()
+
+          config_options+=("--prefix=${LIBS_INSTALL_FOLDER_PATH}")
+            
+          config_options+=("--build=${BUILD}")
+          config_options+=("--host=${HOST}")
+          config_options+=("--target=${TARGET}")
+
           run_verbose bash ${DEBUG} "${SOURCES_FOLDER_PATH}/${libusb1_src_folder_name}/configure" \
-            --prefix="${LIBS_INSTALL_FOLDER_PATH}" \
-            \
-            --build=${BUILD} \
-            --host=${HOST} \
-            --target=${TARGET} \
+            ${config_options[@]}
           
           cp "config.log" "${LOGS_FOLDER_PATH}/${libusb1_folder_name}/config-log.txt"
         ) 2>&1 | tee "${LOGS_FOLDER_PATH}/${libusb1_folder_name}/configure-output.txt"
@@ -179,12 +183,16 @@ function do_libusb0()
 
           bash "${SOURCES_FOLDER_PATH}/${libusb0_src_folder_name}/configure" --help
 
+          config_options=()
+
+          config_options+=("--prefix=${LIBS_INSTALL_FOLDER_PATH}")
+            
+          config_options+=("--build=${BUILD}")
+          config_options+=("--host=${HOST}")
+          config_options+=("--target=${TARGET}")
+
           run_verbose bash ${DEBUG} "${SOURCES_FOLDER_PATH}/${libusb0_src_folder_name}/configure" \
-            --prefix="${LIBS_INSTALL_FOLDER_PATH}" \
-            \
-            --build=${BUILD} \
-            --host=${HOST} \
-            --target=${TARGET} \
+            ${config_options[@]}
           
           cp "config.log" "${LOGS_FOLDER_PATH}/${libusb0_folder_name}/config-log.txt"
         ) 2>&1 | tee "${LOGS_FOLDER_PATH}/${libusb0_folder_name}/configure-output.txt"
@@ -582,15 +590,19 @@ function do_hidapi()
           echo "Running hidapi configure..."
 
           bash "configure" --help
-        
+  
+          config_options=()
+
+          config_options+=("--prefix=${LIBS_INSTALL_FOLDER_PATH}")
+            
+          config_options+=("--build=${BUILD}")
+          config_options+=("--host=${HOST}")
+          config_options+=("--target=${TARGET}")
+
+          config_options+=("--disable-testgui")
+
           run_verbose bash ${DEBUG} "configure" \
-            --prefix="${LIBS_INSTALL_FOLDER_PATH}" \
-            \
-            --build=${BUILD} \
-            --host=${HOST} \
-            --target=${TARGET} \
-            \
-            --disable-testgui
+            ${config_options[@]}
         
           cp "config.log" "${LOGS_FOLDER_PATH}/${hidapi_folder_name}/config-log.txt"
         ) 2>&1 | tee "${LOGS_FOLDER_PATH}/${hidapi_folder_name}/configure-output.txt"

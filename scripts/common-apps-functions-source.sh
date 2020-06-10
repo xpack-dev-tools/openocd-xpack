@@ -50,6 +50,59 @@ function do_openocd()
 
       export JAYLINK_CFLAGS='${XBB_CFLAGS} -fvisibility=hidden'
 
+      config_options=()
+
+      config_options+=("--prefix=${APP_PREFIX}")
+        
+      config_options+=("--build=${BUILD}")
+      config_options+=("--host=${HOST}")
+      config_options+=("--target=${TARGET}")
+
+      config_options+=("--datarootdir=${INSTALL_FOLDER_PATH}")
+      config_options+=("--localedir=${APP_PREFIX}/share/locale")
+      config_options+=("--mandir=${APP_PREFIX_DOC}/man")
+      config_options+=("--pdfdir=${APP_PREFIX_DOC}/pdf")
+      config_options+=("--infodir=${APP_PREFIX_DOC}/info")
+      config_options+=("--docdir=${APP_PREFIX_DOC}")
+            
+      config_options+=("--disable-wextra")
+      config_options+=("--disable-werror")
+      config_options+=("--enable-dependency-tracking")
+            
+      config_options+=("--enable-branding=${BRANDING}")
+    
+      # Functionality.
+      config_options+=("--enable-aice")
+      config_options+=("--enable-armjtagew")
+      config_options+=("--enable-at91rm9200")
+      config_options+=("--enable-bcm2835gpio")
+      config_options+=("--enable-cmsis-dap")
+      config_options+=("--enable-dummy")
+      config_options+=("--enable-ep93xx")
+      config_options+=("--enable-ftdi")
+      config_options+=("--enable-jlink")
+      config_options+=("--enable-jtag_vpi")
+      config_options+=("--enable-opendous")
+      config_options+=("--enable-openjtag")
+      config_options+=("--enable-osbdm")
+      config_options+=("--enable-presto")
+      config_options+=("--enable-remote-bitbang")
+      config_options+=("--enable-rlink")
+      config_options+=("--enable-stlink")
+      config_options+=("--enable-ti-icdi")
+      config_options+=("--enable-ulink")
+      config_options+=("--enable-usb-blaster")
+      config_options+=("--enable-usb_blaster_2")
+      config_options+=("--enable-usbprog")
+      config_options+=("--enable-vsllink")
+
+      config_options+=("--disable-zy1000-master")
+      config_options+=("--disable-zy1000")
+      config_options+=("--disable-ioutil")
+      config_options+=("--disable-minidriver-dummy")
+      config_options+=("--disable-oocd_trace")
+      config_options+=("--disable-parport-ppdev")
+
       if [ "${TARGET_PLATFORM}" == "win32" ]
       then
 
@@ -69,14 +122,15 @@ function do_openocd()
         LDFLAGS="${XBB_LDFLAGS_APP}"
         LIBS=""
 
-        AMTJTAGACCEL="--enable-amtjtagaccel"
-        # --enable-buspirate -> not supported on mingw
-        BUSPIRATE="--disable-buspirate"
-        GW18012="--enable-gw16012"
-        PARPORT="--enable-parport"
-        PARPORT_GIVEIO="--enable-parport-giveio"
+        config_options+=("--enable-amtjtagaccel")
+        config_options+=("--enable-gw16012")
+        config_options+=("--enable-parport")
+        config_options+=("--enable-parport-giveio")
+
         # --enable-sysfsgpio -> available only on Linux
-        SYSFSGPIO="--disable-sysfsgpio"
+        config_options+=("--disable-sysfsgpio")
+        # --enable-buspirate -> not supported on mingw
+        config_options+=("--disable-buspirate")
 
       elif [ "${TARGET_PLATFORM}" == "linux" ]
       then
@@ -93,12 +147,12 @@ function do_openocd()
         LDFLAGS="${XBB_LDFLAGS_APP}" 
         LIBS="-lpthread -lrt -ludev"
 
-        AMTJTAGACCEL="--enable-amtjtagaccel"
-        BUSPIRATE="--enable-buspirate"
-        GW18012="--enable-gw16012"
-        PARPORT="--enable-parport"
-        PARPORT_GIVEIO="--enable-parport-giveio"
-        SYSFSGPIO="--enable-sysfsgpio"
+        config_options+=("--enable-amtjtagaccel")
+        config_options+=("--enable-buspirate")
+        config_options+=("--enable-gw16012")
+        config_options+=("--enable-parport")
+        config_options+=("--enable-parport-giveio")
+        config_options+=("--enable-sysfsgpio")
 
       elif [ "${TARGET_PLATFORM}" == "darwin" ]
       then
@@ -115,15 +169,16 @@ function do_openocd()
         LDFLAGS="${XBB_LDFLAGS_APP}"
         LIBS="" # "-lobjc"
 
+        config_options+=("--enable-buspirate")
+
         # --enable-amtjtagaccel -> 'sys/io.h' file not found
-        AMTJTAGACCEL="--disable-amtjtagaccel"
-        BUSPIRATE="--enable-buspirate"
+        config_options+=("--disable-amtjtagaccel")
         # --enable-gw16012 -> 'sys/io.h' file not found
-        GW18012="--disable-gw16012"
-        PARPORT="--disable-parport"
-        PARPORT_GIVEIO="--disable-parport-giveio"
+        config_options+=("--disable-gw16012")
+        config_options+=("--disable-parport")
+        config_options+=("--disable-parport-giveio")
         # --enable-sysfsgpio -> available only on Linux
-        SYSFSGPIO="--disable-sysfsgpio"
+        config_options+=("--disable-sysfsgpio")
 
       else
 
@@ -139,7 +194,7 @@ function do_openocd()
       export LIBS
 
       env | sort
-      
+
       if [ ! -f "config.status" ]
       then
 
@@ -154,60 +209,7 @@ function do_openocd()
           bash "${WORK_FOLDER_PATH}/${OPENOCD_SRC_FOLDER_NAME}/configure" --help
 
           run_verbose bash ${DEBUG} "${WORK_FOLDER_PATH}/${OPENOCD_SRC_FOLDER_NAME}/configure" \
-            --prefix="${APP_PREFIX}"  \
-            \
-            --build=${BUILD} \
-            --host=${HOST} \
-            --target=${TARGET} \
-            \
-            --datarootdir="${INSTALL_FOLDER_PATH}" \
-            --localedir="${APP_PREFIX}/share/locale"  \
-            --mandir="${APP_PREFIX_DOC}/man"  \
-            --pdfdir="${APP_PREFIX_DOC}/pdf"  \
-            --infodir="${APP_PREFIX_DOC}/info" \
-            --docdir="${APP_PREFIX_DOC}"  \
-            \
-            --disable-wextra \
-            --disable-werror \
-            --enable-dependency-tracking \
-            \
-            --enable-branding="${BRANDING}" \
-            \
-            --enable-aice \
-            ${AMTJTAGACCEL} \
-            --enable-armjtagew \
-            --enable-at91rm9200 \
-            --enable-bcm2835gpio \
-            ${BUSPIRATE} \
-            --enable-cmsis-dap \
-            --enable-dummy \
-            --enable-ep93xx \
-            --enable-ftdi \
-            ${GW18012} \
-            --disable-ioutil \
-            --enable-jlink \
-            --enable-jtag_vpi \
-            --disable-minidriver-dummy \
-            --disable-oocd_trace \
-            --enable-opendous \
-            --enable-openjtag \
-            --enable-osbdm \
-            ${PARPORT} \
-            --disable-parport-ppdev \
-            ${PARPORT_GIVEIO} \
-            --enable-presto \
-            --enable-remote-bitbang \
-            --enable-rlink \
-            --enable-stlink \
-            ${SYSFSGPIO} \
-            --enable-ti-icdi \
-            --enable-ulink \
-            --enable-usb-blaster \
-            --enable-usb_blaster_2 \
-            --enable-usbprog \
-            --enable-vsllink \
-            --disable-zy1000-master \
-            --disable-zy1000 \
+            ${config_options[@]}
 
           cp "config.log" "${LOGS_FOLDER_PATH}/config-openocd-log.txt"
         ) 2>&1 | tee "${LOGS_FOLDER_PATH}/configure-openocd-output.txt"
