@@ -190,7 +190,9 @@ function do_openocd()
         # --enable-sysfsgpio -> available only on Linux
         config_options+=("--disable-sysfsgpio")
 
-        config_options+=("--enable-oocd_trace")
+        # /Users/ilg/Work/openocd-0.10.0-14/openocd.git/src/target/oocd_trace.c: In function ‘oocd_trace_init’:
+        # /Users/ilg/Work/openocd-0.10.0-14/openocd.git/src/target/oocd_trace.c:121:54: error: ‘B2500000’ undeclared (first use in this function)
+        config_options+=("--disable-oocd_trace")
 
       else
 
