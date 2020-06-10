@@ -225,59 +225,11 @@ function do_openocd()
           make install  
         fi
 
-        if [ "${TARGET_PLATFORM}" == "linux" ]
+        prepare_app_libraries "${APP_PREFIX}/bin/openocd"
+
+        if [ "${TARGET_PLATFORM}" == "win32" ]
         then
-          echo
-          echo "Shared libraries:"
-          echo "${APP_PREFIX}/bin/${APP_EXECUTABLE_NAME}"
-          readelf -d "${APP_PREFIX}/bin/${APP_EXECUTABLE_NAME}" | grep 'Shared library:'
-
-          # For just in case, normally must be done by the make file.
-          strip "${APP_PREFIX}/bin/${APP_EXECUTABLE_NAME}"  || true
-
-          echo
-          echo "Preparing libraries..."
-          patch_linux_elf_origin "${APP_PREFIX}/bin/${APP_EXECUTABLE_NAME}"
-
-          echo
-          copy_dependencies_recursive "${APP_PREFIX}/bin/${APP_EXECUTABLE_NAME}" "${APP_PREFIX}/bin"
-        elif [ "${TARGET_PLATFORM}" == "darwin" ]
-        then
-          echo
-          echo "Initial dynamic libraries:"
-          otool -L "${APP_PREFIX}/bin/${APP_EXECUTABLE_NAME}"
-
-          # For just in case, normally must be done by the make file.
-          strip "${APP_PREFIX}/bin/${APP_EXECUTABLE_NAME}" || true
-
-          echo
-          echo "Preparing libraries..."
-          copy_dependencies_recursive "${APP_PREFIX}/bin/${APP_EXECUTABLE_NAME}" "${APP_PREFIX}/bin"
-
-          echo
-          echo "Updated dynamic libraries:"
-          otool -L "${APP_PREFIX}/bin/${APP_EXECUTABLE_NAME}"
-        elif [ "${TARGET_PLATFORM}" == "win32" ]
-        then
-          echo
-          echo "Dynamic libraries:"
-          echo "${APP_PREFIX}/bin/${APP_EXECUTABLE_NAME}.exe"
-          ${CROSS_COMPILE_PREFIX}-objdump -x "${APP_PREFIX}/bin/${APP_EXECUTABLE_NAME}.exe" | grep -i 'DLL Name'
-
-          # For just in case, normally must be done by the make file.
-          ${CROSS_COMPILE_PREFIX}-strip "${APP_PREFIX}/bin/${APP_EXECUTABLE_NAME}.exe" || true
-
           rm -f "${APP_PREFIX}/bin/openocdw.exe"
-
-          echo
-          echo "Preparing libraries..."
-          copy_dependencies_recursive "${APP_PREFIX}/bin/${APP_EXECUTABLE_NAME}.exe" "${APP_PREFIX}/bin"
-        fi
-
-        if [ "${IS_DEVELOP}" != "y" ]
-        then
-          strip_binaries
-          check_application "${APP_EXECUTABLE_NAME}"
         fi
 
         (
