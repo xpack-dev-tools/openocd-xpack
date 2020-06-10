@@ -24,9 +24,11 @@ function do_libusb1()
   local libusb1_version="$1"
 
   local libusb1_src_folder_name="libusb-${libusb1_version}"
-  local libusb1_folder_name="${libusb1_src_folder_name}"
+
   local libusb1_archive="${libusb1_src_folder_name}.tar.bz2"
-  local libusb1_url="http://sourceforge.net/projects/libusb/files/libusb-1.0/${libusb1_folder_name}/${libusb1_archive}"
+  local libusb1_url="http://sourceforge.net/projects/libusb/files/libusb-1.0/${libusb1_src_folder_name}/${libusb1_archive}"
+
+  local libusb1_folder_name="${libusb1_src_folder_name}"
 
   local libusb1_stamp_file_path="${INSTALL_FOLDER_PATH}/stamp-libusb1-${libusb1_version}-installed"
   if [ ! -f "${libusb1_stamp_file_path}" ]
@@ -119,9 +121,11 @@ function do_libusb0()
   local libusb0_version="$1"
 
   local libusb0_src_folder_name="libusb-compat-${libusb0_version}"
-  local libusb0_folder_name="${libusb0_src_folder_name}"
+
   local libusb0_archive="${libusb0_src_folder_name}.tar.bz2"
-  local libusb0_url="http://sourceforge.net/projects/libusb/files/libusb-compat-0.1/${libusb0_folder_name}/${libusb0_archive}"
+  local libusb0_url="http://sourceforge.net/projects/libusb/files/libusb-compat-0.1/${libusb0_src_folder_name}/${libusb0_archive}"
+
+  local libusb0_folder_name="${libusb0_src_folder_name}"
 
   local libusb0_stamp_file_path="${INSTALL_FOLDER_PATH}/stamp-libusb0-${libusb0_version}-installed"
   if [ ! -f "${libusb0_stamp_file_path}" ]
@@ -207,9 +211,11 @@ function do_libusb_w32()
   local libusb_w32_prefix_version="${libusb_w32_prefix}-${libusb_w32_version}"
 
   local libusb_w32_src_folder_name="${libusb_w32_prefix}-src-${libusb_w32_version}"
-  local libusb_w32_folder_name="${libusb_w32_src_folder_name}"
+
   local libusb_w32_archive="${libusb_w32_src_folder_name}.zip"
   local linusb_w32_url="http://sourceforge.net/projects/libusb-win32/files/libusb-win32-releases/${libusb_w32_version}/${libusb_w32_archive}"
+
+  local libusb_w32_folder_name="${libusb_w32_src_folder_name}"
 
   local libusb_w32_patch="libusb-win32-${libusb_w32_version}-mingw-w64.patch"
 
@@ -305,10 +311,12 @@ function do_libftdi()
   local libftdi_version="$1"
 
   local libftdi_src_folder_name="libftdi1-${libftdi_version}"
-  local libftdi_folder_name="${libftdi_src_folder_name}"
+
   local libftdi_archive="${libftdi_src_folder_name}.tar.bz2"
 
   libftdi_url="http://www.intra2net.com/en/developer/libftdi/download/${libftdi_archive}"
+
+  local libftdi_folder_name="${libftdi_src_folder_name}"
 
   local libftdi_patch="libftdi1-${libftdi_version}-cmake-FindUSB1.patch"
 
@@ -406,10 +414,11 @@ function do_hidapi()
   local hidapi_version="$1"
 
   local hidapi_src_folder_name="hidapi-hidapi-${hidapi_version}"
-  local hidapi_folder_name="${hidapi_src_folder_name}"
 
   local hidapi_archive="hidapi-${hidapi_version}.zip"
   local hidapi_url="https://github.com/signal11/hidapi/archive/${hidapi_archive}"
+
+  local hidapi_folder_name="${hidapi_src_folder_name}"
 
   local hidapi_stamp_file_path="${INSTALL_FOLDER_PATH}/stamp-hidapi-${hidapi_version}-installed"
   if [ ! -f "${hidapi_stamp_file_path}" ]
