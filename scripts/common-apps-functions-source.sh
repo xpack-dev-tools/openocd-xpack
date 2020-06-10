@@ -258,60 +258,7 @@ function do_openocd()
 
 function run_openocd()
 {
-  echo
-
-  if [ "${TARGET_PLATFORM}" == "linux" ]
-  then
-    "${APP_PREFIX}/bin/${APP_EXECUTABLE_NAME}" --version
-  elif [ "${TARGET_PLATFORM}" == "darwin" ]
-  then
-    "${APP_PREFIX}/bin/${APP_EXECUTABLE_NAME}" --version
-  elif [ "${TARGET_PLATFORM}" == "win32" ]
-  then
-    local wsl_path=$(which wsl.exe)
-    if [ ! -z "${wsl_path}" ]
-    then
-      "${APP_PREFIX}/bin/${APP_EXECUTABLE_NAME}.exe" --version
-    else 
-      (
-        xbb_activate
-        xbb_activate_installed_bin
-
-        local wine_path=$(which wine)
-        if [ ! -z "${wine_path}" ]
-        then
-          wine "${APP_PREFIX}/bin/${APP_EXECUTABLE_NAME}.exe" --version
-        else
-          echo "Install wine if you want to run the .exe binaries on Linux."
-        fi
-      )
-    fi
-  fi
-}
-
-function strip_binaries()
-{
-  if [ "${WITH_STRIP}" == "y" ]
-  then
-    (
-      xbb_activate
-
-      echo
-      echo "Stripping binaries..."
-
-      if [ "${TARGET_PLATFORM}" == "win32" ]
-      then
-        ${CROSS_COMPILE_PREFIX}-strip "${APP_PREFIX}/bin/${APP_EXECUTABLE_NAME}.exe" || true
-        ${CROSS_COMPILE_PREFIX}-strip "${APP_PREFIX}/bin/"*.dll || true
-      else
-        strip "${APP_PREFIX}/bin/${APP_EXECUTABLE_NAME}" || true
-        if [ "${TARGET_PLATFORM}" == "linux" ]
-        then
-          : # strip "${APP_PREFIX}/bin/${APP_EXECUTABLE_NAME}" || true
-        fi
-      fi
-    )
-  fi
+  run_app "${APP_PREFIX}/bin/openocd" --version
 }
 
 # -----------------------------------------------------------------------------
