@@ -184,7 +184,7 @@ $ bash ~/Downloads/openocd-xpack.git/scripts/build.sh --all
 To detach from the session, use `Ctrl-a` `Ctrl-d`; to reattach use
 `screen -r openocd`; to kill the session use `Ctrl-a` `Ctrl-k` and confirm.
 
-About 20 minutes later, the output of the build script is a set of 4
+About 7 minutes later, the output of the build script is a set of 4
 archives and their SHA signatures, created in the `deploy` folder:
 
 ```console
@@ -258,7 +258,7 @@ $ bash ~/Downloads/openocd-xpack.git/scripts/build.sh --all
 To detach from the session, use `Ctrl-a` `Ctrl-d`; to reattach use
 `screen -r openocd`; to kill the session use `Ctrl-a` `Ctrl-k` and confirm.
 
-About 50 minutes later, the output of the build script is a set of 2
+About 14 minutes later, the output of the build script is a set of 2
 archives and their SHA signatures, created in the `deploy` folder:
 
 ```console
