@@ -392,93 +392,6 @@ function do_libftdi()
   fi
 }
 
-function do_libiconv()
-{
-  # https://www.gnu.org/software/libiconv/
-  # https://ftp.gnu.org/pub/gnu/libiconv/
-  # https://aur.archlinux.org/cgit/aur.git/tree/PKGBUILD?h=libiconv
-
-  # 2011-08-07, "1.14"
-  # 2017-02-02, "1.15", latest
-
-  LIBICONV_SRC_FOLDER_NAME="libiconv-${LIBICONV_VERSION}"
-  LIBICONV_FOLDER_NAME="${LIBICONV_SRC_FOLDER_NAME}"
-  local libiconv_archive="${LIBICONV_SRC_FOLDER_NAME}.tar.gz"
-  local libiconv_url="https://ftp.gnu.org/pub/gnu/libiconv/${libiconv_archive}"
-
-  local libiconv_stamp_file_path="${INSTALL_FOLDER_PATH}/stamp-libiconv-${LIBICONV_VERSION}-installed"
-  if [ ! -f "${libiconv_stamp_file_path}" ]
-  then
-
-    cd "${SOURCES_FOLDER_PATH}"
-
-    download_and_extract "${libiconv_url}" "${libiconv_archive}" \
-      "${LIBICONV_SRC_FOLDER_NAME}"
-
-    (
-      mkdir -p "${LIBS_BUILD_FOLDER_PATH}/${LIBICONV_FOLDER_NAME}"
-      cd "${LIBS_BUILD_FOLDER_PATH}/${LIBICONV_FOLDER_NAME}"
-
-      xbb_activate
-      xbb_activate_installed_dev
-
-      # -fgnu89-inline fixes "undefined reference to `aliases2_lookup'"
-      #  https://savannah.gnu.org/bugs/?47953
-      export CFLAGS="${XBB_CFLAGS} -fgnu89-inline -Wno-tautological-compare -Wno-parentheses-equality -Wno-static-in-inline -Wno-pointer-to-int-cast"
-      export CPPFLAGS="${XBB_CPPFLAGS}"
-      export LDFLAGS="${XBB_LDFLAGS_LIB}"
-
-      if [ ! -f "config.status" ]
-      then 
-
-        (
-          echo
-          echo "Running libiconv configure..."
-
-          bash "${SOURCES_FOLDER_PATH}/${LIBICONV_SRC_FOLDER_NAME}/configure" --help
-
-          bash ${DEBUG} "${SOURCES_FOLDER_PATH}/${LIBICONV_SRC_FOLDER_NAME}/configure" \
-            --prefix="${LIBS_INSTALL_FOLDER_PATH}" \
-            \
-            --build=${BUILD} \
-            --host=${HOST} \
-            --target=${TARGET} \
-            \
-            --enable-shared \
-            --disable-static \
-            --disable-nls
-
-          cp "config.log" "${LOGS_FOLDER_PATH}/config-libiconv-log.txt"
-        ) 2>&1 | tee "${LOGS_FOLDER_PATH}/configure-libiconv-output.txt"
-
-      fi
-
-      (
-        echo
-        echo "Running libiconv make..."
-
-        # Build.
-        make -j ${JOBS}
-        if [ "${WITH_STRIP}" == "y" ]
-        then
-          make install-strip
-        else
-          make install
-        fi
-      ) 2>&1 | tee "${LOGS_FOLDER_PATH}/make-libiconv-output.txt"
-
-      copy_license \
-        "${SOURCES_FOLDER_PATH}/${LIBICONV_SRC_FOLDER_NAME}" \
-        "${LIBICONV_FOLDER_NAME}"
-    )
-
-    touch "${libiconv_stamp_file_path}"
-
-  else
-    echo "Library libiconv already installed."
-  fi
-}
-
 function do_hidapi() 
 {
   # https://github.com/signal11/hidapi/downloads
@@ -487,6 +400,8 @@ function do_hidapi()
 
   # https://github.com/signal11/hidapi/archive/hidapi-0.8.0-rc1.zip
   # Oct 7, 2013, "0.8.0-rc1", latest
+
+  HIDAPI_VERSION="$1"
 
   HIDAPI_SRC_FOLDER_NAME="hidapi-hidapi-${HIDAPI_VERSION}"
   HIDAPI_FOLDER_NAME="${HIDAPI_SRC_FOLDER_NAME}"
