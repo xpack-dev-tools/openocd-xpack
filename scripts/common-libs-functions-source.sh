@@ -42,7 +42,7 @@ function do_libusb1()
     mkdir -pv "${LOGS_FOLDER_PATH}/${libusb1_folder_name}"
 
     (
-      mkdir -p "${LIBS_BUILD_FOLDER_PATH}/${libusb1_folder_name}"
+      mkdir -pv "${LIBS_BUILD_FOLDER_PATH}/${libusb1_folder_name}"
       cd "${LIBS_BUILD_FOLDER_PATH}/${libusb1_folder_name}"
 
       xbb_activate
@@ -152,7 +152,7 @@ function do_libusb0()
     mkdir -pv "${LOGS_FOLDER_PATH}/${libusb0_folder_name}"
 
     (
-      mkdir -p "${LIBS_BUILD_FOLDER_PATH}/${libusb0_folder_name}"
+      mkdir -pv "${LIBS_BUILD_FOLDER_PATH}/${libusb0_folder_name}"
       cd "${LIBS_BUILD_FOLDER_PATH}/${libusb0_folder_name}"
 
       xbb_activate
@@ -261,7 +261,7 @@ function do_libusb_w32()
 
     # Mandatory build in the source folder, so make a local copy.
     rm -rf "${LIBS_BUILD_FOLDER_PATH}/${libusb_w32_folder_name}"
-    mkdir -p "${LIBS_BUILD_FOLDER_PATH}/${libusb_w32_folder_name}"
+    mkdir -pv "${LIBS_BUILD_FOLDER_PATH}/${libusb_w32_folder_name}"
     cp -r "${SOURCES_FOLDER_PATH}/${libusb_w32_src_folder_name}"/* \
       "${LIBS_BUILD_FOLDER_PATH}/${libusb_w32_folder_name}"
 
@@ -312,23 +312,23 @@ function do_libusb_w32()
             dll
           
           # Manually install, could not find a make target.
-          mkdir -p "${LIBS_INSTALL_FOLDER_PATH}/bin"
+          mkdir -pv "${LIBS_INSTALL_FOLDER_PATH}/bin"
 
           # Skipping it does not remove the reference from openocd, so for the
           # moment it is preserved.
           cp -v "${LIBS_BUILD_FOLDER_PATH}/${libusb_w32_folder_name}/libusb0.dll" \
             "${LIBS_INSTALL_FOLDER_PATH}/bin"
 
-          mkdir -p "${LIBS_INSTALL_FOLDER_PATH}/lib"
+          mkdir -pv "${LIBS_INSTALL_FOLDER_PATH}/lib"
           cp -v "${LIBS_BUILD_FOLDER_PATH}/${libusb_w32_folder_name}/libusb.a" \
             "${LIBS_INSTALL_FOLDER_PATH}/lib"
 
-          mkdir -p "${LIBS_INSTALL_FOLDER_PATH}/lib/pkgconfig"
+          mkdir -pv "${LIBS_INSTALL_FOLDER_PATH}/lib/pkgconfig"
           sed -e "s|XXX|${LIBS_INSTALL_FOLDER_PATH}|" \
             "${BUILD_GIT_PATH}/pkgconfig/${libusb_w32_prefix_version}.pc" \
             > "${LIBS_INSTALL_FOLDER_PATH}/lib/pkgconfig/libusb.pc"
 
-          mkdir -p "${LIBS_INSTALL_FOLDER_PATH}/include/libusb"
+          mkdir -pv "${LIBS_INSTALL_FOLDER_PATH}/include/libusb"
           cp -v "${LIBS_BUILD_FOLDER_PATH}/${libusb_w32_folder_name}/src/lusb0_usb.h" \
             "${LIBS_INSTALL_FOLDER_PATH}/include/libusb/usb.h"
 
@@ -379,7 +379,7 @@ function do_libftdi()
     mkdir -pv "${LOGS_FOLDER_PATH}/${libftdi_folder_name}"
 
     (
-      mkdir -p "${LIBS_BUILD_FOLDER_PATH}/${libftdi_folder_name}"
+      mkdir -pv "${LIBS_BUILD_FOLDER_PATH}/${libftdi_folder_name}"
       cd "${LIBS_BUILD_FOLDER_PATH}/${libftdi_folder_name}"
 
       xbb_activate
@@ -494,7 +494,7 @@ function do_hidapi()
 
     # Mandatory build in the source folder, so make a local copy.
     rm -rf "${LIBS_BUILD_FOLDER_PATH}/${hidapi_folder_name}"
-    mkdir -p "${LIBS_BUILD_FOLDER_PATH}/${hidapi_folder_name}"
+    mkdir -pv "${LIBS_BUILD_FOLDER_PATH}/${hidapi_folder_name}"
     cp -r "${SOURCES_FOLDER_PATH}/${hidapi_src_folder_name}"/* \
       "${LIBS_BUILD_FOLDER_PATH}/${hidapi_folder_name}"
 
@@ -537,16 +537,16 @@ function do_hidapi()
         ar -r  libhid.a "${hidapi_OBJECT}"
         ${CROSS_COMPILE_PREFIX}-ranlib libhid.a
 
-        mkdir -p "${LIBS_INSTALL_FOLDER_PATH}/lib"
+        mkdir -pv "${LIBS_INSTALL_FOLDER_PATH}/lib"
         cp -v libhid.a \
           "${LIBS_INSTALL_FOLDER_PATH}/lib"
 
-        mkdir -p "${LIBS_INSTALL_FOLDER_PATH}/lib/pkgconfig"
+        mkdir -pv "${LIBS_INSTALL_FOLDER_PATH}/lib/pkgconfig"
         sed -e "s|XXX|${LIBS_INSTALL_FOLDER_PATH}|" \
           "${BUILD_GIT_PATH}/pkgconfig/hidapi-${hidapi_version}-windows.pc" \
           > "${LIBS_INSTALL_FOLDER_PATH}/lib/pkgconfig/hidapi.pc"
 
-        mkdir -p "${LIBS_INSTALL_FOLDER_PATH}/include/hidapi"
+        mkdir -pv "${LIBS_INSTALL_FOLDER_PATH}/include/hidapi"
         cp -v "${SOURCES_FOLDER_PATH}/${hidapi_folder_name}/hidapi/hidapi.h" \
           "${LIBS_INSTALL_FOLDER_PATH}/include/hidapi"
 

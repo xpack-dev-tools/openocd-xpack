@@ -45,7 +45,7 @@ function do_openocd()
         ./bootstrap
       fi
 
-      mkdir -p "${APP_BUILD_FOLDER_PATH}"
+      mkdir -pv "${APP_BUILD_FOLDER_PATH}"
       cd "${APP_BUILD_FOLDER_PATH}"
 
       export JAYLINK_CFLAGS='${XBB_CFLAGS} -fvisibility=hidden'
@@ -286,7 +286,7 @@ function copy_distro_files()
     xbb_activate
 
     rm -rf "${APP_PREFIX}/${DISTRO_INFO_NAME}"
-    mkdir -p "${APP_PREFIX}/${DISTRO_INFO_NAME}"
+    mkdir -pv "${APP_PREFIX}/${DISTRO_INFO_NAME}"
 
     copy_build_files
 
