@@ -1,4 +1,4 @@
-# How to build the xPack OpenOCD?
+# How to build the xPack OpenOCD
 
 ## Introduction
 
@@ -139,8 +139,8 @@ separately on a macOS system.
 
 #### Build the Intel GNU/Linux and Windows binaries
 
-The current platform for GNU/Linux and Windows production builds is an
-Manjaro 19, running on an Intel NUC8i7BEH mini PC with 32 GB of RAM
+The current platform for Intel GNU/Linux and Windows production builds is a
+Debian 10, running on an Intel NUC8i7BEH mini PC with 32 GB of RAM
 and 512 GB of fast M.2 SSD.
 
 ```console
@@ -164,9 +164,10 @@ The result should look similar to:
 
 ```console
 $ docker images
-REPOSITORY          TAG                    IMAGE ID            CREATED             SIZE
-ilegeul/ubuntu      i386-12.04-xbb-v3.1    6274c178b54c        5 days ago          3.7GB
-ilegeul/ubuntu      amd64-12.04-xbb-v3.1   3846ecf3ba1a        5 days ago          4.07GB
+REPOSITORY          TAG                              IMAGE ID            CREATED             SIZE
+ilegeul/ubuntu      i386-12.04-xbb-v3.2              fadc6405b606        2 days ago          4.55GB
+ilegeul/ubuntu      amd64-12.04-xbb-v3.2             3aba264620ea        2 days ago          4.98GB
+hello-world         latest                           bf756fb1ae65        5 months ago        13.3kB
 ```
 
 Since the build takes a while, use `screen` to isolate the build session
@@ -177,27 +178,27 @@ network connection or a computer entering sleep.
 $ screen -S openocd
 
 $ sudo rm -rf ~/Work/openocd-*
-$ bash ~/Downloads/openocd-xpack.git/scripts/build.sh --all --jobs $(nproc)
+$ bash ~/Downloads/openocd-xpack.git/scripts/build.sh --all
 ```
 
 To detach from the session, use `Ctrl-a` `Ctrl-d`; to reattach use
 `screen -r openocd`; to kill the session use `Ctrl-a` `Ctrl-k` and confirm.
 
-About 30 minutes later, the output of the build script is a set of 4
+About 20 minutes later, the output of the build script is a set of 4
 archives and their SHA signatures, created in the `deploy` folder:
 
 ```console
 $ cd ~/Work/openocd-*
 $ ls -l deploy
-total 13180
--rw-rw-rw- 1 ilg ilg 3685468 Mar 26 14:21 xpack-openocd-0.10.0-14-linux-x32.tar.gz
--rw-rw-rw- 1 ilg ilg     107 Mar 26 14:21 xpack-openocd-0.10.0-14-linux-x32.tar.gz.sha
--rw-rw-rw- 1 ilg ilg 3609865 Mar 26 14:03 xpack-openocd-0.10.0-14-linux-x64.tar.gz
--rw-rw-rw- 1 ilg ilg     107 Mar 26 14:03 xpack-openocd-0.10.0-14-linux-x64.tar.gz.sha
--rw-rw-rw- 1 ilg ilg 3088321 Mar 26 14:30 xpack-openocd-0.10.0-14-win32-x32.zip
--rw-rw-rw- 1 ilg ilg     104 Mar 26 14:30 xpack-openocd-0.10.0-14-win32-x32.zip.sha
--rw-rw-rw- 1 ilg ilg 3092435 Mar 26 14:16 xpack-openocd-0.10.0-14-win32-x64.zip
--rw-rw-rw- 1 ilg ilg     104 Mar 26 14:16 xpack-openocd-0.10.0-14-win32-x64.zip.sha
+total 13248
+-rw-rw-rw- 1 ilg ilg 3672921 Jun 10 13:53 xpack-openocd-0.10.0-14-linux-x32.tar.gz
+-rw-rw-rw- 1 ilg ilg     107 Jun 10 13:53 xpack-openocd-0.10.0-14-linux-x32.tar.gz.sha
+-rw-rw-rw- 1 ilg ilg 3601358 Jun 10 13:45 xpack-openocd-0.10.0-14-linux-x64.tar.gz
+-rw-rw-rw- 1 ilg ilg     107 Jun 10 13:45 xpack-openocd-0.10.0-14-linux-x64.tar.gz.sha
+-rw-rw-rw- 1 ilg ilg 3137527 Jun 10 13:57 xpack-openocd-0.10.0-14-win32-x32.zip
+-rw-rw-rw- 1 ilg ilg     104 Jun 10 13:57 xpack-openocd-0.10.0-14-win32-x32.zip.sha
+-rw-rw-rw- 1 ilg ilg 3133169 Jun 10 13:51 xpack-openocd-0.10.0-14-win32-x64.zip
+-rw-rw-rw- 1 ilg ilg     104 Jun 10 13:51 xpack-openocd-0.10.0-14-win32-x64.zip.sha
 ```
 
 To copy the files from the build machine to the current development
@@ -210,10 +211,79 @@ $ cd deploy
 $ scp * ilg@wks:Downloads/xpack-binaries/openocd
 ```
 
+#### Build the Arm GNU/Linux binaries
+
+The current platform for Arm GNU/Linux and Windows production builds is a
+Debian 9, running on a ROCK Pi 4 with 4 GB of RAM
+and 256 GB of fast M.2 SSD.
+
+```console
+$ ssh xbba
+```
+
+Before starting a build, check if Docker is started:
+
+```console
+$ docker info
+```
+
+Before running a build for the first time, it is recommended to preload the
+docker images.
+
+```console
+$ bash ~/Downloads/openocd-xpack.git/scripts/build.sh preload-images
+```
+
+The result should look similar to:
+
+```console
+$ docker images
+REPOSITORY          TAG                                IMAGE ID            CREATED             SIZE
+ilegeul/ubuntu      arm32v7-16.04-xbb-v3.2             b501ae18580a        27 hours ago        3.23GB
+ilegeul/ubuntu      arm64v8-16.04-xbb-v3.2             db95609ffb69        38 hours ago        3.45GB
+hello-world         latest                             a29f45ccde2a        5 months ago        9.14kB
+```
+
+Since the build takes a while, use `screen` to isolate the build session
+from unexpected events, like a broken
+network connection or a computer entering sleep.
+
+```console
+$ screen -S openocd
+
+$ sudo rm -rf ~/Work/openocd-*
+$ bash ~/Downloads/openocd-xpack.git/scripts/build.sh --all
+```
+
+To detach from the session, use `Ctrl-a` `Ctrl-d`; to reattach use
+`screen -r openocd`; to kill the session use `Ctrl-a` `Ctrl-k` and confirm.
+
+About 50 minutes later, the output of the build script is a set of 2
+archives and their SHA signatures, created in the `deploy` folder:
+
+```console
+$ cd ~/Work/openocd-*
+$ ls -l deploy
+total 7120
+-rw-rw-rw- 1 ilg ilg 3632743 Mar 26 15:25 xpack-openocd-0.10.0-14-linux-arm64.tar.gz
+-rw-rw-rw- 1 ilg ilg     109 Mar 26 15:25 xpack-openocd-0.10.0-14-linux-arm64.tar.gz.sha
+-rw-rw-rw- 1 ilg ilg 3646739 Mar 26 15:50 xpack-openocd-0.10.0-14-linux-arm.tar.gz
+-rw-rw-rw- 1 ilg ilg     107 Mar 26 15:50 xpack-openocd-0.10.0-14-linux-arm.tar.gz.sha
+```
+
+To copy the files from the build machine to the current development
+machine, either use NFS to mount the entire folder, or open the `deploy`
+folder in a terminal and use `scp`:
+
+```console
+$ cd ~/Work/openocd-*/deploy
+$ scp * ilg@wks:Downloads/xpack-binaries/openocd
+```
+
 #### Build the macOS binary
 
 The current platform for macOS production builds is a macOS 10.10.5
-VirtualBox image running on a macMini with 16 GB of RAM and a
+running on a MacBookPro with 16 GB of RAM and a
 fast SSD.
 
 ```console
@@ -252,75 +322,6 @@ folder in a terminal and use `scp`:
 ```console
 $ cd ~/Work/openocd-*
 $ cd deploy
-$ scp * ilg@wks:Downloads/xpack-binaries/openocd
-```
-
-#### Build the Arm GNU/Linux binaries
-
-The current platform for GNU/Linux and Windows production builds is an
-Manjaro 19, running on an Raspberry Pi 4B with 4 GB of RAM
-and 256 GB of fast M.2 SSD.
-
-```console
-$ ssh xbba
-$ ssh berry
-```
-
-Before starting a build, check if Docker is started:
-
-```console
-$ docker info
-```
-
-Before running a build for the first time, it is recommended to preload the
-docker images.
-
-```console
-$ bash ~/Downloads/openocd-xpack.git/scripts/build.sh preload-images
-```
-
-The result should look similar to:
-
-```console
-$ docker images
-REPOSITORY          TAG                            IMAGE ID            CREATED             SIZE
-ilegeul/ubuntu      arm32v7-16.04-xbb-v3.1         e08db859d5e9        4 days ago          2.97GB
-ilegeul/ubuntu      arm64v8-16.04-xbb-v3.1         7ea793693fcc        5 days ago          3.15GB
-```
-
-Since the build takes a while, use `screen` to isolate the build session
-from unexpected events, like a broken
-network connection or a computer entering sleep.
-
-```console
-$ screen -S openocd
-
-$ sudo rm -rf ~/Work/openocd-*
-$ bash ~/Downloads/openocd-xpack.git/scripts/build.sh --all --jobs $(nproc)
-```
-
-To detach from the session, use `Ctrl-a` `Ctrl-d`; to reattach use
-`screen -r openocd`; to kill the session use `Ctrl-a` `Ctrl-k` and confirm.
-
-About 55 minutes later, the output of the build script is a set of 2
-archives and their SHA signatures, created in the `deploy` folder:
-
-```console
-$ cd ~/Work/openocd-*
-$ ls -l deploy
-total 7120
--rw-rw-rw- 1 ilg ilg 3632743 Mar 26 15:25 xpack-openocd-0.10.0-14-linux-arm64.tar.gz
--rw-rw-rw- 1 ilg ilg     109 Mar 26 15:25 xpack-openocd-0.10.0-14-linux-arm64.tar.gz.sha
--rw-rw-rw- 1 ilg ilg 3646739 Mar 26 15:50 xpack-openocd-0.10.0-14-linux-arm.tar.gz
--rw-rw-rw- 1 ilg ilg     107 Mar 26 15:50 xpack-openocd-0.10.0-14-linux-arm.tar.gz.sha
-```
-
-To copy the files from the build machine to the current development
-machine, either use NFS to mount the entire folder, or open the `deploy`
-folder in a terminal and use `scp`:
-
-```console
-$ cd ~/Work/openocd-*/deploy
 $ scp * ilg@wks:Downloads/xpack-binaries/openocd
 ```
 

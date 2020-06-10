@@ -24,6 +24,9 @@ function prepare_versions()
   OPENOCD_GIT_COMMIT=${OPENOCD_GIT_COMMIT:-""}
   README_OUT_FILE_NAME="README-${RELEASE_VERSION}.md"
 
+  OPENOCD_SRC_FOLDER_NAME=${OPENOCD_SRC_FOLDER_NAME:-"${OPENOCD_PROJECT_NAME}.git"}
+  OPENOCD_GIT_URL=${OPENOCD_GIT_URL:-"https://github.com/xpack-dev-tools/openocd.git"}
+
   LIBFTDI_PATCH=""
   LIBUSB_W32_PATCH=""
 
@@ -38,20 +41,33 @@ function prepare_versions()
     
     OPENOCD_VERSION="0.10.0-14"
 
+    # Used in the licenses folder.
+    OPENOCD_FOLDER_NAME="openocd-${OPENOCD_VERSION}"
+
     OPENOCD_GIT_BRANCH=${OPENOCD_GIT_BRANCH:-"xpack"}
     OPENOCD_GIT_COMMIT=${OPENOCD_GIT_COMMIT:-"99773a64ce0ce1ff1687c4df57da8fdf6df7d0c3"}
     
     # -------------------------------------------------------------------------
 
-    LIBUSB1_VERSION="1.0.22"
-    LIBUSB0_VERSION="0.1.5"
-    LIBUSB_W32_VERSION="1.2.6.0"
-    LIBFTDI_VERSION="1.4"
-    LIBICONV_VERSION="1.15"
-    HIDAPI_VERSION="0.8.0-rc1"
+    do_libusb1 "1.0.22"
+    if [ "${TARGET_PLATFORM}" == "win32" ]
+    then
+      do_libusb_w32 "1.2.6.0"
+    else
+      do_libusb0 "0.1.5"
+    fi
 
-    LIBFTDI_PATCH="libftdi1-${LIBFTDI_VERSION}-cmake-FindUSB1.patch"
-    LIBUSB_W32_PATCH="libusb-win32-${LIBUSB_W32_VERSION}-mingw-w64.patch"
+    do_libftdi "1.4"
+
+    build_libiconv "1.15"
+
+    do_hidapi "0.8.0-rc1"
+
+    # -------------------------------------------------------------------------
+
+    do_openocd
+
+    run_openocd
 
     # -------------------------------------------------------------------------
   elif [[ "${RELEASE_VERSION}" =~ 0\.10\.0-13 ]]
@@ -61,23 +77,35 @@ function prepare_versions()
     
     OPENOCD_VERSION="0.10.0-13"
 
+    # Used in the licenses folder.
+    OPENOCD_FOLDER_NAME="openocd-${OPENOCD_VERSION}"
+
     OPENOCD_GIT_BRANCH=${OPENOCD_GIT_BRANCH:-"xpack"}
     OPENOCD_GIT_COMMIT=${OPENOCD_GIT_COMMIT:-"191d1b176cf32280fc649d3c5afcff44d6205daf"}
     
     # -------------------------------------------------------------------------
 
-    LIBUSB1_VERSION="1.0.22"
-    LIBUSB0_VERSION="0.1.5"
-    LIBUSB_W32_VERSION="1.2.6.0"
-    LIBFTDI_VERSION="1.4"
-    LIBICONV_VERSION="1.15"
-    HIDAPI_VERSION="0.8.0-rc1"
-
-    LIBFTDI_PATCH="libftdi1-${LIBFTDI_VERSION}-cmake-FindUSB1.patch"
-    LIBUSB_W32_PATCH="libusb-win32-${LIBUSB_W32_VERSION}-mingw-w64.patch"
-
-    USE_SINGLE_FOLDER_PATH="y"
     USE_TAR_GZ=""
+
+    do_libusb1 "1.0.22"
+    if [ "${TARGET_PLATFORM}" == "win32" ]
+    then
+      do_libusb_w32 "1.2.6.0"
+    else
+      do_libusb0 "0.1.5"
+    fi
+
+    do_libftdi "1.4"
+
+    build_libiconv "1.15"
+
+    do_hidapi "0.8.0-rc1"
+
+    # -------------------------------------------------------------------------
+
+    do_openocd
+
+    run_openocd
 
     # -------------------------------------------------------------------------
   else

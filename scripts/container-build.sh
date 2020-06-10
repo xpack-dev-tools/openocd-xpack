@@ -61,6 +61,10 @@ common_helper_functions_script_path="${script_folder_path}/helper/common-functio
 echo "Common helper functions source script: \"${common_helper_functions_script_path}\"."
 source "${common_helper_functions_script_path}"
 
+common_helper_libs_functions_script_path="${script_folder_path}/helper/common-libs-functions-source.sh"
+echo "Common helper libs functions source script: \"${common_helper_libs_functions_script_path}\"."
+source "${common_helper_libs_functions_script_path}"
+
 common_functions_script_path="${script_folder_path}/common-functions-source.sh"
 echo "Common functions source script: \"${common_functions_script_path}\"."
 source "${common_functions_script_path}"
@@ -175,52 +179,13 @@ prepare_xbb_extras
 
 # -----------------------------------------------------------------------------
 
-prepare_versions
-
-# -----------------------------------------------------------------------------
-
-if [ ! -f "${BUILD_GIT_PATH}/scripts/${README_OUT_FILE_NAME}" ]
-then
-  echo "Missing ${README_OUT_FILE_NAME}, quit."
-  exit 1
-fi
-
-# -----------------------------------------------------------------------------
-
-OPENOCD_SRC_FOLDER_NAME=${OPENOCD_SRC_FOLDER_NAME:-"${OPENOCD_PROJECT_NAME}.git"}
-OPENOCD_GIT_URL=${OPENOCD_GIT_URL:-"https://github.com/xpack-dev-tools/openocd.git"}
-
-# Used in the licenses folder.
-OPENOCD_FOLDER_NAME="openocd-${OPENOCD_VERSION}"
-
-# -----------------------------------------------------------------------------
-
 echo
 echo "Here we go..."
 echo
 
 # -----------------------------------------------------------------------------
-# Build dependent libraries.
 
-do_libusb1
-if [ "${TARGET_PLATFORM}" == "win32" ]
-then
-  do_libusb_w32
-else
-  do_libusb0
-fi
-
-do_libftdi
-
-do_libiconv
-
-do_hidapi
-
-# -----------------------------------------------------------------------------
-
-do_openocd
-
-run_openocd
+prepare_versions
 
 # -----------------------------------------------------------------------------
 

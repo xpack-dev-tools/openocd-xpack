@@ -21,6 +21,8 @@ function do_libusb1()
   # 2015-09-14, 1.0.20
   # 2018-03-25, 1.0.22
 
+  LIBUSB1_VERSION="$1"
+
   LIBUSB1_SRC_FOLDER_NAME="libusb-${LIBUSB1_VERSION}"
   LIBUSB1_FOLDER_NAME="${LIBUSB1_SRC_FOLDER_NAME}"
   local libusb1_archive="${LIBUSB1_SRC_FOLDER_NAME}.tar.bz2"
@@ -113,6 +115,8 @@ function do_libusb0()
 
   # 2013-05-21, 0.1.5, latest
   
+  LIBUSB0_VERSION="$1"
+
   LIBUSB0_SRC_FOLDER_NAME="libusb-compat-${LIBUSB0_VERSION}"
   LIBUSB0_FOLDER_NAME="${LIBUSB0_SRC_FOLDER_NAME}"
   local libusb0_archive="${LIBUSB0_SRC_FOLDER_NAME}.tar.bz2"
@@ -195,6 +199,8 @@ function do_libusb_w32()
   # 2012-01-17, 1.2.6.0 
   # LIBUSB_W32_VERSION="1.2.6.0" # +PATCH!
 
+  LIBUSB_W32_VERSION="$1"
+
   LIBUSB_W32_PREFIX="libusb-win32"
   LIBUSB_W32="${LIBUSB_W32_PREFIX}-${LIBUSB_W32_VERSION}"
 
@@ -202,6 +208,8 @@ function do_libusb_w32()
   LIBUSB_W32_FOLDER_NAME="${LIBUSB_W32_SRC_FOLDER_NAME}"
   local libusb_w32_archive="${LIBUSB_W32_SRC_FOLDER_NAME}.zip"
   local linusb_w32_url="http://sourceforge.net/projects/libusb-win32/files/libusb-win32-releases/${LIBUSB_W32_VERSION}/${libusb_w32_archive}"
+
+  LIBUSB_W32_PATCH="libusb-win32-${LIBUSB_W32_VERSION}-mingw-w64.patch"
 
   local libusb_w32_stamp_file_path="${INSTALL_FOLDER_PATH}/stamp-libusb-w32-${LIBUSB_W32_VERSION}-installed"
   if [ ! -f "${libusb_w32_stamp_file_path}" ]
@@ -292,11 +300,15 @@ function do_libftdi()
   # 1.2 (no date)
   # LIBFTDI_VERSION="1.2" # +PATCH!
 
+  LIBFTDI_VERSION="$1"
+
   LIBFTDI_SRC_FOLDER_NAME="libftdi1-${LIBFTDI_VERSION}"
   LIBFTDI_FOLDER_NAME="${LIBFTDI_SRC_FOLDER_NAME}"
   local libftdi_archive="${LIBFTDI_SRC_FOLDER_NAME}.tar.bz2"
 
   libftdi_url="http://www.intra2net.com/en/developer/libftdi/download/${libftdi_archive}"
+
+  LIBFTDI_PATCH="libftdi1-${LIBFTDI_VERSION}-cmake-FindUSB1.patch"
 
   local libftdi_stamp_file_path="${INSTALL_FOLDER_PATH}/stamp-libftdi-${LIBFTDI_VERSION}-installed"
   if [ ! -f "${libftdi_stamp_file_path}" ]
