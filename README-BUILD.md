@@ -309,9 +309,9 @@ archive and its SHA signature, created in the `deploy` folder:
 ```console
 $ cd ~/Work/openocd-*
 $ ls -l deploy
-total 5528
--rw-r--r--  1 ilg  staff  2822538 Jul 17 15:30 xpack-openocd-0.10.0-14-darwin-x64.tgz
--rw-r--r--  1 ilg  staff      105 Jul 17 15:30 xpack-openocd-0.10.0-14-darwin-x64.tgz.sha
+total 5536
+-rw-r--r--  1 ilg  staff  2828202 Jun 10 17:44 xpack-openocd-0.10.0-14-darwin-x64.tar.gz
+-rw-r--r--  1 ilg  staff      108 Jun 10 17:44 xpack-openocd-0.10.0-14-darwin-x64.tar.gz.sha
 ```
 
 To copy the files from the build machine to the current development
