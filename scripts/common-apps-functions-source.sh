@@ -64,8 +64,8 @@ function do_openocd()
         
         # Without it, mingw redefines it as 0.
         CPPFLAGS="${XBB_CPPFLAGS} -D__USE_MINGW_ANSI_STDIO=1"
-        CFLAGS="${XBB_CXXFLAGS} -Wno-pointer-to-int-cast" 
-        CXXFLAGS="${XBB_CXXFLAGS}" 
+        CFLAGS="${XBB_CFLAGS_NO_W}" 
+        CXXFLAGS="${XBB_CXXFLAGS_NO_W}" 
         LDFLAGS="${XBB_LDFLAGS_APP}"
         LIBS=""
 
@@ -88,8 +88,8 @@ function do_openocd()
         # --enable-usb_blaster_libftdi -> --enable-usb_blaster
 
         CPPFLAGS="${XBB_CPPFLAGS}"
-        CFLAGS="${XBB_CFLAGS} -Wno-format-truncation -Wno-format-overflow"
-        CXXFLAGS="${XBB_CXXFLAGS}"
+        CFLAGS="${XBB_CFLAGS_NO_W}"
+        CXXFLAGS="${XBB_CXXFLAGS_NO_W}"
         LDFLAGS="${XBB_LDFLAGS_APP}" 
         LIBS="-lpthread -lrt -ludev"
 
@@ -110,8 +110,8 @@ function do_openocd()
         # --enable-usb_blaster_libftdi -> --enable-usb_blaster
 
         CPPFLAGS="${XBB_CPPFLAGS}"
-        CFLAGS="${XBB_CFLAGS}"
-        CXXFLAGS="${XBB_CXXFLAGS}"
+        CFLAGS="${XBB_CFLAGS_NO_W}"
+        CXXFLAGS="${XBB_CXXFLAGS_NO_W}"
         LDFLAGS="${XBB_LDFLAGS_APP}"
         LIBS="" # "-lobjc"
 

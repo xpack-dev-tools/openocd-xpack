@@ -55,9 +55,19 @@ function do_libusb1()
         export CC=clang
       fi
 
-      export CFLAGS="${XBB_CFLAGS} -Wno-non-literal-null-conversion -Wno-deprecated-declarations  -Wno-format"
-      export CPPFLAGS="${XBB_CPPFLAGS}"
-      export LDFLAGS="${XBB_LDFLAGS_LIB}"
+      CPPFLAGS="${XBB_CPPFLAGS}"
+      CFLAGS="${XBB_CFLAGS_NO_W}"
+      CXXFLAGS="${XBB_CXXFLAGS_NO_W}"
+      LDFLAGS="${XBB_LDFLAGS_LIB}"
+      if [ "${IS_DEVELOP}" == "y" ]
+      then
+        LDFLAGS+=" -v"
+      fi
+
+      export CPPFLAGS
+      export CFLAGS
+      export CXXFLAGS
+      export LDFLAGS
 
       if [ ! -f "config.status" ]
       then 
@@ -147,9 +157,19 @@ function do_libusb0()
       xbb_activate
       xbb_activate_installed_dev
 
-      export CFLAGS="${XBB_CFLAGS}"
-      export CPPFLAGS="${XBB_CPPFLAGS}"
-      export LDFLAGS="${XBB_LDFLAGS_LIB}"
+      CPPFLAGS="${XBB_CPPFLAGS}"
+      CFLAGS="${XBB_CFLAGS_NO_W}"
+      CXXFLAGS="${XBB_CXXFLAGS_NO_W}"
+      LDFLAGS="${XBB_LDFLAGS_LIB}"
+      if [ "${IS_DEVELOP}" == "y" ]
+      then
+        LDFLAGS+=" -v"
+      fi
+
+      export CPPFLAGS
+      export CFLAGS
+      export CXXFLAGS
+      export LDFLAGS
 
       if [ ! -f "config.status" ]
       then 
@@ -266,7 +286,20 @@ function do_libusb_w32()
 
       # Build.
       (
-          export CFLAGS="${XBB_CFLAGS} -Wno-unknown-pragmas -Wno-unused-variable -Wno-pointer-sign -Wno-unused-but-set-variable"
+          CPPFLAGS="${XBB_CPPFLAGS}"
+          CFLAGS="${XBB_CFLAGS_NO_W}"
+          CXXFLAGS="${XBB_CXXFLAGS_NO_W}"
+          LDFLAGS="${XBB_LDFLAGS_LIB}"
+          if [ "${IS_DEVELOP}" == "y" ]
+          then
+            LDFLAGS+=" -v"
+          fi
+
+          export CPPFLAGS
+          export CFLAGS
+          export CXXFLAGS
+          export LDFLAGS
+          
           run_verbose make \
             host_prefix=${CROSS_COMPILE_PREFIX} \
             host_prefix_x86=i686-w64-mingw32 \
@@ -346,9 +379,19 @@ function do_libftdi()
       xbb_activate
       xbb_activate_installed_dev
 
-      export CFLAGS="${XBB_CFLAGS}"
-      export CPPFLAGS="${XBB_CPPFLAGS}"
-      export LDFLAGS="${XBB_LDFLAGS_LIB}"
+      CPPFLAGS="${XBB_CPPFLAGS}"
+      CFLAGS="${XBB_CFLAGS_NO_W}"
+      CXXFLAGS="${XBB_CXXFLAGS_NO_W}"
+      LDFLAGS="${XBB_LDFLAGS_LIB}"
+      if [ "${IS_DEVELOP}" == "y" ]
+      then
+        LDFLAGS+=" -v"
+      fi
+
+      export CPPFLAGS
+      export CFLAGS
+      export CXXFLAGS
+      export LDFLAGS
 
       (
         echo
@@ -461,7 +504,19 @@ function do_hidapi()
 
         cd "${LIBS_BUILD_FOLDER_PATH}/${hidapi_folder_name}/windows"
 
-        export CFLAGS="${XBB_CFLAGS}"
+        CPPFLAGS="${XBB_CPPFLAGS}"
+        CFLAGS="${XBB_CFLAGS_NO_W}"
+        CXXFLAGS="${XBB_CXXFLAGS_NO_W}"
+        LDFLAGS="${XBB_LDFLAGS_LIB}"
+        if [ "${IS_DEVELOP}" == "y" ]
+        then
+          LDFLAGS+=" -v"
+        fi
+
+        export CPPFLAGS
+        export CFLAGS
+        export CXXFLAGS
+        export LDFLAGS
 
         run_verbose make -f Makefile.mingw \
           CC=${CROSS_COMPILE_PREFIX}-gcc \
@@ -504,17 +559,27 @@ function do_hidapi()
 
         run_verbose bash bootstrap
 
-        export CFLAGS="${XBB_CFLAGS}"
-        export CPPFLAGS="${XBB_CPPFLAGS}"
-        export LDFLAGS="${XBB_LDFLAGS_LIB}"
+        CPPFLAGS="${XBB_CPPFLAGS}"
+        CFLAGS="${XBB_CFLAGS_NO_W}"
+        CXXFLAGS="${XBB_CXXFLAGS_NO_W}"
+        LDFLAGS="${XBB_LDFLAGS_LIB}"
+        if [ "${IS_DEVELOP}" == "y" ]
+        then
+          LDFLAGS+=" -v"
+        fi
+
+        export CPPFLAGS
+        export CFLAGS
+        export CXXFLAGS
+        export LDFLAGS
 
         (
           echo
           echo "Running hidapi configure..."
 
-          bash "./configure" --help
+          bash "configure" --help
         
-          run_verbose bash ${DEBUG} "./configure" \
+          run_verbose bash ${DEBUG} "configure" \
             --prefix="${LIBS_INSTALL_FOLDER_PATH}" \
             \
             --build=${BUILD} \
