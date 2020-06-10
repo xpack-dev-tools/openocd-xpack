@@ -296,8 +296,7 @@ To build the latest macOS version:
 $ screen -S openocd
 
 $ rm -rf ~/Work/openocd-*
-$ caffeinate bash ~/Downloads/openocd-xpack.git/scripts/build.sh --osx \
---jobs $(sysctl hw.ncpu | sed 's/hw.ncpu: //')
+$ caffeinate bash ~/Downloads/openocd-xpack.git/scripts/build.sh --osx
 ```
 
 To detach from the session, use `Ctrl-a` `Ctrl-d`; to reattach use
