@@ -21,25 +21,25 @@ function do_libusb1()
   # 2015-09-14, 1.0.20
   # 2018-03-25, 1.0.22
 
-  local LIBUSB1_VERSION="$1"
+  local libusb1_version="$1"
 
-  local LIBUSB1_SRC_FOLDER_NAME="libusb-${LIBUSB1_VERSION}"
-  local LIBUSB1_FOLDER_NAME="${LIBUSB1_SRC_FOLDER_NAME}"
-  local libusb1_archive="${LIBUSB1_SRC_FOLDER_NAME}.tar.bz2"
-  local libusb1_url="http://sourceforge.net/projects/libusb/files/libusb-1.0/${LIBUSB1_FOLDER_NAME}/${libusb1_archive}"
+  local libusb1_src_folder_name="libusb-${libusb1_version}"
+  local libusb1_folder_name="${libusb1_src_folder_name}"
+  local libusb1_archive="${libusb1_src_folder_name}.tar.bz2"
+  local libusb1_url="http://sourceforge.net/projects/libusb/files/libusb-1.0/${libusb1_folder_name}/${libusb1_archive}"
 
-  local libusb1_stamp_file_path="${INSTALL_FOLDER_PATH}/stamp-libusb1-${LIBUSB1_VERSION}-installed"
+  local libusb1_stamp_file_path="${INSTALL_FOLDER_PATH}/stamp-libusb1-${libusb1_version}-installed"
   if [ ! -f "${libusb1_stamp_file_path}" ]
   then
 
     cd "${SOURCES_FOLDER_PATH}"
 
     download_and_extract "${libusb1_url}" "${libusb1_archive}" \
-      "${LIBUSB1_SRC_FOLDER_NAME}"
+      "${libusb1_src_folder_name}"
 
     (
-      mkdir -p "${LIBS_BUILD_FOLDER_PATH}/${LIBUSB1_FOLDER_NAME}"
-      cd "${LIBS_BUILD_FOLDER_PATH}/${LIBUSB1_FOLDER_NAME}"
+      mkdir -p "${LIBS_BUILD_FOLDER_PATH}/${libusb1_folder_name}"
+      cd "${LIBS_BUILD_FOLDER_PATH}/${libusb1_folder_name}"
 
       xbb_activate
       xbb_activate_installed_dev
@@ -62,11 +62,11 @@ function do_libusb1()
           echo
           echo "Running libusb1 configure..."
 
-          bash "${SOURCES_FOLDER_PATH}/${LIBUSB1_SRC_FOLDER_NAME}/configure" --help
+          bash "${SOURCES_FOLDER_PATH}/${libusb1_src_folder_name}/configure" --help
 
           # --enable-shared required by libftdi.
           # --enable-static required by libftdi. (odd...)
-          bash ${DEBUG} "${SOURCES_FOLDER_PATH}/${LIBUSB1_SRC_FOLDER_NAME}/configure" \
+          bash ${DEBUG} "${SOURCES_FOLDER_PATH}/${libusb1_src_folder_name}/configure" \
             --prefix="${LIBS_INSTALL_FOLDER_PATH}" \
             \
             --build=${BUILD} \
@@ -94,11 +94,12 @@ function do_libusb1()
         else
           make install
         fi
+
       ) 2>&1 | tee "${LOGS_FOLDER_PATH}/make-libusb1-output.txt"
 
       copy_license \
-        "${SOURCES_FOLDER_PATH}/${LIBUSB1_SRC_FOLDER_NAME}" \
-        "${LIBUSB1_FOLDER_NAME}"
+        "${SOURCES_FOLDER_PATH}/${libusb1_src_folder_name}" \
+        "${libusb1_folder_name}"
     )
 
     touch "${libusb1_stamp_file_path}"
@@ -115,25 +116,25 @@ function do_libusb0()
 
   # 2013-05-21, 0.1.5, latest
   
-  local LIBUSB0_VERSION="$1"
+  local libusb0_version="$1"
 
-  local LIBUSB0_SRC_FOLDER_NAME="libusb-compat-${LIBUSB0_VERSION}"
-  local LIBUSB0_FOLDER_NAME="${LIBUSB0_SRC_FOLDER_NAME}"
-  local libusb0_archive="${LIBUSB0_SRC_FOLDER_NAME}.tar.bz2"
-  local libusb0_url="http://sourceforge.net/projects/libusb/files/libusb-compat-0.1/${LIBUSB0_FOLDER_NAME}/${libusb0_archive}"
+  local libusb0_src_folder_name="libusb-compat-${libusb0_version}"
+  local libusb0_folder_name="${libusb0_src_folder_name}"
+  local libusb0_archive="${libusb0_src_folder_name}.tar.bz2"
+  local libusb0_url="http://sourceforge.net/projects/libusb/files/libusb-compat-0.1/${libusb0_folder_name}/${libusb0_archive}"
 
-  local libusb0_stamp_file_path="${INSTALL_FOLDER_PATH}/stamp-libusb0-${LIBUSB0_VERSION}-installed"
+  local libusb0_stamp_file_path="${INSTALL_FOLDER_PATH}/stamp-libusb0-${libusb0_version}-installed"
   if [ ! -f "${libusb0_stamp_file_path}" ]
   then
 
     cd "${SOURCES_FOLDER_PATH}"
 
     download_and_extract "${libusb0_url}" "${libusb0_archive}" \
-      "${LIBUSB0_SRC_FOLDER_NAME}"
+      "${libusb0_src_folder_name}"
 
     (
-      mkdir -p "${LIBS_BUILD_FOLDER_PATH}/${LIBUSB0_FOLDER_NAME}"
-      cd "${LIBS_BUILD_FOLDER_PATH}/${LIBUSB0_FOLDER_NAME}"
+      mkdir -p "${LIBS_BUILD_FOLDER_PATH}/${libusb0_folder_name}"
+      cd "${LIBS_BUILD_FOLDER_PATH}/${libusb0_folder_name}"
 
       xbb_activate
       xbb_activate_installed_dev
@@ -149,9 +150,9 @@ function do_libusb0()
           echo
           echo "Running libusb0 configure..."
 
-          bash "${SOURCES_FOLDER_PATH}/${LIBUSB0_SRC_FOLDER_NAME}/configure" --help
+          bash "${SOURCES_FOLDER_PATH}/${libusb0_src_folder_name}/configure" --help
 
-          bash ${DEBUG} "${SOURCES_FOLDER_PATH}/${LIBUSB0_SRC_FOLDER_NAME}/configure" \
+          bash ${DEBUG} "${SOURCES_FOLDER_PATH}/${libusb0_src_folder_name}/configure" \
             --prefix="${LIBS_INSTALL_FOLDER_PATH}" \
             \
             --build=${BUILD} \
@@ -178,11 +179,12 @@ function do_libusb0()
         else
           make install
         fi
+
       ) 2>&1 | tee "${LOGS_FOLDER_PATH}/make-libusb0-output.txt"
 
       copy_license \
-        "${SOURCES_FOLDER_PATH}/${LIBUSB0_SRC_FOLDER_NAME}" \
-        "${LIBUSB0_FOLDER_NAME}"
+        "${SOURCES_FOLDER_PATH}/${libusb0_src_folder_name}" \
+        "${libusb0_folder_name}"
     )
 
     touch "${libusb0_stamp_file_path}"
@@ -197,40 +199,40 @@ function do_libusb_w32()
 {
   # https://sourceforge.net/projects/libusb-win32/files/libusb-win32-releases/
   # 2012-01-17, 1.2.6.0 
-  # LIBUSB_W32_VERSION="1.2.6.0" # +PATCH!
+  # libusb_w32_version="1.2.6.0" # +PATCH!
 
-  local LIBUSB_W32_VERSION="$1"
+  local libusb_w32_version="$1"
 
-  local LIBUSB_W32_PREFIX="libusb-win32"
-  local LIBUSB_W32="${LIBUSB_W32_PREFIX}-${LIBUSB_W32_VERSION}"
+  local libusb_w32_prefix="libusb-win32"
+  local libusb_w32_prefix_version="${libusb_w32_prefix}-${libusb_w32_version}"
 
-  local LIBUSB_W32_SRC_FOLDER_NAME="${LIBUSB_W32_PREFIX}-src-${LIBUSB_W32_VERSION}"
-  local LIBUSB_W32_FOLDER_NAME="${LIBUSB_W32_SRC_FOLDER_NAME}"
-  local libusb_w32_archive="${LIBUSB_W32_SRC_FOLDER_NAME}.zip"
-  local linusb_w32_url="http://sourceforge.net/projects/libusb-win32/files/libusb-win32-releases/${LIBUSB_W32_VERSION}/${libusb_w32_archive}"
+  local libusb_w32_src_folder_name="${libusb_w32_prefix}-src-${libusb_w32_version}"
+  local libusb_w32_folder_name="${libusb_w32_src_folder_name}"
+  local libusb_w32_archive="${libusb_w32_src_folder_name}.zip"
+  local linusb_w32_url="http://sourceforge.net/projects/libusb-win32/files/libusb-win32-releases/${libusb_w32_version}/${libusb_w32_archive}"
 
-  local LIBUSB_W32_PATCH="libusb-win32-${LIBUSB_W32_VERSION}-mingw-w64.patch"
+  local libusb_w32_patch="libusb-win32-${libusb_w32_version}-mingw-w64.patch"
 
-  local libusb_w32_stamp_file_path="${INSTALL_FOLDER_PATH}/stamp-libusb-w32-${LIBUSB_W32_VERSION}-installed"
+  local libusb_w32_stamp_file_path="${INSTALL_FOLDER_PATH}/stamp-libusb-w32-${libusb_w32_version}-installed"
   if [ ! -f "${libusb_w32_stamp_file_path}" ]
   then
 
     cd "${SOURCES_FOLDER_PATH}"
 
     download_and_extract "${linusb_w32_url}" "${libusb_w32_archive}" \
-      "${LIBUSB_W32_SRC_FOLDER_NAME}"
+      "${libusb_w32_src_folder_name}"
 
     # Mandatory build in the source folder, so make a local copy.
-    rm -rf "${LIBS_BUILD_FOLDER_PATH}/${LIBUSB_W32_FOLDER_NAME}"
-    mkdir -p "${LIBS_BUILD_FOLDER_PATH}/${LIBUSB_W32_FOLDER_NAME}"
-    cp -r "${SOURCES_FOLDER_PATH}/${LIBUSB_W32_SRC_FOLDER_NAME}"/* \
-      "${LIBS_BUILD_FOLDER_PATH}/${LIBUSB_W32_FOLDER_NAME}"
+    rm -rf "${LIBS_BUILD_FOLDER_PATH}/${libusb_w32_folder_name}"
+    mkdir -p "${LIBS_BUILD_FOLDER_PATH}/${libusb_w32_folder_name}"
+    cp -r "${SOURCES_FOLDER_PATH}/${libusb_w32_src_folder_name}"/* \
+      "${LIBS_BUILD_FOLDER_PATH}/${libusb_w32_folder_name}"
 
     (
       echo
       echo "Running libusb-win32 make..."
 
-      cd "${LIBS_BUILD_FOLDER_PATH}/${LIBUSB_W32_FOLDER_NAME}"
+      cd "${LIBS_BUILD_FOLDER_PATH}/${libusb_w32_folder_name}"
 
       xbb_activate
       xbb_activate_installed_dev
@@ -244,9 +246,9 @@ function do_libusb_w32()
       dos2unix src/install_filter_win.c
       dos2unix src/registry.c
 
-      if [ -f "${BUILD_GIT_PATH}/patches/${LIBUSB_W32_PATCH}" ]
+      if [ -f "${BUILD_GIT_PATH}/patches/${libusb_w32_patch}" ]
       then
-        patch -p0 < "${BUILD_GIT_PATH}/patches/${LIBUSB_W32_PATCH}"
+        patch -p0 < "${BUILD_GIT_PATH}/patches/${libusb_w32_patch}"
       fi
 
       # Build.
@@ -262,27 +264,27 @@ function do_libusb_w32()
 
           # Skipping it does not remove the reference from openocd, so for the
           # moment it is preserved.
-          cp -v "${LIBS_BUILD_FOLDER_PATH}/${LIBUSB_W32_FOLDER_NAME}/libusb0.dll" \
+          cp -v "${LIBS_BUILD_FOLDER_PATH}/${libusb_w32_folder_name}/libusb0.dll" \
             "${LIBS_INSTALL_FOLDER_PATH}/bin"
 
           mkdir -p "${LIBS_INSTALL_FOLDER_PATH}/lib"
-          cp -v "${LIBS_BUILD_FOLDER_PATH}/${LIBUSB_W32_FOLDER_NAME}/libusb.a" \
+          cp -v "${LIBS_BUILD_FOLDER_PATH}/${libusb_w32_folder_name}/libusb.a" \
             "${LIBS_INSTALL_FOLDER_PATH}/lib"
 
           mkdir -p "${LIBS_INSTALL_FOLDER_PATH}/lib/pkgconfig"
           sed -e "s|XXX|${LIBS_INSTALL_FOLDER_PATH}|" \
-            "${BUILD_GIT_PATH}/pkgconfig/${LIBUSB_W32}.pc" \
+            "${BUILD_GIT_PATH}/pkgconfig/${libusb_w32_prefix_version}.pc" \
             > "${LIBS_INSTALL_FOLDER_PATH}/lib/pkgconfig/libusb.pc"
 
           mkdir -p "${LIBS_INSTALL_FOLDER_PATH}/include/libusb"
-          cp -v "${LIBS_BUILD_FOLDER_PATH}/${LIBUSB_W32_FOLDER_NAME}/src/lusb0_usb.h" \
+          cp -v "${LIBS_BUILD_FOLDER_PATH}/${libusb_w32_folder_name}/src/lusb0_usb.h" \
             "${LIBS_INSTALL_FOLDER_PATH}/include/libusb/usb.h"
 
       ) 2>&1 | tee "${LOGS_FOLDER_PATH}/make-libusb-w32-output.txt"
 
       copy_license \
-        "${SOURCES_FOLDER_PATH}/${LIBUSB_W32_SRC_FOLDER_NAME}" \
-        "${LIBUSB_W32_FOLDER_NAME}"
+        "${SOURCES_FOLDER_PATH}/${libusb_w32_src_folder_name}" \
+        "${libusb_w32_folder_name}"
     )
 
     touch "${libusb_w32_stamp_file_path}"
@@ -298,31 +300,31 @@ function do_libftdi()
   # https://www.intra2net.com/en/developer/libftdi/download/libftdi1-1.4.tar.bz2
 
   # 1.2 (no date)
-  # LIBFTDI_VERSION="1.2" # +PATCH!
+  # libftdi_version="1.2" # +PATCH!
 
-  local LIBFTDI_VERSION="$1"
+  local libftdi_version="$1"
 
-  local LIBFTDI_SRC_FOLDER_NAME="libftdi1-${LIBFTDI_VERSION}"
-  local LIBFTDI_FOLDER_NAME="${LIBFTDI_SRC_FOLDER_NAME}"
-  local libftdi_archive="${LIBFTDI_SRC_FOLDER_NAME}.tar.bz2"
+  local libftdi_src_folder_name="libftdi1-${libftdi_version}"
+  local libftdi_folder_name="${libftdi_src_folder_name}"
+  local libftdi_archive="${libftdi_src_folder_name}.tar.bz2"
 
   libftdi_url="http://www.intra2net.com/en/developer/libftdi/download/${libftdi_archive}"
 
-  local LIBFTDI_PATCH="libftdi1-${LIBFTDI_VERSION}-cmake-FindUSB1.patch"
+  local libftdi_patch="libftdi1-${libftdi_version}-cmake-FindUSB1.patch"
 
-  local libftdi_stamp_file_path="${INSTALL_FOLDER_PATH}/stamp-libftdi-${LIBFTDI_VERSION}-installed"
+  local libftdi_stamp_file_path="${INSTALL_FOLDER_PATH}/stamp-libftdi-${libftdi_version}-installed"
   if [ ! -f "${libftdi_stamp_file_path}" ]
   then
 
     cd "${SOURCES_FOLDER_PATH}"
 
     download_and_extract "${libftdi_url}" "${libftdi_archive}" \
-      "${LIBFTDI_SRC_FOLDER_NAME}" \
-      "${LIBFTDI_PATCH}"
+      "${libftdi_src_folder_name}" \
+      "${libftdi_patch}"
 
     (
-      mkdir -p "${LIBS_BUILD_FOLDER_PATH}/${LIBFTDI_FOLDER_NAME}"
-      cd "${LIBS_BUILD_FOLDER_PATH}/${LIBFTDI_FOLDER_NAME}"
+      mkdir -p "${LIBS_BUILD_FOLDER_PATH}/${libftdi_folder_name}"
+      cd "${LIBS_BUILD_FOLDER_PATH}/${libftdi_folder_name}"
 
       xbb_activate
       xbb_activate_installed_dev
@@ -341,7 +343,7 @@ function do_libftdi()
           # Configure for Windows.
           cmake \
           -DPKG_CONFIG_EXECUTABLE="${PKG_CONFIG}" \
-          -DCMAKE_TOOLCHAIN_FILE="${SOURCES_FOLDER_PATH}/${LIBFTDI_SRC_FOLDER_NAME}/cmake/Toolchain-${CROSS_COMPILE_PREFIX}.cmake" \
+          -DCMAKE_TOOLCHAIN_FILE="${SOURCES_FOLDER_PATH}/${libftdi_src_folder_name}/cmake/Toolchain-${CROSS_COMPILE_PREFIX}.cmake" \
           -DCMAKE_INSTALL_PREFIX="${LIBS_INSTALL_FOLDER_PATH}" \
           -DLIBUSB_INCLUDE_DIR="${LIBS_INSTALL_FOLDER_PATH}/include/libusb-1.0" \
           -DLIBUSB_LIBRARIES="${LIBS_INSTALL_FOLDER_PATH}/lib/libusb-1.0.a" \
@@ -351,7 +353,7 @@ function do_libftdi()
           -DEXAMPLES:BOOL=off \
           -DDOCUMENTATION:BOOL=off \
           -DFTDI_EEPROM:BOOL=off \
-          "${SOURCES_FOLDER_PATH}/${LIBFTDI_SRC_FOLDER_NAME}"
+          "${SOURCES_FOLDER_PATH}/${libftdi_src_folder_name}"
 
         else
 
@@ -365,7 +367,7 @@ function do_libftdi()
           -DEXAMPLES:BOOL=off \
           -DDOCUMENTATION:BOOL=off \
           -DFTDI_EEPROM:BOOL=off \
-          "${SOURCES_FOLDER_PATH}/${LIBFTDI_SRC_FOLDER_NAME}"
+          "${SOURCES_FOLDER_PATH}/${libftdi_src_folder_name}"
 
         fi
       ) 2>&1 | tee "${LOGS_FOLDER_PATH}/configure-libftdi-output.txt"
@@ -381,8 +383,8 @@ function do_libftdi()
       ) 2>&1 | tee "${LOGS_FOLDER_PATH}/make-libftdi-output.txt"
 
       copy_license \
-        "${SOURCES_FOLDER_PATH}/${LIBFTDI_SRC_FOLDER_NAME}" \
-        "${LIBFTDI_FOLDER_NAME}"
+        "${SOURCES_FOLDER_PATH}/${libftdi_src_folder_name}" \
+        "${libftdi_folder_name}"
     )
 
     touch "${libftdi_stamp_file_path}"
@@ -401,31 +403,31 @@ function do_hidapi()
   # https://github.com/signal11/hidapi/archive/hidapi-0.8.0-rc1.zip
   # Oct 7, 2013, "0.8.0-rc1", latest
 
-  local HIDAPI_VERSION="$1"
+  local hidapi_version="$1"
 
-  local HIDAPI_SRC_FOLDER_NAME="hidapi-hidapi-${HIDAPI_VERSION}"
-  local HIDAPI_FOLDER_NAME="${HIDAPI_SRC_FOLDER_NAME}"
+  local hidapi_src_folder_name="hidapi-hidapi-${hidapi_version}"
+  local hidapi_folder_name="${hidapi_src_folder_name}"
 
-  local hidapi_archive="hidapi-${HIDAPI_VERSION}.zip"
+  local hidapi_archive="hidapi-${hidapi_version}.zip"
   local hidapi_url="https://github.com/signal11/hidapi/archive/${hidapi_archive}"
 
-  local hidapi_stamp_file_path="${INSTALL_FOLDER_PATH}/stamp-hidapi-${HIDAPI_VERSION}-installed"
+  local hidapi_stamp_file_path="${INSTALL_FOLDER_PATH}/stamp-hidapi-${hidapi_version}-installed"
   if [ ! -f "${hidapi_stamp_file_path}" ]
   then
 
     cd "${SOURCES_FOLDER_PATH}"
 
     download_and_extract "${hidapi_url}" "${hidapi_archive}" \
-      "${HIDAPI_SRC_FOLDER_NAME}"
+      "${hidapi_src_folder_name}"
 
     # Mandatory build in the source folder, so make a local copy.
-    rm -rf "${LIBS_BUILD_FOLDER_PATH}/${HIDAPI_FOLDER_NAME}"
-    mkdir -p "${LIBS_BUILD_FOLDER_PATH}/${HIDAPI_FOLDER_NAME}"
-    cp -r "${SOURCES_FOLDER_PATH}/${HIDAPI_SRC_FOLDER_NAME}"/* \
-      "${LIBS_BUILD_FOLDER_PATH}/${HIDAPI_FOLDER_NAME}"
+    rm -rf "${LIBS_BUILD_FOLDER_PATH}/${hidapi_folder_name}"
+    mkdir -p "${LIBS_BUILD_FOLDER_PATH}/${hidapi_folder_name}"
+    cp -r "${SOURCES_FOLDER_PATH}/${hidapi_src_folder_name}"/* \
+      "${LIBS_BUILD_FOLDER_PATH}/${hidapi_folder_name}"
 
     (
-      cd "${LIBS_BUILD_FOLDER_PATH}/${HIDAPI_FOLDER_NAME}"
+      cd "${LIBS_BUILD_FOLDER_PATH}/${hidapi_folder_name}"
 
       xbb_activate
       xbb_activate_installed_dev
@@ -433,20 +435,20 @@ function do_hidapi()
       if [ "${TARGET_PLATFORM}" == "win32" ]
       then
 
-        HIDAPI_OBJECT="hid.o"
-        HIDAPI_A="libhid.a"
+        hidapi_OBJECT="hid.o"
+        hidapi_A="libhid.a"
 
-        cd "${LIBS_BUILD_FOLDER_PATH}/${HIDAPI_FOLDER_NAME}/windows"
+        cd "${LIBS_BUILD_FOLDER_PATH}/${hidapi_folder_name}/windows"
 
         export CFLAGS="${XBB_CFLAGS}"
 
         make -f Makefile.mingw \
           CC=${CROSS_COMPILE_PREFIX}-gcc \
-          "${HIDAPI_OBJECT}"
+          "${hidapi_OBJECT}"
 
         # Make just compiles the file. Create the archive and convert it to library.
         # No dynamic/shared libs involved.
-        ar -r  libhid.a "${HIDAPI_OBJECT}"
+        ar -r  libhid.a "${hidapi_OBJECT}"
         ${CROSS_COMPILE_PREFIX}-ranlib libhid.a
 
         mkdir -p "${LIBS_INSTALL_FOLDER_PATH}/lib"
@@ -455,11 +457,11 @@ function do_hidapi()
 
         mkdir -p "${LIBS_INSTALL_FOLDER_PATH}/lib/pkgconfig"
         sed -e "s|XXX|${LIBS_INSTALL_FOLDER_PATH}|" \
-          "${BUILD_GIT_PATH}/pkgconfig/hidapi-${HIDAPI_VERSION}-windows.pc" \
+          "${BUILD_GIT_PATH}/pkgconfig/hidapi-${hidapi_version}-windows.pc" \
           > "${LIBS_INSTALL_FOLDER_PATH}/lib/pkgconfig/hidapi.pc"
 
         mkdir -p "${LIBS_INSTALL_FOLDER_PATH}/include/hidapi"
-        cp -v "${SOURCES_FOLDER_PATH}/${HIDAPI_FOLDER_NAME}/hidapi/hidapi.h" \
+        cp -v "${SOURCES_FOLDER_PATH}/${hidapi_folder_name}/hidapi/hidapi.h" \
           "${LIBS_INSTALL_FOLDER_PATH}/include/hidapi"
 
       elif [ "${TARGET_PLATFORM}" == "linux" -o "${TARGET_PLATFORM}" == "darwin" ]
@@ -524,8 +526,8 @@ function do_hidapi()
       rm -f "${LIBS_INSTALL_FOLDER_PATH}"/lib*/libhidapi-hidraw.la
 
       copy_license \
-        "${SOURCES_FOLDER_PATH}/${HIDAPI_SRC_FOLDER_NAME}" \
-        "${HIDAPI_FOLDER_NAME}"
+        "${SOURCES_FOLDER_PATH}/${hidapi_src_folder_name}" \
+        "${hidapi_folder_name}"
     )
 
     touch "${hidapi_stamp_file_path}"
