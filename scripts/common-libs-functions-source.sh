@@ -80,17 +80,12 @@ function do_libusb1()
 
           bash "${SOURCES_FOLDER_PATH}/${libusb1_src_folder_name}/configure" --help
 
-          # --enable-shared required by libftdi.
-          # --enable-static required by libftdi. (odd...)
           run_verbose bash ${DEBUG} "${SOURCES_FOLDER_PATH}/${libusb1_src_folder_name}/configure" \
             --prefix="${LIBS_INSTALL_FOLDER_PATH}" \
             \
             --build=${BUILD} \
             --host=${HOST} \
             --target=${TARGET} \
-            \
-            --enable-shared \
-            --enable-static
           
           cp "config.log" "${LOGS_FOLDER_PATH}/${libusb1_folder_name}/config-log.txt"
         ) 2>&1 | tee "${LOGS_FOLDER_PATH}/${libusb1_folder_name}/configure-output.txt"
@@ -190,9 +185,6 @@ function do_libusb0()
             --build=${BUILD} \
             --host=${HOST} \
             --target=${TARGET} \
-            \
-            --enable-shared \
-            --disable-static 
           
           cp "config.log" "${LOGS_FOLDER_PATH}/${libusb0_folder_name}/config-log.txt"
         ) 2>&1 | tee "${LOGS_FOLDER_PATH}/${libusb0_folder_name}/configure-output.txt"
@@ -598,8 +590,6 @@ function do_hidapi()
             --host=${HOST} \
             --target=${TARGET} \
             \
-            --enable-shared \
-            --disable-static \
             --disable-testgui
         
           cp "config.log" "${LOGS_FOLDER_PATH}/${hidapi_folder_name}/config-log.txt"
