@@ -32,14 +32,19 @@ To force a new download, remove the local archive:
 rm ~/Work/cache/xpack-openocd-*
 ```
 
-## Start the Travis test
+## Start the Travis tests
 
 The multi-platform test runs on Travis CI; it is configured to not fire on
 git actions, but only via a manual POST to the Travis API.
 
 ```bash
-bash ~/Downloads/openocd-xpack.git/tests/scripts/travis-trigger.sh
+bash ~/Downloads/openocd-xpack.git/tests/scripts/travis-trigger-stable.sh
+bash ~/Downloads/openocd-xpack.git/tests/scripts/travis-trigger-latest.sh
 ```
 
-For convenience, on macOS this can be invoked from Finder, using
-the `travis-trigger.mac.command` shortcut.
+For convenience, on macOS these can be invoked from Finder, using
+the `travis-trigger-stable.mac.command` or
+`travis-trigger-latest.mac.command` shortcuts.
+
+The test results are available at
+[Travis](https://travis-ci.org/github/xpack-dev-tools/openocd-xpack/builds/).
