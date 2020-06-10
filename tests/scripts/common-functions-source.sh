@@ -11,15 +11,15 @@
 # Common functions used in various tests.
 #
 # Requires 
-# - app_absolute_folder_path
-# - test_absolute_folder_path
+# - app_folder_path
+# - test_folder_path
 # - archive_platform (win32|linux|darwin)
 
 # -----------------------------------------------------------------------------
 
 function run_tests()
 {
-  run_app "${app_absolute_folder_path}/bin/openocd" --version
+  run_app "${app_folder_path}/bin/openocd" --version
 
   # TODO: add more, if possible.
 }
