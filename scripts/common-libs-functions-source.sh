@@ -39,6 +39,8 @@ function do_libusb1()
     download_and_extract "${libusb1_url}" "${libusb1_archive}" \
       "${libusb1_src_folder_name}"
 
+    mkdir -pv "${LOGS_FOLDER_PATH}/${libusb1_folder_name}"
+
     (
       mkdir -p "${LIBS_BUILD_FOLDER_PATH}/${libusb1_folder_name}"
       cd "${LIBS_BUILD_FOLDER_PATH}/${libusb1_folder_name}"
@@ -78,8 +80,8 @@ function do_libusb1()
             --enable-shared \
             --enable-static
           
-          cp "config.log" "${LOGS_FOLDER_PATH}/config-libusb1-log.txt"
-        ) 2>&1 | tee "${LOGS_FOLDER_PATH}/configure-libusb1-output.txt"
+          cp "config.log" "${LOGS_FOLDER_PATH}/${libusb1_folder_name}/config-log.txt"
+        ) 2>&1 | tee "${LOGS_FOLDER_PATH}/${libusb1_folder_name}/configure-output.txt"
 
       fi
 
@@ -97,7 +99,7 @@ function do_libusb1()
           run_verbose make install
         fi
 
-      ) 2>&1 | tee "${LOGS_FOLDER_PATH}/make-libusb1-output.txt"
+      ) 2>&1 | tee "${LOGS_FOLDER_PATH}/${libusb1_folder_name}/make-output.txt"
 
       copy_license \
         "${SOURCES_FOLDER_PATH}/${libusb1_src_folder_name}" \
@@ -136,6 +138,8 @@ function do_libusb0()
     download_and_extract "${libusb0_url}" "${libusb0_archive}" \
       "${libusb0_src_folder_name}"
 
+    mkdir -pv "${LOGS_FOLDER_PATH}/${libusb0_folder_name}"
+
     (
       mkdir -p "${LIBS_BUILD_FOLDER_PATH}/${libusb0_folder_name}"
       cd "${LIBS_BUILD_FOLDER_PATH}/${libusb0_folder_name}"
@@ -166,8 +170,8 @@ function do_libusb0()
             --enable-shared \
             --disable-static 
           
-          cp "config.log" "${LOGS_FOLDER_PATH}/config-libusb0-log.txt"
-        ) 2>&1 | tee "${LOGS_FOLDER_PATH}/configure-libusb0-output.txt"
+          cp "config.log" "${LOGS_FOLDER_PATH}/${libusb0_folder_name}/config-log.txt"
+        ) 2>&1 | tee "${LOGS_FOLDER_PATH}/${libusb0_folder_name}/configure-output.txt"
 
       fi
 
@@ -185,7 +189,7 @@ function do_libusb0()
           run_verbose make install
         fi
 
-      ) 2>&1 | tee "${LOGS_FOLDER_PATH}/make-libusb0-output.txt"
+      ) 2>&1 | tee "${LOGS_FOLDER_PATH}/${libusb0_folder_name}/make-output.txt"
 
       copy_license \
         "${SOURCES_FOLDER_PATH}/${libusb0_src_folder_name}" \
@@ -228,6 +232,8 @@ function do_libusb_w32()
 
     download_and_extract "${linusb_w32_url}" "${libusb_w32_archive}" \
       "${libusb_w32_src_folder_name}"
+
+    mkdir -pv "${LOGS_FOLDER_PATH}/${libusb_w32_folder_name}"
 
     # Mandatory build in the source folder, so make a local copy.
     rm -rf "${LIBS_BUILD_FOLDER_PATH}/${libusb_w32_folder_name}"
@@ -287,7 +293,7 @@ function do_libusb_w32()
           cp -v "${LIBS_BUILD_FOLDER_PATH}/${libusb_w32_folder_name}/src/lusb0_usb.h" \
             "${LIBS_INSTALL_FOLDER_PATH}/include/libusb/usb.h"
 
-      ) 2>&1 | tee "${LOGS_FOLDER_PATH}/make-libusb-w32-output.txt"
+      ) 2>&1 | tee "${LOGS_FOLDER_PATH}/${libusb_w32_folder_name}/make-output.txt"
 
       copy_license \
         "${SOURCES_FOLDER_PATH}/${libusb_w32_src_folder_name}" \
@@ -330,6 +336,8 @@ function do_libftdi()
     download_and_extract "${libftdi_url}" "${libftdi_archive}" \
       "${libftdi_src_folder_name}" \
       "${libftdi_patch}"
+
+    mkdir -pv "${LOGS_FOLDER_PATH}/${libftdi_folder_name}"
 
     (
       mkdir -p "${LIBS_BUILD_FOLDER_PATH}/${libftdi_folder_name}"
@@ -379,7 +387,7 @@ function do_libftdi()
             "${SOURCES_FOLDER_PATH}/${libftdi_src_folder_name}"
 
         fi
-      ) 2>&1 | tee "${LOGS_FOLDER_PATH}/configure-libftdi-output.txt"
+      ) 2>&1 | tee "${LOGS_FOLDER_PATH}/${libftdi_folder_name}/configure-output.txt"
 
       (
         echo
@@ -390,7 +398,7 @@ function do_libftdi()
 
         run_verbose make install
 
-      ) 2>&1 | tee "${LOGS_FOLDER_PATH}/make-libftdi-output.txt"
+      ) 2>&1 | tee "${LOGS_FOLDER_PATH}/${libftdi_folder_name}/make-output.txt"
 
       copy_license \
         "${SOURCES_FOLDER_PATH}/${libftdi_src_folder_name}" \
@@ -430,6 +438,8 @@ function do_hidapi()
 
     download_and_extract "${hidapi_url}" "${hidapi_archive}" \
       "${hidapi_src_folder_name}"
+
+    mkdir -pv "${LOGS_FOLDER_PATH}/${hidapi_folder_name}"
 
     # Mandatory build in the source folder, so make a local copy.
     rm -rf "${LIBS_BUILD_FOLDER_PATH}/${hidapi_folder_name}"
@@ -515,8 +525,8 @@ function do_hidapi()
             --disable-static \
             --disable-testgui
         
-          cp "config.log" "${LOGS_FOLDER_PATH}/config-hidapi-log.txt"
-        ) 2>&1 | tee "${LOGS_FOLDER_PATH}/configure-hidapi-output.txt"
+          cp "config.log" "${LOGS_FOLDER_PATH}/${hidapi_folder_name}/config-log.txt"
+        ) 2>&1 | tee "${LOGS_FOLDER_PATH}/${hidapi_folder_name}/configure-output.txt"
 
         (
           echo
@@ -532,7 +542,7 @@ function do_hidapi()
             run_verbose make install
           fi
 
-        ) 2>&1 | tee "${LOGS_FOLDER_PATH}/make-hidapi-output.txt"
+        ) 2>&1 | tee "${LOGS_FOLDER_PATH}/${hidapi_folder_name}/make-output.txt"
 
       fi
 
