@@ -151,7 +151,7 @@ function do_openocd()
       
           bash "${WORK_FOLDER_PATH}/${OPENOCD_SRC_FOLDER_NAME}/configure" --help
 
-          bash ${DEBUG} "${WORK_FOLDER_PATH}/${OPENOCD_SRC_FOLDER_NAME}/configure" \
+          run_verbose bash ${DEBUG} "${WORK_FOLDER_PATH}/${OPENOCD_SRC_FOLDER_NAME}/configure" \
             --prefix="${APP_PREFIX}"  \
             \
             --build=${BUILD} \
@@ -216,13 +216,14 @@ function do_openocd()
         echo
         echo "Running openocd make..."
       
-        # Parallel builds fail.
-        make bindir="bin" pkgdatadir=""
+        # Build.
+        run_verbose make -j ${JOBS} bindir="bin" pkgdatadir=""
+
         if [ "${WITH_STRIP}" == "y" ]
         then
-          make install-strip
+          run_verbose make install-strip
         else
-          make install  
+          run_verbose make install  
         fi
 
         prepare_app_libraries "${APP_PREFIX}/bin/openocd"
@@ -237,14 +238,14 @@ function do_openocd()
 
           if [ "${WITH_PDF}" == "y" ]
           then
-            make bindir="bin" pkgdatadir="" pdf 
-            make install-pdf
+            run_verbose make bindir="bin" pkgdatadir="" pdf 
+            run_verbose make install-pdf
           fi
 
           if [ "${WITH_HTML}" == "y" ]
           then
-            make bindir="bin" pkgdatadir="" html
-            make install-html
+            run_verbose make bindir="bin" pkgdatadir="" html
+            run_verbose make install-html
           fi
         )
 

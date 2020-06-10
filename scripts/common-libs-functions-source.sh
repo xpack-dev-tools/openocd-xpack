@@ -68,7 +68,7 @@ function do_libusb1()
 
           # --enable-shared required by libftdi.
           # --enable-static required by libftdi. (odd...)
-          bash ${DEBUG} "${SOURCES_FOLDER_PATH}/${libusb1_src_folder_name}/configure" \
+          run_verbose bash ${DEBUG} "${SOURCES_FOLDER_PATH}/${libusb1_src_folder_name}/configure" \
             --prefix="${LIBS_INSTALL_FOLDER_PATH}" \
             \
             --build=${BUILD} \
@@ -88,13 +88,13 @@ function do_libusb1()
         echo "Running libusb1 make..."
 
         # Build. 
-        # WARNING: Parallel build fails!
-        make 
+        run_verbose make -j ${JOBS}
+
         if [ "${WITH_STRIP}" == "y" ]
         then
-          make install-strip
+          run_verbose make install-strip
         else
-          make install
+          run_verbose make install
         fi
 
       ) 2>&1 | tee "${LOGS_FOLDER_PATH}/make-libusb1-output.txt"
@@ -156,7 +156,7 @@ function do_libusb0()
 
           bash "${SOURCES_FOLDER_PATH}/${libusb0_src_folder_name}/configure" --help
 
-          bash ${DEBUG} "${SOURCES_FOLDER_PATH}/${libusb0_src_folder_name}/configure" \
+          run_verbose bash ${DEBUG} "${SOURCES_FOLDER_PATH}/${libusb0_src_folder_name}/configure" \
             --prefix="${LIBS_INSTALL_FOLDER_PATH}" \
             \
             --build=${BUILD} \
@@ -176,12 +176,13 @@ function do_libusb0()
         echo "Running libusb0 make..."
 
         # Build.
-        make -j ${JOBS}
+        run_verbose make -j ${JOBS}
+
         if [ "${WITH_STRIP}" == "y" ]
         then
-          make install-strip
+          run_verbose make install-strip
         else
-          make install
+          run_verbose make install
         fi
 
       ) 2>&1 | tee "${LOGS_FOLDER_PATH}/make-libusb0-output.txt"
@@ -260,7 +261,7 @@ function do_libusb_w32()
       # Build.
       (
           export CFLAGS="${XBB_CFLAGS} -Wno-unknown-pragmas -Wno-unused-variable -Wno-pointer-sign -Wno-unused-but-set-variable"
-          make \
+          run_verbose make \
             host_prefix=${CROSS_COMPILE_PREFIX} \
             host_prefix_x86=i686-w64-mingw32 \
             dll
@@ -349,33 +350,33 @@ function do_libftdi()
         then
 
           # Configure for Windows.
-          cmake \
-          -DPKG_CONFIG_EXECUTABLE="${PKG_CONFIG}" \
-          -DCMAKE_TOOLCHAIN_FILE="${SOURCES_FOLDER_PATH}/${libftdi_src_folder_name}/cmake/Toolchain-${CROSS_COMPILE_PREFIX}.cmake" \
-          -DCMAKE_INSTALL_PREFIX="${LIBS_INSTALL_FOLDER_PATH}" \
-          -DLIBUSB_INCLUDE_DIR="${LIBS_INSTALL_FOLDER_PATH}/include/libusb-1.0" \
-          -DLIBUSB_LIBRARIES="${LIBS_INSTALL_FOLDER_PATH}/lib/libusb-1.0.a" \
-          -DBUILD_TESTS:BOOL=off \
-          -DFTDIPP:BOOL=off \
-          -DPYTHON_BINDINGS:BOOL=off \
-          -DEXAMPLES:BOOL=off \
-          -DDOCUMENTATION:BOOL=off \
-          -DFTDI_EEPROM:BOOL=off \
-          "${SOURCES_FOLDER_PATH}/${libftdi_src_folder_name}"
+          run_verbose cmake \
+            -DPKG_CONFIG_EXECUTABLE="${PKG_CONFIG}" \
+            -DCMAKE_TOOLCHAIN_FILE="${SOURCES_FOLDER_PATH}/${libftdi_src_folder_name}/cmake/Toolchain-${CROSS_COMPILE_PREFIX}.cmake" \
+            -DCMAKE_INSTALL_PREFIX="${LIBS_INSTALL_FOLDER_PATH}" \
+            -DLIBUSB_INCLUDE_DIR="${LIBS_INSTALL_FOLDER_PATH}/include/libusb-1.0" \
+            -DLIBUSB_LIBRARIES="${LIBS_INSTALL_FOLDER_PATH}/lib/libusb-1.0.a" \
+            -DBUILD_TESTS:BOOL=off \
+            -DFTDIPP:BOOL=off \
+            -DPYTHON_BINDINGS:BOOL=off \
+            -DEXAMPLES:BOOL=off \
+            -DDOCUMENTATION:BOOL=off \
+            -DFTDI_EEPROM:BOOL=off \
+            "${SOURCES_FOLDER_PATH}/${libftdi_src_folder_name}"
 
         else
 
           # Configure for GNU/Linux and macOS.
-          cmake \
-          -DPKG_CONFIG_EXECUTABLE="${PKG_CONFIG}" \
-          -DCMAKE_INSTALL_PREFIX="${LIBS_INSTALL_FOLDER_PATH}" \
-          -DBUILD_TESTS:BOOL=off \
-          -DFTDIPP:BOOL=off \
-          -DPYTHON_BINDINGS:BOOL=off \
-          -DEXAMPLES:BOOL=off \
-          -DDOCUMENTATION:BOOL=off \
-          -DFTDI_EEPROM:BOOL=off \
-          "${SOURCES_FOLDER_PATH}/${libftdi_src_folder_name}"
+          run_verbose cmake \
+            -DPKG_CONFIG_EXECUTABLE="${PKG_CONFIG}" \
+            -DCMAKE_INSTALL_PREFIX="${LIBS_INSTALL_FOLDER_PATH}" \
+            -DBUILD_TESTS:BOOL=off \
+            -DFTDIPP:BOOL=off \
+            -DPYTHON_BINDINGS:BOOL=off \
+            -DEXAMPLES:BOOL=off \
+            -DDOCUMENTATION:BOOL=off \
+            -DFTDI_EEPROM:BOOL=off \
+            "${SOURCES_FOLDER_PATH}/${libftdi_src_folder_name}"
 
         fi
       ) 2>&1 | tee "${LOGS_FOLDER_PATH}/configure-libftdi-output.txt"
@@ -385,8 +386,9 @@ function do_libftdi()
         echo "Running libftdi make..."
 
         # Build.
-        make -j ${JOBS}
-        make install
+        run_verbose make -j ${JOBS}
+
+        run_verbose make install
 
       ) 2>&1 | tee "${LOGS_FOLDER_PATH}/make-libftdi-output.txt"
 
@@ -451,7 +453,7 @@ function do_hidapi()
 
         export CFLAGS="${XBB_CFLAGS}"
 
-        make -f Makefile.mingw \
+        run_verbose make -f Makefile.mingw \
           CC=${CROSS_COMPILE_PREFIX}-gcc \
           "${hidapi_OBJECT}"
 
@@ -490,7 +492,7 @@ function do_hidapi()
         echo
         echo "Running hidapi bootstrap..."
 
-        bash ./bootstrap
+        run_verbose bash bootstrap
 
         export CFLAGS="${XBB_CFLAGS}"
         export CPPFLAGS="${XBB_CPPFLAGS}"
@@ -502,7 +504,7 @@ function do_hidapi()
 
           bash "./configure" --help
         
-          bash ${DEBUG} "./configure" \
+          run_verbose bash ${DEBUG} "./configure" \
             --prefix="${LIBS_INSTALL_FOLDER_PATH}" \
             \
             --build=${BUILD} \
@@ -521,13 +523,15 @@ function do_hidapi()
           echo "Running hidapi make..."
 
           # Build.
-          make -j ${JOBS}
+          run_verbose make -j ${JOBS}
+
           if [ "${WITH_STRIP}" == "y" ]
           then
-            make install-strip
+            run_verbose make install-strip
           else
-            make install
+            run_verbose make install
           fi
+
         ) 2>&1 | tee "${LOGS_FOLDER_PATH}/make-hidapi-output.txt"
 
       fi
