@@ -9,6 +9,7 @@
 patches/
 pkgconfig/
 scripts/
+tests/
 
 README-*
 *.tgz
