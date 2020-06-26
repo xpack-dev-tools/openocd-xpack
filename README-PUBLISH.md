@@ -1,8 +1,13 @@
-# How to publish the xPack OpenOCD?
+# How to publish the xPack OpenOCD
 
 ## Build
 
 Before starting the build, perform some checks.
+
+### Check possible open issues
+
+Check GitHub [issues](https://github.com/xpack-dev-tools/openocd-xpack/issues)
+and fix them; do not close them yet.
 
 ### Check the `CHANGELOG.md` file
 
@@ -44,11 +49,11 @@ functional, using the Eclipse STM32F4DISCOVERY blinky test and the
 
 - go to the [GitHub Releases](https://github.com/xpack-dev-tools/openocd-xpack/releases) page
 - click the **Draft a new release** button
-- name the tag like **v0.10.0-13** (mind the dash in the middle!)
+- name the tag like **v0.10.0-14** (mind the dash in the middle!)
 - select the `xpack` branch
-- name the release like **xPack OpenOCD v0.10.0-13** (mind the dash)
+- name the release like **xPack OpenOCD v0.10.0-14** (mind the dash)
 - as description
-  - add a downloads badge like `![Github Releases (by Release)](https://img.shields.io/github/downloads/xpack-dev-tools/openocd-xpack/v0.10.0-13/total.svg)`
+  - add a downloads badge like `![Github Releases (by Release)](https://img.shields.io/github/downloads/xpack-dev-tools/openocd-xpack/v0.10.0-14/total.svg)`
   - draft a short paragraph explaining what are the main changes
 - **attach binaries** and SHA (drag and drop from the archives folder will do it)
 - **enable** the **pre-release** button
@@ -56,14 +61,22 @@ functional, using the Eclipse STM32F4DISCOVERY blinky test and the
 
 Note: at this moment the system should send a notification to all clients watching this project.
 
+## Run the Travis tests
+
+As URL, use something like
+
+- https://github.com/xpack-dev-tools/openocd-xpack/releases/download/v0.10.0-14/
+
+For more details, see `tests/scripts/README.md`.
+
 ## Prepare a new blog post
 
 In the `xpack.github.io` web Git:
 
 - add a new file to `_posts/openocd/releases`
 - name the file like `2019-07-17-openocd-v0-10-0-13-released.md`
-- name the post like: **xPack OpenOCD v0.10.0-13 released**.
-- as `download_url` use the tagged URL like `https://github.com/xpack-dev-tools/openocd-xpack/releases/tag/v0.10.0-13/`
+- name the post like: **xPack OpenOCD v0.10.0-14 released**.
+- as `download_url` use the tagged URL like `https://github.com/xpack-dev-tools/openocd-xpack/releases/tag/v0.10.0-14/`
 - update the `date:` field with the current date
 
 If any, close
@@ -71,7 +84,6 @@ If any, close
 on the way. Refer to them as:
 
 - **[Issue:\[#1\]\(...\)]**.
-
 
 ## Update the SHA sums
 
@@ -82,20 +94,26 @@ Copy/paste the build report at the end of the post as:
 ## Checksums
 The SHA-256 hashes for the files are:
 
-0d41f0f4c90a464701307735f7faddda7ceae2079654d3f323bfd7ec76933864
-xpack-openocd-0.10.0-13-darwin-x64.tgz
+06d2251a893f932b38f41c418cdc14e51893f68553ba5a183f02001bd92d9454  
+xpack-openocd-0.10.0-14-darwin-x64.tar.gz
 
-c71a95247a8b0bfffb6258c533666f9603d3973f68b173dce18bb07c0f425d7e
-xpack-openocd-0.10.0-13-linux-x32.tgz
+a1c7e77001cb549bd6b6dc00bb0193283179667e56f652182204229b55f58bc8  
+xpack-openocd-0.10.0-14-linux-arm64.tar.gz
 
-c143c7481821342ecf82d2b22798d4b3df91a77e62d43265b12ce1b895953754
-xpack-openocd-0.10.0-13-linux-x64.tgz
+c812f12b7159b7f149c211fb521c0e405de64bb087f138cda8ea5ac04be87e15  
+xpack-openocd-0.10.0-14-linux-arm.tar.gz
 
-47eae950068eeb8ab42948de3bca0dc01dfa93f6b2f163c7ee45bfba2aefba16
-xpack-openocd-0.10.0-13-win32-x32.zip
+ebb4b08e8b94bd04b5493549b0ba2c02f1be5cc5f42c754e09a0c279ae8cc854  
+xpack-openocd-0.10.0-14-linux-x32.tar.gz
 
-be0aab5e86e6f1653cf04472d81a1300b52c698290fe44cc6f0619e189dcee1e
-xpack-openocd-0.10.0-13-win32-x64.zip
+687ac941c995eab069955fd673b6cd78a6b95048cac4a92728b09be444d0118e  
+xpack-openocd-0.10.0-14-linux-x64.tar.gz
+
+a0bde52aa8846a2a5b982031ad0bdebea55b9b3953133b363f54862473d71686  
+xpack-openocd-0.10.0-14-win32-x32.zip
+
+b25987e4153e42384ff6273ba228c3eaa7a61a2a6cc8f7a3fbf800099c3f6a49  
+xpack-openocd-0.10.0-14-win32-x64.zip
 ```
 
 If you missed this, `cat` the content of the `.sha` files:
@@ -108,7 +126,7 @@ $ cat *.sha
 ## Update the Web
 
 - commit the `xpack.github.io` project; use a message
-  like **xPack OpenOCD v0.10.0-13 released**
+  like **xPack OpenOCD v0.10.0-14 released**
 - wait for the GitHub Pages build to complete
 - remember the post URL, since it must be updated in the release page
 
@@ -120,10 +138,10 @@ $ cat *.sha
 - update the `baseUrl:` with the file URLs (including the tag/version)
 - from the web release, copy the SHA & file names
 - commit all changes, use a message like
-  `package.json: update urls for 0.10.0-13 release` (without `v`)
+  `package.json: update urls for 0.10.0-14 release` (without `v`)
 - update `CHANGELOG.md`; commit with a message like
-  _CHANGELOG: prepare npm v0.10.0-13.1_
-- `npm version 0.10.0-13.1`; the first 4 numbers are the same as the
+  _CHANGELOG: prepare npm v0.10.0-14.1_
+- `npm version 0.10.0-14.1`; the first 4 numbers are the same as the
   GitHub release; the fifth number is the npm specific version
 - `npm pack` and check the content of the archive
 - push all changes to GitHub
@@ -135,14 +153,6 @@ Install the binaries on all platforms.
 
 ```console
 $ xpm install --global @xpack-dev-tools/openocd@latest
-```
-
-## Test npm binaries
-
-Install the binaries on all platforms.
-
-```console
-$ xpm install --global @xpack-dev-tools/qemu-arm@latest
 ```
 
 ## Create the final GitHub release
@@ -157,7 +167,6 @@ $ xpm install --global @xpack-dev-tools/qemu-arm@latest
 
 - in a separate browser windows, open [TweetDeck](https://tweetdeck.twitter.com/)
 - using the `@xpack_project` account
-- paste the release name like **xPack OpenOCD v0.10.0-13 released**
+- paste the release name like **xPack OpenOCD v0.10.0-14 released**
 - paste the link to the blog release URL
 - click the **Tweet** button
-

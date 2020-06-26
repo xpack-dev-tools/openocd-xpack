@@ -2,6 +2,11 @@
 
 Releases in reverse chronological order.
 
+### 2020-06-26
+
+- prepare v0.10.0-14
+- add binaries for Arm 32/64-bit
+
 ### 2020-03-26
 
 - update for XBB v3.1
