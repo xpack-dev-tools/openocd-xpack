@@ -6,6 +6,8 @@ Releases in reverse chronological order.
 
 - prepare v0.10.0-14
 - add binaries for Arm 32/64-bit
+- update for XBB v3.2
+- based on openocd.git 8833c889da07eae750bcbc11215cc84323de9b74 from June 23rd, 2020
 
 ### 2020-03-26
 

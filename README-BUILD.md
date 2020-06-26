@@ -108,7 +108,7 @@ No need to add a tag here, it'll be added when the release is created.
 
 To prepare a new release, first determine the OpenOCD version
 (like `0.10.0`) and update the `scripts/VERSION` file. The format is
-`0.10.0-13`. The fourth number is the xPack release number
+`0.10.0-14`. The fourth number is the xPack release number
 of this version. A fifth number will be added when publishing
 the package on the `npm` server.
 
@@ -395,7 +395,7 @@ program from there. For example on macOS the output should
 look like:
 
 ```console
-$ /Users/ilg/Downloads/xPacks/openocd/0.10.0-13/bin/openocd --version
+$ /Users/ilg/Downloads/xPacks/openocd/0.10.0-14/bin/openocd --version
 xPack OpenOCD, 64-bit Open On-Chip Debugger 0.10.0+dev (2019-07-17-15:21)
 ```
 
@@ -405,8 +405,8 @@ After install, the package should create a structure like this (macOS files;
 only the first two depth levels are shown):
 
 ```console
-$ tree -L 2 /Users/ilg/Library/xPacks/\@xpack-dev-tools/openocd/0.10.0-13.1/.content/
-/Users/ilg/Library/xPacks/\@xpack-dev-tools/openocd/0.10.0-13.1/.content/
+$ tree -L 2 /Users/ilg/Library/xPacks/\@xpack-dev-tools/openocd/0.10.0-14.1/.content/
+/Users/ilg/Library/xPacks/\@xpack-dev-tools/openocd/0.10.0-14.1/.content/
 ├── OpenULINK
 │   └── ulink_firmware.hex
 ├── README.md

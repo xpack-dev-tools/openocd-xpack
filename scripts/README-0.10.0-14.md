@@ -14,12 +14,12 @@ The xPack OpenOCD generally follows the official
 The current version is based on:
 
 - OpenOCD version 0.10.0, the development commit
-[f0909fe9e](https://github.com/xpack-dev-tools/openocd/commit/f0909fe9e5f819d83c90c2622e27d98fa1b59046)
-from May 6, 2020.
+[e5be992df](https://github.com/xpack-dev-tools/openocd/commit/e5be992df1a893e2e865419a02a564d5f9ccd9dd)
+from June 23, 2020.
 
 ## Changes
 
-Compared to the master branch, the following changes were applied:
+Compared to the upstream master branch, the following changes were applied:
 
 - a configure option was added to configure branding (`--enable-branding`)
 - the src/openocd.c file was edited to display the branding string
@@ -32,7 +32,7 @@ The scripts used to build this distribution are in:
 - `distro-info/scripts`
 
 For the prerequisites and more details on the build procedure, please see the
-[How to build?](https://github.com/xpack-dev-tools/openocd-xpack/blob/xpack/README-BUILD.md) page.
+[How to build](https://github.com/xpack-dev-tools/openocd-xpack/blob/xpack/README-BUILD.md) page.
 
 ## Documentation
 
