@@ -42,8 +42,51 @@ page.
 ## Test
 
 Install the binaries on all supported platforms and check if they are
-functional, using the Eclipse STM32F4DISCOVERY blinky test and the
-`-f "board/stm32f4discovery.cfg"` configuration file.
+functional, using the Eclipse STM32F4DISCOVERY blinky test
+available in the xpack-arm-none-eabi-gcc package, which uses
+the `-f "board/stm32f4discovery.cfg"` configuration file
+(import the `arm-f4b-fs` project and start the `arm-f4b-fs-debug-oocd` 
+launcher).
+
+For platforms where Eclipse is not yet available (like Arm), simply start the
+program and check if the CPU is identified.
+
+If this is the first time openocd is executed, on GNU/Linux it is necessary
+to configure the rights, otherwise LIBUSB will issue the _libusb_open
+failed: LIBUSB_ERROR_ACCESS_ error.
+
+```
+sudo cp ~Downloads/xpack-openocd-0.10.0-14/contrib/60-openocd.rules /etc/udev/rules.d
+sudo udevadm control --reload-rules
+```
+
+Than it is possible to start openocd:
+
+```
+$ .../xpack-openocd-0.10.0-14/bin/openocd -f "board/stm32f4discovery.cfg"
+xPack OpenOCD, x86_64 Open On-Chip Debugger 0.10.0+dev-00378-ge5be992df (2020-06-26-12:31)
+Licensed under GNU GPL v2
+For bug reports, read
+	http://openocd.org/doc/doxygen/bugs.html
+Info : The selected transport took over low-level target control. The results might differ compared to plain JTAG/SWD
+srst_only separate srst_nogate srst_open_drain connect_deassert_srst
+
+Info : Listening on port 6666 for tcl connections
+Info : Listening on port 4444 for telnet connections
+Info : clock speed 2000 kHz
+Info : STLINK V2J14S0 (API v2) VID:PID 0483:3748
+Info : Target voltage: 2.894743
+Info : stm32f4x.cpu: hardware has 6 breakpoints, 4 watchpoints
+Info : starting gdb server for stm32f4x.cpu on 3333
+Info : Listening on port 3333 for gdb connections
+target halted due to breakpoint, current mode: Thread 
+xPSR: 0x21000000 pc: 0x080010ec msp: 0x2001ff80
+^C
+shutdown command invoked
+```
+
+Note: on recent macOS systems it might be necessary to allow individual
+programs to run.
 
 ## Create a new GitHub pre-release
 
@@ -135,7 +178,8 @@ $ cat *.sha
 - open [GitHub Releases](https://github.com/xpack-dev-tools/openocd-xpack/releases)
   and select the latest release
 - check the download counter, it should match the number of tests
-- update the `baseUrl:` with the file URLs (including the tag/version)
+- update the `baseUrl:` with the file URLs (including the tag/version); 
+no terminating `/` is required
 - from the web release, copy the SHA & file names
 - commit all changes, use a message like
   `package.json: update urls for 0.10.0-14 release` (without `v`)
