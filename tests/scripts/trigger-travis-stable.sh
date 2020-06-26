@@ -52,7 +52,8 @@ message="Test xPack OpenOCD on stable platforms"
 branch="xpack-develop"
 
 # base_url="https://github.com/xpack-dev-tools/pre-releases/releases/download/experimental/"
-base_url="https://github.com/xpack-dev-tools/pre-releases/releases/download/test/"
+# base_url="https://github.com/xpack-dev-tools/pre-releases/releases/download/test/"
+base_url="https://github.com/xpack-dev-tools/openocd-xpack/releases/download/v0.10.0-14/"
 
 data_file_path="$(mktemp)"
 
