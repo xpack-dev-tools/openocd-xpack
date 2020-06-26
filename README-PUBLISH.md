@@ -187,7 +187,8 @@ no terminating `/` is required
   _CHANGELOG: prepare npm v0.10.0-14.1_
 - `npm version 0.10.0-14.1`; the first 4 numbers are the same as the
   GitHub release; the fifth number is the npm specific version
-- `npm pack` and check the content of the archive
+- `npm pack` and check the content of the archive, which should list
+only the `package.json`, the `README.md`, `LICENSE` and `CHANGELOG.md`
 - push all changes to GitHub
 - `npm publish` (use `--access public` when publishing for the first time)
 
