@@ -40,19 +40,19 @@
         },
         "linux-arm64": {
           "sha256": "97a188ca8ba32498c80b1ca3c8831cbbaf01c6f935fb5bcb66144f1fbd432106",
-          "fileName": "xpack-openocd-0.10.0-14-linux-arm64.tgz"
+          "fileName": "xpack-openocd-0.10.0-14-linux-arm64.tar.gz"
         },
         "linux-arm": {
           "sha256": "8a8025cfb07dbf203d9434179e84b748f8381213df6d53272e5c580fbe113896",
-          "fileName": "xpack-openocd-0.10.0-14-linux-arm.tgz"
+          "fileName": "xpack-openocd-0.10.0-14-linux-arm.tar.gz"
         },
         "linux-x86": {
           "sha256": "bd4a7e88d86d216b738a096ffa8bfe5ec4035ad17801d5595e45779363ff5974",
-          "fileName": "xpack-openocd-0.10.0-14-linux-x32.tgz"
+          "fileName": "xpack-openocd-0.10.0-14-linux-x32.tar.gz"
         },
         "linux-x64": {
           "sha256": "185c070f9729cf38dca08686c2905561c07a63c563e5bc7a70e045f2a1865c11",
-          "fileName": "xpack-openocd-0.10.0-14-linux-x64.tgz"
+          "fileName": "xpack-openocd-0.10.0-14-linux-x64.tar.gz"
         },
         "win32-x86": {
           "sha256": "633e46b2f4d2d38c683df2414b9f464d7250c336d010c84010bbaff9d3d29c7c",
