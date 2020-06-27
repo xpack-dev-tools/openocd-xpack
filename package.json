@@ -32,7 +32,7 @@
     "binaries": {
       "destination": "./.content",
       "baseUrl": "https://github.com/xpack-dev-tools/openocd-xpack/releases/download/v0.10.0-14",
-      "skip": 3,
+      "skip": 1,
       "platforms": {
         "darwin-x64": {
           "sha256": "30917a5c6f60fcd7df82b41dcec8ab7d86f0cea3caeaf98b965b901c10a60b39",
