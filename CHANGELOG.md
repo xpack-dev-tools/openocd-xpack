@@ -2,9 +2,13 @@
 
 Releases in reverse chronological order.
 
+### 2020-06-27
+
+- v0.10.0-13.2 published on npmjs.com
+
 ### 2020-06-26
 
-- v0.10.0-14.2 published on npmjs.com
+- v0.10.0-14.2 published on npmjs.com (wrong skip:3)
 - v0.10.0-14.1 published on npmjs.com (wrong .tgz extension)
 - v0.10.0-14 released
 - add binaries for Arm 32/64-bit
