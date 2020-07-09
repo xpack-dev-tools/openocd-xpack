@@ -13,7 +13,7 @@
 
 # -----------------------------------------------------------------------------
 
-function prepare_versions()
+function build_versions()
 {
   # The \x2C is a comma in hex; without this trick the regular expression
   # that processes this string in the Makefile, silently fails and the 
