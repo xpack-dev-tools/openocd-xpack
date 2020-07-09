@@ -48,7 +48,7 @@ $ xpm install --global @xpack-dev-tools/openocd@latest
 
 This command will always install the latest available version,
 into the central xPacks repository, which is a platform dependent folder
-(check the output of the `xpm` command or the actual folder used on
+(check the output of the `xpm` command for the actual folder used on
 your platform).
 
 This location is configurable using the environment variable
