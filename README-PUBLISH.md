@@ -188,6 +188,7 @@ no terminating `/` is required
 - from the web release, copy the SHA & file names
 - commit all changes, use a message like
   `package.json: update urls for 0.10.0-14 release` (without `v`)
+- check the latest commits `npm run git-log`
 - update `CHANGELOG.md`; commit with a message like
   _CHANGELOG: prepare npm v0.10.0-14.1_
 - `npm version 0.10.0-14.1`; the first 4 numbers are the same as the
@@ -195,14 +196,20 @@ no terminating `/` is required
 - `npm pack` and check the content of the archive, which should list
 only the `package.json`, the `README.md`, `LICENSE` and `CHANGELOG.md`
 - push all changes to GitHub
-- `npm publish` (use `--access public` when publishing for the first time)
+- `npm publish --tag next` (use `--access public` when publishing for the first time)
+
+When the release is considered stable, promote it as `latest`:
+
+- `npm dist-tag ls @xpack-dev-tools/openocd`
+- `npm dist-tag add @xpack-dev-tools/openocd@0.10.0-14 latest`
+- `npm dist-tag ls @xpack-dev-tools/openocd`
 
 ## Test npm binaries
 
 Install the binaries on all platforms.
 
 ```console
-$ xpm install --global @xpack-dev-tools/openocd@latest
+$ xpm install --global @xpack-dev-tools/openocd@next
 ```
 
 ## Create the final GitHub release
