@@ -99,9 +99,9 @@ For more details please read the
 
 ## Maintainer info
 
-- [How to build?](https://github.com/xpack-dev-tools/openocd-xpack/blob/xpack/README-BUILD.md)
-- [How to publish?](https://github.com/xpack-dev-tools/openocd-xpack/blob/xpack/README-PUBLISH.md)
-- [How to publish?](https://github.com/xpack-dev-tools/openocd-xpack/blob/xpack/README-DEVELOP.md)
+- [How to build](https://github.com/xpack-dev-tools/openocd-xpack/blob/xpack/README-BUILD.md)
+- [How to publish](https://github.com/xpack-dev-tools/openocd-xpack/blob/xpack/README-PUBLISH.md)
+- [Developer info](https://github.com/xpack-dev-tools/openocd-xpack/blob/xpack/README-DEVELOP.md)
 
 ## Support
 
