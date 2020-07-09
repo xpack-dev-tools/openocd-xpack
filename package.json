@@ -4,7 +4,8 @@
   "description": "A binary xPack with OpenOCD",
   "main": "",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "git-log": "git log --pretty='%cd * %h %s' --date=short"
   },
   "repository": {
     "type": "git",
