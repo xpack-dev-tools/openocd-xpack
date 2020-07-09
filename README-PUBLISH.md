@@ -108,7 +108,12 @@ Note: at this moment the system should send a notification to all clients watchi
 
 As URL, use something like
 
-- https://github.com/xpack-dev-tools/openocd-xpack/releases/download/v0.10.0-14/
+```
+base_url="https://github.com/xpack-dev-tools/openocd-xpack/releases/download/v0.10.0-14/"
+```
+
+The test results are available at
+[Travis](https://travis-ci.org/github/xpack-dev-tools/openocd-xpack/builds/).
 
 For more details, see `tests/scripts/README.md`.
 
