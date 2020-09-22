@@ -534,11 +534,11 @@ function do_hidapi()
 
         # Make just compiles the file. Create the archive and convert it to library.
         # No dynamic/shared libs involved.
-        ar -r  libhid.a "${hidapi_OBJECT}"
-        ${CROSS_COMPILE_PREFIX}-ranlib libhid.a
+        ar -r  "${hidapi_A}" "${hidapi_OBJECT}"
+        ${CROSS_COMPILE_PREFIX}-ranlib "${hidapi_A}"
 
         mkdir -pv "${LIBS_INSTALL_FOLDER_PATH}/lib"
-        cp -v libhid.a \
+        cp -v "${hidapi_A}" \
           "${LIBS_INSTALL_FOLDER_PATH}/lib"
 
         mkdir -pv "${LIBS_INSTALL_FOLDER_PATH}/lib/pkgconfig"
