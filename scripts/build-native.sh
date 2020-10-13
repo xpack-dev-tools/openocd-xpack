@@ -84,7 +84,7 @@ docker_linux_arm32_image=${docker_linux_arm32_image:-"ilegeul/ubuntu:arm32v7-16.
 # -----------------------------------------------------------------------------
 
 help_message="    bash $0 [--win] [--debug] [--develop] [--jobs N] [--help] [clean|cleanlibs|cleanall]"
-host_native_options "${help_message}" $@
+host_native_options "${help_message}" "$@"
 
 # -----------------------------------------------------------------------------
 

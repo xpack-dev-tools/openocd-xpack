@@ -89,7 +89,7 @@ source "${container_app_functions_script_path}"
 
 if [ ! -z "#{DEBUG}" ]
 then
-  echo $@
+  echo "$@"
 fi
 
 WITH_STRIP="y"
