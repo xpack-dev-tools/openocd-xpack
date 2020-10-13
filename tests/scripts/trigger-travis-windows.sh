@@ -47,77 +47,31 @@ source "${script_folder_path}/app-defs.sh"
 helper_folder_path="$(dirname $(dirname "${script_folder_path}"))/scripts/helper"
 
 source "${helper_folder_path}/test-functions-source.sh"
-source "${script_folder_path}/common-functions-source.sh"
 
 # -----------------------------------------------------------------------------
 
-# This runs inside a Docker container.
+message="Test ${app_description} on Windows platforms"
+branch="xpack-develop"
 
-# -----------------------------------------------------------------------------
+version="$(cat $(dirname $(dirname ${script_folder_path}))/scripts/VERSION)"
 
-image_name="$1"
-echo "${image_name}"
-shift
+base_url="https://github.com/${github_org}/${github_repo}/releases/download/v${version}/"
+# base_url="https://github.com/${github_org}/${github_pre_releases}/releases/download/test/"
+# base_url="https://github.com/${github_org}/${github_pre_releases}/releases/download/experimental/"
+echo ${base_url}
 
-base_url="$1"
-echo "${base_url}"
-shift
+data_file_path="$(mktemp)"
 
-while [ $# -gt 0 ]
-do
-  case "$1" in
+create_windows_data_file "${message}" "${branch}" "${base_url}" "${data_file_path}"
 
-    -*)
-      echo "Unsupported option $1."
-      exit 1
-      ;;
+# https://docs.travis-ci.com/user/triggering-builds/
 
-  esac
-done
+# TRAVIS_ORG_TOKEN must be present in the environment.
+trigger_travis "${github_org}" "${github_repo}" "${data_file_path}"
 
-# -----------------------------------------------------------------------------
+cat "${data_file_path}"
+rm -v "${data_file_path}"
 
-# Make sure that the minimum prerequisites are met.
-if [[ ${image_name} == *ubuntu* ]] || [[ ${image_name} == *debian* ]] || [[ ${image_name} == *raspbian* ]]
-then
-  apt-get -qq update 
-  apt-get -qq install -y git-core curl tar gzip lsb-release binutils
-elif [[ ${image_name} == *centos* ]] || [[ ${image_name} == *fedora* ]]
-then
-  yum install -y -q git curl tar gzip redhat-lsb-core binutils
-elif [[ ${image_name} == *opensuse* ]]
-then
-  zypper -q in -y git-core curl tar gzip lsb-release binutils
-elif [[ ${image_name} == *manjaro* ]]
-then
-  pacman-mirrors -g
-  pacman -S -y -q --noconfirm 
-
-    # Update even if up to date (-yy) & upgrade (-u).
-  # pacman -S -yy -u -q --noconfirm 
-  pacman -S -q --noconfirm --noprogressbar   git curl tar gzip lsb-release binutils
-elif [[ ${image_name} == *archlinux* ]]
-then
-  pacman -S -y -q --noconfirm 
-
-    # Update even if up to date (-yy) & upgrade (-u).
-  # pacman -S -yy -u -q --noconfirm 
-  pacman -S -q --noconfirm --noprogressbar   git curl tar gzip lsb-release binutils
-fi
-
-# -----------------------------------------------------------------------------
-
-detect_architecture
-
-prepare_env
-
-install_archive
-
-run_tests
-
-good_bye
-
-# Completed successfully.
-exit 0
+echo "Done."
 
 # -----------------------------------------------------------------------------

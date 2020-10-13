@@ -35,41 +35,16 @@ then
   script_path="$(pwd)/$0"
 fi
 
-script_name="$(basename "${script_path}")"
-
 script_folder_path="$(dirname "${script_path}")"
 script_folder_name="$(basename "${script_folder_path}")"
 
 # =============================================================================
 
-source "${script_folder_path}/app-defs.sh"
+script_name="$(basename "${script_path}")"
 
-helper_folder_path="$(dirname $(dirname "${script_folder_path}"))/scripts/helper"
+script_base=$(echo "${script_name}" | sed -e 's/\(.*\)[.]mac[.]command/\1/')
+# echo "${script_base}"
 
-source "${helper_folder_path}/test-functions-source.sh"
-source "${script_folder_path}/common-functions-source.sh"
-
-# -----------------------------------------------------------------------------
-
-detect_architecture
-
-prepare_env "$(dirname $(dirname "${script_folder_path}"))"
-
-# If present, --32 must be the first.
-is_32_bit=""
-if [ $# -gt 0 -a "$1" == "--32" ]
-then
-  is_32_bit="y"
-  shift
-fi
-
-# -----------------------------------------------------------------------------
-
-if [ "${is_32_bit}" == "y" ]
-then
-  docker_run_test_32 "$@"
-else
-  docker_run_test "$@"
-fi
+DEBUG=${DEBUG} bash "${script_folder_path}/${script_base}.sh"
 
 # -----------------------------------------------------------------------------

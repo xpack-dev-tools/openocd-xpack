@@ -42,6 +42,8 @@ script_folder_name="$(basename "${script_folder_path}")"
 
 # =============================================================================
 
+source "${script_folder_path}/app-defs.sh"
+
 helper_folder_path="$(dirname $(dirname "${script_folder_path}"))/scripts/helper"
 
 source "${helper_folder_path}/test-functions-source.sh"
@@ -77,8 +79,6 @@ echo "${base_url}"
 # -----------------------------------------------------------------------------
 
 detect_architecture
-
-app_lc_name="openocd"
 
 prepare_env "$(dirname $(dirname "${script_folder_path}"))"
 
