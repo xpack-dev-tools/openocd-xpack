@@ -185,13 +185,13 @@ echo
 
 # -----------------------------------------------------------------------------
 
-prepare_versions
+build_versions
 
 # -----------------------------------------------------------------------------
 
-check_binaries
-
 copy_distro_files
+
+check_binaries
 
 create_archive
 

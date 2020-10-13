@@ -56,14 +56,14 @@ to configure the rights, otherwise LIBUSB will issue the _libusb_open
 failed: LIBUSB_ERROR_ACCESS_ error.
 
 ```
-sudo cp ~Downloads/xpack-openocd-0.10.0-14/contrib/60-openocd.rules /etc/udev/rules.d
+sudo cp ~Downloads/xpack-openocd-0.10.0-15/contrib/60-openocd.rules /etc/udev/rules.d
 sudo udevadm control --reload-rules
 ```
 
 Than it is possible to start openocd:
 
 ```
-$ .../xpack-openocd-0.10.0-14/bin/openocd -f "board/stm32f4discovery.cfg"
+$ .../xpack-openocd-0.10.0-15/bin/openocd -f "board/stm32f4discovery.cfg"
 xPack OpenOCD, x86_64 Open On-Chip Debugger 0.10.0+dev-00378-ge5be992df (2020-06-26-12:31)
 Licensed under GNU GPL v2
 For bug reports, read
@@ -88,15 +88,35 @@ shutdown command invoked
 Note: on recent macOS systems it might be necessary to allow individual
 programs to run.
 
+## Publish the binaries as pre-release/test
+
+Use the [test pre-release](https://github.com/xpack-dev-tools/pre-releases/releases/tag/test)
+to publish the binaries, for other to test them.
+
+## Run the pre-release Travis tests
+
+In the `tests/scripts/trigger-travis-*.sh` files, check and update the
+URL to use something like
+
+```
+base_url="https://github.com/xpack-dev-tools/pre-releases/releases/download/test/"
+```
+
+Trigger the stable and latest Travis builds (on a Mac by double-clicking 
+on the command scripts):
+
+- `tests/scripts/trigger-travis-stable.mac.command
+- `tests/scripts/trigger-travis-latest.mac.command
+
 ## Create a new GitHub pre-release
 
 - go to the [GitHub Releases](https://github.com/xpack-dev-tools/openocd-xpack/releases) page
 - click the **Draft a new release** button
-- name the tag like **v0.10.0-14** (mind the dash in the middle!)
+- name the tag like **v0.10.0-15** (mind the dash in the middle!)
 - select the `xpack` branch
-- name the release like **xPack OpenOCD v0.10.0-14** (mind the dash)
+- name the release like **xPack OpenOCD v0.10.0-15** (mind the dash)
 - as description
-  - add a downloads badge like `![Github Releases (by Release)](https://img.shields.io/github/downloads/xpack-dev-tools/openocd-xpack/v0.10.0-14/total.svg)`
+  - add a downloads badge like `![Github Releases (by Release)](https://img.shields.io/github/downloads/xpack-dev-tools/openocd-xpack/v0.10.0-15/total.svg)`
   - draft a short paragraph explaining what are the main changes
 - **attach binaries** and SHA (drag and drop from the archives folder will do it)
 - **enable** the **pre-release** button
@@ -104,11 +124,17 @@ programs to run.
 
 Note: at this moment the system should send a notification to all clients watching this project.
 
-## Run the Travis tests
+## Run the release Travis tests
 
-As URL, use something like
+Using the scripts in `tests/scripts/`, start:
 
-- https://github.com/xpack-dev-tools/openocd-xpack/releases/download/v0.10.0-14/
+- trigger-travis-quick.mac.command (optional)
+- trigger-travis-stable.mac.command
+- trigger-travis-latest.mac.command
+
+The test results are available from:
+
+- https://travis-ci.org/github/xpack-dev-tools/openocd-xpack
 
 For more details, see `tests/scripts/README.md`.
 
@@ -117,9 +143,9 @@ For more details, see `tests/scripts/README.md`.
 In the `xpack.github.io` web Git:
 
 - add a new file to `_posts/openocd/releases`
-- name the file like `2019-07-17-openocd-v0-10-0-13-released.md`
-- name the post like: **xPack OpenOCD v0.10.0-14 released**.
-- as `download_url` use the tagged URL like `https://github.com/xpack-dev-tools/openocd-xpack/releases/tag/v0.10.0-14/`
+- name the file like `2020-10-13-openocd-v0-10-0-15-released.md`
+- name the post like: **xPack OpenOCD v0.10.0-15 released**.
+- as `download_url` use the tagged URL like `https://github.com/xpack-dev-tools/openocd-xpack/releases/tag/v0.10.0-15/`
 - update the `date:` field with the current date
 
 If any, close
@@ -138,38 +164,38 @@ Copy/paste the build report at the end of the post as:
 The SHA-256 hashes for the files are:
 
 06d2251a893f932b38f41c418cdc14e51893f68553ba5a183f02001bd92d9454  
-xpack-openocd-0.10.0-14-darwin-x64.tar.gz
+xpack-openocd-0.10.0-15-darwin-x64.tar.gz
 
 a1c7e77001cb549bd6b6dc00bb0193283179667e56f652182204229b55f58bc8  
-xpack-openocd-0.10.0-14-linux-arm64.tar.gz
+xpack-openocd-0.10.0-15-linux-arm64.tar.gz
 
 c812f12b7159b7f149c211fb521c0e405de64bb087f138cda8ea5ac04be87e15  
-xpack-openocd-0.10.0-14-linux-arm.tar.gz
+xpack-openocd-0.10.0-15-linux-arm.tar.gz
 
 ebb4b08e8b94bd04b5493549b0ba2c02f1be5cc5f42c754e09a0c279ae8cc854  
-xpack-openocd-0.10.0-14-linux-x32.tar.gz
+xpack-openocd-0.10.0-15-linux-x32.tar.gz
 
 687ac941c995eab069955fd673b6cd78a6b95048cac4a92728b09be444d0118e  
-xpack-openocd-0.10.0-14-linux-x64.tar.gz
+xpack-openocd-0.10.0-15-linux-x64.tar.gz
 
 a0bde52aa8846a2a5b982031ad0bdebea55b9b3953133b363f54862473d71686  
-xpack-openocd-0.10.0-14-win32-x32.zip
+xpack-openocd-0.10.0-15-win32-x32.zip
 
 b25987e4153e42384ff6273ba228c3eaa7a61a2a6cc8f7a3fbf800099c3f6a49  
-xpack-openocd-0.10.0-14-win32-x64.zip
+xpack-openocd-0.10.0-15-win32-x64.zip
 ```
 
 If you missed this, `cat` the content of the `.sha` files:
 
 ```console
-$ cd deploy
+$ cd ~Downloads/xpack-binaries/openocd
 $ cat *.sha
 ```
 
 ## Update the Web
 
 - commit the `xpack.github.io` project; use a message
-  like **xPack OpenOCD v0.10.0-14 released**
+  like **xPack OpenOCD v0.10.0-15 released**
 - wait for the GitHub Pages build to complete
 - remember the post URL, since it must be updated in the release page
 
@@ -182,23 +208,34 @@ $ cat *.sha
 no terminating `/` is required
 - from the web release, copy the SHA & file names
 - commit all changes, use a message like
-  `package.json: update urls for 0.10.0-14 release` (without `v`)
+  `package.json: update urls for 0.10.0-15 release` (without `v`)
 - update `CHANGELOG.md`; commit with a message like
-  _CHANGELOG: prepare npm v0.10.0-14.1_
-- `npm version 0.10.0-14.1`; the first 4 numbers are the same as the
+  _CHANGELOG: prepare npm v0.10.0-15.1_
+- `npm version 0.10.0-15.1`; the first 4 numbers are the same as the
   GitHub release; the fifth number is the npm specific version
 - `npm pack` and check the content of the archive, which should list
 only the `package.json`, the `README.md`, `LICENSE` and `CHANGELOG.md`
 - push all changes to GitHub
-- `npm publish` (use `--access public` when publishing for the first time)
+- `npm publish --tag next` (use `--access public` when publishing for the first time)
 
-## Test npm binaries
+## Test the npm binaries with xpm
 
-Install the binaries on all platforms.
+Run the `tests/scripts/trigger-travis-xpm-install.sh` file, this
+will install the package on Intel Linux 64-bit, macOS and Windows 64-bit.
+
+For 32-bit Windows, 32-bit Intel GNU/Linux and 32-bit Arm, install manually.
 
 ```console
-$ xpm install --global @xpack-dev-tools/openocd@latest
+$ xpm install --global @xpack-dev-tools/openocd@next
 ```
+
+## Promote next to latest
+
+Promote the release as `latest`:
+
+- `npm dist-tag ls @xpack-dev-tools/openocd`
+- `npm dist-tag add @xpack-dev-tools/openocd@0.10.0-15.1.1 latest`
+- `npm dist-tag ls @xpack-dev-tools/openocd`
 
 ## Create the final GitHub release
 
@@ -212,6 +249,6 @@ $ xpm install --global @xpack-dev-tools/openocd@latest
 
 - in a separate browser windows, open [TweetDeck](https://tweetdeck.twitter.com/)
 - using the `@xpack_project` account
-- paste the release name like **xPack OpenOCD v0.10.0-14 released**
+- paste the release name like **xPack OpenOCD v0.10.0-15 released**
 - paste the link to the blog release URL
 - click the **Tweet** button

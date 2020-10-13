@@ -53,11 +53,33 @@ echo
 echo "xPack OpenOCD native build script."
 
 echo
-host_functions_script_path="${script_folder_path}/helper/host-functions-source.sh"
-echo "Host helper functions source script: \"${host_functions_script_path}\"."
-source "${host_functions_script_path}"
+common_helper_functions_script_path="${script_folder_path}/helper/common-functions-source.sh"
+echo "Common helper functions source script: \"${common_helper_functions_script_path}\"."
+source "${common_helper_functions_script_path}"
+
+common_helper_libs_functions_script_path="${script_folder_path}/helper/common-libs-functions-source.sh"
+echo "Common helper libs functions source script: \"${common_helper_libs_functions_script_path}\"."
+source "${common_helper_libs_functions_script_path}"
+
+common_functions_script_path="${script_folder_path}/common-functions-source.sh"
+echo "Common functions source script: \"${common_functions_script_path}\"."
+source "${common_functions_script_path}"
+
+common_versions_script_path="${script_folder_path}/common-versions-source.sh"
+echo "Common versions source script: \"${common_versions_script_path}\"."
+source "${common_versions_script_path}"
+
+defines_script_path="${script_folder_path}/defs-source.sh"
+echo "Definitions source script: \"${defines_script_path}\"."
+source "${defines_script_path}"
 
 host_detect
+
+# For clarity, explicitly define the docker images here.
+docker_linux64_image=${docker_linux64_image:-"ilegeul/ubuntu:amd64-12.04-xbb-v3.2"}
+docker_linux32_image=${docker_linux32_image:-"ilegeul/ubuntu:i386-12.04-xbb-v3.2"}
+docker_linux_arm64_image=${docker_linux_arm64_image:-"ilegeul/ubuntu:arm64v8-16.04-xbb-v3.2"}
+docker_linux_arm32_image=${docker_linux_arm32_image:-"ilegeul/ubuntu:arm32v7-16.04-xbb-v3.2"}
 
 # -----------------------------------------------------------------------------
 
@@ -67,9 +89,12 @@ host_native_options "${help_message}" $@
 # -----------------------------------------------------------------------------
 
 host_common
+export TARGET_BITS="${HOST_BITS}"
 
 prepare_xbb_env
 prepare_xbb_extras
+
+tests_initialize
 
 # -----------------------------------------------------------------------------
 
@@ -83,63 +108,18 @@ source "${common_apps_functions_script_path}"
 
 # -----------------------------------------------------------------------------
 
-OPENOCD_PROJECT_NAME="openocd"
-OPENOCD_VERSION="0.10.0-13"
-
-OPENOCD_SRC_FOLDER_NAME=${OPENOCD_SRC_FOLDER_NAME:-"${OPENOCD_PROJECT_NAME}.git"}
-OPENOCD_GIT_URL=${OPENOCD_GIT_URL:-"https://github.com/xpack-dev-tools/openocd.git"}
-
-if [ "${IS_DEVELOP}" == "y" ]
-then
-  OPENOCD_GIT_BRANCH=${OPENOCD_GIT_BRANCH:-"xpack-develop"}
-else
-  OPENOCD_GIT_BRANCH=${OPENOCD_GIT_BRANCH:-"xpack"}
-fi
-
-OPENOCD_GIT_COMMIT=${OPENOCD_GIT_COMMIT:-""}
-
-# Used in the licenses folder.
-OPENOCD_FOLDER_NAME="openocd-${OPENOCD_VERSION}"
+build_versions
 
 # -----------------------------------------------------------------------------
 
-LIBUSB1_VERSION="1.0.22"
-LIBUSB0_VERSION="0.1.5"
-LIBUSB_W32_VERSION="1.2.6.0"
-LIBFTDI_VERSION="1.4"
-LIBICONV_VERSION="1.15"
-HIDAPI_VERSION="0.8.0-rc1"
+copy_distro_files
 
-LIBFTDI_PATCH="libftdi1-${LIBFTDI_VERSION}-cmake-FindUSB1.patch"
-LIBUSB_W32_PATCH="libusb-win32-${LIBUSB_W32_VERSION}-mingw-w64.patch"
+check_binaries
 
-# -----------------------------------------------------------------------------
-# Build dependent libraries.
+create_archive
 
-if true
-then
-
-  do_libusb1
-  if [ "${TARGET_PLATFORM}" == "win32" ]
-  then
-    do_libusb_w32
-  else
-    do_libusb0
-  fi
-
-  do_libftdi
-
-  do_libiconv
-
-  do_hidapi
-
-fi
-
-# -----------------------------------------------------------------------------
-
-do_openocd
-
-run_openocd
+# Change ownership to non-root Linux user.
+fix_ownership
 
 # -----------------------------------------------------------------------------
 

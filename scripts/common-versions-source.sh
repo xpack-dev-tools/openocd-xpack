@@ -13,7 +13,7 @@
 
 # -----------------------------------------------------------------------------
 
-function prepare_versions()
+function build_versions()
 {
   # The \x2C is a comma in hex; without this trick the regular expression
   # that processes this string in the Makefile, silently fails and the 
@@ -22,7 +22,6 @@ function prepare_versions()
 
   OPENOCD_PROJECT_NAME="openocd"
   OPENOCD_GIT_COMMIT=${OPENOCD_GIT_COMMIT:-""}
-  README_OUT_FILE_NAME="README-${RELEASE_VERSION}.md"
 
   OPENOCD_SRC_FOLDER_NAME=${OPENOCD_SRC_FOLDER_NAME:-"${OPENOCD_PROJECT_NAME}.git"}
   OPENOCD_GIT_URL=${OPENOCD_GIT_URL:-"https://github.com/xpack-dev-tools/openocd.git"}
@@ -33,8 +32,45 @@ function prepare_versions()
   USE_TAR_GZ="y"
   USE_SINGLE_FOLDER_PATH="y"
 
+  OPENOCD_VERSION="${RELEASE_VERSION}"
+
   # Keep them in sync with combo archive content.
-  if [[ "${RELEASE_VERSION}" =~ 0\.10\.0-14 ]]
+  if [[ "${RELEASE_VERSION}" =~ 0\.10\.0-15 ]]
+  then
+
+    # -------------------------------------------------------------------------
+    
+    # Used in the licenses folder.
+    OPENOCD_FOLDER_NAME="openocd-${OPENOCD_VERSION}"
+
+    OPENOCD_GIT_BRANCH=${OPENOCD_GIT_BRANCH:-"xpack"}
+    # OPENOCD_GIT_BRANCH=${OPENOCD_GIT_BRANCH:-"xpack-develop"}
+    OPENOCD_GIT_COMMIT=${OPENOCD_GIT_COMMIT:-"819d1a93b400582e008a7d02ccad93ffedf1161f"}
+    
+    # -------------------------------------------------------------------------
+
+    do_libusb1 "1.0.22"
+    if [ "${TARGET_PLATFORM}" == "win32" ]
+    then
+      do_libusb_w32 "1.2.6.0"
+    else
+      do_libusb0 "0.1.5"
+    fi
+
+    do_libftdi "1.4"
+
+    build_libiconv "1.15"
+
+    do_hidapi "0.8.0-rc1"
+
+    # -------------------------------------------------------------------------
+
+    do_openocd
+
+    run_openocd
+
+    # -------------------------------------------------------------------------
+  elif [[ "${RELEASE_VERSION}" =~ 0\.10\.0-14 ]]
   then
 
     # -------------------------------------------------------------------------
@@ -47,7 +83,9 @@ function prepare_versions()
     OPENOCD_GIT_BRANCH=${OPENOCD_GIT_BRANCH:-"xpack"}
     # OPENOCD_GIT_BRANCH=${OPENOCD_GIT_BRANCH:-"xpack-develop"}
     OPENOCD_GIT_COMMIT=${OPENOCD_GIT_COMMIT:-"e5be992df1a893e2e865419a02a564d5f9ccd9dd"}
-    
+
+    README_OUT_FILE_NAME="README-${RELEASE_VERSION}.md"
+
     # -------------------------------------------------------------------------
 
     do_libusb1 "1.0.22"
@@ -83,7 +121,9 @@ function prepare_versions()
 
     OPENOCD_GIT_BRANCH=${OPENOCD_GIT_BRANCH:-"xpack"}
     OPENOCD_GIT_COMMIT=${OPENOCD_GIT_COMMIT:-"191d1b176cf32280fc649d3c5afcff44d6205daf"}
-    
+
+    README_OUT_FILE_NAME="README-${RELEASE_VERSION}.md"
+
     # -------------------------------------------------------------------------
 
     USE_TAR_GZ=""
