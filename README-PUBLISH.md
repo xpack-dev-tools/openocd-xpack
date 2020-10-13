@@ -203,6 +203,7 @@ $ cat *.sha
 
 ## Publish on the npmjs server
 
+- on the `xpack-develop` branch
 - open [GitHub Releases](https://github.com/xpack-dev-tools/openocd-xpack/releases)
   and select the latest release
 - check the download counter, it should match the number of tests
@@ -217,6 +218,7 @@ no terminating `/` is required
   GitHub release; the fifth number is the npm specific version
 - `npm pack` and check the content of the archive, which should list
 only the `package.json`, the `README.md`, `LICENSE` and `CHANGELOG.md`
+- merge `xpack-develop` into `xpack`
 - push all changes to GitHub
 - `npm publish --tag next` (use `--access public` when publishing for the first time)
 
