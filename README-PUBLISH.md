@@ -142,6 +142,7 @@ For more details, see `tests/scripts/README.md`.
 
 In the `xpack.github.io` web Git:
 
+- select the `develop` branch
 - add a new file to `_posts/openocd/releases`
 - name the file like `2020-10-13-openocd-v0-10-0-15-released.md`
 - name the post like: **xPack OpenOCD v0.10.0-15 released**.
@@ -194,10 +195,11 @@ $ cat *.sha
 
 ## Update the Web
 
+- in the `develop` branch
 - commit the `xpack.github.io` project; use a message
   like **xPack OpenOCD v0.10.0-15 released**
 - wait for the GitHub Pages build to complete
-- remember the post URL, since it must be updated in the release page
+- the result is in https://xpack.github.io/web-preview/news/
 
 ## Publish on the npmjs server
 
@@ -236,6 +238,13 @@ Promote the release as `latest`:
 - `npm dist-tag ls @xpack-dev-tools/openocd`
 - `npm dist-tag add @xpack-dev-tools/openocd@0.10.0-15.1.1 latest`
 - `npm dist-tag ls @xpack-dev-tools/openocd`
+
+## Update the Web
+
+- in the `master` branch, merge the `develop` branch
+- wait for the GitHub Pages build to complete
+- the result is in https://xpack.github.io/news/
+- remember the post URL, since it must be updated in the release page
 
 ## Create the final GitHub release
 
