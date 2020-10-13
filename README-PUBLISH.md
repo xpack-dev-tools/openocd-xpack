@@ -238,7 +238,7 @@ $ xpm install --global @xpack-dev-tools/openocd@next
 Promote the release as `latest`:
 
 - `npm dist-tag ls @xpack-dev-tools/openocd`
-- `npm dist-tag add @xpack-dev-tools/openocd@0.10.0-15.1.1 latest`
+- `npm dist-tag add @xpack-dev-tools/openocd@0.10.0-15.1 latest`
 - `npm dist-tag ls @xpack-dev-tools/openocd`
 
 ## Update the Web
