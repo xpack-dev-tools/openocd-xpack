@@ -59,6 +59,10 @@ function do_libusb1()
       CFLAGS="${XBB_CFLAGS_NO_W}"
       CXXFLAGS="${XBB_CXXFLAGS_NO_W}"
       LDFLAGS="${XBB_LDFLAGS_LIB}"
+      if [ "${TARGET_PLATFORM}" == "linux" ]
+      then
+        LDFLAGS+=" -Wl,-rpath,${LD_LIBRARY_PATH}"
+      fi      
       if [ "${IS_DEVELOP}" == "y" ]
       then
         LDFLAGS+=" -v"
@@ -162,6 +166,10 @@ function do_libusb0()
       CFLAGS="${XBB_CFLAGS_NO_W}"
       CXXFLAGS="${XBB_CXXFLAGS_NO_W}"
       LDFLAGS="${XBB_LDFLAGS_LIB}"
+      if [ "${TARGET_PLATFORM}" == "linux" ]
+      then
+        LDFLAGS+=" -Wl,-rpath,${LD_LIBRARY_PATH}"
+      fi      
       if [ "${IS_DEVELOP}" == "y" ]
       then
         LDFLAGS+=" -v"
@@ -389,6 +397,10 @@ function do_libftdi()
       CFLAGS="${XBB_CFLAGS_NO_W}"
       CXXFLAGS="${XBB_CXXFLAGS_NO_W}"
       LDFLAGS="${XBB_LDFLAGS_LIB}"
+      if [ "${TARGET_PLATFORM}" == "linux" ]
+      then
+        LDFLAGS+=" -Wl,-rpath,${LD_LIBRARY_PATH}"
+      fi      
       if [ "${IS_DEVELOP}" == "y" ]
       then
         LDFLAGS+=" -v"
@@ -573,6 +585,10 @@ function do_hidapi()
         CFLAGS="${XBB_CFLAGS_NO_W}"
         CXXFLAGS="${XBB_CXXFLAGS_NO_W}"
         LDFLAGS="${XBB_LDFLAGS_LIB}"
+        if [ "${TARGET_PLATFORM}" == "linux" ]
+        then
+          LDFLAGS+=" -Wl,-rpath,${LD_LIBRARY_PATH}"
+        fi      
         if [ "${IS_DEVELOP}" == "y" ]
         then
           LDFLAGS+=" -v"
@@ -641,29 +657,29 @@ function do_hidapi()
 
 function do_copy_libudev()
 {
-  cp "/usr/include/libudev.h" "${LIBS_INSTALL_FOLDER_PATH}/include"
+  cp -v "/usr/include/libudev.h" "${LIBS_INSTALL_FOLDER_PATH}/include"
 
   if [ "${TARGET_ARCH}" == "x64" ]
   then
     if [ -f "/usr/lib/x86_64-linux-gnu/libudev.so" ]
     then
-      cp "/usr/lib/x86_64-linux-gnu/libudev.so" "${LIBS_INSTALL_FOLDER_PATH}/lib"
-      cp "/usr/lib/x86_64-linux-gnu/pkgconfig/libudev.pc" "${LIBS_INSTALL_FOLDER_PATH}/lib/pkgconfig"
+      cp -v "/usr/lib/x86_64-linux-gnu/libudev.so" "${LIBS_INSTALL_FOLDER_PATH}/lib"
+      cp -v "/usr/lib/x86_64-linux-gnu/pkgconfig/libudev.pc" "${LIBS_INSTALL_FOLDER_PATH}/lib/pkgconfig"
     elif [ -f "/lib/x86_64-linux-gnu/libudev.so" ]
     then
       # In Debian 9 the location changed to /lib
-      cp "/lib/x86_64-linux-gnu/libudev.so" "${LIBS_INSTALL_FOLDER_PATH}/lib"
-      cp "/usr/lib/x86_64-linux-gnu/pkgconfig/libudev.pc" "${LIBS_INSTALL_FOLDER_PATH}/lib/pkgconfig"
+      cp -v "/lib/x86_64-linux-gnu/libudev.so" "${LIBS_INSTALL_FOLDER_PATH}/lib"
+      cp -v "/usr/lib/x86_64-linux-gnu/pkgconfig/libudev.pc" "${LIBS_INSTALL_FOLDER_PATH}/lib/pkgconfig"
     elif [ -f "/usr/lib/libudev.so" ]
     then
       # In ARCH the location is /usr/lib
-      cp "/usr/lib/libudev.so" "${LIBS_INSTALL_FOLDER_PATH}/lib"
-      cp "/usr/lib/pkgconfig/libudev.pc" "${LIBS_INSTALL_FOLDER_PATH}/lib/pkgconfig"
+      cp -v "/usr/lib/libudev.so" "${LIBS_INSTALL_FOLDER_PATH}/lib"
+      cp -v "/usr/lib/pkgconfig/libudev.pc" "${LIBS_INSTALL_FOLDER_PATH}/lib/pkgconfig"
     elif [ -f "/usr/lib64/libudev.so" ]
     then
       # In CentOS the location is /usr/lib64
-      cp "/usr/lib64/libudev.so" "${LIBS_INSTALL_FOLDER_PATH}/lib"
-      cp "/usr/lib64/pkgconfig/libudev.pc" "${LIBS_INSTALL_FOLDER_PATH}/lib/pkgconfig"
+      cp -v "/usr/lib64/libudev.so" "${LIBS_INSTALL_FOLDER_PATH}/lib"
+      cp -v "/usr/lib64/pkgconfig/libudev.pc" "${LIBS_INSTALL_FOLDER_PATH}/lib/pkgconfig"
     else
       echo "No libudev.so; abort."
       exit 1
@@ -672,18 +688,18 @@ function do_copy_libudev()
   then
     if [ -f "/usr/lib/i386-linux-gnu/libudev.so" ]
     then
-      cp "/usr/lib/i386-linux-gnu/libudev.so" "${LIBS_INSTALL_FOLDER_PATH}/lib"
-      cp "/usr/lib/i386-linux-gnu/pkgconfig/libudev.pc" "${LIBS_INSTALL_FOLDER_PATH}/lib/pkgconfig"
+      cp -v "/usr/lib/i386-linux-gnu/libudev.so" "${LIBS_INSTALL_FOLDER_PATH}/lib"
+      cp -v "/usr/lib/i386-linux-gnu/pkgconfig/libudev.pc" "${LIBS_INSTALL_FOLDER_PATH}/lib/pkgconfig"
     elif [ -f "/lib/i386-linux-gnu/libudev.so" ]
     then
       # In Debian 9 the location changed to /lib
-      cp "/lib/i386-linux-gnu/libudev.so" "${LIBS_INSTALL_FOLDER_PATH}/lib"
-      cp "/usr/lib/i386-linux-gnu/pkgconfig/libudev.pc" "${LIBS_INSTALL_FOLDER_PATH}/lib/pkgconfig"
+      cp -v "/lib/i386-linux-gnu/libudev.so" "${LIBS_INSTALL_FOLDER_PATH}/lib"
+      cp -v "/usr/lib/i386-linux-gnu/pkgconfig/libudev.pc" "${LIBS_INSTALL_FOLDER_PATH}/lib/pkgconfig"
     elif [ -f "/lib/libudev.so.0" ]
     then
       # In CentOS the location is /lib 
-      cp "/lib/libudev.so.0" "${LIBS_INSTALL_FOLDER_PATH}/lib"
-      cp "/usr/lib/pkgconfig/libudev.pc" "${LIBS_INSTALL_FOLDER_PATH}/lib/pkgconfig"
+      cp -v "/lib/libudev.so.0" "${LIBS_INSTALL_FOLDER_PATH}/lib"
+      cp -v "/usr/lib/pkgconfig/libudev.pc" "${LIBS_INSTALL_FOLDER_PATH}/lib/pkgconfig"
     else
       echo "No libudev.so; abort."
       exit 1
@@ -692,13 +708,13 @@ function do_copy_libudev()
   then
     if [ -f "/usr/lib/aarch64-linux-gnu/libudev.so" ]
     then
-      cp "/usr/lib/aarch64-linux-gnu/libudev.so" "${LIBS_INSTALL_FOLDER_PATH}/lib"
-      cp "/usr/lib/aarch64-linux-gnu/pkgconfig/libudev.pc" "${LIBS_INSTALL_FOLDER_PATH}/lib/pkgconfig"
+      cp -v "/usr/lib/aarch64-linux-gnu/libudev.so" "${LIBS_INSTALL_FOLDER_PATH}/lib"
+      cp -v "/usr/lib/aarch64-linux-gnu/pkgconfig/libudev.pc" "${LIBS_INSTALL_FOLDER_PATH}/lib/pkgconfig"
     elif [ -f "/lib/aarch64-linux-gnu/libudev.so" ]
     then
       # In Debian 9 the location changed to /lib
-      cp "/lib/aarch64-linux-gnu/libudev.so" "${LIBS_INSTALL_FOLDER_PATH}/lib"
-      cp "/usr/lib/aarch64-linux-gnu/pkgconfig/libudev.pc" "${LIBS_INSTALL_FOLDER_PATH}/lib/pkgconfig"
+      cp -v "/lib/aarch64-linux-gnu/libudev.so" "${LIBS_INSTALL_FOLDER_PATH}/lib"
+      cp -v "/usr/lib/aarch64-linux-gnu/pkgconfig/libudev.pc" "${LIBS_INSTALL_FOLDER_PATH}/lib/pkgconfig"
     else
       echo "No libudev.so; abort."
       exit 1
@@ -707,13 +723,13 @@ function do_copy_libudev()
   then
     if [ -f "/usr/lib/arm-linux-gnueabihf/libudev.so" ]
     then
-      cp "/usr/lib/arm-linux-gnueabihf/libudev.so" "${LIBS_INSTALL_FOLDER_PATH}/lib"
-      cp "/usr/lib/arm-linux-gnueabihf/pkgconfig/libudev.pc" "${LIBS_INSTALL_FOLDER_PATH}/lib/pkgconfig"
+      cp -v "/usr/lib/arm-linux-gnueabihf/libudev.so" "${LIBS_INSTALL_FOLDER_PATH}/lib"
+      cp -v "/usr/lib/arm-linux-gnueabihf/pkgconfig/libudev.pc" "${LIBS_INSTALL_FOLDER_PATH}/lib/pkgconfig"
     elif [ -f "/lib/arm-linux-gnueabihf/libudev.so" ]
     then
       # In Debian 9 the location changed to /lib
-      cp "/lib/arm-linux-gnueabihf/libudev.so" "${LIBS_INSTALL_FOLDER_PATH}/lib"
-      cp "/usr/lib/arm-linux-gnueabihf/pkgconfig/libudev.pc" "${LIBS_INSTALL_FOLDER_PATH}/lib/pkgconfig"
+      cp -v "/lib/arm-linux-gnueabihf/libudev.so" "${LIBS_INSTALL_FOLDER_PATH}/lib"
+      cp -v "/usr/lib/arm-linux-gnueabihf/pkgconfig/libudev.pc" "${LIBS_INSTALL_FOLDER_PATH}/lib/pkgconfig"
     else
       echo "No libudev.so; abort."
       exit 1

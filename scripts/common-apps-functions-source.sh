@@ -147,6 +147,7 @@ function do_openocd()
         CFLAGS="${XBB_CFLAGS_NO_W}"
         CXXFLAGS="${XBB_CXXFLAGS_NO_W}"
         LDFLAGS="${XBB_LDFLAGS_APP}" 
+        LDFLAGS+=" -Wl,-rpath,${LD_LIBRARY_PATH}"
         LIBS="-lpthread -lrt -ludev"
 
         # --enable-minidriver-dummy -> configure error
@@ -244,6 +245,14 @@ function do_openocd()
           run_verbose make install  
         fi
 
+        if [ "${TARGET_PLATFORM}" == "linux" ]
+        then
+          # Hack to get libudev.so in line with the all rpath policy.
+          # Manually add $ORIGIN to libudev.so (fingers crossed!).
+          cp "${LIBS_INSTALL_FOLDER_PATH}/lib/libudev.so" "${APP_PREFIX}/bin"
+          run_verbose patchelf --force-rpath --set-rpath "\$ORIGIN" "${APP_PREFIX}/bin/libudev.so"
+        fi
+
         prepare_app_libraries "${APP_PREFIX}/bin/openocd"
 
         if [ "${TARGET_PLATFORM}" == "win32" ]
@@ -284,22 +293,3 @@ function run_openocd()
 }
 
 # -----------------------------------------------------------------------------
-
-function copy_distro_files()
-{
-  (
-    xbb_activate
-
-    rm -rf "${APP_PREFIX}/${DISTRO_INFO_NAME}"
-    mkdir -pv "${APP_PREFIX}/${DISTRO_INFO_NAME}"
-
-    copy_build_files
-
-    echo
-    echo "Copying xPack files..."
-
-    cd "${WORK_FOLDER_PATH}/build.git"
-    install -v -c -m 644 "scripts/${README_OUT_FILE_NAME}" \
-      "${APP_PREFIX}/README.md"
-  )
-}

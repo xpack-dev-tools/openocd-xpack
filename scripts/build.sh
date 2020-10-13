@@ -73,7 +73,7 @@ docker_linux_arm32_image=${docker_linux_arm32_image:-"ilegeul/ubuntu:arm32v7-16.
 declare -a rest
 
 help_message="    bash $0 [--win32] [--win64] [--linux32] [--linux64] [--arm32] [--arm64] [--osx] [--all] [clean|cleanlibs|cleanall|preload-images] [--env-file file] [--disable-strip] [--without-pdf] [--with-html] [--develop] [--debug] [--jobs N] [--help]"
-host_options "${help_message}" $@
+host_options "${help_message}" "$@"
 
 # Intentionally moved after option parsing.
 echo

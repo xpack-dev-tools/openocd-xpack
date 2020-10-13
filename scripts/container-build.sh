@@ -89,7 +89,7 @@ source "${container_app_functions_script_path}"
 
 if [ ! -z "#{DEBUG}" ]
 then
-  echo $@
+  echo "$@"
 fi
 
 WITH_STRIP="y"
@@ -189,9 +189,9 @@ build_versions
 
 # -----------------------------------------------------------------------------
 
-check_binaries
-
 copy_distro_files
+
+check_binaries
 
 create_archive
 

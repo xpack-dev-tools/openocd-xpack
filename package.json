@@ -1,6 +1,6 @@
 {
   "name": "@xpack-dev-tools/openocd",
-  "version": "0.10.0-14.3",
+  "version": "0.10.0-15.1",
   "description": "A binary xPack with OpenOCD",
   "main": "",
   "scripts": {
@@ -32,36 +32,36 @@
   "xpack": {
     "binaries": {
       "destination": "./.content",
-      "baseUrl": "https://github.com/xpack-dev-tools/openocd-xpack/releases/download/v0.10.0-14",
+      "baseUrl": "https://github.com/xpack-dev-tools/openocd-xpack/releases/download/v0.10.0-15",
       "skip": 1,
       "platforms": {
         "darwin-x64": {
-          "sha256": "30917a5c6f60fcd7df82b41dcec8ab7d86f0cea3caeaf98b965b901c10a60b39",
-          "fileName": "xpack-openocd-0.10.0-14-darwin-x64.tar.gz"
+          "sha256": "370915b252ff3096b46663943fa040296d75991431228c5cfe315082cff10cab",
+          "fileName": "xpack-openocd-0.10.0-15-darwin-x64.tar.gz"
         },
         "linux-arm64": {
-          "sha256": "97a188ca8ba32498c80b1ca3c8831cbbaf01c6f935fb5bcb66144f1fbd432106",
-          "fileName": "xpack-openocd-0.10.0-14-linux-arm64.tar.gz"
+          "sha256": "874c0bb93812109f4136b8b4670702ae4d76aa0d6327989a30596cabf4e052b5",
+          "fileName": "xpack-openocd-0.10.0-15-linux-arm64.tar.gz"
         },
         "linux-arm": {
-          "sha256": "8a8025cfb07dbf203d9434179e84b748f8381213df6d53272e5c580fbe113896",
-          "fileName": "xpack-openocd-0.10.0-14-linux-arm.tar.gz"
+          "sha256": "7697144b4f6581aa0b16e02b8c07f4b91ad861088263327c21fa340b1854ca06",
+          "fileName": "xpack-openocd-0.10.0-15-linux-arm.tar.gz"
         },
         "linux-x86": {
-          "sha256": "bd4a7e88d86d216b738a096ffa8bfe5ec4035ad17801d5595e45779363ff5974",
-          "fileName": "xpack-openocd-0.10.0-14-linux-x32.tar.gz"
+          "sha256": "68f02f2b392c2036702a7da9f418203b60f24aea30b59154e9e5042c1dc567dc",
+          "fileName": "xpack-openocd-0.10.0-15-linux-x32.tar.gz"
         },
         "linux-x64": {
-          "sha256": "185c070f9729cf38dca08686c2905561c07a63c563e5bc7a70e045f2a1865c11",
-          "fileName": "xpack-openocd-0.10.0-14-linux-x64.tar.gz"
+          "sha256": "0a880ef296da083c4eb06ed589181414ae73d64a7dcec5642676207aeacc3e54",
+          "fileName": "xpack-openocd-0.10.0-15-linux-x64.tar.gz"
         },
         "win32-x86": {
-          "sha256": "633e46b2f4d2d38c683df2414b9f464d7250c336d010c84010bbaff9d3d29c7c",
-          "fileName": "xpack-openocd-0.10.0-14-win32-x32.zip"
+          "sha256": "34f05809057ca851ac9c7f8925095abbf9b0c3594a7ca904e4bed3a7f2edfbc8",
+          "fileName": "xpack-openocd-0.10.0-15-win32-x32.zip"
         },
         "win32-x64": {
-          "sha256": "1fb26bbcfd65dbabe747ce3c8467a1f1cece7253bde4a95de13c2267d422ed8b",
-          "fileName": "xpack-openocd-0.10.0-14-win32-x64.zip"
+          "sha256": "6bd6999f7371f68ccc861cf84133feef9976e91fc6a29ef2740d6bd3e4ff203f",
+          "fileName": "xpack-openocd-0.10.0-15-win32-x64.zip"
         }
       }
     },

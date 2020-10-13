@@ -26,7 +26,7 @@ changes from upstream it is necessary to add a remote named
 
 - `xpack` - the updated content, used during builds
 - `xpack-develop` - the updated content, used during development
-- `master` - the original content; it follows the upstream master.
+- `master` - empty
 
 ## Prerequisites
 
@@ -59,6 +59,12 @@ $ git clone --recurse-submodules https://github.com/xpack-dev-tools/openocd-xpac
 > mandatory to recurse the submodules.
 
 To use the `xpack-develop` branch of the build scripts, use:
+
+```console
+$ curl -L https://github.com/xpack-dev-tools/openocd-xpack/raw/xpack/scripts/git-clone-develop.sh | bash
+```
+
+This small script issues the following two commands:
 
 ```console
 $ rm -rf ~/Downloads/openocd-xpack.git
@@ -108,7 +114,7 @@ No need to add a tag here, it'll be added when the release is created.
 
 To prepare a new release, first determine the OpenOCD version
 (like `0.10.0`) and update the `scripts/VERSION` file. The format is
-`0.10.0-14`. The fourth number is the xPack release number
+`0.10.0-15`. The fourth number is the xPack release number
 of this version. A fifth number will be added when publishing
 the package on the `npm` server.
 
@@ -181,6 +187,12 @@ $ sudo rm -rf ~/Work/openocd-*
 $ bash ~/Downloads/openocd-xpack.git/scripts/build.sh --all
 ```
 
+or, for development builds:
+
+```console
+$ bash ~/Downloads/openocd-xpack.git/scripts/build.sh --develop --without-pdf --linux64 --linux32 --win64 --win32
+```
+
 To detach from the session, use `Ctrl-a` `Ctrl-d`; to reattach use
 `screen -r openocd`; to kill the session use `Ctrl-a` `Ctrl-k` and confirm.
 
@@ -188,17 +200,16 @@ About 7 minutes later, the output of the build script is a set of 4
 archives and their SHA signatures, created in the `deploy` folder:
 
 ```console
-$ cd ~/Work/openocd-*
-$ ls -l deploy
+$ ls -l ~/Work/openocd-*/deploy
 total 13248
--rw-rw-rw- 1 ilg ilg 3672921 Jun 10 13:53 xpack-openocd-0.10.0-14-linux-x32.tar.gz
--rw-rw-rw- 1 ilg ilg     107 Jun 10 13:53 xpack-openocd-0.10.0-14-linux-x32.tar.gz.sha
--rw-rw-rw- 1 ilg ilg 3601358 Jun 10 13:45 xpack-openocd-0.10.0-14-linux-x64.tar.gz
--rw-rw-rw- 1 ilg ilg     107 Jun 10 13:45 xpack-openocd-0.10.0-14-linux-x64.tar.gz.sha
--rw-rw-rw- 1 ilg ilg 3137527 Jun 10 13:57 xpack-openocd-0.10.0-14-win32-x32.zip
--rw-rw-rw- 1 ilg ilg     104 Jun 10 13:57 xpack-openocd-0.10.0-14-win32-x32.zip.sha
--rw-rw-rw- 1 ilg ilg 3133169 Jun 10 13:51 xpack-openocd-0.10.0-14-win32-x64.zip
--rw-rw-rw- 1 ilg ilg     104 Jun 10 13:51 xpack-openocd-0.10.0-14-win32-x64.zip.sha
+-rw-rw-rw- 1 ilg ilg 3672921 Jun 10 13:53 xpack-openocd-0.10.0-15-linux-x32.tar.gz
+-rw-rw-rw- 1 ilg ilg     107 Jun 10 13:53 xpack-openocd-0.10.0-15-linux-x32.tar.gz.sha
+-rw-rw-rw- 1 ilg ilg 3601358 Jun 10 13:45 xpack-openocd-0.10.0-15-linux-x64.tar.gz
+-rw-rw-rw- 1 ilg ilg     107 Jun 10 13:45 xpack-openocd-0.10.0-15-linux-x64.tar.gz.sha
+-rw-rw-rw- 1 ilg ilg 3137527 Jun 10 13:57 xpack-openocd-0.10.0-15-win32-x32.zip
+-rw-rw-rw- 1 ilg ilg     104 Jun 10 13:57 xpack-openocd-0.10.0-15-win32-x32.zip.sha
+-rw-rw-rw- 1 ilg ilg 3133169 Jun 10 13:51 xpack-openocd-0.10.0-15-win32-x64.zip
+-rw-rw-rw- 1 ilg ilg     104 Jun 10 13:51 xpack-openocd-0.10.0-15-win32-x64.zip.sha
 ```
 
 To copy the files from the build machine to the current development
@@ -206,9 +217,7 @@ machine, either use NFS to mount the entire folder, or open the `deploy`
 folder in a terminal and use `scp`:
 
 ```console
-$ cd ~/Work/openocd-*
-$ cd deploy
-$ scp * ilg@wks:Downloads/xpack-binaries/openocd
+$ (cd ~/Work/openocd-*/deploy; scp * ilg@wks:Downloads/xpack-binaries/openocd)
 ```
 
 #### Build the Arm GNU/Linux binaries
@@ -262,13 +271,12 @@ About 14 minutes later, the output of the build script is a set of 2
 archives and their SHA signatures, created in the `deploy` folder:
 
 ```console
-$ cd ~/Work/openocd-*
-$ ls -l deploy
+$ ls -l ~/Work/openocd-*/deploy
 total 7120
--rw-rw-rw- 1 ilg ilg 3632743 Mar 26 15:25 xpack-openocd-0.10.0-14-linux-arm64.tar.gz
--rw-rw-rw- 1 ilg ilg     109 Mar 26 15:25 xpack-openocd-0.10.0-14-linux-arm64.tar.gz.sha
--rw-rw-rw- 1 ilg ilg 3646739 Mar 26 15:50 xpack-openocd-0.10.0-14-linux-arm.tar.gz
--rw-rw-rw- 1 ilg ilg     107 Mar 26 15:50 xpack-openocd-0.10.0-14-linux-arm.tar.gz.sha
+-rw-rw-rw- 1 ilg ilg 3632743 Mar 26 15:25 xpack-openocd-0.10.0-15-linux-arm64.tar.gz
+-rw-rw-rw- 1 ilg ilg     109 Mar 26 15:25 xpack-openocd-0.10.0-15-linux-arm64.tar.gz.sha
+-rw-rw-rw- 1 ilg ilg 3646739 Mar 26 15:50 xpack-openocd-0.10.0-15-linux-arm.tar.gz
+-rw-rw-rw- 1 ilg ilg     107 Mar 26 15:50 xpack-openocd-0.10.0-15-linux-arm.tar.gz.sha
 ```
 
 To copy the files from the build machine to the current development
@@ -276,8 +284,7 @@ machine, either use NFS to mount the entire folder, or open the `deploy`
 folder in a terminal and use `scp`:
 
 ```console
-$ cd ~/Work/openocd-*/deploy
-$ scp * ilg@wks:Downloads/xpack-binaries/openocd
+$ (cd ~/Work/openocd-*/deploy; scp * ilg@wks:Downloads/xpack-binaries/openocd)
 ```
 
 #### Build the macOS binary
@@ -307,11 +314,10 @@ About 4 minutes later, the output of the build script is a compressed
 archive and its SHA signature, created in the `deploy` folder:
 
 ```console
-$ cd ~/Work/openocd-*
-$ ls -l deploy
+$ ls -l ~/Work/openocd-*/deploy
 total 5536
--rw-r--r--  1 ilg  staff  2828202 Jun 10 17:44 xpack-openocd-0.10.0-14-darwin-x64.tar.gz
--rw-r--r--  1 ilg  staff      108 Jun 10 17:44 xpack-openocd-0.10.0-14-darwin-x64.tar.gz.sha
+-rw-r--r--  1 ilg  staff  2828202 Jun 10 17:44 xpack-openocd-0.10.0-15-darwin-x64.tar.gz
+-rw-r--r--  1 ilg  staff      108 Jun 10 17:44 xpack-openocd-0.10.0-15-darwin-x64.tar.gz.sha
 ```
 
 To copy the files from the build machine to the current development
@@ -319,9 +325,7 @@ machine, either use NFS to mount the entire folder, or open the `deploy`
 folder in a terminal and use `scp`:
 
 ```console
-$ cd ~/Work/openocd-*
-$ cd deploy
-$ scp * ilg@wks:Downloads/xpack-binaries/openocd
+$ (cd ~/Work/openocd-*/deploy; scp * ilg@wks:Downloads/xpack-binaries/openocd)
 ```
 
 ### Subsequent runs
@@ -331,8 +335,9 @@ $ scp * ilg@wks:Downloads/xpack-binaries/openocd
 Instead of `--all`, you can use any combination of:
 
 ```
---win32 --win64 --linux32 --linux64
+--linux32 --linux64
 --arm --arm64
+--win32 --win64 
 ```
 
 #### `clean`
@@ -395,7 +400,7 @@ program from there. For example on macOS the output should
 look like:
 
 ```console
-$ /Users/ilg/Downloads/xPacks/openocd/0.10.0-14/bin/openocd --version
+$ /Users/ilg/Downloads/xPacks/openocd/0.10.0-15/bin/openocd --version
 xPack OpenOCD, 64-bit Open On-Chip Debugger 0.10.0+dev (2019-07-17-15:21)
 ```
 
@@ -405,8 +410,8 @@ After install, the package should create a structure like this (macOS files;
 only the first two depth levels are shown):
 
 ```console
-$ tree -L 2 /Users/ilg/Library/xPacks/\@xpack-dev-tools/openocd/0.10.0-14.1/.content/
-/Users/ilg/Library/xPacks/\@xpack-dev-tools/openocd/0.10.0-14.1/.content/
+$ tree -L 2 /Users/ilg/Library/xPacks/\@xpack-dev-tools/openocd/0.10.0-15.1/.content/
+/Users/ilg/Library/xPacks/\@xpack-dev-tools/openocd/0.10.0-15.1/.content/
 ├── OpenULINK
 │   └── ulink_firmware.hex
 ├── README.md

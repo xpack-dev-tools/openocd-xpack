@@ -47,77 +47,24 @@ source "${script_folder_path}/app-defs.sh"
 helper_folder_path="$(dirname $(dirname "${script_folder_path}"))/scripts/helper"
 
 source "${helper_folder_path}/test-functions-source.sh"
-source "${script_folder_path}/common-functions-source.sh"
 
 # -----------------------------------------------------------------------------
 
-# This runs inside a Docker container.
+message="Test xpm install"
+branch="xpack-develop"
 
-# -----------------------------------------------------------------------------
+data_file_path="$(mktemp)"
 
-image_name="$1"
-echo "${image_name}"
-shift
+create_xpm_install_data_file "${message}" "${branch}" "${data_file_path}"
 
-base_url="$1"
-echo "${base_url}"
-shift
+# https://docs.travis-ci.com/user/triggering-builds/
 
-while [ $# -gt 0 ]
-do
-  case "$1" in
+# TRAVIS_ORG_TOKEN must be present in the environment.
+trigger_travis "${github_org}" "${github_repo}" "${data_file_path}"
 
-    -*)
-      echo "Unsupported option $1."
-      exit 1
-      ;;
+cat "${data_file_path}"
+rm -v "${data_file_path}"
 
-  esac
-done
-
-# -----------------------------------------------------------------------------
-
-# Make sure that the minimum prerequisites are met.
-if [[ ${image_name} == *ubuntu* ]] || [[ ${image_name} == *debian* ]] || [[ ${image_name} == *raspbian* ]]
-then
-  apt-get -qq update 
-  apt-get -qq install -y git-core curl tar gzip lsb-release binutils
-elif [[ ${image_name} == *centos* ]] || [[ ${image_name} == *fedora* ]]
-then
-  yum install -y -q git curl tar gzip redhat-lsb-core binutils
-elif [[ ${image_name} == *opensuse* ]]
-then
-  zypper -q in -y git-core curl tar gzip lsb-release binutils
-elif [[ ${image_name} == *manjaro* ]]
-then
-  pacman-mirrors -g
-  pacman -S -y -q --noconfirm 
-
-    # Update even if up to date (-yy) & upgrade (-u).
-  # pacman -S -yy -u -q --noconfirm 
-  pacman -S -q --noconfirm --noprogressbar   git curl tar gzip lsb-release binutils
-elif [[ ${image_name} == *archlinux* ]]
-then
-  pacman -S -y -q --noconfirm 
-
-    # Update even if up to date (-yy) & upgrade (-u).
-  # pacman -S -yy -u -q --noconfirm 
-  pacman -S -q --noconfirm --noprogressbar   git curl tar gzip lsb-release binutils
-fi
-
-# -----------------------------------------------------------------------------
-
-detect_architecture
-
-prepare_env
-
-install_archive
-
-run_tests
-
-good_bye
-
-# Completed successfully.
-exit 0
+echo "Done."
 
 # -----------------------------------------------------------------------------
