@@ -4,7 +4,8 @@ Releases in reverse chronological order.
 
 ### 2020-10-13
 
-- prepare v0.10.0-15
+- v0.10.0-15 published
+- v0.10.0-15.1 published on npmjs.com
 
 ### 2020-06-27
 
