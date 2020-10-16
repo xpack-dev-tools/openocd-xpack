@@ -33,6 +33,14 @@ In this Git repo:
 - push it to GitHub.
 - possibly push the helper project too.
 
+### Clean the destination folder
+
+Clear the folder where the binaries from all build machines will be collected.
+
+```console
+$ rm -f ~/Downloads/xpack-binaries/openocd/*
+```
+
 ### Run the build scripts
 
 When everything is ready, follow the instructions in the
@@ -142,7 +150,7 @@ For more details, see `tests/scripts/README.md`.
 
 In the `xpack.github.io` web Git:
 
-- select the `develop` branch
+- select the `xpack-develop` branch
 - add a new file to `_posts/openocd/releases`
 - name the file like `2020-10-13-openocd-v0-10-0-15-released.md`
 - name the post like: **xPack OpenOCD v0.10.0-15 released**.
@@ -203,7 +211,7 @@ $ cat *.sha
 
 ## Publish on the npmjs server
 
-- on the `xpack-develop` branch
+- select the `xpack-develop` branch
 - open [GitHub Releases](https://github.com/xpack-dev-tools/openocd-xpack/releases)
   and select the latest release
 - check the download counter, it should match the number of tests
@@ -222,7 +230,7 @@ only the `package.json`, the `README.md`, `LICENSE` and `CHANGELOG.md`
 - push all changes to GitHub
 - `npm publish --tag next` (use `--access public` when publishing for the first time)
 
-## Test the npm binaries with xpm
+## Test if the npm binaries can be installed with xpm
 
 Run the `tests/scripts/trigger-travis-xpm-install.sh` file, this
 will install the package on Intel Linux 64-bit, macOS and Windows 64-bit.
