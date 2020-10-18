@@ -34,6 +34,9 @@ function build_versions()
 
   OPENOCD_VERSION="${RELEASE_VERSION}"
 
+  # TODO: update to new strategy, and naming schema, with build_xxx
+  # and running the tests after packing the archive.
+  
   # Keep them in sync with combo archive content.
   if [[ "${RELEASE_VERSION}" =~ 0\.10\.0-15 ]]
   then
