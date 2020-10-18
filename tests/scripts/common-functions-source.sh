@@ -19,7 +19,10 @@
 
 function run_tests()
 {
+  show_libs "${app_folder_path}/bin/openocd"
+
   run_app "${app_folder_path}/bin/openocd" --version
+  run_app "${app_folder_path}/bin/openocd" --help
 
   # TODO: add more, if possible.
 }
