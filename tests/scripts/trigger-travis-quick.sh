@@ -50,7 +50,7 @@ source "${helper_folder_path}/test-functions-source.sh"
 
 # -----------------------------------------------------------------------------
 
-message="Test ${app_description} on stable platforms"
+message="Test ${app_description} on few platforms"
 branch="xpack-develop"
 
 version="$(cat $(dirname $(dirname ${script_folder_path}))/scripts/VERSION)"
