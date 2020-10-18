@@ -482,14 +482,18 @@ function do_hidapi()
   # Oct 26, 2011, "0.7.0"
 
   # https://github.com/signal11/hidapi/archive/hidapi-0.8.0-rc1.zip
-  # Oct 7, 2013, "0.8.0-rc1", latest
+  # Oct 7, 2013, "0.8.0-rc1", latest on signal11's repository
+
+  # https://github.com/libusb/hidapi/releases
+  # https://github.com/libusb/hidapi/archive/hidapi-0.9.0.zip
+  # Jun 19 2019 "hidapi-0.9.0", maintained releases by libusb
 
   local hidapi_version="$1"
 
   local hidapi_src_folder_name="hidapi-hidapi-${hidapi_version}"
 
   local hidapi_archive="hidapi-${hidapi_version}.zip"
-  local hidapi_url="https://github.com/signal11/hidapi/archive/${hidapi_archive}"
+  local hidapi_url="https://github.com/libusb/hidapi/archive/${hidapi_archive}"
 
   local hidapi_folder_name="${hidapi_src_folder_name}"
 
