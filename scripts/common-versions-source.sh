@@ -61,7 +61,7 @@ function build_versions()
 
     build_libiconv "1.15"
 
-    do_hidapi "0.8.0-rc1"
+    do_hidapi "0.9.0"
 
     # -------------------------------------------------------------------------
 
@@ -100,7 +100,7 @@ function build_versions()
 
     build_libiconv "1.15"
 
-    do_hidapi "0.8.0-rc1"
+    do_hidapi "0.9.0"
 
     # -------------------------------------------------------------------------
 
@@ -140,7 +140,7 @@ function build_versions()
 
     build_libiconv "1.15"
 
-    do_hidapi "0.8.0-rc1"
+    do_hidapi "0.9.0"
 
     # -------------------------------------------------------------------------
 
