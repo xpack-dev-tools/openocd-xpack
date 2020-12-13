@@ -688,7 +688,7 @@ function do_copy_libudev()
       echo "No libudev.so; abort."
       exit 1
     fi
-  elif [ "${TARGET_ARCH}" == "x32" ] 
+  elif [ "${TARGET_ARCH}" == "x32" -o "${TARGET_ARCH}" == "ia32" ] 
   then
     if [ -f "/usr/lib/i386-linux-gnu/libudev.so" ]
     then
