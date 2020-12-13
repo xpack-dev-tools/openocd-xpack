@@ -47,7 +47,7 @@ When everything is ready, follow the instructions in the
 [build](https://github.com/xpack-dev-tools/openocd-xpack/blob/xpack/README-BUILD.md)
 page.
 
-## Test
+## Testing
 
 Install the binaries on all supported platforms and check if they are
 functional, using the Eclipse STM32F4DISCOVERY blinky test
@@ -118,7 +118,7 @@ on the command scripts):
 
 ## Create a new GitHub pre-release
 
-- go to the [GitHub Releases](https://github.com/xpack-dev-tools/openocd-xpack/releases) page
+- go to the GitHub [releases](https://github.com/xpack-dev-tools/openocd-xpack/releases) page
 - click the **Draft a new release** button
 - name the tag like **v0.10.0-15** (mind the dash in the middle!)
 - select the `xpack` branch
@@ -212,27 +212,31 @@ $ cat *.sha
 ## Publish on the npmjs server
 
 - select the `xpack-develop` branch
-- open [GitHub Releases](https://github.com/xpack-dev-tools/openocd-xpack/releases)
-  and select the latest release
+- open the `package.json` file
+- open the GitHub [releases](https://github.com/xpack-dev-tools/openocd-xpack/releases)
+  page and select the latest release
 - check the download counter, it should match the number of tests
 - update the `baseUrl:` with the file URLs (including the tag/version); 
-no terminating `/` is required
-- from the web release, copy the SHA & file names
+  no terminating `/` is required
+- from the release, copy the SHA & file names
+- compare the SHA sums with those shown by `cat *.sha`
+- check the executable names
 - commit all changes, use a message like
   `package.json: update urls for 0.10.0-15 release` (without `v`)
+- check the latest commits `npm run git-log`
 - update `CHANGELOG.md`; commit with a message like
   _CHANGELOG: prepare npm v0.10.0-15.1_
 - `npm version 0.10.0-15.1`; the first 4 numbers are the same as the
   GitHub release; the fifth number is the npm specific version
 - `npm pack` and check the content of the archive, which should list
-only the `package.json`, the `README.md`, `LICENSE` and `CHANGELOG.md`
-- merge `xpack-develop` into `xpack`
-- push all changes to GitHub
-- `npm publish --tag next` (use `--access public` when publishing for the first time)
+  only the `package.json`, the `README.md`, `LICENSE` and `CHANGELOG.md`
+- push the `xpack-develop` branch to GitHub
+- `npm publish --tag next` (use `--access public` when publishing for
+  the first time)
 
 ## Test if the npm binaries can be installed with xpm
 
-Run the `tests/scripts/trigger-travis-xpm-install.sh` file, this
+Run the `tests/scripts/trigger-travis-xpm-install.sh` script, this
 will install the package on Intel Linux 64-bit, macOS and Windows 64-bit.
 
 For 32-bit Windows, 32-bit Intel GNU/Linux and 32-bit Arm, install manually.
@@ -258,7 +262,7 @@ Promote the release as `latest`:
 
 ## Create the final GitHub release
 
-- go to the [GitHub Releases](https://github.com/xpack-dev-tools/openocd-xpack/releases) page
+- go to the GitHub [releases](https://github.com/xpack-dev-tools/openocd-xpack/releases) page
 - check the download counter, it should match the number of tests
 - add a link to the Web page `[Continue reading »]()`; use an same blog URL
 - **disable** the **pre-release** button
