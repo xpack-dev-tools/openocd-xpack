@@ -1,7 +1,7 @@
 {
   "name": "@xpack-dev-tools/openocd",
   "version": "0.10.0-15.1",
-  "description": "A binary xPack with OpenOCD",
+  "description": "A binary xPack with the OpenOCD executable",
   "main": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
