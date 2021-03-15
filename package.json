@@ -49,7 +49,7 @@
         },
         "linux-x86": {
           "sha256": "68f02f2b392c2036702a7da9f418203b60f24aea30b59154e9e5042c1dc567dc",
-          "fileName": "xpack-openocd-0.10.0-15-linux-x32.tar.gz"
+          "fileName": "xpack-openocd-0.10.0-15-linux-ia32.tar.gz"
         },
         "linux-x64": {
           "sha256": "0a880ef296da083c4eb06ed589181414ae73d64a7dcec5642676207aeacc3e54",

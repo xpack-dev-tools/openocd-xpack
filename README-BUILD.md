@@ -204,8 +204,8 @@ archives and their SHA signatures, created in the `deploy` folder:
 ```console
 $ ls -l ~/Work/openocd-*/deploy
 total 13248
--rw-rw-rw- 1 ilg ilg 3672921 Jun 10 13:53 xpack-openocd-0.11.0-1-linux-x32.tar.gz
--rw-rw-rw- 1 ilg ilg     107 Jun 10 13:53 xpack-openocd-0.11.0-1-linux-x32.tar.gz.sha
+-rw-rw-rw- 1 ilg ilg 3672921 Jun 10 13:53 xpack-openocd-0.11.0-1-linux-ia32.tar.gz
+-rw-rw-rw- 1 ilg ilg     107 Jun 10 13:53 xpack-openocd-0.11.0-1-linux-ia32.tar.gz.sha
 -rw-rw-rw- 1 ilg ilg 3601358 Jun 10 13:45 xpack-openocd-0.11.0-1-linux-x64.tar.gz
 -rw-rw-rw- 1 ilg ilg     107 Jun 10 13:45 xpack-openocd-0.11.0-1-linux-x64.tar.gz.sha
 -rw-rw-rw- 1 ilg ilg 3137527 Jun 10 13:57 xpack-openocd-0.11.0-1-win32-x32.zip

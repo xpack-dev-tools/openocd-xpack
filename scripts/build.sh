@@ -163,7 +163,7 @@ else
       --script "${CONTAINER_WORK_FOLDER_PATH}/${CONTAINER_BUILD_SCRIPT_REL_PATH}" \
       --env-file "${ENV_FILE}" \
       --target-platform "linux" \
-      --target-arch "x32" \
+      --target-arch "ia32" \
       --target-machine "i386" \
       --target-bits 32 \
       --docker-image "${docker_linux32_image}" \
@@ -180,7 +180,7 @@ else
       --script "${CONTAINER_WORK_FOLDER_PATH}/${CONTAINER_BUILD_SCRIPT_REL_PATH}" \
       --env-file "${ENV_FILE}" \
       --target-platform "win32" \
-      --target-arch "x32" \
+      --target-arch "ia32" \
       --target-machine "i386" \
       --target-bits 32 \
       --docker-image "${docker_linux32_image}" \
