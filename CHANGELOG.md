@@ -7,6 +7,8 @@ Releases in reverse chronological order.
 - v0.11.0-1 prepared
 - update to upstream 0.11
 - [#3] - remove deprecated --enable-oocd_trace
+- v0.11.0-1 published
+- v0.11.0-1.1 published on npmjs.com
 
 ## 2020-10-13
 
