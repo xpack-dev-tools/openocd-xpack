@@ -38,7 +38,42 @@ function build_versions()
   # and running the tests after packing the archive.
   
   # Keep them in sync with combo archive content.
-  if [[ "${RELEASE_VERSION}" =~ 0\.10\.0-15 ]]
+  if [[ "${RELEASE_VERSION}" =~ 0\.11\.0-1 ]]
+  then
+
+    # -------------------------------------------------------------------------
+    
+    # Used in the licenses folder.
+    OPENOCD_FOLDER_NAME="openocd-${OPENOCD_VERSION}"
+
+    # OPENOCD_GIT_BRANCH=${OPENOCD_GIT_BRANCH:-"xpack"}
+    OPENOCD_GIT_BRANCH=${OPENOCD_GIT_BRANCH:-"xpack-develop"}
+    OPENOCD_GIT_COMMIT=${OPENOCD_GIT_COMMIT:-"e392e485e40036543e6a3cce04570e7525c48ca2"}
+    
+    # -------------------------------------------------------------------------
+
+    do_libusb1 "1.0.22"
+    if [ "${TARGET_PLATFORM}" == "win32" ]
+    then
+      do_libusb_w32 "1.2.6.0"
+    else
+      do_libusb0 "0.1.5"
+    fi
+
+    do_libftdi "1.4"
+
+    build_libiconv "1.15"
+
+    do_hidapi "0.9.0"
+
+    # -------------------------------------------------------------------------
+
+    do_openocd
+
+    run_openocd
+
+    # -------------------------------------------------------------------------
+  elif [[ "${RELEASE_VERSION}" =~ 0\.10\.0-1[56] ]]
   then
 
     # -------------------------------------------------------------------------
