@@ -85,7 +85,8 @@ function do_openocd()
       config_options+=("--enable-jlink")
       config_options+=("--enable-jtag_vpi")
       config_options+=("--enable-kitprog")
-      config_options+=("--enable-oocd_trace")
+      # Deprecated
+      # config_options+=("--enable-oocd_trace")
       config_options+=("--enable-opendous")
       config_options+=("--enable-openjtag")
       config_options+=("--enable-osbdm")
@@ -163,7 +164,8 @@ function do_openocd()
         config_options+=("--enable-parport-giveio")
         config_options+=("--enable-sysfsgpio")
 
-        config_options+=("--enable-oocd_trace")
+        # Deprecated
+        # config_options+=("--enable-oocd_trace")
 
       elif [ "${TARGET_PLATFORM}" == "darwin" ]
       then
