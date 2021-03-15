@@ -22,7 +22,12 @@ function run_tests()
   show_libs "${app_folder_path}/bin/openocd"
 
   run_app "${app_folder_path}/bin/openocd" --version
-  run_app_exit 255 "${app_folder_path}/bin/openocd" --help
+  if [ "${node_platform}" == "win32" ]
+  then
+    run_app_exit 127 "${app_folder_path}/bin/openocd" --help
+  else
+    run_app_exit 255 "${app_folder_path}/bin/openocd" --help
+  fi
 
   # TODO: add more, if possible.
 }
