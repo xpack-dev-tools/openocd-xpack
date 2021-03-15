@@ -47,4 +47,4 @@ the `travis-trigger-stable.mac.command` or
 `travis-trigger-latest.mac.command` shortcuts.
 
 The test results are available at
-[Travis](https://travis-ci.org/github/xpack-dev-tools/openocd-xpack/builds/).
+[Travis](https://travis-ci.com/github/xpack-dev-tools/openocd-xpack/builds/).

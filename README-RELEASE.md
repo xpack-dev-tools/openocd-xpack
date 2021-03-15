@@ -189,23 +189,24 @@ the `-f "board/stm32f4discovery.cfg"` configuration file
 (import the `arm-f4b-fs` project and start the `arm-f4b-fs-debug-oocd` 
 launcher).
 
-For platforms where Eclipse is not yet available (like Arm), simply start the
-program and check if the CPU is identified.
+For platforms where Eclipse is not yet available (like 32-bit Arm),
+simply start the program and check if the CPU is identified.
 
 If this is the first time openocd is executed, on GNU/Linux it is necessary
 to configure the rights, otherwise LIBUSB will issue the _libusb_open
 failed: LIBUSB_ERROR_ACCESS_ error.
 
-```
+```sh
 sudo cp ~Downloads/xpack-openocd-0.10.0-15/contrib/60-openocd.rules /etc/udev/rules.d
 sudo udevadm control --reload-rules
 ```
 
-Than it is possible to start openocd:
+Then it is possible to start openocd:
 
-```
+```console
 $ .../xpack-openocd-0.10.0-15/bin/openocd -f "board/stm32f4discovery.cfg"
-xPack OpenOCD, x86_64 Open On-Chip Debugger 0.10.0+dev-00378-ge5be992df (2020-06-26-12:31)
+xPack OpenOCD, x86_64 Open On-Chip Debugger 0.11.0-00155-ge392e485e (2021-03-15-13:24)
+(2020-06-26-12:31)
 Licensed under GNU GPL v2
 For bug reports, read
 	http://openocd.org/doc/doxygen/bugs.html
@@ -240,7 +241,7 @@ programs to run.
 (mind the dash)
 - as description, use:
 
-```
+```console
 ![Github Releases (by Release)](https://img.shields.io/github/downloads/xpack-dev-tools/openocd-xpack/v0.11.0-1/total.svg)
 
 Version v0.11.0-1 is a new release of the **xPack OpenOCD** package, following the OpenOCD release.
@@ -265,7 +266,7 @@ Using the scripts in `tests/scripts/`, start:
 
 The test results are available from:
 
-- https://travis-ci.org/github/xpack-dev-tools/openocd-xpack
+- https://travis-ci.com/github/xpack-dev-tools/openocd-xpack
 
 For more details, see `tests/scripts/README.md`.
 
@@ -337,7 +338,7 @@ xpack-openocd-0.11.0-1-win32-x64.zip
 - select the `xpack-develop` branch
 - run `xpm-dev binaries-update`
 
-```
+```sh
 xpm-dev binaries-update -C ~/Downloads/openocd-xpack.git '0.11.0-1' "${HOME}/Downloads/xpack-binaries/openocd"
 ```
 
@@ -461,4 +462,3 @@ When the release is considered stable, promote it as `latest`:
 - paste the link to the Web page
   [release](https://xpack.github.io/openocd/releases/)
 - click the **Tweet** button
-
