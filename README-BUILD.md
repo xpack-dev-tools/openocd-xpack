@@ -8,8 +8,21 @@ build and publish the
 
 The build scripts use the
 [xPack Build Box (XBB)](https://github.com/xpack/xpack-build-box),
-a set of elaborate build environments based on GCC 7.4 (Docker containers
+a set of elaborate build environments based on recent GCC versions
+(Docker containers
 for GNU/Linux and Windows or a custom folder for MacOS).
+
+There are two types of builds:
+
+- **local/native builds**, which use the tools available on the
+  host machine; generally the binaries do not run on a different system
+  distribution/version; intended mostly for development purposes;
+- **distribution builds**, which create the archives distributed as
+  binaries; expected to run on most modern systems.
+
+This page documents the distribution builds.
+
+For native builds, see the `build-native.sh` script. (to be added)
 
 ## Repositories
 
@@ -53,8 +66,9 @@ This small script issues the following two commands:
 
 ```console
 $ rm -rf ~/Downloads/openocd-xpack.git
-$ git clone --recurse-submodules https://github.com/xpack-dev-tools/openocd-xpack.git \
-~/Downloads/openocd-xpack.git
+$ git clone --recurse-submodules \
+  https://github.com/xpack-dev-tools/openocd-xpack.git \
+  ~/Downloads/openocd-xpack.git
 ```
 
 > Note: the repository uses submodules; for a successful build it is
@@ -70,8 +84,9 @@ This small script issues the following two commands:
 
 ```console
 $ rm -rf ~/Downloads/openocd-xpack.git
-$ git clone --recurse-submodules --branch xpack-develop https://github.com/xpack-dev-tools/openocd-xpack.git \
-~/Downloads/openocd-xpack.git
+$ git clone --recurse-submodules --branch xpack-develop \
+  https://github.com/xpack-dev-tools/openocd-xpack.git \
+  ~/Downloads/openocd-xpack.git
 ```
 
 ## The `Work` folder
@@ -81,13 +96,39 @@ the user home. Although not recommended, if for any reasons you need to
 change the location of the `Work` folder,
 you can redefine `WORK_FOLDER_PATH` variable before invoking the script.
 
+## Spaces in folder names
+
+Due to the limitations of `make`, builds started in folders with
+spaces in names are known to fail.
+
+If on your system the work folder is in such a location, redefine it in a
+folder without spaces and set the `WORK_FOLDER_PATH` variable before invoking
+the script.
+
+## Customizations
+
+There are many other settings that can be redefined via
+environment variables. If necessary,
+place them in a file and pass it via `--env-file`. This file is
+either passed to Docker or sourced to shell. The Docker syntax
+**is not** identical to shell, so some files may
+not be accepted by bash.
+
+## Versioning
+
+The version string is an extension to semver, the format looks like `0.11.0-1`.
+It includes the three digits with the original OpenOCD version and a fourth
+digit with the xPack release number.
+
+When publishing on the **npmjs.com** server, a fifth digit is appended.
+
 ## Changes
 
 Compared to the original OpenOCD distribution, there should be no
 functional changes.
 
 The actual changes for each version are documented in the
-`scripts/README-<version>.md` files.
+release web pages.
 
 ## How to build local/native binaries
 
@@ -98,61 +139,21 @@ The details on how to prepare the development environment for OpenOCD are in the
 
 ## How to build distributions
 
-### Update git repos
-
-To keep the development repository in sync with the original OpenOCD
-repository, in the `xpack-dev-tools/openocd` Git repo:
-
-- checkout `master`
-- merge from `upstream/master`
-- checkout `xpack-develop`
-- merge `master`
-- checkout `xpack`
-- merge `xpack-develop`
-
-No need to add a tag here, it'll be added when the release is created.
-
-### Prepare release
-
-To prepare a new release, first determine the OpenOCD version
-(like `0.10.0`) and update the `scripts/VERSION` file. The format is
-`0.10.0-15`. The fourth number is the xPack release number
-of this version. A fifth number will be added when publishing
-the package on the `npm` server.
-
-Add a new set of definitions in the `scripts/common-versions-source.sh`, with
-the versions of various components.
-
-### Check `README.md`
-
-Normally `README.md` should not need changes, but better check.
-Information related to the new version should not be included here,
-but in the version specific file (below).
-
-### Create `README-<version>.md`
-
-In the `scripts` folder create a copy of the previous one and update the
-Git commit and possible other details.
-
-### Update `CHANGELOG.md`
-
-Check `CHANGELOG.md` and add the new release.
-
-### Build
+## Build
 
 Although it is perfectly possible to build all binaries in a single step
 on a macOS system, due to Docker specifics, it is faster to build the
 GNU/Linux and Windows binaries on a GNU/Linux system and the macOS binary
-separately on a macOS system.
+separately.
 
-#### Build the Intel GNU/Linux and Windows binaries
+### Build the Intel GNU/Linux and Windows binaries
 
-The current platform for Intel GNU/Linux and Windows production builds is a
-Debian 10, running on an Intel NUC8i7BEH mini PC with 32 GB of RAM
+The current platform for GNU/Linux and Windows production builds is an
+Manjaro 19, running on an Intel NUC8i7BEH mini PC with 32 GB of RAM
 and 512 GB of fast M.2 SSD.
 
 ```console
-$ ssh xbbi
+$ caffeinate ssh xbbi
 ```
 
 Before starting a build, check if Docker is started:
@@ -175,7 +176,6 @@ $ docker images
 REPOSITORY          TAG                              IMAGE ID            CREATED             SIZE
 ilegeul/ubuntu      i386-12.04-xbb-v3.2              fadc6405b606        2 days ago          4.55GB
 ilegeul/ubuntu      amd64-12.04-xbb-v3.2             3aba264620ea        2 days ago          4.98GB
-hello-world         latest                           bf756fb1ae65        5 months ago        13.3kB
 ```
 
 Since the build takes a while, use `screen` to isolate the build session
@@ -192,26 +192,26 @@ $ bash ~/Downloads/openocd-xpack.git/scripts/build.sh --all
 or, for development builds:
 
 ```console
-$ bash ~/Downloads/openocd-xpack.git/scripts/build.sh --develop --without-pdf --linux64 --linux32 --win64 --win32
+$ bash ~/Downloads/openocd-xpack.git/scripts/build.sh --linux64 --linux32 --win64 --win32 --develop
 ```
 
 To detach from the session, use `Ctrl-a` `Ctrl-d`; to reattach use
 `screen -r openocd`; to kill the session use `Ctrl-a` `Ctrl-k` and confirm.
 
-About 7 minutes later, the output of the build script is a set of 4
+About 20 minutes later, the output of the build script is a set of 4
 archives and their SHA signatures, created in the `deploy` folder:
 
 ```console
 $ ls -l ~/Work/openocd-*/deploy
 total 13248
--rw-rw-rw- 1 ilg ilg 3672921 Jun 10 13:53 xpack-openocd-0.10.0-15-linux-x32.tar.gz
--rw-rw-rw- 1 ilg ilg     107 Jun 10 13:53 xpack-openocd-0.10.0-15-linux-x32.tar.gz.sha
--rw-rw-rw- 1 ilg ilg 3601358 Jun 10 13:45 xpack-openocd-0.10.0-15-linux-x64.tar.gz
--rw-rw-rw- 1 ilg ilg     107 Jun 10 13:45 xpack-openocd-0.10.0-15-linux-x64.tar.gz.sha
--rw-rw-rw- 1 ilg ilg 3137527 Jun 10 13:57 xpack-openocd-0.10.0-15-win32-x32.zip
--rw-rw-rw- 1 ilg ilg     104 Jun 10 13:57 xpack-openocd-0.10.0-15-win32-x32.zip.sha
--rw-rw-rw- 1 ilg ilg 3133169 Jun 10 13:51 xpack-openocd-0.10.0-15-win32-x64.zip
--rw-rw-rw- 1 ilg ilg     104 Jun 10 13:51 xpack-openocd-0.10.0-15-win32-x64.zip.sha
+-rw-rw-rw- 1 ilg ilg 3672921 Jun 10 13:53 xpack-openocd-0.11.0-1-linux-x32.tar.gz
+-rw-rw-rw- 1 ilg ilg     107 Jun 10 13:53 xpack-openocd-0.11.0-1-linux-x32.tar.gz.sha
+-rw-rw-rw- 1 ilg ilg 3601358 Jun 10 13:45 xpack-openocd-0.11.0-1-linux-x64.tar.gz
+-rw-rw-rw- 1 ilg ilg     107 Jun 10 13:45 xpack-openocd-0.11.0-1-linux-x64.tar.gz.sha
+-rw-rw-rw- 1 ilg ilg 3137527 Jun 10 13:57 xpack-openocd-0.11.0-1-win32-x32.zip
+-rw-rw-rw- 1 ilg ilg     104 Jun 10 13:57 xpack-openocd-0.11.0-1-win32-x32.zip.sha
+-rw-rw-rw- 1 ilg ilg 3133169 Jun 10 13:51 xpack-openocd-0.11.0-1-win32-x64.zip
+-rw-rw-rw- 1 ilg ilg     104 Jun 10 13:51 xpack-openocd-0.11.0-1-win32-x64.zip.sha
 ```
 
 To copy the files from the build machine to the current development
@@ -224,12 +224,12 @@ $ (cd ~/Work/openocd-*/deploy; scp * ilg@wks:Downloads/xpack-binaries/openocd)
 
 #### Build the Arm GNU/Linux binaries
 
-The current platform for Arm GNU/Linux and Windows production builds is a
-Debian 9, running on a ROCK Pi 4 with 4 GB of RAM
+The current platform for GNU/Linux and Windows production builds is an
+Manjaro 19, running on an Raspberry Pi 4B with 4 GB of RAM
 and 256 GB of fast M.2 SSD.
 
 ```console
-$ ssh xbba
+$ caffeinate ssh xbba
 ```
 
 Before starting a build, check if Docker is started:
@@ -251,7 +251,7 @@ The result should look similar to:
 $ docker images
 REPOSITORY          TAG                                IMAGE ID            CREATED             SIZE
 ilegeul/ubuntu      arm32v7-16.04-xbb-v3.2             b501ae18580a        27 hours ago        3.23GB
-ilegeul/ubuntu      arm64v8-16.04-xbb-v3.2             db95609ffb69        38 hours ago        3.45GB
+ilegeul/ubuntu      arm64v8-16.04-xbb-v3.2             db95609ffb69        37 hours ago        3.45GB
 hello-world         latest                             a29f45ccde2a        5 months ago        9.14kB
 ```
 
@@ -269,16 +269,16 @@ $ bash ~/Downloads/openocd-xpack.git/scripts/build.sh --all
 To detach from the session, use `Ctrl-a` `Ctrl-d`; to reattach use
 `screen -r openocd`; to kill the session use `Ctrl-a` `Ctrl-k` and confirm.
 
-About 14 minutes later, the output of the build script is a set of 2
+About 50 minutes later, the output of the build script is a set of 2
 archives and their SHA signatures, created in the `deploy` folder:
 
 ```console
 $ ls -l ~/Work/openocd-*/deploy
 total 7120
--rw-rw-rw- 1 ilg ilg 3632743 Mar 26 15:25 xpack-openocd-0.10.0-15-linux-arm64.tar.gz
--rw-rw-rw- 1 ilg ilg     109 Mar 26 15:25 xpack-openocd-0.10.0-15-linux-arm64.tar.gz.sha
--rw-rw-rw- 1 ilg ilg 3646739 Mar 26 15:50 xpack-openocd-0.10.0-15-linux-arm.tar.gz
--rw-rw-rw- 1 ilg ilg     107 Mar 26 15:50 xpack-openocd-0.10.0-15-linux-arm.tar.gz.sha
+-rw-rw-rw- 1 ilg ilg 3632743 Mar 26 15:25 xpack-openocd-0.11.0-1-linux-arm64.tar.gz
+-rw-rw-rw- 1 ilg ilg     109 Mar 26 15:25 xpack-openocd-0.11.0-1-linux-arm64.tar.gz.sha
+-rw-rw-rw- 1 ilg ilg 3646739 Mar 26 15:50 xpack-openocd-0.11.0-1-linux-arm.tar.gz
+-rw-rw-rw- 1 ilg ilg     107 Mar 26 15:50 xpack-openocd-0.11.0-1-linux-arm.tar.gz.sha
 ```
 
 To copy the files from the build machine to the current development
@@ -292,11 +292,10 @@ $ (cd ~/Work/openocd-*/deploy; scp * ilg@wks:Downloads/xpack-binaries/openocd)
 #### Build the macOS binaries
 
 The current platform for macOS production builds is a macOS 10.10.5
-running on a MacBookPro with 16 GB of RAM and a
-fast SSD.
+running on a MacBook Pro with 32 GB of RAM and a fast SSD.
 
 ```console
-$ ssh xbbm
+$ caffeinate ssh xbbm
 ```
 
 To build the latest macOS version:
@@ -312,14 +311,14 @@ To detach from the session, use `Ctrl-a` `Ctrl-d`; to reattach use
 `screen -r openocd`; to kill the session use `Ctrl-a` `Ctrl-\` or
 `Ctrl-a` `Ctrl-k` and confirm.
 
-About 4 minutes later, the output of the build script is a compressed
+Several minutes later, the output of the build script is a compressed
 archive and its SHA signature, created in the `deploy` folder:
 
 ```console
 $ ls -l ~/Work/openocd-*/deploy
 total 5536
--rw-r--r--  1 ilg  staff  2828202 Jun 10 17:44 xpack-openocd-0.10.0-15-darwin-x64.tar.gz
--rw-r--r--  1 ilg  staff      108 Jun 10 17:44 xpack-openocd-0.10.0-15-darwin-x64.tar.gz.sha
+-rw-r--r--  1 ilg  staff  2828202 Jun 10 17:44 xpack-openocd-0.11.0-1-darwin-x64.tar.gz
+-rw-r--r--  1 ilg  staff      108 Jun 10 17:44 xpack-openocd-0.11.0-1-darwin-x64.tar.gz.sha
 ```
 
 To copy the files from the build machine to the current development
@@ -337,9 +336,8 @@ $ (cd ~/Work/openocd-*/deploy; scp * ilg@wks:Downloads/xpack-binaries/openocd)
 Instead of `--all`, you can use any combination of:
 
 ```
---linux32 --linux64
+--win32 --win64 --linux32 --linux64
 --arm --arm64
---win32 --win64 
 ```
 
 #### `clean`
@@ -402,8 +400,8 @@ program from there. For example on macOS the output should
 look like:
 
 ```console
-$ /Users/ilg/Downloads/xPacks/openocd/0.10.0-15/bin/openocd --version
-xPack OpenOCD, 64-bit Open On-Chip Debugger 0.10.0+dev (2019-07-17-15:21)
+$ /Users/ilg/Work/openocd-0.11.0-1/darwin-x64/install/openocd/bin/openocd --version
+openocd version 0.11.0
 ```
 
 ## Installed folders
@@ -412,8 +410,8 @@ After install, the package should create a structure like this (macOS files;
 only the first two depth levels are shown):
 
 ```console
-$ tree -L 2 /Users/ilg/Library/xPacks/\@xpack-dev-tools/openocd/0.10.0-15.1/.content/
-/Users/ilg/Library/xPacks/\@xpack-dev-tools/openocd/0.10.0-15.1/.content/
+$ tree -L 2 /Users/ilg/Library/xPacks/\@xpack-dev-tools/openocd/0.11.0-1.1/.content/
+/Users/ilg/Library/xPacks/\@xpack-dev-tools/openocd/0.11.0-1.1/.content/
 ├── OpenULINK
 │   └── ulink_firmware.hex
 ├── README.md

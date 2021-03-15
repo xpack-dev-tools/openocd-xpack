@@ -55,7 +55,7 @@ This location is configurable using the environment variable
 `XPACKS_REPO_FOLDER`; for more details please check the
 [xpm folders](https://xpack.github.io/xpm/folders/) page.
 
-xPacks aware tools, like the **GNU MCU Eclipse plug-ins** automatically
+xPacks aware tools, like the **Eclipse Embedded C/C++ plug-ins** automatically
 identify binaries installed with
 `xpm` and provide a convenient method to manage paths.
 
