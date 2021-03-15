@@ -1,6 +1,6 @@
 {
   "name": "@xpack-dev-tools/openocd",
-  "version": "0.10.0-15.1",
+  "version": "0.11.0-1.1",
   "description": "A binary xPack with the OpenOCD executable",
   "main": "",
   "scripts": {
@@ -27,7 +27,6 @@
   "homepage": "https://github.com/xpack-dev-tools/openocd-xpack#readme",
   "devDependencies": {},
   "peerDependencies": {},
-  "bundledDependencies": [],
   "optionalDependencies": {},
   "xpack": {
     "binaries": {
@@ -68,5 +67,6 @@
     "bin": {
       "openocd": "./.content/bin/openocd"
     }
-  }
+  },
+  "bundleDependencies": []
 }
