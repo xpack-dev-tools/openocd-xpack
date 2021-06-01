@@ -4,8 +4,9 @@
   "description": "A binary xPack with the OpenOCD executable",
   "main": "",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "git-log": "git log --pretty='%cd * %h %s' --date=short"
+    "pack": "npm pack",
+    "git-log": "git log --pretty='%cd * %h %s' --date=short",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
