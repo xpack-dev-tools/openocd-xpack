@@ -42,12 +42,12 @@ follow the instructions from the
 With the `xpm` tool available, installing
 the latest version of the package is quite easy:
 
-```console
-$ xpm install --global @xpack-dev-tools/openocd@latest
+```sh
+xpm install --global @xpack-dev-tools/openocd@latest
 ```
 
 This command will always install the latest available version,
-into the central xPacks repository, which is a platform dependent folder
+into the central xPacks store, which is a platform dependent folder
 (check the output of the `xpm` command for the actual folder used on
 your platform).
 
@@ -63,13 +63,9 @@ identify binaries installed with
 
 To remove the installed xPack, the command is similar:
 
-```console
-$ xpm uninstall --global @xpack-dev-tools/openocd
+```sh
+xpm uninstall --global @xpack-dev-tools/openocd
 ```
-
-(Note: not yet implemented. As a temporary workaround, simply remove the
-`xPacks/@xpack-dev-tools/openocd` folder, or one of the the versioned
-subfolders.)
 
 ### Manual install
 
@@ -135,8 +131,7 @@ corresponding licenses are available in the installed
 [![npm (scoped)](https://img.shields.io/npm/v/@xpack-dev-tools/openocd.svg)](https://www.npmjs.com/package/@xpack-dev-tools/openocd/)
 [![npm](https://img.shields.io/npm/dm/@xpack-dev-tools/openocd.svg)](https://www.npmjs.com/package/@xpack-dev-tools/openocd/)
   - all releases [![npm](https://img.shields.io/npm/dt/@xpack-dev-tools/openocd.svg)](https://www.npmjs.com/package/@xpack-dev-tools/openocd/)
- 
+
 Credit to [Shields IO](https://shields.io) for the badges and to
 [Somsubhra/github-release-stats](https://github.com/Somsubhra/github-release-stats)
 for the individual file counters.
-

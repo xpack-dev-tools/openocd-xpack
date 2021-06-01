@@ -41,7 +41,7 @@ the package on the `npm` server.
 
 Check GitHub issues and pull requests:
 
-- https://github.com/xpack-dev-tools/openocd-xpack/issues
+- <https://github.com/xpack-dev-tools/openocd-xpack/issues>
 
 and fix them; assign them to a milestone (like `0.11.0-1`).
 
@@ -59,7 +59,7 @@ but in the version specific file (below).
 - open the `CHANGELOG.md` file
 - check if all previous fixed issues are in
 - add a new entry like _v0.11.0-1 prepared_
-- commit commit with a message like _CHANGELOG: prepare v0.11.0-1_
+- commit with a message like _prepare v0.11.0-1_
 
 Note: if you missed to update the `CHANGELOG.md` before starting the build,
 edit the file and rerun the build, it should take only a few minutes to
@@ -123,11 +123,7 @@ git clone \
   --branch xpack-develop \
   https://github.com/xpack-dev-tools/openocd-xpack.git \
   ~/Downloads/openocd-xpack.git
-```
 
-On all machines, remove any previous build:
-
-```sh
 sudo rm -rf ~/Work/openocd-*
 ```
 
@@ -186,7 +182,7 @@ Install the binaries on all supported platforms and check if they are
 functional, using the Eclipse STM32F4DISCOVERY blinky test
 available in the xpack-arm-none-eabi-gcc package, which uses
 the `-f "board/stm32f4discovery.cfg"` configuration file
-(import the `arm-f4b-fs` project and start the `arm-f4b-fs-debug-oocd` 
+(import the `arm-f4b-fs` project and start the `arm-f4b-fs-debug-oocd`
 launcher).
 
 For platforms where Eclipse is not yet available (like 32-bit Arm),
@@ -209,7 +205,7 @@ xPack OpenOCD, x86_64 Open On-Chip Debugger 0.11.0-00155-ge392e485e (2021-03-15-
 (2020-06-26-12:31)
 Licensed under GNU GPL v2
 For bug reports, read
-	http://openocd.org/doc/doxygen/bugs.html
+ http://openocd.org/doc/doxygen/bugs.html
 Info : The selected transport took over low-level target control. The results might differ compared to plain JTAG/SWD
 srst_only separate srst_nogate srst_open_drain connect_deassert_srst
 
@@ -234,29 +230,56 @@ programs to run.
 
 - in `CHANGELOG.md`, add release date
 - commit and push the `xpack-develop` branch
-- go to the GitHub [releases](https://github.com/xpack-dev-tools/openocd-xpack/releases) page
+- go to the GitHub [releases](https://github.com/xpack-dev-tools/openocd-xpack/releases/) page
 - click **Draft a new release**, in the `xpack-develop` branch
 - name the tag like **v0.11.0-1** (mind the dash in the middle!)
 - name the release like **xPack OpenOCD v0.11.0-1**
 (mind the dash)
 - as description, use:
 
-```console
+```markdown
 ![Github Releases (by Release)](https://img.shields.io/github/downloads/xpack-dev-tools/openocd-xpack/v0.11.0-1/total.svg)
 
 Version v0.11.0-1 is a new release of the **xPack OpenOCD** package, following the OpenOCD release.
 
-_For the moment these binaries are provided only for testing purposes!_
+_At this moment these binaries are provided for tests only!_
 ```
 
-- **attach binaries** and SHA (drag and drop from the archives folder will do it)
+- **attach binaries** and SHA (drag and drop from the
+  `~/Downloads/xpack-binaries/*` folder will do it)
 - **enable** the **pre-release** button
 - click the **Publish Release** button
 
 Note: at this moment the system should send a notification to all clients
 watching this project.
 
-## Run the release Travis tests
+## Run the native tests
+
+Run the native tests on all platforms:
+
+```sh
+rm -rf ~/Downloads/openocd-xpack.git; \
+git clone --recurse-submodules -b xpack-develop \
+  https://github.com/xpack-dev-tools/openocd-xpack.git  \
+  ~/Downloads/openocd-xpack.git
+
+rm ~/Work/cache/xpack-openocd-*
+
+bash ~/Downloads/openocd-xpack.git/tests/scripts/native-test.sh \
+  "https://github.com/xpack-dev-tools/openocd-xpack/releases/download/v0.11.0-1/"
+```
+
+## Run the release CI tests
+
+Using the scripts in `tests/scripts/`, start:
+
+TODO:
+
+The test results are available from:
+
+- TODO
+
+For more details, see `tests/scripts/README.md`.
 
 Using the scripts in `tests/scripts/`, start:
 
@@ -266,7 +289,7 @@ Using the scripts in `tests/scripts/`, start:
 
 The test results are available from:
 
-- https://travis-ci.com/github/xpack-dev-tools/openocd-xpack
+- <https://travis-ci.com/github/xpack-dev-tools/openocd-xpack>
 
 For more details, see `tests/scripts/README.md`.
 
@@ -285,7 +308,7 @@ In the `xpack/web-jekyll` GitHub repo:
 (it is very important to use the originals!)
 
 If any, refer to closed
-[issues](https://github.com/xpack-dev-tools/openocd-xpack/issues)
+[issues](https://github.com/xpack-dev-tools/openocd-xpack/issues/)
 as:
 
 - **[Issue:\[#1\]\(...\)]**.
@@ -330,8 +353,9 @@ xpack-openocd-0.11.0-1-win32-x64.zip
 
 - commit the `develop` branch of `xpack/web-jekyll` GitHub repo;
   use a message like **xPack OpenOCD v0.11.0-1 released**
+- push
 - wait for the GitHub Pages build to complete
-- the preview web is https://xpack.github.io/web-preview/
+- the preview web is <https://xpack.github.io/web-preview/news/>
 
 ## Update package.json binaries
 
@@ -339,10 +363,13 @@ xpack-openocd-0.11.0-1-win32-x64.zip
 - run `xpm-dev binaries-update`
 
 ```sh
-xpm-dev binaries-update -C ~/Downloads/openocd-xpack.git '0.11.0-1' "${HOME}/Downloads/xpack-binaries/openocd"
+xpm-dev binaries-update \
+  -C "${HOME}/Downloads/openocd-xpack.git" \
+  '0.11.0-1' \
+  "${HOME}/Downloads/xpack-binaries/openocd"
 ```
 
-- open the GitHub [releases](https://github.com/xpack-dev-tools/openocd-xpack/releases)
+- open the GitHub [releases](https://github.com/xpack-dev-tools/openocd-xpack/releases/)
   page and select the latest release
 - check the download counter, it should match the number of tests
 - open the `package.json` file
@@ -359,7 +386,7 @@ xpm-dev binaries-update -C ~/Downloads/openocd-xpack.git '0.11.0-1' "${HOME}/Dow
 - select the `xpack-develop` branch
 - check the latest commits `npm run git-log`
 - update `CHANGELOG.md`; commit with a message like
-  _CHANGELOG: prepare npm v0.11.0-1.1_
+  _CHANGELOG: publish npm v0.11.0-1.1_
 - `npm pack` and check the content of the archive, which should list
   only the `package.json`, the `README.md`, `LICENSE` and `CHANGELOG.md`;
   possibly adjust `.npmignore`
@@ -370,9 +397,9 @@ xpm-dev binaries-update -C ~/Downloads/openocd-xpack.git '0.11.0-1' "${HOME}/Dow
 - `npm publish --tag next` (use `--access public` when publishing for
   the first time)
 
-The version is visible at:
+After a few moments the version will be visible at:
 
-- https://www.npmjs.com/package/@xpack-dev-tools/openocd?activeTab=versions
+- <https://www.npmjs.com/package/@xpack-dev-tools/openocd?activeTab=versions>
 
 ## Test if the npm binaries can be installed with xpm
 
@@ -381,7 +408,7 @@ will install the package on Intel Linux 64-bit, macOS and Windows 64-bit.
 
 The test results are available from:
 
-- https://travis-ci.org/github/xpack-dev-tools/openocd-xpack
+- <https://travis-ci.org/github/xpack-dev-tools/openocd-xpack>
 
 For 32-bit Windows, 32-bit Intel GNU/Linux and 32-bit Arm, install manually.
 
@@ -419,7 +446,7 @@ OpenOCD suite maintained and supported by Kitware (kitware.com/openocd).
 
 On Windows use:
 
-```
+```doscon
 %USERPROFILE%\AppData\Roaming\xPacks\@xpack-dev-tools\openocd\0.11.0-1.1\.content\bin\openocd --version
 
 openocd version 0.11.0
@@ -444,12 +471,12 @@ When the release is considered stable, promote it as `latest`:
 
 - in the `master` branch, merge the `develop` branch
 - wait for the GitHub Pages build to complete
-- the result is in https://xpack.github.io/news/
+- the result is in <https://xpack.github.io/news/>
 - remember the post URL, since it must be updated in the release page
 
 ## Create the final GitHub release
 
-- go to the GitHub [releases](https://github.com/xpack-dev-tools/openocd-xpack/releases) page
+- go to the GitHub [releases](https://github.com/xpack-dev-tools/openocd-xpack/releases/) page
 - check the download counter, it should match the number of tests
 - add a link to the Web page `[Continue reading »]()`; use an same blog URL
 - **disable** the **pre-release** button
@@ -463,3 +490,8 @@ When the release is considered stable, promote it as `latest`:
 - paste the link to the Web page
   [release](https://xpack.github.io/openocd/releases/)
 - click the **Tweet** button
+
+## Remove pre-release binaries
+
+- got to <https://github.com/xpack-dev-tools/pre-releases/releases/tag/test>
+- remove the test binaries

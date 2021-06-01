@@ -26,9 +26,9 @@ For native builds, see the `build-native.sh` script. (to be added)
 
 ## Repositories
 
-- `https://github.com/xpack-dev-tools/openocd.git` - the URL of the
+- <https://github.com/xpack-dev-tools/openocd.git> - the URL of the
   [xPack OpenOCD fork](https://github.com/xpack-dev-tools/openocd)
-- `git://git.code.sf.net/p/openocd/code` - the URL of the
+- <git://git.code.sf.net/p/openocd/code> - the URL of the
   [upstream OpenOCD](http://openocd.org).
 
 The build scripts use the first repo; to merge
@@ -56,17 +56,12 @@ The build scripts are available in the `scripts` folder of the
 [`xpack-dev-tools/openocd-xpack`](https://github.com/xpack-dev-tools/openocd-xpack)
 Git repo.
 
-To download them, the following shortcut is available:
+To download them, issues the following two commands:
 
-```console
-$ curl -L https://github.com/xpack-dev-tools/openocd-xpack/raw/xpack/scripts/git-clone.sh | bash
-```
-
-This small script issues the following two commands:
-
-```console
-$ rm -rf ~/Downloads/openocd-xpack.git
-$ git clone --recurse-submodules \
+```sh
+rm -rf ~/Downloads/openocd-xpack.git; \
+git clone \
+  --recurse-submodules \
   https://github.com/xpack-dev-tools/openocd-xpack.git \
   ~/Downloads/openocd-xpack.git
 ```
@@ -74,17 +69,13 @@ $ git clone --recurse-submodules \
 > Note: the repository uses submodules; for a successful build it is
 > mandatory to recurse the submodules.
 
-To use the `xpack-develop` branch of the build scripts, use:
+To use the `xpack-develop` issues the following two commands:
 
-```console
-$ curl -L https://github.com/xpack-dev-tools/openocd-xpack/raw/xpack/scripts/git-clone-develop.sh | bash
-```
-
-This small script issues the following two commands:
-
-```console
-$ rm -rf ~/Downloads/openocd-xpack.git
-$ git clone --recurse-submodules --branch xpack-develop \
+```sh
+rm -rf ~/Downloads/openocd-xpack.git; \
+git clone \
+  --recurse-submodules \
+  --branch xpack-develop \
   https://github.com/xpack-dev-tools/openocd-xpack.git \
   ~/Downloads/openocd-xpack.git
 ```
@@ -148,25 +139,25 @@ separately.
 
 ### Build the Intel GNU/Linux and Windows binaries
 
-The current platform for GNU/Linux and Windows production builds is an
-Manjaro 19, running on an Intel NUC8i7BEH mini PC with 32 GB of RAM
-and 512 GB of fast M.2 SSD.
+The current platform for GNU/Linux and Windows production builds is a
+Debian 10, running on an Intel NUC8i7BEH mini PC with 32 GB of RAM
+and 512 GB of fast M.2 SSD. The machine name is `xbbi`.
 
-```console
-$ caffeinate ssh xbbi
+```sh
+caffeinate ssh xbbi
 ```
 
 Before starting a build, check if Docker is started:
 
-```console
-$ docker info
+```sh
+docker info
 ```
 
 Before running a build for the first time, it is recommended to preload the
 docker images.
 
-```console
-$ bash ~/Downloads/openocd-xpack.git/scripts/build.sh preload-images
+```sh
+bash ~/Downloads/openocd-xpack.git/scripts/build.sh preload-images
 ```
 
 The result should look similar to:
@@ -178,21 +169,37 @@ ilegeul/ubuntu      i386-12.04-xbb-v3.2              fadc6405b606        2 days 
 ilegeul/ubuntu      amd64-12.04-xbb-v3.2             3aba264620ea        2 days ago          4.98GB
 ```
 
+It is also recommended to Remove unused Docker space. This is mostly useful
+after failed builds, during development, when dangling images may be left
+by Docker.
+
+To check the content of a Docker image:
+
+```sh
+docker run --interactive --tty ilegeul/ubuntu:amd64-12.04-xbb-v3.2
+```
+
+To remove unused files:
+
+```sh
+docker system prune --force
+```
+
 Since the build takes a while, use `screen` to isolate the build session
 from unexpected events, like a broken
 network connection or a computer entering sleep.
 
-```console
-$ screen -S openocd
+```sh
+screen -S openocd
 
-$ sudo rm -rf ~/Work/openocd-*
-$ bash ~/Downloads/openocd-xpack.git/scripts/build.sh --all
+sudo rm -rf ~/Work/openocd-*
+bash ~/Downloads/openocd-xpack.git/scripts/build.sh --all
 ```
 
 or, for development builds:
 
-```console
-$ bash ~/Downloads/openocd-xpack.git/scripts/build.sh --linux64 --linux32 --win64 --win32 --develop
+```sh
+bash ~/Downloads/openocd-xpack.git/scripts/build.sh --linux64 --linux32 --win64 --win32 --develop
 ```
 
 To detach from the session, use `Ctrl-a` `Ctrl-d`; to reattach use
@@ -214,35 +221,32 @@ total 13248
 -rw-rw-rw- 1 ilg ilg     104 Jun 10 13:51 xpack-openocd-0.11.0-1-win32-x64.zip.sha
 ```
 
-To copy the files from the build machine to the current development
-machine, either use NFS to mount the entire folder, or open the `deploy`
-folder in a terminal and use `scp`:
+### Build the Arm GNU/Linux binaries
 
-```console
-$ (cd ~/Work/openocd-*/deploy; scp * ilg@wks:Downloads/xpack-binaries/openocd)
-```
+The supported Arm architectures are:
 
-#### Build the Arm GNU/Linux binaries
+- `armhf` for 32-bit devices
+- `arm64` for 64-bit devices
 
-The current platform for GNU/Linux and Windows production builds is an
-Manjaro 19, running on an Raspberry Pi 4B with 4 GB of RAM
-and 256 GB of fast M.2 SSD.
+The current platform for Arm GNU/Linux production builds is a
+Debian 9, running on an ROCK Pi 4 SBC with 4 GB of RAM
+and 256 GB of fast M.2 SSD. The machine name is `xbba`.
 
-```console
-$ caffeinate ssh xbba
+```sh
+caffeinate ssh xbba
 ```
 
 Before starting a build, check if Docker is started:
 
-```console
-$ docker info
+```sh
+docker info
 ```
 
 Before running a build for the first time, it is recommended to preload the
 docker images.
 
-```console
-$ bash ~/Downloads/openocd-xpack.git/scripts/build.sh preload-images
+```sh
+bash ~/Downloads/openocd-xpack.git/scripts/build.sh preload-images
 ```
 
 The result should look similar to:
@@ -259,11 +263,11 @@ Since the build takes a while, use `screen` to isolate the build session
 from unexpected events, like a broken
 network connection or a computer entering sleep.
 
-```console
-$ screen -S openocd
+```sh
+screen -S openocd
 
-$ sudo rm -rf ~/Work/openocd-*
-$ bash ~/Downloads/openocd-xpack.git/scripts/build.sh --all
+sudo rm -rf ~/Work/openocd-*
+bash ~/Downloads/openocd-xpack.git/scripts/build.sh --all
 ```
 
 To detach from the session, use `Ctrl-a` `Ctrl-d`; to reattach use
@@ -281,30 +285,23 @@ total 7120
 -rw-rw-rw- 1 ilg ilg     107 Mar 26 15:50 xpack-openocd-0.11.0-1-linux-arm.tar.gz.sha
 ```
 
-To copy the files from the build machine to the current development
-machine, either use NFS to mount the entire folder, or open the `deploy`
-folder in a terminal and use `scp`:
-
-```console
-$ (cd ~/Work/openocd-*/deploy; scp * ilg@wks:Downloads/xpack-binaries/openocd)
-```
-
-#### Build the macOS binaries
+### Build the macOS binaries
 
 The current platform for macOS production builds is a macOS 10.10.5
 running on a MacBook Pro with 32 GB of RAM and a fast SSD.
 
-```console
-$ caffeinate ssh xbbm
+```sh
+caffeinate ssh xbbm
 ```
 
 To build the latest macOS version:
 
-```console
-$ screen -S openocd
+```sh
+screen -S openocd
 
-$ rm -rf ~/Work/openocd-*
-$ caffeinate bash ~/Downloads/openocd-xpack.git/scripts/build.sh --osx
+rm -rf ~/Work/openocd-*
+
+caffeinate bash ~/Downloads/openocd-xpack.git/scripts/build.sh --osx
 ```
 
 To detach from the session, use `Ctrl-a` `Ctrl-d`; to reattach use
@@ -321,43 +318,35 @@ total 5536
 -rw-r--r--  1 ilg  staff      108 Jun 10 17:44 xpack-openocd-0.11.0-1-darwin-x64.tar.gz.sha
 ```
 
-To copy the files from the build machine to the current development
-machine, either use NFS to mount the entire folder, or open the `deploy`
-folder in a terminal and use `scp`:
+## Subsequent runs
 
-```console
-$ (cd ~/Work/openocd-*/deploy; scp * ilg@wks:Downloads/xpack-binaries/openocd)
-```
-
-### Subsequent runs
-
-#### Separate platform specific builds
+### Separate platform specific builds
 
 Instead of `--all`, you can use any combination of:
 
-```
+```console
 --win32 --win64 --linux32 --linux64
 --arm --arm64
 ```
 
-#### `clean`
+### `clean`
 
 To remove most build temporary files, use:
 
-```console
-$ bash ~/Downloads/openocd-xpack.git/scripts/build.sh --all clean
+```sh
+bash ~/Downloads/openocd-xpack.git/scripts/build.sh --all clean
 ```
 
 To also remove the library build temporary files, use:
 
-```console
-$ bash ~/Downloads/openocd-xpack.git/scripts/build.sh --all cleanlibs
+```sh
+bash ~/Downloads/openocd-xpack.git/scripts/build.sh --all cleanlibs
 ```
 
 To remove all temporary files, use:
 
-```console
-$ bash ~/Downloads/openocd-xpack.git/scripts/build.sh --all cleanall
+```sh
+bash ~/Downloads/openocd-xpack.git/scripts/build.sh --all cleanall
 ```
 
 Instead of `--all`, any combination of `--win32 --win64 --linux32 --linux64`
@@ -365,7 +354,7 @@ will remove the more specific folders.
 
 For production builds it is recommended to completely remove the build folder.
 
-#### `--develop`
+### `--develop`
 
 For performance reasons, the actual build folders are internal to each
 Docker run, and are not persistent. This gives the best speed, but has
@@ -374,12 +363,17 @@ the disadvantage that interrupted builds cannot be resumed.
 For development builds, it is possible to define the build folders in
 the host file system, and resume an interrupted build.
 
-#### `--debug`
+### `--debug`
 
 For development builds, it is also possible to create everything with
 `-g -O0` and be able to run debug sessions.
 
-#### Interrupted builds
+### --jobs
+
+By default, the build steps use all available cores. If, for any reason,
+parallel builds fail, it is possible to reduce the load.
+
+### Interrupted builds
 
 The Docker scripts run with root privileges. This is generally not a
 problem, since at the end of the script the output files are reassigned
@@ -469,7 +463,7 @@ may fail.
 
 The workaround is to manually download the files from an alternate
 location (like
-https://github.com/xpack-dev-tools/files-cache/tree/master/libs),
+<https://github.com/xpack-dev-tools/files-cache/tree/master/libs>),
 place them in the XBB cache (`Work/cache`) and restart the build.
 
 ## More build details
