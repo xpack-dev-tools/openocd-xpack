@@ -1,5 +1,12 @@
 {
-    "editor.tabSize": 2,
-    "editor.stablePeek": true,
-    "editor.detectIndentation": false
+  "editor.tabSize": 2,
+  "editor.detectIndentation": false,
+  "editor.stablePeek": true,
+  "markdownlint.config": {
+    "MD041": false
+  },
+  "spellright.language": [
+    "en_GB"
+  ],
+  "spellright.notificationClass": "warning"
 }
