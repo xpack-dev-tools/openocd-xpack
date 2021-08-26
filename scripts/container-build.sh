@@ -132,7 +132,7 @@ do
       shift
       ;;
 
-    --disable-tests)
+    --disable-tests|--without-tests)
       WITH_TESTS="n"
       shift
       ;;
@@ -189,6 +189,11 @@ done
 if [ "${IS_DEBUG}" == "y" ]
 then
   WITH_STRIP="n"
+fi
+
+if [ "${TARGET_PLATFORM}" == "win32" ]
+then
+  export WITH_TESTS="n"
 fi
 
 # -----------------------------------------------------------------------------
