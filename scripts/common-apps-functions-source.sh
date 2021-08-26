@@ -18,8 +18,6 @@ function download_openocd()
   if [ ! -d "${WORK_FOLDER_PATH}/${OPENOCD_SRC_FOLDER_NAME}" ]
   then
     (
-      xbb_activate
-
       cd "${WORK_FOLDER_PATH}"
       git_clone "${OPENOCD_GIT_URL}" "${OPENOCD_GIT_BRANCH}" \
           "${OPENOCD_GIT_COMMIT}" "${OPENOCD_SRC_FOLDER_NAME}"
@@ -31,19 +29,26 @@ function download_openocd()
 
 # -----------------------------------------------------------------------------
 
-function do_openocd()
+function build_openocd()
 {
-    download_openocd
+  download_openocd
 
+  local openocd_stamp_file_path="${INSTALL_FOLDER_PATH}/stamp-openocd-installed"
+
+  if [ ! -f "${openocd_stamp_file_path}" ]
+  then
     (
-      xbb_activate
       xbb_activate_installed_dev
 
+      mkdir -pv "${LOGS_FOLDER_PATH}/openocd/"
+
       cd "${WORK_FOLDER_PATH}/${OPENOCD_SRC_FOLDER_NAME}"
-      if [ ! -d "autom4te.cache" ]
-      then
-        ./bootstrap
-      fi
+      (
+        if [ ! -d "autom4te.cache" ]
+        then
+          ./bootstrap
+        fi
+      ) 2>&1 | tee "${LOGS_FOLDER_PATH}/openocd/configure-output.txt"
 
       mkdir -pv "${APP_BUILD_FOLDER_PATH}"
       cd "${APP_BUILD_FOLDER_PATH}"
@@ -200,10 +205,9 @@ function do_openocd()
       export CPPFLAGS 
       export CFLAGS 
       export CXXFLAGS 
+
       export LDFLAGS
       export LIBS
-
-      env | sort
 
       if [ ! -f "config.status" ]
       then
@@ -213,16 +217,18 @@ function do_openocd()
         rm -rfv "${WORK_FOLDER_PATH}/${OPENOCD_SRC_FOLDER_NAME}/jimtcl/autosetup/jimsh0"
 
         (
+          env | sort
+
           echo
           echo "Running openocd configure..."
       
           bash "${WORK_FOLDER_PATH}/${OPENOCD_SRC_FOLDER_NAME}/configure" --help
 
           run_verbose bash ${DEBUG} "${WORK_FOLDER_PATH}/${OPENOCD_SRC_FOLDER_NAME}/configure" \
-            ${config_options[@]}
+            "${config_options[@]}"
 
-          cp "config.log" "${LOGS_FOLDER_PATH}/config-openocd-log.txt"
-        ) 2>&1 | tee "${LOGS_FOLDER_PATH}/configure-openocd-output.txt"
+          cp "config.log" "${LOGS_FOLDER_PATH}/openocd/config-log.txt"
+        ) 2>&1 | tee "${LOGS_FOLDER_PATH}/openocd/configure-output.txt"
 
       fi
 
@@ -238,14 +244,6 @@ function do_openocd()
           run_verbose make install-strip
         else
           run_verbose make install  
-        fi
-
-        if [ "${TARGET_PLATFORM}" == "linux" ]
-        then
-          # Hack to get libudev.so in line with the all rpath policy.
-          # Manually add $ORIGIN to libudev.so (fingers crossed!).
-          cp "${LIBS_INSTALL_FOLDER_PATH}/lib/libudev.so" "${APP_PREFIX}/bin"
-          run_verbose patchelf --force-rpath --set-rpath "\$ORIGIN" "${APP_PREFIX}/bin/libudev.so"
         fi
 
         if [ "${TARGET_PLATFORM}" == "win32" ]
@@ -269,16 +267,25 @@ function do_openocd()
           fi
         )
 
-      ) 2>&1 | tee "${LOGS_FOLDER_PATH}/make-openocd-output.txt"
+      ) 2>&1 | tee "${LOGS_FOLDER_PATH}/openocd/make-output.txt"
 
       copy_license \
         "${WORK_FOLDER_PATH}/${OPENOCD_SRC_FOLDER_NAME}" \
         "${OPENOCD_FOLDER_NAME}"
     )
+
+    touch "${openocd_stamp_file_path}"
+  else
+    echo "Component openocd already installed."
+  fi
+
+  tests_add "test_openocd"
 }
 
-function run_openocd()
+function test_openocd()
 {
+  show_libs "${APP_PREFIX}/bin/openocd"
+
   run_app "${APP_PREFIX}/bin/openocd" --version
 
   # Does not return 0.
