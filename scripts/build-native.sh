@@ -40,6 +40,10 @@ script_folder_name="$(basename "${script_folder_path}")"
 
 # =============================================================================
 
+helper_folder_path="${script_folder_path}/helper"
+
+# -----------------------------------------------------------------------------
+
 # Script to build a native xPack OpenOCD, which uses the
 # tools and libraries available on the host machine. It is generally
 # intended for development and creating customised versions (as opposed
@@ -52,8 +56,8 @@ script_folder_name="$(basename "${script_folder_path}")"
 echo
 echo "xPack OpenOCD native build script."
 
-host_functions_script_path="${script_folder_path}/helper/host-functions-source.sh"
-source "${host_functions_script_path}"
+helper_host_functions_script_path="${helper_folder_path}/host-functions-source.sh"
+source "${helper_host_functions_script_path}"
 
 common_functions_script_path="${script_folder_path}/common-functions-source.sh"
 source "${common_functions_script_path}"
@@ -69,7 +73,7 @@ help_message="    bash $0 [--win] [--debug] [--develop] [--jobs N] [--help] [cle
 host_native_options "${help_message}" $@
 
 echo
-echo "Host helper functions source script: \"${host_functions_script_path}\"."
+echo "Host helper functions source script: \"${helper_host_functions_script_path}\"."
 echo "Common functions source script: \"${common_functions_script_path}\"."
 echo "Definitions source script: \"${defines_script_path}\"."
 
@@ -84,9 +88,9 @@ prepare_xbb_extras
 
 # -----------------------------------------------------------------------------
 
-common_helper_libs_functions_script_path="${script_folder_path}/helper/common-libs-functions-source.sh"
-echo "Common helper libs functions source script: \"${common_helper_libs_functions_script_path}\"."
-source "${common_helper_libs_functions_script_path}"
+helper_common_libs_functions_script_path="${helper_folder_path}/common-libs-functions-source.sh"
+echo "Common helper libs functions source script: \"${helper_common_libs_functions_script_path}\"."
+source "${helper_common_libs_functions_script_path}"
 
 common_functions_script_path="${script_folder_path}/common-functions-source.sh"
 echo "Common functions source script: \"${common_functions_script_path}\"."

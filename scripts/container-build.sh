@@ -40,6 +40,10 @@ script_folder_name="$(basename "${script_folder_path}")"
 
 # =============================================================================
 
+helper_folder_path="${script_folder_path}/helper"
+
+# -----------------------------------------------------------------------------
+
 # Inner script to run inside Docker containers to build the 
 # xPack OpenOCD distribution packages.
 
@@ -57,13 +61,13 @@ host_defines_script_path="${script_folder_path}/host-defs-source.sh"
 echo "Host definitions source script: \"${host_defines_script_path}\"."
 source "${host_defines_script_path}"
 
-common_helper_functions_script_path="${script_folder_path}/helper/common-functions-source.sh"
-echo "Common helper functions source script: \"${common_helper_functions_script_path}\"."
-source "${common_helper_functions_script_path}"
+helper_common_functions_script_path="${helper_folder_path}/common-functions-source.sh"
+echo "Common helper functions source script: \"${helper_common_functions_script_path}\"."
+source "${helper_common_functions_script_path}"
 
-common_helper_libs_functions_script_path="${script_folder_path}/helper/common-libs-functions-source.sh"
-echo "Common helper libs functions source script: \"${common_helper_libs_functions_script_path}\"."
-source "${common_helper_libs_functions_script_path}"
+helper_common_libs_functions_script_path="${helper_folder_path}/common-libs-functions-source.sh"
+echo "Common helper libs functions source script: \"${helper_common_libs_functions_script_path}\"."
+source "${helper_common_libs_functions_script_path}"
 
 common_functions_script_path="${script_folder_path}/common-functions-source.sh"
 echo "Common functions source script: \"${common_functions_script_path}\"."
@@ -73,9 +77,17 @@ common_versions_script_path="${script_folder_path}/common-versions-source.sh"
 echo "Common versions source script: \"${common_versions_script_path}\"."
 source "${common_versions_script_path}"
 
-container_functions_script_path="${script_folder_path}/helper/container-functions-source.sh"
-echo "Container helper functions source script: \"${container_functions_script_path}\"."
-source "${container_functions_script_path}"
+helper_container_functions_script_path="${helper_folder_path}/container-functions-source.sh"
+echo "Container helper functions source script: \"${helper_container_functions_script_path}\"."
+source "${helper_container_functions_script_path}"
+
+helper_common_libs_functions_script_path="${helper_folder_path}/common-libs-functions-source.sh"
+echo "Common helper libs functions source script: \"${helper_common_libs_functions_script_path}\"."
+source "${helper_common_libs_functions_script_path}"
+
+helper_common_apps_functions_script_path="${helper_folder_path}/common-apps-functions-source.sh"
+echo "Common helper apps functions source script: \"${helper_common_apps_functions_script_path}\"."
+source "${helper_common_apps_functions_script_path}"
 
 container_libs_functions_script_path="${script_folder_path}/${COMMON_LIBS_FUNCTIONS_SCRIPT_NAME}"
 echo "Container libs functions source script: \"${container_libs_functions_script_path}\"."

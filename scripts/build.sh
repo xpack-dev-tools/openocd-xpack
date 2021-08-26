@@ -40,6 +40,10 @@ script_folder_name="$(basename "${script_folder_path}")"
 
 # =============================================================================
 
+helper_folder_path="${script_folder_path}/helper"
+
+# -----------------------------------------------------------------------------
+
 # Script to build the xPack OpenOCD distribution packages.
 #
 # Developed on macOS 10.13 High Sierra, but intended to run on
@@ -50,8 +54,8 @@ script_folder_name="$(basename "${script_folder_path}")"
 echo
 echo "xPack OpenOCD distribution build script."
 
-host_functions_script_path="${script_folder_path}/helper/host-functions-source.sh"
-source "${host_functions_script_path}"
+helper_host_functions_script_path="${helper_folder_path}/host-functions-source.sh"
+source "${helper_host_functions_script_path}"
 
 common_functions_script_path="${script_folder_path}/common-functions-source.sh"
 source "${common_functions_script_path}"
@@ -77,8 +81,8 @@ host_options "${help_message}" "$@"
 
 # Intentionally moved after option parsing.
 echo
-echo "Host helper functions source script: \"${host_functions_script_path}\"."
-echo "Common functions source script: \"${common_functions_script_path}\"."
+echo "Host helper functions source script: \"${helper_host_functions_script_path}\"."
+# echo "Common functions source script: \"${common_functions_script_path}\"."
 echo "Definitions source script: \"${defines_script_path}\"."
 
 host_common
