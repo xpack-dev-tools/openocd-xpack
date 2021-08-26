@@ -62,10 +62,6 @@ function build_libusb1()
       then
         LDFLAGS+=" -Wl,-rpath,${LD_LIBRARY_PATH}"
       fi      
-      if [ "${IS_DEVELOP}" == "y" ]
-      then
-        LDFLAGS+=" -v"
-      fi
 
       export CPPFLAGS
       export CFLAGS
@@ -168,10 +164,6 @@ function build_libusb0()
       then
         LDFLAGS+=" -Wl,-rpath,${LD_LIBRARY_PATH}"
       fi      
-      if [ "${IS_DEVELOP}" == "y" ]
-      then
-        LDFLAGS+=" -v"
-      fi
 
       export CPPFLAGS
       export CFLAGS
@@ -299,10 +291,6 @@ function build_libusb_w32()
           CFLAGS="${XBB_CFLAGS_NO_W}"
           CXXFLAGS="${XBB_CXXFLAGS_NO_W}"
           LDFLAGS="${XBB_LDFLAGS_LIB}"
-          if [ "${IS_DEVELOP}" == "y" ]
-          then
-            LDFLAGS+=" -v"
-          fi
 
           export CPPFLAGS
           export CFLAGS
@@ -397,10 +385,6 @@ function build_libftdi()
       then
         LDFLAGS+=" -Wl,-rpath,${LD_LIBRARY_PATH}"
       fi      
-      if [ "${IS_DEVELOP}" == "y" ]
-      then
-        LDFLAGS+=" -v"
-      fi
 
       export CPPFLAGS
       export CFLAGS
@@ -527,10 +511,6 @@ function build_hidapi()
         CFLAGS="${XBB_CFLAGS_NO_W}"
         CXXFLAGS="${XBB_CXXFLAGS_NO_W}"
         LDFLAGS="${XBB_LDFLAGS_LIB}"
-        if [ "${IS_DEVELOP}" == "y" ]
-        then
-          LDFLAGS+=" -v"
-        fi
 
         export CPPFLAGS
         export CFLAGS
@@ -588,10 +568,6 @@ function build_hidapi()
         then
           LDFLAGS+=" -Wl,-rpath,${LD_LIBRARY_PATH}"
         fi      
-        if [ "${IS_DEVELOP}" == "y" ]
-        then
-          LDFLAGS+=" -v"
-        fi
 
         export CPPFLAGS
         export CFLAGS
