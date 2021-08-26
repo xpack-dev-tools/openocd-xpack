@@ -13,7 +13,7 @@
 
 # -----------------------------------------------------------------------------
 
-function do_libusb1()
+function build_libusb1()
 {
   # https://sourceforge.net/projects/libusb/files/libusb-1.0/
   # https://aur.archlinux.org/cgit/aur.git/tree/PKGBUILD?h=mingw-w64-libusb
@@ -129,7 +129,7 @@ function do_libusb1()
 }
 
 # Required by GNU/Linux and macOS.
-function do_libusb0()
+function build_libusb0()
 {
   # https://sourceforge.net/projects/libusb/files/libusb-compat-0.1/
 
@@ -236,7 +236,7 @@ function do_libusb0()
 }
 
 # Required by Windows.
-function do_libusb_w32()
+function build_libusb_w32()
 {
   # https://sourceforge.net/projects/libusb-win32/files/libusb-win32-releases/
   # 2012-01-17, 1.2.6.0 
@@ -354,7 +354,7 @@ function do_libusb_w32()
   fi
 }
 
-function do_libftdi()
+function build_libftdi()
 {
   # http://www.intra2net.com/en/developer/libftdi/download.php
   # https://www.intra2net.com/en/developer/libftdi/download/libftdi1-1.4.tar.bz2
@@ -475,7 +475,7 @@ function do_libftdi()
   fi
 }
 
-function do_hidapi() 
+function build_hidapi() 
 {
   # https://github.com/signal11/hidapi/downloads
 
