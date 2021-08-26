@@ -29,163 +29,171 @@ function build_versions()
   LIBFTDI_PATCH=""
   LIBUSB_W32_PATCH=""
 
-  USE_TAR_GZ="y"
-  USE_SINGLE_FOLDER_PATH="y"
-
   OPENOCD_VERSION="${RELEASE_VERSION}"
 
   # TODO: update to new strategy, and naming schema, with build_xxx
   # and running the tests after packing the archive.
+
+  (
+    xbb_activate
+
+    build_patchelf "0.12"
+  )
   
+  if [ "${TARGET_PLATFORM}" == "win32" ]
+  then
+    prepare_gcc_env "${CROSS_COMPILE_PREFIX}-"
+  fi
+
   # Keep them in sync with combo archive content.
   if [[ "${RELEASE_VERSION}" =~ 0\.11\.0-1 ]]
   then
+    (
+      xbb_activate
 
-    # -------------------------------------------------------------------------
-    
-    # Used in the licenses folder.
-    OPENOCD_FOLDER_NAME="openocd-${OPENOCD_VERSION}"
+      # -------------------------------------------------------------------------
+      
+      # Used in the licenses folder.
+      OPENOCD_FOLDER_NAME="openocd-${OPENOCD_VERSION}"
 
-    # OPENOCD_GIT_BRANCH=${OPENOCD_GIT_BRANCH:-"xpack"}
-    OPENOCD_GIT_BRANCH=${OPENOCD_GIT_BRANCH:-"xpack-develop"}
-    OPENOCD_GIT_COMMIT=${OPENOCD_GIT_COMMIT:-"e392e485e40036543e6a3cce04570e7525c48ca2"}
-    
-    # -------------------------------------------------------------------------
+      # OPENOCD_GIT_BRANCH=${OPENOCD_GIT_BRANCH:-"xpack"}
+      OPENOCD_GIT_BRANCH=${OPENOCD_GIT_BRANCH:-"xpack-develop"}
+      OPENOCD_GIT_COMMIT=${OPENOCD_GIT_COMMIT:-"e392e485e40036543e6a3cce04570e7525c48ca2"}
+      
+      # -------------------------------------------------------------------------
 
-    do_libusb1 "1.0.22"
-    if [ "${TARGET_PLATFORM}" == "win32" ]
-    then
-      do_libusb_w32 "1.2.6.0"
-    else
-      do_libusb0 "0.1.5"
-    fi
+      build_libusb1 "1.0.22"
+      if [ "${TARGET_PLATFORM}" == "win32" ]
+      then
+        build_libusb_w32 "1.2.6.0"
+      else
+        build_libusb0 "0.1.5"
+      fi
 
-    do_libftdi "1.4"
+      build_libftdi "1.4"
 
-    build_libiconv "1.15"
+      build_libiconv "1.15"
 
-    do_hidapi "0.9.0"
+      build_hidapi "0.9.0"
 
-    # -------------------------------------------------------------------------
+      # -------------------------------------------------------------------------
 
-    do_openocd
-
-    run_openocd
-
+      build_openocd
+    )
     # -------------------------------------------------------------------------
   elif [[ "${RELEASE_VERSION}" =~ 0\.10\.0-1[56] ]]
   then
+    (
+      xbb_activate
 
-    # -------------------------------------------------------------------------
-    
-    # Used in the licenses folder.
-    OPENOCD_FOLDER_NAME="openocd-${OPENOCD_VERSION}"
+      # -------------------------------------------------------------------------
+      
+      # Used in the licenses folder.
+      OPENOCD_FOLDER_NAME="openocd-${OPENOCD_VERSION}"
 
-    OPENOCD_GIT_BRANCH=${OPENOCD_GIT_BRANCH:-"xpack"}
-    # OPENOCD_GIT_BRANCH=${OPENOCD_GIT_BRANCH:-"xpack-develop"}
-    OPENOCD_GIT_COMMIT=${OPENOCD_GIT_COMMIT:-"819d1a93b400582e008a7d02ccad93ffedf1161f"}
-    
-    # -------------------------------------------------------------------------
+      OPENOCD_GIT_BRANCH=${OPENOCD_GIT_BRANCH:-"xpack"}
+      # OPENOCD_GIT_BRANCH=${OPENOCD_GIT_BRANCH:-"xpack-develop"}
+      OPENOCD_GIT_COMMIT=${OPENOCD_GIT_COMMIT:-"819d1a93b400582e008a7d02ccad93ffedf1161f"}
+      
+      # -------------------------------------------------------------------------
 
-    do_libusb1 "1.0.22"
-    if [ "${TARGET_PLATFORM}" == "win32" ]
-    then
-      do_libusb_w32 "1.2.6.0"
-    else
-      do_libusb0 "0.1.5"
-    fi
+      build_libusb1 "1.0.22"
+      if [ "${TARGET_PLATFORM}" == "win32" ]
+      then
+        build_libusb_w32 "1.2.6.0"
+      else
+        build_libusb0 "0.1.5"
+      fi
 
-    do_libftdi "1.4"
+      build_libftdi "1.4"
 
-    build_libiconv "1.15"
+      build_libiconv "1.15"
 
-    do_hidapi "0.9.0"
+      build_hidapi "0.9.0"
 
-    # -------------------------------------------------------------------------
+      # -------------------------------------------------------------------------
 
-    do_openocd
-
-    run_openocd
-
+      build_openocd
+    )
     # -------------------------------------------------------------------------
   elif [[ "${RELEASE_VERSION}" =~ 0\.10\.0-14 ]]
   then
+    (
+      xbb_activate
 
-    # -------------------------------------------------------------------------
-    
-    OPENOCD_VERSION="0.10.0-14"
+      # -------------------------------------------------------------------------
+      
+      OPENOCD_VERSION="0.10.0-14"
 
-    # Used in the licenses folder.
-    OPENOCD_FOLDER_NAME="openocd-${OPENOCD_VERSION}"
+      # Used in the licenses folder.
+      OPENOCD_FOLDER_NAME="openocd-${OPENOCD_VERSION}"
 
-    OPENOCD_GIT_BRANCH=${OPENOCD_GIT_BRANCH:-"xpack"}
-    # OPENOCD_GIT_BRANCH=${OPENOCD_GIT_BRANCH:-"xpack-develop"}
-    OPENOCD_GIT_COMMIT=${OPENOCD_GIT_COMMIT:-"e5be992df1a893e2e865419a02a564d5f9ccd9dd"}
+      OPENOCD_GIT_BRANCH=${OPENOCD_GIT_BRANCH:-"xpack"}
+      # OPENOCD_GIT_BRANCH=${OPENOCD_GIT_BRANCH:-"xpack-develop"}
+      OPENOCD_GIT_COMMIT=${OPENOCD_GIT_COMMIT:-"e5be992df1a893e2e865419a02a564d5f9ccd9dd"}
 
-    README_OUT_FILE_NAME="README-${RELEASE_VERSION}.md"
+      README_OUT_FILE_NAME="README-${RELEASE_VERSION}.md"
 
-    # -------------------------------------------------------------------------
+      # -------------------------------------------------------------------------
 
-    do_libusb1 "1.0.22"
-    if [ "${TARGET_PLATFORM}" == "win32" ]
-    then
-      do_libusb_w32 "1.2.6.0"
-    else
-      do_libusb0 "0.1.5"
-    fi
+      build_libusb1 "1.0.22"
+      if [ "${TARGET_PLATFORM}" == "win32" ]
+      then
+        build_libusb_w32 "1.2.6.0"
+      else
+        build_libusb0 "0.1.5"
+      fi
 
-    do_libftdi "1.4"
+      build_libftdi "1.4"
 
-    build_libiconv "1.15"
+      build_libiconv "1.15"
 
-    do_hidapi "0.9.0"
+      build_hidapi "0.9.0"
 
-    # -------------------------------------------------------------------------
+      # -------------------------------------------------------------------------
 
-    do_openocd
-
-    run_openocd
-
+      build_openocd
+    )
     # -------------------------------------------------------------------------
   elif [[ "${RELEASE_VERSION}" =~ 0\.10\.0-13 ]]
   then
+    (
+      xbb_activate
 
-    # -------------------------------------------------------------------------
-    
-    OPENOCD_VERSION="0.10.0-13"
+      # -------------------------------------------------------------------------
+      
+      OPENOCD_VERSION="0.10.0-13"
 
-    # Used in the licenses folder.
-    OPENOCD_FOLDER_NAME="openocd-${OPENOCD_VERSION}"
+      # Used in the licenses folder.
+      OPENOCD_FOLDER_NAME="openocd-${OPENOCD_VERSION}"
 
-    OPENOCD_GIT_BRANCH=${OPENOCD_GIT_BRANCH:-"xpack"}
-    OPENOCD_GIT_COMMIT=${OPENOCD_GIT_COMMIT:-"191d1b176cf32280fc649d3c5afcff44d6205daf"}
+      OPENOCD_GIT_BRANCH=${OPENOCD_GIT_BRANCH:-"xpack"}
+      OPENOCD_GIT_COMMIT=${OPENOCD_GIT_COMMIT:-"191d1b176cf32280fc649d3c5afcff44d6205daf"}
 
-    README_OUT_FILE_NAME="README-${RELEASE_VERSION}.md"
+      README_OUT_FILE_NAME="README-${RELEASE_VERSION}.md"
 
-    # -------------------------------------------------------------------------
+      # -------------------------------------------------------------------------
 
-    USE_TAR_GZ=""
+      USE_TAR_GZ=""
 
-    do_libusb1 "1.0.22"
-    if [ "${TARGET_PLATFORM}" == "win32" ]
-    then
-      do_libusb_w32 "1.2.6.0"
-    else
-      do_libusb0 "0.1.5"
-    fi
+      build_libusb1 "1.0.22"
+      if [ "${TARGET_PLATFORM}" == "win32" ]
+      then
+        build_libusb_w32 "1.2.6.0"
+      else
+        build_libusb0 "0.1.5"
+      fi
 
-    do_libftdi "1.4"
+      build_libftdi "1.4"
 
-    build_libiconv "1.15"
+      build_libiconv "1.15"
 
-    do_hidapi "0.9.0"
+      build_hidapi "0.9.0"
 
-    # -------------------------------------------------------------------------
+      # -------------------------------------------------------------------------
 
-    do_openocd
-
-    run_openocd
-
+      build_openocd
+    )
     # -------------------------------------------------------------------------
   else
     echo "Unsupported version ${RELEASE_VERSION}."
