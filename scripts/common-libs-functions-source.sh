@@ -20,6 +20,7 @@ function build_libusb1()
 
   # 2015-09-14, 1.0.20
   # 2018-03-25, 1.0.22
+  # 2020-12-11, 1.0.24
 
   local libusb1_version="$1"
 
@@ -346,6 +347,8 @@ function build_libftdi()
 
   # 1.2 (no date)
   # libftdi_version="1.2" # +PATCH!
+  # 1.4
+  # 1.5
 
   local libftdi_version="$1"
 
@@ -467,6 +470,8 @@ function build_hidapi()
   # https://github.com/libusb/hidapi/releases
   # https://github.com/libusb/hidapi/archive/hidapi-0.9.0.zip
   # Jun 19 2019 "hidapi-0.9.0", maintained releases by libusb
+
+  # Nov 24, 2020, 0.10.1
 
   local hidapi_version="$1"
 
