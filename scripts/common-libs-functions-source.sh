@@ -45,7 +45,6 @@ function build_libusb1()
       mkdir -pv "${LIBS_BUILD_FOLDER_PATH}/${libusb1_folder_name}"
       cd "${LIBS_BUILD_FOLDER_PATH}/${libusb1_folder_name}"
 
-      xbb_activate
       xbb_activate_installed_dev
 
       if [ "${TARGET_PLATFORM}" == "darwin" ]
@@ -159,7 +158,6 @@ function build_libusb0()
       mkdir -pv "${LIBS_BUILD_FOLDER_PATH}/${libusb0_folder_name}"
       cd "${LIBS_BUILD_FOLDER_PATH}/${libusb0_folder_name}"
 
-      xbb_activate
       xbb_activate_installed_dev
 
       CPPFLAGS="${XBB_CPPFLAGS}"
@@ -279,7 +277,6 @@ function build_libusb_w32()
 
       cd "${LIBS_BUILD_FOLDER_PATH}/${libusb_w32_folder_name}"
 
-      xbb_activate
       xbb_activate_installed_dev
 
       # Patch from:
@@ -390,7 +387,6 @@ function build_libftdi()
       mkdir -pv "${LIBS_BUILD_FOLDER_PATH}/${libftdi_folder_name}"
       cd "${LIBS_BUILD_FOLDER_PATH}/${libftdi_folder_name}"
 
-      xbb_activate
       xbb_activate_installed_dev
 
       CPPFLAGS="${XBB_CPPFLAGS}"
@@ -517,7 +513,6 @@ function build_hidapi()
     (
       cd "${LIBS_BUILD_FOLDER_PATH}/${hidapi_folder_name}"
 
-      xbb_activate
       xbb_activate_installed_dev
 
       if [ "${TARGET_PLATFORM}" == "win32" ]
