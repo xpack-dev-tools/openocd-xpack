@@ -112,6 +112,8 @@ IS_DEBUG=""
 WITH_TESTS="y"
 LINUX_INSTALL_RELATIVE_PATH=""
 
+TEST_ONLY=""
+
 if [ "$(uname)" == "Linux" ]
 then
   JOBS="$(nproc)"
@@ -177,6 +179,11 @@ do
       shift 2
       ;;
 
+    --test-only)
+      TEST_ONLY="y"
+      shift
+      ;;
+
     *)
       echo "Unknown action/option $1"
       exit 1
@@ -204,7 +211,7 @@ detect_container
 
 prepare_xbb_env
 
-prepare_xbb_extras
+tests_initialize
 
 # -----------------------------------------------------------------------------
 
@@ -216,14 +223,50 @@ build_versions
 
 # -----------------------------------------------------------------------------
 
-copy_distro_files
+if [ ! "${TEST_ONLY}" == "y" ]
+then
+  (
+    if [ -x "${LIBS_INSTALL_FOLDER_PATH}/bin/patchelf" ]
+    then
+      export PATCHELF="${LIBS_INSTALL_FOLDER_PATH}/bin/patchelf"
+    else
+      export PATCHELF="$(which patchelf)"
+    fi
 
-check_binaries
+    if [ "${TARGET_PLATFORM}" == "linux" ]
+    then
+      # Hack to get libudev.so in line with the 'all rpath' policy.
+      # Manually add $ORIGIN to libudev.so (fingers crossed!).
+#      mkdir -pv "${APP_PREFIX}/libexec"
+#      cp "${LIBS_INSTALL_FOLDER_PATH}/lib/libudev.so" "${APP_PREFIX}/libexec"
+#      run_verbose ${PATCHELF} --force-rpath --set-rpath "\$ORIGIN" "${APP_PREFIX}/libexec/libudev.so"
+      run_verbose ${PATCHELF} --force-rpath --set-rpath "\$ORIGIN" "${LIBS_INSTALL_FOLDER_PATH}/lib/libudev.so"
+    elif [ "${TARGET_PLATFORM}" == "win32" ]
+    then
+      # The 32-bit Windows still has a reference to libgcc_s and libwinpthread
+      DO_COPY_GCC_LIBS="y"
+    fi
 
-create_archive
+    prepare_app_folder_libraries
 
-# Change ownership to non-root Linux user.
-fix_ownership
+    strip_libs
+
+    copy_distro_files
+
+    check_binaries
+
+    create_archive
+
+    # Change ownership to non-root Linux user.
+    fix_ownership
+  )
+fi
+
+# -----------------------------------------------------------------------------
+
+prime_wine
+
+tests_run
 
 # -----------------------------------------------------------------------------
 

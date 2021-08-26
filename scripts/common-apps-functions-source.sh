@@ -255,8 +255,6 @@ function do_openocd()
           run_verbose patchelf --force-rpath --set-rpath "\$ORIGIN" "${APP_PREFIX}/bin/libudev.so"
         fi
 
-        prepare_app_libraries "${APP_PREFIX}/bin/openocd"
-
         if [ "${TARGET_PLATFORM}" == "win32" ]
         then
           rm -f "${APP_PREFIX}/bin/openocdw.exe"
