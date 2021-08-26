@@ -31,7 +31,7 @@ does not download it again if available locally.
 To force a new download, remove the local archive:
 
 ```sh
-rm ~/Work/cache/xpack-openocd-*
+rm -rf ~/Work/cache/xpack-openocd-*
 ```
 
 ## Start the Travis tests

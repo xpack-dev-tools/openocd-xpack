@@ -263,7 +263,7 @@ git clone --recurse-submodules -b xpack-develop \
   https://github.com/xpack-dev-tools/openocd-xpack.git  \
   ~/Downloads/openocd-xpack.git
 
-rm ~/Work/cache/xpack-openocd-*
+rm -rf ~/Work/cache/xpack-openocd-*
 
 bash ~/Downloads/openocd-xpack.git/tests/scripts/native-test.sh \
   "https://github.com/xpack-dev-tools/openocd-xpack/releases/download/v0.11.0-1/"
