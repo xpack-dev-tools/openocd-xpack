@@ -48,6 +48,13 @@ function do_openocd()
       mkdir -pv "${APP_BUILD_FOLDER_PATH}"
       cd "${APP_BUILD_FOLDER_PATH}"
 
+      CPPFLAGS="${XBB_CPPFLAGS}"
+      CFLAGS="${XBB_CFLAGS_NO_W}" 
+      CXXFLAGS="${XBB_CXXFLAGS_NO_W}" 
+      
+      LDFLAGS="${XBB_LDFLAGS_APP_STATIC_GCC}"
+      LIBS=""
+
       export JAYLINK_CFLAGS='${XBB_CFLAGS} -fvisibility=hidden'
 
       config_options=()
@@ -115,11 +122,7 @@ function do_openocd()
         export OUTPUT_DIR="${BUILD_FOLDER_PATH}"
         
         # Without it, mingw redefines it as 0.
-        CPPFLAGS="${XBB_CPPFLAGS} -D__USE_MINGW_ANSI_STDIO=1"
-        CFLAGS="${XBB_CFLAGS_NO_W}" 
-        CXXFLAGS="${XBB_CXXFLAGS_NO_W}" 
-        LDFLAGS="${XBB_LDFLAGS_APP}"
-        LIBS=""
+        CPPFLAGS+=" -D__USE_MINGW_ANSI_STDIO=1"
 
         # --enable-minidriver-dummy -> configure error
         # --enable-zy1000 -> netinet/tcp.h: No such file or directory
@@ -144,12 +147,8 @@ function do_openocd()
       elif [ "${TARGET_PLATFORM}" == "linux" ]
       then
 
-        CPPFLAGS="${XBB_CPPFLAGS}"
-        CFLAGS="${XBB_CFLAGS_NO_W}"
-        CXXFLAGS="${XBB_CXXFLAGS_NO_W}"
-        LDFLAGS="${XBB_LDFLAGS_APP}" 
         LDFLAGS+=" -Wl,-rpath,${LD_LIBRARY_PATH}"
-        LIBS="-lpthread -lrt -ludev"
+        LIBS+=" -lpthread -lrt -ludev"
 
         # --enable-minidriver-dummy -> configure error
 
@@ -169,12 +168,6 @@ function do_openocd()
 
       elif [ "${TARGET_PLATFORM}" == "darwin" ]
       then
-
-        CPPFLAGS="${XBB_CPPFLAGS}"
-        CFLAGS="${XBB_CFLAGS_NO_W}"
-        CXXFLAGS="${XBB_CXXFLAGS_NO_W}"
-        LDFLAGS="${XBB_LDFLAGS_APP}"
-        LIBS="" # "-lobjc"
 
         # --enable-minidriver-dummy -> configure error
 
