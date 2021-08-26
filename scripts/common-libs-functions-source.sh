@@ -88,7 +88,7 @@ function build_libusb1()
           config_options+=("--target=${TARGET}")
 
           run_verbose bash ${DEBUG} "${SOURCES_FOLDER_PATH}/${libusb1_src_folder_name}/configure" \
-            ${config_options[@]}
+            "${config_options[@]}"
           
           cp "config.log" "${LOGS_FOLDER_PATH}/${libusb1_folder_name}/config-log.txt"
         ) 2>&1 | tee "${LOGS_FOLDER_PATH}/${libusb1_folder_name}/configure-output.txt"
@@ -190,7 +190,7 @@ function build_libusb0()
           config_options+=("--target=${TARGET}")
 
           run_verbose bash ${DEBUG} "${SOURCES_FOLDER_PATH}/${libusb0_src_folder_name}/configure" \
-            ${config_options[@]}
+            "${config_options[@]}"
           
           cp "config.log" "${LOGS_FOLDER_PATH}/${libusb0_folder_name}/config-log.txt"
         ) 2>&1 | tee "${LOGS_FOLDER_PATH}/${libusb0_folder_name}/configure-output.txt"
@@ -593,7 +593,7 @@ function build_hidapi()
           config_options+=("--disable-testgui")
 
           run_verbose bash ${DEBUG} "configure" \
-            ${config_options[@]}
+            "${config_options[@]}"
         
           cp "config.log" "${LOGS_FOLDER_PATH}/${hidapi_folder_name}/config-log.txt"
         ) 2>&1 | tee "${LOGS_FOLDER_PATH}/${hidapi_folder_name}/configure-output.txt"
