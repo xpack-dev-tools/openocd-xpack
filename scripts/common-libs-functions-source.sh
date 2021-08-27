@@ -482,6 +482,8 @@ function build_hidapi()
 
   local hidapi_folder_name="${hidapi_src_folder_name}"
 
+  local hidapi_patch_file_name="hidapi-${hidapi_version}.patch"
+
   local hidapi_stamp_file_path="${INSTALL_FOLDER_PATH}/stamp-hidapi-${hidapi_version}-installed"
   if [ ! -f "${hidapi_stamp_file_path}" ]
   then
@@ -489,7 +491,7 @@ function build_hidapi()
     cd "${SOURCES_FOLDER_PATH}"
 
     download_and_extract "${hidapi_url}" "${hidapi_archive}" \
-      "${hidapi_src_folder_name}"
+      "${hidapi_src_folder_name}" "${hidapi_patch_file_name}"
 
     mkdir -pv "${LOGS_FOLDER_PATH}/${hidapi_folder_name}"
 

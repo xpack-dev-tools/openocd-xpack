@@ -74,7 +74,7 @@ function build_versions()
 
       build_libiconv "1.16"
 
-      build_hidapi "0.10.1"
+      build_hidapi "0.10.1" # PATCH!
 
       # -------------------------------------------------------------------------
 
