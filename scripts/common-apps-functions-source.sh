@@ -57,7 +57,9 @@ function build_openocd()
       CFLAGS="${XBB_CFLAGS_NO_W}" 
       CXXFLAGS="${XBB_CXXFLAGS_NO_W}" 
       
-      LDFLAGS="${XBB_LDFLAGS_APP_STATIC_GCC}"
+      # It makes little sense to use -static-libgcc here, since
+      # several shared libraries will refer to it anyway.
+      LDFLAGS="${XBB_LDFLAGS_APP}"
       LIBS=""
 
       export JAYLINK_CFLAGS='${XBB_CFLAGS} -fvisibility=hidden'
