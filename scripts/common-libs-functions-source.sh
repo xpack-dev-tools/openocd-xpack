@@ -347,8 +347,8 @@ function build_libftdi()
 
   # 1.2 (no date)
   # libftdi_version="1.2" # +PATCH!
-  # 1.4
-  # 1.5
+  # 1.4 +PATCH
+  # 1.5 +PATCH
 
   local libftdi_version="$1"
 
@@ -360,7 +360,7 @@ function build_libftdi()
 
   local libftdi_folder_name="${libftdi_src_folder_name}"
 
-  local libftdi_patch="libftdi1-${libftdi_version}-cmake-FindUSB1.patch"
+  local libftdi_patch="libftdi1-${libftdi_version}.patch"
 
   local libftdi_stamp_file_path="${INSTALL_FOLDER_PATH}/stamp-libftdi-${libftdi_version}-installed"
   if [ ! -f "${libftdi_stamp_file_path}" ]
