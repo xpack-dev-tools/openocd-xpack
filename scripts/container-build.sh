@@ -237,9 +237,6 @@ then
     then
       # Hack to get libudev.so in line with the 'all rpath' policy.
       # Manually add $ORIGIN to libudev.so (fingers crossed!).
-#      mkdir -pv "${APP_PREFIX}/libexec"
-#      cp "${LIBS_INSTALL_FOLDER_PATH}/lib/libudev.so" "${APP_PREFIX}/libexec"
-#      run_verbose ${PATCHELF} --force-rpath --set-rpath "\$ORIGIN" "${APP_PREFIX}/libexec/libudev.so"
       run_verbose ${PATCHELF} --force-rpath --set-rpath "\$ORIGIN" "${LIBS_INSTALL_FOLDER_PATH}/lib/libudev.so"
     elif [ "${TARGET_PLATFORM}" == "win32" ]
     then
