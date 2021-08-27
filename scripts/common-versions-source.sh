@@ -58,7 +58,7 @@ function build_versions()
 
       # OPENOCD_GIT_BRANCH=${OPENOCD_GIT_BRANCH:-"xpack"}
       OPENOCD_GIT_BRANCH=${OPENOCD_GIT_BRANCH:-"xpack-develop"}
-      OPENOCD_GIT_COMMIT=${OPENOCD_GIT_COMMIT:-"e392e485e40036543e6a3cce04570e7525c48ca2"}
+      OPENOCD_GIT_COMMIT=${OPENOCD_GIT_COMMIT:-"18bcdc43f99a9f45a2648057059219103b22dca4"}
       
       # -------------------------------------------------------------------------
 

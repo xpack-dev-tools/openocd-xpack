@@ -25,6 +25,7 @@ repository, in the `xpack-dev-tools/openocd` Git repo:
 - merge from `upstream/master`
 - checkout `xpack-develop`
 - merge `master`
+- fix conflicts (in `60-openocd.rules` and possibly other)
 - checkout `xpack`
 - merge `xpack-develop`
 
@@ -33,7 +34,7 @@ No need to add a tag here, it'll be added when the release is created.
 ### Increase the version
 
 Determine the version (like `0.11.0`) and update the `scripts/VERSION`
-file; the format is `0.11.0-1`. The fourth number is the xPack release number
+file; the format is `0.11.0-2`. The fourth number is the xPack release number
 of this version. A fifth number will be added when publishing
 the package on the `npm` server.
 
@@ -43,7 +44,7 @@ Check GitHub issues and pull requests:
 
 - <https://github.com/xpack-dev-tools/openocd-xpack/issues>
 
-and fix them; assign them to a milestone (like `0.11.0-1`).
+and fix them; assign them to a milestone (like `0.11.0-2`).
 
 ### Check `README.md`
 
@@ -58,8 +59,8 @@ but in the version specific file (below).
 
 - open the `CHANGELOG.md` file
 - check if all previous fixed issues are in
-- add a new entry like _v0.11.0-1 prepared_
-- commit with a message like _prepare v0.11.0-1_
+- add a new entry like _v0.11.0-2 prepared_
+- commit with a message like _prepare v0.11.0-2_
 
 Note: if you missed to update the `CHANGELOG.md` before starting the build,
 edit the file and rerun the build, it should take only a few minutes to
@@ -232,15 +233,15 @@ programs to run.
 - commit and push the `xpack-develop` branch
 - go to the GitHub [releases](https://github.com/xpack-dev-tools/openocd-xpack/releases/) page
 - click **Draft a new release**, in the `xpack-develop` branch
-- name the tag like **v0.11.0-1** (mind the dash in the middle!)
-- name the release like **xPack OpenOCD v0.11.0-1**
+- name the tag like **v0.11.0-2** (mind the dash in the middle!)
+- name the release like **xPack OpenOCD v0.11.0-2**
 (mind the dash)
 - as description, use:
 
 ```markdown
-![Github Releases (by Release)](https://img.shields.io/github/downloads/xpack-dev-tools/openocd-xpack/v0.11.0-1/total.svg)
+![Github Releases (by Release)](https://img.shields.io/github/downloads/xpack-dev-tools/openocd-xpack/v0.11.0-2/total.svg)
 
-Version v0.11.0-1 is a new release of the **xPack OpenOCD** package, following the OpenOCD release.
+Version v0.11.0-2 is a new release of the **xPack OpenOCD** package, following the OpenOCD release.
 
 _At this moment these binaries are provided for tests only!_
 ```
@@ -266,7 +267,7 @@ git clone --recurse-submodules -b xpack-develop \
 rm -rf ~/Work/cache/xpack-openocd-*
 
 bash ~/Downloads/openocd-xpack.git/tests/scripts/native-test.sh \
-  "https://github.com/xpack-dev-tools/openocd-xpack/releases/download/v0.11.0-1/"
+  "https://github.com/xpack-dev-tools/openocd-xpack/releases/download/v0.11.0-2/"
 ```
 
 ## Run the release CI tests
@@ -300,8 +301,8 @@ In the `xpack/web-jekyll` GitHub repo:
 - select the `develop` branch
 - add a new file to `_posts/openocd/releases`
 - name the file like `2020-07-03-openocd-v0-11-0-1-released.md`
-- name the post like: **xPack OpenOCD v0.11.0-1 released**
-- as `download_url` use the tagged URL like `https://github.com/xpack-dev-tools/openocd-xpack/releases/tag/v0.11.0-1/`
+- name the post like: **xPack OpenOCD v0.11.0-2 released**
+- as `download_url` use the tagged URL like `https://github.com/xpack-dev-tools/openocd-xpack/releases/tag/v0.11.0-2/`
 - update the `date:` field with the current date
 - update the Travis URLs using the actual test pages
 - update the SHA sums via copy/paste from the original build machines
@@ -328,31 +329,31 @@ Copy/paste the build report at the end of the post as:
 The SHA-256 hashes for the files are:
 
 0a2a2550ec99b908c92811f8dbfde200956a22ab3d9af1c92ce9926bf8feddf9
-xpack-openocd-0.11.0-1-darwin-x64.tar.gz
+xpack-openocd-0.11.0-2-darwin-x64.tar.gz
 
 254588cbcd685748598dd7bbfaf89280ab719bfcd4dabeb0269fdb97a52b9d7a
-xpack-openocd-0.11.0-1-linux-arm.tar.gz
+xpack-openocd-0.11.0-2-linux-arm.tar.gz
 
 10e30128d626f9640c0d585e6b65ac943de59fbdce5550386add015bcce408fa
-xpack-openocd-0.11.0-1-linux-arm64.tar.gz
+xpack-openocd-0.11.0-2-linux-arm64.tar.gz
 
 50f2e399382c29f8cdc9c77948e1382dfd5db20c2cb25c5980cb29774962483f
-xpack-openocd-0.11.0-1-linux-ia32.tar.gz
+xpack-openocd-0.11.0-2-linux-ia32.tar.gz
 
 9b147443780b7f825eec333857ac7ff9e9e9151fd17c8b7ce2a1ecb6e3767fd6
-xpack-openocd-0.11.0-1-linux-x64.tar.gz
+xpack-openocd-0.11.0-2-linux-x64.tar.gz
 
 501366492cd73b06fca98b8283f65b53833622995c6e44760eda8f4483648525
-xpack-openocd-0.11.0-1-win32-ia32.zip
+xpack-openocd-0.11.0-2-win32-ia32.zip
 
 dffc858d64be5539410aa6d3f3515c6de751cd295c99217091f5ccec79cabf39
-xpack-openocd-0.11.0-1-win32-x64.zip
+xpack-openocd-0.11.0-2-win32-x64.zip
 ```
 
 ## Update the preview Web
 
 - commit the `develop` branch of `xpack/web-jekyll` GitHub repo;
-  use a message like **xPack OpenOCD v0.11.0-1 released**
+  use a message like **xPack OpenOCD v0.11.0-2 released**
 - push
 - wait for the GitHub Pages build to complete
 - the preview web is <https://xpack.github.io/web-preview/news/>
@@ -365,7 +366,7 @@ xpack-openocd-0.11.0-1-win32-x64.zip
 ```sh
 xpm-dev binaries-update \
   -C "${HOME}/Downloads/openocd-xpack.git" \
-  '0.11.0-1' \
+  '0.11.0-2' \
   "${HOME}/Downloads/xpack-binaries/openocd"
 ```
 
@@ -379,18 +380,18 @@ xpm-dev binaries-update \
 - compare the SHA sums with those shown by `cat *.sha`
 - check the executable names
 - commit all changes, use a message like
-  `package.json: update urls for 0.11.0-1.1 release` (without `v`)
+  `package.json: update urls for 0.11.0-2.1 release` (without `v`)
 
 ## Publish on the npmjs.com server
 
 - select the `xpack-develop` branch
 - check the latest commits `npm run git-log`
 - update `CHANGELOG.md`; commit with a message like
-  _CHANGELOG: publish npm v0.11.0-1.1_
+  _CHANGELOG: publish npm v0.11.0-2.1_
 - `npm pack` and check the content of the archive, which should list
   only the `package.json`, the `README.md`, `LICENSE` and `CHANGELOG.md`;
   possibly adjust `.npmignore`
-- `npm version 0.11.0-1.1`; the first 5 numbers are the same as the
+- `npm version 0.11.0-2.1`; the first 5 numbers are the same as the
   GitHub release; the sixth number is the npm specific version
 - push the `xpack-develop` branch to GitHub
 - push tags with `git push origin --tags`
@@ -427,7 +428,7 @@ xpm install --global @xpack-dev-tools/openocd@next
 On GNU/Linux systems, including Raspberry Pi, use the following commands:
 
 ```sh
-~/.local/xPacks/@xpack-dev-tools/openocd/0.11.0-1.1/.content/bin/openocd --version
+~/.local/xPacks/@xpack-dev-tools/openocd/0.11.0-2.1/.content/bin/openocd --version
 
 openocd version 0.11.0
 
@@ -437,7 +438,7 @@ OpenOCD suite maintained and supported by Kitware (kitware.com/openocd).
 On macOS, use:
 
 ```sh
-~/Library/xPacks/@xpack-dev-tools/openocd/0.11.0-1.1/.content/bin/openocd --version
+~/Library/xPacks/@xpack-dev-tools/openocd/0.11.0-2.1/.content/bin/openocd --version
 
 openocd version 0.11.0
 
@@ -447,7 +448,7 @@ OpenOCD suite maintained and supported by Kitware (kitware.com/openocd).
 On Windows use:
 
 ```doscon
-%USERPROFILE%\AppData\Roaming\xPacks\@xpack-dev-tools\openocd\0.11.0-1.1\.content\bin\openocd --version
+%USERPROFILE%\AppData\Roaming\xPacks\@xpack-dev-tools\openocd\0.11.0-2.1\.content\bin\openocd --version
 
 openocd version 0.11.0
 
@@ -464,7 +465,7 @@ OpenOCD suite maintained and supported by Kitware (kitware.com/openocd).
 When the release is considered stable, promote it as `latest`:
 
 - `npm dist-tag ls @xpack-dev-tools/openocd`
-- `npm dist-tag add @xpack-dev-tools/openocd@0.11.0-1.1 latest`
+- `npm dist-tag add @xpack-dev-tools/openocd@0.11.0-2.1 latest`
 - `npm dist-tag ls @xpack-dev-tools/openocd`
 
 ## Update the Web
@@ -486,7 +487,7 @@ When the release is considered stable, promote it as `latest`:
 
 - in a separate browser windows, open [TweetDeck](https://tweetdeck.twitter.com/)
 - using the `@xpack_project` account
-- paste the release name like **xPack OpenOCD v0.11.0-1 released**
+- paste the release name like **xPack OpenOCD v0.11.0-2 released**
 - paste the link to the Web page
   [release](https://xpack.github.io/openocd/releases/)
 - click the **Tweet** button

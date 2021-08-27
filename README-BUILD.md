@@ -107,7 +107,7 @@ not be accepted by bash.
 
 ## Versioning
 
-The version string is an extension to semver, the format looks like `0.11.0-1`.
+The version string is an extension to semver, the format looks like `0.11.0-2`.
 It includes the three digits with the original OpenOCD version and a fourth
 digit with the xPack release number.
 
@@ -211,14 +211,14 @@ archives and their SHA signatures, created in the `deploy` folder:
 ```console
 $ ls -l ~/Work/openocd-*/deploy
 total 13248
--rw-rw-rw- 1 ilg ilg 3672921 Jun 10 13:53 xpack-openocd-0.11.0-1-linux-ia32.tar.gz
--rw-rw-rw- 1 ilg ilg     107 Jun 10 13:53 xpack-openocd-0.11.0-1-linux-ia32.tar.gz.sha
--rw-rw-rw- 1 ilg ilg 3601358 Jun 10 13:45 xpack-openocd-0.11.0-1-linux-x64.tar.gz
--rw-rw-rw- 1 ilg ilg     107 Jun 10 13:45 xpack-openocd-0.11.0-1-linux-x64.tar.gz.sha
--rw-rw-rw- 1 ilg ilg 3137527 Jun 10 13:57 xpack-openocd-0.11.0-1-win32-x32.zip
--rw-rw-rw- 1 ilg ilg     104 Jun 10 13:57 xpack-openocd-0.11.0-1-win32-x32.zip.sha
--rw-rw-rw- 1 ilg ilg 3133169 Jun 10 13:51 xpack-openocd-0.11.0-1-win32-x64.zip
--rw-rw-rw- 1 ilg ilg     104 Jun 10 13:51 xpack-openocd-0.11.0-1-win32-x64.zip.sha
+-rw-rw-rw- 1 ilg ilg 3672921 Jun 10 13:53 xpack-openocd-0.11.0-2-linux-ia32.tar.gz
+-rw-rw-rw- 1 ilg ilg     107 Jun 10 13:53 xpack-openocd-0.11.0-2-linux-ia32.tar.gz.sha
+-rw-rw-rw- 1 ilg ilg 3601358 Jun 10 13:45 xpack-openocd-0.11.0-2-linux-x64.tar.gz
+-rw-rw-rw- 1 ilg ilg     107 Jun 10 13:45 xpack-openocd-0.11.0-2-linux-x64.tar.gz.sha
+-rw-rw-rw- 1 ilg ilg 3137527 Jun 10 13:57 xpack-openocd-0.11.0-2-win32-x32.zip
+-rw-rw-rw- 1 ilg ilg     104 Jun 10 13:57 xpack-openocd-0.11.0-2-win32-x32.zip.sha
+-rw-rw-rw- 1 ilg ilg 3133169 Jun 10 13:51 xpack-openocd-0.11.0-2-win32-x64.zip
+-rw-rw-rw- 1 ilg ilg     104 Jun 10 13:51 xpack-openocd-0.11.0-2-win32-x64.zip.sha
 ```
 
 ### Build the Arm GNU/Linux binaries
@@ -279,10 +279,10 @@ archives and their SHA signatures, created in the `deploy` folder:
 ```console
 $ ls -l ~/Work/openocd-*/deploy
 total 7120
--rw-rw-rw- 1 ilg ilg 3632743 Mar 26 15:25 xpack-openocd-0.11.0-1-linux-arm64.tar.gz
--rw-rw-rw- 1 ilg ilg     109 Mar 26 15:25 xpack-openocd-0.11.0-1-linux-arm64.tar.gz.sha
--rw-rw-rw- 1 ilg ilg 3646739 Mar 26 15:50 xpack-openocd-0.11.0-1-linux-arm.tar.gz
--rw-rw-rw- 1 ilg ilg     107 Mar 26 15:50 xpack-openocd-0.11.0-1-linux-arm.tar.gz.sha
+-rw-rw-rw- 1 ilg ilg 3632743 Mar 26 15:25 xpack-openocd-0.11.0-2-linux-arm64.tar.gz
+-rw-rw-rw- 1 ilg ilg     109 Mar 26 15:25 xpack-openocd-0.11.0-2-linux-arm64.tar.gz.sha
+-rw-rw-rw- 1 ilg ilg 3646739 Mar 26 15:50 xpack-openocd-0.11.0-2-linux-arm.tar.gz
+-rw-rw-rw- 1 ilg ilg     107 Mar 26 15:50 xpack-openocd-0.11.0-2-linux-arm.tar.gz.sha
 ```
 
 ### Build the macOS binaries
@@ -314,8 +314,8 @@ archive and its SHA signature, created in the `deploy` folder:
 ```console
 $ ls -l ~/Work/openocd-*/deploy
 total 5536
--rw-r--r--  1 ilg  staff  2828202 Jun 10 17:44 xpack-openocd-0.11.0-1-darwin-x64.tar.gz
--rw-r--r--  1 ilg  staff      108 Jun 10 17:44 xpack-openocd-0.11.0-1-darwin-x64.tar.gz.sha
+-rw-r--r--  1 ilg  staff  2828202 Jun 10 17:44 xpack-openocd-0.11.0-2-darwin-x64.tar.gz
+-rw-r--r--  1 ilg  staff      108 Jun 10 17:44 xpack-openocd-0.11.0-2-darwin-x64.tar.gz.sha
 ```
 
 ## Subsequent runs
@@ -394,7 +394,7 @@ program from there. For example on macOS the output should
 look like:
 
 ```console
-$ /Users/ilg/Work/openocd-0.11.0-1/darwin-x64/install/openocd/bin/openocd --version
+$ /Users/ilg/Work/openocd-0.11.0-2/darwin-x64/install/openocd/bin/openocd --version
 openocd version 0.11.0
 ```
 
@@ -404,8 +404,8 @@ After install, the package should create a structure like this (macOS files;
 only the first two depth levels are shown):
 
 ```console
-$ tree -L 2 /Users/ilg/Library/xPacks/\@xpack-dev-tools/openocd/0.11.0-1.1/.content/
-/Users/ilg/Library/xPacks/\@xpack-dev-tools/openocd/0.11.0-1.1/.content/
+$ tree -L 2 /Users/ilg/Library/xPacks/\@xpack-dev-tools/openocd/0.11.0-2.1/.content/
+/Users/ilg/Library/xPacks/\@xpack-dev-tools/openocd/0.11.0-2.1/.content/
 ├── OpenULINK
 │   └── ulink_firmware.hex
 ├── README.md

@@ -2,6 +2,11 @@
 
 Releases in reverse chronological order.
 
+## 2021-08-27
+
+- v0.11.0-2 prepared
+- [#10] - fix copying license sub-folders
+
 ## 2021-03-15
 
 - v0.11.0-1 prepared
