@@ -52,7 +52,7 @@ message="Build OpenOCD"
 
 branch="xpack-develop"
 base_url="release"
-version="${RELEASE_VERSION:-"current"}"
+version=${RELEASE_VERSION:-"$(cat "${script_folder_path}"/VERSION | sed -e '2,$d')"}
 
 while [ $# -gt 0 ]
 do
