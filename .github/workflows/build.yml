@@ -16,7 +16,7 @@
 
 # -----------------------------------------------------------------------------
 
-name: 'Test xPack GCC on native platforms'
+name: 'Build xPack OpenOCD'
 
 on:
   workflow_dispatch:
