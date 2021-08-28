@@ -38,15 +38,10 @@ jobs:
           submodules: true
       - name: 'Clean'
         run: |
-          if [ "${{ github.event.inputs.version }}" != "current" ]; \
-          then \
-            rm -rf ~/Work/openocd-${{ github.event.inputs.version }}; \
-          else \
-            rm -rf ~/Work/openocd-*; \
-          fi
+          rm -rf "~/Work/openocd-${{ github.event.inputs.version }}"*
       - name: 'Build Linux x64'
         run: |
-          bash scripts/build.sh --version ${{ github.event.inputs.version }} --linux64
+          bash scripts/build.sh --version "${{ github.event.inputs.version }}" --linux64
 
 
 
