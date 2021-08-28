@@ -46,7 +46,7 @@ jobs:
           fi
       - name: 'Build'
         run: |
-          bash scripts/build.sh --help --version ${{ github.event.inputs.version }}
+          bash scripts/build.sh --version ${{ github.event.inputs.version }} --linux64
 
 
 
