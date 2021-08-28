@@ -50,7 +50,7 @@ source "${helper_folder_path}/test-functions-source.sh"
 
 message="Build OpenOCD"
 
-branch="xpack"
+branch="xpack-develop"
 base_url="release"
 version="${RELEASE_VERSION:-"current"}"
 
@@ -58,9 +58,9 @@ while [ $# -gt 0 ]
 do
   case "$1" in
 
-    --develop)
-      branch="xpack-develop"
-      shift
+    --branch)
+      branch="$2"
+      shift 2
       ;;
 
     --version)
