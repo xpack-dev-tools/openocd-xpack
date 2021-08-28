@@ -39,9 +39,9 @@ jobs:
       - name: 'Clean'
         run: |
           if [ "${{ github.event.inputs.version }}" != "current" ]; \
-          then; \
+          then \
             sudo rm -rf ~/Work/openocd-${{ github.event.inputs.version }}; \
-          else; \
+          else \
             sudo rm -rf ~/Work/openocd-*; \
           fi
       - name: 'Build'
