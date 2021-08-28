@@ -28,7 +28,7 @@ on:
 
 jobs:
   linux-x64:
-    name: 'Build on Linux Intel'
+    name: 'Build on Intel Linux'
     runs-on: [self-hosted, Linux, X64]
     steps:
       - name: 'Checkout'
@@ -44,7 +44,7 @@ jobs:
           else \
             rm -rf ~/Work/openocd-*; \
           fi
-      - name: 'Build'
+      - name: 'Build Linux x64'
         run: |
           bash scripts/build.sh --version ${{ github.event.inputs.version }} --linux64
 
