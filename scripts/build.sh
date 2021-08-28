@@ -54,6 +54,9 @@ helper_folder_path="${script_folder_path}/helper"
 echo
 echo "xPack OpenOCD distribution build script."
 
+helper_common_functions_script_path="${helper_folder_path}/common-functions-source.sh"
+source "${helper_common_functions_script_path}"
+
 helper_host_functions_script_path="${helper_folder_path}/host-functions-source.sh"
 source "${helper_host_functions_script_path}"
 
@@ -81,6 +84,7 @@ host_options "${help_message}" "$@"
 
 # Intentionally moved after option parsing.
 echo
+echo "Common helper functions source script: \"${helper_common_functions_script_path}\"."
 echo "Host helper functions source script: \"${helper_host_functions_script_path}\"."
 # echo "Common functions source script: \"${common_functions_script_path}\"."
 echo "Definitions source script: \"${defines_script_path}\"."
