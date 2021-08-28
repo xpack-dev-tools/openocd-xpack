@@ -93,6 +93,7 @@ cat <<__EOF__ > "${data_file_path}"
 {
   "ref": "${branch}", 
   "inputs": {
+    "version": "${version}"
   }
 }
 __EOF__
