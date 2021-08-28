@@ -36,13 +36,12 @@ jobs:
         with:
           fetch-depth: 3
           submodules: true
-      - name: 'Clean'
+      - name: 'Clean working area'
         run: |
           rm -rf ~/Work/openocd-${{ github.event.inputs.version }}*
-      - name: 'Build Linux x64'
+      - name: 'Build Linux x64 binary'
         run: |
           bash scripts/build.sh --version "${{ github.event.inputs.version }}" --linux64
-
-
-
-
+      - name: 'Build Windows x64 binary'
+        run: |
+          bash scripts/build.sh --version "${{ github.event.inputs.version }}" --win64
