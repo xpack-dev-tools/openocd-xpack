@@ -38,7 +38,7 @@ jobs:
           submodules: true
       - name: 'Clean'
         run: |
-          rm -rf "~/Work/openocd-${{ github.event.inputs.version }}"*
+          rm -rf ~/Work/openocd-${{ github.event.inputs.version }}*
       - name: 'Build Linux x64'
         run: |
           bash scripts/build.sh --version "${{ github.event.inputs.version }}" --linux64
