@@ -33,7 +33,7 @@ jobs:
           submodules: true
       - name: 'Build'
         run: |
-          bash scripts/build --help
+          bash scripts/build.sh --help
 
 
 
