@@ -27,15 +27,21 @@ on:
         default: 'current'
 
 jobs:
-  linux-x64:
-    name: 'Build OpenOCD ${{ github.event.inputs.version }} on Intel Linux'
-    runs-on: [self-hosted, Linux, X64]
+  macos-x64:
+    name: 'Build OpenOCD ${{ github.event.inputs.version }} on Intel macOS'
+    runs-on: [self-hosted, macOS, X64]
     steps:
       - name: 'Checkout'
         uses: actions/checkout@v2
         with:
           fetch-depth: 3
           submodules: true
+      - name: 'Clean working area'
+        run: |
+          rm -rf ~/Work/openocd-${{ github.event.inputs.version }}*
+      - name: 'Build macOS x64 binary'
+        run: |
+          bash scripts/build.sh --version "${{ github.event.inputs.version }}" --osx
       - name: 'Publish pre-release'
         # https://github.com/ncipollo/release-action
         uses: ncipollo/release-action@v1
