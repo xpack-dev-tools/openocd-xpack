@@ -36,12 +36,21 @@ jobs:
         with:
           fetch-depth: 3
           submodules: true
-      - name: 'Clean working area'
-        run: |
-          rm -rf ~/Work/openocd-${{ github.event.inputs.version }}*
-      - name: 'Build Linux x64 binary'
-        run: |
-          bash scripts/build.sh --version "${{ github.event.inputs.version }}" --linux64
-      - name: 'Build Windows x64 binary'
-        run: |
-          bash scripts/build.sh --version "${{ github.event.inputs.version }}" --win64
+      - name: 'Publish pre-release'
+        uses: ncipollo/release-action@v1
+        with:
+          allowUpdates: true
+          artifacts: '~/Work/openocd-${{ github.event.inputs.version }}/deploy/*'
+          bodyFile: '.github/workflows/body-test.md'
+          commit: 'master'
+          draft: true
+          name: 'Test binaries 2'
+          omitBodyDuringUpdate: true
+          omitNameDuringUpdate: true
+          owner: 'xpack-dev-tools'
+          prerelease: true
+          replacesArtifacts: true
+          repo: 'pre-releases'
+          tag: 'test2'
+          token: ${{ secrets.GITHUB_TOKEN }}
+
