@@ -69,16 +69,22 @@ function build_libusb1()
       export CXXFLAGS
       export LDFLAGS
 
-      env | sort
-
       if [ ! -f "config.status" ]
       then 
 
         (
+          if [ "${IS_DEVELOP}" == "y" ]
+          then
+            env | sort
+          fi
+
           echo
           echo "Running libusb1 configure..."
-
-          bash "${SOURCES_FOLDER_PATH}/${libusb1_src_folder_name}/configure" --help
+          
+          if [ "${IS_DEVELOP}" == "y" ]
+          then
+            bash "${SOURCES_FOLDER_PATH}/${libusb1_src_folder_name}/configure" --help
+          fi
 
           config_options=()
 
@@ -171,16 +177,22 @@ function build_libusb0()
       export CXXFLAGS
       export LDFLAGS
 
-      env | sort
-
       if [ ! -f "config.status" ]
       then 
 
         (
+          if [ "${IS_DEVELOP}" == "y" ]
+          then
+            env | sort
+          fi
+
           echo
           echo "Running libusb0 configure..."
 
-          bash "${SOURCES_FOLDER_PATH}/${libusb0_src_folder_name}/configure" --help
+          if [ "${IS_DEVELOP}" == "y" ]
+          then
+            bash "${SOURCES_FOLDER_PATH}/${libusb0_src_folder_name}/configure" --help
+          fi
 
           config_options=()
 
@@ -298,7 +310,10 @@ function build_libusb_w32()
           export CXXFLAGS
           export LDFLAGS
 
-          env | sort
+          if [ "${IS_DEVELOP}" == "y" ]
+          then
+            env | sort
+          fi
 
           run_verbose make \
             host_prefix=${CROSS_COMPILE_PREFIX} \
@@ -394,9 +409,12 @@ function build_libftdi()
       export CXXFLAGS
       export LDFLAGS
 
-      env | sort
-
       (
+        if [ "${IS_DEVELOP}" == "y" ]
+        then
+          env | sort
+        fi
+
         echo
         echo "Running libftdi configure..."
         
@@ -524,8 +542,6 @@ function build_hidapi()
         export CXXFLAGS
         export LDFLAGS
 
-        env | sort
-
         run_verbose make -f Makefile.mingw \
           CC=${CROSS_COMPILE_PREFIX}-gcc \
           "${hidapi_OBJECT}"
@@ -581,9 +597,12 @@ function build_hidapi()
         export CXXFLAGS
         export LDFLAGS
 
-        env | sort
-
         (
+          if [ "${IS_DEVELOP}" == "y" ]
+          then
+            env | sort
+          fi
+
           echo
           echo "Running hidapi configure..."
 
