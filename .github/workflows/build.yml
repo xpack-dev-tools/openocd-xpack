@@ -27,6 +27,49 @@ on:
         default: 'current'
 
 jobs:
+  linux-x64:
+    name: 'Build OpenOCD ${{ github.event.inputs.version }} on Intel Linux'
+    runs-on: [self-hosted, Linux, X64]
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 3
+          submodules: true
+      - name: 'Clean working area'
+        run: |
+          rm -rf ~/Work/openocd-${{ github.event.inputs.version }}*
+      - name: 'Build Linux x64 binary'
+        run: |
+          bash scripts/build.sh --version "${{ github.event.inputs.version }}" --linux64
+      - name: 'Build Windows x64 binary'
+        run: |
+          bash scripts/build.sh --version "${{ github.event.inputs.version }}" --win64
+      - name: 'Build Linux ia32 binary'
+        run: |
+          bash scripts/build.sh --version "${{ github.event.inputs.version }}" --linux32
+      - name: 'Build Windows ia32 binary'
+        run: |
+          bash scripts/build.sh --version "${{ github.event.inputs.version }}" --win32
+      - name: 'Publish pre-release'
+        # https://github.com/ncipollo/release-action
+        uses: ncipollo/release-action@v1
+        with:
+          allowUpdates: true
+          artifacts: '~/Work/openocd-${{ github.event.inputs.version }}/deploy/*'
+          bodyFile: '.github/workflows/body-test.md'
+          commit: 'master'
+          draft: false
+          name: 'Test binaries'
+          omitBodyDuringUpdate: true
+          omitNameDuringUpdate: true
+          owner: 'xpack-dev-tools'
+          prerelease: true
+          replacesArtifacts: true
+          repo: 'pre-releases'
+          tag: 'test'
+          token: ${{ secrets.PUBLISH_TOKEN }}
+
   linux-arm64:
     name: 'Build OpenOCD ${{ github.event.inputs.version }} on Arm Linux'
     runs-on: [self-hosted, Linux, ARM64]
@@ -42,7 +85,7 @@ jobs:
       - name: 'Build Linux arm64 binary'
         run: |
           bash scripts/build.sh --version "${{ github.event.inputs.version }}" --arm64
-      - name: 'Build Windows arm32 binary'
+      - name: 'Build Linux arm32 binary'
         run: |
           bash scripts/build.sh --version "${{ github.event.inputs.version }}" --arm32
       - name: 'Publish pre-release'
@@ -53,13 +96,48 @@ jobs:
           artifacts: '~/Work/openocd-${{ github.event.inputs.version }}/deploy/*'
           bodyFile: '.github/workflows/body-test.md'
           commit: 'master'
-          draft: true
-          name: 'Test binaries 2'
+          draft: false
+          name: 'Test binaries'
           omitBodyDuringUpdate: true
           omitNameDuringUpdate: true
           owner: 'xpack-dev-tools'
           prerelease: true
           replacesArtifacts: true
           repo: 'pre-releases'
-          tag: 'test2'
+          tag: 'test'
           token: ${{ secrets.PUBLISH_TOKEN }}
+
+  macos-x64:
+    name: 'Build OpenOCD ${{ github.event.inputs.version }} on Intel macOS'
+    runs-on: [self-hosted, macOS, X64]
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 3
+          submodules: true
+      - name: 'Clean working area'
+        run: |
+          rm -rf ~/Work/openocd-${{ github.event.inputs.version }}*
+      - name: 'Build macOS x64 binary'
+        run: |
+          bash scripts/build.sh --version "${{ github.event.inputs.version }}" --osx
+      - name: 'Publish pre-release'
+        # https://github.com/ncipollo/release-action
+        uses: ncipollo/release-action@v1
+        with:
+          allowUpdates: true
+          artifacts: '~/Work/openocd-${{ github.event.inputs.version }}/deploy/*'
+          bodyFile: '.github/workflows/body-test.md'
+          commit: 'master'
+          draft: false
+          name: 'Test binaries'
+          omitBodyDuringUpdate: true
+          omitNameDuringUpdate: true
+          owner: 'xpack-dev-tools'
+          prerelease: true
+          replacesArtifacts: true
+          repo: 'pre-releases'
+          tag: 'test'
+          token: ${{ secrets.PUBLISH_TOKEN }}
+
