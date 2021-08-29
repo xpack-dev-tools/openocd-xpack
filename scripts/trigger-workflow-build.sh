@@ -105,7 +105,8 @@ trigger_github_workflow \
   "${github_org}" \
   "${github_repo}" \
   "${workflow_id}" \
-  "${data_file_path}" 
+  "${data_file_path}" \
+  "${GITHUB_API_DISPATCH_TOKEN}"
 
 rm -rf "${data_file_path}"
 
