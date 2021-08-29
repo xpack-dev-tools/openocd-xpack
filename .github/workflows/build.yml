@@ -37,6 +37,7 @@ jobs:
           fetch-depth: 3
           submodules: true
       - name: 'Publish pre-release'
+        # https://github.com/ncipollo/release-action
         uses: ncipollo/release-action@v1
         with:
           allowUpdates: true
@@ -52,5 +53,5 @@ jobs:
           replacesArtifacts: true
           repo: 'pre-releases'
           tag: 'test2'
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.PUBLISH_TOKEN }}
 
