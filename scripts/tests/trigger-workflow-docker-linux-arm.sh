@@ -67,6 +67,7 @@ message="Test ${app_description} on Intel Docker platforms"
 branch="xpack"
 base_url="release"
 version="${RELEASE_VERSION:-$(get_current_version)}"
+workflow_id="docker-linux-arm.yml"
 
 while [ $# -gt 0 ]
 do
@@ -95,7 +96,21 @@ do
   esac
 done
 
-workflow_id="docker-linux-arm.yml"
+# -----------------------------------------------------------------------------
+
+data_file_path=$(mktemp)
+rm -rf "${data_file_path}"
+
+# Note: __EOF__ is NOT quoted to allow substitutions.
+cat <<__EOF__ > "${data_file_path}"
+{
+  "ref": "${branch}", 
+  "inputs": {
+    "version": "${version}",
+    "base_url": "${base_url}"
+  }
+}
+__EOF__
 
 # GITHUB_API_DISPATCH_TOKEN must be present in the environment.
 
@@ -103,9 +118,8 @@ trigger_github_workflow \
   "${github_org}" \
   "${github_repo}" \
   "${workflow_id}" \
-  "${branch}" \
-  "${base_url}" \
-  "${version}"
+  "${data_file_path}" \
+  "${GITHUB_API_DISPATCH_TOKEN}"
 
 echo
 echo "Done."

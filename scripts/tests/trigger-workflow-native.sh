@@ -67,6 +67,7 @@ message="Test ${app_description} on native platforms"
 branch="xpack"
 base_url="release"
 version="${RELEASE_VERSION:-$(get_current_version)}"
+workflow_id="native.yml"
 
 while [ $# -gt 0 ]
 do
@@ -95,7 +96,7 @@ do
   esac
 done
 
-workflow_id="native.yml"
+# -----------------------------------------------------------------------------
 
 data_file_path=$(mktemp)
 rm -rf "${data_file_path}"
