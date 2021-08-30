@@ -22,4 +22,11 @@ function run_tests()
   test_openocd
 }
 
+function update_image()
+{
+  local image_name="$1"
+
+  # ...
+}
+
 # -----------------------------------------------------------------------------
