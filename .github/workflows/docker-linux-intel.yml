@@ -33,7 +33,7 @@
 
 # -----------------------------------------------------------------------------
 
-name: 'Test xPack OpenOCD on Docker Intel platforms'
+name: 'Test xPack OpenOCD on Intel Docker platforms'
 
 on:
   workflow_dispatch:
