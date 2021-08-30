@@ -46,9 +46,11 @@ bash ~/Downloads/openocd-xpack.git/scripts/tests/trigger-workflow-native.sh \
   --base-url "https://github.com/xpack-dev-tools/pre-releases/releases/download/test/"
 
 bash ~/Downloads/openocd-xpack.git/scripts/tests/trigger-workflow-docker-linux-intel.sh \
+  --branch xpack-develop \
   --base-url "https://github.com/xpack-dev-tools/pre-releases/releases/download/test/"
 
 bash ~/Downloads/openocd-xpack.git/scripts/tests/trigger-workflow-docker-linux-arm.sh \
+  --branch xpack-develop \
   --base-url "https://github.com/xpack-dev-tools/pre-releases/releases/download/test/"
 
 ```
