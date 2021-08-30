@@ -37,20 +37,15 @@ jobs:
           fetch-depth: 3
           submodules: true
       - name: 'Clean working area'
-        run: |
-          rm -rf ~/Work/openocd-${{ github.event.inputs.version }}*
+        run: rm -rf ~/Work/openocd-${{ github.event.inputs.version }}*
       - name: 'Build Linux x64 binary'
-        run: |
-          bash scripts/build.sh --version "${{ github.event.inputs.version }}" --linux64
+        run: bash scripts/build.sh --version "${{ github.event.inputs.version }}" --linux64
       - name: 'Build Windows x64 binary'
-        run: |
-          bash scripts/build.sh --version "${{ github.event.inputs.version }}" --win64
+        run: bash scripts/build.sh --version "${{ github.event.inputs.version }}" --win64
       - name: 'Build Linux ia32 binary'
-        run: |
-          bash scripts/build.sh --version "${{ github.event.inputs.version }}" --linux32
+        run: bash scripts/build.sh --version "${{ github.event.inputs.version }}" --linux32
       - name: 'Build Windows ia32 binary'
-        run: |
-          bash scripts/build.sh --version "${{ github.event.inputs.version }}" --win32
+        run: bash scripts/build.sh --version "${{ github.event.inputs.version }}" --win32
       - name: 'Publish pre-release'
         # https://github.com/ncipollo/release-action
         uses: ncipollo/release-action@v1
@@ -80,14 +75,11 @@ jobs:
           fetch-depth: 3
           submodules: true
       - name: 'Clean working area'
-        run: |
-          rm -rf ~/Work/openocd-${{ github.event.inputs.version }}*
+        run: rm -rf ~/Work/openocd-${{ github.event.inputs.version }}*
       - name: 'Build Linux arm64 binary'
-        run: |
-          bash scripts/build.sh --version "${{ github.event.inputs.version }}" --arm64
+        run: bash scripts/build.sh --version "${{ github.event.inputs.version }}" --arm64
       - name: 'Build Linux arm32 binary'
-        run: |
-          bash scripts/build.sh --version "${{ github.event.inputs.version }}" --arm32
+        run: bash scripts/build.sh --version "${{ github.event.inputs.version }}" --arm32
       - name: 'Publish pre-release'
         # https://github.com/ncipollo/release-action
         uses: ncipollo/release-action@v1
@@ -117,11 +109,9 @@ jobs:
           fetch-depth: 3
           submodules: true
       - name: 'Clean working area'
-        run: |
-          rm -rf ~/Work/openocd-${{ github.event.inputs.version }}*
+        run: rm -rf ~/Work/openocd-${{ github.event.inputs.version }}*
       - name: 'Build macOS x64 binary'
-        run: |
-          bash scripts/build.sh --version "${{ github.event.inputs.version }}" --osx
+        run: bash scripts/build.sh --version "${{ github.event.inputs.version }}" --osx
       - name: 'Publish pre-release'
         # https://github.com/ncipollo/release-action
         uses: ncipollo/release-action@v1

@@ -57,8 +57,7 @@ jobs:
           fetch-depth: 3
           submodules: true
       - name: 'Run native ${{ github.event.inputs.version }} test'
-        run: |
-          bash scripts/tests/native-test.sh --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+        run: bash scripts/tests/native-test.sh --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
 
   windows-x64:
     name: 'Windows 64-bit OpenOCD ${{ github.event.inputs.version }} test'
@@ -70,8 +69,7 @@ jobs:
           fetch-depth: 3
           submodules: true
       - name: 'Run native ${{ github.event.inputs.version }} test'
-        run: |
-          bash scripts/tests/native-test.sh --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+        run: bash scripts/tests/native-test.sh --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
 
   windows-ia32:
     name: 'Windows 32-bit OpenOCD ${{ github.event.inputs.version }} test'
@@ -83,7 +81,6 @@ jobs:
           fetch-depth: 3
           submodules: true
       - name: 'Run native ${{ github.event.inputs.version }} test'
-        run: |
-          bash scripts/tests/native-test.sh --32 --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+        run: bash scripts/tests/native-test.sh --32 --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
 
 # -----------------------------------------------------------------------------
