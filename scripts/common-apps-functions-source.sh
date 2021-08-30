@@ -296,8 +296,15 @@ function test_openocd()
 
   run_app "${APP_PREFIX}/bin/openocd" --version
 
-  # Does not return 0.
-  run_app "${APP_PREFIX}/bin/openocd" --help || true
+  run_app "${APP_PREFIX}/bin/openocd" \
+    -c "adapter driver dummy" \
+    -c "adapter speed 1000" \
+    -c "adapter list" \
+    -c "transport list" \
+    -c "target types" \
+    -c "echo baburiba" \
+    -c "shutdown"
+
 }
 
 # -----------------------------------------------------------------------------
