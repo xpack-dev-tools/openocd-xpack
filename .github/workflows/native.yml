@@ -45,7 +45,7 @@ jobs:
         run: |
           pwd
           ls -lL
-          bash tests/scripts/native-test.sh --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+          bash scripts/tests/native-test.sh --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
 
   macos-x64:
     name: 'macOS 64-bit GCC ${{ github.event.inputs.version }} test'
@@ -58,7 +58,7 @@ jobs:
           submodules: true
       - name: 'Run native ${{ github.event.inputs.version }} test'
         run: |
-          bash tests/scripts/native-test.sh --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+          bash scripts/tests/native-test.sh --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
 
   windows-x64:
     name: 'Windows 64-bit GCC ${{ github.event.inputs.version }} test'
@@ -71,7 +71,7 @@ jobs:
           submodules: true
       - name: 'Run native ${{ github.event.inputs.version }} test'
         run: |
-          bash tests/scripts/native-test.sh --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+          bash scripts/tests/native-test.sh --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
 
   windows-ia32:
     name: 'Windows 32-bit GCC ${{ github.event.inputs.version }} test'
@@ -84,6 +84,6 @@ jobs:
           submodules: true
       - name: 'Run native ${{ github.event.inputs.version }} test'
         run: |
-          bash tests/scripts/native-test.sh --32 --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+          bash scripts/tests/native-test.sh --32 --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
 
 # -----------------------------------------------------------------------------
