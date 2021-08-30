@@ -33,7 +33,7 @@ on:
 
 jobs:
   linux-x64:
-    name: 'Linux 64-bit GCC ${{ github.event.inputs.version }} test'
+    name: 'Linux 64-bit OpenOCD ${{ github.event.inputs.version }} test'
     runs-on: ubuntu-latest
     steps:
       - name: 'Checkout'
@@ -48,7 +48,7 @@ jobs:
           bash scripts/tests/native-test.sh --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
 
   macos-x64:
-    name: 'macOS 64-bit GCC ${{ github.event.inputs.version }} test'
+    name: 'macOS 64-bit OpenOCD ${{ github.event.inputs.version }} test'
     runs-on: macos-latest
     steps:
       - name: 'Checkout'
@@ -61,7 +61,7 @@ jobs:
           bash scripts/tests/native-test.sh --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
 
   windows-x64:
-    name: 'Windows 64-bit GCC ${{ github.event.inputs.version }} test'
+    name: 'Windows 64-bit OpenOCD ${{ github.event.inputs.version }} test'
     runs-on: windows-latest
     steps:
       - name: 'Checkout'
@@ -74,7 +74,7 @@ jobs:
           bash scripts/tests/native-test.sh --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
 
   windows-ia32:
-    name: 'Windows 32-bit GCC ${{ github.event.inputs.version }} test'
+    name: 'Windows 32-bit OpenOCD ${{ github.event.inputs.version }} test'
     runs-on: windows-latest
     steps:
       - name: 'Checkout'
