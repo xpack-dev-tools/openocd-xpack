@@ -152,7 +152,7 @@ jobs:
           args: /bin/bash /github/workspace/scripts/tests/native-test.sh --image arm32v7/debian:jessie --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
 
   raspbian-arm:
-    name: 'OpenOCD ${{ github.event.inputs.version }} arm on Raspbian 9, 8 stable'
+    name: 'OpenOCD ${{ github.event.inputs.version }} arm on Raspbian 9 stable'
     runs-on: [self-hosted, Linux, Arm64]
     steps:
       - name: 'Checkout'
