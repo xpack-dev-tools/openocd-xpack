@@ -1,4 +1,6 @@
 # -----------------------------------------------------------------------------
+# DO NOT EDIT! Generated from scripts/helper/templates/build-liquid.yml.
+#
 # This file is part of the xPack distribution.
 #   (https://xpack.github.io)
 # Copyright (c) 2021 Liviu Ionescu.
@@ -52,7 +54,7 @@ jobs:
         with:
           allowUpdates: true
           artifacts: '~/Work/openocd-${{ github.event.inputs.version }}/deploy/*'
-          bodyFile: '.github/workflows/body-test.md'
+          bodyFile: '.github/workflows/body-pre-releases-test.md'
           commit: 'master'
           draft: false
           name: 'Test binaries'
@@ -86,7 +88,7 @@ jobs:
         with:
           allowUpdates: true
           artifacts: '~/Work/openocd-${{ github.event.inputs.version }}/deploy/*'
-          bodyFile: '.github/workflows/body-test.md'
+          bodyFile: '.github/workflows/body-pre-releases-test.md'
           commit: 'master'
           draft: false
           name: 'Test binaries'
@@ -118,7 +120,7 @@ jobs:
         with:
           allowUpdates: true
           artifacts: '~/Work/openocd-${{ github.event.inputs.version }}/deploy/*'
-          bodyFile: '.github/workflows/body-test.md'
+          bodyFile: '.github/workflows/body-pre-releases-test.md'
           commit: 'master'
           draft: false
           name: 'Test binaries'

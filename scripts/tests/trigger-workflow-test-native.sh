@@ -67,7 +67,7 @@ message="Test ${app_description} on native platforms"
 branch="xpack"
 base_url="release"
 version="${RELEASE_VERSION:-$(get_current_version)}"
-workflow_id="native.yml"
+workflow_id="test-native.yml"
 
 while [ $# -gt 0 ]
 do

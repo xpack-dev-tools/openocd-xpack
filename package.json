@@ -26,9 +26,6 @@
     "url": "https://github.com/xpack-dev-tools/openocd-xpack/issues"
   },
   "homepage": "https://github.com/xpack-dev-tools/openocd-xpack#readme",
-  "devDependencies": {},
-  "peerDependencies": {},
-  "optionalDependencies": {},
   "xpack": {
     "binaries": {
       "destination": "./.content",
@@ -67,7 +64,20 @@
     },
     "bin": {
       "openocd": "./.content/bin/openocd"
+    },
+    "actions": {
+      "generate-workflows": [
+        "mkdir -p .github/workflows/",
+        "cp scripts/helper/templates/body-pre-releases-test.md .github/workflows/",
+        "cat scripts/helper/templates/build-liquid.yml | liquidjs '{ \"APP_NAME\": \"OpenOCD\", \"APP_LC_NAME\": \"openocd\" }' > .github/workflows/build.yml",
+        "cat scripts/helper/templates/test-native-liquid.yml | liquidjs '{ \"APP_NAME\": \"OpenOCD\" }' > .github/workflows/test-native.yml",
+        "cat scripts/helper/templates/test-docker-linux-intel-liquid.yml | liquidjs '{ \"APP_NAME\": \"OpenOCD\" }' > .github/workflows/test-docker-linux-intel.yml",
+        "cat scripts/helper/templates/test-docker-linux-arm-liquid.yml | liquidjs '{ \"APP_NAME\": \"OpenOCD\" }' > .github/workflows/test-docker-linux-arm.yml"
+        ]
     }
   },
-  "bundleDependencies": []
+  "bundleDependencies": [],
+  "devDependencies": {
+    "liquidjs": "^9.25.1"
+  }
 }

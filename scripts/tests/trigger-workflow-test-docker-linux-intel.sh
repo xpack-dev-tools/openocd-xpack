@@ -67,7 +67,7 @@ message="Test ${app_description} on Intel Docker platforms"
 branch="xpack"
 base_url="release"
 version="${RELEASE_VERSION:-$(get_current_version)}"
-workflow_id="docker-linux-intel.yml"
+workflow_id="test-docker-linux-intel.yml"
 
 while [ $# -gt 0 ]
 do
