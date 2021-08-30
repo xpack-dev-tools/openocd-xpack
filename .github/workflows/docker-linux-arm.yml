@@ -165,11 +165,6 @@ jobs:
         with:
           entrypoint: /usr/bin/linux32
           args: /bin/bash /github/workspace/scripts/tests/native-test.sh --image raspbian/stretch --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
-      - name: 'Raspbian 8 arm'
-        uses: docker://raspbian/jessie
-        with:
-          entrypoint: /usr/bin/linux32
-          args: /bin/bash /github/workspace/scripts/tests/native-test.sh --image raspbian/jessie --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
 
   # End of life. See RedHat.
   # https://en.wikipedia.org/wiki/CentOS
