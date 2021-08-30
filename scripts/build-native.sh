@@ -40,7 +40,8 @@ script_folder_name="$(basename "${script_folder_path}")"
 
 # =============================================================================
 
-helper_folder_path="${script_folder_path}/helper"
+scripts_folder_path="$(dirname "${script_folder_path}")/scripts"
+helper_folder_path="${scripts_folder_path}/helper"
 
 # -----------------------------------------------------------------------------
 
