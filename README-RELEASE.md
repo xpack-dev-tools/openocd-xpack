@@ -266,13 +266,13 @@ git clone --recurse-submodules -b xpack-develop \
 
 rm -rf ~/Work/cache/xpack-openocd-*
 
-bash ~/Downloads/openocd-xpack.git/tests/scripts/native-test.sh \
+bash ~/Downloads/openocd-xpack.git/scripts/tests/native-test.sh \
   "https://github.com/xpack-dev-tools/openocd-xpack/releases/download/v0.11.0-2/"
 ```
 
 ## Run the release CI tests
 
-Using the scripts in `tests/scripts/`, start:
+Using the scripts in `scripts/tests/`, start:
 
 TODO:
 
@@ -280,9 +280,9 @@ The test results are available from:
 
 - TODO
 
-For more details, see `tests/scripts/README.md`.
+For more details, see `scripts/tests/README.md`.
 
-Using the scripts in `tests/scripts/`, start:
+Using the scripts in `scripts/tests/`, start:
 
 - `trigger-travis-quick.mac.command` (optional)
 - `trigger-travis-stable.mac.command`
@@ -292,7 +292,7 @@ The test results are available from:
 
 - <https://travis-ci.com/github/xpack-dev-tools/openocd-xpack>
 
-For more details, see `tests/scripts/README.md`.
+For more details, see `scripts/tests/README.md`.
 
 ## Prepare a new blog post
 
@@ -404,7 +404,7 @@ After a few moments the version will be visible at:
 
 ## Test if the npm binaries can be installed with xpm
 
-Run the `tests/scripts/trigger-travis-xpm-install.sh` script, this
+Run the `scripts/tests/trigger-travis-xpm-install.sh` script, this
 will install the package on Intel Linux 64-bit, macOS and Windows 64-bit.
 
 The test results are available from:

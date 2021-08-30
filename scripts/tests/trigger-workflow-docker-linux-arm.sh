@@ -35,16 +35,76 @@ then
   script_path="$(pwd)/$0"
 fi
 
+script_name="$(basename "${script_path}")"
+
 script_folder_path="$(dirname "${script_path}")"
 script_folder_name="$(basename "${script_folder_path}")"
 
 # =============================================================================
 
-script_name="$(basename "${script_path}")"
+scripts_folder_path="$(dirname $(dirname "${script_folder_path}"))/scripts"
+helper_folder_path="${scripts_folder_path}/helper"
 
-script_base=$(echo "${script_name}" | sed -e 's/\(.*\)[.]mac[.]command/\1/')
-# echo "${script_base}"
+# -----------------------------------------------------------------------------
 
-DEBUG=${DEBUG} bash "${script_folder_path}/${script_base}.sh"
+source "${script_folder_path}/app-defs.sh"
+
+source "${helper_folder_path}/test-functions-source.sh"
+
+# -----------------------------------------------------------------------------
+
+if [ $# -lt 1 ]
+then
+  echo "usage: $(basename $0) [--branch name] [--version X.Y.Z] --base-url URL"
+  exit 1
+fi
+
+message="Test ${app_description} on Intel Docker platforms"
+
+branch="xpack"
+base_url="release"
+version="${RELEASE_VERSION:-$(get_current_version)}"
+
+while [ $# -gt 0 ]
+do
+  case "$1" in
+
+    --branch)
+      branch="$2"
+      shift 2
+      ;;
+
+    --version)
+      version="$2"
+      shift 2
+      ;;
+
+    --base-url)
+      base_url="$2"
+      shift 2
+      ;;
+
+    --*)
+      echo "Unsupported option $1."
+      exit 1
+      ;;
+
+  esac
+done
+
+workflow_id="docker-linux-arm.yml"
+
+# GITHUB_API_DISPATCH_TOKEN must be present in the environment.
+
+trigger_github_workflow \
+  "${github_org}" \
+  "${github_repo}" \
+  "${workflow_id}" \
+  "${branch}" \
+  "${base_url}" \
+  "${version}"
+
+echo
+echo "Done."
 
 # -----------------------------------------------------------------------------

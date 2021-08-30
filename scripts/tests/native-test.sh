@@ -42,74 +42,100 @@ script_folder_name="$(basename "${script_folder_path}")"
 
 # =============================================================================
 
+scripts_folder_path="$(dirname $(dirname "${script_folder_path}"))/scripts"
+helper_folder_path="${scripts_folder_path}/helper"
+
+# -----------------------------------------------------------------------------
+
 source "${script_folder_path}/app-defs.sh"
 
-helper_folder_path="$(dirname $(dirname "${script_folder_path}"))/scripts/helper"
-
+# Helper functions
+source "${helper_folder_path}/common-functions-source.sh"
+source "${helper_folder_path}/common-apps-functions-source.sh"
 source "${helper_folder_path}/test-functions-source.sh"
+
+# Reuse the test functions defined in the build scripts.
+source "${scripts_folder_path}/common-apps-functions-source.sh"
+
+# Common native & docker functions (like run_tests()).
 source "${script_folder_path}/common-functions-source.sh"
 
 # -----------------------------------------------------------------------------
 
-# This runs inside a Docker container.
+if [ $# -lt 1 ]
+then
+  echo "usage: $(basename $0) [--32] [--version X.Y.Z] --base-url URL"
+  exit 1
+fi
 
-# -----------------------------------------------------------------------------
-
-image_name="$1"
-echo "${image_name}"
-shift
-
-base_url="$1"
-echo "${base_url}"
-shift
+force_32_bit=""
+image_name=""
+RELEASE_VERSION="${RELEASE_VERSION:-$(get_current_version)}"
+BASE_URL="${BASE_URL:-release}"
 
 while [ $# -gt 0 ]
 do
   case "$1" in
 
-    -*)
+    --32)
+      force_32_bit="y"
+      shift
+      ;;
+
+    --image)
+      image_name="$2"
+      shift 2
+      ;;
+
+    --version)
+      RELEASE_VERSION="$2"
+      shift 2
+      ;;
+
+    --base-url)
+      BASE_URL="$2"
+      shift 2
+      ;;
+
+    --*)
       echo "Unsupported option $1."
+      exit 1
+      ;;
+
+    *)
+      echo "Unsupported arg $1."
       exit 1
       ;;
 
   esac
 done
 
+echo "BASE_URL=${BASE_URL}"
+
 # -----------------------------------------------------------------------------
 
-# Make sure that the minimum prerequisites are met.
-if [[ ${image_name} == *ubuntu* ]] || [[ ${image_name} == *debian* ]] || [[ ${image_name} == *raspbian* ]]
+if [ -f "/.dockerenv" ]
 then
-  apt-get -qq update 
-  apt-get -qq install -y git-core curl tar gzip lsb-release binutils
-elif [[ ${image_name} == *centos* ]] || [[ ${image_name} == *fedora* ]]
-then
-  yum install -y -q git curl tar gzip redhat-lsb-core binutils
-elif [[ ${image_name} == *opensuse* ]]
-then
-  zypper -q in -y git-core curl tar gzip lsb-release binutils
-elif [[ ${image_name} == *manjaro* ]]
-then
-  pacman-mirrors -g
-  pacman -S -y -q --noconfirm 
-
-    # Update even if up to date (-yy) & upgrade (-u).
-  # pacman -S -yy -u -q --noconfirm 
-  pacman -S -q --noconfirm --noprogressbar   git curl tar gzip lsb-release binutils
-elif [[ ${image_name} == *archlinux* ]]
-then
-  pacman -S -y -q --noconfirm 
-
-    # Update even if up to date (-yy) & upgrade (-u).
-  # pacman -S -yy -u -q --noconfirm 
-  pacman -S -q --noconfirm --noprogressbar   git curl tar gzip lsb-release binutils
+  if [ -n "${image_name}" ]
+  then
+    # When running in a Docker container, update it.
+    update_image "${image_name}"
+  else
+    echo "No image defined, quit."
+    exit 1
+  fi
 fi
 
 # -----------------------------------------------------------------------------
 
 detect_architecture
 
-prepare_env
+prepare_env "$(dirname $(dirname "${script_folder_path}"))"
+
+if [ "${BASE_URL}" == "release" ]
+then
+  BASE_URL=https://github.com/xpack-dev-tools/${app_lc_name}-xpack/releases/download/${RELEASE_VERSION}/
+fi
 
 install_archive
 

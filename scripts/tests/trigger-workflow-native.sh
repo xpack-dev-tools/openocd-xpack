@@ -42,36 +42,84 @@ script_folder_name="$(basename "${script_folder_path}")"
 
 # =============================================================================
 
-source "${script_folder_path}/app-defs.sh"
+scripts_folder_path="$(dirname $(dirname "${script_folder_path}"))/scripts"
+helper_folder_path="${scripts_folder_path}/helper"
 
-helper_folder_path="$(dirname $(dirname "${script_folder_path}"))/scripts/helper"
+# -----------------------------------------------------------------------------
+
+source "${script_folder_path}/app-defs.sh"
 
 source "${helper_folder_path}/test-functions-source.sh"
 
 # -----------------------------------------------------------------------------
 
-message="Test ${app_description} on Windows platforms"
-branch="xpack-develop"
+if [ $# -lt 1 ]
+then
+  echo "usage: $(basename $0) [--branch name] [--version X.Y.Z] --base-url URL"
+  exit 1
+fi
 
-version="$(cat $(dirname $(dirname ${script_folder_path}))/scripts/VERSION)"
+message="Test ${app_description} on native platforms"
 
-base_url="https://github.com/${github_org}/${github_repo}/releases/download/v${version}/"
-# base_url="https://github.com/${github_org}/${github_pre_releases}/releases/download/test/"
-# base_url="https://github.com/${github_org}/${github_pre_releases}/releases/download/experimental/"
-echo ${base_url}
+branch="xpack"
+base_url="release"
+version="${RELEASE_VERSION:-$(get_current_version)}"
 
-data_file_path="$(mktemp)"
+while [ $# -gt 0 ]
+do
+  case "$1" in
 
-create_windows_data_file "${message}" "${branch}" "${base_url}" "${data_file_path}"
+    --branch)
+      branch="$2"
+      shift 2
+      ;;
 
-# https://docs.travis-ci.com/user/triggering-builds/
+    --version)
+      version="$2"
+      shift 2
+      ;;
 
-# TRAVIS_ORG_TOKEN must be present in the environment.
-trigger_travis "${github_org}" "${github_repo}" "${data_file_path}"
+    --base-url)
+      base_url="$2"
+      shift 2
+      ;;
 
-cat "${data_file_path}"
-rm -v "${data_file_path}"
+    --*)
+      echo "Unsupported option $1."
+      exit 1
+      ;;
 
+  esac
+done
+
+workflow_id="native.yml"
+
+data_file_path=$(mktemp)
+rm -rf "${data_file_path}"
+
+# Note: __EOF__ is NOT quoted to allow substitutions.
+cat <<__EOF__ > "${data_file_path}"
+{
+  "ref": "${branch}", 
+  "inputs": {
+    "version": "${version}",
+    "base_url": "${base_url}"
+  }
+}
+__EOF__
+
+# GITHUB_API_DISPATCH_TOKEN must be present in the environment.
+
+trigger_github_workflow \
+  "${github_org}" \
+  "${github_repo}" \
+  "${workflow_id}" \
+  "${data_file_path}" \
+  "${GITHUB_API_DISPATCH_TOKEN}"
+
+rm -rf "${data_file_path}"
+
+echo
 echo "Done."
 
 # -----------------------------------------------------------------------------

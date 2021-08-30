@@ -1,0 +1,89 @@
+
+# -----------------------------------------------------------------------------
+# This file is part of the xPack distribution.
+#   (https://xpack.github.io)
+# Copyright (c) 2021 Liviu Ionescu.
+#
+# Permission to use, copy, modify, and/or distribute this software 
+# for any purpose is hereby granted, under the terms of the MIT license.
+# -----------------------------------------------------------------------------
+
+# https://help.github.com/en/actions
+# https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners
+
+# https://docs.github.com/en/actions/reference/events-that-trigger-workflows#workflow_dispatch
+# https://docs.github.com/en/developers/webhooks-and-events/webhooks/webhook-events-and-payloads#workflow_dispatch
+# https://docs.github.com/en/rest/reference/actions#create-a-workflow-dispatch-event
+
+# -----------------------------------------------------------------------------
+
+name: 'Test xPack OpenOCD on native platforms'
+
+on:
+  workflow_dispatch:
+    inputs:
+      base_url:
+        description: 'The folder part of the URL where binaries are stored'
+        required: false
+        default: 'release'
+      version:
+        description: 'The semver of the release'
+        required: false
+        default: 'current'
+
+jobs:
+  linux-x64:
+    name: 'Linux 64-bit GCC ${{ github.event.inputs.version }} test'
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 3
+          submodules: true
+      - name: 'Run native ${{ github.event.inputs.version }} test'
+        run: |
+          pwd
+          ls -lL
+          bash tests/scripts/native-test.sh --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+
+  macos-x64:
+    name: 'macOS 64-bit GCC ${{ github.event.inputs.version }} test'
+    runs-on: macos-latest
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 3
+          submodules: true
+      - name: 'Run native ${{ github.event.inputs.version }} test'
+        run: |
+          bash tests/scripts/native-test.sh --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+
+  windows-x64:
+    name: 'Windows 64-bit GCC ${{ github.event.inputs.version }} test'
+    runs-on: windows-latest
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 3
+          submodules: true
+      - name: 'Run native ${{ github.event.inputs.version }} test'
+        run: |
+          bash tests/scripts/native-test.sh --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+
+  windows-ia32:
+    name: 'Windows 32-bit GCC ${{ github.event.inputs.version }} test'
+    runs-on: windows-latest
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 3
+          submodules: true
+      - name: 'Run native ${{ github.event.inputs.version }} test'
+        run: |
+          bash tests/scripts/native-test.sh --32 --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+
+# -----------------------------------------------------------------------------
