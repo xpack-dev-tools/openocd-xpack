@@ -165,6 +165,7 @@ jobs:
         with:
           entrypoint: /usr/bin/linux32
           args: /bin/bash /github/workspace/scripts/tests/native-test.sh --image raspbian/stretch --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+      # docker://raspbian/jessie (8) fails to update.
 
   # End of life. See RedHat.
   # https://en.wikipedia.org/wiki/CentOS
