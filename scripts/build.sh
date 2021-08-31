@@ -47,25 +47,22 @@ helper_folder_path="${scripts_folder_path}/helper"
 
 # Script to build the xPack OpenOCD distribution packages.
 #
-# Developed on macOS 10.13 High Sierra, but intended to run on
-# macOS 10.10 Yosemite and CentOS 6 XBB. 
+# Developed on macOS 10.13 High Sierra, but also intended to run on
+# Intel & Arm Linux XBB.
 
 # -----------------------------------------------------------------------------
 
+source "${script_folder_path}/defs-source.sh"
+
 echo
-echo "xPack OpenOCD distribution build script."
+echo "${APP_DESCRIPTION} distribution build script."
 
-helper_common_functions_script_path="${helper_folder_path}/common-functions-source.sh"
-source "${helper_common_functions_script_path}"
+# Helper functions.
+source "${helper_folder_path}/common-functions-source.sh"
+source "${helper_folder_path}/host-functions-source.sh"
 
-helper_host_functions_script_path="${helper_folder_path}/host-functions-source.sh"
-source "${helper_host_functions_script_path}"
-
-common_functions_script_path="${script_folder_path}/common-functions-source.sh"
-source "${common_functions_script_path}"
-
-defines_script_path="${script_folder_path}/defs-source.sh"
-source "${defines_script_path}"
+# The order is important, it may override helper defs.
+# source "${script_folder_path}/common-functions-source.sh"
 
 host_detect
 
@@ -82,13 +79,6 @@ declare -a rest
 
 help_message="    bash $0 [--win32] [--win64] [--linux32] [--linux64] [--arm32] [--arm64] [--osx] [--all] [clean|cleanlibs|cleanall|preload-images] [--env-file file] [--disable-strip] [--without-pdf] [--with-html] [--develop] [--debug] [--jobs N] [--help]"
 host_options "${help_message}" "$@"
-
-# Intentionally moved after option parsing.
-echo
-echo "Common helper functions source script: \"${helper_common_functions_script_path}\"."
-echo "Host helper functions source script: \"${helper_host_functions_script_path}\"."
-# echo "Common functions source script: \"${common_functions_script_path}\"."
-echo "Definitions source script: \"${defines_script_path}\"."
 
 host_common
 

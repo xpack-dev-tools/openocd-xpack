@@ -54,17 +54,17 @@ helper_folder_path="${scripts_folder_path}/helper"
 
 # -----------------------------------------------------------------------------
 
+source "${script_folder_path}/defs-source.sh"
+
 echo
-echo "xPack OpenOCD native build script."
+echo "${APP_DESCRIPTION} native build script."
 
-helper_host_functions_script_path="${helper_folder_path}/host-functions-source.sh"
-source "${helper_host_functions_script_path}"
+# Helper functions.
+source "${script_folder_path}/common-functions-source.sh"
+source "${helper_folder_path}/host-functions-source.sh"
 
-common_functions_script_path="${script_folder_path}/common-functions-source.sh"
-source "${common_functions_script_path}"
-
-defines_script_path="${script_folder_path}/defs-source.sh"
-source "${defines_script_path}"
+# The order is important, it may override helper defs.
+# source "${script_folder_path}/common-functions-source.sh"
 
 host_detect
 
@@ -73,41 +73,25 @@ host_detect
 help_message="    bash $0 [--win] [--debug] [--develop] [--jobs N] [--help] [clean|cleanlibs|cleanall]"
 host_native_options "${help_message}" $@
 
-echo
-echo "Host helper functions source script: \"${helper_host_functions_script_path}\"."
-echo "Common functions source script: \"${common_functions_script_path}\"."
-echo "Definitions source script: \"${defines_script_path}\"."
-
-# -----------------------------------------------------------------------------
-
 host_common
 
-prepare_xbb_env
-export TARGET_BITS="${HOST_BITS}"
+# -----------------------------------------------------------------------------
 
-prepare_xbb_extras
+prepare_xbb_env
 
 # -----------------------------------------------------------------------------
 
-helper_common_libs_functions_script_path="${helper_folder_path}/common-libs-functions-source.sh"
-echo "Common helper libs functions source script: \"${helper_common_libs_functions_script_path}\"."
-source "${helper_common_libs_functions_script_path}"
+# Helper functions.
+source "${helper_folder_path}/common-functions-source.sh"
+source "${helper_folder_path}/container-functions-source.sh"
+source "${helper_folder_path}/common-libs-functions-source.sh"
+source "${helper_folder_path}/common-apps-functions-source.sh"
 
-common_functions_script_path="${script_folder_path}/common-functions-source.sh"
-echo "Common functions source script: \"${common_functions_script_path}\"."
-source "${common_functions_script_path}"
-
-common_versions_script_path="${script_folder_path}/common-versions-source.sh"
-echo "Common versions source script: \"${common_versions_script_path}\"."
-source "${common_versions_script_path}"
-
-common_libs_functions_script_path="${script_folder_path}/${COMMON_LIBS_FUNCTIONS_SCRIPT_NAME}"
-echo "Common libs functions source script: \"${common_libs_functions_script_path}\"."
-source "${common_libs_functions_script_path}"
-
-common_apps_functions_script_path="${script_folder_path}/${COMMON_APPS_FUNCTIONS_SCRIPT_NAME}"
-echo "Common app functions source script: \"${common_apps_functions_script_path}\"."
-source "${common_apps_functions_script_path}"
+# The order is important, it may override helper defs.
+# source "${script_folder_path}/common-functions-source.sh"
+source "${script_folder_path}/common-libs-functions-source.sh"
+source "${script_folder_path}/common-apps-functions-source.sh"
+source "${script_folder_path}/common-versions-source.sh"
 
 # -----------------------------------------------------------------------------
 
