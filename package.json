@@ -73,7 +73,11 @@
         "cat scripts/helper/templates/test-native-liquid.yml | liquidjs '{ \"APP_NAME\": \"OpenOCD\" }' > .github/workflows/test-native.yml",
         "cat scripts/helper/templates/test-docker-linux-intel-liquid.yml | liquidjs '{ \"APP_NAME\": \"OpenOCD\" }' > .github/workflows/test-docker-linux-intel.yml",
         "cat scripts/helper/templates/test-docker-linux-arm-liquid.yml | liquidjs '{ \"APP_NAME\": \"OpenOCD\" }' > .github/workflows/test-docker-linux-arm.yml"
-        ]
+        ],
+      "trigger-workflow-build": "bash scripts/helper/trigger-workflow-build.sh",
+      "trigger-workflow-test-native": "bash scripts/helper/tests/trigger-workflow-test-native.sh",
+      "trigger-workflow-test-docker-linux-intel": "bash scripts/helper/tests/trigger-workflow-test-docker-linux-intel.sh",
+      "trigger-workflow-test-docker-linux-arm": "bash scripts/helper/tests/trigger-workflow-test-docker-linux-arm.sh"
     }
   },
   "bundleDependencies": [],
