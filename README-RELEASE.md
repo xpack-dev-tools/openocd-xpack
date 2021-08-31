@@ -126,8 +126,15 @@ From here it'll be cloned on the production machines.
 
 The automation is provided by the GitHub Actions and self-hosted runners.
 
-- open ssh sessions to all build machines (`xbbi`, `xbba`, `xbbm`)
-- start the runner (`~/actions-runner/run.sh`)
+- on the macOS machine (`xbbm`) open ssh sessions to both Linux machines (`xbbi` and `xbba`)
+
+```sh
+caffeinate ssh xbbi
+
+caffeinate ssh xbba
+```
+
+- start the runner (`~/actions-runner/run.sh`) on all three machines
 - check that both the project Git and the submodule are pushed
 - trigger the build via GitHub Actions
 
@@ -135,7 +142,13 @@ The automation is provided by the GitHub Actions and self-hosted runners.
 bash ~/Downloads/openocd-xpack.git/scripts/helper/trigger-workflow-build.sh
 ```
 
+This is also available as an xPack action (`trigger-workflow-build`)
+
 This command uses the `xpack-develop` branch of this repo.
+
+The workflow result and logs are available from the
+[Actions](https://github.com/xpack-dev-tools/openocd-xpack/actions) page.
+
 When the actions complete, the results are available for testing from
 [pre-releases/test](https://github.com/xpack-dev-tools/pre-releases/releases/tag/test).
 
