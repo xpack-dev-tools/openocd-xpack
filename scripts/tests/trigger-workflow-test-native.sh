@@ -47,7 +47,7 @@ helper_folder_path="${scripts_folder_path}/helper"
 
 # -----------------------------------------------------------------------------
 
-source "${script_folder_path}/app-defs.sh"
+source "${scripts_folder_path}/defs-source.sh"
 
 # Helper functions
 source "${helper_folder_path}/common-functions-source.sh"
@@ -62,7 +62,7 @@ then
   exit 1
 fi
 
-message="Test ${app_description} on native platforms"
+message="Test ${APP_DESCRIPTION} on native platforms"
 
 branch="xpack"
 base_url="release"
@@ -115,8 +115,8 @@ __EOF__
 # GITHUB_API_DISPATCH_TOKEN must be present in the environment.
 
 trigger_github_workflow \
-  "${github_org}" \
-  "${github_repo}" \
+  "${GITHUB_ORG}" \
+  "${GITHUB_REPO}" \
   "${workflow_id}" \
   "${data_file_path}" \
   "${GITHUB_API_DISPATCH_TOKEN}"

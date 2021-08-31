@@ -47,7 +47,7 @@ helper_folder_path="${scripts_folder_path}/helper"
 
 # -----------------------------------------------------------------------------
 
-source "${script_folder_path}/app-defs.sh"
+source "${scripts_folder_path}/defs-source.sh"
 
 # Helper functions
 source "${helper_folder_path}/common-functions-source.sh"
@@ -134,7 +134,7 @@ prepare_env "$(dirname $(dirname "${script_folder_path}"))"
 
 if [ "${BASE_URL}" == "release" ]
 then
-  BASE_URL=https://github.com/xpack-dev-tools/${app_lc_name}-xpack/releases/download/${RELEASE_VERSION}/
+  BASE_URL=https://github.com/xpack-dev-tools/${APP_LC_NAME}-xpack/releases/download/${RELEASE_VERSION}/
 fi
 
 install_archive
