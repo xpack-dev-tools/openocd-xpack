@@ -7,7 +7,7 @@
 # for any purpose is hereby granted, under the terms of the MIT license.
 # -----------------------------------------------------------------------------
 
-# Helper script used in the second edition of the build scripts.
+# Application definitions used in the build scripts.
 # As the name implies, it should contain only definitions and should
 # be included with 'source' by the host and container scripts.
 
@@ -26,15 +26,17 @@ DISTRO_UC_NAME=${DISTRO_UC_NAME:-"xPack"}
 DISTRO_LC_NAME=${DISTRO_LC_NAME:-"xpack"}
 DISTRO_TOP_FOLDER=${DISTRO_TOP_FOLDER:-"xPacks"}
 
-# Use the new xPack naming convention.
-HAS_NAME_ARCH="y"
+APP_DESCRIPTION="${DISTRO_UC_NAME} ${APP_UC_NAME}"
 
-BRANDING=${BRANDING:-"${DISTRO_UC_NAME} OpenOCD"}
+BRANDING=${BRANDING:-"${DISTRO_UC_NAME} ${APP_UC_NAME}"}
 
-CONTAINER_SCRIPT_NAME=${CONTAINER_SCRIPT_NAME:-"container-build.sh"}
+# -----------------------------------------------------------------------------
 
-COMMON_LIBS_FUNCTIONS_SCRIPT_NAME=${COMMON_LIBS_FUNCTIONS_SCRIPT_NAME:-"common-libs-functions-source.sh"}
-COMMON_APPS_FUNCTIONS_SCRIPT_NAME=${COMMON_APPS_FUNCTIONS_SCRIPT_NAME:-"common-apps-functions-source.sh"}
+GITHUB_ORG="xpack-dev-tools"
+GITHUB_REPO="openocd-xpack"
+GITHUB_PRE_RELEASES="pre-releases"
+
+NPM_PACKAGE="@xpack-dev-tools/openocd@next"
 
 # -----------------------------------------------------------------------------
 
@@ -45,3 +47,5 @@ COMMON_APPS_FUNCTIONS_SCRIPT_NAME=${COMMON_APPS_FUNCTIONS_SCRIPT_NAME:-"common-a
 # OPENOCD_GIT_URL=git://git.code.sf.net/p/openocd/code
 # OPENOCD_GIT_BRANCH=master
 # OPENOCD_GIT_COMMIT=HEAD
+
+# -----------------------------------------------------------------------------
