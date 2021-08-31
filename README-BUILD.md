@@ -1,4 +1,4 @@
-# How to build the xPack OpenOCD
+# How to build the xPack OpenOCD binaries
 
 ## Introduction
 
@@ -22,7 +22,7 @@ There are two types of builds:
 
 This page documents the distribution builds.
 
-For native builds, see the `build-native.sh` script. (to be added)
+For native builds, see the `build-native.sh` script.
 
 ## Repositories
 
@@ -267,7 +267,7 @@ network connection or a computer entering sleep.
 screen -S openocd
 
 sudo rm -rf ~/Work/openocd-*
-bash ~/Downloads/openocd-xpack.git/scripts/build.sh --all
+bash ~/Downloads/openocd-xpack.git/scripts/build.sh --all --develop
 ```
 
 To detach from the session, use `Ctrl-a` `Ctrl-d`; to reattach use
@@ -287,11 +287,11 @@ total 7120
 
 ### Build the macOS binaries
 
-The current platform for macOS production builds is a macOS 10.10.5
-running on a MacBook Pro with 32 GB of RAM and a fast SSD.
+The current platform for macOS production builds is a macOS 10.13.6
+running in a virtual machine.
 
 ```sh
-caffeinate ssh xbbm
+caffeinate ssh xbbm13.local
 ```
 
 To build the latest macOS version:
@@ -300,8 +300,7 @@ To build the latest macOS version:
 screen -S openocd
 
 rm -rf ~/Work/openocd-*
-
-caffeinate bash ~/Downloads/openocd-xpack.git/scripts/build.sh --osx
+caffeinate bash ~/Downloads/openocd-xpack.git/scripts/build.sh --osx --develop
 ```
 
 To detach from the session, use `Ctrl-a` `Ctrl-d`; to reattach use
@@ -325,8 +324,9 @@ total 5536
 Instead of `--all`, you can use any combination of:
 
 ```console
---win32 --win64 --linux32 --linux64
---arm --arm64
+--win32 --win64
+--linux32 --linux64
+--arm32 --arm64
 ```
 
 ### `clean`
@@ -352,7 +352,11 @@ bash ~/Downloads/openocd-xpack.git/scripts/build.sh --all cleanall
 Instead of `--all`, any combination of `--win32 --win64 --linux32 --linux64`
 will remove the more specific folders.
 
-For production builds it is recommended to completely remove the build folder.
+For production builds it is recommended to **completely remove the build folder**:
+
+```sh
+rm -rf ~/Work/openocd-*
+```
 
 ### `--develop`
 
@@ -362,6 +366,8 @@ the disadvantage that interrupted builds cannot be resumed.
 
 For development builds, it is possible to define the build folders in
 the host file system, and resume an interrupted build.
+
+In addition, the builds are more verbose.
 
 ### `--debug`
 
@@ -375,7 +381,7 @@ parallel builds fail, it is possible to reduce the load.
 
 ### Interrupted builds
 
-The Docker scripts run with root privileges. This is generally not a
+The Docker scripts may run with root privileges. This is generally not a
 problem, since at the end of the script the output files are reassigned
 to the actual user.
 
@@ -410,12 +416,6 @@ $ tree -L 2 /Users/ilg/Library/xPacks/\@xpack-dev-tools/openocd/0.11.0-2.1/.cont
 │   └── ulink_firmware.hex
 ├── README.md
 ├── bin
-│   ├── libftdi1.2.4.0.dylib
-│   ├── libftdi1.2.dylib -> libftdi1.2.4.0.dylib
-│   ├── libgcc_s.1.dylib
-│   ├── libhidapi.0.dylib
-│   ├── libusb-0.1.4.dylib
-│   ├── libusb-1.0.0.dylib
 │   └── openocd
 ├── contrib
 │   ├── 60-openocd.rules
@@ -425,6 +425,12 @@ $ tree -L 2 /Users/ilg/Library/xPacks/\@xpack-dev-tools/openocd/0.11.0-2.1/.cont
 │   ├── licenses
 │   ├── patches
 │   └── scripts
+├── libexec
+│   ├── libftdi1.2.5.0.dylib
+│   ├── libftdi1.2.dylib -> libftdi1.2.5.0.dylib
+│   ├── libgcc_s.1.dylib
+│   ├── libhidapi.0.dylib
+│   └── libusb-1.0.0.dylib
 ├── scripts
 │   ├── bitsbytes.tcl
 │   ├── board
@@ -442,7 +448,7 @@ $ tree -L 2 /Users/ilg/Library/xPacks/\@xpack-dev-tools/openocd/0.11.0-2.1/.cont
 └── share
     └── doc
 
-20 directories, 15 files
+21 directories, 14 files
 ```
 
 No other files are installed in any system folders or other locations.

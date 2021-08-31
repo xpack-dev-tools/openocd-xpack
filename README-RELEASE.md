@@ -13,21 +13,10 @@ Before starting the build, perform some checks and tweaks.
 
 ### Check Git
 
+In the `xpack-dev-tools/openocd-xpack` Git repo:
+
 - switch to the `xpack-develop` branch
 - if needed, merge the `xpack` branch
-
-### Update git repos
-
-To keep the development repository in sync with the original OpenOCD
-repository, in the `xpack-dev-tools/openocd` Git repo:
-
-- checkout `master`
-- merge from `upstream/master`
-- checkout `xpack-develop`
-- merge `master`
-- fix conflicts (in `60-openocd.rules` and possibly other)
-- checkout `xpack`
-- merge `xpack-develop`
 
 No need to add a tag here, it'll be added when the release is created.
 
@@ -52,8 +41,11 @@ Normally `README.md` should not need changes, but better check.
 Information related to the new version should not be included here,
 but in the version specific file (below).
 
-- update version in README-RELEASE.md
-- update version in README-BUILD.md
+### Update versions in `README` files
+
+- update version in `README-RELEASE.md`
+- update version in `README-BUILD.md`
+- update version in `README.md`
 
 ## Update `CHANGELOG.md`
 
@@ -75,6 +67,21 @@ recreate the archives with the correct file.
 
 With Sourcetree, go to the helper repo and update to the latest master commit.
 
+### Merge upstream repo
+
+To keep the development repository in sync with the upstream OpenOCD
+repository, in the `xpack-dev-tools/openocd` Git repo:
+
+- checkout `master`
+- merge from `upstream/master`
+- checkout `xpack-develop`
+- merge `master`
+- fix conflicts (in `60-openocd.rules` and possibly other)
+- checkout `xpack`
+- merge `xpack-develop`
+
+Possibly add a tag here.
+
 ## Build
 
 ### Development run the build scripts
@@ -84,18 +91,29 @@ Before the real build, run a test build on the development machine (`wks`):
 ```sh
 sudo rm -rf ~/Work/openocd-*
 
-caffeinate bash ~/Downloads/openocd-xpack.git/scripts/build.sh --develop --without-pdf --disable-tests --all
-
-caffeinate bash ~/Downloads/openocd-xpack.git/scripts/build.sh --develop --without-pdf --disable-tests --osx
-
-caffeinate bash ~/Downloads/openocd-xpack.git/scripts/build.sh --develop --without-pdf --disable-tests --linux64 --win64
-
-caffeinate bash ~/Downloads/openocd-xpack.git/scripts/build.sh --develop --without-pdf --disable-tests --linux32 --win32
+caffeinate bash ~/Downloads/openocd-xpack.git/scripts/build.sh --develop --without-pdf --without-html --disable-tests --osx
 ```
 
-Work on the scripts until all 4 platforms pass the build.
+Similarly on the Intel Linux:
 
-## Push the build script
+```sh
+bash ~/Downloads/openocd-xpack.git/scripts/build.sh --develop --without-pdf --without-html --disable-tests --linux64
+bash ~/Downloads/openocd-xpack.git/scripts/build.sh --develop --without-pdf --without-html --disable-tests --linux32
+
+bash ~/Downloads/openocd-xpack.git/scripts/build.sh --develop --without-pdf --without-html --disable-tests --win64
+bash ~/Downloads/openocd-xpack.git/scripts/build.sh --develop --without-pdf --without-html --disable-tests --win32
+```
+
+And on the Arm Linux:
+
+```sh
+bash ~/Downloads/openocd-xpack.git/scripts/build.sh --develop --without-pdf --without-html --disable-tests --arm64
+bash ~/Downloads/openocd-xpack.git/scripts/build.sh --develop --without-pdf --without-html --disable-tests --arm32
+```
+
+Work on the scripts until all platforms pass the build.
+
+## Push the build scripts
 
 In this Git repo:
 
@@ -104,7 +122,28 @@ In this Git repo:
 
 From here it'll be cloned on the production machines.
 
-### Run the build scripts
+### Run the build scripts automatically
+
+The automation is provided by the GitHub Actions and self-hosted runners.
+
+- open ssh sessions to all build machines (`xbbi`, `xbba`, `xbbm`)
+- start the runner (`~/actions-runner/run.sh`)
+- check that both the project Git and the submodule are pushed
+- trigger the build via GitHub Actions
+
+```sh
+bash ~/Downloads/openocd-xpack.git/scripts/helper/trigger-workflow-build.sh
+```
+
+This command uses the `xpack-develop` branch of this repo.
+When the actions complete, the results are available for testing from
+[pre-releases/test](https://github.com/xpack-dev-tools/pre-releases/releases/tag/test).
+
+### Run the build scripts manually
+
+The same result can be obtained with a lot of manual steps.
+
+#### Open sessions to the build machines
 
 On the macOS machine (`xbbm`) open ssh sessions to both Linux machines
 (`xbbi` and `xbba`):
@@ -114,6 +153,8 @@ caffeinate ssh xbbi
 
 caffeinate ssh xbba
 ```
+
+#### Checkout the build scripts
 
 On all machines, clone the `xpack-develop` branch:
 
@@ -127,6 +168,8 @@ git clone \
 
 sudo rm -rf ~/Work/openocd-*
 ```
+
+#### Run the build scripts
 
 Empty trash.
 
@@ -160,16 +203,16 @@ bash ~/Downloads/openocd-xpack.git/scripts/build.sh --arm32
 
 A typical run on the Arm machine it takes about 60 minutes.
 
-### Clean the destination folder
+#### Clean the destination folder
 
-On the development machine (`wks`) clear the folder where binaries from all
+On the development machine (`wks`) clean the folder where binaries from all
 build machines will be collected.
 
 ```sh
 rm -f ~/Downloads/xpack-binaries/openocd/*
 ```
 
-### Copy the binaries to the development machine
+#### Copy the binaries to the development machine
 
 On all three machines:
 
@@ -177,7 +220,21 @@ On all three machines:
 (cd ~/Work/openocd-*/deploy; scp * ilg@wks:Downloads/xpack-binaries/openocd)
 ```
 
+#### Upload the binaries to the pre-release site
+
+Edit the
+[test pre-release](https://github.com/xpack-dev-tools/pre-releases/releases/tag/test)
+and upload the binaries.
+
 ## Testing
+
+### Automated tests
+
+The automation is provided by the GitHub Actions and self-hosted runners.
+
+TBD
+
+### Manual tests
 
 Install the binaries on all supported platforms and check if they are
 functional, using the Eclipse STM32F4DISCOVERY blinky test

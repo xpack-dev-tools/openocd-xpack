@@ -1,5 +1,7 @@
 # Development info
 
+Note: this page may be occasionally out of date.
+
 ## Prerequisites
 
 For active development of OpenOCD, the supported environments are macOS and
@@ -15,7 +17,7 @@ build environments for the [xPack](https://github.com/xpack) tools.
 ### macOS
 
 The macOS XBB is a custom set of tools installed in the
-`${HOME}/opt/xbb` folder.
+`${HOME}/.local/xbb` folder.
 
 To compile and install these tools, please read the separate
 [The macOS XBB](https://github.com/xpack/xpack-build-box/tree/master/macos)
@@ -27,7 +29,7 @@ it on a more recent macOS, please contribute back the changes to the script.
 ### Ubuntu
 
 The Ubuntu XBB is currently a dedicated Ubuntu Desktop 18 LTS 64-bit virtual
-machine running on VirtualBox. It obviously can run on any virtualisation
+machine running on Parallels. It obviously can run on any virtualisation
 platform, or even be a physical machine. However, for consistent and
 reproducible results, it is recommended to do not install other packages.
 
@@ -53,7 +55,7 @@ PS> Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsyst
 
 #### Install Ubuntu
 
-Then follow the instruction in the
+Follow the instruction in the
 [WSL](https://docs.microsoft.com/en-us/windows/wsl/install-win10)
 page and install Ubuntu.
 
@@ -164,7 +166,11 @@ Git repo.
 To download them, the following shortcut is available:
 
 ```sh
-curl -L https://github.com/xpack-dev-tools/openocd-xpack/raw/xpack/scripts/git-clone.sh | bash
+rm -rf ~/Downloads/openocd-xpack.git; \
+git clone \
+  --recurse-submodules \
+  https://github.com/xpack-dev-tools/openocd-xpack.git \
+  ~/Downloads/openocd-xpack.git
 ```
 
 For more details please read the `README-BUILD.md` file.
