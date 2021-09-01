@@ -30,7 +30,7 @@ on:
 
 jobs:
   linux-x64:
-    name: 'Publish release OpenOCD ${{ github.event.inputs.version }} on Intel Linux'
+    name: 'Publish OpenOCD ${{ github.event.inputs.version }} release from Intel Linux'
     runs-on: [self-hosted, Linux, X64]
     steps:
       - name: 'Checkout'
@@ -41,7 +41,7 @@ jobs:
       - name: 'Create body'
         run: |
           npm install
-          cat scripts/templates/body-release-liquid.md | liquidjs '{ \"RELEASE_VERSION\": \"$\" }' >.github/workflows/body-releases.md
+          cat scripts/templates/body-release-liquid.md | npm run liquidjs -- '{ \"RELEASE_VERSION\": \"$\" }' >.github/workflows/body-releases.md
       - name: 'Publish release'
         # https://github.com/ncipollo/release-action
         uses: ncipollo/release-action@v1

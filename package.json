@@ -6,7 +6,8 @@
   "scripts": {
     "pack": "npm pack",
     "git-log": "git log --pretty='%cd * %h %s' --date=short",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "liquidjs": "liquidjs"
   },
   "repository": {
     "type": "git",
