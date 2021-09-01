@@ -78,7 +78,8 @@
       "trigger-workflow-build": "bash scripts/helper/trigger-workflow-build.sh",
       "trigger-workflow-test-native": "bash scripts/helper/tests/trigger-workflow-test-native.sh",
       "trigger-workflow-test-docker-linux-intel": "bash scripts/helper/tests/trigger-workflow-test-docker-linux-intel.sh",
-      "trigger-workflow-test-docker-linux-arm": "bash scripts/helper/tests/trigger-workflow-test-docker-linux-arm.sh"
+      "trigger-workflow-test-docker-linux-arm": "bash scripts/helper/tests/trigger-workflow-test-docker-linux-arm.sh",
+      "trigger-workflow-publish-release": "bash scripts/helper/trigger-workflow-publish-release.sh"
     }
   },
   "bundleDependencies": [],
