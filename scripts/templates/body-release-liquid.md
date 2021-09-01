@@ -8,4 +8,6 @@ Or (edit!):
 Version v{{ RELEASE_VERSION }} is a new release of the
 **xPack OpenOCD** package, following the OpenOCD release.
 
+[Continue reading »](add URL!)
+
 _At this moment these binaries are provided for tests only!_
