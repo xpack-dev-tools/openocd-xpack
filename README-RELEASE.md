@@ -124,7 +124,7 @@ From here it'll be cloned on the production machines.
 
 ### Run the build scripts automatically
 
-The automation is provided by the GitHub Actions and self-hosted runners.
+The automation is provided by GitHub Actions and self-hosted runners.
 
 - on the macOS machine (`xbbm`) open ssh sessions to both Linux machines (`xbbi` and `xbba`)
 
@@ -243,9 +243,25 @@ and upload the binaries.
 
 ### Automated tests
 
-The automation is provided by the GitHub Actions and self-hosted runners.
+The automation is provided by GitHub Actions.
 
-TBD
+To trigger the actions, use:
+
+```sh
+bash ~/Downloads/openocd-xpack.git/scripts/helper/tests/trigger-workflow-test-native.sh
+bash ~/Downloads/openocd-xpack.git/scripts/helper/tests/trigger-workflow-test-docker-linux-intel.sh
+bash ~/Downloads/openocd-xpack.git/scripts/helper/tests/trigger-workflow-test-docker-linux-arm.sh
+```
+
+This is also available as an xPack action (`trigger-workflow-test-native`,
+`trigger-workflow-test-docker-linux-intel`, `trigger-workflow-test-docker-linux-arm`).
+
+These command uses the `xpack-develop` branch of this repo and the
+[pre-releases/test](https://github.com/xpack-dev-tools/pre-releases/releases/tag/test)
+binaries.
+
+The workflow result and logs are available from the
+[Actions](https://github.com/xpack-dev-tools/openocd-xpack/actions) page.
 
 ### Manual tests
 
@@ -272,11 +288,10 @@ Then it is possible to start openocd:
 
 ```console
 $ .../xpack-openocd-0.10.0-15/bin/openocd -f "board/stm32f4discovery.cfg"
-xPack OpenOCD, x86_64 Open On-Chip Debugger 0.11.0-00155-ge392e485e (2021-03-15-13:24)
-(2020-06-26-12:31)
+xPack OpenOCD 64-bit Open On-Chip Debugger 0.11.0+dev-00359-g18bcdc43f (2021-08-29-16:57)
 Licensed under GNU GPL v2
 For bug reports, read
- http://openocd.org/doc/doxygen/bugs.html
+	http://openocd.org/doc/doxygen/bugs.html
 Info : The selected transport took over low-level target control. The results might differ compared to plain JTAG/SWD
 srst_only separate srst_nogate srst_open_drain connect_deassert_srst
 
@@ -284,12 +299,12 @@ Info : Listening on port 6666 for tcl connections
 Info : Listening on port 4444 for telnet connections
 Info : clock speed 2000 kHz
 Info : STLINK V2J14S0 (API v2) VID:PID 0483:3748
-Info : Target voltage: 2.894743
+Info : Target voltage: 2.893326
 Info : stm32f4x.cpu: hardware has 6 breakpoints, 4 watchpoints
 Info : starting gdb server for stm32f4x.cpu on 3333
 Info : Listening on port 3333 for gdb connections
 target halted due to breakpoint, current mode: Thread 
-xPSR: 0x21000000 pc: 0x080010ec msp: 0x2001ff80
+xPSR: 0x21000000 pc: 0x0800113c msp: 0x2001ff78
 ^C
 shutdown command invoked
 ```
