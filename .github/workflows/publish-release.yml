@@ -1,5 +1,5 @@
 # -----------------------------------------------------------------------------
-# DO NOT EDIT! Generated from scripts/helper/templates/build-liquid.yml.
+# DO NOT EDIT! Generated from scripts/helper/templates/publish-release-liquid.yml.
 #
 # This file is part of the xPack distribution.
 #   (https://xpack.github.io)
@@ -61,3 +61,5 @@ jobs:
           repo: 'openocd2-xpack'
           tag: 'v${{ github.event.inputs.version }}'
           token: ${{ secrets.PUBLISH_TOKEN }}
+      - name: 'Show SHA'
+        run: cat ~/Work/openocd-${{ github.event.inputs.version }}/deploy/*.sha
