@@ -41,7 +41,7 @@ jobs:
       - name: 'Create body'
         run: |
           npm install
-          cat scripts/templates/body-release-liquid.md | npm run liquidjs -- '{ "RELEASE_VERSION": "${{ github.event.inputs.version }}" }' >.github/workflows/body-release.md
+          cat scripts/templates/body-release-liquid.md | npm run liquidjs --silent -- '{ "RELEASE_VERSION": "${{ github.event.inputs.version }}" }' >.github/workflows/body-release.md
           cat .github/workflows/body-release.md
       - name: 'Publish release'
         # https://github.com/ncipollo/release-action
