@@ -253,29 +253,37 @@ bash ~/Downloads/openocd-xpack.git/scripts/helper/tests/trigger-workflow-test-do
 bash ~/Downloads/openocd-xpack.git/scripts/helper/tests/trigger-workflow-test-docker-linux-arm.sh
 ```
 
-This is also available as an xPack action (`trigger-workflow-test-native`,
-`trigger-workflow-test-docker-linux-intel`, `trigger-workflow-test-docker-linux-arm`).
+The scripts requires `GITHUB_API_DISPATCH_TOKEN` to be present
+in the environment.
 
-These command uses the `xpack-develop` branch of this repo and the
+These can also be invoked as xPack actions:
+
+- `trigger-workflow-test-native`
+- `trigger-workflow-test-docker-linux-intel`
+- `trigger-workflow-test-docker-linux-arm`)
+
+These actions use the `xpack-develop` branch of this repo and the
 [pre-releases/test](https://github.com/xpack-dev-tools/pre-releases/releases/tag/test)
 binaries.
 
-The workflow result and logs are available from the
+The tests results are available from the
 [Actions](https://github.com/xpack-dev-tools/openocd-xpack/actions) page.
 
 Since GitHub Actions provides a single version of macOS, the
-multi-version tests run on Travis. 
+multi-version tests run on Travis.
 
-The script requires 
+The script requires `TRAVIS_COM_TOKEN` to be present in the environment.
 
 ```sh
 bash ~/Downloads/openocd-xpack.git/scripts/helper/tests/trigger-travis-macos.sh
 ```
 
-This is also available as an xPack action (`trigger-travis-macos`).
+This can also be invoked as an xPack action:
 
-The results are available from
-[Travis](https://app.travis-ci.com/github/xpack-dev-tools/openocd-xpack/builds).
+- `trigger-travis-macos`
+
+The test results are available from
+[travis-ci.com](https://app.travis-ci.com/github/xpack-dev-tools/openocd-xpack/builds).
 
 ### Manual tests
 
