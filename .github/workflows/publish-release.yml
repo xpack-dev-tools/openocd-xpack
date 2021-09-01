@@ -58,7 +58,7 @@ jobs:
           owner: 'xpack-dev-tools'
           prerelease: true
           replacesArtifacts: true
-          repo: 'openocd2-xpack'
+          repo: 'openocd-xpack'
           tag: 'v${{ github.event.inputs.version }}'
           token: ${{ secrets.PUBLISH_TOKEN }}
       - name: 'Show SHA'
@@ -93,7 +93,7 @@ jobs:
           owner: 'xpack-dev-tools'
           prerelease: true
           replacesArtifacts: true
-          repo: 'openocd2-xpack'
+          repo: 'openocd-xpack'
           tag: 'v${{ github.event.inputs.version }}'
           token: ${{ secrets.PUBLISH_TOKEN }}
       - name: 'Show SHA'
@@ -128,7 +128,7 @@ jobs:
           owner: 'xpack-dev-tools'
           prerelease: true
           replacesArtifacts: true
-          repo: 'openocd2-xpack'
+          repo: 'openocd-xpack'
           tag: 'v${{ github.event.inputs.version }}'
           token: ${{ secrets.PUBLISH_TOKEN }}
       - name: 'Show SHA'
