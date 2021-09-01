@@ -1,0 +1,61 @@
+# -----------------------------------------------------------------------------
+# DO NOT EDIT! Generated from scripts/helper/templates/build-liquid.yml.
+#
+# This file is part of the xPack distribution.
+#   (https://xpack.github.io)
+# Copyright (c) 2021 Liviu Ionescu.
+#
+# Permission to use, copy, modify, and/or distribute this software 
+# for any purpose is hereby granted, under the terms of the MIT license.
+# -----------------------------------------------------------------------------
+
+# https://help.github.com/en/actions
+# https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners
+
+# https://docs.github.com/en/actions/reference/events-that-trigger-workflows#workflow_dispatch
+# https://docs.github.com/en/developers/webhooks-and-events/webhooks/webhook-events-and-payloads#workflow_dispatch
+# https://docs.github.com/en/rest/reference/actions#create-a-workflow-dispatch-event
+
+# -----------------------------------------------------------------------------
+
+name: 'Publish the xPack OpenOCD release'
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'The semver of the release'
+        required: false
+        default: 'current'
+
+jobs:
+  linux-x64:
+    name: 'Build OpenOCD ${{ github.event.inputs.version }} on Intel Linux'
+    runs-on: [self-hosted, Linux, X64]
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 3
+          submodules: true
+      - name: 'Create body'
+        run: |
+          cat scripts/templates/body-release-liquid.md | sed -e 's||$|' >.github/workflows/body-releases.md
+      - name: 'Publish release'
+        # https://github.com/ncipollo/release-action
+        uses: ncipollo/release-action@v1
+        with:
+          allowUpdates: true
+          artifacts: '~/Work/openocd-${{ github.event.inputs.version }}/deploy/*'
+          bodyFile: '.github/workflows/body-release.md'
+          commit: 'master'
+          draft: true
+          name: 'xPack OpenOCD v${{ github.event.inputs.version }}'
+          omitBodyDuringUpdate: true
+          omitNameDuringUpdate: true
+          owner: 'xpack-dev-tools'
+          prerelease: true
+          replacesArtifacts: true
+          repo: 'openocd-xpack'
+          tag: 'v${{ github.event.inputs.version }}'
+          token: ${{ secrets.PUBLISH_TOKEN }}
