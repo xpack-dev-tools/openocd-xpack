@@ -30,7 +30,7 @@ on:
 
 jobs:
   linux-x64:
-    name: 'Build OpenOCD ${{ github.event.inputs.version }} on Intel Linux'
+    name: 'Publish release OpenOCD ${{ github.event.inputs.version }} on Intel Linux'
     runs-on: [self-hosted, Linux, X64]
     steps:
       - name: 'Checkout'
@@ -40,7 +40,8 @@ jobs:
           submodules: true
       - name: 'Create body'
         run: |
-          cat scripts/templates/body-release-liquid.md | sed -e 's||$|' >.github/workflows/body-releases.md
+          npm install
+          cat scripts/templates/body-release-liquid.md | liquidjs '{ \"RELEASE_VERSION\": \"$\" }' >.github/workflows/body-releases.md
       - name: 'Publish release'
         # https://github.com/ncipollo/release-action
         uses: ncipollo/release-action@v1
@@ -56,6 +57,6 @@ jobs:
           owner: 'xpack-dev-tools'
           prerelease: true
           replacesArtifacts: true
-          repo: 'openocd-xpack'
+          repo: 'openocd2-xpack'
           tag: 'v${{ github.event.inputs.version }}'
           token: ${{ secrets.PUBLISH_TOKEN }}
