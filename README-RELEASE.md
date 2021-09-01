@@ -263,6 +263,20 @@ binaries.
 The workflow result and logs are available from the
 [Actions](https://github.com/xpack-dev-tools/openocd-xpack/actions) page.
 
+Since GitHub Actions provides a single version of macOS, the
+multi-version tests run on Travis. 
+
+The script requires 
+
+```sh
+bash ~/Downloads/openocd-xpack.git/scripts/helper/tests/trigger-travis-macos.sh
+```
+
+This is also available as an xPack action (`trigger-travis-macos`).
+
+The results are available from
+[Travis](https://app.travis-ci.com/github/xpack-dev-tools/openocd-xpack/builds).
+
 ### Manual tests
 
 Install the binaries on all supported platforms and check if they are
