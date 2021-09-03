@@ -123,9 +123,9 @@ In this Git repo:
 
 From here it'll be cloned on the production machines.
 
-## Run the build scripts automatically
+## Run the CI build
 
-The automation is provided by GitHub Actions and self-hosted runners.
+The automation is provided by GitHub Actions and three self-hosted runners.
 
 - on the macOS machine (`xbbm`) open ssh sessions to both Linux
 machines (`xbbi` and `xbba`):
@@ -136,25 +136,33 @@ caffeinate ssh xbbi
 caffeinate ssh xbba
 ```
 
-- start the runner (`~/actions-runner/run.sh`) on all three machines
-- check that both the project Git and the submodule are pushed to GitHub
-- trigger the build via GitHub Actions
+Start the runner on all three machines:
+
+```sh
+~/actions-runner/run.sh
+```
+
+Check that both the project Git and the submodule are pushed to GitHub.
+
+To trigger the GitHub Actions build, use:
 
 ```sh
 bash ~/Downloads/openocd-xpack.git/scripts/helper/trigger-workflow-build.sh
 ```
 
-This can also be invoked as an xPack action:
+This build can also be triggered via an xPack action:
 
 - `trigger-workflow-build`
 
 This command uses the `xpack-develop` branch of this repo.
 
-The workflow result and logs are available from the
-[Actions](https://github.com/xpack-dev-tools/openocd-xpack/actions) page.
+The builds take about 14 minutes to complete.
 
-When the actions complete, the results are available for testing from
-[pre-releases/test](https://github.com/xpack-dev-tools/pre-releases/releases/tag/test).
+The workflow result and logs are available from the
+[Actions](https://github.com/xpack-dev-tools/openocd-xpack/actions/) page.
+
+The resulting binaries are available for testing from
+[pre-releases/test](https://github.com/xpack-dev-tools/pre-releases/releases/tag/test/).
 
 ## Testing
 
@@ -162,7 +170,7 @@ When the actions complete, the results are available for testing from
 
 The automation is provided by GitHub Actions.
 
-To trigger the actions, use:
+To trigger the GitHub Actions tests, use:
 
 ```sh
 bash ~/Downloads/openocd-xpack.git/scripts/helper/tests/trigger-workflow-test-native.sh
@@ -173,18 +181,18 @@ bash ~/Downloads/openocd-xpack.git/scripts/helper/tests/trigger-workflow-test-do
 These scripts require `GITHUB_API_DISPATCH_TOKEN` to be present
 in the environment.
 
-These can also be invoked as xPack actions:
+These tests can also be triggered via xPack actions:
 
 - `trigger-workflow-test-native`
 - `trigger-workflow-test-docker-linux-intel`
 - `trigger-workflow-test-docker-linux-arm`
 
 These actions use the `xpack-develop` branch of this repo and the
-[pre-releases/test](https://github.com/xpack-dev-tools/pre-releases/releases/tag/test)
+[pre-releases/test](https://github.com/xpack-dev-tools/pre-releases/releases/tag/test/)
 binaries.
 
 The tests results are available from the
-[Actions](https://github.com/xpack-dev-tools/openocd-xpack/actions) page.
+[Actions](https://github.com/xpack-dev-tools/openocd-xpack/actions/) page.
 
 Since GitHub Actions provides a single version of macOS, the
 multi-version tests run on Travis.
@@ -518,5 +526,5 @@ When the release is considered stable, promote it as `latest`:
 
 ## Remove pre-release binaries
 
-- got to <https://github.com/xpack-dev-tools/pre-releases/releases/tag/test>
+- go to <https://github.com/xpack-dev-tools/pre-releases/releases/tag/test>
 - remove the test binaries
