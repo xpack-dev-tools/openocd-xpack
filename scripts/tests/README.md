@@ -56,4 +56,4 @@ bash ~/Downloads/openocd-xpack.git/scripts/tests/trigger-workflow-test-docker-li
 ```
 
 The results are available at the project
-[Actions](https://github.com/xpack-dev-tools/openocd-xpack/actions) page.
+[Actions](https://github.com/xpack-dev-tools/openocd-xpack/actions/) page.
