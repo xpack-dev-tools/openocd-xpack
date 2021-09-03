@@ -31,7 +31,7 @@ the package on the `npm` server.
 
 Check GitHub issues and pull requests:
 
-- <https://github.com/xpack-dev-tools/openocd-xpack/issues>
+- <https://github.com/xpack-dev-tools/openocd-xpack/issues/>
 
 and fix them; assign them to a milestone (like `0.11.0-2`).
 
@@ -39,7 +39,7 @@ and fix them; assign them to a milestone (like `0.11.0-2`).
 
 Normally `README.md` should not need changes, but better check.
 Information related to the new version should not be included here,
-but in the version specific file (below).
+but in the version specific release page.
 
 ### Update versions in `README` files
 
@@ -69,7 +69,7 @@ With Sourcetree, go to the helper repo and update to the latest master commit.
 
 ### Merge upstream repo
 
-To keep the development repository in sync with the upstream OpenOCD
+To keep the development repository fork in sync with the upstream OpenOCD
 repository, in the `xpack-dev-tools/openocd` Git repo:
 
 - checkout `master`
@@ -86,7 +86,8 @@ Possibly add a tag here.
 
 ### Development run the build scripts
 
-Before the real build, run a test build on the development machine (`wks`):
+Before the real build, run a test build on the development machine (`wks`)
+or the production machine (`xbbm`):
 
 ```sh
 sudo rm -rf ~/Work/openocd-*
@@ -94,7 +95,7 @@ sudo rm -rf ~/Work/openocd-*
 caffeinate bash ~/Downloads/openocd-xpack.git/scripts/build.sh --develop --without-pdf --without-html --disable-tests --osx
 ```
 
-Similarly on the Intel Linux:
+Similarly on the Intel Linux (`xbbi`):
 
 ```sh
 bash ~/Downloads/openocd-xpack.git/scripts/build.sh --develop --without-pdf --without-html --disable-tests --linux64
@@ -104,7 +105,7 @@ bash ~/Downloads/openocd-xpack.git/scripts/build.sh --develop --without-pdf --wi
 bash ~/Downloads/openocd-xpack.git/scripts/build.sh --develop --without-pdf --without-html --disable-tests --win32
 ```
 
-And on the Arm Linux:
+And on the Arm Linux (`xbba`):
 
 ```sh
 bash ~/Downloads/openocd-xpack.git/scripts/build.sh --develop --without-pdf --without-html --disable-tests --arm64
@@ -122,11 +123,12 @@ In this Git repo:
 
 From here it'll be cloned on the production machines.
 
-### Run the build scripts automatically
+## Run the build scripts automatically
 
 The automation is provided by GitHub Actions and self-hosted runners.
 
-- on the macOS machine (`xbbm`) open ssh sessions to both Linux machines (`xbbi` and `xbba`)
+- on the macOS machine (`xbbm`) open ssh sessions to both Linux
+machines (`xbbi` and `xbba`):
 
 ```sh
 caffeinate ssh xbbi
@@ -135,14 +137,16 @@ caffeinate ssh xbba
 ```
 
 - start the runner (`~/actions-runner/run.sh`) on all three machines
-- check that both the project Git and the submodule are pushed
+- check that both the project Git and the submodule are pushed to GitHub
 - trigger the build via GitHub Actions
 
 ```sh
 bash ~/Downloads/openocd-xpack.git/scripts/helper/trigger-workflow-build.sh
 ```
 
-This is also available as an xPack action (`trigger-workflow-build`)
+This can also be invoked as an xPack action:
+
+- `trigger-workflow-build`
 
 This command uses the `xpack-develop` branch of this repo.
 
@@ -241,7 +245,7 @@ and upload the binaries.
 
 ## Testing
 
-### Automated tests
+### CI tests
 
 The automation is provided by GitHub Actions.
 
@@ -253,14 +257,14 @@ bash ~/Downloads/openocd-xpack.git/scripts/helper/tests/trigger-workflow-test-do
 bash ~/Downloads/openocd-xpack.git/scripts/helper/tests/trigger-workflow-test-docker-linux-arm.sh
 ```
 
-The scripts requires `GITHUB_API_DISPATCH_TOKEN` to be present
+These scripts require `GITHUB_API_DISPATCH_TOKEN` to be present
 in the environment.
 
 These can also be invoked as xPack actions:
 
 - `trigger-workflow-test-native`
 - `trigger-workflow-test-docker-linux-intel`
-- `trigger-workflow-test-docker-linux-arm`)
+- `trigger-workflow-test-docker-linux-arm`
 
 These actions use the `xpack-develop` branch of this repo and the
 [pre-releases/test](https://github.com/xpack-dev-tools/pre-releases/releases/tag/test)
@@ -272,7 +276,7 @@ The tests results are available from the
 Since GitHub Actions provides a single version of macOS, the
 multi-version tests run on Travis.
 
-The script requires `TRAVIS_COM_TOKEN` to be present in the environment.
+This script requires `TRAVIS_COM_TOKEN` to be present in the environment.
 
 ```sh
 bash ~/Downloads/openocd-xpack.git/scripts/helper/tests/trigger-travis-macos.sh
@@ -309,7 +313,7 @@ sudo udevadm control --reload-rules
 Then it is possible to start openocd:
 
 ```console
-$ .../xpack-openocd-0.10.0-15/bin/openocd -f "board/stm32f4discovery.cfg"
+$ .../xpack-openocd-0.11.2-1/bin/openocd -f "board/stm32f4discovery.cfg"
 xPack OpenOCD 64-bit Open On-Chip Debugger 0.11.0+dev-00359-g18bcdc43f (2021-08-29-16:57)
 Licensed under GNU GPL v2
 For bug reports, read
