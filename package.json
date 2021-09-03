@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/xpack-dev-tools/openocd-xpack.git"
+    "url": "https://github.com/xpack-dev-tools/openocd-xpack.git/"
   },
   "keywords": [
     "xpack",
@@ -20,11 +20,11 @@
   "author": {
     "name": "Liviu Ionescu",
     "email": "ilg@livius.net",
-    "url": "https://github.com/ilg-ul"
+    "url": "https://github.com/ilg-ul/"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/xpack-dev-tools/openocd-xpack/issues"
+    "url": "https://github.com/xpack-dev-tools/openocd-xpack/issues/"
   },
   "homepage": "https://github.com/xpack-dev-tools/openocd-xpack#readme",
   "xpack": {
