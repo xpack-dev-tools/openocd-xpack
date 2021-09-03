@@ -61,7 +61,7 @@ jobs:
         run: bash scripts/tests/native-test.sh --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
 
   macos-x64:
-    name: 'macOS 64-bit OpenOCD ${{ github.event.inputs.version }} test'
+    name: 'Intel macOS 64-bit OpenOCD ${{ github.event.inputs.version }} test'
     runs-on: macos-latest
     steps:
       - name: 'Checkout'
