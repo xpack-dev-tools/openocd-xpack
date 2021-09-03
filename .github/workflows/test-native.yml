@@ -35,7 +35,7 @@ on:
 
 jobs:
   linux-x64:
-    name: 'Linux 64-bit OpenOCD ${{ github.event.inputs.version }} test'
+    name: 'Intel Linux 64-bit OpenOCD ${{ github.event.inputs.version }} test'
     runs-on: ubuntu-latest
     steps:
       - name: 'Checkout'
@@ -44,10 +44,21 @@ jobs:
           fetch-depth: 3
           submodules: true
       - name: 'Run native ${{ github.event.inputs.version }} test'
-        run: |
-          pwd
-          ls -lL
-          bash scripts/tests/native-test.sh --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+        run: bash scripts/tests/native-test.sh --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+
+  linux-arm64:
+    name: 'Arm Linux 64-bit OpenOCD ${{ github.event.inputs.version }} test'
+    runs-on: [self-hosted, Linux, Arm64]
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 3
+          submodules: true
+      - name: 'Clean cache'
+        run: rm -rf ~/Work/xpack--${{ github.event.inputs.version }}*
+      - name: 'Run native ${{ github.event.inputs.version }} test'
+        run: bash scripts/tests/native-test.sh --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
 
   macos-x64:
     name: 'macOS 64-bit OpenOCD ${{ github.event.inputs.version }} test'
