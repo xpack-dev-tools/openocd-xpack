@@ -56,7 +56,7 @@ jobs:
           fetch-depth: 3
           submodules: true
       - name: 'Clean cache'
-        run: rm -rf ~/Work/xpack-openocd-${{ github.event.inputs.version }}*
+        run: rm -rf ~/Work/cache/xpack-openocd-${{ github.event.inputs.version }}*
       - name: 'Run native ${{ github.event.inputs.version }} test'
         run: bash scripts/tests/native-test.sh --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
 
