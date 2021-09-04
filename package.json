@@ -69,7 +69,7 @@
     "actions": {
       "generate-workflows": [
         "mkdir -p .github/workflows/",
-        "cp scripts/helper/templates/body-pre-releases-test.md .github/workflows/",
+        "cp scripts/helper/templates/body-github-pre-releases-test.md .github/workflows/",
         "cat scripts/helper/templates/build-liquid.yml | liquidjs '{ \"APP_NAME\": \"OpenOCD\", \"APP_LC_NAME\": \"openocd\" }' > .github/workflows/build.yml",
         "cat scripts/helper/templates/publish-release-liquid.yml | liquidjs '{ \"APP_NAME\": \"OpenOCD\", \"APP_LC_NAME\": \"openocd\" }' > .github/workflows/publish-release.yml",
         "cat scripts/helper/templates/test-native-liquid.yml | liquidjs '{ \"APP_NAME\": \"OpenOCD\", \"APP_LC_NAME\": \"openocd\" }' > .github/workflows/test-native.yml",
