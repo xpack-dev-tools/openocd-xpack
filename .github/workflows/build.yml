@@ -54,7 +54,7 @@ jobs:
         with:
           allowUpdates: true
           artifacts: '~/Work/openocd-${{ github.event.inputs.version }}/deploy/*'
-          bodyFile: '.github/workflows/body-pre-releases-test.md'
+          bodyFile: '.github/workflows/body-github-pre-releases-test.md'
           commit: 'master'
           draft: false
           name: 'Test binaries'
@@ -88,7 +88,7 @@ jobs:
         with:
           allowUpdates: true
           artifacts: '~/Work/openocd-${{ github.event.inputs.version }}/deploy/*'
-          bodyFile: '.github/workflows/body-pre-releases-test.md'
+          bodyFile: '.github/workflows/body-github-pre-releases-test.md'
           commit: 'master'
           draft: false
           name: 'Test binaries'
@@ -120,7 +120,7 @@ jobs:
         with:
           allowUpdates: true
           artifacts: '~/Work/openocd-${{ github.event.inputs.version }}/deploy/*'
-          bodyFile: '.github/workflows/body-pre-releases-test.md'
+          bodyFile: '.github/workflows/body-github-pre-releases-test.md'
           commit: 'master'
           draft: false
           name: 'Test binaries'

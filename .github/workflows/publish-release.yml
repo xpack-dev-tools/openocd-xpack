@@ -41,15 +41,15 @@ jobs:
       - name: 'Create body'
         run: |
           npm install
-          cat scripts/templates/body-release-liquid.md | npm run liquidjs --silent -- '{ "RELEASE_VERSION": "${{ github.event.inputs.version }}" }' >.github/workflows/body-release.md
-          cat .github/workflows/body-release.md
+          cat scripts/templates/body-github-release-liquid.md | npm run liquidjs --silent -- '{ "RELEASE_VERSION": "${{ github.event.inputs.version }}" }' >.github/workflows/body-github-release.md
+          cat .github/workflows/body-github-release.md
       - name: 'Publish release'
         # https://github.com/ncipollo/release-action
         uses: ncipollo/release-action@v1
         with:
           allowUpdates: true
           artifacts: '~/Work/openocd-${{ github.event.inputs.version }}/deploy/*'
-          bodyFile: '.github/workflows/body-release.md'
+          bodyFile: '.github/workflows/body-github-release.md'
           commit: 'master'
           draft: true
           name: 'xPack OpenOCD v${{ github.event.inputs.version }}'
@@ -76,15 +76,15 @@ jobs:
       - name: 'Create body'
         run: |
           npm install
-          cat scripts/templates/body-release-liquid.md | npm run liquidjs --silent -- '{ "RELEASE_VERSION": "${{ github.event.inputs.version }}" }' >.github/workflows/body-release.md
-          cat .github/workflows/body-release.md
+          cat scripts/templates/body-github-release-liquid.md | npm run liquidjs --silent -- '{ "RELEASE_VERSION": "${{ github.event.inputs.version }}" }' >.github/workflows/body-github-release.md
+          cat .github/workflows/body-github-release.md
       - name: 'Publish release'
         # https://github.com/ncipollo/release-action
         uses: ncipollo/release-action@v1
         with:
           allowUpdates: true
           artifacts: '~/Work/openocd-${{ github.event.inputs.version }}/deploy/*'
-          bodyFile: '.github/workflows/body-release.md'
+          bodyFile: '.github/workflows/body-github-release.md'
           commit: 'master'
           draft: true
           name: 'xPack OpenOCD v${{ github.event.inputs.version }}'
@@ -111,15 +111,15 @@ jobs:
       - name: 'Create body'
         run: |
           npm install
-          cat scripts/templates/body-release-liquid.md | npm run liquidjs --silent -- '{ "RELEASE_VERSION": "${{ github.event.inputs.version }}" }' >.github/workflows/body-release.md
-          cat .github/workflows/body-release.md
+          cat scripts/templates/body-github-release-liquid.md | npm run liquidjs --silent -- '{ "RELEASE_VERSION": "${{ github.event.inputs.version }}" }' >.github/workflows/body-github-release.md
+          cat .github/workflows/body-github-release.md
       - name: 'Publish release'
         # https://github.com/ncipollo/release-action
         uses: ncipollo/release-action@v1
         with:
           allowUpdates: true
           artifacts: '~/Work/openocd-${{ github.event.inputs.version }}/deploy/*'
-          bodyFile: '.github/workflows/body-release.md'
+          bodyFile: '.github/workflows/body-github-release.md'
           commit: 'master'
           draft: true
           name: 'xPack OpenOCD v${{ github.event.inputs.version }}'
