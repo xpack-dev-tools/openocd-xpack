@@ -30,7 +30,7 @@ on:
 
 jobs:
   linux-x64:
-    name: 'Publish OpenOCD ${{ github.event.inputs.version }} release from Intel Linux'
+    name: 'Intel Linux OpenOCD ${{ github.event.inputs.version }} publish release'
     runs-on: [self-hosted, Linux, X64]
     steps:
       - name: 'Checkout'
@@ -65,7 +65,7 @@ jobs:
         run: cat ~/Work/openocd-${{ github.event.inputs.version }}/deploy/*.sha
 
   linux-arm64:
-    name: 'Publish OpenOCD ${{ github.event.inputs.version }} release from Arm Linux'
+    name: 'Arm Linux OpenOCD ${{ github.event.inputs.version }} publish release'
     runs-on: [self-hosted, Linux, ARM64]
     steps:
       - name: 'Checkout'
@@ -100,7 +100,7 @@ jobs:
         run: cat ~/Work/openocd-${{ github.event.inputs.version }}/deploy/*.sha
 
   macos-x64:
-    name: 'Publish OpenOCD ${{ github.event.inputs.version }} release from Intel macOS'
+    name: 'Intel macOS OpenOCD ${{ github.event.inputs.version }} publish release'
     runs-on: [self-hosted, macOS, X64]
     steps:
       - name: 'Checkout'
