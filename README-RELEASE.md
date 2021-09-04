@@ -144,15 +144,18 @@ Start the runner on all three machines:
 
 Check that both the project Git and the submodule are pushed to GitHub.
 
-To trigger the GitHub Actions build, use:
+To trigger the GitHub Actions build, use the xPack action:
+
+- `trigger-workflow-build`
+
+This is equivalent to:
 
 ```sh
 bash ~/Downloads/openocd-xpack.git/scripts/helper/trigger-workflow-build.sh
 ```
 
-This build can also be triggered via an xPack action:
-
-- `trigger-workflow-build`
+This script requires the `GITHUB_API_DISPATCH_TOKEN` to be present
+in the environment.
 
 This command uses the `xpack-develop` branch of this repo.
 
@@ -170,7 +173,13 @@ The resulting binaries are available for testing from
 
 The automation is provided by GitHub Actions.
 
-To trigger the GitHub Actions tests, use:
+To trigger the GitHub Actions tests, use the xPack actions:
+
+- `trigger-workflow-test-native`
+- `trigger-workflow-test-docker-linux-intel`
+- `trigger-workflow-test-docker-linux-arm`
+
+These are equivalent to:
 
 ```sh
 bash ~/Downloads/openocd-xpack.git/scripts/helper/tests/trigger-workflow-test-native.sh
@@ -178,14 +187,8 @@ bash ~/Downloads/openocd-xpack.git/scripts/helper/tests/trigger-workflow-test-do
 bash ~/Downloads/openocd-xpack.git/scripts/helper/tests/trigger-workflow-test-docker-linux-arm.sh
 ```
 
-These scripts require `GITHUB_API_DISPATCH_TOKEN` to be present
+These scripts require the `GITHUB_API_DISPATCH_TOKEN` to be present
 in the environment.
-
-These tests can also be triggered via xPack actions:
-
-- `trigger-workflow-test-native`
-- `trigger-workflow-test-docker-linux-intel`
-- `trigger-workflow-test-docker-linux-arm`
 
 These actions use the `xpack-develop` branch of this repo and the
 [pre-releases/test](https://github.com/xpack-dev-tools/pre-releases/releases/tag/test/)
@@ -195,46 +198,45 @@ The tests results are available from the
 [Actions](https://github.com/xpack-dev-tools/openocd-xpack/actions/) page.
 
 Since GitHub Actions provides a single version of macOS, the
-multi-version tests run on Travis.
+multi-version macOS tests run on Travis.
 
-This script requires `TRAVIS_COM_TOKEN` to be present in the environment.
+To trigger the Travis test, use the xPack action:
+
+- `trigger-travis-macos`
+
+This is equivalent to:
 
 ```sh
 bash ~/Downloads/openocd-xpack.git/scripts/helper/tests/trigger-travis-macos.sh
 ```
 
-This can also be invoked as an xPack action:
-
-- `trigger-travis-macos`
+This script requires the `TRAVIS_COM_TOKEN` to be present in the environment.
 
 The test results are available from
 [travis-ci.com](https://app.travis-ci.com/github/xpack-dev-tools/openocd-xpack/builds).
 
 ### Manual tests
 
-Install the binaries on all supported platforms and check if they are
-functional, using the Eclipse STM32F4DISCOVERY blinky test
-available in the xpack-arm-none-eabi-gcc package, which uses
-the `-f "board/stm32f4discovery.cfg"` configuration file
-(import the `arm-f4b-fs` project and start the `arm-f4b-fs-debug-oocd`
-launcher).
+Functional tests cannot run on CI since they require physical hardware.
 
-For platforms where Eclipse is not yet available (like 32-bit Arm),
-simply start the program and check if the CPU is identified.
+For the simplest functional case, plug a common board like the
+STM32F4DISCOVERY into an USB port, start the program and check
+if the CPU is identified.
 
-If this is the first time openocd is executed, on GNU/Linux it is necessary
+Note: If this is the first time openocd is executed, on GNU/Linux
+it is necessary
 to configure the rights, otherwise LIBUSB will issue the _libusb_open
 failed: LIBUSB_ERROR_ACCESS_ error.
 
 ```sh
-sudo cp ~Downloads/xpack-openocd-0.10.0-15/contrib/60-openocd.rules /etc/udev/rules.d
+sudo cp ~Downloads/xpack-openocd-0.11.0-2/contrib/60-openocd.rules /etc/udev/rules.d
 sudo udevadm control --reload-rules
 ```
 
 Then it is possible to start openocd:
 
 ```console
-$ .../xpack-openocd-0.11.2-1/bin/openocd -f "board/stm32f4discovery.cfg"
+$ .../xpack-openocd-0.11.0-2/bin/openocd -f "board/stm32f4discovery.cfg"
 xPack OpenOCD 64-bit Open On-Chip Debugger 0.11.0+dev-00359-g18bcdc43f (2021-08-29-16:57)
 Licensed under GNU GPL v2
 For bug reports, read
@@ -259,72 +261,22 @@ shutdown command invoked
 Note: on recent macOS systems it might be necessary to allow individual
 programs to run.
 
+For a more thorough test, run a debug session with
+the Eclipse STM32F4DISCOVERY blinky test
+available in the xpack-arm-none-eabi-gcc package, which uses
+the `-f "board/stm32f4discovery.cfg"` configuration file
+(import the `arm-f4b-fs` project and start the `arm-f4b-fs-debug-oocd`
+launcher).
+
 ## Create a new GitHub pre-release
 
 - in `CHANGELOG.md`, add release date
 - commit and push the `xpack-develop` branch
-- go to the GitHub [releases](https://github.com/xpack-dev-tools/openocd-xpack/releases/) page
-- click **Draft a new release**, in the `xpack-develop` branch
-- name the tag like **v0.11.0-2** (mind the dash in the middle!)
-- name the release like **xPack OpenOCD v0.11.0-2**
-(mind the dash)
-- as description, use:
+- run the xPack action `trigger-workflow-publish-release`
 
-```markdown
-![Github Releases (by Release)](https://img.shields.io/github/downloads/xpack-dev-tools/openocd-xpack/v0.11.0-2/total.svg)
-
-Version v0.11.0-2 is a new release of the **xPack OpenOCD** package, following the OpenOCD release.
-
-_At this moment these binaries are provided for tests only!_
-```
-
-- **attach binaries** and SHA (drag and drop from the
-  `~/Downloads/xpack-binaries/*` folder will do it)
-- **enable** the **pre-release** button
-- click the **Publish Release** button
-
-Note: at this moment the system should send a notification to all clients
-watching this project.
-
-## Run the native tests
-
-Run the native tests on all platforms:
-
-```sh
-rm -rf ~/Downloads/openocd-xpack.git; \
-git clone --recurse-submodules -b xpack-develop \
-  https://github.com/xpack-dev-tools/openocd-xpack.git  \
-  ~/Downloads/openocd-xpack.git
-
-rm -rf ~/Work/cache/xpack-openocd-*
-
-bash ~/Downloads/openocd-xpack.git/scripts/tests/native-test.sh \
-  "https://github.com/xpack-dev-tools/openocd-xpack/releases/download/v0.11.0-2/"
-```
-
-## Run the release CI tests
-
-Using the scripts in `scripts/tests/`, start:
-
-TODO:
-
-The test results are available from:
-
-- TODO
-
-For more details, see `scripts/tests/README.md`.
-
-Using the scripts in `scripts/tests/`, start:
-
-- `trigger-travis-quick.mac.command` (optional)
-- `trigger-travis-stable.mac.command`
-- `trigger-travis-latest.mac.command`
-
-The test results are available from:
-
-- <https://travis-ci.com/github/xpack-dev-tools/openocd-xpack>
-
-For more details, see `scripts/tests/README.md`.
+The result is a draft pre-release tagged like **v0.11.0-2**
+(mind the dash in the middle!) and named like **xPack OpenOCD v0.11.0-2**
+(mind the dash), with all binaries attached.
 
 ## Prepare a new blog post
 
@@ -336,57 +288,17 @@ In the `xpack/web-jekyll` GitHub repo:
 - name the post like: **xPack OpenOCD v0.11.0-2 released**
 - as `download_url` use the tagged URL like `https://github.com/xpack-dev-tools/openocd-xpack/releases/tag/v0.11.0-2/`
 - update the `date:` field with the current date
-- update the Travis URLs using the actual test pages
-- update the SHA sums via copy/paste from the original build machines
+- update the SHA sums via copy/paste from the original build logs
 (it is very important to use the originals!)
 
 If any, refer to closed
-[issues](https://github.com/xpack-dev-tools/openocd-xpack/issues/)
-as:
-
-- **[Issue:\[#1\]\(...\)]**.
-
-### Update the SHA sums
-
-On the development machine (`wks`):
-
-```sh
-cat ~/Downloads/xpack-binaries/openocd/*.sha
-```
-
-Copy/paste the build report at the end of the post as:
-
-```console
-## Checksums
-The SHA-256 hashes for the files are:
-
-0a2a2550ec99b908c92811f8dbfde200956a22ab3d9af1c92ce9926bf8feddf9
-xpack-openocd-0.11.0-2-darwin-x64.tar.gz
-
-254588cbcd685748598dd7bbfaf89280ab719bfcd4dabeb0269fdb97a52b9d7a
-xpack-openocd-0.11.0-2-linux-arm.tar.gz
-
-10e30128d626f9640c0d585e6b65ac943de59fbdce5550386add015bcce408fa
-xpack-openocd-0.11.0-2-linux-arm64.tar.gz
-
-50f2e399382c29f8cdc9c77948e1382dfd5db20c2cb25c5980cb29774962483f
-xpack-openocd-0.11.0-2-linux-ia32.tar.gz
-
-9b147443780b7f825eec333857ac7ff9e9e9151fd17c8b7ce2a1ecb6e3767fd6
-xpack-openocd-0.11.0-2-linux-x64.tar.gz
-
-501366492cd73b06fca98b8283f65b53833622995c6e44760eda8f4483648525
-xpack-openocd-0.11.0-2-win32-ia32.zip
-
-dffc858d64be5539410aa6d3f3515c6de751cd295c99217091f5ccec79cabf39
-xpack-openocd-0.11.0-2-win32-x64.zip
-```
+[issues](https://github.com/xpack-dev-tools/openocd-xpack/issues/).
 
 ## Update the preview Web
 
 - commit the `develop` branch of `xpack/web-jekyll` GitHub repo;
   use a message like **xPack OpenOCD v0.11.0-2 released**
-- push
+- push to GitHub
 - wait for the GitHub Pages build to complete
 - the preview web is <https://xpack.github.io/web-preview/news/>
 
