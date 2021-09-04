@@ -81,7 +81,8 @@
       "trigger-workflow-test-docker-linux-intel": "bash scripts/helper/tests/trigger-workflow-test-docker-linux-intel.sh",
       "trigger-workflow-test-docker-linux-arm": "bash scripts/helper/tests/trigger-workflow-test-docker-linux-arm.sh",
       "trigger-travis-macos": "bash scripts/helper/tests/trigger-travis-macos.sh",
-      "trigger-workflow-publish-release": "bash scripts/helper/trigger-workflow-publish-release.sh"
+      "trigger-workflow-publish-release": "bash scripts/helper/trigger-workflow-publish-release.sh",
+      "generate-jekyll-post": "bash scripts/helper/generate-jekyll-post.sh"
     }
   },
   "bundleDependencies": [],
