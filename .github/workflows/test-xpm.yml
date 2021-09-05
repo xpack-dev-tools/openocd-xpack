@@ -42,7 +42,7 @@ jobs:
       - name: 'Install xpm'
         run: npm install --global xpm
       - name: 'Run xpm ${{ github.event.inputs.version }} test'
-        run: bash scripts/tests/xpm-test.sh --version ${{ github.event.inputs.version }}
+        run: bash scripts/helper/tests/xpm-test.sh --version ${{ github.event.inputs.version }}
 
   linux-arm64:
     name: 'Arm Linux 64-bit OpenOCD@${{ github.event.inputs.version }} test'
@@ -56,7 +56,7 @@ jobs:
       - name: 'Install xpm'
         run: npm install --global xpm
       - name: 'Run xpm ${{ github.event.inputs.version }} test'
-        run: bash scripts/tests/xpm-test.sh --version ${{ github.event.inputs.version }}
+        run: bash scripts/helper/tests/xpm-test.sh --version ${{ github.event.inputs.version }}
 
   macos-x64:
     name: 'Intel macOS 64-bit OpenOCD@${{ github.event.inputs.version }} test'
@@ -70,7 +70,7 @@ jobs:
       - name: 'Install xpm'
         run: npm install --global xpm
       - name: 'Run xpm ${{ github.event.inputs.version }} test'
-        run: bash scripts/tests/xpm-test.sh --version ${{ github.event.inputs.version }}
+        run: bash scripts/helper/tests/xpm-test.sh --version ${{ github.event.inputs.version }}
 
   windows-x64:
     name: 'Windows 64-bit OpenOCD@${{ github.event.inputs.version }} test'
@@ -84,6 +84,6 @@ jobs:
       - name: 'Install xpm'
         run: npm install --global xpm
       - name: 'Run xpm ${{ github.event.inputs.version }} test'
-        run: bash scripts/tests/xpm-test.sh --version ${{ github.event.inputs.version }}
+        run: bash scripts/helper/tests/xpm-test.sh --version ${{ github.event.inputs.version }}
 
 # -----------------------------------------------------------------------------
