@@ -84,7 +84,8 @@
       "trigger-travis-macos": "bash scripts/helper/tests/trigger-travis-macos.sh",
       "trigger-workflow-publish-release": "bash scripts/helper/trigger-workflow-publish-release.sh",
       "generate-jekyll-post": "bash scripts/helper/generate-jekyll-post.sh",
-      "update-package-binaries": "bash scripts/helper/update-package-binaries.sh"
+      "update-package-binaries": "bash scripts/helper/update-package-binaries.sh",
+      "trigger-workflow-test-xpm": "bash scripts/helper/tests/trigger-workflow-test-xpm.sh"
     }
   },
   "bundleDependencies": [],
