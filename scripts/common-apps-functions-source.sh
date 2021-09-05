@@ -292,11 +292,22 @@ function build_openocd()
 
 function test_openocd()
 {
-  show_libs "${APP_PREFIX}/bin/openocd"
+  if [ -d "xpacks/.bin" ]
+  then
+    OPENOCD="xpacks/.bin/openocd"
+  elif [ -d "${APP_PREFIX}/bin" ]
+  then
+    OPENOCD="${APP_PREFIX}/bin"
+  else
+    echo "Wrong folder."
+    exit 1
+  fi
 
-  run_app "${APP_PREFIX}/bin/openocd" --version
+  show_libs "${OPENOCD}"
 
-  run_app "${APP_PREFIX}/bin/openocd" \
+  run_app "${OPENOCD}" --version
+
+  run_app "${OPENOCD}" \
     -c "adapter driver dummy" \
     -c "adapter speed 1000" \
     -c "adapter list" \
