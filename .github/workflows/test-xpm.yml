@@ -1,0 +1,89 @@
+
+# -----------------------------------------------------------------------------
+# DO NOT EDIT! Generated from scripts/helper/templates/test-native-liquid.yml.
+#
+# This file is part of the xPack distribution.
+#   (https://xpack.github.io)
+# Copyright (c) 2021 Liviu Ionescu.
+#
+# Permission to use, copy, modify, and/or distribute this software 
+# for any purpose is hereby granted, under the terms of the MIT license.
+# -----------------------------------------------------------------------------
+
+# https://help.github.com/en/actions
+# https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners
+
+# https://docs.github.com/en/actions/reference/events-that-trigger-workflows#workflow_dispatch
+# https://docs.github.com/en/developers/webhooks-and-events/webhooks/webhook-events-and-payloads#workflow_dispatch
+# https://docs.github.com/en/rest/reference/actions#create-a-workflow-dispatch-event
+
+# -----------------------------------------------------------------------------
+
+name: 'Test xPack OpenOCD via xpm'
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'The semver of the npm release'
+        required: false
+        default: 'latest'
+
+jobs:
+  linux-x64:
+    name: 'Intel Linux 64-bit OpenOCD@${{ github.event.inputs.version }} test'
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 3
+          submodules: true
+      - name: 'Install xpm'
+        run: npm install --global xpm
+      - name: 'Run xpm ${{ github.event.inputs.version }} test'
+        run: bash scripts/tests/xpm-test.sh --version ${{ github.event.inputs.version }}
+
+  linux-arm64:
+    name: 'Arm Linux 64-bit OpenOCD@${{ github.event.inputs.version }} test'
+    runs-on: [self-hosted, Linux, Arm64]
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 3
+          submodules: true
+      - name: 'Install xpm'
+        run: npm install --global xpm
+      - name: 'Run xpm ${{ github.event.inputs.version }} test'
+        run: bash scripts/tests/xpm-test.sh --version ${{ github.event.inputs.version }}
+
+  macos-x64:
+    name: 'Intel macOS 64-bit OpenOCD@${{ github.event.inputs.version }} test'
+    runs-on: macos-latest
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 3
+          submodules: true
+      - name: 'Install xpm'
+        run: npm install --global xpm
+      - name: 'Run xpm ${{ github.event.inputs.version }} test'
+        run: bash scripts/tests/xpm-test.sh --version ${{ github.event.inputs.version }}
+
+  windows-x64:
+    name: 'Windows 64-bit OpenOCD@${{ github.event.inputs.version }} test'
+    runs-on: windows-latest
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 3
+          submodules: true
+      - name: 'Install xpm'
+        run: npm install --global xpm
+      - name: 'Run xpm ${{ github.event.inputs.version }} test'
+        run: bash scripts/tests/xpm-test.sh --version ${{ github.event.inputs.version }}
+
+# -----------------------------------------------------------------------------
