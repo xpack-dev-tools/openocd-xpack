@@ -57,7 +57,7 @@ jobs:
         uses: docker://ilegeul/debian:10-npm-v1
         with:
           entrypoint: /usr/bin/linux32
-          args: /bin/bash bash scripts/helper/tests/xpm-test2.sh --version ${{ github.event.inputs.version }}
+          args: /bin/bash scripts/helper/tests/xpm-test2.sh --version ${{ github.event.inputs.version }}
 
 
 # -----------------------------------------------------------------------------
