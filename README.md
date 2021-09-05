@@ -49,7 +49,8 @@ follow the instructions from the
 #### Install
 
 With the `xpm` tool available, installing
-the latest version of the package is quite easy:
+the latest version of the package and adding it as
+a dependency for a project is quite easy:
 
 ```sh
 cd my-project
