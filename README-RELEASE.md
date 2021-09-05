@@ -213,7 +213,7 @@ bash ~/Downloads/openocd-xpack.git/scripts/helper/tests/trigger-travis-macos.sh
 This script requires the `TRAVIS_COM_TOKEN` to be present in the environment.
 
 The test results are available from
-[travis-ci.com](https://app.travis-ci.com/github/xpack-dev-tools/openocd-xpack/builds).
+[travis-ci.com](https://app.travis-ci.com/github/xpack-dev-tools/openocd-xpack/builds/).
 
 ### Manual tests
 
@@ -268,28 +268,27 @@ the `-f "board/stm32f4discovery.cfg"` configuration file
 (import the `arm-f4b-fs` project and start the `arm-f4b-fs-debug-oocd`
 launcher).
 
-## Create a new GitHub pre-release
+## Create a new GitHub pre-release draft
 
 - in `CHANGELOG.md`, add release date
 - commit and push the `xpack-develop` branch
 - run the xPack action `trigger-workflow-publish-release`
 
-The result is a draft pre-release tagged like **v0.11.0-2**
-(mind the dash in the middle!) and named like **xPack OpenOCD v0.11.0-2**
-(mind the dash), with all binaries attached.
+The result is a
+[draft pre-release](https://github.com/xpack-dev-tools/openocd-xpack/releases/)
+tagged like **v0.11.0-2** (mind the dash in the middle!) and
+named like **xPack OpenOCD v0.11.0-2** (mind the dash),
+with all binaries attached.
 
 ## Prepare a new blog post
+
+Run the xPack action `generate-jekyll-post`; this will leave a file
+on the Desktop.
 
 In the `xpack/web-jekyll` GitHub repo:
 
 - select the `develop` branch
-- add a new file to `_posts/openocd/releases`
-- name the file like `2020-07-03-openocd-v0-11-0-1-released.md`
-- name the post like: **xPack OpenOCD v0.11.0-2 released**
-- as `download_url` use the tagged URL like `https://github.com/xpack-dev-tools/openocd-xpack/releases/tag/v0.11.0-2/`
-- update the `date:` field with the current date
-- update the SHA sums via copy/paste from the original build logs
-(it is very important to use the originals!)
+- copy the new file to `_posts/releases/openocd`
 
 If any, refer to closed
 [issues](https://github.com/xpack-dev-tools/openocd-xpack/issues/).
@@ -302,21 +301,19 @@ If any, refer to closed
 - wait for the GitHub Pages build to complete
 - the preview web is <https://xpack.github.io/web-preview/news/>
 
+## Create the pre-release
+
+- go to the GitHub [releases](https://github.com/xpack-dev-tools/openocd-xpack/releases/) page
+- perform the final edits and check if everything is fine
+- save the release
+
+Note: at this moment the system should send a notification to all clients
+watching this project.
+
 ## Update package.json binaries
 
 - select the `xpack-develop` branch
-- run `xpm-dev binaries-update`
-
-```sh
-xpm-dev binaries-update \
-  -C "${HOME}/Downloads/openocd-xpack.git" \
-  '0.11.0-2' \
-  "${HOME}/Downloads/xpack-binaries/openocd"
-```
-
-- open the GitHub [releases](https://github.com/xpack-dev-tools/openocd-xpack/releases/)
-  page and select the latest release
-- check the download counter, it should match the number of tests
+- run the xPack action `update-package-binaries`
 - open the `package.json` file
 - check the `baseUrl:` it should match the file URLs (including the tag/version);
   no terminating `/` is required
@@ -402,7 +399,7 @@ OpenOCD suite maintained and supported by Kitware (kitware.com/openocd).
 ## Update the repo
 
 - merge `xpack-develop` into `xpack`
-- push
+- push to GitHub
 
 ## Tag the npm package as `latest`
 
@@ -438,5 +435,5 @@ When the release is considered stable, promote it as `latest`:
 
 ## Remove pre-release binaries
 
-- go to <https://github.com/xpack-dev-tools/pre-releases/releases/tag/test>
+- go to <https://github.com/xpack-dev-tools/pre-releases/releases/tag/test/>
 - remove the test binaries
