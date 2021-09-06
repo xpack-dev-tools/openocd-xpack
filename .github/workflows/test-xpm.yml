@@ -54,7 +54,7 @@ jobs:
           fetch-depth: 3
           submodules: true
       - name: 'Debian 10 ia32'
-        uses: docker://ilegeul/debian:10-npm-v1
+        uses: docker://ilegeul/debian:i386-10-npm-v1
         with:
           entrypoint: /usr/bin/linux32
           args: /bin/bash scripts/helper/tests/xpm-test.sh --image ilegeul/debian:10-npm-v1 --version ${{ github.event.inputs.version }}
