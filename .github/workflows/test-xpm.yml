@@ -39,7 +39,7 @@ jobs:
         with:
           fetch-depth: 3
           submodules: true
-      - name: 'Run xpm ${{ github.event.inputs.version }} test'
+      - name: 'Run ${{ github.event.inputs.version }} xpm test'
         run: bash scripts/helper/tests/xpm-test.sh --version ${{ github.event.inputs.version }}
 
   linux-ia32:
@@ -51,7 +51,7 @@ jobs:
         with:
           fetch-depth: 3
           submodules: true
-      - name: 'Run xpm ${{ github.event.inputs.version }} test on Debian 10 i386'
+      - name: 'Run ${{ github.event.inputs.version }} xpm docker test on Debian 10 i386'
         uses: docker://ilegeul/debian:i386-10-npm-v1
         with:
           entrypoint: /usr/bin/linux32
@@ -66,7 +66,7 @@ jobs:
         with:
           fetch-depth: 3
           submodules: true
-      - name: 'Run xpm ${{ github.event.inputs.version }} test'
+      - name: 'Run ${{ github.event.inputs.version }} xpm test'
         run: bash scripts/helper/tests/xpm-test.sh --version ${{ github.event.inputs.version }}
 
   linux-arm32:
@@ -78,7 +78,7 @@ jobs:
         with:
           fetch-depth: 3
           submodules: true
-      - name: 'Run xpm ${{ github.event.inputs.version }} test on Debian 10 armhf'
+      - name: 'Run ${{ github.event.inputs.version }} xpm docker test on Debian 10 armhf'
         uses: docker://ilegeul/debian:arm32v7-10-npm-v1
         with:
           entrypoint: /usr/bin/linux32
@@ -93,7 +93,7 @@ jobs:
         with:
           fetch-depth: 3
           submodules: true
-      - name: 'Run xpm ${{ github.event.inputs.version }} test'
+      - name: 'Run ${{ github.event.inputs.version }} xpm test'
         run: bash scripts/helper/tests/xpm-test.sh --version ${{ github.event.inputs.version }}
 
   windows-x64:
@@ -105,7 +105,7 @@ jobs:
         with:
           fetch-depth: 3
           submodules: true
-      - name: 'Run xpm ${{ github.event.inputs.version }} test'
+      - name: 'Run ${{ github.event.inputs.version }} xpm test'
         run: bash scripts/helper/tests/xpm-test.sh --version ${{ github.event.inputs.version }}
 
   windows-ia32:
@@ -117,7 +117,7 @@ jobs:
         with:
           fetch-depth: 3
           submodules: true
-      - name: 'Run xpm ${{ github.event.inputs.version }} test'
+      - name: 'Run ${{ github.event.inputs.version }} xpm test'
         run: bash scripts/helper/tests/xpm-test.sh --version ${{ github.event.inputs.version }} --32
 
 # -----------------------------------------------------------------------------
