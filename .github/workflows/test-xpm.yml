@@ -30,6 +30,35 @@ on:
         default: 'latest'
 
 jobs:
+  linux-x64:
+    name: 'Intel Linux 64-bit OpenOCD@${{ github.event.inputs.version }} test'
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 3
+          submodules: true
+      - name: 'Install xpm'
+        run: npm install --global xpm
+      - name: 'Run xpm ${{ github.event.inputs.version }} test'
+        run: bash scripts/helper/tests/xpm-test.sh --version ${{ github.event.inputs.version }}
+
+  linux-ia32:
+    name: 'Intel Linux 32-bit OpenOCD@${{ github.event.inputs.version }} test'
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 3
+          submodules: true
+      - name: 'Debian 10 ia32'
+        uses: docker://ilegeul/debian:i386-10-npm-v1
+        with:
+          entrypoint: /usr/bin/linux32
+          args: /bin/bash scripts/helper/tests/xpm-test.sh --image ilegeul/debian:i386-10-npm-v1 --version ${{ github.event.inputs.version }}
+
   linux-arm64:
     name: 'Arm Linux 64-bit OpenOCD@${{ github.event.inputs.version }} test'
     runs-on: [self-hosted, Linux, ARM64]
@@ -59,5 +88,46 @@ jobs:
           entrypoint: /usr/bin/linux32
           args: /bin/bash scripts/helper/tests/xpm-test.sh --image ilegeul/debian:arm32v7-10-npm-v1 --version ${{ github.event.inputs.version }}
 
+  macos-x64:
+    name: 'Intel macOS 64-bit OpenOCD@${{ github.event.inputs.version }} test'
+    runs-on: macos-latest
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 3
+          submodules: true
+      - name: 'Install xpm'
+        run: npm install --global xpm
+      - name: 'Run xpm ${{ github.event.inputs.version }} test'
+        run: bash scripts/helper/tests/xpm-test.sh --version ${{ github.event.inputs.version }}
+
+  windows-x64:
+    name: 'Windows 64-bit OpenOCD@${{ github.event.inputs.version }} test'
+    runs-on: windows-latest
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 3
+          submodules: true
+      - name: 'Install xpm'
+        run: npm install --global xpm
+      - name: 'Run xpm ${{ github.event.inputs.version }} test'
+        run: bash scripts/helper/tests/xpm-test.sh --version ${{ github.event.inputs.version }}
+
+  windows-ia32:
+    name: 'Windows 32-bit OpenOCD@${{ github.event.inputs.version }} test'
+    runs-on: windows-latest
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 3
+          submodules: true
+      - name: 'Install xpm'
+        run: npm install --global xpm
+      - name: 'Run xpm ${{ github.event.inputs.version }} test'
+        run: bash scripts/helper/tests/xpm-test.sh --version ${{ github.event.inputs.version }} --32
 
 # -----------------------------------------------------------------------------
