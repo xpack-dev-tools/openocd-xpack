@@ -297,7 +297,7 @@ function test_openocd()
     OPENOCD="xpacks/.bin/openocd"
   elif [ -d "${APP_PREFIX}/bin" ]
   then
-    OPENOCD="${APP_PREFIX}/bin"
+    OPENOCD="${APP_PREFIX}/bin/openocd"
   else
     echo "Wrong folder."
     exit 1
