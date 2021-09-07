@@ -237,7 +237,7 @@ Then it is possible to start openocd:
 
 ```console
 $ .../xpack-openocd-0.11.0-2/bin/openocd -f "board/stm32f4discovery.cfg"
-xPack OpenOCD 64-bit Open On-Chip Debugger 0.11.0+dev-00359-g18bcdc43f (2021-08-29-16:57)
+xPack OpenOCD x86_64 Open On-Chip Debugger 0.11.0+dev-00359-g18bcdc43f (2021-08-29-16:57)
 Licensed under GNU GPL v2
 For bug reports, read
 	http://openocd.org/doc/doxygen/bugs.html
@@ -346,55 +346,11 @@ After a few moments the version will be visible at:
 ## Test if the npm binaries can be installed with xpm
 
 Run the `scripts/tests/trigger-travis-xpm-install.sh` script, this
-will install the package on Intel Linux 64-bit, macOS and Windows 64-bit.
+will install the package via `xpm install` on all supported platforms.
 
 The test results are available from:
 
 - <https://travis-ci.org/github/xpack-dev-tools/openocd-xpack>
-
-For 32-bit Windows, 32-bit Intel GNU/Linux and 32-bit Arm, install manually.
-
-```sh
-xpm install --global @xpack-dev-tools/openocd@next
-```
-
-## Test the npm binaries
-
-Install the binaries on all platforms.
-
-```sh
-xpm install --global @xpack-dev-tools/openocd@next
-```
-
-On GNU/Linux systems, including Raspberry Pi, use the following commands:
-
-```sh
-~/.local/xPacks/@xpack-dev-tools/openocd/0.11.0-2.1/.content/bin/openocd --version
-
-openocd version 0.11.0
-
-OpenOCD suite maintained and supported by Kitware (kitware.com/openocd).
-```
-
-On macOS, use:
-
-```sh
-~/Library/xPacks/@xpack-dev-tools/openocd/0.11.0-2.1/.content/bin/openocd --version
-
-openocd version 0.11.0
-
-OpenOCD suite maintained and supported by Kitware (kitware.com/openocd).
-```
-
-On Windows use:
-
-```doscon
-%USERPROFILE%\AppData\Roaming\xPacks\@xpack-dev-tools\openocd\0.11.0-2.1\.content\bin\openocd --version
-
-openocd version 0.11.0
-
-OpenOCD suite maintained and supported by Kitware (kitware.com/openocd).
-```
 
 ## Update the repo
 
