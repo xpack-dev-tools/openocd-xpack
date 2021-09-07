@@ -1,6 +1,6 @@
 
 # -----------------------------------------------------------------------------
-# DO NOT EDIT! Generated from scripts/helper/templates/test-native-liquid.yml.
+# DO NOT EDIT! Generated from scripts/helper/templates/test-prime-liquid.yml.
 #
 # This file is part of the xPack distribution.
 #   (https://xpack.github.io)
@@ -19,7 +19,7 @@
 
 # -----------------------------------------------------------------------------
 
-name: 'Test xPack OpenOCD on native platforms'
+name: 'Test xPack OpenOCD on supported platforms'
 
 on:
   workflow_dispatch:
@@ -43,8 +43,23 @@ jobs:
         with:
           fetch-depth: 3
           submodules: true
-      - name: 'Run native ${{ github.event.inputs.version }} test'
+      - name: 'Run ${{ github.event.inputs.version }} native test'
         run: bash scripts/tests/native-test.sh --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+
+  linux-ia32:
+    name: 'Intel Linux 32-bit OpenOCD ${{ github.event.inputs.version }} test'
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 3
+          submodules: true
+      - name: 'Run ${{ github.event.inputs.version }} docker test'
+        uses: docker://i386/debian:buster
+        with:
+          entrypoint: /usr/bin/linux32
+          args: /bin/bash /github/workspace/scripts/tests/native-test.sh --image i386/debian:buster --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
 
   linux-arm64:
     name: 'Arm Linux 64-bit OpenOCD ${{ github.event.inputs.version }} test'
@@ -57,8 +72,25 @@ jobs:
           submodules: true
       - name: 'Clean cache'
         run: rm -rf ~/Work/cache/xpack-openocd-${{ github.event.inputs.version }}*
-      - name: 'Run native ${{ github.event.inputs.version }} test'
+      - name: 'Run ${{ github.event.inputs.version }} native test'
         run: bash scripts/tests/native-test.sh --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+
+  linux-arm32:
+    name: 'Arm Linux 32-bit OpenOCD ${{ github.event.inputs.version }} test'
+    runs-on: [self-hosted, Linux, Arm64]
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 3
+          submodules: true
+      - name: 'Clean cache'
+        run: rm -rf ~/Work/cache/xpack-openocd-${{ github.event.inputs.version }}*
+      - name: 'Run ${{ github.event.inputs.version }} docker test'
+        uses: docker://arm32v7/debian:buster
+        with:
+          entrypoint: /usr/bin/linux32
+          args: /bin/bash /github/workspace/scripts/tests/native-test.sh --image arm32v7/debian:buster --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
 
   macos-x64:
     name: 'Intel macOS 64-bit OpenOCD ${{ github.event.inputs.version }} test'
@@ -69,7 +101,7 @@ jobs:
         with:
           fetch-depth: 3
           submodules: true
-      - name: 'Run native ${{ github.event.inputs.version }} test'
+      - name: 'Run ${{ github.event.inputs.version }} native test'
         run: bash scripts/tests/native-test.sh --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
 
   windows-x64:
@@ -81,7 +113,7 @@ jobs:
         with:
           fetch-depth: 3
           submodules: true
-      - name: 'Run native ${{ github.event.inputs.version }} test'
+      - name: 'Run ${{ github.event.inputs.version }} native test'
         run: bash scripts/tests/native-test.sh --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
 
   windows-ia32:
@@ -93,7 +125,7 @@ jobs:
         with:
           fetch-depth: 3
           submodules: true
-      - name: 'Run native ${{ github.event.inputs.version }} test'
+      - name: 'Run ${{ github.event.inputs.version }} native test'
         run: bash scripts/tests/native-test.sh --32 --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
 
 # -----------------------------------------------------------------------------

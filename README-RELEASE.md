@@ -175,14 +175,14 @@ The automation is provided by GitHub Actions.
 
 To trigger the GitHub Actions tests, use the xPack actions:
 
-- `trigger-workflow-test-native`
+- `trigger-workflow-test-prime`
 - `trigger-workflow-test-docker-linux-intel`
 - `trigger-workflow-test-docker-linux-arm`
 
 These are equivalent to:
 
 ```sh
-bash ~/Downloads/openocd-xpack.git/scripts/helper/tests/trigger-workflow-test-native.sh
+bash ~/Downloads/openocd-xpack.git/scripts/helper/tests/trigger-workflow-test-prime.sh
 bash ~/Downloads/openocd-xpack.git/scripts/helper/tests/trigger-workflow-test-docker-linux-intel.sh
 bash ~/Downloads/openocd-xpack.git/scripts/helper/tests/trigger-workflow-test-docker-linux-arm.sh
 ```
