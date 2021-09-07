@@ -28,6 +28,7 @@
   },
   "homepage": "https://github.com/xpack-dev-tools/openocd-xpack#readme",
   "xpack": {
+    "minimumXpmRequired": "0.10.2",
     "binaries": {
       "destination": "./.content",
       "baseUrl": "https://github.com/xpack-dev-tools/openocd-xpack/releases/download/v0.11.0-1",
