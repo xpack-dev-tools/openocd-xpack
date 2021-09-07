@@ -53,7 +53,7 @@ jobs:
         with:
           fetch-depth: 3
           submodules: true
-      - name: 'Debian 10 ia32'
+      - name: 'Run xpm ${{ github.event.inputs.version }} test on Debian 10 i386'
         uses: docker://ilegeul/debian:i386-10-npm-v1
         with:
           entrypoint: /usr/bin/linux32
@@ -82,7 +82,7 @@ jobs:
         with:
           fetch-depth: 3
           submodules: true
-      - name: 'Debian 10 arm32'
+      - name: 'Run xpm ${{ github.event.inputs.version }} test on Debian 10 armhf'
         uses: docker://ilegeul/debian:arm32v7-10-npm-v1
         with:
           entrypoint: /usr/bin/linux32
