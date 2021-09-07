@@ -70,8 +70,6 @@ jobs:
         with:
           fetch-depth: 3
           submodules: true
-      - name: 'Clean cache'
-        run: rm -rf ~/Work/cache/xpack-openocd-${{ github.event.inputs.version }}*
       - name: 'Run ${{ github.event.inputs.version }} native test'
         run: bash scripts/tests/native-test.sh --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
 
@@ -84,8 +82,6 @@ jobs:
         with:
           fetch-depth: 3
           submodules: true
-      - name: 'Clean cache'
-        run: rm -rf ~/Work/cache/xpack-openocd-${{ github.event.inputs.version }}*
       - name: 'Run ${{ github.event.inputs.version }} docker test'
         uses: docker://arm32v7/debian:buster
         with:
