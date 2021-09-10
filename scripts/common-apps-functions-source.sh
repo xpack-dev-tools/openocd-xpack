@@ -35,12 +35,13 @@ function build_openocd()
 
   local openocd_stamp_file_path="${INSTALL_FOLDER_PATH}/stamp-openocd-installed"
 
+  mkdir -pv "${LOGS_FOLDER_PATH}/openocd/"
+
   if [ ! -f "${openocd_stamp_file_path}" ]
   then
     (
       xbb_activate_installed_dev
 
-      mkdir -pv "${LOGS_FOLDER_PATH}/openocd/"
 
       cd "${WORK_FOLDER_PATH}/${OPENOCD_SRC_FOLDER_NAME}"
       (
@@ -303,7 +304,12 @@ function test_openocd()
     exit 1
   fi
 
+  echo
+  echo "Checking the opeocd shared libraries..."
   show_libs "${OPENOCD}"
+
+  echo
+  echo "Checking if openocd starts..."
 
   run_app "${OPENOCD}" --version
 

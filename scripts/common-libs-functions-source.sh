@@ -58,6 +58,7 @@ function build_libusb1()
       CPPFLAGS="${XBB_CPPFLAGS}"
       CFLAGS="${XBB_CFLAGS_NO_W}"
       CXXFLAGS="${XBB_CXXFLAGS_NO_W}"
+
       LDFLAGS="${XBB_LDFLAGS_LIB}"
       if [ "${TARGET_PLATFORM}" == "linux" ]
       then
@@ -83,7 +84,7 @@ function build_libusb1()
           
           if [ "${IS_DEVELOP}" == "y" ]
           then
-            bash "${SOURCES_FOLDER_PATH}/${libusb1_src_folder_name}/configure" --help
+            run_verbose bash "${SOURCES_FOLDER_PATH}/${libusb1_src_folder_name}/configure" --help
           fi
 
           config_options=()
@@ -166,6 +167,7 @@ function build_libusb0()
       CPPFLAGS="${XBB_CPPFLAGS}"
       CFLAGS="${XBB_CFLAGS_NO_W}"
       CXXFLAGS="${XBB_CXXFLAGS_NO_W}"
+
       LDFLAGS="${XBB_LDFLAGS_LIB}"
       if [ "${TARGET_PLATFORM}" == "linux" ]
       then
@@ -191,7 +193,7 @@ function build_libusb0()
 
           if [ "${IS_DEVELOP}" == "y" ]
           then
-            bash "${SOURCES_FOLDER_PATH}/${libusb0_src_folder_name}/configure" --help
+            run_verbose bash "${SOURCES_FOLDER_PATH}/${libusb0_src_folder_name}/configure" --help
           fi
 
           config_options=()
@@ -303,6 +305,7 @@ function build_libusb_w32()
           CPPFLAGS="${XBB_CPPFLAGS}"
           CFLAGS="${XBB_CFLAGS_NO_W}"
           CXXFLAGS="${XBB_CXXFLAGS_NO_W}"
+
           LDFLAGS="${XBB_LDFLAGS_LIB}"
 
           export CPPFLAGS
@@ -398,6 +401,7 @@ function build_libftdi()
       CPPFLAGS="${XBB_CPPFLAGS}"
       CFLAGS="${XBB_CFLAGS_NO_W}"
       CXXFLAGS="${XBB_CXXFLAGS_NO_W}"
+
       LDFLAGS="${XBB_LDFLAGS_LIB}"
       if [ "${TARGET_PLATFORM}" == "linux" ]
       then
@@ -535,6 +539,7 @@ function build_hidapi()
         CPPFLAGS="${XBB_CPPFLAGS}"
         CFLAGS="${XBB_CFLAGS_NO_W}"
         CXXFLAGS="${XBB_CXXFLAGS_NO_W}"
+
         LDFLAGS="${XBB_LDFLAGS_LIB}"
 
         export CPPFLAGS
@@ -586,6 +591,7 @@ function build_hidapi()
         CPPFLAGS="${XBB_CPPFLAGS}"
         CFLAGS="${XBB_CFLAGS_NO_W}"
         CXXFLAGS="${XBB_CXXFLAGS_NO_W}"
+
         LDFLAGS="${XBB_LDFLAGS_LIB}"
         if [ "${TARGET_PLATFORM}" == "linux" ]
         then
@@ -606,8 +612,11 @@ function build_hidapi()
           echo
           echo "Running hidapi configure..."
 
-          bash "configure" --help
-  
+          if [ "${IS_DEVELOP}" == "y" ]
+          then
+            run_verbose bash "configure" --help
+          fi
+
           config_options=()
 
           config_options+=("--prefix=${LIBS_INSTALL_FOLDER_PATH}")

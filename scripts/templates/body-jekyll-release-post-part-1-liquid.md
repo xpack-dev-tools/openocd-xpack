@@ -26,7 +26,7 @@ tags:
 ---
 
 [The xPack OpenOCD](https://xpack.github.io/openocd/)
-is the **xPack** distribution of
+is a standalone cross-platform binary distribution of
 [OpenOCD](http://openocd.org).
 
 There are separate binaries for **Windows** (Intel 32/64-bit),

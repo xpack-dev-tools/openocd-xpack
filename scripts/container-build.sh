@@ -84,7 +84,6 @@ IS_DEVELOP=""
 IS_DEBUG=""
 WITH_TESTS="y"
 LINUX_INSTALL_RELATIVE_PATH=""
-
 TEST_ONLY=""
 
 if [ "$(uname)" == "Linux" ]
@@ -219,7 +218,8 @@ then
 
     prepare_app_folder_libraries
 
-    strip_libs
+    # strip_libs
+    strip_binaries
 
     copy_distro_files
 
@@ -233,6 +233,10 @@ then
 fi
 
 # -----------------------------------------------------------------------------
+
+# Final checks.
+# To keep everything as pristine as possible, run tests
+# only after the archive is packed.
 
 prime_wine
 

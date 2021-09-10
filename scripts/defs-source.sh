@@ -28,15 +28,15 @@ DISTRO_TOP_FOLDER=${DISTRO_TOP_FOLDER:-"xPacks"}
 
 APP_DESCRIPTION="${DISTRO_UC_NAME} ${APP_UC_NAME}"
 
-BRANDING=${BRANDING:-"${DISTRO_UC_NAME} ${APP_UC_NAME}"}
+BRANDING="${BRANDING:-"${DISTRO_UC_NAME} ${APP_NAME}"}"
 
 # -----------------------------------------------------------------------------
 
-GITHUB_ORG="xpack-dev-tools"
-GITHUB_REPO="openocd-xpack"
-GITHUB_PRE_RELEASES="pre-releases"
+GITHUB_ORG="${GITHUB_ORG:-"xpack-dev-tools"}"
+GITHUB_REPO="${GITHUB_REPO:-"${APP_LC_NAME}-xpack"}"
+GITHUB_PRE_RELEASES="${GITHUB_PRE_RELEASES:-"pre-releases"}"
 
-NPM_PACKAGE="@xpack-dev-tools/openocd@next"
+NPM_PACKAGE="${NPM_PACKAGE:-"@xpack-dev-tools/${APP_LC_NAME}@next"}"
 
 # -----------------------------------------------------------------------------
 
