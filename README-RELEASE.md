@@ -92,24 +92,24 @@ or the production machine (`xbbm`):
 ```sh
 sudo rm -rf ~/Work/openocd-*
 
-caffeinate bash ~/Downloads/openocd-xpack.git/scripts/build.sh --develop --without-pdf --without-html --disable-tests --osx
+caffeinate bash ~/Downloads/openocd-xpack.git/scripts/helper/build.sh --develop --without-pdf --without-html --disable-tests --osx
 ```
 
 Similarly on the Intel Linux (`xbbi`):
 
 ```sh
-bash ~/Downloads/openocd-xpack.git/scripts/build.sh --develop --without-pdf --without-html --disable-tests --linux64
-bash ~/Downloads/openocd-xpack.git/scripts/build.sh --develop --without-pdf --without-html --disable-tests --linux32
+bash ~/Downloads/openocd-xpack.git/scripts/helper/build.sh --develop --without-pdf --without-html --disable-tests --linux64
+bash ~/Downloads/openocd-xpack.git/scripts/helper/build.sh --develop --without-pdf --without-html --disable-tests --linux32
 
-bash ~/Downloads/openocd-xpack.git/scripts/build.sh --develop --without-pdf --without-html --disable-tests --win64
-bash ~/Downloads/openocd-xpack.git/scripts/build.sh --develop --without-pdf --without-html --disable-tests --win32
+bash ~/Downloads/openocd-xpack.git/scripts/helper/build.sh --develop --without-pdf --without-html --disable-tests --win64
+bash ~/Downloads/openocd-xpack.git/scripts/helper/build.sh --develop --without-pdf --without-html --disable-tests --win32
 ```
 
 And on the Arm Linux (`xbba`):
 
 ```sh
-bash ~/Downloads/openocd-xpack.git/scripts/build.sh --develop --without-pdf --without-html --disable-tests --arm64
-bash ~/Downloads/openocd-xpack.git/scripts/build.sh --develop --without-pdf --without-html --disable-tests --arm32
+bash ~/Downloads/openocd-xpack.git/scripts/helper/build.sh --develop --without-pdf --without-html --disable-tests --arm64
+bash ~/Downloads/openocd-xpack.git/scripts/helper/build.sh --develop --without-pdf --without-html --disable-tests --arm32
 ```
 
 Work on the scripts until all platforms pass the build.

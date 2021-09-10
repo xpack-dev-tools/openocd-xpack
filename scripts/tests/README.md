@@ -22,7 +22,7 @@ git clone \
 To check if OpenCOD starts on the current platform, run a native test:
 
 ```sh
-bash ~/Downloads/openocd-xpack.git/scripts/tests/native-test.sh \
+bash ~/Downloads/openocd-xpack.git/scripts/helper/tests/native-test.sh \
   --base-url "https://github.com/xpack-dev-tools/pre-releases/releases/download/test/"
 ```
 

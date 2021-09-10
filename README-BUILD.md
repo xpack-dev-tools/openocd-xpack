@@ -157,7 +157,7 @@ Before running a build for the first time, it is recommended to preload the
 docker images.
 
 ```sh
-bash ~/Downloads/openocd-xpack.git/scripts/build.sh preload-images
+bash ~/Downloads/openocd-xpack.git/scripts/helper/build.sh preload-images
 ```
 
 The result should look similar to:
@@ -193,13 +193,13 @@ network connection or a computer entering sleep.
 screen -S openocd
 
 sudo rm -rf ~/Work/openocd-*
-bash ~/Downloads/openocd-xpack.git/scripts/build.sh --all
+bash ~/Downloads/openocd-xpack.git/scripts/helper/build.sh --develop --all
 ```
 
 or, for development builds:
 
 ```sh
-bash ~/Downloads/openocd-xpack.git/scripts/build.sh --linux64 --linux32 --win64 --win32 --develop
+bash ~/Downloads/openocd-xpack.git/scripts/helper/build.sh --develop --without-pdf --disable-tests --linux64 --linux32 --win64 --win32
 ```
 
 To detach from the session, use `Ctrl-a` `Ctrl-d`; to reattach use
@@ -246,7 +246,7 @@ Before running a build for the first time, it is recommended to preload the
 docker images.
 
 ```sh
-bash ~/Downloads/openocd-xpack.git/scripts/build.sh preload-images
+bash ~/Downloads/openocd-xpack.git/scripts/helper/build.sh preload-images
 ```
 
 The result should look similar to:
@@ -267,7 +267,13 @@ network connection or a computer entering sleep.
 screen -S openocd
 
 sudo rm -rf ~/Work/openocd-*
-bash ~/Downloads/openocd-xpack.git/scripts/build.sh --all --develop
+bash ~/Downloads/openocd-xpack.git/scripts/helper/build.sh --develop --all
+```
+
+or, for development builds:
+
+```sh
+bash ~/Downloads/openocd-xpack.git/scripts/helper/build.sh --develop --without-pdf --disable-tests --arm64 --arm32 
 ```
 
 To detach from the session, use `Ctrl-a` `Ctrl-d`; to reattach use
@@ -300,7 +306,14 @@ To build the latest macOS version:
 screen -S openocd
 
 rm -rf ~/Work/openocd-*
-caffeinate bash ~/Downloads/openocd-xpack.git/scripts/build.sh --osx --develop
+caffeinate bash ~/Downloads/openocd-xpack.git/scripts/helper/build.sh --develop --osx
+```
+
+or, for development builds:
+
+```sh
+sudo rm -rf ~/Work/openocd-arm-*
+caffeinate bash ~/Downloads/openocd-xpack.git/scripts/helper/build.sh --develop --without-pdf --disable-tests --osx 
 ```
 
 To detach from the session, use `Ctrl-a` `Ctrl-d`; to reattach use
@@ -334,19 +347,19 @@ Instead of `--all`, you can use any combination of:
 To remove most build temporary files, use:
 
 ```sh
-bash ~/Downloads/openocd-xpack.git/scripts/build.sh --all clean
+bash ~/Downloads/openocd-xpack.git/scripts/helper/build.sh --all clean
 ```
 
 To also remove the library build temporary files, use:
 
 ```sh
-bash ~/Downloads/openocd-xpack.git/scripts/build.sh --all cleanlibs
+bash ~/Downloads/openocd-xpack.git/scripts/helper/build.sh --all cleanlibs
 ```
 
 To remove all temporary files, use:
 
 ```sh
-bash ~/Downloads/openocd-xpack.git/scripts/build.sh --all cleanall
+bash ~/Downloads/openocd-xpack.git/scripts/helper/build.sh --all cleanall
 ```
 
 Instead of `--all`, any combination of `--win32 --win64 --linux32 --linux64`
