@@ -59,7 +59,7 @@ jobs:
         uses: docker://i386/debian:buster
         with:
           entrypoint: /usr/bin/linux32
-          args: /bin/bash /github/workspace/scripts/tests/native-test.sh --image i386/debian:buster --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+          args: /bin/bash /github/workspace/scripts/helper/tests/native-test.sh --image i386/debian:buster --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
 
   linux-arm64:
     name: 'Arm Linux 64-bit OpenOCD ${{ github.event.inputs.version }} test'
@@ -86,7 +86,7 @@ jobs:
         uses: docker://arm32v7/debian:buster
         with:
           entrypoint: /usr/bin/linux32
-          args: /bin/bash /github/workspace/scripts/tests/native-test.sh --image arm32v7/debian:buster --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+          args: /bin/bash /github/workspace/scripts/helper/tests/native-test.sh --image arm32v7/debian:buster --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
 
   macos-x64:
     name: 'Intel macOS 64-bit OpenOCD ${{ github.event.inputs.version }} test'
