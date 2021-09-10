@@ -35,11 +35,14 @@ function build_versions()
   # TODO: update to new strategy, and naming schema, with build_xxx
   # and running the tests after packing the archive.
 
-  (
-    xbb_activate
+  if [ "${TARGET_PLATFORM}" == "linux" ]
+  then
+    (
+      xbb_activate
 
-    build_patchelf "0.12"
-  )
+      build_patchelf "0.12"
+    )
+  fi
   
   if [ "${TARGET_PLATFORM}" == "win32" ]
   then
