@@ -2,7 +2,7 @@
 
 The binaries can be available from one of the pre-releases:
 
-<https://github.com/xpack-dev-tools/pre-releases/releases>
+- <https://github.com/xpack-dev-tools/pre-releases/releases>
 
 ## Download the repo
 
@@ -41,15 +41,15 @@ The multi-platform tests run on GitHub Actions; they do not fire on
 git commits, but only via a manual POST to the GitHub API.
 
 ```sh
-bash ~/Downloads/openocd-xpack.git/scripts/tests/trigger-workflow-test-native.sh \
+bash ~/Downloads/openocd-xpack.git/scripts/helper/tests/trigger-workflow-test-prime.sh \
   --branch xpack-develop \
   --base-url "https://github.com/xpack-dev-tools/pre-releases/releases/download/test/"
 
-bash ~/Downloads/openocd-xpack.git/scripts/tests/trigger-workflow-test-docker-linux-intel.sh \
+bash ~/Downloads/openocd-xpack.git/scripts/helper/tests/trigger-workflow-test-docker-linux-intel.sh \
   --branch xpack-develop \
   --base-url "https://github.com/xpack-dev-tools/pre-releases/releases/download/test/"
 
-bash ~/Downloads/openocd-xpack.git/scripts/tests/trigger-workflow-test-docker-linux-arm.sh \
+bash ~/Downloads/openocd-xpack.git/scripts/helper/tests/trigger-workflow-test-docker-linux-arm.sh \
   --branch xpack-develop \
   --base-url "https://github.com/xpack-dev-tools/pre-releases/releases/download/test/"
 
