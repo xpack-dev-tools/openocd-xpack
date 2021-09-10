@@ -4,6 +4,7 @@
   "description": "A binary xPack with the OpenOCD executable",
   "main": "",
   "scripts": {
+    "npm-install": "npm install",
     "pack": "npm pack",
     "git-log": "git log --pretty='%cd * %h %s' --date=short",
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -13,6 +14,10 @@
     "type": "git",
     "url": "https://github.com/xpack-dev-tools/openocd-xpack.git/"
   },
+  "bugs": {
+    "url": "https://github.com/xpack-dev-tools/openocd-xpack/issues/"
+  },
+  "homepage": "https://github.com/xpack-dev-tools/openocd-xpack#readme",
   "keywords": [
     "xpack",
     "openocd"
@@ -23,10 +28,6 @@
     "url": "https://github.com/ilg-ul/"
   },
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/xpack-dev-tools/openocd-xpack/issues/"
-  },
-  "homepage": "https://github.com/xpack-dev-tools/openocd-xpack#readme",
   "xpack": {
     "minimumXpmRequired": "0.10.2",
     "binaries": {
