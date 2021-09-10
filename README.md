@@ -4,7 +4,8 @@
 
 # The xPack OpenOCD
 
-A standalone cross-platform (Windows/macOS/Linux) OpenOCD binary distribution.
+A standalone cross-platform (Windows/macOS/Linux) OpenOCD
+binary distribution.
 
 In addition to the the binary archives, and the package meta data,
 this project also includes the build scripts.

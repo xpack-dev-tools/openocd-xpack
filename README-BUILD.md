@@ -56,7 +56,7 @@ The build scripts are available in the `scripts` folder of the
 [`xpack-dev-tools/openocd-xpack`](https://github.com/xpack-dev-tools/openocd-xpack)
 Git repo.
 
-To download them, issues the following two commands:
+To download them, issue the following two commands:
 
 ```sh
 rm -rf ~/Downloads/openocd-xpack.git; \
@@ -69,7 +69,8 @@ git clone \
 > Note: the repository uses submodules; for a successful build it is
 > mandatory to recurse the submodules.
 
-To use the `xpack-develop` issues the following two commands:
+For development purposes, clone the `xpack-develop`
+branch:
 
 ```sh
 rm -rf ~/Downloads/openocd-xpack.git; \
@@ -126,16 +127,15 @@ release web pages.
 ### README-DEVELOP.md
 
 The details on how to prepare the development environment for OpenOCD are in the
-[`README-DEVELOP.md`](https://github.com/xpack-dev-tools/openocd-xpack/blob/xpack/README-DEVELOP.md) file.
+[`README-DEVELOP.md`](https://github.com/xpack-dev-tools/openocd-xpack/blob/xpack/README-DEVELOP.md)
+file.
 
 ## How to build distributions
 
 ## Build
 
-Although it is perfectly possible to build all binaries in a single step
-on a macOS system, due to Docker specifics, it is faster to build the
-GNU/Linux and Windows binaries on a GNU/Linux system and the macOS binary
-separately.
+The builds currently run on 3 dedicated machines (Intel GNU/Linux,
+Arm GNU/Linux and Intel macOS). A fourth machine for Arm macOS is planned.
 
 ### Build the Intel GNU/Linux and Windows binaries
 
@@ -226,11 +226,11 @@ total 13248
 The supported Arm architectures are:
 
 - `armhf` for 32-bit devices
-- `arm64` for 64-bit devices
+- `aarch64` for 64-bit devices
 
 The current platform for Arm GNU/Linux production builds is a
-Debian 9, running on an ROCK Pi 4 SBC with 4 GB of RAM
-and 256 GB of fast M.2 SSD. The machine name is `xbba`.
+Raspberry Pi OS 10, running on a Raspberry Pi Compute Module 4, with
+8 GB of RAM and 256 GB of fast M.2 SSD. The machine name is `xbba`.
 
 ```sh
 caffeinate ssh xbba
@@ -339,6 +339,11 @@ Instead of `--all`, you can use any combination of:
 ```console
 --win32 --win64
 --linux32 --linux64
+```
+
+On Arm, instead of `--all`, you can use:
+
+```console
 --arm32 --arm64
 ```
 
