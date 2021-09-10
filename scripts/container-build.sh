@@ -65,7 +65,10 @@ source "${helper_folder_path}/common-libs-functions-source.sh"
 source "${helper_folder_path}/common-apps-functions-source.sh"
 
 # The order is important, it may override helper defs.
-# source "${script_folder_path}/common-functions-source.sh"
+if [ -f "${script_folder_path}/common-functions-source.sh" ]
+then
+  source "${script_folder_path}/common-functions-source.sh"
+fi
 source "${script_folder_path}/common-libs-functions-source.sh"
 source "${script_folder_path}/common-apps-functions-source.sh"
 source "${script_folder_path}/common-versions-source.sh"
