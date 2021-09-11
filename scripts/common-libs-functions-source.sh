@@ -572,7 +572,7 @@ function build_hidapi()
 
         if [ "${TARGET_PLATFORM}" == "linux" ]
         then
-          do_copy_libudev
+          copy_libudev
 
           export LIBS="-liconv"
         elif [ "${TARGET_PLATFORM}" == "darwin" ]
@@ -663,88 +663,71 @@ function build_hidapi()
   fi
 }
 
-function do_copy_libudev()
+function copy_libudev()
+{ 
+  (
+
+    if [ -f "/usr/include/libudev.h" ]
+    then
+      cp -v "/usr/include/libudev.h" "${LIBS_INSTALL_FOLDER_PATH}/include"
+    else
+      echo "No libudev.h"
+      exit 1
+    fi
+
+    local find_path="$(find /lib* -name 'libudev.so.?' | sort -u | sed -n 1p)"
+    if [ ! -z "${find_path}" ]
+    then
+      copy_libudev_with_links "${find_path}" "${LIBS_INSTALL_FOLDER_PATH}/lib"
+    fi
+
+    find_path="$(find /usr/lib* -name 'libudev.so' | sort -u | sed -n 1p)"
+    if [ ! -z "${find_path}" ]
+    then
+      copy_libudev_with_links "${find_path}" "${LIBS_INSTALL_FOLDER_PATH}/lib"
+    fi
+
+    local find_pc_path="$(find /usr/lib* -name 'libudev.pc')"
+    if [ ! -z "${find_pc_path}" ]
+    then
+      cp -v "${find_pc_path}" "${LIBS_INSTALL_FOLDER_PATH}/lib/pkgconfig"
+    else
+      echo "No libudev.pc"
+      exit 1
+    fi
+  )
+}
+
+function copy_libudev_with_links()
 {
-  cp -v "/usr/include/libudev.h" "${LIBS_INSTALL_FOLDER_PATH}/include"
+  local from_file_path="$1"
+  local dest_folder_path="$2"
 
-  if [ "${TARGET_ARCH}" == "x64" ]
+  if [ -L "${from_file_path}" ]
   then
-    if [ -f "/usr/lib/x86_64-linux-gnu/libudev.so" ]
+    local link_file_path="$(readlink "${from_file_path}")"
+    if [ "${link_file_path}" == "$(basename "${link_file_path}")" ]
     then
-      cp -v "/usr/lib/x86_64-linux-gnu/libudev.so" "${LIBS_INSTALL_FOLDER_PATH}/lib"
-      cp -v "/usr/lib/x86_64-linux-gnu/pkgconfig/libudev.pc" "${LIBS_INSTALL_FOLDER_PATH}/lib/pkgconfig"
-    elif [ -f "/lib/x86_64-linux-gnu/libudev.so" ]
-    then
-      # In Debian 9 the location changed to /lib
-      cp -v "/lib/x86_64-linux-gnu/libudev.so" "${LIBS_INSTALL_FOLDER_PATH}/lib"
-      cp -v "/usr/lib/x86_64-linux-gnu/pkgconfig/libudev.pc" "${LIBS_INSTALL_FOLDER_PATH}/lib/pkgconfig"
-    elif [ -f "/usr/lib/libudev.so" ]
-    then
-      # In ARCH the location is /usr/lib
-      cp -v "/usr/lib/libudev.so" "${LIBS_INSTALL_FOLDER_PATH}/lib"
-      cp -v "/usr/lib/pkgconfig/libudev.pc" "${LIBS_INSTALL_FOLDER_PATH}/lib/pkgconfig"
-    elif [ -f "/usr/lib64/libudev.so" ]
-    then
-      # In CentOS the location is /usr/lib64
-      cp -v "/usr/lib64/libudev.so" "${LIBS_INSTALL_FOLDER_PATH}/lib"
-      cp -v "/usr/lib64/pkgconfig/libudev.pc" "${LIBS_INSTALL_FOLDER_PATH}/lib/pkgconfig"
+      copy_libudev_with_links "$(dirname "${from_file_path}")/${link_file_path}" "${dest_folder_path}"
     else
-      echo "No libudev.so; abort."
-      exit 1
+      copy_libudev_with_links "${link_file_path}" "${dest_folder_path}"
     fi
-  elif [ "${TARGET_ARCH}" == "x32" -o "${TARGET_ARCH}" == "ia32" ] 
-  then
-    if [ -f "/usr/lib/i386-linux-gnu/libudev.so" ]
+    (
+      cd "${dest_folder_path}"
+      if [ ! -L "$(basename "${from_file_path}")" ]
+      then
+        ln -sv "$(basename "${link_file_path}")" "$(basename "${from_file_path}")"
+      fi
+    )
+  else
+    local dest_file_path="${dest_folder_path}/$(basename "${from_file_path}")"
+    if [ ! -f "${dest_file_path}" ]
     then
-      cp -v "/usr/lib/i386-linux-gnu/libudev.so" "${LIBS_INSTALL_FOLDER_PATH}/lib"
-      cp -v "/usr/lib/i386-linux-gnu/pkgconfig/libudev.pc" "${LIBS_INSTALL_FOLDER_PATH}/lib/pkgconfig"
-    elif [ -f "/lib/i386-linux-gnu/libudev.so" ]
-    then
-      # In Debian 9 the location changed to /lib
-      cp -v "/lib/i386-linux-gnu/libudev.so" "${LIBS_INSTALL_FOLDER_PATH}/lib"
-      cp -v "/usr/lib/i386-linux-gnu/pkgconfig/libudev.pc" "${LIBS_INSTALL_FOLDER_PATH}/lib/pkgconfig"
-    elif [ -f "/lib/libudev.so.0" ]
-    then
-      # In CentOS the location is /lib 
-      cp -v "/lib/libudev.so.0" "${LIBS_INSTALL_FOLDER_PATH}/lib"
-      cp -v "/usr/lib/pkgconfig/libudev.pc" "${LIBS_INSTALL_FOLDER_PATH}/lib/pkgconfig"
-    else
-      echo "No libudev.so; abort."
-      exit 1
+      cp -v "${from_file_path}" "${dest_folder_path}"
     fi
-  elif [ "${TARGET_ARCH}" == "arm64" ] 
-  then
-    if [ -f "/usr/lib/aarch64-linux-gnu/libudev.so" ]
-    then
-      cp -v "/usr/lib/aarch64-linux-gnu/libudev.so" "${LIBS_INSTALL_FOLDER_PATH}/lib"
-      cp -v "/usr/lib/aarch64-linux-gnu/pkgconfig/libudev.pc" "${LIBS_INSTALL_FOLDER_PATH}/lib/pkgconfig"
-    elif [ -f "/lib/aarch64-linux-gnu/libudev.so" ]
-    then
-      # In Debian 9 the location changed to /lib
-      cp -v "/lib/aarch64-linux-gnu/libudev.so" "${LIBS_INSTALL_FOLDER_PATH}/lib"
-      cp -v "/usr/lib/aarch64-linux-gnu/pkgconfig/libudev.pc" "${LIBS_INSTALL_FOLDER_PATH}/lib/pkgconfig"
-    else
-      echo "No libudev.so; abort."
-      exit 1
-    fi
-  elif [ "${TARGET_ARCH}" == "arm" ] 
-  then
-    if [ -f "/usr/lib/arm-linux-gnueabihf/libudev.so" ]
-    then
-      cp -v "/usr/lib/arm-linux-gnueabihf/libudev.so" "${LIBS_INSTALL_FOLDER_PATH}/lib"
-      cp -v "/usr/lib/arm-linux-gnueabihf/pkgconfig/libudev.pc" "${LIBS_INSTALL_FOLDER_PATH}/lib/pkgconfig"
-    elif [ -f "/lib/arm-linux-gnueabihf/libudev.so" ]
-    then
-      # In Debian 9 the location changed to /lib
-      cp -v "/lib/arm-linux-gnueabihf/libudev.so" "${LIBS_INSTALL_FOLDER_PATH}/lib"
-      cp -v "/usr/lib/arm-linux-gnueabihf/pkgconfig/libudev.pc" "${LIBS_INSTALL_FOLDER_PATH}/lib/pkgconfig"
-    else
-      echo "No libudev.so; abort."
-      exit 1
-    fi
+
+    # Hack to get libudev.so in line with the 'all rpath' policy.
+    # Manually add $ORIGIN to libudev.so (fingers crossed!).
+    # run_verbose ${PATCHELF} --force-rpath --set-rpath "\$ORIGIN" "${dest_file_path}"
   fi
-
-  # Hack to get libudev.so in line with the 'all rpath' policy.
-  # Manually add $ORIGIN to libudev.so (fingers crossed!).
-  run_verbose ${PATCHELF} --force-rpath --set-rpath "\$ORIGIN" "${LIBS_INSTALL_FOLDER_PATH}/lib/libudev.so"
 }
