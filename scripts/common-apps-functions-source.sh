@@ -33,10 +33,11 @@ function build_openocd()
 {
   download_openocd
 
+  local openocd_folder_name="openocd"
+
+  mkdir -pv "${LOGS_FOLDER_PATH}/${openocd_folder_name}/"
+
   local openocd_stamp_file_path="${INSTALL_FOLDER_PATH}/stamp-openocd-installed"
-
-  mkdir -pv "${LOGS_FOLDER_PATH}/openocd/"
-
   if [ ! -f "${openocd_stamp_file_path}" ]
   then
     (
@@ -49,7 +50,7 @@ function build_openocd()
         then
           ./bootstrap
         fi
-      ) 2>&1 | tee "${LOGS_FOLDER_PATH}/openocd/configure-output.txt"
+      ) 2>&1 | tee "${LOGS_FOLDER_PATH}/${openocd_folder_name}/configure-output.txt"
 
       mkdir -pv "${APP_BUILD_FOLDER_PATH}"
       cd "${APP_BUILD_FOLDER_PATH}"
@@ -236,8 +237,8 @@ function build_openocd()
           run_verbose bash ${DEBUG} "${WORK_FOLDER_PATH}/${OPENOCD_SRC_FOLDER_NAME}/configure" \
             "${config_options[@]}"
 
-          cp "config.log" "${LOGS_FOLDER_PATH}/openocd/config-log.txt"
-        ) 2>&1 | tee "${LOGS_FOLDER_PATH}/openocd/configure-output.txt"
+          cp "config.log" "${LOGS_FOLDER_PATH}/${openocd_folder_name}/config-log.txt"
+        ) 2>&1 | tee "${LOGS_FOLDER_PATH}/${openocd_folder_name}/configure-output.txt"
 
       fi
 
@@ -276,7 +277,7 @@ function build_openocd()
           fi
         )
 
-      ) 2>&1 | tee "${LOGS_FOLDER_PATH}/openocd/make-output.txt"
+      ) 2>&1 | tee "${LOGS_FOLDER_PATH}/${openocd_folder_name}/make-output.txt"
 
       copy_license \
         "${WORK_FOLDER_PATH}/${OPENOCD_SRC_FOLDER_NAME}" \

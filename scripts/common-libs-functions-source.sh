@@ -31,6 +31,8 @@ function build_libusb1()
 
   local libusb1_folder_name="${libusb1_src_folder_name}"
 
+  mkdir -pv "${LOGS_FOLDER_PATH}/${libusb1_folder_name}"
+
   local libusb1_stamp_file_path="${INSTALL_FOLDER_PATH}/stamp-libusb1-${libusb1_version}-installed"
   if [ ! -f "${libusb1_stamp_file_path}" ]
   then
@@ -39,8 +41,6 @@ function build_libusb1()
 
     download_and_extract "${libusb1_url}" "${libusb1_archive}" \
       "${libusb1_src_folder_name}"
-
-    mkdir -pv "${LOGS_FOLDER_PATH}/${libusb1_folder_name}"
 
     (
       mkdir -pv "${LIBS_BUILD_FOLDER_PATH}/${libusb1_folder_name}"
@@ -147,6 +147,8 @@ function build_libusb0()
 
   local libusb0_folder_name="${libusb0_src_folder_name}"
 
+  mkdir -pv "${LOGS_FOLDER_PATH}/${libusb0_folder_name}"
+
   local libusb0_stamp_file_path="${INSTALL_FOLDER_PATH}/stamp-libusb0-${libusb0_version}-installed"
   if [ ! -f "${libusb0_stamp_file_path}" ]
   then
@@ -155,8 +157,6 @@ function build_libusb0()
 
     download_and_extract "${libusb0_url}" "${libusb0_archive}" \
       "${libusb0_src_folder_name}"
-
-    mkdir -pv "${LOGS_FOLDER_PATH}/${libusb0_folder_name}"
 
     (
       mkdir -pv "${LIBS_BUILD_FOLDER_PATH}/${libusb0_folder_name}"
@@ -259,6 +259,8 @@ function build_libusb_w32()
 
   local libusb_w32_folder_name="${libusb_w32_src_folder_name}"
 
+  mkdir -pv "${LOGS_FOLDER_PATH}/${libusb_w32_folder_name}"
+
   local libusb_w32_patch="libusb-win32-${libusb_w32_version}-mingw-w64.patch"
 
   local libusb_w32_stamp_file_path="${INSTALL_FOLDER_PATH}/stamp-libusb-w32-${libusb_w32_version}-installed"
@@ -269,8 +271,6 @@ function build_libusb_w32()
 
     download_and_extract "${linusb_w32_url}" "${libusb_w32_archive}" \
       "${libusb_w32_src_folder_name}"
-
-    mkdir -pv "${LOGS_FOLDER_PATH}/${libusb_w32_folder_name}"
 
     # Mandatory build in the source folder, so make a local copy.
     rm -rf "${LIBS_BUILD_FOLDER_PATH}/${libusb_w32_folder_name}"
@@ -378,8 +378,9 @@ function build_libftdi()
 
   local libftdi_folder_name="${libftdi_src_folder_name}"
 
-  local libftdi_patch="libftdi1-${libftdi_version}.patch"
+  mkdir -pv "${LOGS_FOLDER_PATH}/${libftdi_folder_name}"
 
+  local libftdi_patch="libftdi1-${libftdi_version}.patch"
   local libftdi_stamp_file_path="${INSTALL_FOLDER_PATH}/stamp-libftdi-${libftdi_version}-installed"
   if [ ! -f "${libftdi_stamp_file_path}" ]
   then
@@ -389,8 +390,6 @@ function build_libftdi()
     download_and_extract "${libftdi_url}" "${libftdi_archive}" \
       "${libftdi_src_folder_name}" \
       "${libftdi_patch}"
-
-    mkdir -pv "${LOGS_FOLDER_PATH}/${libftdi_folder_name}"
 
     (
       mkdir -pv "${LIBS_BUILD_FOLDER_PATH}/${libftdi_folder_name}"
@@ -504,8 +503,9 @@ function build_hidapi()
 
   local hidapi_folder_name="${hidapi_src_folder_name}"
 
-  local hidapi_patch_file_name="hidapi-${hidapi_version}.patch"
+  mkdir -pv "${LOGS_FOLDER_PATH}/${hidapi_folder_name}"
 
+  local hidapi_patch_file_name="hidapi-${hidapi_version}.patch"
   local hidapi_stamp_file_path="${INSTALL_FOLDER_PATH}/stamp-hidapi-${hidapi_version}-installed"
   if [ ! -f "${hidapi_stamp_file_path}" ]
   then
@@ -514,8 +514,6 @@ function build_hidapi()
 
     download_and_extract "${hidapi_url}" "${hidapi_archive}" \
       "${hidapi_src_folder_name}" "${hidapi_patch_file_name}"
-
-    mkdir -pv "${LOGS_FOLDER_PATH}/${hidapi_folder_name}"
 
     # Mandatory build in the source folder, so make a local copy.
     rm -rf "${LIBS_BUILD_FOLDER_PATH}/${hidapi_folder_name}"
