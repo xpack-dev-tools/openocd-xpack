@@ -56,7 +56,7 @@ jobs:
   # https://hub.docker.com/_/ubuntu
   # The ubuntu:12.04 image fails to update.
   ubuntu-x64:
-    name: 'OpenOCD ${{ github.event.inputs.version }} x64 on Ubuntu 20, 18, 16, 14 stable'
+    name: 'x64 OpenOCD ${{ github.event.inputs.version }} test on Ubuntu 20, 18, 16, 14 stable'
     runs-on: ubuntu-latest
     steps:
       - name: 'Checkout'
@@ -87,7 +87,7 @@ jobs:
 
   # https://hub.docker.com/r/i386/ubuntu/
   ubuntu-ia32:
-    name: 'OpenOCD ${{ github.event.inputs.version }} ia32 on Ubuntu 18, 16, 14 stable'
+    name: 'ia32 OpenOCD ${{ github.event.inputs.version }} test on Ubuntu 18, 16, 14 stable'
     runs-on: ubuntu-latest
     steps:
       - name: 'Checkout'
@@ -119,7 +119,7 @@ jobs:
   # https://en.wikipedia.org/wiki/Debian_version_history
   # https://hub.docker.com/_/debian
   debian-x64:
-    name: 'OpenOCD ${{ github.event.inputs.version }} x64 on Debian 10, 9, 8 stable'
+    name: 'x64 OpenOCD ${{ github.event.inputs.version }} test on Debian 10, 9, 8 stable'
     runs-on: ubuntu-latest
     steps:
       - name: 'Checkout'
@@ -145,7 +145,7 @@ jobs:
 
   # https://hub.docker.com/r/i386/debian
   debian-ia32:
-    name: 'OpenOCD ${{ github.event.inputs.version }} ia32 on Debian 10, 9, 8 stable'
+    name: 'ia32 OpenOCD ${{ github.event.inputs.version }} test on Debian 10, 9, 8 stable'
     runs-on: ubuntu-latest
     steps:
       - name: 'Checkout'
@@ -174,7 +174,7 @@ jobs:
   # https://hub.docker.com/_/centos
   # `-static` disabled, there is no static libc.a.
   centos-x64:
-    name: 'OpenOCD ${{ github.event.inputs.version }} x64 on CentOS 8, 7 stable'
+    name: 'x64 OpenOCD ${{ github.event.inputs.version }} test on CentOS 8, 7 stable'
     runs-on: ubuntu-latest
     steps:
       - name: 'Checkout'
@@ -200,7 +200,7 @@ jobs:
   # https://hub.docker.com/r/redhat/ubi8
   # `-static` disabled, there is no static libc.a.
   redhat-x64:
-    name: 'OpenOCD ${{ github.event.inputs.version }} x64 on RedHat 8 stable'
+    name: 'x64 OpenOCD ${{ github.event.inputs.version }} test on RedHat 8 stable'
     runs-on: ubuntu-latest
     steps:
       - name: 'Checkout'
@@ -218,7 +218,7 @@ jobs:
   # https://hub.docker.com/u/opensuse
   # `-static` disabled, there is no static libc.a.
   opensuse-x64:
-    name: 'OpenOCD ${{ github.event.inputs.version }} x64 on OpenSUSE 15, 13 stable'
+    name: 'x64 OpenOCD ${{ github.event.inputs.version }} test on OpenSUSE 15, 13 stable'
     runs-on: ubuntu-latest
     steps:
       - name: 'Checkout'
@@ -241,7 +241,7 @@ jobs:
   # https://hub.docker.com/_/fedora
   # `-static` disabled, there is no static libc.a.
   fedora-x64:
-    name: 'OpenOCD ${{ github.event.inputs.version }} x64 on Fedora 34, 30, 25, 20, stable'
+    name: 'x64 OpenOCD ${{ github.event.inputs.version }} test on Fedora 34, 30, 25, 20, stable'
     runs-on: ubuntu-latest
     steps:
       - name: 'Checkout'
@@ -271,7 +271,7 @@ jobs:
           args: /github/workspace/scripts/helper/tests/native-test.sh --image fedora:20 --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
 
   ubuntu-x64-latest:
-    name: 'OpenOCD ${{ github.event.inputs.version }} x64 on Ubuntu latest'
+    name: 'x64 OpenOCD ${{ github.event.inputs.version }} test on Ubuntu latest'
     runs-on: ubuntu-latest
     steps:
       - name: 'Checkout'
@@ -289,7 +289,7 @@ jobs:
   # docker://i386/ubuntu:latest is 18.04, no need to test
 
   debian-x64-latest:
-    name: 'OpenOCD ${{ github.event.inputs.version }} x64 on Debian latest'
+    name: 'x64 OpenOCD ${{ github.event.inputs.version }} test on Debian latest'
     runs-on: ubuntu-latest
     steps:
       - name: 'Checkout'
@@ -309,7 +309,7 @@ jobs:
           args: /github/workspace/scripts/helper/tests/native-test.sh --image debian:latest --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
 
   debian-ia32-latest:
-    name: 'OpenOCD ${{ github.event.inputs.version }} ia32 on Debian latest'
+    name: 'ia32 OpenOCD ${{ github.event.inputs.version }} test on Debian latest'
     runs-on: ubuntu-latest
     steps:
       - name: 'Checkout'
@@ -328,7 +328,7 @@ jobs:
 
   # - https://hub.docker.com/r/opensuse/tumbleweed
   opensuse-x64-latest:
-    name: 'OpenOCD ${{ github.event.inputs.version }} x64 on OpenSUSE latest'
+    name: 'x64 OpenOCD ${{ github.event.inputs.version }} test on OpenSUSE latest'
     runs-on: ubuntu-latest
     steps:
       - name: 'Checkout'
@@ -347,7 +347,7 @@ jobs:
 
   # - https://hub.docker.com/_/archlinux
   arch-x64-latest:
-    name: 'OpenOCD ${{ github.event.inputs.version }} x64 on Arch latest'
+    name: 'x64 OpenOCD ${{ github.event.inputs.version }} test on Arch latest'
     runs-on: ubuntu-latest
     steps:
       - name: 'Checkout'

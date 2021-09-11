@@ -35,7 +35,7 @@ on:
 
 jobs:
   linux-x64:
-    name: 'Intel Linux 64-bit OpenOCD ${{ github.event.inputs.version }} test'
+    name: 'x64 Linux OpenOCD ${{ github.event.inputs.version }} test'
     runs-on: ubuntu-latest
     steps:
       - name: 'Checkout'
@@ -47,7 +47,7 @@ jobs:
         run: bash scripts/helper/tests/native-test.sh --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
 
   linux-ia32:
-    name: 'Intel Linux 32-bit OpenOCD ${{ github.event.inputs.version }} test'
+    name: 'ia32 Linux OpenOCD ${{ github.event.inputs.version }} test'
     runs-on: ubuntu-latest
     steps:
       - name: 'Checkout'
@@ -62,7 +62,7 @@ jobs:
           args: /bin/bash /github/workspace/scripts/helper/tests/native-test.sh --image i386/debian:buster --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
 
   linux-arm64:
-    name: 'Arm Linux 64-bit OpenOCD ${{ github.event.inputs.version }} test'
+    name: 'arm64 Linux OpenOCD ${{ github.event.inputs.version }} test'
     runs-on: [self-hosted, Linux, Arm64]
     steps:
       - name: 'Checkout'
@@ -74,7 +74,7 @@ jobs:
         run: bash scripts/helper/tests/native-test.sh --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
 
   linux-arm32:
-    name: 'Arm Linux 32-bit OpenOCD ${{ github.event.inputs.version }} test'
+    name: 'arm32 Linux OpenOCD ${{ github.event.inputs.version }} test'
     runs-on: [self-hosted, Linux, Arm64]
     steps:
       - name: 'Checkout'
@@ -89,7 +89,7 @@ jobs:
           args: /bin/bash /github/workspace/scripts/helper/tests/native-test.sh --image arm32v7/debian:buster --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
 
   macos-x64:
-    name: 'Intel macOS 64-bit OpenOCD ${{ github.event.inputs.version }} test'
+    name: 'x64 macOS OpenOCD ${{ github.event.inputs.version }} test'
     runs-on: macos-latest
     steps:
       - name: 'Checkout'
@@ -101,7 +101,7 @@ jobs:
         run: bash scripts/helper/tests/native-test.sh --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
 
   windows-x64:
-    name: 'Windows 64-bit OpenOCD ${{ github.event.inputs.version }} test'
+    name: 'x64 Windows OpenOCD ${{ github.event.inputs.version }} test'
     runs-on: windows-latest
     steps:
       - name: 'Checkout'
@@ -113,7 +113,7 @@ jobs:
         run: bash scripts/helper/tests/native-test.sh --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
 
   windows-ia32:
-    name: 'Windows 32-bit OpenOCD ${{ github.event.inputs.version }} test'
+    name: 'ia32 Windows OpenOCD ${{ github.event.inputs.version }} test'
     runs-on: windows-latest
     steps:
       - name: 'Checkout'
