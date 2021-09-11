@@ -726,8 +726,9 @@ function copy_libudev_with_links()
       cp -v "${from_file_path}" "${dest_folder_path}"
     fi
 
-    # Hack to get libudev.so in line with the 'all rpath' policy.
+    # Hack to get libudev.so in line with the 'all rpath' policy,
+    # since on arm 32-bit it is checked.
     # Manually add $ORIGIN to libudev.so (fingers crossed!).
-    # run_verbose ${PATCHELF} --force-rpath --set-rpath "\$ORIGIN" "${dest_file_path}"
+    run_verbose ${PATCHELF} --force-rpath --set-rpath "\$ORIGIN" "${dest_file_path}"
   fi
 }
