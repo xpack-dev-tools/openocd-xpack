@@ -31,18 +31,6 @@ function build_versions()
   LIBUSB_W32_PATCH=""
 
   OPENOCD_VERSION="${RELEASE_VERSION}"
-
-  # TODO: update to new strategy, and naming schema, with build_xxx
-  # and running the tests after packing the archive.
-
-  if [ "${TARGET_PLATFORM}" == "linux" ]
-  then
-    (
-      xbb_activate
-
-      build_patchelf "0.12"
-    )
-  fi
   
   if [ "${TARGET_PLATFORM}" == "win32" ]
   then
