@@ -743,4 +743,8 @@ function do_copy_libudev()
       exit 1
     fi
   fi
+
+  # Hack to get libudev.so in line with the 'all rpath' policy.
+  # Manually add $ORIGIN to libudev.so (fingers crossed!).
+  run_verbose ${PATCHELF} --force-rpath --set-rpath "\$ORIGIN" "${LIBS_INSTALL_FOLDER_PATH}/lib/libudev.so"
 }
