@@ -2,7 +2,7 @@
 
 ## Release schedule
 
-In the past, the OpenCOD had no release schedule, and very rare releases.
+In the past, the OpenOCD had no release schedule, and very rare releases.
 The xPack OpenOCD releases also had no schedules, and were done on an
 as-needed basis. As a general rule, it is planned to follow the upstream
 releases and add releases from the repo HEAD from time to time.

@@ -9,7 +9,7 @@ The binaries can be available from one of the pre-releases:
 The test script is part of the OpenOCD xPack:
 
 ```sh
-rm -rf ~/Downloads/opencod-xpack.git; \
+rm -rf ~/Downloads/openocd-xpack.git; \
 git clone \
   --recurse-submodules \
   --branch xpack-develop \
@@ -19,7 +19,7 @@ git clone \
 
 ## Start a local test
 
-To check if OpenCOD starts on the current platform, run a native test:
+To check if OpenOCD starts on the current platform, run a native test:
 
 ```sh
 bash ~/Downloads/openocd-xpack.git/scripts/helper/tests/native-test.sh \
