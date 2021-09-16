@@ -297,7 +297,7 @@ The current platform for macOS production builds is a macOS 10.13.6
 running in a virtual machine.
 
 ```sh
-caffeinate ssh xbbm13.local
+caffeinate ssh xbbm.local
 ```
 
 To build the latest macOS version:
