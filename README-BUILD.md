@@ -202,6 +202,7 @@ bash ~/Downloads/openocd-xpack.git/scripts/helper/build.sh --develop --all
 or, for development builds:
 
 ```sh
+sudo rm -rf ~/Work/openocd-*
 bash ~/Downloads/openocd-xpack.git/scripts/helper/build.sh --develop --without-pdf --disable-tests --linux64 --linux32 --win64 --win32
 ```
 
@@ -276,6 +277,7 @@ bash ~/Downloads/openocd-xpack.git/scripts/helper/build.sh --develop --all
 or, for development builds:
 
 ```sh
+sudo rm -rf ~/Work/openocd-*
 bash ~/Downloads/openocd-xpack.git/scripts/helper/build.sh --develop --without-pdf --disable-tests --arm64 --arm32 
 ```
 
@@ -297,10 +299,11 @@ total 7120
 ### Build the macOS binaries
 
 The current platform for macOS production builds is a macOS 10.13.6
-running in a virtual machine.
+running on a MacBook Pro 2011 with 32 GB of RAM and a fast SSD.
+The machine name is `xbbm`.
 
 ```sh
-caffeinate ssh xbbm.local
+caffeinate ssh xbbm
 ```
 
 To build the latest macOS version:
@@ -315,7 +318,7 @@ caffeinate bash ~/Downloads/openocd-xpack.git/scripts/helper/build.sh --develop 
 or, for development builds:
 
 ```sh
-sudo rm -rf ~/Work/openocd-arm-*
+rm -rf ~/Work/openocd-arm-*
 caffeinate bash ~/Downloads/openocd-xpack.git/scripts/helper/build.sh --develop --without-pdf --disable-tests --osx 
 ```
 
