@@ -306,7 +306,7 @@ function test_openocd()
   fi
 
   echo
-  echo "Checking the opeocd shared libraries..."
+  echo "Checking the openocd shared libraries..."
   show_libs "${OPENOCD}"
 
   echo
