@@ -4,7 +4,7 @@ Version {{ RELEASE_VERSION }} is a maintenance release of the **xPack OpenOCD** 
 
 Or (edit!):
 
-Version {{ RELEASE_VERSION }} is a new major release of the **xPack OpenOCD** package, following the OpenOCD release.
+Version {{ RELEASE_VERSION }} is a new major release of the **xPack OpenOCD** package, following the upstream OpenOCD release.
 
 [Continue reading »](edit, add URL!)
 
