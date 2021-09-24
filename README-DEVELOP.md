@@ -168,9 +168,9 @@ To download them, the following shortcut is available:
 ```sh
 rm -rf ~/Downloads/openocd-xpack.git; \
 git clone \
-  --recurse-submodules \
   https://github.com/xpack-dev-tools/openocd-xpack.git \
-  ~/Downloads/openocd-xpack.git
+  ~/Downloads/openocd-xpack.git; \
+git -C ~/Downloads/openocd-xpack.git submodule update --init --recursive
 ```
 
 For more details please read the `README-BUILD.md` file.
