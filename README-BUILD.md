@@ -26,6 +26,10 @@ For native builds, see the `build-native.sh` script.
 
 ## Repositories
 
+- <https://github.com/xpack-dev-tools/openocd-xpack.git> -
+  the URL of the xPack build scripts repository
+- <https://github.com/xpack-dev-tools/build-helper> - the URL of the
+  xPack build helper, used as the `scripts/helper` submodule.
 - <https://github.com/xpack-dev-tools/openocd.git> - the URL of the
   [xPack OpenOCD fork](https://github.com/xpack-dev-tools/openocd)
 - <git://git.code.sf.net/p/openocd/code> - the URL of the
