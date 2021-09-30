@@ -350,7 +350,7 @@ will install the package via `xpm install` on all supported platforms.
 
 The test results are available from:
 
-- <https://travis-ci.com/github/xpack-dev-tools/openocd-xpack>
+- <https://travis-ci.com/github/xpack-dev-tools/openocd-xpack/>
 
 ## Update the repo
 
