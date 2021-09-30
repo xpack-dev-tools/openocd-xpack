@@ -18,8 +18,7 @@ function build_versions()
   # Don't use a comma since the regular expression
   # that processes this string in the Makefile, silently fails and the 
   # bfdver.h file remains empty.
-  # BRANDING="${BRANDING} ${TARGET_BITS}-bit"
-  BRANDING="${BRANDING} ${TARGET_MACHINE}"
+  BRANDING="${DISTRO_NAME} ${APP_NAME} ${TARGET_MACHINE}"
 
   OPENOCD_PROJECT_NAME="openocd"
   OPENOCD_GIT_COMMIT=${OPENOCD_GIT_COMMIT:-""}

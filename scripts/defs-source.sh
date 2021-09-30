@@ -27,8 +27,6 @@ DISTRO_TOP_FOLDER=${DISTRO_TOP_FOLDER:-"xPacks"}
 
 APP_DESCRIPTION="${DISTRO_NAME} ${APP_NAME}"
 
-BRANDING="${BRANDING:-"${DISTRO_NAME} ${APP_NAME}"}"
-
 # -----------------------------------------------------------------------------
 
 GITHUB_ORG="${GITHUB_ORG:-"xpack-dev-tools"}"
