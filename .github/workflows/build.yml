@@ -31,6 +31,7 @@ on:
 jobs:
   linux-x64:
     name: 'Intel Linux OpenOCD ${{ github.event.inputs.version }} build'
+    timeout-minutes: 5760 # 4 days
     runs-on: [self-hosted, Linux, X64]
     steps:
       - name: 'Checkout'
@@ -41,12 +42,16 @@ jobs:
       - name: 'Clean working area'
         run: rm -rf ~/Work/openocd-${{ github.event.inputs.version }}*
       - name: 'Build Linux x64 binary'
+        timeout-minutes: 1440
         run: bash scripts/helper/build.sh --version "${{ github.event.inputs.version }}" --linux64
       - name: 'Build Windows x64 binary'
+        timeout-minutes: 1440
         run: bash scripts/helper/build.sh --version "${{ github.event.inputs.version }}" --win64
       - name: 'Build Linux ia32 binary'
+        timeout-minutes: 1440
         run: bash scripts/helper/build.sh --version "${{ github.event.inputs.version }}" --linux32
       - name: 'Build Windows ia32 binary'
+        timeout-minutes: 1440
         run: bash scripts/helper/build.sh --version "${{ github.event.inputs.version }}" --win32
       - name: 'Publish pre-release'
         # https://github.com/ncipollo/release-action
@@ -69,6 +74,7 @@ jobs:
 
   linux-arm64:
     name: 'Arm Linux OpenOCD ${{ github.event.inputs.version }} build'
+    timeout-minutes: 2880 # 2 days
     runs-on: [self-hosted, Linux, ARM64]
     steps:
       - name: 'Checkout'
@@ -79,8 +85,10 @@ jobs:
       - name: 'Clean working area'
         run: rm -rf ~/Work/openocd-${{ github.event.inputs.version }}*
       - name: 'Build Linux arm64 binary'
+        timeout-minutes: 1440
         run: bash scripts/helper/build.sh --version "${{ github.event.inputs.version }}" --arm64
       - name: 'Build Linux arm32 binary'
+        timeout-minutes: 1440
         run: bash scripts/helper/build.sh --version "${{ github.event.inputs.version }}" --arm32
       - name: 'Publish pre-release'
         # https://github.com/ncipollo/release-action
@@ -103,6 +111,7 @@ jobs:
 
   macos-x64:
     name: 'Intel macOS OpenOCD ${{ github.event.inputs.version }} build'
+    timeout-minutes: 2880 # 2 days
     runs-on: [self-hosted, macOS, X64]
     steps:
       - name: 'Checkout'
@@ -113,6 +122,7 @@ jobs:
       - name: 'Clean working area'
         run: rm -rf ~/Work/openocd-${{ github.event.inputs.version }}*
       - name: 'Build macOS x64 binary'
+        timeout-minutes: 1440
         run: bash scripts/helper/build.sh --version "${{ github.event.inputs.version }}" --osx
       - name: 'Publish pre-release'
         # https://github.com/ncipollo/release-action
