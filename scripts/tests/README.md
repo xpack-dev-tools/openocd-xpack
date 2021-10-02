@@ -1,4 +1,4 @@
-# Scripts to test the OpenOCD xPack
+# Scripts to test the xPack OpenOCD
 
 The binaries can be available from one of the pre-releases:
 
@@ -6,7 +6,7 @@ The binaries can be available from one of the pre-releases:
 
 ## Download the repo
 
-The test script is part of the OpenOCD xPack:
+The test script is part of the xPack OpenOCD:
 
 ```sh
 rm -rf ~/Downloads/openocd-xpack.git; \
