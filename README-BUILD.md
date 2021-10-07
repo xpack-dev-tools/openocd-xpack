@@ -60,7 +60,7 @@ The build scripts are available in the `scripts` folder of the
 [`xpack-dev-tools/openocd-xpack`](https://github.com/xpack-dev-tools/openocd-xpack)
 Git repo.
 
-To download them, issue the following two commands:
+To download them, issue the following commands:
 
 ```sh
 rm -rf ~/Downloads/openocd-xpack.git; \
@@ -424,8 +424,11 @@ program from there. For example on macOS the output should
 look like:
 
 ```console
-$ /Users/ilg/Work/openocd-0.11.0-2/darwin-x64/install/openocd/bin/openocd --version
-openocd version 0.11.0
+$ .../xpack-openocd-0.11.0-2/bin/openocd --version
+xPack OpenOCD x86_64 Open On-Chip Debugger 0.11.0+dev-00359-g18bcdc43f (2021-09-16-13:58)
+Licensed under GNU GPL v2
+For bug reports, read
+	http://openocd.org/doc/doxygen/bugs.html
 ```
 
 ## Installed folders
