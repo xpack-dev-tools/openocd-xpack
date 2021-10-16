@@ -167,9 +167,9 @@ The result should look similar to:
 
 ```console
 $ docker images
-REPOSITORY          TAG                              IMAGE ID            CREATED             SIZE
-ilegeul/ubuntu      i386-12.04-xbb-v3.3              fadc6405b606        2 days ago          4.55GB
-ilegeul/ubuntu      amd64-12.04-xbb-v3.3             3aba264620ea        2 days ago          4.98GB
+REPOSITORY          TAG                    IMAGE ID            CREATED             SIZE
+ilegeul/ubuntu      i386-12.04-xbb-v3.3    35fb0236572c        23 hours ago        5GB
+ilegeul/ubuntu      amd64-12.04-xbb-v3.3   1c4ba2e7e87e        29 hours ago        5.43GB
 ```
 
 It is also recommended to Remove unused Docker space. This is mostly useful
@@ -257,10 +257,9 @@ The result should look similar to:
 
 ```console
 $ docker images
-REPOSITORY          TAG                                IMAGE ID            CREATED             SIZE
-ilegeul/ubuntu      arm32v7-16.04-xbb-v3.3             b501ae18580a        27 hours ago        3.23GB
-ilegeul/ubuntu      arm64v8-16.04-xbb-v3.3             db95609ffb69        37 hours ago        3.45GB
-hello-world         latest                             a29f45ccde2a        5 months ago        9.14kB
+REPOSITORY       TAG                      IMAGE ID       CREATED          SIZE
+ilegeul/ubuntu   arm32v7-16.04-xbb-v3.3   a0ceaa6dad05   57 minutes ago   3.34GB
+ilegeul/ubuntu   arm64v8-16.04-xbb-v3.3   1b0b4a94de6d   13 hours ago     3.6GB
 ```
 
 Since the build takes a while, use `screen` to isolate the build session
