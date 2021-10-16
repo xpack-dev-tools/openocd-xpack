@@ -47,9 +47,9 @@ function build_versions()
       # Used in the licenses folder.
       OPENOCD_FOLDER_NAME="openocd-${OPENOCD_VERSION}"
 
-      # OPENOCD_GIT_BRANCH=${OPENOCD_GIT_BRANCH:-"xpack"}
-      OPENOCD_GIT_BRANCH=${OPENOCD_GIT_BRANCH:-"xpack-develop"}
-      OPENOCD_GIT_COMMIT=${OPENOCD_GIT_COMMIT:-"18bcdc43f99a9f45a2648057059219103b22dca4"}
+      OPENOCD_GIT_BRANCH=${OPENOCD_GIT_BRANCH:-"xpack"}
+      # OPENOCD_GIT_BRANCH=${OPENOCD_GIT_BRANCH:-"xpack-develop"}
+      OPENOCD_GIT_COMMIT=${OPENOCD_GIT_COMMIT:-"f0fdb88cf61e4b3b8bc036677b3469df40a3e86f"}
       
       # -------------------------------------------------------------------------
 
