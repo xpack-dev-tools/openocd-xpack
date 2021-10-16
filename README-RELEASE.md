@@ -47,7 +47,7 @@ but in the version specific release page.
 - update version in `README-BUILD.md`
 - update version in `README.md`
 
-## Update `CHANGELOG.md`
+### Update `CHANGELOG.md`
 
 - open the `CHANGELOG.md` file
 - check if all previous fixed issues are in
@@ -58,15 +58,6 @@ Note: if you missed to update the `CHANGELOG.md` before starting the build,
 edit the file and rerun the build, it should take only a few minutes to
 recreate the archives with the correct file.
 
-### Update the version specific code
-
-- open the `common-versions-source.sh` file
-- add a new `if` with the new version before the existing code
-
-### Update helper
-
-With Sourcetree, go to the helper repo and update to the latest master commit.
-
 ### Merge upstream repo
 
 To keep the development repository fork in sync with the upstream OpenOCD
@@ -74,13 +65,26 @@ repository, in the `xpack-dev-tools/openocd` Git repo:
 
 - checkout `master`
 - merge from `upstream/master`
+- check the `jimtcl` submodule commit ID
 - checkout `xpack-develop`
 - merge `master`
 - fix conflicts (in `60-openocd.rules` and possibly other)
+- fix the `jimtcl` submodule reference
 - checkout `xpack`
 - merge `xpack-develop`
+- fix the `jimtcl` submodule reference
+- add a `v0.11.0-2-xpack` tag
 
-Possibly add a tag here.
+### Update the version specific code
+
+- open the `common-versions-source.sh` file
+- add a new `if` with the new version before the existing code
+- set `OPENOCD_GIT_BRANCH` to `xpack`
+- set `OPENOCD_GIT_COMMIT` to the HEAD
+
+### Update helper
+
+With Sourcetree, go to the helper repo and update to the latest master commit.
 
 ## Build
 
@@ -92,24 +96,24 @@ or the production machine (`xbbm`):
 ```sh
 sudo rm -rf ~/Work/openocd-*
 
-caffeinate bash ~/Downloads/openocd-xpack.git/scripts/helper/build.sh --develop --without-pdf --without-html --disable-tests --osx
+caffeinate bash ~/Downloads/openocd-xpack.git/scripts/helper/build.sh --develop --osx
 ```
 
 Similarly on the Intel Linux (`xbbi`):
 
 ```sh
-bash ~/Downloads/openocd-xpack.git/scripts/helper/build.sh --develop --without-pdf --without-html --disable-tests --linux64
-bash ~/Downloads/openocd-xpack.git/scripts/helper/build.sh --develop --without-pdf --without-html --disable-tests --linux32
+bash ~/Downloads/openocd-xpack.git/scripts/helper/build.sh --develop --linux64
+bash ~/Downloads/openocd-xpack.git/scripts/helper/build.sh --develop --linux32
 
-bash ~/Downloads/openocd-xpack.git/scripts/helper/build.sh --develop --without-pdf --without-html --disable-tests --win64
-bash ~/Downloads/openocd-xpack.git/scripts/helper/build.sh --develop --without-pdf --without-html --disable-tests --win32
+bash ~/Downloads/openocd-xpack.git/scripts/helper/build.sh --develop --win64
+bash ~/Downloads/openocd-xpack.git/scripts/helper/build.sh --develop --win32
 ```
 
 And on the Arm Linux (`xbba`):
 
 ```sh
-bash ~/Downloads/openocd-xpack.git/scripts/helper/build.sh --develop --without-pdf --without-html --disable-tests --arm64
-bash ~/Downloads/openocd-xpack.git/scripts/helper/build.sh --develop --without-pdf --without-html --disable-tests --arm32
+bash ~/Downloads/openocd-xpack.git/scripts/helper/build.sh --develop --arm64
+bash ~/Downloads/openocd-xpack.git/scripts/helper/build.sh --develop --arm32
 ```
 
 Work on the scripts until all platforms pass the build.
@@ -270,7 +274,7 @@ launcher).
 
 ## Create a new GitHub pre-release draft
 
-- in `CHANGELOG.md`, add release date
+- in `CHANGELOG.md`, add the release date and a message like _v0.11.0-2 released_
 - commit and push the `xpack-develop` branch
 - run the xPack action `trigger-workflow-publish-release`
 
