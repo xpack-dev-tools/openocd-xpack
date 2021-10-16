@@ -350,12 +350,11 @@ After a few moments the version will be visible at:
 
 ## Test if the npm binaries can be installed with xpm
 
-Run the `scripts/tests/trigger-travis-xpm-install.sh` script, this
+Run the xPack action `trigger-workflow-test-xpm`, this
 will install the package via `xpm install` on all supported platforms.
 
-The test results are available from:
-
-- <https://travis-ci.com/github/xpack-dev-tools/openocd-xpack/>
+The tests results are available from the
+[Actions](https://github.com/xpack-dev-tools/openocd-xpack/actions/) page.
 
 ## Update the repo
 
