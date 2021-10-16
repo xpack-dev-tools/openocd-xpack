@@ -1,6 +1,6 @@
 
 # -----------------------------------------------------------------------------
-# DO NOT EDIT! Generated from scripts/helper/templates/test-docker-linux-intel-liquid.yml.
+# DO NOT EDIT! Generated from scripts/helper/templates/*.
 #
 # This file is part of the xPack distribution.
 #   (https://xpack.github.io)
@@ -18,6 +18,7 @@
 # https://docs.github.com/en/rest/reference/actions#create-a-workflow-dispatch-event
 
 # -----------------------------------------------------------------------------
+
 
 # https://github.com/docker-library/official-images#architectures-other-than-amd64
 
@@ -52,6 +53,7 @@ on:
 # The scripts are executed in the Docker context by GitHub Actions, 
 # so `native-test.sh` should be fine, it already takes care of updates.
 jobs:
+
   # https://en.wikipedia.org/wiki/Ubuntu_version_history
   # https://hub.docker.com/_/ubuntu
   # The ubuntu:12.04 image fails to update.
@@ -85,37 +87,6 @@ jobs:
           entrypoint: /bin/bash
           args: /github/workspace/scripts/helper/tests/native-test.sh --image ubuntu:14.04 --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
 
-  # https://hub.docker.com/r/i386/ubuntu/
-  ubuntu-ia32:
-    name: 'ia32 OpenOCD ${{ github.event.inputs.version }} test on Ubuntu 18, 16, 14 stable'
-    runs-on: ubuntu-latest
-    steps:
-      - name: 'Checkout'
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 3
-          submodules: true
-      - name: 'Ubuntu 20.04 ia32'
-        uses: docker://i386/ubuntu:20.04
-        with:
-          entrypoint: /usr/bin/linux32
-          args: /bin/bash /github/workspace/scripts/helper/tests/native-test.sh --image i386/ubuntu:20.04 --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
-      - name: 'Ubuntu 18.04 ia32'
-        uses: docker://i386/ubuntu:18.04
-        with:
-          entrypoint: /usr/bin/linux32
-          args: /bin/bash /github/workspace/scripts/helper/tests/native-test.sh --image i386/ubuntu:18.04 --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
-      - name: 'Ubuntu 16.04 ia32'
-        uses: docker://i386/ubuntu:16.04
-        with:
-          entrypoint: /usr/bin/linux32
-          args: /bin/bash /github/workspace/scripts/helper/tests/native-test.sh --image i386/ubuntu:16.04 --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
-      - name: 'Ubuntu 14.04 ia32'
-        uses: docker://i386/ubuntu:14.04
-        with:
-          entrypoint: /usr/bin/linux32
-          args: /bin/bash /github/workspace/scripts/helper/tests/native-test.sh --image i386/ubuntu:14.04 --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
-
   # https://en.wikipedia.org/wiki/Debian_version_history
   # https://hub.docker.com/_/debian
   debian-x64:
@@ -142,32 +113,6 @@ jobs:
         with:
           entrypoint: /bin/bash
           args: /github/workspace/scripts/helper/tests/native-test.sh --image debian:jessie --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
-
-  # https://hub.docker.com/r/i386/debian
-  debian-ia32:
-    name: 'ia32 OpenOCD ${{ github.event.inputs.version }} test on Debian 10, 9, 8 stable'
-    runs-on: ubuntu-latest
-    steps:
-      - name: 'Checkout'
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 3
-          submodules: true
-      - name: 'Debian 10 ia32'
-        uses: docker://i386/debian:buster
-        with:
-          entrypoint: /usr/bin/linux32
-          args: /bin/bash /github/workspace/scripts/helper/tests/native-test.sh --image i386/debian:buster --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
-      - name: 'Debian 9 ia32'
-        uses: docker://i386/debian:stretch
-        with:
-          entrypoint: /usr/bin/linux32
-          args: /bin/bash /github/workspace/scripts/helper/tests/native-test.sh --image i386/debian:stretch --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
-      - name: 'Debian 8 ia32'
-        uses: docker://i386/debian:jessie
-        with:
-          entrypoint: /usr/bin/linux32
-          args: /bin/bash /github/workspace/scripts/helper/tests/native-test.sh --image i386/debian:jessie --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
 
   # End of life. See RedHat.
   # https://en.wikipedia.org/wiki/CentOS
@@ -286,8 +231,6 @@ jobs:
           args: /github/workspace/scripts/helper/tests/native-test.sh --image ubuntu:latest --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
       # ubuntu:rolling fails during update
 
-  # docker://i386/ubuntu:latest is 18.04, no need to test
-
   debian-x64-latest:
     name: 'x64 OpenOCD ${{ github.event.inputs.version }} test on Debian latest'
     runs-on: ubuntu-latest
@@ -307,24 +250,6 @@ jobs:
         with:
           entrypoint: /bin/bash
           args: /github/workspace/scripts/helper/tests/native-test.sh --image debian:latest --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
-
-  debian-ia32-latest:
-    name: 'ia32 OpenOCD ${{ github.event.inputs.version }} test on Debian latest'
-    runs-on: ubuntu-latest
-    steps:
-      - name: 'Checkout'
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 3
-          submodules: true
-      - name: 'Debian testing ia32'
-        uses: docker://i386/debian:testing
-        with:
-          entrypoint: /usr/bin/linux32 
-          args: /bin/bash /github/workspace/scripts/helper/tests/native-test.sh --image i386/debian:testing --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
-
-  # centos:latest outdated
-  # docker://i386/centos:latest outdated
 
   # - https://hub.docker.com/r/opensuse/tumbleweed
   opensuse-x64-latest:
@@ -366,5 +291,85 @@ jobs:
 
   # - https://hub.docker.com/r/gentoo/portage
   # docker://gentoo/portage - exec: "/bin/bash": stat /bin/bash: no such file or directory: unknown.
+
+  
+  # https://hub.docker.com/r/i386/ubuntu/
+  ubuntu-ia32:
+    name: 'ia32 OpenOCD ${{ github.event.inputs.version }} test on Ubuntu 18, 16, 14 stable'
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 3
+          submodules: true
+      - name: 'Ubuntu 20.04 ia32'
+        uses: docker://i386/ubuntu:20.04
+        with:
+          entrypoint: /usr/bin/linux32
+          args: /bin/bash /github/workspace/scripts/helper/tests/native-test.sh --image i386/ubuntu:20.04 --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+      - name: 'Ubuntu 18.04 ia32'
+        uses: docker://i386/ubuntu:18.04
+        with:
+          entrypoint: /usr/bin/linux32
+          args: /bin/bash /github/workspace/scripts/helper/tests/native-test.sh --image i386/ubuntu:18.04 --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+      - name: 'Ubuntu 16.04 ia32'
+        uses: docker://i386/ubuntu:16.04
+        with:
+          entrypoint: /usr/bin/linux32
+          args: /bin/bash /github/workspace/scripts/helper/tests/native-test.sh --image i386/ubuntu:16.04 --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+      - name: 'Ubuntu 14.04 ia32'
+        uses: docker://i386/ubuntu:14.04
+        with:
+          entrypoint: /usr/bin/linux32
+          args: /bin/bash /github/workspace/scripts/helper/tests/native-test.sh --image i386/ubuntu:14.04 --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+
+  # https://hub.docker.com/r/i386/debian
+  debian-ia32:
+    name: 'ia32 OpenOCD ${{ github.event.inputs.version }} test on Debian 10, 9, 8 stable'
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 3
+          submodules: true
+      - name: 'Debian 10 ia32'
+        uses: docker://i386/debian:buster
+        with:
+          entrypoint: /usr/bin/linux32
+          args: /bin/bash /github/workspace/scripts/helper/tests/native-test.sh --image i386/debian:buster --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+      - name: 'Debian 9 ia32'
+        uses: docker://i386/debian:stretch
+        with:
+          entrypoint: /usr/bin/linux32
+          args: /bin/bash /github/workspace/scripts/helper/tests/native-test.sh --image i386/debian:stretch --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+      - name: 'Debian 8 ia32'
+        uses: docker://i386/debian:jessie
+        with:
+          entrypoint: /usr/bin/linux32
+          args: /bin/bash /github/workspace/scripts/helper/tests/native-test.sh --image i386/debian:jessie --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+
+  # docker://i386/ubuntu:latest is 18.04, no need to test
+
+  debian-ia32-latest:
+    name: 'ia32 OpenOCD ${{ github.event.inputs.version }} test on Debian latest'
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 3
+          submodules: true
+      - name: 'Debian testing ia32'
+        uses: docker://i386/debian:testing
+        with:
+          entrypoint: /usr/bin/linux32 
+          args: /bin/bash /github/workspace/scripts/helper/tests/native-test.sh --image i386/debian:testing --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+
+  # centos:latest outdated
+  # docker://i386/centos:latest outdated
+
+  
 
 # -----------------------------------------------------------------------------
