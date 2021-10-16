@@ -382,6 +382,7 @@ When the release is considered stable, promote it as `latest`:
 - check the download counter, it should match the number of tests
 - add a link to the Web page `[Continue reading »]()`; use an same blog URL
 - **disable** the **pre-release** button
+- remove the _tests only_ notice
 - click the **Update Release** button
 
 ## Share on Twitter
