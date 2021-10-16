@@ -309,7 +309,8 @@ If any, refer to closed
 
 - go to the GitHub [releases](https://github.com/xpack-dev-tools/openocd-xpack/releases/) page
 - perform the final edits and check if everything is fine
-- save the release
+- keep the pre-release button enabled
+- publish the release
 
 Note: at this moment the system should send a notification to all clients
 watching this project.
