@@ -75,7 +75,10 @@ jobs:
           fetch-depth: 3
           submodules: true
       - name: 'Run ${{ github.event.inputs.version }} native test'
-        run: bash scripts/helper/tests/native-test.sh --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+        uses: docker://debian:buster
+        with:
+          entrypoint: /bin/bash
+          args: /github/workspace/scripts/helper/tests/native-test.sh --image debian:buster --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
 
   
   linux-arm32:

@@ -52,7 +52,7 @@ jobs:
           allowUpdates: true
           artifacts: '~/Work/openocd-${{ github.event.inputs.version }}/deploy/*'
           bodyFile: '.github/workflows/body-github-release.md'
-          commit: 'xpack-develop'
+          commit: 'master'
           draft: true
           name: 'xPack OpenOCD v${{ github.event.inputs.version }}'
           omitBodyDuringUpdate: true
