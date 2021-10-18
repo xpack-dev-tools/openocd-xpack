@@ -381,8 +381,8 @@ When the release is considered stable, promote it as `latest`:
 - go to the GitHub [releases](https://github.com/xpack-dev-tools/openocd-xpack/releases/) page
 - check the download counter, it should match the number of tests
 - add a link to the Web page `[Continue reading »]()`; use an same blog URL
-- **disable** the **pre-release** button
 - remove the _tests only_ notice
+- **disable** the **pre-release** button
 - click the **Update Release** button
 
 ## Share on Twitter
