@@ -38,6 +38,19 @@ are the **Raspberry Pi** class devices." %}{% endraw %}
 
 The binary files are available from GitHub [releases]({% raw %}{{ page.download_url }}{% endraw %}).
 
+## Prerequisites
+
+- Intel GNU/Linux 32/64-bit: any system with **GLIBC 2.15** or higher
+  (like Ubuntu 12 or later, Debian 8 or later, RedHat/CentOS 7 later,
+  Fedora 20 or later, etc)
+- Arm GNU/Linux 32/64-bit: any system with **GLIBC 2.23** or higher
+  (like Ubuntu 16 or later, Debian 9 or later, RedHat/CentOS 8 or later,
+  Fedora 24 or later, etc)
+- Intel Windows 32/64-bit: Windows 7 with the Universal C Runtime
+  ([UCRT](https://support.microsoft.com/en-us/topic/update-for-universal-c-runtime-in-windows-c0514201-7fe6-95a3-b0a5-287930f3560c)),
+  Windows 8, Windows 10
+- Intel macOS 64-bit: 10.13 or later
+
 ## Install
 
 The full details of installing the **xPack OpenOCD** on various platforms
@@ -168,25 +181,13 @@ relative path.
 
 The original documentation is available in the `share/doc` folder.
 
-## Supported platforms
+## Build
 
-Binaries for **Windows**, **macOS** and **Intel/Arm GNU/Linux** are provided.
-
-The binaries were built using the
-[xPack Build Box (XBB)](https://github.com/xpack/xpack-build-box), a set
+The binaries for all supported platforms
+(Windows, macOS and Intel & Arm GNU/Linux) were built using the
+[xPack Build Box (XBB)](https://xpack.github.io/xbb/), a set
 of build environments based on slightly older distributions, that should be
 compatible with most recent systems.
-
-- Intel GNU/Linux: all binaries were built with GCC 11.1, running in an
-  Ubuntu 12 Docker container
-- Arm GNU/Linux: all binaries were built with GCC 11.1, running in an
-  Ubuntu 16 Docker container (added in mid-2020)
-- Windows: all binaries were built with mingw-w64 GCC 11.1, running in an
-  Ubuntu 12 Docker container
-- macOS: all binaries were built with GCC 11.1, running in a separate
-  folder on macOS 10.13.6, but were tested and also run on 10.10.
-
-## Build
 
 The scripts used to build this distribution are in:
 
