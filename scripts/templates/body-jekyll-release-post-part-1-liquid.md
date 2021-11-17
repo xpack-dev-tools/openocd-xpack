@@ -3,10 +3,10 @@ title:  xPack OpenOCD {{ RELEASE_VERSION }} released
 
 TODO: select one summary
 
-summary: "Version {{ RELEASE_VERSION }} is a maintenance release; it updates to
+summary: "Version **{{ RELEASE_VERSION }}** is a maintenance release; it updates to
 the latest upstream master."
 
-summary: "Version {{ RELEASE_VERSION }} is a new release; it follows the upstream release."
+summary: "Version **{{ RELEASE_VERSION }}** is a new release; it follows the upstream release."
 
 version: {{ RELEASE_VERSION }}
 npm_subversion: 1
@@ -36,7 +36,7 @@ are the **Raspberry Pi** class devices." %}{% endraw %}
 
 ## Download
 
-The binary files are available from GitHub [releases]({% raw %}{{ page.download_url }}{% endraw %}).
+The binary files are available from GitHub [Releases]({% raw %}{{ page.download_url }}{% endraw %}).
 
 ## Prerequisites
 
