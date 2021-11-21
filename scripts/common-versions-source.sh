@@ -37,7 +37,7 @@ function build_versions()
   fi
 
   # Keep them in sync with combo archive content.
-  if [[ "${RELEASE_VERSION}" =~ 0\.11\.0-2 ]]
+  if [[ "${RELEASE_VERSION}" =~ 0\.11\.0-[23] ]]
   then
     (
       xbb_activate
