@@ -59,7 +59,7 @@ jobs:
   # The ubuntu:12.04 image fails to update.
   ubuntu-arm64:
     name: 'arm64 OpenOCD ${{ github.event.inputs.version }} test on Ubuntu 20, 18, 16, 14 stable'
-    runs-on: [self-hosted, Linux, Arm64]
+    runs-on: [self-hosted, linux, arm64]
     steps:
       - name: 'Machine'
         run: uname -a
@@ -88,7 +88,7 @@ jobs:
   # https://hub.docker.com/_/debian
   debian-arm64:
     name: 'arm64 OpenOCD ${{ github.event.inputs.version }} test on Debian 10, 9, 8 stable'
-    runs-on: [self-hosted, Linux, Arm64]
+    runs-on: [self-hosted, linux, arm64]
     steps:
       - name: 'Machine'
         run: uname -a
@@ -115,7 +115,7 @@ jobs:
   # `-static` disabled, there is no static libc.a.
   # centos-arm64:
   #   name: 'arm64 OpenOCD ${{ github.event.inputs.version }} test on CentOS 8, 7 stable'
-  #   runs-on: [self-hosted, Linux, Arm64]
+  #   runs-on: [self-hosted, linux, arm64]
   #   steps:
   #     - name: 'Checkout'
   #       uses: actions/checkout@v2
@@ -134,7 +134,7 @@ jobs:
   # `-static` disabled, there is no static libc.a.
   redhat-arm64:
     name: 'arm64 OpenOCD ${{ github.event.inputs.version }} test on RedHat 8 stable'
-    runs-on: [self-hosted, Linux, Arm64]
+    runs-on: [self-hosted, linux, arm64]
     steps:
       - name: 'Machine'
         run: uname -a
@@ -154,7 +154,7 @@ jobs:
   # `-static` disabled, there is no static libc.a.
   fedora-arm64:
     name: 'arm64 OpenOCD ${{ github.event.inputs.version }} test on Fedora 35, 33, 30, 27 stable'
-    runs-on: [self-hosted, Linux, Arm64]
+    runs-on: [self-hosted, linux, arm64]
     steps:
       - name: 'Machine'
         run: uname -a
@@ -189,7 +189,7 @@ jobs:
   # `-static` disabled, there is no static libc.a.
   opensuse-arm64:
     name: 'arm64 OpenOCD ${{ github.event.inputs.version }} test on OpenSUSE 15, 13 stable'
-    runs-on: [self-hosted, Linux, Arm64]
+    runs-on: [self-hosted, linux, arm64]
     steps:
       - name: 'Machine'
         run: uname -a
@@ -209,7 +209,7 @@ jobs:
 
   ubuntu-arm64-latest:
     name: 'arm64 OpenOCD ${{ github.event.inputs.version }} test on Ubuntu latest'
-    runs-on: [self-hosted, Linux, Arm64]
+    runs-on: [self-hosted, linux, arm64]
     steps:
       - name: 'Machine'
         run: uname -a
@@ -227,7 +227,7 @@ jobs:
 
   debian-arm64-latest:
     name: 'arm64 OpenOCD ${{ github.event.inputs.version }} test on Debian latest'
-    runs-on: [self-hosted, Linux, Arm64]
+    runs-on: [self-hosted, linux, arm64]
     steps:
       - name: 'Machine'
         run: uname -a
@@ -251,7 +251,7 @@ jobs:
   # - https://hub.docker.com/r/opensuse/tumbleweed
   opensuse-arm64-latest:
     name: 'arm64 OpenOCD ${{ github.event.inputs.version }} test on OpenSUSE latest'
-    runs-on: [self-hosted, Linux, Arm64]
+    runs-on: [self-hosted, linux, arm64]
     steps:
       - name: 'Machine'
         run: uname -a
@@ -281,7 +281,7 @@ jobs:
   # https://hub.docker.com/r/arm32v7/ubuntu/
   ubuntu-arm:
     name: 'arm OpenOCD ${{ github.event.inputs.version }} test on Ubuntu 18, 16, 14 stable'
-    runs-on: [self-hosted, Linux, Arm64]
+    runs-on: [self-hosted, linux, arm64]
     steps:
       - name: 'Machine'
         run: uname -a
@@ -305,7 +305,7 @@ jobs:
   # https://hub.docker.com/r/arm32v7/debian
   debian-arm:
     name: 'arm OpenOCD ${{ github.event.inputs.version }} test on Debian 10, 9, 8 stable'
-    runs-on: [self-hosted, Linux, Arm64]
+    runs-on: [self-hosted, linux, arm64]
     steps:
       - name: 'Machine'
         run: uname -a
@@ -334,7 +334,7 @@ jobs:
 
   raspbian-arm:
     name: 'arm OpenOCD ${{ github.event.inputs.version }} test on Raspbian 9 stable'
-    runs-on: [self-hosted, Linux, Arm64]
+    runs-on: [self-hosted, linux, arm64]
     steps:
       - name: 'Machine'
         run: uname -a
