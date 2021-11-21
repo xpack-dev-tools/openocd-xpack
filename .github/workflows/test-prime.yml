@@ -40,6 +40,8 @@ jobs:
     name: 'x64 Linux OpenOCD ${{ github.event.inputs.version }} test'
     runs-on: ubuntu-latest
     steps:
+      - name: 'Machine'
+        run: uname -a
       - name: 'Checkout'
         uses: actions/checkout@v2
         with:
@@ -53,6 +55,8 @@ jobs:
     name: 'ia32 Linux OpenOCD ${{ github.event.inputs.version }} test'
     runs-on: ubuntu-latest
     steps:
+      - name: 'Machine'
+        run: uname -a
       - name: 'Checkout'
         uses: actions/checkout@v2
         with:
@@ -69,6 +73,8 @@ jobs:
     name: 'arm64 Linux OpenOCD ${{ github.event.inputs.version }} test'
     runs-on: [self-hosted, Linux, Arm64]
     steps:
+      - name: 'Machine'
+        run: uname -a
       - name: 'Checkout'
         uses: actions/checkout@v2
         with:
@@ -85,6 +91,8 @@ jobs:
     name: 'arm32 Linux OpenOCD ${{ github.event.inputs.version }} test'
     runs-on: [self-hosted, Linux, Arm64]
     steps:
+      - name: 'Machine'
+        run: uname -a
       - name: 'Checkout'
         uses: actions/checkout@v2
         with:
@@ -101,6 +109,27 @@ jobs:
     name: 'x64 macOS OpenOCD ${{ github.event.inputs.version }} test'
     runs-on: macos-latest
     steps:
+      - name: 'Machine'
+        run: uname -a
+      - name: 'Checkout'
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 3
+          submodules: true
+      - name: 'Run ${{ github.event.inputs.version }} native test'
+        run: bash scripts/helper/tests/native-test.sh --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+
+  
+  macos-arm64:
+    name: 'arm64 macOS OpenOCD ${{ github.event.inputs.version }} test'
+    runs-on: [self-hosted, macos, apple]
+    defaults:
+      run:
+        shell: "/usr/bin/arch -arch arm64e /bin/bash -l {0}"
+
+    steps:
+      - name: 'Machine'
+        run: uname -a
       - name: 'Checkout'
         uses: actions/checkout@v2
         with:
@@ -114,6 +143,8 @@ jobs:
     name: 'x64 Windows OpenOCD ${{ github.event.inputs.version }} test'
     runs-on: windows-latest
     steps:
+      - name: 'Machine'
+        run: uname -a
       - name: 'Checkout'
         uses: actions/checkout@v2
         with:
@@ -127,6 +158,8 @@ jobs:
     name: 'ia32 Windows OpenOCD ${{ github.event.inputs.version }} test'
     runs-on: windows-latest
     steps:
+      - name: 'Machine'
+        run: uname -a
       - name: 'Checkout'
         uses: actions/checkout@v2
         with:

@@ -61,6 +61,8 @@ jobs:
     name: 'arm64 OpenOCD ${{ github.event.inputs.version }} test on Ubuntu 20, 18, 16, 14 stable'
     runs-on: [self-hosted, Linux, Arm64]
     steps:
+      - name: 'Machine'
+        run: uname -a
       - name: 'Checkout'
         uses: actions/checkout@v2
         with:
@@ -88,6 +90,8 @@ jobs:
     name: 'arm64 OpenOCD ${{ github.event.inputs.version }} test on Debian 10, 9, 8 stable'
     runs-on: [self-hosted, Linux, Arm64]
     steps:
+      - name: 'Machine'
+        run: uname -a
       - name: 'Checkout'
         uses: actions/checkout@v2
         with:
@@ -109,21 +113,21 @@ jobs:
   # https://en.wikipedia.org/wiki/CentOS
   # https://hub.docker.com/_/centos
   # `-static` disabled, there is no static libc.a.
-  centos-arm64:
-    name: 'arm64 OpenOCD ${{ github.event.inputs.version }} test on CentOS 8, 7 stable'
-    runs-on: [self-hosted, Linux, Arm64]
-    steps:
-      - name: 'Checkout'
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 3
-          submodules: true
-      - name: 'CentOS 8 arm64'
-        uses: docker://centos:8
-        with:
-          entrypoint: /bin/bash
-          args: /github/workspace/scripts/helper/tests/native-test.sh --image centos:8 --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
-      # docker://centos:7 - undefined reference to `__cxa_thread_atexit_impl@GLIBC_2.18'
+  # centos-arm64:
+  #   name: 'arm64 OpenOCD ${{ github.event.inputs.version }} test on CentOS 8, 7 stable'
+  #   runs-on: [self-hosted, Linux, Arm64]
+  #   steps:
+  #     - name: 'Checkout'
+  #       uses: actions/checkout@v2
+  #       with:
+  #         fetch-depth: 3
+  #         submodules: true
+  #     - name: 'CentOS 8 arm64'
+  #       uses: docker://centos:8
+  #       with:
+  #         entrypoint: /bin/bash
+  #         args: /github/workspace/scripts/helper/tests/native-test.sh --image centos:8 --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+  #     # docker://centos:7 - undefined reference to `__cxa_thread_atexit_impl@GLIBC_2.18'
 
 
   # https://hub.docker.com/r/redhat/ubi8
@@ -132,6 +136,8 @@ jobs:
     name: 'arm64 OpenOCD ${{ github.event.inputs.version }} test on RedHat 8 stable'
     runs-on: [self-hosted, Linux, Arm64]
     steps:
+      - name: 'Machine'
+        run: uname -a
       - name: 'Checkout'
         uses: actions/checkout@v2
         with:
@@ -143,6 +149,41 @@ jobs:
           entrypoint: /bin/bash
           args: /github/workspace/scripts/helper/tests/native-test.sh --image redhat/ubi8 --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
 
+  # https://en.wikipedia.org/wiki/Fedora_version_history
+  # https://hub.docker.com/_/fedora
+  # `-static` disabled, there is no static libc.a.
+  fedora-arm64:
+    name: 'arm64 OpenOCD ${{ github.event.inputs.version }} test on Fedora 35, 33, 30, 27 stable'
+    runs-on: [self-hosted, Linux, Arm64]
+    steps:
+      - name: 'Machine'
+        run: uname -a
+      - name: 'Checkout'
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 3
+          submodules: true
+      - name: 'Fedora 35 arm64'
+        uses: docker://fedora:35
+        with:
+          entrypoint: /bin/bash
+          args: /github/workspace/scripts/helper/tests/native-test.sh --image fedora:35 --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+      - name: 'Fedora 33 arm64'
+        uses: docker://fedora:33
+        with:
+          entrypoint: /bin/bash
+          args: /github/workspace/scripts/helper/tests/native-test.sh --image fedora:33 --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+      - name: 'Fedora 30 arm64'
+        uses: docker://fedora:30
+        with:
+          entrypoint: /bin/bash
+          args: /github/workspace/scripts/helper/tests/native-test.sh --image fedora:30 --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+      - name: 'Fedora 27 arm64'
+        uses: docker://fedora:27
+        with:
+          entrypoint: /bin/bash
+          args: /github/workspace/scripts/helper/tests/native-test.sh --image fedora:27 --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+  
   # https://en.wikipedia.org/wiki/OpenSUSE#Releases
   # https://hub.docker.com/u/opensuse
   # `-static` disabled, there is no static libc.a.
@@ -150,6 +191,8 @@ jobs:
     name: 'arm64 OpenOCD ${{ github.event.inputs.version }} test on OpenSUSE 15, 13 stable'
     runs-on: [self-hosted, Linux, Arm64]
     steps:
+      - name: 'Machine'
+        run: uname -a
       - name: 'Checkout'
         uses: actions/checkout@v2
         with:
@@ -162,47 +205,14 @@ jobs:
           args: /github/workspace/scripts/helper/tests/native-test.sh --image opensuse/leap:15.3 --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
       # docker://opensuse/leap:13 not available
 
-  # https://en.wikipedia.org/wiki/Fedora_version_history
-  # https://hub.docker.com/_/fedora
-  # `-static` disabled, there is no static libc.a.
-  fedora-arm64:
-    name: 'arm64 OpenOCD ${{ github.event.inputs.version }} test on Fedora 34, 32, 30, 27 stable'
-    runs-on: [self-hosted, Linux, Arm64]
-    steps:
-      - name: 'Checkout'
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 3
-          submodules: true
-      - name: 'Fedora 34 arm64'
-        uses: docker://fedora:34
-        with:
-          entrypoint: /bin/bash
-          args: /github/workspace/scripts/helper/tests/native-test.sh --image fedora:34 --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
-      - name: 'Fedora 32 arm64'
-        uses: docker://fedora:32
-        with:
-          entrypoint: /bin/bash
-          args: /github/workspace/scripts/helper/tests/native-test.sh --image fedora:32 --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
-      - name: 'Fedora 30 arm64'
-        uses: docker://fedora:30
-        with:
-          entrypoint: /bin/bash
-          args: /github/workspace/scripts/helper/tests/native-test.sh --image fedora:30 --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
-      - name: 'Fedora 27 arm64'
-        uses: docker://fedora:27
-        with:
-          entrypoint: /bin/bash
-          args: /github/workspace/scripts/helper/tests/native-test.sh --image fedora:27 --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
-
-  # fedora-arm: fails to update
-
   # ---------------------------------------------------------------------------
 
   ubuntu-arm64-latest:
     name: 'arm64 OpenOCD ${{ github.event.inputs.version }} test on Ubuntu latest'
     runs-on: [self-hosted, Linux, Arm64]
     steps:
+      - name: 'Machine'
+        run: uname -a
       - name: 'Checkout'
         uses: actions/checkout@v2
         with:
@@ -219,6 +229,8 @@ jobs:
     name: 'arm64 OpenOCD ${{ github.event.inputs.version }} test on Debian latest'
     runs-on: [self-hosted, Linux, Arm64]
     steps:
+      - name: 'Machine'
+        run: uname -a
       - name: 'Checkout'
         uses: actions/checkout@v2
         with:
@@ -241,6 +253,8 @@ jobs:
     name: 'arm64 OpenOCD ${{ github.event.inputs.version }} test on OpenSUSE latest'
     runs-on: [self-hosted, Linux, Arm64]
     steps:
+      - name: 'Machine'
+        run: uname -a
       - name: 'Checkout'
         uses: actions/checkout@v2
         with:
@@ -269,6 +283,8 @@ jobs:
     name: 'arm OpenOCD ${{ github.event.inputs.version }} test on Ubuntu 18, 16, 14 stable'
     runs-on: [self-hosted, Linux, Arm64]
     steps:
+      - name: 'Machine'
+        run: uname -a
       - name: 'Checkout'
         uses: actions/checkout@v2
         with:
@@ -291,6 +307,8 @@ jobs:
     name: 'arm OpenOCD ${{ github.event.inputs.version }} test on Debian 10, 9, 8 stable'
     runs-on: [self-hosted, Linux, Arm64]
     steps:
+      - name: 'Machine'
+        run: uname -a
       - name: 'Checkout'
         uses: actions/checkout@v2
         with:
@@ -318,6 +336,8 @@ jobs:
     name: 'arm OpenOCD ${{ github.event.inputs.version }} test on Raspbian 9 stable'
     runs-on: [self-hosted, Linux, Arm64]
     steps:
+      - name: 'Machine'
+        run: uname -a
       - name: 'Checkout'
         uses: actions/checkout@v2
         with:
@@ -336,6 +356,9 @@ jobs:
 
   # centos:latest outdated
   # docker://arm32v7/centos:latest outdated
+
+  # fedora-arm: fails to update
+
   
 
 # -----------------------------------------------------------------------------

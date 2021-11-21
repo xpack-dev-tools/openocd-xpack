@@ -61,6 +61,8 @@ jobs:
     name: 'x64 OpenOCD ${{ github.event.inputs.version }} test on Ubuntu 20, 18, 16, 14 stable'
     runs-on: ubuntu-latest
     steps:
+      - name: 'Machine'
+        run: uname -a
       - name: 'Checkout'
         uses: actions/checkout@v2
         with:
@@ -93,6 +95,8 @@ jobs:
     name: 'x64 OpenOCD ${{ github.event.inputs.version }} test on Debian 10, 9, 8 stable'
     runs-on: ubuntu-latest
     steps:
+      - name: 'Machine'
+        run: uname -a
       - name: 'Checkout'
         uses: actions/checkout@v2
         with:
@@ -118,25 +122,25 @@ jobs:
   # https://en.wikipedia.org/wiki/CentOS
   # https://hub.docker.com/_/centos
   # `-static` disabled, there is no static libc.a.
-  centos-x64:
-    name: 'x64 OpenOCD ${{ github.event.inputs.version }} test on CentOS 8, 7 stable'
-    runs-on: ubuntu-latest
-    steps:
-      - name: 'Checkout'
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 3
-          submodules: true
-      - name: 'CentOS 8 x64'
-        uses: docker://centos:8
-        with:
-          entrypoint: /bin/bash
-          args: /github/workspace/scripts/helper/tests/native-test.sh --image centos:8 --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
-      - name: 'CentOS 7 x64'
-        uses: docker://centos:7
-        with:
-          entrypoint: /bin/bash
-          args: /github/workspace/scripts/helper/tests/native-test.sh --image centos:7 --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+  # centos-x64:
+  #   name: 'x64 OpenOCD ${{ github.event.inputs.version }} test on CentOS 8, 7 stable'
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: 'Checkout'
+  #       uses: actions/checkout@v2
+  #       with:
+  #         fetch-depth: 3
+  #         submodules: true
+  #     - name: 'CentOS 8 x64'
+  #       uses: docker://centos:8
+  #       with:
+  #         entrypoint: /bin/bash
+  #         args: /github/workspace/scripts/helper/tests/native-test.sh --image centos:8 --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+  #     - name: 'CentOS 7 x64'
+  #       uses: docker://centos:7
+  #       with:
+  #         entrypoint: /bin/bash
+  #         args: /github/workspace/scripts/helper/tests/native-test.sh --image centos:7 --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
 
   # https://hub.docker.com/r/i386/centos
   # docker://i386/centos:7 - fails not finding -lc
@@ -148,6 +152,8 @@ jobs:
     name: 'x64 OpenOCD ${{ github.event.inputs.version }} test on RedHat 8 stable'
     runs-on: ubuntu-latest
     steps:
+      - name: 'Machine'
+        run: uname -a
       - name: 'Checkout'
         uses: actions/checkout@v2
         with:
@@ -159,51 +165,30 @@ jobs:
           entrypoint: /bin/bash
           args: /github/workspace/scripts/helper/tests/native-test.sh --image redhat/ubi8 --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
 
-  # https://en.wikipedia.org/wiki/OpenSUSE#Releases
-  # https://hub.docker.com/u/opensuse
-  # `-static` disabled, there is no static libc.a.
-  opensuse-x64:
-    name: 'x64 OpenOCD ${{ github.event.inputs.version }} test on OpenSUSE 15, 13 stable'
-    runs-on: ubuntu-latest
-    steps:
-      - name: 'Checkout'
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 3
-          submodules: true
-      - name: 'OpenSUSE 15 x64'
-        uses: docker://opensuse/leap:15.3
-        with:
-          entrypoint: /bin/bash
-          args: /github/workspace/scripts/helper/tests/native-test.sh --image opensuse/leap:15.3 --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
-      - name: 'OpenSUSE 13 x64'
-        uses: docker://opensuse/amd64:13.2
-        with:
-          entrypoint: /bin/bash
-          args: /github/workspace/scripts/helper/tests/native-test.sh --image opensuse/amd64:13.2 --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
-
   # https://en.wikipedia.org/wiki/Fedora_version_history
   # https://hub.docker.com/_/fedora
   # `-static` disabled, there is no static libc.a.
   fedora-x64:
-    name: 'x64 OpenOCD ${{ github.event.inputs.version }} test on Fedora 34, 32, 30, 25, 20, stable'
+    name: 'x64 OpenOCD ${{ github.event.inputs.version }} test on Fedora 35, 33, 30, 25, 20, stable'
     runs-on: ubuntu-latest
     steps:
+      - name: 'Machine'
+        run: uname -a
       - name: 'Checkout'
         uses: actions/checkout@v2
         with:
           fetch-depth: 3
           submodules: true
-      - name: 'Fedora 34 x64'
-        uses: docker://fedora:34
+      - name: 'Fedora 35 x64'
+        uses: docker://fedora:35
         with:
           entrypoint: /bin/bash
-          args: /github/workspace/scripts/helper/tests/native-test.sh --image fedora:34 --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
-      - name: 'Fedora 32 x64'
-        uses: docker://fedora:32
+          args: /github/workspace/scripts/helper/tests/native-test.sh --image fedora:35 --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+      - name: 'Fedora 33 x64'
+        uses: docker://fedora:33
         with:
           entrypoint: /bin/bash
-          args: /github/workspace/scripts/helper/tests/native-test.sh --image fedora:32 --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+          args: /github/workspace/scripts/helper/tests/native-test.sh --image fedora:33 --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
       - name: 'Fedora 30 x64'
         uses: docker://fedora:30
         with:
@@ -220,10 +205,37 @@ jobs:
           entrypoint: /bin/bash
           args: /github/workspace/scripts/helper/tests/native-test.sh --image fedora:20 --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
 
+  # https://en.wikipedia.org/wiki/OpenSUSE#Releases
+  # https://hub.docker.com/u/opensuse
+  # `-static` disabled, there is no static libc.a.
+  opensuse-x64:
+    name: 'x64 OpenOCD ${{ github.event.inputs.version }} test on OpenSUSE 15, 13 stable'
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Machine'
+        run: uname -a
+      - name: 'Checkout'
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 3
+          submodules: true
+      - name: 'OpenSUSE 15 x64'
+        uses: docker://opensuse/leap:15.3
+        with:
+          entrypoint: /bin/bash
+          args: /github/workspace/scripts/helper/tests/native-test.sh --image opensuse/leap:15.3 --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+      - name: 'OpenSUSE 13 x64'
+        uses: docker://opensuse/amd64:13.2
+        with:
+          entrypoint: /bin/bash
+          args: /github/workspace/scripts/helper/tests/native-test.sh --image opensuse/amd64:13.2 --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+
   ubuntu-x64-latest:
     name: 'x64 OpenOCD ${{ github.event.inputs.version }} test on Ubuntu latest'
     runs-on: ubuntu-latest
     steps:
+      - name: 'Machine'
+        run: uname -a
       - name: 'Checkout'
         uses: actions/checkout@v2
         with:
@@ -240,6 +252,8 @@ jobs:
     name: 'x64 OpenOCD ${{ github.event.inputs.version }} test on Debian latest'
     runs-on: ubuntu-latest
     steps:
+      - name: 'Machine'
+        run: uname -a
       - name: 'Checkout'
         uses: actions/checkout@v2
         with:
@@ -267,6 +281,8 @@ jobs:
     name: 'x64 OpenOCD ${{ github.event.inputs.version }} test on Arch latest'
     runs-on: ubuntu-latest
     steps:
+      - name: 'Machine'
+        run: uname -a
       - name: 'Checkout'
         uses: actions/checkout@v2
         with:
@@ -290,6 +306,8 @@ jobs:
     name: 'ia32 OpenOCD ${{ github.event.inputs.version }} test on Ubuntu 18, 16, 14 stable'
     runs-on: ubuntu-latest
     steps:
+      - name: 'Machine'
+        run: uname -a
       - name: 'Checkout'
         uses: actions/checkout@v2
         with:
@@ -321,6 +339,8 @@ jobs:
     name: 'ia32 OpenOCD ${{ github.event.inputs.version }} test on Debian 10, 9, 8 stable'
     runs-on: ubuntu-latest
     steps:
+      - name: 'Machine'
+        run: uname -a
       - name: 'Checkout'
         uses: actions/checkout@v2
         with:
@@ -348,6 +368,8 @@ jobs:
     name: 'ia32 OpenOCD ${{ github.event.inputs.version }} test on Debian latest'
     runs-on: ubuntu-latest
     steps:
+      - name: 'Machine'
+        run: uname -a
       - name: 'Checkout'
         uses: actions/checkout@v2
         with:

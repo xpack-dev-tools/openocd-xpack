@@ -1,0 +1,73 @@
+# -----------------------------------------------------------------------------
+# DO NOT EDIT! Generated from scripts/helper/templates/*.
+#
+# This file is part of the xPack distribution.
+#   (https://xpack.github.io)
+# Copyright (c) 2021 Liviu Ionescu.
+#
+# Permission to use, copy, modify, and/or distribute this software 
+# for any purpose is hereby granted, under the terms of the MIT license.
+# -----------------------------------------------------------------------------
+
+# https://help.github.com/en/actions
+# https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners
+
+# https://docs.github.com/en/actions/reference/events-that-trigger-workflows#workflow_dispatch
+# https://docs.github.com/en/developers/webhooks-and-events/webhooks/webhook-events-and-payloads#workflow_dispatch
+# https://docs.github.com/en/rest/reference/actions#create-a-workflow-dispatch-event
+
+# -----------------------------------------------------------------------------
+
+
+name: 'Build xPack OpenOCD xbbmi'
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'The semver of the release'
+        required: false
+        default: 'current'
+
+jobs:
+
+  macos-x64:
+    name: 'Intel macOS OpenOCD ${{ github.event.inputs.version }} build'
+    timeout-minutes: 2880 # 2 days
+    runs-on: [self-hosted, macos, intel]
+    steps:
+      - name: 'Machine'
+        run: uname -a
+
+      - name: 'Checkout'
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 3
+          submodules: true
+
+      - name: 'Clean working area'
+        run: rm -rf ~/Work/openocd-${{ github.event.inputs.version }}*
+
+      - name: 'Build macOS x64 binary'
+        timeout-minutes: 1440
+        run: bash scripts/helper/build.sh --version "${{ github.event.inputs.version }}" --osx
+  
+      - name: 'Publish pre-release'
+        # https://github.com/ncipollo/release-action
+        uses: ncipollo/release-action@v1
+        with:
+          allowUpdates: true
+          artifacts: '~/Work/openocd-${{ github.event.inputs.version }}/deploy/*'
+          bodyFile: '.github/workflows/body-github-pre-releases-test.md'
+          commit: 'master'
+          draft: false
+          name: 'Test binaries'
+          omitBodyDuringUpdate: true
+          omitNameDuringUpdate: true
+          owner: 'xpack-dev-tools'
+          prerelease: true
+          replacesArtifacts: true
+          repo: 'pre-releases'
+          tag: 'test'
+          token: ${{ secrets.PUBLISH_TOKEN }}
+
