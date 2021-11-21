@@ -32,7 +32,7 @@ on:
 jobs:
 
   linux-arm64:
-    name: 'Arm Linux OpenOCD ${{ github.event.inputs.version }} build'
+    name: 'Linux Arm OpenOCD ${{ github.event.inputs.version }} build'
     timeout-minutes: 2880 # 2 days
     runs-on: [self-hosted, linux, arm64]
     steps:

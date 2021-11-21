@@ -32,7 +32,7 @@ on:
 jobs:
 
   macos-arm64:
-    name: 'Apple macOS OpenOCD ${{ github.event.inputs.version }} build'
+    name: 'macOS Arm OpenOCD ${{ github.event.inputs.version }} build'
     timeout-minutes: 2880 # 2 days
     runs-on: [self-hosted, macos, apple]
     defaults:

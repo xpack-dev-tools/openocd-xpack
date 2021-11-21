@@ -33,7 +33,7 @@ on:
 jobs:
 
   linux-x64:
-    name: 'Intel Linux 64-bit OpenOCD@${{ github.event.inputs.version }} test'
+    name: 'Linux Intel 64-bit OpenOCD@${{ github.event.inputs.version }} test'
     runs-on: ubuntu-latest
     steps:
       - name: 'Machine'
@@ -51,7 +51,7 @@ jobs:
 
   
   linux-ia32:
-    name: 'Intel Linux 32-bit OpenOCD@${{ github.event.inputs.version }} test'
+    name: 'Linux Intel 32-bit OpenOCD@${{ github.event.inputs.version }} test'
     runs-on: ubuntu-latest
     steps:
       - name: 'Machine'
@@ -69,7 +69,7 @@ jobs:
 
   
   linux-arm64:
-    name: 'Arm Linux 64-bit OpenOCD@${{ github.event.inputs.version }} test'
+    name: 'Linux Arm 64-bit OpenOCD@${{ github.event.inputs.version }} test'
     runs-on: [self-hosted, linux, arm64]
     steps:
       - name: 'Machine'
@@ -87,7 +87,7 @@ jobs:
 
   
   linux-arm32:
-    name: 'Arm Linux 32-bit OpenOCD@${{ github.event.inputs.version }} test'
+    name: 'Linux Arm 32-bit OpenOCD@${{ github.event.inputs.version }} test'
     runs-on: [self-hosted, linux, arm64]
     steps:
       - name: 'Machine'
@@ -105,7 +105,7 @@ jobs:
 
   
   macos-x64:
-    name: 'Intel macOS 64-bit OpenOCD@${{ github.event.inputs.version }} test'
+    name: 'macOS Intel 64-bit OpenOCD@${{ github.event.inputs.version }} test'
     runs-on: macos-latest
     steps:
       - name: 'Machine'
@@ -120,7 +120,7 @@ jobs:
 
   
   macos-arm64:
-    name: 'Apple macOS 64-bit OpenOCD@${{ github.event.inputs.version }} test'
+    name: 'macOS Arm 64-bit OpenOCD@${{ github.event.inputs.version }} test'
     runs-on: [self-hosted, macos, apple]
     defaults:
       run:

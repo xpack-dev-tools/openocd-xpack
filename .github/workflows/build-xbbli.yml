@@ -32,7 +32,7 @@ on:
 jobs:
 
   linux-x64:
-    name: 'Intel Linux OpenOCD ${{ github.event.inputs.version }} build'
+    name: 'Linux Intel OpenOCD ${{ github.event.inputs.version }} build'
     timeout-minutes: 5760 # 4 days
     runs-on: [self-hosted, linux, x64]
     steps:
