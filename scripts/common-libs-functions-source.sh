@@ -98,8 +98,8 @@ function build_libusb1()
           run_verbose bash ${DEBUG} "${SOURCES_FOLDER_PATH}/${libusb1_src_folder_name}/configure" \
             "${config_options[@]}"
 
-          cp "config.log" "${LOGS_FOLDER_PATH}/${libusb1_folder_name}/config-log-($ndate).txt"
-        ) 2>&1 | tee "${LOGS_FOLDER_PATH}/${libusb1_folder_name}/configure-output-($ndate).txt"
+          cp "config.log" "${LOGS_FOLDER_PATH}/${libusb1_folder_name}/config-log-$(ndate).txt"
+        ) 2>&1 | tee "${LOGS_FOLDER_PATH}/${libusb1_folder_name}/configure-output-$(ndate).txt"
 
       fi
 
@@ -117,7 +117,7 @@ function build_libusb1()
           run_verbose make install
         fi
 
-      ) 2>&1 | tee "${LOGS_FOLDER_PATH}/${libusb1_folder_name}/make-output-($ndate).txt"
+      ) 2>&1 | tee "${LOGS_FOLDER_PATH}/${libusb1_folder_name}/make-output-$(ndate).txt"
 
       copy_license \
         "${SOURCES_FOLDER_PATH}/${libusb1_src_folder_name}" \
@@ -207,8 +207,8 @@ function build_libusb0()
           run_verbose bash ${DEBUG} "${SOURCES_FOLDER_PATH}/${libusb0_src_folder_name}/configure" \
             "${config_options[@]}"
 
-          cp "config.log" "${LOGS_FOLDER_PATH}/${libusb0_folder_name}/config-log-($ndate).txt"
-        ) 2>&1 | tee "${LOGS_FOLDER_PATH}/${libusb0_folder_name}/configure-output-($ndate).txt"
+          cp "config.log" "${LOGS_FOLDER_PATH}/${libusb0_folder_name}/config-log-$(ndate).txt"
+        ) 2>&1 | tee "${LOGS_FOLDER_PATH}/${libusb0_folder_name}/configure-output-$(ndate).txt"
 
       fi
 
@@ -226,7 +226,7 @@ function build_libusb0()
           run_verbose make install
         fi
 
-      ) 2>&1 | tee "${LOGS_FOLDER_PATH}/${libusb0_folder_name}/make-output-($ndate).txt"
+      ) 2>&1 | tee "${LOGS_FOLDER_PATH}/${libusb0_folder_name}/make-output-$(ndate).txt"
 
       copy_license \
         "${SOURCES_FOLDER_PATH}/${libusb0_src_folder_name}" \
@@ -344,7 +344,7 @@ function build_libusb_w32()
           cp -v "${LIBS_BUILD_FOLDER_PATH}/${libusb_w32_folder_name}/src/lusb0_usb.h" \
             "${LIBS_INSTALL_FOLDER_PATH}/include/libusb/usb.h"
 
-      ) 2>&1 | tee "${LOGS_FOLDER_PATH}/${libusb_w32_folder_name}/make-output-($ndate).txt"
+      ) 2>&1 | tee "${LOGS_FOLDER_PATH}/${libusb_w32_folder_name}/make-output-$(ndate).txt"
 
       copy_license \
         "${SOURCES_FOLDER_PATH}/${libusb_w32_src_folder_name}" \
@@ -454,7 +454,7 @@ function build_libftdi()
             "${SOURCES_FOLDER_PATH}/${libftdi_src_folder_name}"
 
         fi
-      ) 2>&1 | tee "${LOGS_FOLDER_PATH}/${libftdi_folder_name}/configure-output-($ndate).txt"
+      ) 2>&1 | tee "${LOGS_FOLDER_PATH}/${libftdi_folder_name}/configure-output-$(ndate).txt"
 
       (
         echo
@@ -465,7 +465,7 @@ function build_libftdi()
 
         run_verbose make install
 
-      ) 2>&1 | tee "${LOGS_FOLDER_PATH}/${libftdi_folder_name}/make-output-($ndate).txt"
+      ) 2>&1 | tee "${LOGS_FOLDER_PATH}/${libftdi_folder_name}/make-output-$(ndate).txt"
 
       copy_license \
         "${SOURCES_FOLDER_PATH}/${libftdi_src_folder_name}" \
@@ -628,8 +628,8 @@ function build_hidapi()
           run_verbose bash ${DEBUG} "configure" \
             "${config_options[@]}"
 
-          cp "config.log" "${LOGS_FOLDER_PATH}/${hidapi_folder_name}/config-log-($ndate).txt"
-        ) 2>&1 | tee "${LOGS_FOLDER_PATH}/${hidapi_folder_name}/configure-output-($ndate).txt"
+          cp "config.log" "${LOGS_FOLDER_PATH}/${hidapi_folder_name}/config-log-$(ndate).txt"
+        ) 2>&1 | tee "${LOGS_FOLDER_PATH}/${hidapi_folder_name}/configure-output-$(ndate).txt"
 
         (
           echo
@@ -645,7 +645,7 @@ function build_hidapi()
             run_verbose make install
           fi
 
-        ) 2>&1 | tee "${LOGS_FOLDER_PATH}/${hidapi_folder_name}/make-output-($ndate).txt"
+        ) 2>&1 | tee "${LOGS_FOLDER_PATH}/${hidapi_folder_name}/make-output-$(ndate).txt"
 
       fi
 

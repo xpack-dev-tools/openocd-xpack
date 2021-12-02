@@ -50,7 +50,7 @@ function build_openocd()
         then
           ./bootstrap
         fi
-      ) 2>&1 | tee "${LOGS_FOLDER_PATH}/${openocd_folder_name}/configure-output-($ndate).txt"
+      ) 2>&1 | tee "${LOGS_FOLDER_PATH}/${openocd_folder_name}/configure-output-$(ndate).txt"
 
       mkdir -pv "${APP_BUILD_FOLDER_PATH}"
       cd "${APP_BUILD_FOLDER_PATH}"
@@ -237,8 +237,8 @@ function build_openocd()
           run_verbose bash ${DEBUG} "${WORK_FOLDER_PATH}/${OPENOCD_SRC_FOLDER_NAME}/configure" \
             "${config_options[@]}"
 
-          cp "config.log" "${LOGS_FOLDER_PATH}/${openocd_folder_name}/config-log-($ndate).txt"
-        ) 2>&1 | tee "${LOGS_FOLDER_PATH}/${openocd_folder_name}/configure-output-($ndate).txt"
+          cp "config.log" "${LOGS_FOLDER_PATH}/${openocd_folder_name}/config-log-$(ndate).txt"
+        ) 2>&1 | tee "${LOGS_FOLDER_PATH}/${openocd_folder_name}/configure-output-$(ndate).txt"
 
       fi
 
@@ -277,7 +277,7 @@ function build_openocd()
           fi
         )
 
-      ) 2>&1 | tee "${LOGS_FOLDER_PATH}/${openocd_folder_name}/make-output-($ndate).txt"
+      ) 2>&1 | tee "${LOGS_FOLDER_PATH}/${openocd_folder_name}/make-output-$(ndate).txt"
 
       copy_license \
         "${WORK_FOLDER_PATH}/${OPENOCD_SRC_FOLDER_NAME}" \
