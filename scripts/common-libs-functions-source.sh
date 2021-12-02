@@ -3,12 +3,12 @@
 #   (https://xpack.github.io)
 # Copyright (c) 2019 Liviu Ionescu.
 #
-# Permission to use, copy, modify, and/or distribute this software 
+# Permission to use, copy, modify, and/or distribute this software
 # for any purpose is hereby granted, under the terms of the MIT license.
 # -----------------------------------------------------------------------------
 
-# Helper script used in the second edition of the xPack build 
-# scripts. As the name implies, it should contain only functions and 
+# Helper script used in the second edition of the xPack build
+# scripts. As the name implies, it should contain only functions and
 # should be included with 'source' by the container build scripts.
 
 # -----------------------------------------------------------------------------
@@ -63,7 +63,7 @@ function build_libusb1()
       if [ "${TARGET_PLATFORM}" == "linux" ]
       then
         LDFLAGS+=" -Wl,-rpath,${LD_LIBRARY_PATH}"
-      fi      
+      fi
 
       export CPPFLAGS
       export CFLAGS
@@ -71,7 +71,7 @@ function build_libusb1()
       export LDFLAGS
 
       if [ ! -f "config.status" ]
-      then 
+      then
 
         (
           if [ "${IS_DEVELOP}" == "y" ]
@@ -81,7 +81,7 @@ function build_libusb1()
 
           echo
           echo "Running libusb1 configure..."
-          
+
           if [ "${IS_DEVELOP}" == "y" ]
           then
             run_verbose bash "${SOURCES_FOLDER_PATH}/${libusb1_src_folder_name}/configure" --help
@@ -90,16 +90,16 @@ function build_libusb1()
           config_options=()
 
           config_options+=("--prefix=${LIBS_INSTALL_FOLDER_PATH}")
-            
+
           config_options+=("--build=${BUILD}")
           config_options+=("--host=${HOST}")
           config_options+=("--target=${TARGET}")
 
           run_verbose bash ${DEBUG} "${SOURCES_FOLDER_PATH}/${libusb1_src_folder_name}/configure" \
             "${config_options[@]}"
-          
-          cp "config.log" "${LOGS_FOLDER_PATH}/${libusb1_folder_name}/config-log.txt"
-        ) 2>&1 | tee "${LOGS_FOLDER_PATH}/${libusb1_folder_name}/configure-output.txt"
+
+          cp "config.log" "${LOGS_FOLDER_PATH}/${libusb1_folder_name}/config-log-($ndate).txt"
+        ) 2>&1 | tee "${LOGS_FOLDER_PATH}/${libusb1_folder_name}/configure-output-($ndate).txt"
 
       fi
 
@@ -107,7 +107,7 @@ function build_libusb1()
         echo
         echo "Running libusb1 make..."
 
-        # Build. 
+        # Build.
         run_verbose make -j ${JOBS}
 
         if [ "${WITH_STRIP}" == "y" ]
@@ -117,7 +117,7 @@ function build_libusb1()
           run_verbose make install
         fi
 
-      ) 2>&1 | tee "${LOGS_FOLDER_PATH}/${libusb1_folder_name}/make-output.txt"
+      ) 2>&1 | tee "${LOGS_FOLDER_PATH}/${libusb1_folder_name}/make-output-($ndate).txt"
 
       copy_license \
         "${SOURCES_FOLDER_PATH}/${libusb1_src_folder_name}" \
@@ -137,7 +137,7 @@ function build_libusb0()
   # https://sourceforge.net/projects/libusb/files/libusb-compat-0.1/
 
   # 2013-05-21, 0.1.5, latest
-  
+
   local libusb0_version="$1"
 
   local libusb0_src_folder_name="libusb-compat-${libusb0_version}"
@@ -172,7 +172,7 @@ function build_libusb0()
       if [ "${TARGET_PLATFORM}" == "linux" ]
       then
         LDFLAGS+=" -Wl,-rpath,${LD_LIBRARY_PATH}"
-      fi      
+      fi
 
       export CPPFLAGS
       export CFLAGS
@@ -180,7 +180,7 @@ function build_libusb0()
       export LDFLAGS
 
       if [ ! -f "config.status" ]
-      then 
+      then
 
         (
           if [ "${IS_DEVELOP}" == "y" ]
@@ -199,16 +199,16 @@ function build_libusb0()
           config_options=()
 
           config_options+=("--prefix=${LIBS_INSTALL_FOLDER_PATH}")
-            
+
           config_options+=("--build=${BUILD}")
           config_options+=("--host=${HOST}")
           config_options+=("--target=${TARGET}")
 
           run_verbose bash ${DEBUG} "${SOURCES_FOLDER_PATH}/${libusb0_src_folder_name}/configure" \
             "${config_options[@]}"
-          
-          cp "config.log" "${LOGS_FOLDER_PATH}/${libusb0_folder_name}/config-log.txt"
-        ) 2>&1 | tee "${LOGS_FOLDER_PATH}/${libusb0_folder_name}/configure-output.txt"
+
+          cp "config.log" "${LOGS_FOLDER_PATH}/${libusb0_folder_name}/config-log-($ndate).txt"
+        ) 2>&1 | tee "${LOGS_FOLDER_PATH}/${libusb0_folder_name}/configure-output-($ndate).txt"
 
       fi
 
@@ -226,7 +226,7 @@ function build_libusb0()
           run_verbose make install
         fi
 
-      ) 2>&1 | tee "${LOGS_FOLDER_PATH}/${libusb0_folder_name}/make-output.txt"
+      ) 2>&1 | tee "${LOGS_FOLDER_PATH}/${libusb0_folder_name}/make-output-($ndate).txt"
 
       copy_license \
         "${SOURCES_FOLDER_PATH}/${libusb0_src_folder_name}" \
@@ -244,7 +244,7 @@ function build_libusb0()
 function build_libusb_w32()
 {
   # https://sourceforge.net/projects/libusb-win32/files/libusb-win32-releases/
-  # 2012-01-17, 1.2.6.0 
+  # 2012-01-17, 1.2.6.0
   # libusb_w32_version="1.2.6.0" # +PATCH!
 
   local libusb_w32_version="$1"
@@ -322,7 +322,7 @@ function build_libusb_w32()
             host_prefix=${CROSS_COMPILE_PREFIX} \
             host_prefix_x86=i686-w64-mingw32 \
             dll
-          
+
           # Manually install, could not find a make target.
           mkdir -pv "${LIBS_INSTALL_FOLDER_PATH}/bin"
 
@@ -344,7 +344,7 @@ function build_libusb_w32()
           cp -v "${LIBS_BUILD_FOLDER_PATH}/${libusb_w32_folder_name}/src/lusb0_usb.h" \
             "${LIBS_INSTALL_FOLDER_PATH}/include/libusb/usb.h"
 
-      ) 2>&1 | tee "${LOGS_FOLDER_PATH}/${libusb_w32_folder_name}/make-output.txt"
+      ) 2>&1 | tee "${LOGS_FOLDER_PATH}/${libusb_w32_folder_name}/make-output-($ndate).txt"
 
       copy_license \
         "${SOURCES_FOLDER_PATH}/${libusb_w32_src_folder_name}" \
@@ -405,7 +405,7 @@ function build_libftdi()
       if [ "${TARGET_PLATFORM}" == "linux" ]
       then
         LDFLAGS+=" -Wl,-rpath,${LD_LIBRARY_PATH}"
-      fi      
+      fi
 
       export CPPFLAGS
       export CFLAGS
@@ -420,7 +420,7 @@ function build_libftdi()
 
         echo
         echo "Running libftdi configure..."
-        
+
         if [ "${TARGET_PLATFORM}" == "win32" ]
         then
 
@@ -454,7 +454,7 @@ function build_libftdi()
             "${SOURCES_FOLDER_PATH}/${libftdi_src_folder_name}"
 
         fi
-      ) 2>&1 | tee "${LOGS_FOLDER_PATH}/${libftdi_folder_name}/configure-output.txt"
+      ) 2>&1 | tee "${LOGS_FOLDER_PATH}/${libftdi_folder_name}/configure-output-($ndate).txt"
 
       (
         echo
@@ -465,7 +465,7 @@ function build_libftdi()
 
         run_verbose make install
 
-      ) 2>&1 | tee "${LOGS_FOLDER_PATH}/${libftdi_folder_name}/make-output.txt"
+      ) 2>&1 | tee "${LOGS_FOLDER_PATH}/${libftdi_folder_name}/make-output-($ndate).txt"
 
       copy_license \
         "${SOURCES_FOLDER_PATH}/${libftdi_src_folder_name}" \
@@ -479,7 +479,7 @@ function build_libftdi()
   fi
 }
 
-function build_hidapi() 
+function build_hidapi()
 {
   # https://github.com/signal11/hidapi/downloads
 
@@ -594,7 +594,7 @@ function build_hidapi()
         if [ "${TARGET_PLATFORM}" == "linux" ]
         then
           LDFLAGS+=" -Wl,-rpath,${LD_LIBRARY_PATH}"
-        fi      
+        fi
 
         export CPPFLAGS
         export CFLAGS
@@ -618,7 +618,7 @@ function build_hidapi()
           config_options=()
 
           config_options+=("--prefix=${LIBS_INSTALL_FOLDER_PATH}")
-            
+
           config_options+=("--build=${BUILD}")
           config_options+=("--host=${HOST}")
           config_options+=("--target=${TARGET}")
@@ -627,9 +627,9 @@ function build_hidapi()
 
           run_verbose bash ${DEBUG} "configure" \
             "${config_options[@]}"
-        
-          cp "config.log" "${LOGS_FOLDER_PATH}/${hidapi_folder_name}/config-log.txt"
-        ) 2>&1 | tee "${LOGS_FOLDER_PATH}/${hidapi_folder_name}/configure-output.txt"
+
+          cp "config.log" "${LOGS_FOLDER_PATH}/${hidapi_folder_name}/config-log-($ndate).txt"
+        ) 2>&1 | tee "${LOGS_FOLDER_PATH}/${hidapi_folder_name}/configure-output-($ndate).txt"
 
         (
           echo
@@ -645,7 +645,7 @@ function build_hidapi()
             run_verbose make install
           fi
 
-        ) 2>&1 | tee "${LOGS_FOLDER_PATH}/${hidapi_folder_name}/make-output.txt"
+        ) 2>&1 | tee "${LOGS_FOLDER_PATH}/${hidapi_folder_name}/make-output-($ndate).txt"
 
       fi
 
@@ -664,7 +664,7 @@ function build_hidapi()
 }
 
 function copy_libudev()
-{ 
+{
   (
 
     if [ -f "/usr/include/libudev.h" ]

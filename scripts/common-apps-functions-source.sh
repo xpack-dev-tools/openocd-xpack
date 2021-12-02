@@ -3,17 +3,17 @@
 #   (https://xpack.github.io)
 # Copyright (c) 2019 Liviu Ionescu.
 #
-# Permission to use, copy, modify, and/or distribute this software 
+# Permission to use, copy, modify, and/or distribute this software
 # for any purpose is hereby granted, under the terms of the MIT license.
 # -----------------------------------------------------------------------------
 
-# Helper script used in the second edition of the xPack build 
-# scripts. As the name implies, it should contain only functions and 
+# Helper script used in the second edition of the xPack build
+# scripts. As the name implies, it should contain only functions and
 # should be included with 'source' by the container build scripts.
 
 # -----------------------------------------------------------------------------
 
-function download_openocd() 
+function download_openocd()
 {
   if [ ! -d "${WORK_FOLDER_PATH}/${OPENOCD_SRC_FOLDER_NAME}" ]
   then
@@ -50,23 +50,23 @@ function build_openocd()
         then
           ./bootstrap
         fi
-      ) 2>&1 | tee "${LOGS_FOLDER_PATH}/${openocd_folder_name}/configure-output.txt"
+      ) 2>&1 | tee "${LOGS_FOLDER_PATH}/${openocd_folder_name}/configure-output-($ndate).txt"
 
       mkdir -pv "${APP_BUILD_FOLDER_PATH}"
       cd "${APP_BUILD_FOLDER_PATH}"
 
       CPPFLAGS="${XBB_CPPFLAGS}"
-      CFLAGS="${XBB_CFLAGS_NO_W}" 
-      CXXFLAGS="${XBB_CXXFLAGS_NO_W}" 
-      
+      CFLAGS="${XBB_CFLAGS_NO_W}"
+      CXXFLAGS="${XBB_CXXFLAGS_NO_W}"
+
       # It makes little sense to use -static-libgcc here, since
       # several shared libraries will refer to it anyway.
       LDFLAGS="${XBB_LDFLAGS_APP}"
       LIBS=""
 
-      export CPPFLAGS 
-      export CFLAGS 
-      export CXXFLAGS 
+      export CPPFLAGS
+      export CFLAGS
+      export CXXFLAGS
 
       export LDFLAGS
       export LIBS
@@ -76,7 +76,7 @@ function build_openocd()
       if [ ! -f "config.status" ]
       then
 
-        # May be required for repetitive builds, because this is an executable built 
+        # May be required for repetitive builds, because this is an executable built
         # in place and using one for a different architecture may not be a good idea.
         rm -rfv "${WORK_FOLDER_PATH}/${OPENOCD_SRC_FOLDER_NAME}/jimtcl/autosetup/jimsh0"
 
@@ -85,10 +85,10 @@ function build_openocd()
           then
             env | sort
           fi
-          
+
           echo
           echo "Running openocd configure..."
-      
+
           if [ "${IS_DEVELOP}" == "y" ]
           then
             bash "${WORK_FOLDER_PATH}/${OPENOCD_SRC_FOLDER_NAME}/configure" --help
@@ -97,7 +97,7 @@ function build_openocd()
           config_options=()
 
           config_options+=("--prefix=${APP_PREFIX}")
-            
+
           config_options+=("--build=${BUILD}")
           config_options+=("--host=${HOST}")
           config_options+=("--target=${TARGET}")
@@ -108,13 +108,13 @@ function build_openocd()
           config_options+=("--pdfdir=${APP_PREFIX_DOC}/pdf")
           config_options+=("--infodir=${APP_PREFIX_DOC}/info")
           config_options+=("--docdir=${APP_PREFIX_DOC}")
-                
+
           config_options+=("--disable-wextra")
           config_options+=("--disable-werror")
           config_options+=("--enable-dependency-tracking")
-                
+
           config_options+=("--enable-branding=${BRANDING}")
-        
+
           # Add explicit functionality.
           config_options+=("--enable-aice")
           config_options+=("--enable-armjtagew")
@@ -157,7 +157,7 @@ function build_openocd()
           then
 
             export OUTPUT_DIR="${BUILD_FOLDER_PATH}"
-            
+
             # Without it, mingw redefines it as 0.
             CPPFLAGS+=" -D__USE_MINGW_ANSI_STDIO=1"
 
@@ -237,15 +237,15 @@ function build_openocd()
           run_verbose bash ${DEBUG} "${WORK_FOLDER_PATH}/${OPENOCD_SRC_FOLDER_NAME}/configure" \
             "${config_options[@]}"
 
-          cp "config.log" "${LOGS_FOLDER_PATH}/${openocd_folder_name}/config-log.txt"
-        ) 2>&1 | tee "${LOGS_FOLDER_PATH}/${openocd_folder_name}/configure-output.txt"
+          cp "config.log" "${LOGS_FOLDER_PATH}/${openocd_folder_name}/config-log-($ndate).txt"
+        ) 2>&1 | tee "${LOGS_FOLDER_PATH}/${openocd_folder_name}/configure-output-($ndate).txt"
 
       fi
 
       (
         echo
         echo "Running openocd make..."
-      
+
         # Build.
         run_verbose make -j ${JOBS} bindir="bin" pkgdatadir=""
 
@@ -253,7 +253,7 @@ function build_openocd()
         then
           run_verbose make install-strip
         else
-          run_verbose make install  
+          run_verbose make install
         fi
 
         if [ "${TARGET_PLATFORM}" == "win32" ]
@@ -266,7 +266,7 @@ function build_openocd()
 
           if [ "${WITH_PDF}" == "y" ]
           then
-            run_verbose make bindir="bin" pkgdatadir="" pdf 
+            run_verbose make bindir="bin" pkgdatadir="" pdf
             run_verbose make install-pdf
           fi
 
@@ -277,7 +277,7 @@ function build_openocd()
           fi
         )
 
-      ) 2>&1 | tee "${LOGS_FOLDER_PATH}/${openocd_folder_name}/make-output.txt"
+      ) 2>&1 | tee "${LOGS_FOLDER_PATH}/${openocd_folder_name}/make-output-($ndate).txt"
 
       copy_license \
         "${WORK_FOLDER_PATH}/${OPENOCD_SRC_FOLDER_NAME}" \
