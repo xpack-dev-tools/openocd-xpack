@@ -6,7 +6,7 @@
 #   (https://xpack.github.io)
 # Copyright (c) 2021 Liviu Ionescu.
 #
-# Permission to use, copy, modify, and/or distribute this software 
+# Permission to use, copy, modify, and/or distribute this software
 # for any purpose is hereby granted, under the terms of the MIT license.
 # -----------------------------------------------------------------------------
 
@@ -22,7 +22,7 @@
 
 # https://github.com/docker-library/official-images#architectures-other-than-amd64
 
-# Debian versions: 
+# Debian versions:
 # - 8 jessie
 # - 9 stretch
 # - 10 buster
@@ -50,7 +50,7 @@ on:
         required: false
         default: 'current'
 
-# The scripts are executed in the Docker context by GitHub Actions, 
+# The scripts are executed in the Docker context by GitHub Actions,
 # so `native-test.sh` should be fine, it already takes care of updates.
 jobs:
 
@@ -183,7 +183,7 @@ jobs:
         with:
           entrypoint: /bin/bash
           args: /github/workspace/scripts/helper/tests/native-test.sh --image fedora:27 --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
-  
+
   # https://en.wikipedia.org/wiki/OpenSUSE#Releases
   # https://hub.docker.com/u/opensuse
   # `-static` disabled, there is no static libc.a.
