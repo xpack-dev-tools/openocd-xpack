@@ -22,7 +22,11 @@ No need to add a tag here, it'll be added when the release is created.
 
 ### Check the latest upstream release
 
-TODO
+The current release must be announced in the [OpenOCD](https://openocd.org)
+web, and reflected in the Git [tags](https://sourceforge.net/p/openocd/code/ci/master/tree/). Compare the latest tag with the current xPack
+[release](https://github.com/xpack-dev-tools/openocd-xpack/releases).
+If necessary, update the triplet, otherwise increase the fourth number,
+as below.
 
 ### Increase the version
 
@@ -64,8 +68,11 @@ recreate the archives with the correct file.
 
 ### Merge upstream repo
 
-To keep the development repository fork in sync with the upstream OpenOCD
-repository, in the `xpack-dev-tools/openocd` Git repo:
+To keep the development repository fork
+(<https://github.com/xpack-dev-tools/openocd.git>)
+in sync with the upstream OpenOCD repository
+(<git://git.code.sf.net/p/openocd/code>),
+in the `xpack-dev-tools/openocd` Git repo:
 
 - checkout `master`
 - merge from `upstream/master`
@@ -78,6 +85,7 @@ repository, in the `xpack-dev-tools/openocd` Git repo:
 - merge `xpack-develop`
 - fix the `jimtcl` submodule reference
 - add a `v0.11.0-3-xpack` tag
+- push `master`, `xpack-develop` and `xpack`
 
 ### Update the version specific code
 
@@ -264,7 +272,7 @@ Info : Target voltage: 2.893326
 Info : stm32f4x.cpu: hardware has 6 breakpoints, 4 watchpoints
 Info : starting gdb server for stm32f4x.cpu on 3333
 Info : Listening on port 3333 for gdb connections
-target halted due to breakpoint, current mode: Thread 
+target halted due to breakpoint, current mode: Thread
 xPSR: 0x21000000 pc: 0x0800113c msp: 0x2001ff78
 ^C
 shutdown command invoked
@@ -323,6 +331,7 @@ If any, refer to closed
 - temporarily fill in the _Continue Reading »_ with the URL of the
   web-preview release
 - keep the pre-release button enabled
+- do not enable Discussions yet
 - publish the release
 
 Note: at this moment the system should send a notification to all clients
