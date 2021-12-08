@@ -50,7 +50,7 @@ jobs:
 
       - name: 'Build macOS x64 binary'
         timeout-minutes: 1440
-        run: bash scripts/helper/build.sh --version "${{ github.event.inputs.version }}" --osx
+        run: bash scripts/helper/build.sh --version "${{ github.event.inputs.version }}" --macos
   
       - name: 'Publish pre-release'
         # https://github.com/ncipollo/release-action

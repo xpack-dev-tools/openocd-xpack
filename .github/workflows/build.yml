@@ -5,7 +5,7 @@
 #   (https://xpack.github.io)
 # Copyright (c) 2021 Liviu Ionescu.
 #
-# Permission to use, copy, modify, and/or distribute this software 
+# Permission to use, copy, modify, and/or distribute this software
 # for any purpose is hereby granted, under the terms of the MIT license.
 # -----------------------------------------------------------------------------
 
@@ -48,19 +48,19 @@ jobs:
       - name: 'Build Linux x64 binary'
         timeout-minutes: 1440
         run: bash scripts/helper/build.sh --version "${{ github.event.inputs.version }}" --linux64
-    
+
       - name: 'Build Linux ia32 binary'
         timeout-minutes: 1440
         run: bash scripts/helper/build.sh --version "${{ github.event.inputs.version }}" --linux32
-    
+
       - name: 'Build Windows x64 binary'
         timeout-minutes: 1440
         run: bash scripts/helper/build.sh --version "${{ github.event.inputs.version }}" --win64
-    
+
       - name: 'Build Windows ia32 binary'
         timeout-minutes: 1440
         run: bash scripts/helper/build.sh --version "${{ github.event.inputs.version }}" --win32
-  
+
       - name: 'Publish pre-release'
         # https://github.com/ncipollo/release-action
         uses: ncipollo/release-action@v1
@@ -99,11 +99,11 @@ jobs:
       - name: 'Build Linux arm64 binary'
         timeout-minutes: 1440
         run: bash scripts/helper/build.sh --version "${{ github.event.inputs.version }}" --arm64
-   
+
       - name: 'Build Linux arm32 binary'
         timeout-minutes: 1440
         run: bash scripts/helper/build.sh --version "${{ github.event.inputs.version }}" --arm32
-  
+
       - name: 'Publish pre-release'
         # https://github.com/ncipollo/release-action
         uses: ncipollo/release-action@v1
@@ -141,8 +141,8 @@ jobs:
 
       - name: 'Build macOS x64 binary'
         timeout-minutes: 1440
-        run: bash scripts/helper/build.sh --version "${{ github.event.inputs.version }}" --osx
-  
+        run: bash scripts/helper/build.sh --version "${{ github.event.inputs.version }}" --macos
+
       - name: 'Publish pre-release'
         # https://github.com/ncipollo/release-action
         uses: ncipollo/release-action@v1
