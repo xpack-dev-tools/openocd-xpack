@@ -108,7 +108,7 @@ or the production machine (`xbbmi`):
 ```sh
 sudo rm -rf ~/Work/openocd-*
 
-caffeinate bash ~/Downloads/openocd-xpack.git/scripts/helper/build.sh --develop --osx
+caffeinate bash ~/Downloads/openocd-xpack.git/scripts/helper/build.sh --develop --macos
 ```
 
 Similarly on the Intel Linux (`xbbmli`):

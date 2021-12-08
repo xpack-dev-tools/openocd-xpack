@@ -66,7 +66,7 @@ To download them, issue the following commands:
 rm -rf ~/Downloads/openocd-xpack.git; \
 git clone https://github.com/xpack-dev-tools/openocd-xpack.git \
   ~/Downloads/openocd-xpack.git; \
-git -C ~/Downloads/openocd-xpack.git submodule update --init --recursive 
+git -C ~/Downloads/openocd-xpack.git submodule update --init --recursive
 ```
 
 > Note: the repository uses submodules; for a successful build it is
@@ -277,7 +277,7 @@ or, for development builds:
 
 ```sh
 sudo rm -rf ~/Work/openocd-*
-bash ~/Downloads/openocd-xpack.git/scripts/helper/build.sh --develop --without-pdf --without-html --disable-tests --arm64 --arm32 
+bash ~/Downloads/openocd-xpack.git/scripts/helper/build.sh --develop --without-pdf --without-html --disable-tests --arm64 --arm32
 ```
 
 To detach from the session, use `Ctrl-a` `Ctrl-d`; to reattach use
@@ -311,14 +311,14 @@ To build the latest macOS version:
 screen -S openocd
 
 rm -rf ~/Work/openocd-*
-caffeinate bash ~/Downloads/openocd-xpack.git/scripts/helper/build.sh --develop --osx
+caffeinate bash ~/Downloads/openocd-xpack.git/scripts/helper/build.sh --develop --macos
 ```
 
 or, for development builds:
 
 ```sh
 rm -rf ~/Work/openocd-arm-*
-caffeinate bash ~/Downloads/openocd-xpack.git/scripts/helper/build.sh --develop --without-pdf --without-html --disable-tests --osx 
+caffeinate bash ~/Downloads/openocd-xpack.git/scripts/helper/build.sh --develop --without-pdf --without-html --disable-tests --macos
 ```
 
 To detach from the session, use `Ctrl-a` `Ctrl-d`; to reattach use
