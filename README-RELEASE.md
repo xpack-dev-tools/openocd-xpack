@@ -103,7 +103,7 @@ With Sourcetree, go to the helper repo and update to the latest master commit.
 ### Development run the build scripts
 
 Before the real build, run a test build on the development machine (`wks`)
-or the production machine (`xbbmi`):
+or the production machines (`xbbma`, `xbbmi`):
 
 ```sh
 sudo rm -rf ~/Work/openocd-*

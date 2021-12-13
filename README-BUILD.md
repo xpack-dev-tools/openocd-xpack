@@ -297,12 +297,17 @@ total 7120
 
 ### Build the macOS binaries
 
-The current platform for macOS production builds is a macOS 10.13.6
-running on a MacBook Pro 2011 with 32 GB of RAM and a fast SSD.
-The machine name is `xbbmi`.
+The current platforms for macOS production builds are:
+
+- a macOS 10.13.6 running on a MacBook Pro 2011 with 32 GB of RAM and
+  a fast SSD; the machine name is `xbbmi`
+- a macOS 11.6.1 running on a Mac Mini M1 2020 with 16 GB of RAM;
+  the machine name is `xbbma`
 
 ```sh
 caffeinate ssh xbbmi
+
+caffeinate ssh xbbma
 ```
 
 To build the latest macOS version:
