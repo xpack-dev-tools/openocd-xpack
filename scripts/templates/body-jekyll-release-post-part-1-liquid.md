@@ -1,5 +1,5 @@
 ---
-title:  xPack OpenOCD {{ RELEASE_VERSION }} released
+title:  xPack OpenOCD v{{ RELEASE_VERSION }} released
 
 TODO: select one summary
 
