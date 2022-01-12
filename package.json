@@ -6,6 +6,9 @@
   "scripts": {
     "npm-install": "npm install",
     "pack": "npm pack",
+    "version-patch": "npm version patch",
+    "version-minor": "npm version minor",
+    "postversion": "git push origin --all && git push origin --tags",
     "git-log": "git log --pretty='%cd * %h %s' --date=short",
     "test": "echo \"Error: no test specified\" && exit 1",
     "liquidjs": "liquidjs"
