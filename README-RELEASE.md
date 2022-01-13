@@ -361,7 +361,8 @@ watching this project.
 - `npm version 0.11.0-3.1`; the first 5 numbers are the same as the
   GitHub release; the sixth number is the npm specific version
 - push the `xpack-develop` branch to GitHub
-- push tags with `git push origin --tags`
+- the tags should have beed pushed by the `postversion` script;
+  if not, push the tags with `git push origin --tags`
 - `npm publish --tag next` (use `--access public` when publishing for
   the first time)
 
