@@ -41,13 +41,13 @@ The binary files are available from GitHub [Releases]({% raw %}{{ page.download_
 
 ## Prerequisites
 
-- Intel GNU/Linux 32/64-bit: any system with **GLIBC 2.15** or higher
-  (like Ubuntu 12 or later, Debian 8 or later, RedHat/CentOS 7 later,
-  Fedora 20 or later, etc)
-- Arm GNU/Linux 32/64-bit: any system with **GLIBC 2.23** or higher
-  (like Ubuntu 16 or later, Debian 9 or later, RedHat/CentOS 8 or later,
-  Fedora 24 or later, etc)
-- Intel Windows 32/64-bit: Windows 7 with the Universal C Runtime
+- GNU/Linux Intel 64-bit: any system with **GLIBC 2.27** or higher
+  (like Ubuntu 18 or later, Debian 10 or later, RedHat 8 later,
+  Fedora 29 or later, etc)
+- GNU/Linux Arm 32/64-bit: any system with **GLIBC 2.27** or higher
+  (like Raspberry Pi OS, Ubuntu 18 or later, Debian 10 or later, RedHat 8 later,
+  Fedora 29 or later, etc)
+- Intel Windows 64-bit: Windows 7 with the Universal C Runtime
   ([UCRT](https://support.microsoft.com/en-us/topic/update-for-universal-c-runtime-in-windows-c0514201-7fe6-95a3-b0a5-287930f3560c)),
   Windows 8, Windows 10
 - Intel macOS 64-bit: 10.13 or later
