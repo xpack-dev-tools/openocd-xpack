@@ -115,10 +115,9 @@ Similarly on the Intel Linux (`xbbmli`):
 
 ```sh
 bash ~/Downloads/openocd-xpack.git/scripts/helper/build.sh --develop --linux64
-bash ~/Downloads/openocd-xpack.git/scripts/helper/build.sh --develop --linux32
+
 
 bash ~/Downloads/openocd-xpack.git/scripts/helper/build.sh --develop --win64
-bash ~/Downloads/openocd-xpack.git/scripts/helper/build.sh --develop --win32
 ```
 
 And on the Arm Linux (`xbbmla`):
