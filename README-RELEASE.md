@@ -360,9 +360,8 @@ watching this project.
   possibly adjust `.npmignore`
 - `npm version 0.11.0-3.1`; the first 5 numbers are the same as the
   GitHub release; the sixth number is the npm specific version
-- push the `xpack-develop` branch to GitHub
-- the tags should have beed pushed by the `postversion` script;
-  if not, push the tags with `git push origin --tags`
+- the commits and the tag should have beed pushed by the `postversion` script;
+  if not, push them with `git push origin --tags`
 - `npm publish --tag next` (use `--access public` when publishing for
   the first time)
 
@@ -370,7 +369,7 @@ After a few moments the version will be visible at:
 
 - <https://www.npmjs.com/package/@xpack-dev-tools/openocd?activeTab=versions>
 
-## Test if the npm binaries can be installed with xpm
+## Test if the binaries can be installed with xpm
 
 Run the xPack action `trigger-workflow-test-xpm`, this
 will install the package via `xpm install` on all supported platforms.
