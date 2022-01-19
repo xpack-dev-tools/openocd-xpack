@@ -329,7 +329,7 @@ If any, refer to closed
 - perform the final edits and check if everything is fine
 - temporarily fill in the _Continue Reading »_ with the URL of the
   web-preview release
-- keep the pre-release button enabled
+- **keep the pre-release button enabled**
 - do not enable Discussions yet
 - publish the release
 
