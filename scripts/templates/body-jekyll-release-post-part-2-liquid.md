@@ -3,15 +3,15 @@
 
 ### 32-bit support
 
-Support for 32-bit Intel Linux and Intel Windows will most probably
-be dropped in 2022. Support for 32-bit Arm Linux will be preserved
+Support for 32-bit Intel Linux and Intel Windows was
+dropped in 2022. Support for 32-bit Arm Linux will be preserved
 for a while, due to the large user base of 32-bit Raspberry Pi systems.
 
 ### Linux minimum requirements
 
-Support for RedHat 7 will most probably be dropped in 2022, and the
-minimum requirement will be raised to GLIBC 2.27, available starting
-with Ubuntu 18 and RedHat 8.
+Support for RedHat 7 was dropped in 2022 and the
+minimum requirement was raised to GLIBC 2.27, available starting
+with Ubuntu 18, Debian 10 and RedHat 8.
 
 ## Download analytics
 

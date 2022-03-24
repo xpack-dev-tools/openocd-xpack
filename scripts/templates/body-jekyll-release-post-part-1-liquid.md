@@ -28,9 +28,9 @@ tags:
 is a standalone cross-platform binary distribution of
 [OpenOCD](http://openocd.org).
 
-There are separate binaries for **Windows** (Intel 32/64-bit),
+There are separate binaries for **Windows** (Intel 64-bit),
 **macOS** (Intel 64-bit, Apple Silicon 64-bit)
-and **GNU/Linux** (Intel 32/64-bit, Arm 32/64-bit).
+and **GNU/Linux** (Intel 64-bit, Arm 32/64-bit).
 
 {% raw %}{% include note.html content="The main targets for the Arm binaries
 are the **Raspberry Pi** class devices." %}{% endraw %}
