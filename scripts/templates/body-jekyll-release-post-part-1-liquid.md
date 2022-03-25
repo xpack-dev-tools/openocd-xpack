@@ -8,8 +8,11 @@ the latest upstream master."
 
 summary: "Version **{{ RELEASE_VERSION }}** is a new release; it follows the upstream release."
 
-version: {{ RELEASE_VERSION }}
-npm_subversion: 1
+version: "{{ RELEASE_VERSION }}"
+npm_subversion: "1"
+upstream_version: "0.11.0"
+upstream_commit: "92c4e634d7bb9d3fb27d9a0ca332925c7318a574"
+upstream_release_date: "Mar 19th, 2022"
 download_url: https://github.com/xpack-dev-tools/openocd-xpack/releases/tag/v{{ RELEASE_VERSION }}/
 
 date:   {{ RELEASE_DATE }}
@@ -122,9 +125,9 @@ The current version is based on:
 
 TODO: update commit id and date.
 
-- OpenOCD version 0.11.0, the development commit
-[<xxxxxxx>](https://github.com/xpack-dev-tools/openocd/commit/<xxxxxxxxxxxxx>)
-from <ddddddddd>.
+- OpenOCD version {% raw %}{{ page.upstream_version }}{% endraw %}, the development commit
+[{% raw %}{{ page.upstream_commit }}{% endraw %}](https://github.com/xpack-dev-tools/openocd/commit/{% raw %}{{ page.upstream_commit }}{% endraw %}/)
+from {% raw %}{{ page.upstream_release_date }}{% endraw %}.
 
 ## Changes
 
