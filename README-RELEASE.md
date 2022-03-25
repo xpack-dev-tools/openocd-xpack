@@ -256,7 +256,7 @@ Then it is possible to start openocd:
 
 ```console
 $ .../xpack-openocd-0.11.0-4/bin/openocd -f "board/stm32f4discovery.cfg"
-xPack OpenOCD x86_64 Open On-Chip Debugger 0.11.0+dev-00359-g18bcdc43f (2021-08-29-16:57)
+xPack OpenOCD x86_64 Open On-Chip Debugger 0.11.0+dev (2022-03-25-19:23)
 Licensed under GNU GPL v2
 For bug reports, read
 	http://openocd.org/doc/doxygen/bugs.html
