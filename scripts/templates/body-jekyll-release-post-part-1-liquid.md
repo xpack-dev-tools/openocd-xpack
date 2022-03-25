@@ -184,7 +184,9 @@ relative path.
 
 ## Documentation
 
-The original documentation is available in the `share/doc` folder.
+The original documentation is available online:
+
+- <https://openocd.org/doc/pdf/openocd.pdf>
 
 ## Build
 
