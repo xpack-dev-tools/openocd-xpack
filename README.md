@@ -24,7 +24,7 @@ The binaries can be installed automatically as **binary xPacks** or manually as
 
 ## Release schedule
 
-This distribution generally follows the official 
+This distribution generally follows the official
 [OpenOCD](http://openocd.org), with
 additional releases based on the current Git form time to time.
 
@@ -124,12 +124,12 @@ The version strings used by the GCC project are three number string
 like `0.11.0`; to this string the xPack distribution adds a four number,
 but since semver allows only three numbers, all additional ones can
 be added only as pre-release strings, separated by a dash,
-like `0.11.0-3`. When published as a npm package, the version gets
-a fifth number, like `0.11.0-3.1`.
+like `0.11.0-4`. When published as a npm package, the version gets
+a fifth number, like `0.11.0-4.1`.
 
 Since adherance of third party packages to semver is not guaranteed,
 it is recommended to use semver expressions like `^0.11.0` and `~0.11.0`
-with caution, and prefer exact matches, like `0.11.0-3.1`.
+with caution, and prefer exact matches, like `0.11.0-4.1`.
 
 ### Windows drivers
 

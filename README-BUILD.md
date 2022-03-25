@@ -111,7 +111,7 @@ not be accepted by bash.
 
 ## Versioning
 
-The version string is an extension to semver, the format looks like `0.11.0-3`.
+The version string is an extension to semver, the format looks like `0.11.0-4`.
 It includes the three digits with the original OpenOCD version and a fourth
 digit with the xPack release number.
 
@@ -214,10 +214,10 @@ archives and their SHA signatures, created in the `deploy` folder:
 ```console
 $ ls -l ~/Work/openocd-*/deploy
 total 13248
--rw-rw-rw- 1 ilg ilg 3601358 Jun 10 13:45 xpack-openocd-0.11.0-3-linux-x64.tar.gz
--rw-rw-rw- 1 ilg ilg     107 Jun 10 13:45 xpack-openocd-0.11.0-3-linux-x64.tar.gz.sha
--rw-rw-rw- 1 ilg ilg 3133169 Jun 10 13:51 xpack-openocd-0.11.0-3-win32-x64.zip
--rw-rw-rw- 1 ilg ilg     104 Jun 10 13:51 xpack-openocd-0.11.0-3-win32-x64.zip.sha
+-rw-rw-rw- 1 ilg ilg 3601358 Jun 10 13:45 xpack-openocd-0.11.0-4-linux-x64.tar.gz
+-rw-rw-rw- 1 ilg ilg     107 Jun 10 13:45 xpack-openocd-0.11.0-4-linux-x64.tar.gz.sha
+-rw-rw-rw- 1 ilg ilg 3133169 Jun 10 13:51 xpack-openocd-0.11.0-4-win32-x64.zip
+-rw-rw-rw- 1 ilg ilg     104 Jun 10 13:51 xpack-openocd-0.11.0-4-win32-x64.zip.sha
 ```
 
 ### Build the Arm GNU/Linux binaries
@@ -284,10 +284,10 @@ archives and their SHA signatures, created in the `deploy` folder:
 ```console
 $ ls -l ~/Work/openocd-*/deploy
 total 7120
--rw-rw-rw- 1 ilg ilg 3632743 Mar 26 15:25 xpack-openocd-0.11.0-3-linux-arm64.tar.gz
--rw-rw-rw- 1 ilg ilg     109 Mar 26 15:25 xpack-openocd-0.11.0-3-linux-arm64.tar.gz.sha
--rw-rw-rw- 1 ilg ilg 3646739 Mar 26 15:50 xpack-openocd-0.11.0-3-linux-arm.tar.gz
--rw-rw-rw- 1 ilg ilg     107 Mar 26 15:50 xpack-openocd-0.11.0-3-linux-arm.tar.gz.sha
+-rw-rw-rw- 1 ilg ilg 3632743 Mar 26 15:25 xpack-openocd-0.11.0-4-linux-arm64.tar.gz
+-rw-rw-rw- 1 ilg ilg     109 Mar 26 15:25 xpack-openocd-0.11.0-4-linux-arm64.tar.gz.sha
+-rw-rw-rw- 1 ilg ilg 3646739 Mar 26 15:50 xpack-openocd-0.11.0-4-linux-arm.tar.gz
+-rw-rw-rw- 1 ilg ilg     107 Mar 26 15:50 xpack-openocd-0.11.0-4-linux-arm.tar.gz.sha
 ```
 
 ### Build the macOS binaries
@@ -331,8 +331,8 @@ archive and its SHA signature, created in the `deploy` folder:
 ```console
 $ ls -l ~/Work/openocd-*/deploy
 total 5536
--rw-r--r--  1 ilg  staff  2828202 Jun 10 17:44 xpack-openocd-0.11.0-3-darwin-x64.tar.gz
--rw-r--r--  1 ilg  staff      108 Jun 10 17:44 xpack-openocd-0.11.0-3-darwin-x64.tar.gz.sha
+-rw-r--r--  1 ilg  staff  2828202 Jun 10 17:44 xpack-openocd-0.11.0-4-darwin-x64.tar.gz
+-rw-r--r--  1 ilg  staff      108 Jun 10 17:44 xpack-openocd-0.11.0-4-darwin-x64.tar.gz.sha
 ```
 
 ## Subsequent runs
@@ -422,7 +422,7 @@ program from there. For example on macOS the output should
 look like:
 
 ```console
-$ .../xpack-openocd-0.11.0-3/bin/openocd --version
+$ .../xpack-openocd-0.11.0-4/bin/openocd --version
 xPack OpenOCD x86_64 Open On-Chip Debugger 0.11.0+dev-00359-g18bcdc43f (2021-09-16-13:58)
 Licensed under GNU GPL v2
 For bug reports, read
@@ -435,8 +435,8 @@ After install, the package should create a structure like this (macOS files;
 only the first two depth levels are shown):
 
 ```console
-$ tree -L 2 /Users/ilg/Library/xPacks/\@xpack-dev-tools/openocd/0.11.0-3.1/.content/
-/Users/ilg/Library/xPacks/\@xpack-dev-tools/openocd/0.11.0-3.1/.content/
+$ tree -L 2 /Users/ilg/Library/xPacks/\@xpack-dev-tools/openocd/0.11.0-4.1/.content/
+/Users/ilg/Library/xPacks/\@xpack-dev-tools/openocd/0.11.0-4.1/.content/
 ├── OpenULINK
 │   └── ulink_firmware.hex
 ├── README.md

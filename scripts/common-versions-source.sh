@@ -20,16 +20,23 @@ function build_versions()
   # bfdver.h file remains empty.
   BRANDING="${DISTRO_NAME} ${APP_NAME} ${TARGET_MACHINE}"
 
+  OPENOCD_VERSION="${RELEASE_VERSION}"
+
   OPENOCD_PROJECT_NAME="openocd"
   OPENOCD_GIT_COMMIT=${OPENOCD_GIT_COMMIT:-""}
 
   OPENOCD_SRC_FOLDER_NAME=${OPENOCD_SRC_FOLDER_NAME:-"${OPENOCD_PROJECT_NAME}.git"}
   OPENOCD_GIT_URL=${OPENOCD_GIT_URL:-"https://github.com/xpack-dev-tools/openocd.git"}
 
+  # Used in the licenses folder.
+  OPENOCD_FOLDER_NAME="openocd-${OPENOCD_VERSION}"
+
+  OPENOCD_GIT_BRANCH=${OPENOCD_GIT_BRANCH:-"xpack"}
+  # OPENOCD_GIT_BRANCH=${OPENOCD_GIT_BRANCH:-"xpack-develop"}
+  OPENOCD_GIT_COMMIT=${OPENOCD_GIT_COMMIT:-"v${OPENOCD_VERSION}-xpack"}
+
   LIBFTDI_PATCH=""
   LIBUSB_W32_PATCH=""
-
-  OPENOCD_VERSION="${RELEASE_VERSION}"
 
   if [ "${TARGET_PLATFORM}" == "win32" ]
   then
@@ -37,7 +44,33 @@ function build_versions()
   fi
 
   # Keep them in sync with combo archive content.
-  if [[ "${RELEASE_VERSION}" =~ 0\.11\.0-[3] ]]
+  if [[ "${RELEASE_VERSION}" =~ 0\.11\.0-[4] ]]
+  then
+    (
+      xbb_activate
+
+      # -------------------------------------------------------------------------
+
+      build_libusb1 "1.0.24"
+      if [ "${TARGET_PLATFORM}" == "win32" ]
+      then
+        build_libusb_w32 "1.2.6.0"
+      else
+        build_libusb0 "0.1.5"
+      fi
+
+      build_libftdi "1.5"
+
+      build_libiconv "1.16"
+
+      build_hidapi "0.10.1" # PATCH!
+
+      # -------------------------------------------------------------------------
+
+      build_openocd
+    )
+    # -------------------------------------------------------------------------
+  elif [[ "${RELEASE_VERSION}" =~ 0\.11\.0-[3] ]]
   then
     (
       xbb_activate
