@@ -34,7 +34,9 @@ jobs:
   macos-x64:
     name: 'macOS Intel - OpenOCD ${{ github.event.inputs.version }} build'
     timeout-minutes: 2880 # 2 days
+
     runs-on: [self-hosted, macos, intel]
+
     steps:
       - name: 'Machine'
         run: uname -a

@@ -51,24 +51,6 @@ jobs:
         run: bash scripts/helper/tests/native-test.sh --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
 
   
-  linux-ia32:
-    name: 'Linux ia32 OpenOCD ${{ github.event.inputs.version }} test'
-    runs-on: ubuntu-latest
-    steps:
-      - name: 'Machine'
-        run: uname -a
-      - name: 'Checkout'
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 3
-          submodules: true
-      - name: 'Run ${{ github.event.inputs.version }} docker test'
-        uses: docker://i386/debian:buster
-        with:
-          entrypoint: /usr/bin/linux32
-          args: /bin/bash /github/workspace/scripts/helper/tests/native-test.sh --image i386/debian:buster --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
-
-  
   linux-arm64:
     name: 'Linux arm64 OpenOCD ${{ github.event.inputs.version }} test'
     runs-on: [self-hosted, linux, arm64]
@@ -153,20 +135,6 @@ jobs:
       - name: 'Run ${{ github.event.inputs.version }} native test'
         run: bash scripts/helper/tests/native-test.sh --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
 
-  
-  windows-ia32:
-    name: 'Windows ia32 OpenOCD ${{ github.event.inputs.version }} test'
-    runs-on: windows-latest
-    steps:
-      - name: 'Machine'
-        run: uname -a
-      - name: 'Checkout'
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 3
-          submodules: true
-      - name: 'Run ${{ github.event.inputs.version }} native test'
-        run: bash scripts/helper/tests/native-test.sh --32 --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
   
 
 # -----------------------------------------------------------------------------

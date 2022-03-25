@@ -34,7 +34,9 @@ jobs:
   macos-arm64:
     name: 'macOS Arm - OpenOCD ${{ github.event.inputs.version }} build'
     timeout-minutes: 2880 # 2 days
+
     runs-on: [self-hosted, macos, apple]
+
     defaults:
       run:
         shell: "/usr/bin/arch -arch arm64e /bin/bash -l {0}"

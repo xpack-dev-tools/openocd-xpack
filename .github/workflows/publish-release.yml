@@ -54,7 +54,7 @@ jobs:
           allowUpdates: true
           artifacts: '~/Work/openocd-${{ github.event.inputs.version }}/deploy/*'
           bodyFile: '.github/workflows/body-github-release.md'
-          commit: 'master'
+          commit: 'xpack-develop'
           draft: true
           name: 'xPack OpenOCD v${{ github.event.inputs.version }}'
           omitBodyDuringUpdate: true
@@ -93,7 +93,7 @@ jobs:
           allowUpdates: true
           artifacts: '~/Work/openocd-${{ github.event.inputs.version }}/deploy/*'
           bodyFile: '.github/workflows/body-github-release.md'
-          commit: 'master'
+          commit: 'xpack-develop'
           draft: true
           name: 'xPack OpenOCD v${{ github.event.inputs.version }}'
           omitBodyDuringUpdate: true
@@ -111,7 +111,9 @@ jobs:
 
   macos-x64:
     name: 'macOS Intel - OpenOCD ${{ github.event.inputs.version }} publish release'
+
     runs-on: [self-hosted, macos, intel]
+
     steps:
       - name: 'Machine'
         run: uname -a
@@ -132,7 +134,7 @@ jobs:
           allowUpdates: true
           artifacts: '~/Work/openocd-${{ github.event.inputs.version }}/deploy/*'
           bodyFile: '.github/workflows/body-github-release.md'
-          commit: 'master'
+          commit: 'xpack-develop'
           draft: true
           name: 'xPack OpenOCD v${{ github.event.inputs.version }}'
           omitBodyDuringUpdate: true
@@ -150,7 +152,9 @@ jobs:
 
   macos-arm64:
     name: 'macOS Arm - OpenOCD ${{ github.event.inputs.version }} publish release'
+
     runs-on: [self-hosted, macos, apple]
+
     defaults:
       run:
         shell: "/usr/bin/arch -arch arm64e /bin/bash -l {0}"
@@ -176,7 +180,7 @@ jobs:
           allowUpdates: true
           artifacts: '~/Work/openocd-${{ github.event.inputs.version }}/deploy/*'
           bodyFile: '.github/workflows/body-github-release.md'
-          commit: 'master'
+          commit: 'xpack-develop'
           draft: true
           name: 'xPack OpenOCD v${{ github.event.inputs.version }}'
           omitBodyDuringUpdate: true
