@@ -67,6 +67,7 @@ jobs:
           draft: false
           name: 'Test binaries'
           omitBodyDuringUpdate: true
+          omitDraftDuringUpdate: true
           omitNameDuringUpdate: true
           owner: 'xpack-dev-tools'
           prerelease: true

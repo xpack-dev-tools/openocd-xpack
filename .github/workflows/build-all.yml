@@ -67,6 +67,7 @@ jobs:
           draft: false
           name: 'Test binaries'
           omitBodyDuringUpdate: true
+          omitDraftDuringUpdate: true
           omitNameDuringUpdate: true
           owner: 'xpack-dev-tools'
           prerelease: true
@@ -78,9 +79,9 @@ jobs:
 
 
   linux-arm64:
-    name: 'Linux Arm - OpenOCD ${{ github.event.inputs.version }} build'
+    name: 'Linux Arm 32 - OpenOCD ${{ github.event.inputs.version }} build'
     timeout-minutes: 2880 # 2 days
-    runs-on: [self-hosted, linux, arm64]
+    runs-on: [self-hosted, linux, arm, xbbla32]
     steps:
       - name: 'Machine'
         run: uname -a
@@ -93,15 +94,9 @@ jobs:
 
       - name: 'Clean working area'
         run: rm -rf ~/Work/openocd-${{ github.event.inputs.version }}*
-
-      - name: 'Build Linux arm64 binary'
-        timeout-minutes: 1440
-        run: bash scripts/helper/build.sh --version "${{ github.event.inputs.version }}" --arm64
-   
       - name: 'Build Linux arm32 binary'
         timeout-minutes: 1440
         run: bash scripts/helper/build.sh --version "${{ github.event.inputs.version }}" --arm32
-  
       - name: 'Publish pre-release'
         # https://github.com/ncipollo/release-action
         uses: ncipollo/release-action@v1
@@ -113,6 +108,49 @@ jobs:
           draft: false
           name: 'Test binaries'
           omitBodyDuringUpdate: true
+          omitDraftDuringUpdate: true
+          omitNameDuringUpdate: true
+          owner: 'xpack-dev-tools'
+          prerelease: true
+          replacesArtifacts: true
+          repo: 'pre-releases'
+          tag: 'test'
+          token: ${{ secrets.PUBLISH_TOKEN }}
+
+
+
+  linux-arm64:
+    name: 'Linux Arm 64 - OpenOCD ${{ github.event.inputs.version }} build'
+    timeout-minutes: 2880 # 2 days
+    runs-on: [self-hosted, linux, arm64, xbbla64]
+    steps:
+      - name: 'Machine'
+        run: uname -a
+
+      - name: 'Checkout'
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 3
+          submodules: true
+
+      - name: 'Clean working area'
+        run: rm -rf ~/Work/openocd-${{ github.event.inputs.version }}*
+      - name: 'Build Linux arm64 binary'
+        timeout-minutes: 1440
+        run: bash scripts/helper/build.sh --version "${{ github.event.inputs.version }}" --arm64
+
+      - name: 'Publish pre-release'
+        # https://github.com/ncipollo/release-action
+        uses: ncipollo/release-action@v1
+        with:
+          allowUpdates: true
+          artifacts: '~/Work/openocd-${{ github.event.inputs.version }}/deploy/*'
+          bodyFile: '.github/workflows/body-github-pre-releases-test.md'
+          commit: 'master'
+          draft: false
+          name: 'Test binaries'
+          omitBodyDuringUpdate: true
+          omitDraftDuringUpdate: true
           omitNameDuringUpdate: true
           owner: 'xpack-dev-tools'
           prerelease: true
@@ -157,6 +195,7 @@ jobs:
           draft: false
           name: 'Test binaries'
           omitBodyDuringUpdate: true
+          omitDraftDuringUpdate: true
           omitNameDuringUpdate: true
           owner: 'xpack-dev-tools'
           prerelease: true
@@ -205,6 +244,7 @@ jobs:
           draft: false
           name: 'Test binaries'
           omitBodyDuringUpdate: true
+          omitDraftDuringUpdate: true
           omitNameDuringUpdate: true
           owner: 'xpack-dev-tools'
           prerelease: true

@@ -53,7 +53,7 @@ jobs:
   
   linux-arm64:
     name: 'Linux arm64 OpenOCD ${{ github.event.inputs.version }} test'
-    runs-on: [self-hosted, linux, arm64]
+    runs-on: [self-hosted, linux, arm64, xbbla]
     steps:
       - name: 'Machine'
         run: uname -a
@@ -71,7 +71,7 @@ jobs:
   
   linux-arm32:
     name: 'Linux arm32 OpenOCD ${{ github.event.inputs.version }} test'
-    runs-on: [self-hosted, linux, arm64]
+    runs-on: [self-hosted, linux, arm64, xbbla]
     steps:
       - name: 'Machine'
         run: uname -a
