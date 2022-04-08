@@ -71,7 +71,7 @@ jobs:
 
 
 
-  linux-arm64:
+  linux-arm:
     name: 'Linux Arm 32 - OpenOCD ${{ github.event.inputs.version }} publish release'
     runs-on: [self-hosted, linux, arm, xbbla32]
     steps:
