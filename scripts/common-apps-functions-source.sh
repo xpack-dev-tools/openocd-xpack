@@ -15,13 +15,13 @@
 
 function download_openocd()
 {
-  if [ ! -d "${WORK_FOLDER_PATH}/${OPENOCD_SRC_FOLDER_NAME}" ]
+  if [ ! -d "${SOURCES_FOLDER_PATH}/${OPENOCD_SRC_FOLDER_NAME}" ]
   then
     (
-      cd "${WORK_FOLDER_PATH}"
+      cd "${SOURCES_FOLDER_PATH}"
       git_clone "${OPENOCD_GIT_URL}" "${OPENOCD_GIT_BRANCH}" \
           "${OPENOCD_GIT_COMMIT}" "${OPENOCD_SRC_FOLDER_NAME}"
-      cd "${WORK_FOLDER_PATH}/${OPENOCD_SRC_FOLDER_NAME}"
+      cd "${SOURCES_FOLDER_PATH}/${OPENOCD_SRC_FOLDER_NAME}"
       git submodule update --init --recursive --remote
     )
   fi
@@ -44,7 +44,7 @@ function build_openocd()
       xbb_activate_installed_dev
 
 
-      cd "${WORK_FOLDER_PATH}/${OPENOCD_SRC_FOLDER_NAME}"
+      cd "${SOURCES_FOLDER_PATH}/${OPENOCD_SRC_FOLDER_NAME}"
       (
         if [ ! -d "autom4te.cache" ]
         then
@@ -78,7 +78,7 @@ function build_openocd()
 
         # May be required for repetitive builds, because this is an executable built
         # in place and using one for a different architecture may not be a good idea.
-        rm -rfv "${WORK_FOLDER_PATH}/${OPENOCD_SRC_FOLDER_NAME}/jimtcl/autosetup/jimsh0"
+        rm -rfv "${SOURCES_FOLDER_PATH}/${OPENOCD_SRC_FOLDER_NAME}/jimtcl/autosetup/jimsh0"
 
         (
           if [ "${IS_DEVELOP}" == "y" ]
@@ -91,7 +91,7 @@ function build_openocd()
 
           if [ "${IS_DEVELOP}" == "y" ]
           then
-            bash "${WORK_FOLDER_PATH}/${OPENOCD_SRC_FOLDER_NAME}/configure" --help
+            bash "${SOURCES_FOLDER_PATH}/${OPENOCD_SRC_FOLDER_NAME}/configure" --help
           fi
 
           config_options=()
@@ -234,7 +234,7 @@ function build_openocd()
 
           fi
 
-          run_verbose bash ${DEBUG} "${WORK_FOLDER_PATH}/${OPENOCD_SRC_FOLDER_NAME}/configure" \
+          run_verbose bash ${DEBUG} "${SOURCES_FOLDER_PATH}/${OPENOCD_SRC_FOLDER_NAME}/configure" \
             "${config_options[@]}"
 
           cp "config.log" "${LOGS_FOLDER_PATH}/${openocd_folder_name}/config-log-$(ndate).txt"
@@ -280,7 +280,7 @@ function build_openocd()
       ) 2>&1 | tee "${LOGS_FOLDER_PATH}/${openocd_folder_name}/make-output-$(ndate).txt"
 
       copy_license \
-        "${WORK_FOLDER_PATH}/${OPENOCD_SRC_FOLDER_NAME}" \
+        "${SOURCES_FOLDER_PATH}/${OPENOCD_SRC_FOLDER_NAME}" \
         "${OPENOCD_FOLDER_NAME}"
     )
 
