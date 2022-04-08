@@ -78,7 +78,7 @@ jobs:
 
 
 
-  linux-arm64:
+  linux-arm:
     name: 'Linux Arm 32 - OpenOCD ${{ github.event.inputs.version }} build'
     timeout-minutes: 2880 # 2 days
     runs-on: [self-hosted, linux, arm, xbbla32]
