@@ -51,18 +51,25 @@ function build_versions()
 
       # -------------------------------------------------------------------------
 
+      # https://github.com/libusb/libusb/releases
       build_libusb1 "1.0.24"
+
       if [ "${TARGET_PLATFORM}" == "win32" ]
       then
+        # https://sourceforge.net/projects/libusb-win32/files/libusb-win32-releases/
         build_libusb_w32 "1.2.6.0"
       else
+        # https://sourceforge.net/projects/libusb/files/libusb-compat-0.1/
         build_libusb0 "0.1.5"
       fi
 
+      # http://www.intra2net.com/en/developer/libftdi/download.php
       build_libftdi "1.5"
 
+      # https://ftp.gnu.org/pub/gnu/libiconv/
       build_libiconv "1.16"
 
+      # https://github.com/libusb/hidapi/releases
       build_hidapi "0.10.1" # PATCH!
 
       # -------------------------------------------------------------------------
