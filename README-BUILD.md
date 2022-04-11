@@ -194,14 +194,14 @@ network connection or a computer entering sleep.
 ```sh
 screen -S openocd
 
-sudo rm -rf ~/Work/openocd-*
+sudo rm -rf ~/Work/openocd-*-*
 bash ${HOME}/Work/openocd-xpack.git/scripts/helper/build.sh --develop --all
 ```
 
 or, for development builds:
 
 ```sh
-sudo rm -rf ~/Work/openocd-*
+sudo rm -rf ~/Work/openocd-*-*
 bash ${HOME}/Work/openocd-xpack.git/scripts/helper/build.sh --develop --without-pdf --without-html --disable-tests --linux64 --win64
 ```
 
@@ -212,7 +212,7 @@ About 20 minutes later, the output of the build script is a set of 4
 archives and their SHA signatures, created in the `deploy` folder:
 
 ```console
-$ ls -l ~/Work/openocd-*/deploy
+$ ls -l ~/Work/openocd-*-*/deploy
 total 13248
 -rw-rw-rw- 1 ilg ilg 3601358 Jun 10 13:45 xpack-openocd-0.11.0-4-linux-x64.tar.gz
 -rw-rw-rw- 1 ilg ilg     107 Jun 10 13:45 xpack-openocd-0.11.0-4-linux-x64.tar.gz.sha
@@ -264,14 +264,14 @@ network connection or a computer entering sleep.
 ```sh
 screen -S openocd
 
-sudo rm -rf ~/Work/openocd-*
+sudo rm -rf ~/Work/openocd-*-*
 bash ${HOME}/Work/openocd-xpack.git/scripts/helper/build.sh --develop --all
 ```
 
 or, for development builds:
 
 ```sh
-sudo rm -rf ~/Work/openocd-*
+sudo rm -rf ~/Work/openocd-*-*
 bash ${HOME}/Work/openocd-xpack.git/scripts/helper/build.sh --develop --without-pdf --without-html --disable-tests --arm64 --arm32
 ```
 
@@ -282,7 +282,7 @@ About 50 minutes later, the output of the build script is a set of 2
 archives and their SHA signatures, created in the `deploy` folder:
 
 ```console
-$ ls -l ~/Work/openocd-*/deploy
+$ ls -l ~/Work/openocd-*-*/deploy
 total 7120
 -rw-rw-rw- 1 ilg ilg 3632743 Mar 26 15:25 xpack-openocd-0.11.0-4-linux-arm64.tar.gz
 -rw-rw-rw- 1 ilg ilg     109 Mar 26 15:25 xpack-openocd-0.11.0-4-linux-arm64.tar.gz.sha
@@ -310,7 +310,7 @@ To build the latest macOS version:
 ```sh
 screen -S openocd
 
-rm -rf ~/Work/openocd-*
+rm -rf ~/Work/openocd-*-*
 caffeinate bash ${HOME}/Work/openocd-xpack.git/scripts/helper/build.sh --develop --macos
 ```
 
@@ -329,7 +329,7 @@ Several minutes later, the output of the build script is a compressed
 archive and its SHA signature, created in the `deploy` folder:
 
 ```console
-$ ls -l ~/Work/openocd-*/deploy
+$ ls -l ~/Work/openocd-*-*/deploy
 total 5536
 -rw-r--r--  1 ilg  staff  2828202 Jun 10 17:44 xpack-openocd-0.11.0-4-darwin-x64.tar.gz
 -rw-r--r--  1 ilg  staff      108 Jun 10 17:44 xpack-openocd-0.11.0-4-darwin-x64.tar.gz.sha
@@ -377,7 +377,7 @@ will remove the more specific folders.
 For production builds it is recommended to **completely remove the build folder**:
 
 ```sh
-rm -rf ~/Work/openocd-*
+rm -rf ~/Work/openocd-*-*
 ```
 
 ### `--develop`
