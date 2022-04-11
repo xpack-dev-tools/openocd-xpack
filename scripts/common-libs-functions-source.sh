@@ -241,7 +241,7 @@ function build_libusb0()
 }
 
 # Required by Windows.
-function build_libusb_w32()
+function _build_libusb_w32()
 {
   # https://sourceforge.net/projects/libusb-win32/files/libusb-win32-releases/
   # 2012-01-17, 1.2.6.0
@@ -481,8 +481,6 @@ function build_libftdi()
 
 function build_hidapi()
 {
-  # https://github.com/signal11/hidapi/downloads
-
   # Oct 26, 2011, "0.7.0"
 
   # https://github.com/signal11/hidapi/archive/hidapi-0.8.0-rc1.zip
@@ -493,6 +491,9 @@ function build_hidapi()
   # Jun 19 2019 "hidapi-0.9.0", maintained releases by libusb
 
   # Nov 24, 2020, 0.10.1
+  # 27 Sep 2021, "0.11.0"
+  # 23 Dec 2021, "0.11.1"
+  # 3 Jan, 2022, "0.11.2"
 
   local hidapi_version="$1"
 
