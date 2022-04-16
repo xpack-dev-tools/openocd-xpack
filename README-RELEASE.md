@@ -116,14 +116,18 @@ Similarly on the Intel Linux (`xbbmli`):
 ```sh
 bash ${HOME}/Work/openocd-xpack.git/scripts/helper/build.sh --develop --linux64
 
-
 bash ${HOME}/Work/openocd-xpack.git/scripts/helper/build.sh --develop --win64
 ```
 
-And on the Arm Linux (`xbbmla`):
+... on the Arm Linux 64-bit (`xbbmla64`):
 
 ```sh
 bash ${HOME}/Work/openocd-xpack.git/scripts/helper/build.sh --develop --arm64
+```
+
+... and on the Arm Linux 32-bit (`xbbmla32`):
+
+```sh
 bash ${HOME}/Work/openocd-xpack.git/scripts/helper/build.sh --develop --arm32
 ```
 

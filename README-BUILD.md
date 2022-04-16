@@ -227,9 +227,9 @@ The supported Arm architectures are:
 - `armhf` for 32-bit devices
 - `aarch64` for 64-bit devices
 
-The current platform for Arm GNU/Linux production builds is a
-Raspberry Pi OS 10, running on a Raspberry Pi Compute Module 4, with
-8 GB of RAM and 256 GB of fast M.2 SSD. The machine name is `xbbmla`.
+The current platform for Arm GNU/Linux production builds is Raspberry Pi OS,
+running on a pair of Raspberry Pi4s, for separate 64/32 binaries.
+The machine names are `xbbla64` and `xbbla32`.
 
 ```sh
 caffeinate ssh xbbmla
