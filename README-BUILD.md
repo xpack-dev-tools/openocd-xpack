@@ -317,7 +317,7 @@ caffeinate bash ${HOME}/Work/openocd-xpack.git/scripts/helper/build.sh --develop
 or, for development builds:
 
 ```sh
-rm -rf ~/Work/openocd-arm-*
+rm -rf ~/Work/openocd-arm-*-*
 caffeinate bash ${HOME}/Work/openocd-xpack.git/scripts/helper/build.sh --develop --without-pdf --without-html --disable-tests --macos
 ```
 

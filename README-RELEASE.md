@@ -106,7 +106,7 @@ Before the real build, run a test build on the development machine (`wks`)
 or the production machines (`xbbma`, `xbbmi`):
 
 ```sh
-sudo rm -rf ~/Work/openocd-0.11.0-4-*
+sudo rm -rf ~/Work/openocd-*-*
 
 caffeinate bash ${HOME}/Work/openocd-xpack.git/scripts/helper/build.sh --develop --macos
 ```
