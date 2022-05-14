@@ -95,7 +95,8 @@
         "cat scripts/helper/templates/test-docker-linux-intel-liquid.yml | {{ properties.LIQUIDJS }} > .github/workflows/test-docker-linux-intel.yml",
         "cat scripts/helper/templates/test-docker-linux-arm-liquid.yml | {{ properties.LIQUIDJS }} > .github/workflows/test-docker-linux-arm.yml",
         "cat scripts/helper/templates/publish-release-liquid.yml | {{ properties.LIQUIDJS }} > .github/workflows/publish-release.yml",
-        "cat scripts/helper/templates/test-xpm-liquid.yml | {{ properties.LIQUIDJS }} > .github/workflows/test-xpm.yml"
+        "cat scripts/helper/templates/test-xpm-liquid.yml | {{ properties.LIQUIDJS }} > .github/workflows/test-xpm.yml",
+        "cat scripts/helper/templates/deep-clean-liquid.yml | {{ properties.LIQUIDJS }} > .github/workflows/deep-clean.yml"
       ],
       "trigger-workflow-build-all": "bash scripts/helper/trigger-workflow-build.sh",
       "trigger-workflow-build-xbbli": "bash scripts/helper/trigger-workflow-build.sh --machine xbbli",
@@ -110,7 +111,8 @@
       "trigger-workflow-publish-release": "bash scripts/helper/trigger-workflow-publish-release.sh",
       "generate-jekyll-post": "bash scripts/helper/generate-jekyll-post.sh",
       "update-package-binaries": "bash scripts/helper/update-package-binaries.sh",
-      "trigger-workflow-test-xpm": "bash scripts/helper/tests/trigger-workflow-test-xpm.sh"
+      "trigger-workflow-test-xpm": "bash scripts/helper/tests/trigger-workflow-test-xpm.sh",
+      "trigger-workflow-deep-clean": "bash scripts/helper/trigger-workflow-deep-clean.sh"
     }
   },
   "bundleDependencies": [],
