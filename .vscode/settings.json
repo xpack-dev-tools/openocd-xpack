@@ -8,5 +8,21 @@
   "spellright.language": [
     "en_GB"
   ],
-  "spellright.notificationClass": "warning"
+  "spellright.notificationClass": "warning",
+  "cSpell.ignoreWords": [
+    "LIBFTDI",
+    "LIBUSB",
+    "NSIS",
+    "bitbang",
+    "getsockname",
+    "gnuarmeclipse",
+    "npmjs",
+    "oocd",
+    "openocd",
+    "raggedright",
+    "resexit",
+    "riscv",
+    "sifive",
+    "texi"
+  ]
 }
