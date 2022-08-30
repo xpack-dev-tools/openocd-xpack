@@ -286,5 +286,5 @@ more easily identify this custom version.
 
 Update the logic used to locate the 'scripts' folder, by
 using the argv[0], as on Windows. The logic is a bit more
-complicated, to accomodate 3 cases (no path, relative path
+complicated, to accommodate 3 cases (no path, relative path
 and absolute path).
