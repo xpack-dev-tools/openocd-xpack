@@ -75,7 +75,7 @@ The central xPacks store is a platform dependent
 folder; check the output of the `xpm` command for the actual
 folder used on your platform).
 This location is configurable via the environment variable
-`XPACKS_REPO_FOLDER`; for more details please check the
+`XPACKS_STORE_FOLDER`; for more details please check the
 [xpm folders](https://xpack.github.io/xpm/folders/) page.
 
 For xPacks aware tools, like the **Eclipse Embedded C/C++ plug-ins**,
