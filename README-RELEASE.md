@@ -79,7 +79,7 @@ in the `xpack-dev-tools/openocd` Git repo:
 - check the `jimtcl` submodule commit ID
 - checkout `xpack-develop`
 - merge `master`
-- fix conflicts (in `60-openocd.rules` and possibly other)
+- fix conflicts (in `contrib/60-openocd.rules` and possibly other)
 - fix the `jimtcl` submodule reference
 - checkout `xpack`
 - merge `xpack-develop`
