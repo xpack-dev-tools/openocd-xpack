@@ -11,8 +11,8 @@ summary: "Version **{{ RELEASE_VERSION }}** is a new release; it follows the ups
 version: "{{ RELEASE_VERSION }}"
 npm_subversion: "1"
 upstream_version: "0.11.0"
-upstream_commit: "92c4e634d7bb9d3fb27d9a0ca332925c7318a574"
-upstream_release_date: "Mar 19th, 2022"
+upstream_commit: "6db57051d070fc8d6bb54d21413e5e8610972651"
+upstream_release_date: "21 Aug 2022"
 download_url: https://github.com/xpack-dev-tools/openocd-xpack/releases/tag/v{{ RELEASE_VERSION }}/
 
 date:   {{ RELEASE_DATE }}
@@ -123,8 +123,6 @@ The xPack OpenOCD generally follows the official
 [OpenOCD](http://openocd.org) releases.
 
 The current version is based on:
-
-TODO: update commit id and date.
 
 - OpenOCD version {% raw %}{{ page.upstream_version }}{% endraw %}, the development commit
 [{% raw %}{{ page.upstream_commit }}{% endraw %}](https://github.com/xpack-dev-tools/openocd/commit/{% raw %}{{ page.upstream_commit }}{% endraw %}/)
