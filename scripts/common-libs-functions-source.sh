@@ -21,6 +21,7 @@ function build_libusb1()
   # 2015-09-14, 1.0.20
   # 2018-03-25, 1.0.22
   # 2020-12-11, 1.0.24
+  # 2022-04-10, "1.0.26"
 
   local libusb1_version="$1"
 
@@ -494,6 +495,7 @@ function build_hidapi()
   # 27 Sep 2021, "0.11.0"
   # 23 Dec 2021, "0.11.1"
   # 3 Jan, 2022, "0.11.2"
+  # 25 May 2022, "0.12.0"
 
   local hidapi_version="$1"
 
