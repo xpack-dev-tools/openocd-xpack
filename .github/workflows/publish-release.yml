@@ -30,10 +30,9 @@ on:
         default: 'current'
 
 jobs:
-
-  linux-x64:
-    name: 'Linux Intel - OpenOCD ${{ github.event.inputs.version }} publish release'
-    runs-on: [self-hosted, linux, x64]
+  create-release:
+    name: 'Create the pre-release'
+    runs-on: ubuntu-latest
     steps:
       - name: 'Machine'
         run: uname -a
@@ -51,8 +50,7 @@ jobs:
         # https://github.com/ncipollo/release-action
         uses: ncipollo/release-action@v1
         with:
-          allowUpdates: true
-          artifacts: '~/Work/openocd-${{ github.event.inputs.version }}/deploy/*'
+          allowUpdates: false
           bodyFile: '.github/workflows/body-github-release.md'
           commit: 'xpack-develop'
           draft: true
@@ -60,9 +58,37 @@ jobs:
           omitBodyDuringUpdate: true
           omitDraftDuringUpdate: true
           omitNameDuringUpdate: true
+          omitPrereleaseDuringUpdate: true
           owner: 'xpack-dev-tools'
           prerelease: true
-          replacesArtifacts: true
+          replacesArtifacts: false
+          repo: 'openocd-xpack'
+          tag: 'v${{ github.event.inputs.version }}'
+          token: ${{ secrets.PUBLISH_TOKEN }}
+
+
+  linux-x64:
+    needs: create-release
+    name: 'Linux Intel - OpenOCD ${{ github.event.inputs.version }} publish release'
+    runs-on: [self-hosted, linux, x64]
+    steps:
+      - name: 'Machine'
+        run: uname -a
+      - name: 'Publish release'
+        # https://github.com/ncipollo/release-action
+        uses: ncipollo/release-action@v1
+        with:
+          allowUpdates: true
+          artifacts: '~/Work/openocd-${{ github.event.inputs.version }}/deploy/*'
+          commit: 'xpack-develop'
+          draft: true
+          omitBodyDuringUpdate: true
+          omitDraftDuringUpdate: true
+          omitNameDuringUpdate: true
+          omitPrereleaseDuringUpdate: true
+          owner: 'xpack-dev-tools'
+          prerelease: true
+          replacesArtifacts: false
           repo: 'openocd-xpack'
           tag: 'v${{ github.event.inputs.version }}'
           token: ${{ secrets.PUBLISH_TOKEN }}
@@ -72,37 +98,27 @@ jobs:
 
 
   linux-arm:
+    needs: create-release
     name: 'Linux Arm 32 - OpenOCD ${{ github.event.inputs.version }} publish release'
     runs-on: [self-hosted, linux, arm, xbbla32]
     steps:
       - name: 'Machine'
         run: uname -a
-      - name: 'Checkout'
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 3
-          submodules: true
-      - name: 'Create body'
-        run: |
-          npm install
-          cat scripts/templates/body-github-release-liquid.md | npm run liquidjs --silent -- '{ "RELEASE_VERSION": "${{ github.event.inputs.version }}" }' >.github/workflows/body-github-release.md
-          cat .github/workflows/body-github-release.md
       - name: 'Publish release'
         # https://github.com/ncipollo/release-action
         uses: ncipollo/release-action@v1
         with:
           allowUpdates: true
           artifacts: '~/Work/openocd-${{ github.event.inputs.version }}/deploy/*'
-          bodyFile: '.github/workflows/body-github-release.md'
           commit: 'xpack-develop'
           draft: true
-          name: 'xPack OpenOCD v${{ github.event.inputs.version }}'
           omitBodyDuringUpdate: true
           omitDraftDuringUpdate: true
           omitNameDuringUpdate: true
+          omitPrereleaseDuringUpdate: true
           owner: 'xpack-dev-tools'
           prerelease: true
-          replacesArtifacts: true
+          replacesArtifacts: false
           repo: 'openocd-xpack'
           tag: 'v${{ github.event.inputs.version }}'
           token: ${{ secrets.PUBLISH_TOKEN }}
@@ -112,37 +128,27 @@ jobs:
 
 
   linux-arm64:
+    needs: create-release
     name: 'Linux Arm 64 - OpenOCD ${{ github.event.inputs.version }} publish release'
     runs-on: [self-hosted, linux, arm64, xbbla64]
     steps:
       - name: 'Machine'
         run: uname -a
-      - name: 'Checkout'
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 3
-          submodules: true
-      - name: 'Create body'
-        run: |
-          npm install
-          cat scripts/templates/body-github-release-liquid.md | npm run liquidjs --silent -- '{ "RELEASE_VERSION": "${{ github.event.inputs.version }}" }' >.github/workflows/body-github-release.md
-          cat .github/workflows/body-github-release.md
       - name: 'Publish release'
         # https://github.com/ncipollo/release-action
         uses: ncipollo/release-action@v1
         with:
           allowUpdates: true
           artifacts: '~/Work/openocd-${{ github.event.inputs.version }}/deploy/*'
-          bodyFile: '.github/workflows/body-github-release.md'
           commit: 'xpack-develop'
           draft: true
-          name: 'xPack OpenOCD v${{ github.event.inputs.version }}'
           omitBodyDuringUpdate: true
           omitDraftDuringUpdate: true
           omitNameDuringUpdate: true
+          omitPrereleaseDuringUpdate: true
           owner: 'xpack-dev-tools'
           prerelease: true
-          replacesArtifacts: true
+          replacesArtifacts: false
           repo: 'openocd-xpack'
           tag: 'v${{ github.event.inputs.version }}'
           token: ${{ secrets.PUBLISH_TOKEN }}
@@ -152,6 +158,7 @@ jobs:
 
 
   macos-x64:
+    needs: create-release
     name: 'macOS Intel - OpenOCD ${{ github.event.inputs.version }} publish release'
 
     runs-on: [self-hosted, macos, intel]
@@ -159,32 +166,21 @@ jobs:
     steps:
       - name: 'Machine'
         run: uname -a
-      - name: 'Checkout'
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 3
-          submodules: true
-      - name: 'Create body'
-        run: |
-          npm install
-          cat scripts/templates/body-github-release-liquid.md | npm run liquidjs --silent -- '{ "RELEASE_VERSION": "${{ github.event.inputs.version }}" }' >.github/workflows/body-github-release.md
-          cat .github/workflows/body-github-release.md
       - name: 'Publish release'
         # https://github.com/ncipollo/release-action
         uses: ncipollo/release-action@v1
         with:
           allowUpdates: true
           artifacts: '~/Work/openocd-${{ github.event.inputs.version }}/deploy/*'
-          bodyFile: '.github/workflows/body-github-release.md'
           commit: 'xpack-develop'
           draft: true
-          name: 'xPack OpenOCD v${{ github.event.inputs.version }}'
           omitBodyDuringUpdate: true
           omitDraftDuringUpdate: true
           omitNameDuringUpdate: true
+          omitPrereleaseDuringUpdate: true
           owner: 'xpack-dev-tools'
           prerelease: true
-          replacesArtifacts: true
+          replacesArtifacts: false
           repo: 'openocd-xpack'
           tag: 'v${{ github.event.inputs.version }}'
           token: ${{ secrets.PUBLISH_TOKEN }}
@@ -194,6 +190,7 @@ jobs:
 
 
   macos-arm64:
+    needs: create-release
     name: 'macOS Arm - OpenOCD ${{ github.event.inputs.version }} publish release'
 
     runs-on: [self-hosted, macos, apple]
@@ -206,32 +203,22 @@ jobs:
       - name: 'Machine'
         run: uname -a
 
-      - name: 'Checkout'
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 3
-          submodules: true
-      - name: 'Create body'
-        run: |
-          npm install
-          cat scripts/templates/body-github-release-liquid.md | npm run liquidjs --silent -- '{ "RELEASE_VERSION": "${{ github.event.inputs.version }}" }' >.github/workflows/body-github-release.md
-          cat .github/workflows/body-github-release.md
       - name: 'Publish release'
         # https://github.com/ncipollo/release-action
         uses: ncipollo/release-action@v1
         with:
           allowUpdates: true
           artifacts: '~/Work/openocd-${{ github.event.inputs.version }}/deploy/*'
-          bodyFile: '.github/workflows/body-github-release.md'
           commit: 'xpack-develop'
           draft: true
           name: 'xPack OpenOCD v${{ github.event.inputs.version }}'
           omitBodyDuringUpdate: true
           omitDraftDuringUpdate: true
           omitNameDuringUpdate: true
+          omitPrereleaseDuringUpdate: true
           owner: 'xpack-dev-tools'
           prerelease: true
-          replacesArtifacts: true
+          replacesArtifacts: false
           repo: 'openocd-xpack'
           tag: 'v${{ github.event.inputs.version }}'
           token: ${{ secrets.PUBLISH_TOKEN }}
