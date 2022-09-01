@@ -192,13 +192,13 @@ page.
 
 This command uses the `xpack-develop` branch of this repo.
 
-The builds take about 14 minutes to complete:
+The builds take about 10 minutes to complete:
 
-- `xbbmi`: ? min
-- `xbbma`: ? min
-- `xbbli`: ? min (Windows included)
-- `xbbla64`: ? min
-- `xbbla32`: ? min
+- `xbbmi`: 6 min
+- `xbbma`: 3 min
+- `xbbli`: 5 min (Windows included)
+- `xbbla64`: 8 min
+- `xbbla32`: 8 min
 
 The workflow result and logs are available from the
 [Actions](https://github.com/xpack-dev-tools/openocd-xpack/actions/) page.
@@ -283,7 +283,7 @@ to configure the rights, otherwise LIBUSB will issue the _libusb_open
 failed: LIBUSB_ERROR_ACCESS_ error.
 
 ```sh
-sudo cp ~Downloads/xpack-openocd-0.11.0-5/contrib/60-openocd.rules /etc/udev/rules.d
+sudo cp ~/Downloads/xpack-openocd-0.11.0-5/contrib/60-openocd.rules /etc/udev/rules.d
 sudo udevadm control --reload-rules
 ```
 
