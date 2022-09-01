@@ -57,14 +57,14 @@ function build_versions()
       if [ "${TARGET_PLATFORM}" == "win32" ]
       then
         # https://sourceforge.net/projects/libusb-win32/files/libusb-win32-releases/
-        build_libusb_w32 "1.2.6.0"
+        build_libusb_w32 "1.2.6.0" # ! PATCH
       else
         # https://sourceforge.net/projects/libusb/files/libusb-compat-0.1/
         build_libusb0 "0.1.5"
       fi
 
       # http://www.intra2net.com/en/developer/libftdi/download.php
-      build_libftdi "1.5"
+      build_libftdi "1.5" # ! PATCH
 
       # https://ftp.gnu.org/pub/gnu/libiconv/
       build_libiconv "1.17" # "1.16"
