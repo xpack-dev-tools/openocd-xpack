@@ -11,6 +11,26 @@ releases and add releases from the repo HEAD from time to time.
 
 Before starting the build, perform some checks and tweaks.
 
+### Download the build scripts
+
+The build scripts are available in the `scripts` folder of the
+[`xpack-dev-tools/openocd-xpack`](https://github.com/xpack-dev-tools/openocd-xpack)
+Git repo.
+
+To download them on a new machine, clone the `xpack-develop` branch:
+
+```sh
+rm -rf ${HOME}/Work/openocd-xpack.git; \
+git clone \
+  --branch xpack-develop \
+  https://github.com/xpack-dev-tools/openocd-xpack.git \
+  ${HOME}/Work/openocd-xpack.git; \
+git -C ${HOME}/Work/openocd-xpack.git submodule update --init --recursive
+```
+
+> Note: the repository uses submodules; for a successful build it is
+> mandatory to recurse the submodules.
+
 ### Check Git
 
 In the `xpack-dev-tools/openocd-xpack` Git repo:
@@ -19,6 +39,10 @@ In the `xpack-dev-tools/openocd-xpack` Git repo:
 - if needed, merge the `xpack` branch
 
 No need to add a tag here, it'll be added when the release is created.
+
+### Update helper
+
+With a git client, go to the helper repo and update to the latest master commit.
 
 ### Check the latest upstream release
 
@@ -94,10 +118,6 @@ in the `xpack-dev-tools/openocd` Git repo:
 - check if `OPENOCD_GIT_BRANCH` is set to `xpack`
 - check if `OPENOCD_GIT_COMMIT` to set to `v${OPENOCD_VERSION}-xpack`
 
-### Update helper
-
-With a git client, go to the helper repo and update to the latest master commit.
-
 ## Build
 
 ### Development run the build scripts
@@ -106,26 +126,28 @@ Before the real build, run a test build on the development machine (`wksi`)
 or the production machines (`xbbma`, `xbbmi`):
 
 ```sh
-sudo rm -rf ~/Work/openocd-*-*
+rm -rf ~/Work/openocd-*-*
 
 caffeinate bash ${HOME}/Work/openocd-xpack.git/scripts/helper/build.sh --develop --macos
 ```
 
-Similarly on the Intel Linux (`xbbmli`):
+Similarly on the Intel Linux (`xbbli`):
 
 ```sh
+sudo rm -rf ~/Work/openocd-*-*
+
 bash ${HOME}/Work/openocd-xpack.git/scripts/helper/build.sh --develop --linux64
 
 bash ${HOME}/Work/openocd-xpack.git/scripts/helper/build.sh --develop --win64
 ```
 
-... on the Arm Linux 64-bit (`xbbmla64`):
+... on the Arm Linux 64-bit (`xbbla64`):
 
 ```sh
 bash ${HOME}/Work/openocd-xpack.git/scripts/helper/build.sh --develop --arm64
 ```
 
-... and on the Arm Linux 32-bit (`xbbmla32`):
+... and on the Arm Linux 32-bit (`xbbla32`):
 
 ```sh
 bash ${HOME}/Work/openocd-xpack.git/scripts/helper/build.sh --develop --arm32
