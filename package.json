@@ -54,17 +54,9 @@
           "fileName": "xpack-openocd-0.11.0-5-linux-arm.tar.gz",
           "sha256": "91d7076b3d078b91d0390996657539dcbb7794deaf8b1eec12928e395981b499"
         },
-        "linux-ia32": {
-          "fileName": "xpack-openocd-0.11.0-3-linux-ia32.tar.gz",
-          "sha256": "8eb54a7b45125f32592dbc33de92e734d8cc9704a3293c529867104f244b1046"
-        },
         "linux-x64": {
           "fileName": "xpack-openocd-0.11.0-5-linux-x64.tar.gz",
           "sha256": "19403370891605e1994e1eceb5e0c442f8c6fbc60b026851a6e257d524ecd6d1"
-        },
-        "win32-ia32": {
-          "fileName": "xpack-openocd-0.11.0-3-win32-ia32.zip",
-          "sha256": "9be728d4fff63d96c6f8d9e26a1298a860c5842d54e8a678732f8b51811ee72a"
         },
         "win32-x64": {
           "fileName": "xpack-openocd-0.11.0-5-win32-x64.zip",
