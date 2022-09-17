@@ -142,7 +142,7 @@ Arm 32 GNU/Linux, Arm 64 GNU/Linux, Intel macOS and Arm macOS.
 ### Build the Intel GNU/Linux and Windows binaries
 
 The current platform for GNU/Linux and Windows production builds is a
-Debian 10, running on an Intel NUC8i7BEH mini PC with 32 GB of RAM
+Debian 11, running on an AMD 5600G PC with 16 GB of RAM
 and 512 GB of fast M.2 SSD. The machine name is `xbbmli`.
 
 ```sh
