@@ -1,3 +1,0 @@
-[submodule "scripts/helper"]
-	path = scripts/helper
-url=https://github.com/xpack-dev-tools/build-helper.git
