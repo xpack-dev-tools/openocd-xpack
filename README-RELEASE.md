@@ -36,6 +36,7 @@ git -C ${HOME}/Work/openocd-xpack.git submodule update --init --recursive
 In the `xpack-dev-tools/openocd-xpack` Git repo:
 
 - switch to the `xpack-develop` branch
+- pull new changes
 - if needed, merge the `xpack` branch
 
 No need to add a tag here, it'll be added when the release is created.
@@ -75,8 +76,7 @@ but in the version specific release page.
 
 ### Update versions in `README` files
 
-- update version in `README-RELEASE.md`
-- update version in `README-BUILD.md`
+- update version in `README-MAINTAINER.md`
 - update version in `README.md`
 
 ### Update `CHANGELOG.md`
@@ -85,10 +85,6 @@ but in the version specific release page.
 - check if all previous fixed issues are in
 - add a new entry like _* v0.11.0-5 prepared_
 - commit with a message like _prepare v0.11.0-5_
-
-Note: if you missed to update the `CHANGELOG.md` before starting the build,
-edit the file and rerun the build, it should take only a few minutes to
-recreate the archives with the correct file.
 
 ### Merge upstream repo
 
@@ -113,17 +109,19 @@ in the `xpack-dev-tools/openocd` Git repo:
 
 ### Update the version specific code
 
-- open the `common-versions-source.sh` file
+- open the `scripts/versioning.sh` file
 - add a new `if` with the new version before the existing code
-- check if `OPENOCD_GIT_BRANCH` is set to `xpack`
-- check if `OPENOCD_GIT_COMMIT` to set to `v${OPENOCD_VERSION}-xpack`
+- check if `XBB_OPENOCD_GIT_BRANCH` is set to `xpack`
+- check if `XBB_OPENOCD_GIT_COMMIT` to set to `v${XBB_OPENOCD_VERSION}-xpack`
 
 ## Build
 
+The builds currently run on 5 dedicated machines (Intel GNU/Linux,
+Arm 32 GNU/Linux, Arm 64 GNU/Linux, Intel macOS and Arm macOS.
+
 ### Development run the build scripts
 
-Before the real build, run a test build on the development machine (`wksi`)
-or the production machines (`xbbma`, `xbbmi`):
+Before the real build, run a test build on all platforms.
 
 ```sh
 rm -rf ~/Work/openocd-*-*
@@ -403,7 +401,7 @@ If any, refer to closed
 Note: at this moment the system should send a notification to all clients
 watching this project.
 
-## Update the README-BUILD listings and examples
+## Update the READMEs listings and examples
 
 - check and possibly update the `ls -l` output
 - check and possibly update the output of the `--version` runs

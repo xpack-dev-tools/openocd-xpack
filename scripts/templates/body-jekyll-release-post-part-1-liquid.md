@@ -1,19 +1,19 @@
 ---
-title:  xPack OpenOCD v{{ RELEASE_VERSION }} released
+title:  xPack OpenOCD v{{ XBB_RELEASE_VERSION }} released
 
 TODO: select one summary
 
-summary: "Version **{{ RELEASE_VERSION }}** is a maintenance release; it updates to
+summary: "Version **{{ XBB_RELEASE_VERSION }}** is a maintenance release; it updates to
 the latest upstream master."
 
-summary: "Version **{{ RELEASE_VERSION }}** is a new release; it follows the upstream release."
+summary: "Version **{{ XBB_RELEASE_VERSION }}** is a new release; it follows the upstream release."
 
-version: "{{ RELEASE_VERSION }}"
+version: "{{ XBB_RELEASE_VERSION }}"
 npm_subversion: "1"
 upstream_version: "0.11.0"
 upstream_commit: "6db57051d070fc8d6bb54d21413e5e8610972651"
 upstream_release_date: "21 Aug 2022"
-download_url: https://github.com/xpack-dev-tools/openocd-xpack/releases/tag/v{{ RELEASE_VERSION }}/
+download_url: https://github.com/xpack-dev-tools/openocd-xpack/releases/tag/v{{ XBB_RELEASE_VERSION }}/
 
 date:   {{ RELEASE_DATE }}
 
@@ -103,7 +103,7 @@ identify binaries installed with
 
 ### Uninstall
 
-To remove the links from the current project:
+To remove the links created by xpm in the current project:
 
 ```sh
 cd my-project
@@ -221,7 +221,7 @@ The simple test, consists in starting the binaries
 only to identify the STM32F4DISCOVERY board.
 
 ```sh
-.../xpack-openocd-{{ RELEASE_VERSION }}/bin/openocd -f board/stm32f4discovery.cfg
+.../xpack-openocd-{{ XBB_RELEASE_VERSION }}/bin/openocd -f board/stm32f4discovery.cfg
 ```
 
 A more complex test consist in programming and debugging a simple blinky

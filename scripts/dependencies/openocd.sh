@@ -15,13 +15,13 @@
 
 function download_openocd()
 {
-  if [ ! -d "${SOURCES_FOLDER_PATH}/${OPENOCD_SRC_FOLDER_NAME}" ]
+  if [ ! -d "${XBB_SOURCES_FOLDER_PATH}/${openocd_src_folder_name}" ]
   then
     (
-      cd "${SOURCES_FOLDER_PATH}"
-      git_clone "${OPENOCD_GIT_URL}" "${OPENOCD_GIT_BRANCH}" \
-          "${OPENOCD_GIT_COMMIT}" "${OPENOCD_SRC_FOLDER_NAME}"
-      cd "${SOURCES_FOLDER_PATH}/${OPENOCD_SRC_FOLDER_NAME}"
+      cd "${XBB_SOURCES_FOLDER_PATH}"
+      git_clone "${XBB_OPENOCD_GIT_URL}" "${XBB_OPENOCD_GIT_BRANCH}" \
+          "${XBB_OPENOCD_GIT_COMMIT}" "${openocd_src_folder_name}"
+      cd "${XBB_SOURCES_FOLDER_PATH}/${openocd_src_folder_name}"
       git submodule update --init --recursive --remote
     )
   fi
@@ -31,29 +31,35 @@ function download_openocd()
 
 function build_openocd()
 {
-  download_openocd
+  # https://github.com/archlinux/svntogit-community/blob/packages/openocd/trunk/PKGBUILD
 
-  local openocd_folder_name="openocd"
+  local openocd_version="$1"
 
-  mkdir -pv "${LOGS_FOLDER_PATH}/${openocd_folder_name}/"
 
-  local openocd_stamp_file_path="${INSTALL_FOLDER_PATH}/stamp-openocd-installed"
+  local openocd_src_folder_name="${XBB_OPENOCD_SRC_FOLDER_NAME:-"openocd.git"}"
+  local openocd_folder_name="openocd-${openocd_version}"
+
+  mkdir -pv "${XBB_LOGS_FOLDER_PATH}/${openocd_folder_name}"
+
+  local openocd_stamp_file_path="${XBB_STAMPS_FOLDER_PATH}/stamp-${openocd_folder_name}-installed"
   if [ ! -f "${openocd_stamp_file_path}" ]
   then
     (
+      download_openocd
+
       xbb_activate_installed_dev
+      xbb_activate_installed_bin
 
-
-      cd "${SOURCES_FOLDER_PATH}/${OPENOCD_SRC_FOLDER_NAME}"
+      cd "${XBB_SOURCES_FOLDER_PATH}/${openocd_src_folder_name}"
       (
         if [ ! -d "autom4te.cache" ]
         then
           ./bootstrap
         fi
-      ) 2>&1 | tee "${LOGS_FOLDER_PATH}/${openocd_folder_name}/configure-output-$(ndate).txt"
+      ) 2>&1 | tee "${XBB_LOGS_FOLDER_PATH}/${openocd_folder_name}/configure-output-$(ndate).txt"
 
-      mkdir -pv "${APP_BUILD_FOLDER_PATH}"
-      cd "${APP_BUILD_FOLDER_PATH}"
+      mkdir -pv "${XBB_BUILD_FOLDER_PATH}/${openocd_folder_name}"
+      cd "${XBB_BUILD_FOLDER_PATH}/${openocd_folder_name}"
 
       CPPFLAGS="${XBB_CPPFLAGS}"
       CFLAGS="${XBB_CFLAGS_NO_W}"
@@ -78,10 +84,10 @@ function build_openocd()
 
         # May be required for repetitive builds, because this is an executable built
         # in place and using one for a different architecture may not be a good idea.
-        rm -rfv "${SOURCES_FOLDER_PATH}/${OPENOCD_SRC_FOLDER_NAME}/jimtcl/autosetup/jimsh0"
+        rm -rfv "${XBB_SOURCES_FOLDER_PATH}/${openocd_src_folder_name}/jimtcl/autosetup/jimsh0"
 
         (
-          if [ "${IS_DEVELOP}" == "y" ]
+          if [ "${XBB_IS_DEVELOP}" == "y" ]
           then
             env | sort
           fi
@@ -89,31 +95,40 @@ function build_openocd()
           echo
           echo "Running openocd configure..."
 
-          if [ "${IS_DEVELOP}" == "y" ]
+          if [ "${XBB_IS_DEVELOP}" == "y" ]
           then
-            bash "${SOURCES_FOLDER_PATH}/${OPENOCD_SRC_FOLDER_NAME}/configure" --help
+            bash "${XBB_SOURCES_FOLDER_PATH}/${openocd_src_folder_name}/configure" --help
           fi
 
           config_options=()
 
-          config_options+=("--prefix=${APP_PREFIX}")
+          config_options+=("--prefix=${XBB_BINARIES_INSTALL_FOLDER_PATH}")
 
-          config_options+=("--build=${BUILD}")
-          config_options+=("--host=${HOST}")
-          config_options+=("--target=${TARGET}")
+          config_options+=("--build=${XBB_BUILD}")
+          config_options+=("--host=${XBB_HOST}")
+          config_options+=("--target=${XBB_TARGET}")
 
-          config_options+=("--datarootdir=${INSTALL_FOLDER_PATH}")
-          config_options+=("--localedir=${APP_PREFIX}/share/locale")
-          config_options+=("--mandir=${APP_PREFIX_DOC}/man")
-          config_options+=("--pdfdir=${APP_PREFIX_DOC}/pdf")
-          config_options+=("--infodir=${APP_PREFIX_DOC}/info")
-          config_options+=("--docdir=${APP_PREFIX_DOC}")
+          config_options+=("--datarootdir=${XBB_BINARIES_INSTALL_FOLDER_PATH}")
+          config_options+=("--localedir=${XBB_BINARIES_INSTALL_FOLDER_PATH}/share/locale")
+          config_options+=("--mandir=${XBB_BINARIES_INSTALL_FOLDER_PATH}/share/doc/man")
+          config_options+=("--pdfdir=${XBB_BINARIES_INSTALL_FOLDER_PATH}/share/doc/pdf")
+          config_options+=("--infodir=${XBB_BINARIES_INSTALL_FOLDER_PATH}/share/doc/info")
+          config_options+=("--docdir=${XBB_BINARIES_INSTALL_FOLDER_PATH}/share/doc/")
 
           config_options+=("--disable-wextra")
           config_options+=("--disable-werror")
-          config_options+=("--enable-dependency-tracking")
+          config_options+=("--disable-gccwarnings")
+          config_options+=("--disable-doxygen-html")
+          config_options+=("--disable-doxygen-pdf")
 
-          config_options+=("--enable-branding=${BRANDING}")
+          config_options+=("--disable-debug") # HB
+          config_options+=("--disable-dependency-tracking") # HB
+          if [ "${XBB_IS_DEVELOP}" == "y" ]
+          then
+            config_options+=("--disable-silent-rules") # HB
+          fi
+
+          config_options+=("--enable-branding=${XBB_BRANDING}")
 
           # Add explicit functionality.
           config_options+=("--enable-aice")
@@ -153,10 +168,10 @@ function build_openocd()
           config_options+=("--disable-minidriver-dummy")
           config_options+=("--disable-parport-ppdev")
 
-          if [ "${TARGET_PLATFORM}" == "win32" ]
+          if [ "${XBB_TARGET_PLATFORM}" == "win32" ]
           then
 
-            export OUTPUT_DIR="${BUILD_FOLDER_PATH}"
+            export OUTPUT_DIR="${XBB_BUILD_FOLDER_PATH}"
 
             # Without it, mingw redefines it as 0.
             CPPFLAGS+=" -D__USE_MINGW_ANSI_STDIO=1"
@@ -181,7 +196,7 @@ function build_openocd()
             # oocd_trace.h:22:10: fatal error: termios.h: No such file or directory
             config_options+=("--disable-oocd_trace")
 
-          elif [ "${TARGET_PLATFORM}" == "linux" ]
+          elif [ "${XBB_TARGET_PLATFORM}" == "linux" ]
           then
 
             LDFLAGS+=" -Wl,-rpath,${LD_LIBRARY_PATH}"
@@ -203,7 +218,7 @@ function build_openocd()
             # Deprecated
             # config_options+=("--enable-oocd_trace")
 
-          elif [ "${TARGET_PLATFORM}" == "darwin" ]
+          elif [ "${XBB_TARGET_PLATFORM}" == "darwin" ]
           then
 
             # --enable-minidriver-dummy -> configure error
@@ -229,16 +244,16 @@ function build_openocd()
 
           else
 
-            echo "Unsupported target platorm ${TARGET_PLATFORM}."
+            echo "Unsupported target platorm ${XBB_TARGET_PLATFORM}."
             exit 1
 
           fi
 
-          run_verbose bash ${DEBUG} "${SOURCES_FOLDER_PATH}/${OPENOCD_SRC_FOLDER_NAME}/configure" \
+          run_verbose bash ${DEBUG} "${XBB_SOURCES_FOLDER_PATH}/${openocd_src_folder_name}/configure" \
             "${config_options[@]}"
 
-          cp "config.log" "${LOGS_FOLDER_PATH}/${openocd_folder_name}/config-log-$(ndate).txt"
-        ) 2>&1 | tee "${LOGS_FOLDER_PATH}/${openocd_folder_name}/configure-output-$(ndate).txt"
+          cp "config.log" "${XBB_LOGS_FOLDER_PATH}/${openocd_folder_name}/config-log-$(ndate).txt"
+        ) 2>&1 | tee "${XBB_LOGS_FOLDER_PATH}/${openocd_folder_name}/configure-output-$(ndate).txt"
 
       fi
 
@@ -247,44 +262,47 @@ function build_openocd()
         echo "Running openocd make..."
 
         # Build.
-        run_verbose make -j ${JOBS} bindir="bin" pkgdatadir=""
+        # run_verbose make -j ${XBB_JOBS} bindir="bin" pkgdatadir=""
+        run_verbose make -j 1 bindir="bin" pkgdatadir=""
 
-        if [ "${WITH_STRIP}" == "y" ]
+        if [ "${XBB_WITH_STRIP}" == "y" ]
         then
           run_verbose make install-strip
         else
           run_verbose make install
         fi
 
-        if [ "${TARGET_PLATFORM}" == "win32" ]
+        if [ "${XBB_TARGET_PLATFORM}" == "win32" ]
         then
-          rm -f "${APP_PREFIX}/bin/openocdw.exe"
+          rm -f "${XBB_BINARIES_INSTALL_FOLDER_PATH}/bin/openocdw.exe"
         fi
 
         (
-          xbb_activate_tex
+          # xbb_activate_tex
 
-          if [ "${WITH_PDF}" == "y" ]
+          if [ "${XBB_WITH_PDF}" == "y" ]
           then
             run_verbose make bindir="bin" pkgdatadir="" pdf
             run_verbose make install-pdf
           fi
 
-          if [ "${WITH_HTML}" == "y" ]
+          if [ "${XBB_WITH_HTML}" == "y" ]
           then
             run_verbose make bindir="bin" pkgdatadir="" html
             run_verbose make install-html
           fi
         )
 
-      ) 2>&1 | tee "${LOGS_FOLDER_PATH}/${openocd_folder_name}/make-output-$(ndate).txt"
+      ) 2>&1 | tee "${XBB_LOGS_FOLDER_PATH}/${openocd_folder_name}/make-output-$(ndate).txt"
 
       copy_license \
-        "${SOURCES_FOLDER_PATH}/${OPENOCD_SRC_FOLDER_NAME}" \
-        "${OPENOCD_FOLDER_NAME}"
+        "${XBB_SOURCES_FOLDER_PATH}/${openocd_src_folder_name}" \
+        "${openocd_folder_name}"
     )
 
+    mkdir -pv "${XBB_STAMPS_FOLDER_PATH}"
     touch "${openocd_stamp_file_path}"
+
   else
     echo "Component openocd already installed."
   fi
@@ -297,9 +315,9 @@ function test_openocd()
   if [ -d "xpacks/.bin" ]
   then
     OPENOCD="xpacks/.bin/openocd"
-  elif [ -d "${APP_PREFIX}/bin" ]
+  elif [ -d "${XBB_BINARIES_INSTALL_FOLDER_PATH}/bin" ]
   then
-    OPENOCD="${APP_PREFIX}/bin/openocd"
+    OPENOCD="${XBB_BINARIES_INSTALL_FOLDER_PATH}/bin/openocd"
   else
     echo "Wrong folder."
     exit 1

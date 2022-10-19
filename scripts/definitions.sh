@@ -3,7 +3,7 @@
 #   (https://xpack.github.io)
 # Copyright (c) 2019 Liviu Ionescu.
 #
-# Permission to use, copy, modify, and/or distribute this software 
+# Permission to use, copy, modify, and/or distribute this software
 # for any purpose is hereby granted, under the terms of the MIT license.
 # -----------------------------------------------------------------------------
 
@@ -16,24 +16,27 @@
 # -----------------------------------------------------------------------------
 
 # Used to display the application name.
-APP_NAME=${APP_NAME:-"OpenOCD"}
+XBB_APPLICATION_NAME=${XBB_APPLICATION_NAME:-"OpenOCD"}
 
 # Used as part of file/folder paths.
-APP_LC_NAME=${APP_LC_NAME:-"openocd"}
+XBB_APPLICATION_LOWER_CASE_NAME=${XBB_APPLICATION_LOWER_CASE_NAME:-"openocd"}
 
-DISTRO_NAME=${DISTRO_NAME:-"xPack"}
-DISTRO_LC_NAME=${DISTRO_LC_NAME:-"xpack"}
-DISTRO_TOP_FOLDER=${DISTRO_TOP_FOLDER:-"xPacks"}
+XBB_APPLICATION_DISTRO_NAME=${XBB_APPLICATION_DISTRO_NAME:-"xPack"}
+XBB_APPLICATION_DISTRO_LOWER_CASE_NAME=${XBB_APPLICATION_DISTRO_LOWER_CASE_NAME:-"xpack"}
+XBB_APPLICATION_DISTRO_TOP_FOLDER=${XBB_APPLICATION_DISTRO_TOP_FOLDER:-"xPacks"}
 
-APP_DESCRIPTION="${DISTRO_NAME} ${APP_NAME}"
+XBB_APPLICATION_DESCRIPTION="${XBB_APPLICATION_DISTRO_NAME} ${XBB_APPLICATION_NAME}"
+
+declare -a XBB_APPLICATION_DEPENDENCIES=( openocd )
+declare -a XBB_APPLICATION_COMMON_DEPENDENCIES=( libusb1 libusb-w32 libusb0 libftdi libiconv hidapi libtool autoconf automake pkg-config texinfo coreutils )
 
 # -----------------------------------------------------------------------------
 
-GITHUB_ORG="${GITHUB_ORG:-"xpack-dev-tools"}"
-GITHUB_REPO="${GITHUB_REPO:-"${APP_LC_NAME}-xpack"}"
-GITHUB_PRE_RELEASES="${GITHUB_PRE_RELEASES:-"pre-releases"}"
+XBB_GITHUB_ORG="${XBB_GITHUB_ORG:-"xpack-dev-tools"}"
+XBB_GITHUB_REPO="${XBB_GITHUB_REPO:-"${XBB_APPLICATION_LOWER_CASE_NAME}-xpack"}"
+XBB_GITHUB_PRE_RELEASES="${XBB_GITHUB_PRE_RELEASES:-"pre-releases"}"
 
-NPM_PACKAGE="${NPM_PACKAGE:-"@xpack-dev-tools/${APP_LC_NAME}@next"}"
+XBB_NPM_PACKAGE="${XBB_NPM_PACKAGE:-"@xpack-dev-tools/${XBB_APPLICATION_LOWER_CASE_NAME}@next"}"
 
 # -----------------------------------------------------------------------------
 
@@ -41,8 +44,8 @@ NPM_PACKAGE="${NPM_PACKAGE:-"@xpack-dev-tools/${APP_LC_NAME}@next"}"
 # than the xPack Project repo then uncomment the following defines and tweak
 # as needed.
 
-# OPENOCD_GIT_URL=git://git.code.sf.net/p/openocd/code
-# OPENOCD_GIT_BRANCH=master
-# OPENOCD_GIT_COMMIT=HEAD
+# XBB_OPENOCD_GIT_URL=git://git.code.sf.net/p/openocd/code
+# XBB_OPENOCD_GIT_BRANCH=master
+# XBB_OPENOCD_GIT_COMMIT=HEAD
 
 # -----------------------------------------------------------------------------
