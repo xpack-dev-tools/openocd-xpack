@@ -1,5 +1,5 @@
 # -----------------------------------------------------------------------------
-# DO NOT EDIT! Generated from scripts/helper/templates/*.
+# DO NOT EDIT! Generated from xpacks/xpack-dev-tools-xbb-helper/templates/*.
 #
 # This file is part of the xPack distribution.
 #   (https://xpack.github.io)
@@ -35,31 +35,52 @@ jobs:
     name: 'Linux Arm 64 - OpenOCD ${{ github.event.inputs.version }} build'
     timeout-minutes: 2880 # 2 days
     runs-on: [self-hosted, linux, arm64, xbbla64]
+    container:
+      image: ilegeul/ubuntu:arm64v8-18.04-xbb-v4.0
+    defaults:
+      run:
+        shell: bash --login -e -o pipefail {0} # For node PATH
+
     steps:
-      - name: 'Machine'
+      - name: 'Environment'
         run: |
           uname -a
-          node --version
-          npm --version
-
-      - name: 'Checkout'
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 3
-          submodules: true
+          lsb_release -sd
+          echo "whoami: $(whoami)"
+          echo "pwd: $(pwd)"
+          echo "node: $(node --version)"
+          echo "npm: $(npm --version)"
+          ls -lLA
+          env | sort
 
       - name: 'Clean working area'
-        run: rm -rf ~/Work/openocd-${{ github.event.inputs.version }}*
+        run: rm -rf * .git*
+
+      - name: 'Checkout project'
+        uses: actions/checkout@v1 # v1 for old Git
+        with:
+          fetch-depth: 1
+
+      - name: 'Install xpm'
+        timeout-minutes: 1440
+        run: npm install --location=global xpm@latest
+
+      - name: 'Install project dependencies'
+        timeout-minutes: 1440
+        run: xpm install
+
       - name: 'Build Linux arm64 binary'
         timeout-minutes: 1440
-        run: bash scripts/helper/build.sh --version "${{ github.event.inputs.version }}" --arm64
+        run: |
+          xpm install --config linux-arm64
+          xpm run build --config linux-arm64
 
       - name: 'Publish pre-release'
         # https://github.com/ncipollo/release-action
         uses: ncipollo/release-action@v1
         with:
           allowUpdates: true
-          artifacts: '~/Work/openocd-${{ github.event.inputs.version }}/deploy/*'
+          artifacts: 'build/linux-arm64/deploy/*'
           bodyFile: '.github/workflows/body-github-pre-releases-test.md'
           commit: 'master'
           draft: false
@@ -74,3 +95,6 @@ jobs:
           tag: 'test'
           token: ${{ secrets.PUBLISH_TOKEN }}
 
+      - name: 'Rename working area'
+        # For just in case absolute paths remain unprocessed.
+        run: mv -v build build-$(date -u +%Y%m%d-%H%M%S)

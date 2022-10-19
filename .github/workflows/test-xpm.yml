@@ -1,6 +1,6 @@
 
 # -----------------------------------------------------------------------------
-# DO NOT EDIT! Generated from scripts/helper/templates/*.
+# DO NOT EDIT! Generated from xpacks/xpack-dev-tools-xbb-helper/templates/*.
 #
 # This file is part of the xPack distribution.
 #   (https://xpack.github.io)
@@ -29,112 +29,223 @@ on:
         description: 'The semver of the npm release'
         required: false
         default: 'latest'
+      helper-git-ref:
+        description: 'The helper branch, tag or SHA to checkout'
+        required: false
+        default: 'xpack-develop'
 
 jobs:
 
   linux-x64:
     name: 'Linux Intel 64-bit OpenOCD@${{ github.event.inputs.version }} test'
     runs-on: ubuntu-latest
+
     steps:
-      - name: 'Machine'
-        run: uname -a
-      - name: 'Checkout'
-        uses: actions/checkout@v2
+      - name: 'Environment'
+        run: |
+          uname -a
+          lsb_release -sd
+          echo "whoami: $(whoami)"
+          echo "pwd: $(pwd)"
+          ls -lLA
+          env | sort
+
+      - name: 'Checkout project'
+        uses: actions/checkout@v3
         with:
-          fetch-depth: 3
-          submodules: true
-      - name: 'Run ${{ github.event.inputs.version }} xpm test'
-        uses: docker://ilegeul/debian:amd64-10-npm-v1
+          fetch-depth: 1
+
+      - name: 'Checkout helper ${{ github.event.inputs.helper-git-ref }}'
+        uses: actions/checkout@v3
+        with:
+          repository: xpack-dev-tools/xbb-helper-xpack
+          path: xpacks/xpack-dev-tools-xbb-helper
+          ref: ${{ github.event.inputs.helper-git-ref }}
+          fetch-depth: 1
+
+      - name: 'Run ${{ github.event.inputs.version }} xpm docker test'
+        uses: docker://node:lts-slim
         with:
           entrypoint: /bin/bash
-          args: /github/workspace/scripts/helper/tests/xpm-test.sh --image debian:buster --version ${{ github.event.inputs.version }}
-
+          args: /github/workspace/scripts/test.sh --image debian --version ${{ github.event.inputs.version }} --xpm
   
   linux-arm64:
     name: 'Linux Arm 64-bit OpenOCD@${{ github.event.inputs.version }} test'
-    runs-on: [self-hosted, linux, arm64, xbbla]
+    # runs-on: [self-hosted, linux, arm64, xbbla]
+    runs-on: [self-hosted, linux, arm64, xbbla64]
+
     steps:
-      - name: 'Machine'
-        run: uname -a
-      - name: 'Checkout'
-        uses: actions/checkout@v2
+      - name: 'Environment'
+        run: |
+          uname -a
+          lsb_release -sd
+          echo "whoami: $(whoami)"
+          echo "pwd: $(pwd)"
+          ls -lLA
+          env | sort
+
+      - name: 'Clean working area' # Mandatory for self-hosted runners.
+        run: rm -rf * .git*
+
+      # https://github.com/actions/checkout
+      - name: 'Checkout project'
+        uses: actions/checkout@v3
         with:
-          fetch-depth: 3
-          submodules: true
-      - name: 'Run ${{ github.event.inputs.version }} xpm docker test on Debian 10 aarch64'
-        uses: docker://ilegeul/debian:arm64v8-10-npm-v1
+          fetch-depth: 1
+
+      - name: 'Checkout helper ${{ github.event.inputs.helper-git-ref }}'
+        uses: actions/checkout@v3
+        with:
+          repository: xpack-dev-tools/xbb-helper-xpack
+          path: xpacks/xpack-dev-tools-xbb-helper
+          ref: ${{ github.event.inputs.helper-git-ref }}
+          fetch-depth: 1
+
+      - name: 'Run ${{ github.event.inputs.version }} xpm docker test'
+        uses: docker://node:lts-slim
         with:
           entrypoint: /bin/bash
-          args: scripts/helper/tests/xpm-test.sh --image ilegeul/debian:arm64v8-10-npm-v1 --version ${{ github.event.inputs.version }}
-
+          args: /github/workspace/scripts/test.sh --image debian --version ${{ github.event.inputs.version }} --xpm
   
   linux-arm32:
     name: 'Linux Arm 32-bit OpenOCD@${{ github.event.inputs.version }} test'
-    runs-on: [self-hosted, linux, arm64, xbbla]
-    steps:
-      - name: 'Machine'
-        run: uname -a
-      - name: 'Checkout'
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 3
-          submodules: true
-      - name: 'Run ${{ github.event.inputs.version }} xpm docker test on Debian 10 armhf'
-        uses: docker://ilegeul/debian:arm32v7-10-npm-v1
-        with:
-          entrypoint: /usr/bin/linux32
-          args: /bin/bash scripts/helper/tests/xpm-test.sh --image ilegeul/debian:arm32v7-10-npm-v1 --version ${{ github.event.inputs.version }}
+    # runs-on: [self-hosted, linux, arm64, xbbla]
+    runs-on: [self-hosted, linux, arm, xbbla32]
 
+    steps:
+      - name: 'Environment'
+        run: |
+          uname -a
+          lsb_release -sd
+          echo "whoami: $(whoami)"
+          echo "pwd: $(pwd)"
+          ls -lLA
+          env | sort
+
+      - name: 'Clean working area' # Mandatory for self-hosted runners.
+        run: rm -rf * .git*
+
+      # https://github.com/actions/checkout
+      - name: 'Checkout project'
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 1
+
+      - name: 'Checkout helper ${{ github.event.inputs.helper-git-ref }}'
+        uses: actions/checkout@v3
+        with:
+          repository: xpack-dev-tools/xbb-helper-xpack
+          path: xpacks/xpack-dev-tools-xbb-helper
+          ref: ${{ github.event.inputs.helper-git-ref }}
+          fetch-depth: 1
+
+      - name: 'Run ${{ github.event.inputs.version }} xpm docker test'
+        uses: docker://arm32v7/node:lts-slim
+        with:
+          entrypoint: /bin/bash # /usr/bin/linux32
+          args: /github/workspace/scripts/test.sh --image debian --version ${{ github.event.inputs.version }} --xpm
   
   macos-x64:
     name: 'macOS Intel 64-bit OpenOCD@${{ github.event.inputs.version }} test'
     runs-on: macos-latest
-    steps:
-      - name: 'Machine'
-        run: uname -a
-      - name: 'Checkout'
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 3
-          submodules: true
-      - name: 'Run ${{ github.event.inputs.version }} xpm test'
-        run: bash scripts/helper/tests/xpm-test.sh --version ${{ github.event.inputs.version }}
 
+    steps:
+      - name: 'Environment'
+        run: |
+          uname -a
+          sw_vers # lsb_release -sd
+          echo "whoami: $(whoami)"
+          echo "pwd: $(pwd)"
+          ls -lLA
+          env | sort
+
+      - name: 'Clean working area' # Mandatory for self-hosted runners.
+        run: rm -rf * .git*
+
+      # https://github.com/actions/checkout
+      - name: 'Checkout project'
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 1
+
+      - name: 'Checkout helper ${{ github.event.inputs.helper-git-ref }}'
+        uses: actions/checkout@v3
+        with:
+          repository: xpack-dev-tools/xbb-helper-xpack
+          path: xpacks/xpack-dev-tools-xbb-helper
+          ref: ${{ github.event.inputs.helper-git-ref }}
+          fetch-depth: 1
+
+      - name: 'Run ${{ github.event.inputs.version }} xpm test'
+        run: bash scripts/test.sh --version ${{ github.event.inputs.version }} --xpm
   
   macos-arm64:
     name: 'macOS Arm 64-bit OpenOCD@${{ github.event.inputs.version }} test'
     runs-on: [self-hosted, macos, apple]
-    defaults:
-      run:
-        shell: "/usr/bin/arch -arch arm64e /bin/bash -l {0}"
 
     steps:
-      - name: 'Machine'
-        run: uname -a
+      - name: 'Environment'
+        run: |
+          uname -a
+          sw_vers # lsb_release -sd
+          echo "whoami: $(whoami)"
+          echo "pwd: $(pwd)"
+          ls -lLA
+          env | sort
 
-      - name: 'Checkout'
-        uses: actions/checkout@v2
+      - name: 'Clean working area' # Mandatory for self-hosted runners.
+        run: rm -rf * .git*
+
+      # https://github.com/actions/checkout
+      - name: 'Checkout project'
+        uses: actions/checkout@v3
         with:
-          fetch-depth: 3
-          submodules: true
-      - name: 'Run ${{ github.event.inputs.version }} xpm test'
-        run: bash scripts/helper/tests/xpm-test.sh --version ${{ github.event.inputs.version }}
+          fetch-depth: 1
 
+      - name: 'Checkout helper ${{ github.event.inputs.helper-git-ref }}'
+        uses: actions/checkout@v3
+        with:
+          repository: xpack-dev-tools/xbb-helper-xpack
+          path: xpacks/xpack-dev-tools-xbb-helper
+          ref: ${{ github.event.inputs.helper-git-ref }}
+          fetch-depth: 1
+
+      - name: 'Run ${{ github.event.inputs.version }} xpm test'
+        run: bash scripts/test.sh --version ${{ github.event.inputs.version }} --xpm
   
   windows-x64:
     name: 'Windows 64-bit OpenOCD@${{ github.event.inputs.version }} test'
     runs-on: windows-latest
+    defaults:
+      run:
+        # https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstepsshell
+        shell: bash # for --
+
     steps:
-      - name: 'Machine'
-        run: uname -a
-      - name: 'Checkout'
-        uses: actions/checkout@v2
+      - name: 'Environment'
+        run: |
+          uname -a
+          systeminfo # lsb_release -sd
+          echo "whoami: $(whoami)"
+          echo "pwd: $(pwd)"
+          ls -lLA
+          env | sort
+
+      # https://github.com/actions/checkout
+      - name: 'Checkout project'
+        uses: actions/checkout@v3
         with:
-          fetch-depth: 3
-          submodules: true
+          fetch-depth: 1
+
+      - name: 'Checkout helper ${{ github.event.inputs.helper-git-ref }}'
+        uses: actions/checkout@v3
+        with:
+          repository: xpack-dev-tools/xbb-helper-xpack
+          path: xpacks/xpack-dev-tools-xbb-helper
+          ref: ${{ github.event.inputs.helper-git-ref }}
+          fetch-depth: 1
+
       - name: 'Run ${{ github.event.inputs.version }} xpm test'
-        run: bash scripts/helper/tests/xpm-test.sh --version ${{ github.event.inputs.version }}
-
+        run: bash scripts/test.sh --version ${{ github.event.inputs.version }} --xpm
   
-
 # -----------------------------------------------------------------------------

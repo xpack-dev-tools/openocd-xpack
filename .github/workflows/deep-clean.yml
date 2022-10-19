@@ -1,5 +1,5 @@
 # -----------------------------------------------------------------------------
-# DO NOT EDIT! Generated from scripts/helper/templates/*.
+# DO NOT EDIT! Generated from xpacks/xpack-dev-tools-xbb-helper/templates/*.
 #
 # This file is part of the xPack distribution.
 #   (https://xpack.github.io)
@@ -36,17 +36,17 @@ jobs:
     timeout-minutes: 5760 # 4 days
     runs-on: [self-hosted, linux, x64]
     steps:
-      - name: 'Machine'
-        run: uname -a
-
-      - name: 'Checkout'
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 3
-          submodules: true
+      - name: 'Environment'
+        run: |
+          uname -a
+          lsb_release -sd
+          echo "whoami: $(whoami)"
+          echo "pwd: $(pwd)"
+          ls -lLA
+          env | sort
 
       - name: 'Clean working area'
-        run: rm -rf ~/Work/openocd-${{ github.event.inputs.version }}*
+        run: rm -rf * .git*
 
 
 
@@ -54,18 +54,19 @@ jobs:
     name: 'Linux Arm 32 - OpenOCD ${{ github.event.inputs.version }} clean'
     timeout-minutes: 2880 # 2 days
     runs-on: [self-hosted, linux, arm, xbbla32]
-    steps:
-      - name: 'Machine'
-        run: uname -a
 
-      - name: 'Checkout'
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 3
-          submodules: true
+    steps:
+      - name: 'Environment'
+        run: |
+          uname -a
+          lsb_release -sd
+          echo "whoami: $(whoami)"
+          echo "pwd: $(pwd)"
+          ls -lLA
+          env | sort
 
       - name: 'Clean working area'
-        run: rm -rf ~/Work/openocd-${{ github.event.inputs.version }}*
+        run: rm -rf * .git*
 
 
 
@@ -74,17 +75,17 @@ jobs:
     timeout-minutes: 2880 # 2 days
     runs-on: [self-hosted, linux, arm64, xbbla64]
     steps:
-      - name: 'Machine'
-        run: uname -a
-
-      - name: 'Checkout'
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 3
-          submodules: true
+      - name: 'Environment'
+        run: |
+          uname -a
+          lsb_release -sd
+          echo "whoami: $(whoami)"
+          echo "pwd: $(pwd)"
+          ls -lLA
+          env | sort
 
       - name: 'Clean working area'
-        run: rm -rf ~/Work/openocd-${{ github.event.inputs.version }}*
+        run: rm -rf * .git*
 
 
 
@@ -95,17 +96,17 @@ jobs:
     runs-on: [self-hosted, macos, intel]
 
     steps:
-      - name: 'Machine'
-        run: uname -a
-
-      - name: 'Checkout'
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 3
-          submodules: true
+      - name: 'Environment'
+        run: |
+          uname -a
+          sw_vers # lsb_release -sd
+          echo "whoami: $(whoami)"
+          echo "pwd: $(pwd)"
+          ls -lLA
+          env | sort
 
       - name: 'Clean working area'
-        run: rm -rf ~/Work/openocd-${{ github.event.inputs.version }}*
+        run: rm -rf * .git*
 
 
 
@@ -115,21 +116,15 @@ jobs:
 
     runs-on: [self-hosted, macos, apple]
 
-    defaults:
-      run:
-        shell: "/usr/bin/arch -arch arm64e /bin/bash -l {0}"
-
     steps:
-      - name: 'Machine'
-        run: uname -a
-
-      - name: 'Checkout'
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 3
-          submodules: true
+      - name: 'Environment'
+        run: |
+          uname -a
+          sw_vers # lsb_release -sd
+          echo "whoami: $(whoami)"
+          echo "pwd: $(pwd)"
+          ls -lLA
+          env | sort
 
       - name: 'Clean working area'
-        run: rm -rf ~/Work/openocd-${{ github.event.inputs.version }}*
-
-
+        run: rm -rf * .git*
