@@ -69,6 +69,12 @@ function build_versioned_components()
     if [ "${XBB_TARGET_PLATFORM}" == "darwin" ]
     then
 
+      XBB_COREUTILS_INSTALL_REALPATH_ONLY="y"
+      # https://ftp.gnu.org/gnu/coreutils/
+      build_coreutils "9.1"
+
+      # -----------------------------------------------------------------------
+      
       # https://ftp.gnu.org/gnu/autoconf/
       build_autoconf "2.71"
 
@@ -85,9 +91,6 @@ function build_versioned_components()
 
       # https://ftp.gnu.org/gnu/texinfo/
       build_texinfo "6.8"
-
-      # https://ftp.gnu.org/gnu/coreutils/
-      build_coreutils "9.1"
 
     fi
 
