@@ -65,8 +65,7 @@ To download them, issue the following commands:
 ```sh
 rm -rf ${HOME}/Work/openocd-xpack.git; \
 git clone https://github.com/xpack-dev-tools/openocd-xpack.git \
-  ${HOME}/Work/openocd-xpack.git; \
-git -C ${HOME}/Work/openocd-xpack.git submodule update --init --recursive
+  ${HOME}/Work/openocd-xpack.git
 ```
 
 > Note: the repository uses submodules; for a successful build it is
@@ -79,8 +78,7 @@ rm -rf ${HOME}/Work/openocd-xpack.git; \
 git clone \
   --branch xpack-develop \
   https://github.com/xpack-dev-tools/openocd-xpack.git \
-  ${HOME}/Work/openocd-xpack.git; \
-git -C ${HOME}/Work/openocd-xpack.git submodule update --init --recursive
+  ${HOME}/Work/openocd-xpack.git
 ```
 
 ## The `Work` folder
