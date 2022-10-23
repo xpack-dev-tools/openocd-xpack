@@ -154,7 +154,8 @@
           "common-actions"
         ],
         "devDependencies": {
-          "@xpack-dev-tools/clang": "14.0.6-2.1"
+          "@xpack-dev-tools/clang": "14.0.6-2.1",
+          "@xpack-dev-tools/realpath": "9.1.0-1.1"
         }
       },
       "darwin-arm64": {
