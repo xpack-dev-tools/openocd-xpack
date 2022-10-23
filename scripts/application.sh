@@ -7,13 +7,8 @@
 # for any purpose is hereby granted, under the terms of the MIT license.
 # -----------------------------------------------------------------------------
 
-# Application definitions used in the build scripts.
-# As the name implies, it should contain only definitions and should
-# be included with 'source' by the host and container scripts.
-
-# Warning: MUST NOT depend on $HOME or other environment variables.
-
 # -----------------------------------------------------------------------------
+# Application specific definitions. Included with source.
 
 # Used to display the application name.
 XBB_APPLICATION_NAME=${XBB_APPLICATION_NAME:-"OpenOCD"}

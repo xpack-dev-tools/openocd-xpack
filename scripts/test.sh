@@ -50,7 +50,7 @@ tests_folder_path="$(dirname "${scripts_folder_path}")/tests"
 
 # -----------------------------------------------------------------------------
 
-source "${scripts_folder_path}/definitions.sh"
+source "${scripts_folder_path}/application.sh"
 
 # Common definitions.
 source "${helper_folder_path}/scripts/tests.sh"
