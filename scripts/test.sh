@@ -53,7 +53,7 @@ tests_folder_path="$(dirname "${scripts_folder_path}")/tests"
 source "${scripts_folder_path}/application.sh"
 
 # Common definitions.
-source "${helper_folder_path}/scripts/tests.sh"
+source "${helper_folder_path}/scripts/test-common.sh"
 
 # Possibly override common definitions.
 source "${scripts_folder_path}/tests/run.sh"
