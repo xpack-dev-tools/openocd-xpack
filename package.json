@@ -81,6 +81,11 @@
       "dbg": ""
     },
     "actions": {
+      "deep-clean": "rm -rf build xpacks node_modules package-lock.json",
+      "install": [
+        "npm install",
+        "xpm install"
+      ],
       "link-deps": [
         "xpm link @xpack-dev-tools/xbb-helper"
       ],
@@ -121,8 +126,7 @@
       "build-native": "bash {{ properties.dbg }} scripts/build.sh",
       "build-native-develop": "bash {{ properties.dbg }} scripts/build.sh --develop",
       "build-native-win": "bash {{ properties.dbg }} scripts/build.sh --windows",
-      "build-native-win-develop": "bash {{ properties.dbg }} scripts/build.sh --develop --windows",
-      "deep-clean": "rm -rf build xpacks node_modules package-lock.json"
+      "build-native-win-develop": "bash {{ properties.dbg }} scripts/build.sh --develop --windows"
     },
     "buildConfigurations": {
       "common-dependencies": {
