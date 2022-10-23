@@ -21,6 +21,7 @@ To download them on a new machine, clone the `xpack-develop` branch:
 
 ```sh
 rm -rf ${HOME}/Work/openocd-xpack.git; \
+mkdir -p ~/Work; \
 git clone \
   --branch xpack-develop \
   https://github.com/xpack-dev-tools/openocd-xpack.git \

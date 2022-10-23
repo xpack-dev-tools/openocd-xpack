@@ -167,6 +167,7 @@ To download them, the following shortcut is available:
 
 ```sh
 rm -rf ${HOME}/Work/openocd-xpack.git; \
+mkdir -p ~/Work; \
 git clone \
   https://github.com/xpack-dev-tools/openocd-xpack.git \
   ${HOME}/Work/openocd-xpack.git

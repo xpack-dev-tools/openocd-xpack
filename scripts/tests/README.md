@@ -10,6 +10,7 @@ The test script is part of the xPack OpenOCD:
 
 ```sh
 rm -rf ${HOME}/Work/openocd-xpack.git; \
+mkdir -p ~/Work; \
 git clone \
   --branch xpack-develop \
   https://github.com/xpack-dev-tools/openocd-xpack.git  \
