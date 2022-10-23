@@ -38,29 +38,6 @@ function build_versioned_components()
     xbb_set_binaries_install "${XBB_DEPENDENCIES_INSTALL_FOLDER_PATH}"
     xbb_set_libraries_install "${XBB_DEPENDENCIES_INSTALL_FOLDER_PATH}"
 
-    (
-      cd "${project_folder_path}/${XBB_REQUESTED_BUILD_RELATIVE_FOLDER}/xpacks/.bin"
-
-      # Compiling libtool fails.
-      if [ -f make ]
-      then
-        mv make make-bad
-      fi
-
-      if [ -f perl ]
-      then
-        mv perl perl-bad
-      fi
-
-      if [ -f makeinfo ]
-      then
-        mv makeinfo makeinfo-bad
-      fi
-
-    )
-
-    hash -r
-
     # -------------------------------------------------------------------------
 
     # https://ftp.gnu.org/pub/gnu/libiconv/
@@ -69,12 +46,6 @@ function build_versioned_components()
     if [ "${XBB_TARGET_PLATFORM}" == "darwin" ]
     then
 
-      XBB_COREUTILS_INSTALL_REALPATH_ONLY="y"
-      # https://ftp.gnu.org/gnu/coreutils/
-      build_coreutils "9.1"
-
-      # -----------------------------------------------------------------------
-      
       # https://ftp.gnu.org/gnu/autoconf/
       build_autoconf "2.71"
 
