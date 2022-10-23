@@ -41,6 +41,7 @@ script_folder_path="$(dirname "${script_path}")"
 script_folder_name="$(basename "${script_folder_path}")"
 
 # =============================================================================
+# Run the application tests.
 
 scripts_folder_path="${script_folder_path}"
 project_folder_path="$(dirname ${script_folder_path})"

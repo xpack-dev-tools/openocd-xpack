@@ -39,6 +39,7 @@ script_folder_path="$(dirname "${build_script_path}")"
 script_folder_name="$(basename "${script_folder_path}")"
 
 # =============================================================================
+# Build the application.
 
 scripts_folder_path="${script_folder_path}"
 project_folder_path="$(dirname ${script_folder_path})"
@@ -47,7 +48,10 @@ helper_folder_path="${project_folder_path}/xpacks/xpack-dev-tools-xbb-helper"
 # -----------------------------------------------------------------------------
 
 source "${scripts_folder_path}/application.sh"
+
+# Common definitions.
 source "${helper_folder_path}/scripts/build-common.sh"
+
 source "${scripts_folder_path}/versioning.sh"
 
 for dependency in ${XBB_APPLICATION_COMMON_DEPENDENCIES[@]}
