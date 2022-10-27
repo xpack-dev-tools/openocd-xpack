@@ -56,6 +56,11 @@ function build_application_versioned_components()
       # http://ftpmirror.gnu.org/libtool/
       build_libtool "2.4.7"
 
+      # configure.ac:34: error: Macro PKG_PROG_PKG_CONFIG is not available. It is usually defined in file pkg.m4 provided by package pkg-config.
+      # https://pkgconfig.freedesktop.org/releases/
+      # depends on libiconv
+      build_pkg_config "0.29.2"
+
       # https://ftp.gnu.org/gnu/texinfo/
       build_texinfo "6.8"
 
