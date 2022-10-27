@@ -46,6 +46,7 @@
     "npmjs",
     "oocd",
     "openocd",
+    "patchelf",
     "postversion",
     "raggedright",
     "readelf",
