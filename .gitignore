@@ -61,3 +61,5 @@ typings/
 .next
 .vscode/c_cpp_properties.json
 build/
+xpacks/
+
