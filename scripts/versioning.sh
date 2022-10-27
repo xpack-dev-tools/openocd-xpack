@@ -13,7 +13,7 @@
 
 # -----------------------------------------------------------------------------
 
-function build_versioned_components()
+function build_application_versioned_components()
 {
   # Don't use a comma since the regular expression
   # that processes this string in the Makefile, silently fails and the
