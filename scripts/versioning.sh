@@ -56,10 +56,6 @@ function build_application_versioned_components()
       # http://ftpmirror.gnu.org/libtool/
       build_libtool "2.4.7"
 
-      # https://pkgconfig.freedesktop.org/releases/
-      # depends on libiconv
-      build_pkg_config "0.29.2"
-
       # https://ftp.gnu.org/gnu/texinfo/
       build_texinfo "6.8"
 
