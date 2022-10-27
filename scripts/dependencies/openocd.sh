@@ -317,27 +317,18 @@ function build_openocd()
 
 function test_openocd()
 {
-  if [ -d "xpacks/.bin" ]
-  then
-    OPENOCD="xpacks/.bin/openocd"
-  elif [ -d "${XBB_BINARIES_INSTALL_FOLDER_PATH}/bin" ]
-  then
-    OPENOCD="${XBB_BINARIES_INSTALL_FOLDER_PATH}/bin/openocd"
-  else
-    echo "Wrong folder."
-    exit 1
-  fi
+  local test_bin_path="$1"
 
   echo
   echo "Checking the openocd shared libraries..."
-  show_libs "${OPENOCD}"
+  show_libs "${test_bin_path}/openocd"
 
   echo
   echo "Checking if openocd starts..."
 
-  run_app "${OPENOCD}" --version
+  run_app "${test_bin_path}/openocd" --version
 
-  run_app "${OPENOCD}" \
+  run_app "${test_bin_path}/openocd" \
     -c "adapter driver dummy" \
     -c "adapter speed 1000" \
     -c "adapter list" \
