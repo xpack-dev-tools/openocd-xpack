@@ -68,8 +68,16 @@ function build_application_versioned_components()
 
     # -------------------------------------------------------------------------
 
-    # https://sourceforge.net/projects/libusb/files/libusb-1.0/
-    build_libusb1 "1.0.26" # "1.0.24"
+    (
+      if [ "${XBB_TARGET_PLATFORM}" == "linux" ]
+      then
+        system_library_path="$(dirname "$(/usr/bin/gcc -print-file-name=libudev.so.1)")"
+        LD_LIBRARY_PATH+=":${system_library_path}"
+      fi
+
+      # https://sourceforge.net/projects/libusb/files/libusb-1.0/
+      build_libusb1 "1.0.26"
+    )
 
     if [ "${XBB_TARGET_PLATFORM}" == "win32" ]
     then
