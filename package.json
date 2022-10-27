@@ -103,7 +103,9 @@
         "cat xpacks/xpack-dev-tools-xbb-helper/templates/test-docker-linux-arm-liquid.yml | {{ properties.LIQUIDJS }} > .github/workflows/test-docker-linux-arm.yml",
         "cat xpacks/xpack-dev-tools-xbb-helper/templates/publish-release-liquid.yml | {{ properties.LIQUIDJS }} > .github/workflows/publish-release.yml",
         "cat xpacks/xpack-dev-tools-xbb-helper/templates/test-xpm-liquid.yml | {{ properties.LIQUIDJS }} > .github/workflows/test-xpm.yml",
-        "cat xpacks/xpack-dev-tools-xbb-helper/templates/deep-clean-liquid.yml | {{ properties.LIQUIDJS }} > .github/workflows/deep-clean.yml"
+        "cat xpacks/xpack-dev-tools-xbb-helper/templates/deep-clean-liquid.yml | {{ properties.LIQUIDJS }} > .github/workflows/deep-clean.yml",
+        "cp xpacks/xpack-dev-tools-xbb-helper/templates/build.sh scripts/",
+        "cp xpacks/xpack-dev-tools-xbb-helper/templates/test.sh scripts/"
       ],
       "trigger-workflow-build-all": "bash xpacks/xpack-dev-tools-xbb-helper/github-actions/trigger-workflow-build.sh",
       "trigger-workflow-build-xbbli": "bash xpacks/xpack-dev-tools-xbb-helper/github-actions/trigger-workflow-build.sh --machine xbbli",
