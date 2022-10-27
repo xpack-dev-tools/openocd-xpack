@@ -134,6 +134,7 @@
       "common-dependencies": {
         "hidden": true,
         "devDependencies": {
+          "@xpack-dev-tools/cmake": "3.22.6-1.1",
           "@xpack-dev-tools/pkg-config": "0.29.2-1.1"
         }
       },
