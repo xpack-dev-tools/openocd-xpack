@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 # -----------------------------------------------------------------------------
+# DO NOT EDIT! Generated from xpacks/xpack-dev-tools-xbb-helper/templates/*.
+#
 # This file is part of the xPack distribution.
 #   (https://xpack.github.io)
 # Copyright (c) 2022 Liviu Ionescu.
@@ -54,17 +56,23 @@ source "${helper_folder_path}/scripts/build-common.sh"
 
 source "${scripts_folder_path}/versioning.sh"
 
-for dependency in ${XBB_APPLICATION_COMMON_DEPENDENCIES[@]}
-do
-  echo "Including ${helper_folder_path}/scripts/dependencies/${dependency}.sh..."
-  source "${helper_folder_path}/scripts/dependencies/${dependency}.sh"
-done
+if [ ${#XBB_APPLICATION_COMMON_DEPENDENCIES[@]} -ne 0 ]
+then
+  for dependency in ${XBB_APPLICATION_COMMON_DEPENDENCIES[@]}
+  do
+    echo "Including ${helper_folder_path}/scripts/dependencies/${dependency}.sh..."
+    source "${helper_folder_path}/scripts/dependencies/${dependency}.sh"
+  done
+fi
 
-for dependency in ${XBB_APPLICATION_DEPENDENCIES[@]}
-do
-  echo "Including ${scripts_folder_path}/dependencies/${dependency}.sh..."
-  source "${scripts_folder_path}/dependencies/${dependency}.sh"
-done
+if [ ${#XBB_APPLICATION_DEPENDENCIES[@]} -ne 0 ]
+then
+  for dependency in ${XBB_APPLICATION_DEPENDENCIES[@]}
+  do
+    echo "Including ${scripts_folder_path}/dependencies/${dependency}.sh..."
+    source "${scripts_folder_path}/dependencies/${dependency}.sh"
+  done
+fi
 
 # -----------------------------------------------------------------------------
 

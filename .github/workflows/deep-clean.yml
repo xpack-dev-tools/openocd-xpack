@@ -43,7 +43,7 @@ jobs:
           echo "whoami: $(whoami)"
           echo "pwd: $(pwd)"
           ls -lLA
-          env | sort
+          env | sort | egrep '^[^ \t]+='
 
       - name: 'Clean working area'
         run: rm -rf * .git*
@@ -63,7 +63,7 @@ jobs:
           echo "whoami: $(whoami)"
           echo "pwd: $(pwd)"
           ls -lLA
-          env | sort
+          env | sort | egrep '^[^ \t]+='
 
       - name: 'Clean working area'
         run: rm -rf * .git*
@@ -82,7 +82,7 @@ jobs:
           echo "whoami: $(whoami)"
           echo "pwd: $(pwd)"
           ls -lLA
-          env | sort
+          env | sort | egrep '^[^ \t]+='
 
       - name: 'Clean working area'
         run: rm -rf * .git*
@@ -103,7 +103,7 @@ jobs:
           echo "whoami: $(whoami)"
           echo "pwd: $(pwd)"
           ls -lLA
-          env | sort
+          env | sort | egrep '^[^ \t]+='
 
       - name: 'Clean working area'
         run: rm -rf * .git*
@@ -124,7 +124,7 @@ jobs:
           echo "whoami: $(whoami)"
           echo "pwd: $(pwd)"
           ls -lLA
-          env | sort
+          env | sort | egrep '^[^ \t]+='
 
       - name: 'Clean working area'
         run: rm -rf * .git*

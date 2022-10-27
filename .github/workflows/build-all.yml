@@ -36,10 +36,10 @@ jobs:
     timeout-minutes: 5760 # 4 days
     runs-on: [self-hosted, linux, x64]
     container:
-      image: ilegeul/ubuntu:amd64-18.04-xbb-v4.0
+      image: ilegeul/ubuntu:amd64-18.04-xbb-v5.0.0
     defaults:
       run:
-        shell: bash --login -e -o pipefail {0} # For node PATH
+        shell: bash
 
     steps:
       - name: 'Environment'
@@ -51,7 +51,7 @@ jobs:
           echo "node: $(node --version)"
           echo "npm: $(npm --version)"
           ls -lLA
-          env | sort
+          env | sort | egrep '^[^ \t]+='
 
       - name: 'Clean working area'
         run: rm -rf * .git*
@@ -111,10 +111,10 @@ jobs:
     timeout-minutes: 2880 # 2 days
     runs-on: [self-hosted, linux, arm, xbbla32]
     container:
-      image: ilegeul/ubuntu:arm32v7-18.04-xbb-v4.0
+      image: ilegeul/ubuntu:arm32v7-18.04-xbb-v5.0.0
     defaults:
       run:
-        shell: bash --login -e -o pipefail {0} # For node PATH
+        shell: bash
 
     steps:
       - name: 'Environment'
@@ -126,7 +126,7 @@ jobs:
           echo "node: $(node --version)"
           echo "npm: $(npm --version)"
           ls -lLA
-          env | sort
+          env | sort | egrep '^[^ \t]+='
 
       - name: 'Clean working area'
         run: rm -rf * .git*
@@ -179,13 +179,13 @@ jobs:
     timeout-minutes: 2880 # 2 days
     runs-on: [self-hosted, linux, arm64, xbbla64]
     container:
-      image: ilegeul/ubuntu:arm64v8-18.04-xbb-v4.0
+      image: ilegeul/ubuntu:arm64v8-18.04-xbb-v5.0.0
     defaults:
       run:
-        shell: bash --login -e -o pipefail {0} # For node PATH
+        shell: bash
 
     steps:
-      - name: 'Machine'
+      - name: 'Environment'
         run: |
           uname -a
           lsb_release -sd
@@ -194,7 +194,7 @@ jobs:
           echo "node: $(node --version)"
           echo "npm: $(npm --version)"
           ls -lLA
-          env | sort
+          env | sort | egrep '^[^ \t]+='
 
       - name: 'Clean working area'
         run: rm -rf * .git*
@@ -258,7 +258,7 @@ jobs:
           echo "node: $(node --version)"
           echo "npm: $(npm --version)"
           ls -lLA
-          env | sort
+          env | sort | egrep '^[^ \t]+='
 
       - name: 'Clean working area'
         run: rm -rf * .git*
@@ -323,7 +323,7 @@ jobs:
           echo "node: $(node --version)"
           echo "npm: $(npm --version)"
           ls -lLA
-          env | sort
+          env | sort | egrep '^[^ \t]+='
 
       - name: 'Clean working area'
         run: rm -rf * .git*

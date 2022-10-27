@@ -46,7 +46,7 @@ jobs:
           echo "whoami: $(whoami)"
           echo "pwd: $(pwd)"
           ls -lLA
-          env | sort
+          env | sort | egrep '^[^ \t]+='
 
       # https://github.com/actions/checkout
       - name: 'Checkout project'

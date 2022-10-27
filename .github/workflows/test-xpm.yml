@@ -48,7 +48,7 @@ jobs:
           echo "whoami: $(whoami)"
           echo "pwd: $(pwd)"
           ls -lLA
-          env | sort
+          env | sort | egrep '^[^ \t]+='
 
       - name: 'Checkout project'
         uses: actions/checkout@v3
@@ -82,7 +82,7 @@ jobs:
           echo "whoami: $(whoami)"
           echo "pwd: $(pwd)"
           ls -lLA
-          env | sort
+          env | sort | egrep '^[^ \t]+='
 
       - name: 'Clean working area' # Mandatory for self-hosted runners.
         run: rm -rf * .git*
@@ -120,7 +120,7 @@ jobs:
           echo "whoami: $(whoami)"
           echo "pwd: $(pwd)"
           ls -lLA
-          env | sort
+          env | sort | egrep '^[^ \t]+='
 
       - name: 'Clean working area' # Mandatory for self-hosted runners.
         run: rm -rf * .git*
@@ -157,7 +157,7 @@ jobs:
           echo "whoami: $(whoami)"
           echo "pwd: $(pwd)"
           ls -lLA
-          env | sort
+          env | sort | egrep '^[^ \t]+='
 
       - name: 'Clean working area' # Mandatory for self-hosted runners.
         run: rm -rf * .git*
@@ -191,7 +191,7 @@ jobs:
           echo "whoami: $(whoami)"
           echo "pwd: $(pwd)"
           ls -lLA
-          env | sort
+          env | sort | egrep '^[^ \t]+='
 
       - name: 'Clean working area' # Mandatory for self-hosted runners.
         run: rm -rf * .git*
@@ -229,7 +229,7 @@ jobs:
           echo "whoami: $(whoami)"
           echo "pwd: $(pwd)"
           ls -lLA
-          env | sort
+          env | sort | egrep '^[^ \t]+='
 
       # https://github.com/actions/checkout
       - name: 'Checkout project'
