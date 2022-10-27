@@ -23,7 +23,7 @@ XBB_APPLICATION_DISTRO_TOP_FOLDER=${XBB_APPLICATION_DISTRO_TOP_FOLDER:-"xPacks"}
 XBB_APPLICATION_DESCRIPTION="${XBB_APPLICATION_DISTRO_NAME} ${XBB_APPLICATION_NAME}"
 
 declare -a XBB_APPLICATION_DEPENDENCIES=( openocd )
-declare -a XBB_APPLICATION_COMMON_DEPENDENCIES=( libusb1 libusb-w32 libusb0 libftdi libiconv hidapi libtool autoconf automake pkg-config texinfo coreutils )
+declare -a XBB_APPLICATION_COMMON_DEPENDENCIES=( libusb1 libusb-w32 libusb0 libftdi libiconv hidapi libtool autoconf automake texinfo )
 
 # -----------------------------------------------------------------------------
 
