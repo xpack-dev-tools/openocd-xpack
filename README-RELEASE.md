@@ -48,7 +48,9 @@ With a git client, go to the helper repo and update to the latest master commit.
 ### Check the latest upstream release
 
 The current release must be announced in the [OpenOCD](https://openocd.org)
-web, and reflected in the Git [tags](https://sourceforge.net/p/openocd/code/ci/master/tree/). Compare the latest tag with the current xPack
+web, and reflected in the Git
+[tags](https://sourceforge.net/p/openocd/code/ci/master/tree/).
+Compare the latest tag with the current xPack
 [release](https://github.com/xpack-dev-tools/openocd-xpack/releases).
 If necessary, update the triplet, otherwise increase the fourth number,
 as below.
