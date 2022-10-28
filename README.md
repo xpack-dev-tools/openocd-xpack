@@ -1,6 +1,8 @@
 
-[![GitHub release (latest by date)](https://img.shields.io/github/v/release/xpack-dev-tools/openocd-xpack)](https://github.com/xpack-dev-tools/openocd-xpack/releases)
-[![npm (scoped)](https://img.shields.io/npm/v/@xpack-dev-tools/openocd.svg)](https://www.npmjs.com/package/@xpack-dev-tools/openocd/)
+[![GitHub package.json version](https://img.shields.io/github/package-json/v/xpack-dev-tools/openocd-xpack)](https://github.com/xpack-dev-tools/openocd-xpack/blob/xpack/package.json)
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/xpack-dev-tools/openocd-xpack)](https://github.com/xpack-dev-tools/openocd-xpack/releases/)
+[![npm (scoped)](https://img.shields.io/npm/v/@xpack-dev-tools/openocd.svg?color=blue)](https://www.npmjs.com/package/@xpack-dev-tools/openocd/)
+[![license](https://img.shields.io/github/license/xpack-dev-tools/openocd-xpack)](https://github.com/xpack-dev-tools/openocd-xpack/blob/xpack/LICENSE)
 
 # The xPack OpenOCD
 
@@ -95,7 +97,58 @@ Eclipse will automatically
 identify binaries installed with
 `xpm` and provide a convenient method to manage paths.
 
+After install, the package should create a structure like this (macOS files;
+only the first two depth levels are shown):
+
+```console
+$ tree -L 2 /Users/ilg/Library/xPacks/\@xpack-dev-tools/openocd/0.11.0-5.1/.content/
+/Users/ilg/Library/xPacks/\@xpack-dev-tools/openocd/0.11.0-5.1/.content/
+├── OpenULINK
+│   └── ulink_firmware.hex
+├── README.md
+├── bin
+│   └── openocd
+├── contrib
+│   ├── 60-openocd.rules
+│   └── libdcc
+├── distro-info
+│   ├── CHANGELOG.md
+│   ├── licenses
+│   ├── patches
+│   └── scripts
+├── libexec
+│   ├── libftdi1.2.5.0.dylib
+│   ├── libftdi1.2.dylib -> libftdi1.2.5.0.dylib
+│   ├── libgcc_s.1.dylib
+│   ├── libhidapi.0.dylib
+│   └── libusb-1.0.0.dylib
+├── scripts
+│   ├── bitsbytes.tcl
+│   ├── board
+│   ├── chip
+│   ├── cpld
+│   ├── cpu
+│   ├── fpga
+│   ├── interface
+│   ├── mem_helper.tcl
+│   ├── memory.tcl
+│   ├── mmr_helpers.tcl
+│   ├── target
+│   ├── test
+│   └── tools
+└── share
+    └── doc
+
+21 directories, 14 files
+```
+
+No other files are installed in any system folders or other locations.
+
 #### Uninstall
+
+The binaries are distributed as portable archives; thus they do not need
+to run a setup and do not require an uninstall; simply removing the
+folder is enough.
 
 To remove the links created by xpm in the current project:
 
@@ -153,9 +206,8 @@ For more details please read the
 
 ## Maintainer info
 
-- [How to build](https://github.com/xpack-dev-tools/openocd-xpack/blob/xpack/README-BUILD.md)
-- [How to make new releases](https://github.com/xpack-dev-tools/openocd-xpack/blob/xpack/README-RELEASE.md)
-- [Developer info](https://github.com/xpack-dev-tools/openocd-xpack/blob/xpack/README-DEVELOP.md)
+For maintainer info, please see the
+[README-MAINTAINER](https://github.com/xpack-dev-tools/openocd-xpack/blob/xpack/README-MAINTAINER.md)
 
 ## Support
 

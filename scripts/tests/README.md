@@ -19,21 +19,7 @@ git clone \
 
 ## Start a local test
 
-To check if OpenOCD starts on the current platform, run a native test:
-
-```sh
-bash ${HOME}/Work/openocd-xpack.git/scripts/helper/tests/native-test.sh \
-  --base-url "https://github.com/xpack-dev-tools/pre-releases/releases/download/test/"
-```
-
-The script stores the downloaded archive in a local cache, and
-does not download it again if available locally.
-
-To force a new download, remove the local archive:
-
-```sh
-rm -rf ~/Work/cache/xpack-openocd-*-*
-```
+TBD
 
 ## Start the GitHub Actions tests
 

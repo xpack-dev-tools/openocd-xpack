@@ -1,6 +1,6 @@
 # Development info
 
-Note: this page may be occasionally out of date.
+Note: this page is out of date.
 
 ## Prerequisites
 

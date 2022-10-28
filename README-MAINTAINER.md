@@ -1,4 +1,58 @@
-# How to make a new release (maintainer info)
+[![license](https://img.shields.io/github/license/xpack-dev-tools/openocd-xpack)](https://github.com/xpack-dev-tools/openocd-xpack/blob/xpack/LICENSE)
+[![GitHub issues](https://img.shields.io/github/issues/xpack-dev-tools/openocd-xpack.svg)](https://github.com/xpack-dev-tools/openocd-xpack/issues/)
+[![GitHub pulls](https://img.shields.io/github/issues-pr/xpack-dev-tools/openocd-xpack.svg)](https://github.com/xpack-dev-tools/openocd-xpack/pulls)
+
+# Maintainer info
+
+## Project repository
+
+The project is hosted on GitHub:
+
+- <https://github.com/xpack-dev-tools/openocd-xpack.git>
+
+To clone the stable branch (`xpack`), run the following commands in a
+terminal (on Windows use the _Git Bash_ console):
+
+```sh
+rm -rf ~/Work/openocd-xpack.git; \
+git clone https://github.com/xpack-dev-tools/openocd-xpack.git \
+  ~/Work/openocd-xpack.git
+```
+
+For development purposes, clone the `xpack-develop` branch:
+
+```sh
+rm -rf ~/Work/openocd-xpack.git; \
+mkdir -p ~/Work; \
+git clone \
+  --branch xpack-develop \
+  https://github.com/xpack-dev-tools/openocd-xpack.git \
+  ~/Work/openocd-xpack.git
+```
+
+Same for the helper and link it to the central xPacks store:
+
+```sh
+rm -rf ~/Work/xbb-helper-xpack.git; \
+mkdir -p ~/Work; \
+git clone \
+  --branch xpack-develop \
+  https://github.com/xpack-dev-tools/xbb-helper-xpack.git \
+  ~/Work/xbb-helper-xpack.git; \
+xpm link -C ~/Work/xbb-helper-xpack.git
+```
+
+Other repositories in use are:
+
+- <https://github.com/xpack-dev-tools/openocd.git> - the URL of the
+  [xPack OpenOCD fork](https://github.com/xpack-dev-tools/openocd)
+- <git://git.code.sf.net/p/openocd/code> - the URL of the
+  [upstream OpenOCD](http://openocd.org).
+
+## Prerequisites
+
+A recent [xpm](https://xpack.github.io/xpm/), which is a portable
+[Node.js](https://nodejs.org/) command line application.
 
 ## Release schedule
 
@@ -7,7 +61,7 @@ The xPack OpenOCD releases also had no schedules, and were done on an
 as-needed basis. As a general rule, it is planned to follow the upstream
 releases and add releases from the repo HEAD from time to time.
 
-## Prepare the build
+## How to make new releases
 
 Before starting the build, perform some checks and tweaks.
 
@@ -17,19 +71,8 @@ The build scripts are available in the `scripts` folder of the
 [`xpack-dev-tools/openocd-xpack`](https://github.com/xpack-dev-tools/openocd-xpack)
 Git repo.
 
-To download them on a new machine, clone the `xpack-develop` branch:
-
-```sh
-rm -rf ${HOME}/Work/openocd-xpack.git; \
-mkdir -p ~/Work; \
-git clone \
-  --branch xpack-develop \
-  https://github.com/xpack-dev-tools/openocd-xpack.git \
-  ${HOME}/Work/openocd-xpack.git
-```
-
-> Note: the repository uses submodules; for a successful build it is
-> mandatory to recurse the submodules.
+To download them on a new machine, clone the `xpack-develop` branch,
+as seen above.
 
 ### Check Git
 
@@ -40,10 +83,6 @@ In the `xpack-dev-tools/openocd-xpack` Git repo:
 - if needed, merge the `xpack` branch
 
 No need to add a tag here, it'll be added when the release is created.
-
-### Update helper
-
-With a git client, go to the helper repo and update to the latest master commit.
 
 ### Check the latest upstream release
 
@@ -125,35 +164,207 @@ Arm 32 GNU/Linux, Arm 64 GNU/Linux, Intel macOS and Arm macOS).
 
 Before the real build, run a test build on all platforms.
 
-```sh
-rm -rf ~/Work/openocd-*-*
+#### Intel macOS
 
-caffeinate bash ${HOME}/Work/openocd-xpack.git/scripts/helper/build.sh --develop --macos
-```
-
-Similarly on the Intel Linux (`xbbli`):
+For Intel macOS, first run the build on the development machine (`wksi`):
 
 ```sh
-sudo rm -rf ~/Work/openocd-*-*
+# Update the build scripts.
+git -C ~/Work/openocd-xpack.git pull
 
-bash ${HOME}/Work/openocd-xpack.git/scripts/helper/build.sh --develop --linux64
+xpm install -C ~/Work/openocd-xpack.git
 
-bash ${HOME}/Work/openocd-xpack.git/scripts/helper/build.sh --develop --win64
+# For backup overhead reasons, on the development machine
+# the builds happen on a separate Work folder.
+rm -rf ~/Work/openocd-[0-9]*-*
+
+xpm install --config darwin-x64 -C ~/Work/openocd-xpack.git
+caffeinate xpm run build-develop --config darwin-x64 -C ~/Work/openocd-xpack.git
 ```
 
-... on the Arm Linux 64-bit (`xbbla64`):
+When functional, push the `xpack-develop` branch to GitHub.
+
+Run the build on the production machine (`xbbmi`):
 
 ```sh
-bash ${HOME}/Work/openocd-xpack.git/scripts/helper/build.sh --develop --arm64
+caffeinate ssh xbbmi
 ```
-
-... and on the Arm Linux 32-bit (`xbbla32`):
 
 ```sh
-bash ${HOME}/Work/openocd-xpack.git/scripts/helper/build.sh --develop --arm32
+# Update the build scripts (or clone them the first time).
+git -C ~/Work/openocd-xpack.git pull
+
+xpm install -C ~/Work/openocd-xpack.git
+
+xpm run deep-clean --config darwin-x64 -C ~/Work/openocd-xpack.git
+
+xpm install --config darwin-x64 -C ~/Work/openocd-xpack.git
+caffeinate xpm run build-develop --config darwin-x64 -C ~/Work/openocd-xpack.git
 ```
 
-Work on the scripts until all platforms pass the build.
+Several minutes later, the output of the build script is a compressed
+archive and its SHA signature, created in the `deploy` folder:
+
+```console
+$ ls -l ~/Work/openocd-xpack.git/build/darwin-x64/deploy
+total 1080
+-rw-r--r--  1 ilg  staff  547972 May 17 09:50 xpack-openocd-0.11.0-5-darwin-x64.tar.gz
+-rw-r--r--  1 ilg  staff     111 May 17 09:50 xpack-openocd-0.11.0-5-darwin-x64.tar.gz.sha
+```
+
+#### Apple Silicon macOS
+
+Run the build on the production machine (`xbbma`):
+
+```sh
+caffeinate ssh xbbma
+```
+
+```sh
+# Update the build scripts (or clone them the first time).
+git -C ~/Work/openocd-xpack.git pull
+
+xpm install -C ~/Work/openocd-xpack.git
+
+xpm run deep-clean --config darwin-arm64 -C ~/Work/openocd-xpack.git
+
+xpm install --config darwin-arm64 -C ~/Work/openocd-xpack.git
+caffeinate xpm run build-develop --config darwin-arm64 -C ~/Work/openocd-xpack.git
+```
+
+Several minutes later, the output of the build script is a compressed
+archive and its SHA signature, created in the `deploy` folder:
+
+```console
+$ ls -l ~/Work/openocd-xpack.git/build/darwin-arm64/deploy
+total 1056
+-rw-r--r--  1 ilg  staff  533014 May 17 09:49 xpack-openocd-0.11.0-5-darwin-arm64.tar.gz
+-rw-r--r--  1 ilg  staff     113 May 17 09:49 xpack-openocd-0.11.0-5-darwin-arm64.tar.gz.sha
+```
+
+#### Intel GNU/Linux
+
+Run the build on the production machine (`xbbli`):
+
+```sh
+caffeinate ssh xbbli
+```
+
+Build the GNU/Linux binaries:
+
+```sh
+# Update the build scripts (or clone them the first time).
+git -C ~/Work/openocd-xpack.git pull
+
+xpm install -C ~/Work/openocd-xpack.git
+
+xpm run deep-clean --config linux-x64 -C ~/Work/openocd-xpack.git
+
+xpm install --config linux-x64 -C ~/Work/openocd-xpack.git
+xpm run build-develop --config linux-x64 -C ~/Work/openocd-xpack.git
+```
+
+Several minutes later, the output of the build script is a compressed
+archive and its SHA signature, created in the `deploy` folder:
+
+```console
+$ ls -l ~/Work/openocd-xpack.git/build/linux-x64/deploy
+total 1480
+-rw-rw-rw- 1 ilg ilg 551495 May 17 09:49 xpack-openocd-0.11.0-5-linux-x64.tar.gz
+-rw-rw-rw- 1 ilg ilg    110 May 17 09:49 xpack-openocd-0.11.0-5-linux-x64.tar.gz.sha
+```
+
+Build the Windows binaries:
+
+```sh
+xpm run deep-clean --config win32-x64 -C ~/Work/openocd-xpack.git
+
+xpm install --config win32-x64 -C ~/Work/openocd-xpack.git
+xpm run build-develop --config win32-x64 -C ~/Work/openocd-xpack.git
+```
+
+Several minutes later, the output of the build script is a compressed
+archive and its SHA signature, created in the `deploy` folder:
+
+```console
+$ ls -l ~/Work/openocd-xpack.git/build/win32-x64/deploy
+total 1480
+-rw-rw-rw- 1 ilg ilg 951474 May 17 09:50 xpack-openocd-0.11.0-5-win32-x64.zip
+-rw-rw-rw- 1 ilg ilg    107 May 17 09:50 xpack-openocd-0.11.0-5-win32-x64.zip.sha
+```
+
+#### Arm GNU/Linux 64-bit
+
+Run the build on the production machine (`xbbla64`):
+
+```sh
+caffeinate ssh xbbla64
+```
+
+```sh
+# Update the build scripts (or clone if the first time)
+git -C ~/Work/openocd-xpack.git pull
+
+xpm install -C ~/Work/openocd-xpack.git
+
+xpm run deep-clean --config linux-arm64 -C ~/Work/openocd-xpack.git
+
+xpm install --config linux-arm64 -C ~/Work/openocd-xpack.git
+xpm run build-develop --config linux-arm64 -C ~/Work/openocd-xpack.git
+```
+
+Several minutes later, the output of the build script is a compressed
+archive and its SHA signature, created in the `deploy` folder:
+
+```console
+$ ls -l ~/Work/openocd-xpack.git/build/linux-arm64/deploy
+total 532
+-rw-rw-rw- 1 ilg ilg 538649 May 17 09:51 xpack-openocd-0.11.0-5-linux-arm64.tar.gz
+-rw-rw-rw- 1 ilg ilg    112 May 17 09:51 xpack-openocd-0.11.0-5-linux-arm64.tar.gz.sha
+```
+
+#### Arm GNU/Linux 32-bit
+
+Run the build on the production machine (`xbbla32`):
+
+```sh
+caffeinate ssh xbbla32
+```
+
+```sh
+# Update the build scripts (or clone if the first time)
+git -C ~/Work/openocd-xpack.git pull
+
+xpm install -C ~/Work/openocd-xpack.git
+
+xpm run deep-clean --config linux-arm -C ~/Work/openocd-xpack.git
+
+xpm install --config linux-arm -C ~/Work/openocd-xpack.git
+xpm run build-develop --config linux-arm -C ~/Work/openocd-xpack.git
+```
+
+Several minutes later, the output of the build script is a compressed
+archive and its SHA signature, created in the `deploy` folder:
+
+```console
+$ ls -l ~/Work/openocd-xpack.git/build/linux-arm/deploy
+total 500
+-rw-rw-rw- 1 ilg ilg 506541 May 17 09:51 xpack-openocd-0.11.0-5-linux-arm.tar.gz
+-rw-rw-rw- 1 ilg ilg    110 May 17 09:51 xpack-openocd-0.11.0-5-linux-arm.tar.gz.sha
+```
+
+### Files cache
+
+The XBB build scripts use a local cache such that files are downloaded only
+during the first run, later runs being able to use the cached files.
+
+However, occasionally some servers may not be available, and the builds
+may fail.
+
+The workaround is to manually download the files from an alternate
+location (like
+<https://github.com/xpack-dev-tools/files-cache/tree/master/libs>),
+place them in the XBB cache (`Work/cache`) and restart the build.
 
 ## Push the build scripts
 
@@ -162,8 +373,6 @@ In this Git repo:
 - push the `xpack-develop` branch to GitHub
 - possibly push the helper project too
 
-From here it'll be cloned on the production machines.
-
 ## Run the CI build
 
 The automation is provided by GitHub Actions and three self-hosted runners.
@@ -171,13 +380,14 @@ The automation is provided by GitHub Actions and three self-hosted runners.
 Run the `generate-workflows` to re-generate the
 GitHub workflow files; commit and push if necessary.
 
-- on the macOS machine (`xbbmi`) open ssh sessions to both Linux
-machines (`xbbmli` and `xbbmla`):
+- on a permanently running machine (`berry`) open ssh sessions to the build
+machines (`xbbma`, `xbbli`, `xbbla64` and `xbbla32`):
 
 ```sh
-caffeinate ssh xbbmli
-
-caffeinate ssh xbbmla
+caffeinate ssh xbbma
+caffeinate ssh xbbli
+caffeinate ssh xbbla64
+caffeinate ssh xbbla32
 ```
 
 Start the runner on all machines:
@@ -203,11 +413,11 @@ To trigger the GitHub Actions build, use the xPack action:
 This is equivalent to:
 
 ```sh
-bash ${HOME}/Work/openocd-xpack.git/scripts/helper/trigger-workflow-build.sh --machine xbbli
-bash ${HOME}/Work/openocd-xpack.git/scripts/helper/trigger-workflow-build.sh --machine xbbla64
-bash ${HOME}/Work/openocd-xpack.git/scripts/helper/trigger-workflow-build.sh --machine xbbla32
-bash ${HOME}/Work/openocd-xpack.git/scripts/helper/trigger-workflow-build.sh --machine xbbmi
-bash ${HOME}/Work/openocd-xpack.git/scripts/helper/trigger-workflow-build.sh --machine xbbma
+bash ~/Work/openocd-xpack.git/scripts/helper/trigger-workflow-build.sh --machine xbbli
+bash ~/Work/openocd-xpack.git/scripts/helper/trigger-workflow-build.sh --machine xbbla64
+bash ~/Work/openocd-xpack.git/scripts/helper/trigger-workflow-build.sh --machine xbbla32
+bash ~/Work/openocd-xpack.git/scripts/helper/trigger-workflow-build.sh --machine xbbmi
+bash ~/Work/openocd-xpack.git/scripts/helper/trigger-workflow-build.sh --machine xbbma
 ```
 
 These scripts require the `GITHUB_API_DISPATCH_TOKEN` variable to be present
@@ -238,20 +448,6 @@ The resulting binaries are available for testing from
 
 The automation is provided by GitHub Actions.
 
-On the macOS machine (`xbbmi`) open a ssh sessions to the Arm/Linux
-test machine `xbbla`:
-
-```sh
-caffeinate ssh xbbla
-```
-
-Start both runners (to allow the 32/64-bit tests to run in parallel):
-
-```sh
-~/actions-runners/xpack-dev-tools/1/run.sh &
-~/actions-runners/xpack-dev-tools/2/run.sh &
-```
-
 To trigger the GitHub Actions tests, use the xPack actions:
 
 - `trigger-workflow-test-prime`
@@ -261,9 +457,9 @@ To trigger the GitHub Actions tests, use the xPack actions:
 These are equivalent to:
 
 ```sh
-bash ${HOME}/Work/openocd-xpack.git/scripts/helper/tests/trigger-workflow-test-prime.sh
-bash ${HOME}/Work/openocd-xpack.git/scripts/helper/tests/trigger-workflow-test-docker-linux-intel.sh
-bash ${HOME}/Work/openocd-xpack.git/scripts/helper/tests/trigger-workflow-test-docker-linux-arm.sh
+bash ~/Work/openocd-xpack.git/scripts/helper/tests/trigger-workflow-test-prime.sh
+bash ~/Work/openocd-xpack.git/scripts/helper/tests/trigger-workflow-test-docker-linux-intel.sh
+bash ~/Work/openocd-xpack.git/scripts/helper/tests/trigger-workflow-test-docker-linux-arm.sh
 ```
 
 These scripts require the `GITHUB_API_DISPATCH_TOKEN` variable to be present
@@ -286,7 +482,7 @@ To trigger the Travis test, use the xPack action:
 This is equivalent to:
 
 ```sh
-bash ${HOME}/Work/openocd-xpack.git/scripts/helper/tests/trigger-travis-macos.sh
+bash ~/Work/openocd-xpack.git/scripts/helper/tests/trigger-travis-macos.sh
 ```
 
 This script requires the `TRAVIS_COM_TOKEN` variable to be present
@@ -472,7 +668,7 @@ When the release is considered stable, promote it as `latest`:
 
 In case the previous version is not functional and needs to be unpublished:
 
-- `npm unpublish @xpack-dev-tools/openocd@0.11.0-5.X`
+- `npm unpublish @xpack-dev-tools/openocd@0.11.0-5.1`
 
 ## Update the Web
 
