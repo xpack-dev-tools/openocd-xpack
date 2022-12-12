@@ -157,6 +157,11 @@
         "devDependencies": {
           "@xpack-dev-tools/clang": "14.0.6-2.1",
           "@xpack-dev-tools/realpath": "9.1.0-1.1"
+        },
+        "actions": {
+          "build": "caffeinate {{ properties.commandBashBuild }}",
+          "build-develop": "caffeinate {{ properties.commandBashBuild }} --develop",
+          "build-develop-tests-only": "caffeinate {{ properties.commandBashBuild }} --develop --tests-only"
         }
       },
       "darwin-arm64": {
