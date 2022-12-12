@@ -43,7 +43,7 @@ function build_application_versioned_components()
     # https://ftp.gnu.org/pub/gnu/libiconv/
     build_libiconv "1.17" # "1.16"
 
-    if [ "${XBB_TARGET_PLATFORM}" == "darwin" ]
+    if [ "${XBB_REQUESTED_HOST_PLATFORM}" == "darwin" ]
     then
 
       # https://ftp.gnu.org/gnu/autoconf/
@@ -79,7 +79,7 @@ function build_application_versioned_components()
       build_libusb1 "1.0.26"
     )
 
-    if [ "${XBB_TARGET_PLATFORM}" == "win32" ]
+    if [ "${XBB_REQUESTED_HOST_PLATFORM}" == "win32" ]
     then
       # https://sourceforge.net/projects/libusb-win32/files/libusb-win32-releases/
       build_libusb_w32 "1.2.6.0" # ! PATCH & pkgconfig
