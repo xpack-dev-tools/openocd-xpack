@@ -211,7 +211,7 @@ For maintainer info, please see the
 
 ## Support
 
-The quick answer is to use the GitHub
+The quick advice for getting support is to use the GitHub
 [Discussions](https://github.com/xpack-dev-tools/openocd-xpack/discussions/).
 
 For more details please read the
