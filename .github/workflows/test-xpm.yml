@@ -38,7 +38,7 @@ jobs:
 
   linux-x64:
     name: 'Linux Intel 64-bit OpenOCD@${{ github.event.inputs.version }} test'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
 
     steps:
       - name: 'Environment'
@@ -147,7 +147,7 @@ jobs:
   
   macos-x64:
     name: 'macOS Intel 64-bit OpenOCD@${{ github.event.inputs.version }} test'
-    runs-on: macos-latest
+    runs-on: macos-10.15
 
     steps:
       - name: 'Environment'
@@ -215,7 +215,7 @@ jobs:
   
   windows-x64:
     name: 'Windows 64-bit OpenOCD@${{ github.event.inputs.version }} test'
-    runs-on: windows-latest
+    runs-on: windows-2022
     defaults:
       run:
         # https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstepsshell

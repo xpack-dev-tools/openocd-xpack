@@ -10,7 +10,9 @@ patches/
 pkgconfig/
 scripts/
 tests/
+extras/
 
 README-*
-*.tgz
 LICENSE-*
+
+*.tgz
