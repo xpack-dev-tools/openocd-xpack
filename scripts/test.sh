@@ -60,7 +60,10 @@ source "${helper_folder_path}/scripts/test-common.sh"
 
 # Possibly override common definitions.
 source "${scripts_folder_path}/tests/run.sh"
-# source "${scripts_folder_path}/tests/update.sh"
+if [ -f "${scripts_folder_path}/tests/update.sh" ]
+then
+  source "${scripts_folder_path}/tests/update.sh"
+fi
 
 if [ ${#XBB_APPLICATION_COMMON_DEPENDENCIES[@]} -ne 0 ]
 then
