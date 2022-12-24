@@ -288,7 +288,7 @@ function openocd_build()
     echo "Component openocd already installed"
   fi
 
-  tests_add "openocd_test"
+  tests_add "openocd_test" "${XBB_EXECUTABLES_INSTALL_FOLDER_PATH}/bin"
 }
 
 function openocd_test()
