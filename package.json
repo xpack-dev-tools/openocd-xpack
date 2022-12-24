@@ -72,22 +72,28 @@
     },
     "properties": {
       "appName": "OpenOCD",
-      "appLCName": "openocd",
+      "appLcName": "openocd",
       "platforms": "all",
-      "LIQUIDJS": "liquidjs '{ \"XBB_APPLICATION_NAME\": \"{{ properties.appName }}\", \"XBB_APPLICATION_LOWER_CASE_NAME\": \"{{ properties.appLCName }}\", \"platforms\": \"{{ properties.platforms }}\" }'",
+      "LIQUIDJS": "liquidjs '{ \"XBB_APPLICATION_NAME\": \"{{ properties.appName }}\", \"XBB_APPLICATION_LOWER_CASE_NAME\": \"{{ properties.appLcName }}\", \"platforms\": \"{{ properties.platforms }}\" }'",
       "buildFolderRelativePath": "{{ 'build' | path_join: configuration.name | to_filename | downcase }}",
       "buildFolderRelativePathPosix": "{{ 'build' | path_posix_join: configuration.name | downcase }}",
       "commandBashBuild": "bash {{ properties.dbg }} scripts/build.sh --target {{ configuration.name }} --build-folder {{ properties.buildFolderRelativePathPosix }}",
       "dbg": ""
     },
     "actions": {
-      "deep-clean": "rm -rf build xpacks node_modules package-lock.json",
+      "deep-clean": [
+        "rm -rf build xpacks node_modules package-lock.json",
+        "rm -rf ${HOME}/Work/{{ properties.appLcName }}-[0-9]*-*"
+      ],
       "install": [
         "npm install",
         "xpm install"
       ],
       "link-deps": [
         "xpm link @xpack-dev-tools/xbb-helper"
+      ],
+      "git-pull-helper": [
+        "git -C ${HOME}/Work/xbb-helper-xpack.git pull"
       ],
       "generate-workflows": [
         "mkdir -p .github/workflows/",
@@ -104,6 +110,8 @@
         "cat xpacks/xpack-dev-tools-xbb-helper/templates/publish-release-liquid.yml | {{ properties.LIQUIDJS }} > .github/workflows/publish-release.yml",
         "cat xpacks/xpack-dev-tools-xbb-helper/templates/test-xpm-liquid.yml | {{ properties.LIQUIDJS }} > .github/workflows/test-xpm.yml",
         "cat xpacks/xpack-dev-tools-xbb-helper/templates/deep-clean-liquid.yml | {{ properties.LIQUIDJS }} > .github/workflows/deep-clean.yml",
+        "cp xpacks/xpack-dev-tools-xbb-helper/templates/dot.gitignore .gitignore",
+        "cp xpacks/xpack-dev-tools-xbb-helper/templates/dot.npmignore .npmignore",
         "cp xpacks/xpack-dev-tools-xbb-helper/templates/build.sh scripts/",
         "cp xpacks/xpack-dev-tools-xbb-helper/templates/test.sh scripts/"
       ],
@@ -123,7 +131,7 @@
       "trigger-workflow-test-xpm": "bash xpacks/xpack-dev-tools-xbb-helper/github-actions/trigger-workflow-test-xpm.sh",
       "trigger-workflow-deep-clean": "bash xpacks/xpack-dev-tools-xbb-helper/github-actions/trigger-workflow-deep-clean.sh",
       "test-native": "bash {{ properties.dbg }} scripts/test.sh",
-      "test-pre-release": "bash {{ properties.dbg }} scripts/test.sh --base-url pre-release",
+      "test-pre-release": "bash {{ properties.dbg }} scripts/test.sh --base-url pre-release --develop --cache",
       "test-xpm": "bash {{ properties.dbg }} scripts/test.sh --xpm",
       "build-native": "bash {{ properties.dbg }} scripts/build.sh",
       "build-native-develop": "bash {{ properties.dbg }} scripts/build.sh --develop",
@@ -142,18 +150,65 @@
       "common-actions": {
         "hidden": true,
         "actions": {
-          "deep-clean": "rm -rf {{ properties.buildFolderRelativePathPosix }}",
-          "install": "xpm install --config {{ configuration.name }}",
+          "deep-clean": [
+            "rm -rf {{ properties.buildFolderRelativePathPosix }}",
+            "rm -rf ${HOME}/Work/{{ properties.appLcName }}-[0-9]*-*/{{ configuration.name }}"
+          ],
+          "install": "xpm install --config {{ configuration.name }}"
+        }
+      },
+      "common-actions-native": {
+        "hidden": true,
+        "actions": {
           "build": "{{ properties.commandBashBuild }}",
           "build-develop": "{{ properties.commandBashBuild }} --develop",
-          "publish": "echo publish"
+          "build-develop-tests-only": "{{ properties.commandBashBuild }} --develop --tests-only"
+        }
+      },
+      "common-docker": {
+        "hidden": true,
+        "properties": {
+          "containerName": "{{ properties.appLcName }}-{{ package.version }}-{{ configuration.name }}"
+        },
+        "actions": {
+          "docker-prepare": [
+            "mkdir -pv ${HOME}/.wine",
+            "docker rm --force {{ properties.containerName }}",
+            "docker create --name {{ properties.containerName }} --tty --hostname docker --volume $(pwd):$(pwd) --volume ${HOME}/Work/xbb-helper-xpack.git:${HOME}/Work/xbb-helper-xpack.git --volume ${HOME}/.local/xPacks:${HOME}/.local/xPacks --volume ${HOME}/.cache/xPacks:${HOME}/.cache/xPacks --volume ${HOME}/Work/cache:${HOME}/Work/cache --volume ${HOME}/.wine:${HOME}/.wine --workdir $(pwd) {{ properties.dockerImage }}",
+            "docker start {{ properties.containerName }}",
+            "docker exec {{ properties.containerName }} npm install --location=global xpm@latest",
+            "docker exec {{ properties.containerName }} userdel node",
+            "docker exec {{ properties.containerName }} groupadd --gid $(id -g) --force $(id -gn)",
+            "docker exec {{ properties.containerName }} useradd --home-dir ${HOME} --uid $(id -u) --gid $(id -g) $(id -un)",
+            "docker exec --user $(id -un) {{ properties.containerName }} bash -c 'lsb_release -sd && whoami && pwd && ls -lLA'",
+            "docker exec --user $(id -un) {{ properties.containerName }} xpm install",
+            "docker exec --user $(id -un) {{ properties.containerName }} xpm install --config {{ configuration.name }}"
+          ],
+          "docker-link-deps": [
+            "docker exec --user $(id -un) {{ properties.containerName }} xpm link -C ${HOME}/Work/xbb-helper-xpack.git",
+            "docker exec --user $(id -un) {{ properties.containerName }} xpm run link-deps"
+          ],
+          "docker-build": [
+            "docker exec --user $(id -un) {{ properties.containerName }} xpm run build --config {{ configuration.name }}"
+          ],
+          "docker-build-develop": [
+            "docker exec --user $(id -un) {{ properties.containerName }} xpm run build-develop --config {{ configuration.name }}"
+          ],
+          "docker-build-develop-tests-only": [
+            "docker exec --user $(id -un) {{ properties.containerName }} xpm run build-develop-tests-only --config {{ configuration.name }}"
+          ],
+          "docker-remove": [
+            "docker stop {{ properties.containerName }}",
+            "docker rm {{ properties.containerName }}"
+          ]
         }
       },
       "darwin-x64": {
         "inherit": [
           "common-dependencies",
-          "common-actions"
-        ],
+          "common-actions",
+          "common-actions-native"
+       ],
         "devDependencies": {
           "@xpack-dev-tools/clang": "14.0.6-2.1",
           "@xpack-dev-tools/realpath": "9.1.0-1.1",
@@ -173,7 +228,9 @@
       "linux-x64": {
         "inherit": [
           "common-dependencies",
-          "common-actions"
+          "common-actions",
+          "common-actions-native",
+          "common-docker"
         ],
         "_devDependencies": {
           "@xpack-dev-tools/xbb-bootstrap": "4.0.0"
@@ -181,26 +238,44 @@
         "devDependencies": {
           "@xpack-dev-tools/gcc": "12.2.0-1.1",
           "@xpack-dev-tools/patchelf": "0.15.0-1.1"
+        },
+        "properties": {
+          "dockerImage": "ilegeul/ubuntu:amd64-18.04-xbb-v5.0.0"
         }
       },
       "linux-arm64": {
         "inherit": [
           "linux-x64"
-        ]
+        ],
+        "properties": {
+          "dockerImage": "ilegeul/ubuntu:arm64v8-18.04-xbb-v5.0.0"
+        }
       },
       "linux-arm": {
         "inherit": [
           "linux-x64"
-        ]
+        ],
+        "properties": {
+          "dockerImage": "ilegeul/ubuntu:arm32v7-18.04-xbb-v5.0.0"
+        }
       },
       "win32-x64": {
         "inherit": [
           "common-dependencies",
-          "common-actions"
+          "common-actions",
+          "common-docker"
         ],
         "devDependencies": {
           "@xpack-dev-tools/mingw-w64-gcc": "11.3.0-1.3",
           "@xpack-dev-tools/wine": "6.17.0-1.1"
+        },
+        "properties": {
+          "dockerImage": "ilegeul/ubuntu:amd64-18.04-xbb-v5.0.0"
+        },
+        "actions": {
+          "build": "{{ properties.commandBashBuild }} --windows",
+          "build-develop": "{{ properties.commandBashBuild }} --windows --develop",
+          "build-develop-tests-only": "{{ properties.commandBashBuild }} --windows --develop --tests-only"
         }
       }
     }
