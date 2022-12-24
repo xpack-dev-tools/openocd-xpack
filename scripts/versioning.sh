@@ -59,6 +59,7 @@ function application_build_versioned_components()
 
       # https://ftp.gnu.org/gnu/automake/
       # depends on autoconf.
+      # requires M4 >1.4
       automake_build "1.16.5"
 
       # http://ftpmirror.gnu.org/libtool/
