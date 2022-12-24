@@ -143,6 +143,7 @@
         "hidden": true,
         "devDependencies": {
           "@xpack-dev-tools/cmake": "3.22.6-1.1",
+          "@xpack-dev-tools/m4": "1.4.19-1.1",
           "@xpack-dev-tools/ninja-build": "1.11.1-1.1",
           "@xpack-dev-tools/pkg-config": "0.29.2-1.1"
         }
