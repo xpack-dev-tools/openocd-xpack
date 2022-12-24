@@ -7,10 +7,6 @@
 # for any purpose is hereby granted, under the terms of the MIT license.
 # -----------------------------------------------------------------------------
 
-# Helper script used in the xPack build scripts. As the name implies,
-# it should contain only functions and should be included with 'source'
-# by the build scripts (both native and container).
-
 # -----------------------------------------------------------------------------
 
 function application_build_versioned_components()
@@ -18,7 +14,7 @@ function application_build_versioned_components()
   # Don't use a comma since the regular expression
   # that processes this string in the Makefile, silently fails and the
   # bfdver.h file remains empty.
-  XBB_BRANDING="${XBB_APPLICATION_DISTRO_NAME} ${XBB_APPLICATION_NAME} ${XBB_TARGET_MACHINE}"
+  XBB_BRANDING="${XBB_APPLICATION_DISTRO_NAME} ${XBB_APPLICATION_NAME} ${XBB_REQUESTED_TARGET_MACHINE}"
 
   XBB_OPENOCD_VERSION="$(echo "${XBB_RELEASE_VERSION}" | sed -e 's|-.*||')"
 
@@ -34,9 +30,21 @@ function application_build_versioned_components()
   if [[ "${XBB_RELEASE_VERSION}" =~ 0\.11\.0-[5] ]]
   then
     # -------------------------------------------------------------------------
+    # Build the native dependencies.
 
-    xbb_set_binaries_install "${XBB_DEPENDENCIES_INSTALL_FOLDER_PATH}"
-    xbb_set_libraries_install "${XBB_DEPENDENCIES_INSTALL_FOLDER_PATH}"
+    # xbb_set_executables_install_path "${XBB_DEPENDENCIES_INSTALL_FOLDER_PATH}"
+    # xbb_set_libraries_install_path "${XBB_DEPENDENCIES_INSTALL_FOLDER_PATH}"
+
+    # None
+
+    # -------------------------------------------------------------------------
+    # Build the target dependencies.
+
+    xbb_reset_env
+    xbb_set_target "requested"
+
+    xbb_set_executables_install_path "${XBB_DEPENDENCIES_INSTALL_FOLDER_PATH}"
+    xbb_set_libraries_install_path "${XBB_DEPENDENCIES_INSTALL_FOLDER_PATH}"
 
     # -------------------------------------------------------------------------
 
@@ -88,13 +96,16 @@ function application_build_versioned_components()
     hidapi_build "0.12.0" # "0.10.1" # ! pkgconfig/hidapi-*-windows.pc
 
     # -------------------------------------------------------------------------
+    # Build the application binaries.
 
-    xbb_set_binaries_install "${XBB_APPLICATION_INSTALL_FOLDER_PATH}"
+    xbb_set_executables_install_path "${XBB_APPLICATION_INSTALL_FOLDER_PATH}"
+    xbb_set_libraries_install_path "${XBB_DEPENDENCIES_INSTALL_FOLDER_PATH}"
+
     openocd_build "${XBB_OPENOCD_VERSION}"
 
     # -------------------------------------------------------------------------
   else
-    echo "Unsupported version ${XBB_RELEASE_VERSION}."
+    echo "Unsupported ${XBB_APPLICATION_LOWER_CASE_NAME} version ${XBB_RELEASE_VERSION}"
     exit 1
   fi
 }

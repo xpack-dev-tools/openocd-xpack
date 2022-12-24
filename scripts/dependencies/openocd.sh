@@ -7,10 +7,6 @@
 # for any purpose is hereby granted, under the terms of the MIT license.
 # -----------------------------------------------------------------------------
 
-# Helper script used in the second edition of the xPack build
-# scripts. As the name implies, it should contain only functions and
-# should be included with 'source' by the container build scripts.
-
 # -----------------------------------------------------------------------------
 
 function openocd_download()
@@ -47,7 +43,8 @@ function openocd_build()
     (
       openocd_download
 
-      xbb_activate_installed_dev
+      xbb_activate_dependencies_dev
+      # TODO!
       xbb_activate_installed_bin
 
       cd "${XBB_SOURCES_FOLDER_PATH}/${openocd_src_folder_name}"
@@ -68,12 +65,13 @@ function openocd_build()
       # It makes little sense to use -static-libgcc here, since
       # several shared libraries will refer to it anyway.
       LDFLAGS="${XBB_LDFLAGS_APP}"
-      if [ "${XBB_TARGET_PLATFORM}" == "linux" ]
-      then
-        xbb_activate_cxx_rpath
-        LDFLAGS+=" -Wl,-rpath,${LD_LIBRARY_PATH}"
-      fi
+      xbb_adjust_ldflags_rpath
+
       LIBS=""
+      if [ "${XBB_HOST_PLATFORM}" == "linux" ]
+      then
+        LIBS+=" -lpthread -lrt -ludev"
+      fi
 
       export CPPFLAGS
       export CFLAGS
@@ -92,10 +90,7 @@ function openocd_build()
         rm -rfv "${XBB_SOURCES_FOLDER_PATH}/${openocd_src_folder_name}/jimtcl/autosetup/jimsh0"
 
         (
-          if [ "${XBB_IS_DEVELOP}" == "y" ]
-          then
-            env | sort
-          fi
+          xbb_show_env_develop
 
           echo
           echo "Running openocd configure..."
@@ -107,18 +102,18 @@ function openocd_build()
 
           config_options=()
 
-          config_options+=("--prefix=${XBB_BINARIES_INSTALL_FOLDER_PATH}")
+          config_options+=("--prefix=${XBB_EXECUTABLES_INSTALL_FOLDER_PATH}")
 
-          config_options+=("--build=${XBB_BUILD}")
-          config_options+=("--host=${XBB_HOST}")
-          config_options+=("--target=${XBB_TARGET}")
+          config_options+=("--build=${XBB_BUILD_TRIPLET}")
+          config_options+=("--host=${XBB_HOST_TRIPLET}")
+          config_options+=("--target=${XBB_TARGET_TRIPLET}")
 
-          config_options+=("--datarootdir=${XBB_BINARIES_INSTALL_FOLDER_PATH}")
-          config_options+=("--localedir=${XBB_BINARIES_INSTALL_FOLDER_PATH}/share/locale")
-          config_options+=("--mandir=${XBB_BINARIES_INSTALL_FOLDER_PATH}/share/doc/man")
-          config_options+=("--pdfdir=${XBB_BINARIES_INSTALL_FOLDER_PATH}/share/doc/pdf")
-          config_options+=("--infodir=${XBB_BINARIES_INSTALL_FOLDER_PATH}/share/doc/info")
-          config_options+=("--docdir=${XBB_BINARIES_INSTALL_FOLDER_PATH}/share/doc/")
+          config_options+=("--datarootdir=${XBB_EXECUTABLES_INSTALL_FOLDER_PATH}")
+          config_options+=("--localedir=${XBB_EXECUTABLES_INSTALL_FOLDER_PATH}/share/locale")
+          config_options+=("--mandir=${XBB_EXECUTABLES_INSTALL_FOLDER_PATH}/share/doc/man")
+          config_options+=("--pdfdir=${XBB_EXECUTABLES_INSTALL_FOLDER_PATH}/share/doc/pdf")
+          config_options+=("--infodir=${XBB_EXECUTABLES_INSTALL_FOLDER_PATH}/share/doc/info")
+          config_options+=("--docdir=${XBB_EXECUTABLES_INSTALL_FOLDER_PATH}/share/doc/")
 
           config_options+=("--disable-wextra")
           config_options+=("--disable-werror")
@@ -173,7 +168,7 @@ function openocd_build()
           config_options+=("--disable-minidriver-dummy")
           config_options+=("--disable-parport-ppdev")
 
-          if [ "${XBB_TARGET_PLATFORM}" == "win32" ]
+          if [ "${XBB_HOST_PLATFORM}" == "win32" ]
           then
 
             export OUTPUT_DIR="${XBB_BUILD_FOLDER_PATH}"
@@ -201,11 +196,8 @@ function openocd_build()
             # oocd_trace.h:22:10: fatal error: termios.h: No such file or directory
             config_options+=("--disable-oocd_trace")
 
-          elif [ "${XBB_TARGET_PLATFORM}" == "linux" ]
+          elif [ "${XBB_HOST_PLATFORM}" == "linux" ]
           then
-
-            LDFLAGS+=" -Wl,-rpath,${LD_LIBRARY_PATH}"
-            LIBS+=" -lpthread -lrt -ludev"
 
             # --enable-minidriver-dummy -> configure error
 
@@ -223,7 +215,7 @@ function openocd_build()
             # Deprecated
             # config_options+=("--enable-oocd_trace")
 
-          elif [ "${XBB_TARGET_PLATFORM}" == "darwin" ]
+          elif [ "${XBB_HOST_PLATFORM}" == "darwin" ]
           then
 
             # --enable-minidriver-dummy -> configure error
@@ -249,7 +241,7 @@ function openocd_build()
 
           else
 
-            echo "Unsupported target platorm ${XBB_TARGET_PLATFORM}."
+            echo "Unsupported XBB_HOST_PLATFORM=${XBB_HOST_PLATFORM} in ${FUNCNAME[0]}()"
             exit 1
 
           fi
@@ -277,26 +269,10 @@ function openocd_build()
           run_verbose make install
         fi
 
-        if [ "${XBB_TARGET_PLATFORM}" == "win32" ]
+        if [ "${XBB_HOST_PLATFORM}" == "win32" ]
         then
-          rm -f "${XBB_BINARIES_INSTALL_FOLDER_PATH}/bin/openocdw.exe"
+          rm -f "${XBB_EXECUTABLES_INSTALL_FOLDER_PATH}/bin/openocdw.exe"
         fi
-
-        (
-          # xbb_activate_tex
-
-          if [ "${XBB_WITH_PDF}" == "y" ]
-          then
-            run_verbose make bindir="bin" pkgdatadir="" pdf
-            run_verbose make install-pdf
-          fi
-
-          if [ "${XBB_WITH_HTML}" == "y" ]
-          then
-            run_verbose make bindir="bin" pkgdatadir="" html
-            run_verbose make install-html
-          fi
-        )
 
       ) 2>&1 | tee "${XBB_LOGS_FOLDER_PATH}/${openocd_folder_name}/make-output-$(ndate).txt"
 
@@ -309,7 +285,7 @@ function openocd_build()
     touch "${openocd_stamp_file_path}"
 
   else
-    echo "Component openocd already installed."
+    echo "Component openocd already installed"
   fi
 
   tests_add "openocd_test"
@@ -321,14 +297,14 @@ function openocd_test()
 
   echo
   echo "Checking the openocd shared libraries..."
-  show_libs "${test_bin_path}/openocd"
+  show_host_libs "${test_bin_path}/openocd"
 
   echo
   echo "Checking if openocd starts..."
 
-  run_app "${test_bin_path}/openocd" --version
+  run_host_app_verbose "${test_bin_path}/openocd" --version
 
-  run_app "${test_bin_path}/openocd" \
+  run_host_app_verbose "${test_bin_path}/openocd" \
     -c "adapter driver dummy" \
     -c "adapter speed 1000" \
     -c "adapter list" \
