@@ -14,7 +14,7 @@ function tests_run_all()
 {
   local test_bin_path="$1"
 
-  test_openocd "${test_bin_path}"
+  openocd_test "${test_bin_path}"
 }
 
 # -----------------------------------------------------------------------------

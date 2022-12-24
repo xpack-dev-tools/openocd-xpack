@@ -13,7 +13,7 @@
 
 # -----------------------------------------------------------------------------
 
-function download_openocd()
+function openocd_download()
 {
   if [ ! -d "${XBB_SOURCES_FOLDER_PATH}/${openocd_src_folder_name}" ]
   then
@@ -29,7 +29,7 @@ function download_openocd()
 
 # -----------------------------------------------------------------------------
 
-function build_openocd()
+function openocd_build()
 {
   # https://github.com/archlinux/svntogit-community/blob/packages/openocd/trunk/PKGBUILD
 
@@ -45,7 +45,7 @@ function build_openocd()
   if [ ! -f "${openocd_stamp_file_path}" ]
   then
     (
-      download_openocd
+      openocd_download
 
       xbb_activate_installed_dev
       xbb_activate_installed_bin
@@ -312,10 +312,10 @@ function build_openocd()
     echo "Component openocd already installed."
   fi
 
-  tests_add "test_openocd"
+  tests_add "openocd_test"
 }
 
-function test_openocd()
+function openocd_test()
 {
   local test_bin_path="$1"
 

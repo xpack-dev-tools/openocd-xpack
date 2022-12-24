@@ -77,9 +77,9 @@ fi
 # -----------------------------------------------------------------------------
 
 help_message="    bash $0 [--win] [--debug] [--develop] [--jobs N] [--help]"
-build_parse_options "${help_message}" "$@"
+build_common_parse_options "${help_message}" "$@"
 
-build_perform_common
+build_common_run
 
 exit 0
 

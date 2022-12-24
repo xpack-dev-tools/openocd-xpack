@@ -13,7 +13,7 @@
 
 # -----------------------------------------------------------------------------
 
-function build_application_versioned_components()
+function application_build_versioned_components()
 {
   # Don't use a comma since the regular expression
   # that processes this string in the Makefile, silently fails and the
@@ -41,65 +41,57 @@ function build_application_versioned_components()
     # -------------------------------------------------------------------------
 
     # https://ftp.gnu.org/pub/gnu/libiconv/
-    build_libiconv "1.17" # "1.16"
+    libiconv_build "1.17" # "1.16"
 
     if [ "${XBB_REQUESTED_HOST_PLATFORM}" == "darwin" ]
     then
 
       # https://ftp.gnu.org/gnu/autoconf/
-      build_autoconf "2.71"
+      autoconf_build "2.71"
 
       # https://ftp.gnu.org/gnu/automake/
       # depends on autoconf.
-      build_automake "1.16.5"
+      automake_build "1.16.5"
 
       # http://ftpmirror.gnu.org/libtool/
-      build_libtool "2.4.7"
+      libtool_build "2.4.7"
 
       # configure.ac:34: error: Macro PKG_PROG_PKG_CONFIG is not available. It is usually defined in file pkg.m4 provided by package pkg-config.
       # https://pkgconfig.freedesktop.org/releases/
       # depends on libiconv
-      build_pkg_config "0.29.2"
+      pkg_config_build "0.29.2"
 
       # https://ftp.gnu.org/gnu/texinfo/
-      build_texinfo "6.8"
+      texinfo_build "6.8"
 
     fi
 
     # -------------------------------------------------------------------------
 
-    (
-      if [ "${XBB_TARGET_PLATFORM}" == "linux" ]
-      then
-        system_library_path="$(dirname "$(/usr/bin/gcc -print-file-name=libudev.so.1)")"
-        LD_LIBRARY_PATH+=":${system_library_path}"
-      fi
-
-      # https://sourceforge.net/projects/libusb/files/libusb-1.0/
-      build_libusb1 "1.0.26"
-    )
+    # https://sourceforge.net/projects/libusb/files/libusb-1.0/
+    libusb1_build "1.0.26"
 
     if [ "${XBB_REQUESTED_HOST_PLATFORM}" == "win32" ]
     then
       # https://sourceforge.net/projects/libusb-win32/files/libusb-win32-releases/
-      build_libusb_w32 "1.2.6.0" # ! PATCH & pkgconfig
+      libusb_w32_build "1.2.6.0" # ! PATCH & pkgconfig
     else
       # https://sourceforge.net/projects/libusb/files/libusb-compat-0.1/
       # required by libjaylink
-      build_libusb0 "0.1.5"
+      libusb0_build "0.1.5"
     fi
 
     # http://www.intra2net.com/en/developer/libftdi/download.php
-    build_libftdi "1.5" # ! PATCH
+    libftdi_build "1.5" # ! PATCH
 
     # https://github.com/libusb/hidapi/releases
-    build_hidapi "0.12.0" # "0.10.1" # ! pkgconfig/hidapi-*-windows.pc
+    hidapi_build "0.12.0" # "0.10.1" # ! pkgconfig/hidapi-*-windows.pc
 
     # -------------------------------------------------------------------------
 
     xbb_set_binaries_install "${XBB_APPLICATION_INSTALL_FOLDER_PATH}"
+    openocd_build "${XBB_OPENOCD_VERSION}"
 
-    build_openocd "${XBB_OPENOCD_VERSION}"
     # -------------------------------------------------------------------------
   else
     echo "Unsupported version ${XBB_RELEASE_VERSION}."
