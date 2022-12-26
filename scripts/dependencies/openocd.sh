@@ -25,10 +25,12 @@ function openocd_download()
 
 # -----------------------------------------------------------------------------
 
+# https://github.com/archlinux/svntogit-community/blob/packages/openocd/trunk/PKGBUILD
+
+# -----------------------------------------------------------------------------
+
 function openocd_build()
 {
-  # https://github.com/archlinux/svntogit-community/blob/packages/openocd/trunk/PKGBUILD
-
   local openocd_version="$1"
 
 
