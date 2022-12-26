@@ -69,8 +69,8 @@ if [ ${#XBB_APPLICATION_COMMON_DEPENDENCIES[@]} -ne 0 ]
 then
   for dependency in ${XBB_APPLICATION_COMMON_DEPENDENCIES[@]}
   do
-    echo "Including ${helper_folder_path}/scripts/dependencies/${dependency}.sh..."
-    source "${helper_folder_path}/scripts/dependencies/${dependency}.sh"
+    echo "Including ${helper_folder_path}/dependencies/${dependency}.sh..."
+    source "${helper_folder_path}/dependencies/${dependency}.sh"
   done
 fi
 
