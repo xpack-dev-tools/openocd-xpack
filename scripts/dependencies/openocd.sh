@@ -46,8 +46,6 @@ function openocd_build()
       openocd_download
 
       xbb_activate_dependencies_dev
-      # TODO!
-      xbb_activate_installed_bin
 
       cd "${XBB_SOURCES_FOLDER_PATH}/${openocd_src_folder_name}"
       (

@@ -96,6 +96,8 @@ function application_build_versioned_components()
     xbb_set_executables_install_path "${XBB_APPLICATION_INSTALL_FOLDER_PATH}"
     xbb_set_libraries_install_path "${XBB_DEPENDENCIES_INSTALL_FOLDER_PATH}"
 
+    xbb_activate_installed_bin
+
     openocd_build "${XBB_OPENOCD_VERSION}"
 
     # -------------------------------------------------------------------------
