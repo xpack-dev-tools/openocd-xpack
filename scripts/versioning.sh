@@ -32,40 +32,25 @@ function application_build_versioned_components()
     # -------------------------------------------------------------------------
     # Build the native dependencies.
 
-    # None
+    autotools_build
+
+    # https://ftp.gnu.org/gnu/texinfo/
+    texinfo_build "6.8"
 
     # -------------------------------------------------------------------------
     # Build the target dependencies.
 
     xbb_reset_env
+    xbb_activate_installed_bin
     xbb_set_target "requested"
 
     # -------------------------------------------------------------------------
 
-    # https://ftp.gnu.org/pub/gnu/libiconv/
-    libiconv_build "1.17" # "1.16"
-
-    if [ "${XBB_REQUESTED_HOST_PLATFORM}" == "darwin" ]
+    if [ "${XBB_REQUESTED_HOST_PLATFORM}" != "darwin" ]
     then
 
-      # https://ftp.gnu.org/gnu/autoconf/
-      autoconf_build "2.71"
-
-      # https://ftp.gnu.org/gnu/automake/
-      # depends on autoconf.
-      # requires M4 >1.4
-      automake_build "1.16.5"
-
-      # http://ftpmirror.gnu.org/libtool/
-      libtool_build "2.4.7"
-
-      # configure.ac:34: error: Macro PKG_PROG_PKG_CONFIG is not available. It is usually defined in file pkg.m4 provided by package pkg-config.
-      # https://pkgconfig.freedesktop.org/releases/
-      # depends on libiconv
-      pkg_config_build "0.29.2"
-
-      # https://ftp.gnu.org/gnu/texinfo/
-      texinfo_build "6.8"
+      # https://ftp.gnu.org/pub/gnu/libiconv/
+      libiconv_build "1.17" # "1.16"
 
     fi
 
@@ -95,8 +80,6 @@ function application_build_versioned_components()
 
     xbb_set_executables_install_path "${XBB_APPLICATION_INSTALL_FOLDER_PATH}"
     xbb_set_libraries_install_path "${XBB_DEPENDENCIES_INSTALL_FOLDER_PATH}"
-
-    xbb_activate_installed_bin
 
     openocd_build "${XBB_OPENOCD_VERSION}"
 
