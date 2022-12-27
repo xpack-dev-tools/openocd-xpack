@@ -31,8 +31,10 @@ function openocd_download()
 
 function openocd_build()
 {
-  local openocd_version="$1"
+  echo_develop
+  echo_develop "[${FUNCNAME[0]} $@]"
 
+  local openocd_version="$1"
 
   local openocd_src_folder_name="${XBB_OPENOCD_SRC_FOLDER_NAME:-"openocd.git"}"
   local openocd_folder_name="openocd-${openocd_version}"
