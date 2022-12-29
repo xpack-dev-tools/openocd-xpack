@@ -27,7 +27,7 @@ function application_build_versioned_components()
   XBB_OPENOCD_GIT_COMMIT=${XBB_OPENOCD_GIT_COMMIT:-"v${XBB_RELEASE_VERSION}-xpack"}
 
   # Keep them in sync with combo archive content.
-  if [[ "${XBB_RELEASE_VERSION}" =~ 0\.11\.0-[5] ]]
+  if [[ "${XBB_RELEASE_VERSION}" =~ 0[.]11[.]0-[5] ]]
   then
     # -------------------------------------------------------------------------
     # Build the native dependencies.
