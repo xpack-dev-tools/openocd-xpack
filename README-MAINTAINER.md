@@ -183,7 +183,7 @@ For Intel macOS, first run the build on the development machine
 # Update the build scripts.
 git -C ~/Work/openocd-xpack.git pull
 
-xpm install -C ~/Work/openocd-xpack.git
+xpm run install -C ~/Work/openocd-xpack.git
 
 # For backup overhead reasons, on the development machine
 # the builds happen on a separate Work folder.
@@ -207,7 +207,7 @@ caffeinate ssh xbbmi
 # Update the build scripts (or clone them the first time).
 git -C ~/Work/openocd-xpack.git pull
 
-xpm install -C ~/Work/openocd-xpack.git
+xpm run install -C ~/Work/openocd-xpack.git
 
 xpm run deep-clean --config darwin-x64 -C ~/Work/openocd-xpack.git
 
@@ -231,7 +231,7 @@ Repeat the same steps as before.
 
 ```sh
 git -C ~/Work/openocd-xpack.git pull && \
-xpm install -C ~/Work/openocd-xpack.git && \
+xpm run install -C ~/Work/openocd-xpack.git && \
 git -C ~/Work/xbb-helper-xpack.git pull && \
 xpm link -C ~/Work/xbb-helper-xpack.git && \
 xpm run link-deps -C ~/Work/openocd-xpack.git && \
@@ -264,7 +264,7 @@ Update the build scripts (or clone them at the first use):
 
 ```sh
 git -C ~/Work/openocd-xpack.git pull && \
-xpm install -C ~/Work/openocd-xpack.git && \
+xpm run install -C ~/Work/openocd-xpack.git && \
 git -C ~/Work/xbb-helper-xpack.git pull && \
 xpm link -C ~/Work/xbb-helper-xpack.git && \
 xpm run link-deps -C ~/Work/openocd-xpack.git && \
@@ -298,7 +298,7 @@ Update the build scripts (or clone them at the first use):
 
 ```sh
 git -C ~/Work/openocd-xpack.git pull && \
-xpm install -C ~/Work/openocd-xpack.git && \
+xpm run install -C ~/Work/openocd-xpack.git && \
 xpm run link-deps -C ~/Work/openocd-xpack.git && \
 xpm run deep-clean --config linux-x64 -C ~/Work/openocd-xpack.git && \
 xpm run docker-prepare --config linux-x64 -C ~/Work/openocd-xpack.git && \
@@ -323,7 +323,7 @@ Clean the build folder and prepare the docker container:
 
 ```sh
 git -C ~/Work/openocd-xpack.git pull && \
-xpm install -C ~/Work/openocd-xpack.git && \
+xpm run install -C ~/Work/openocd-xpack.git && \
 xpm run link-deps -C ~/Work/openocd-xpack.git && \
 xpm run deep-clean --config win32-x64 -C ~/Work/openocd-xpack.git && \
 xpm run docker-prepare --config win32-x64 -C ~/Work/openocd-xpack.git && \
@@ -355,7 +355,7 @@ Update the build scripts (or clone them at the first use):
 
 ```sh
 git -C ~/Work/openocd-xpack.git pull && \
-xpm install -C ~/Work/openocd-xpack.git && \
+xpm run install -C ~/Work/openocd-xpack.git && \
 xpm run link-deps -C ~/Work/openocd-xpack.git && \
 xpm run deep-clean --config linux-arm64 -C ~/Work/openocd-xpack.git && \
 xpm run docker-prepare --config linux-arm64 -C ~/Work/openocd-xpack.git && \
@@ -387,7 +387,7 @@ Update the build scripts (or clone them at the first use):
 
 ```sh
 git -C ~/Work/openocd-xpack.git pull && \
-xpm install -C ~/Work/openocd-xpack.git && \
+xpm run install -C ~/Work/openocd-xpack.git && \
 xpm run link-deps -C ~/Work/openocd-xpack.git && \
 xpm run deep-clean --config linux-arm -C ~/Work/openocd-xpack.git && \
 xpm run docker-prepare --config linux-arm -C ~/Work/openocd-xpack.git && \
