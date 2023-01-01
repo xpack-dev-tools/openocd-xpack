@@ -307,7 +307,7 @@ xpm run docker-link-deps --config linux-x64 -C ~/Work/openocd-xpack.git
 xpm run docker-build-develop --config linux-x64 -C ~/Work/openocd-xpack.git
 ```
 
-About 5 minutes later, the output of the build script is a compressed
+Several minutes later, the output of the build script is a compressed
 archive and its SHA signature, created in the `deploy` folder:
 
 ```console
@@ -332,7 +332,7 @@ xpm run docker-link-deps --config win32-x64 -C ~/Work/openocd-xpack.git
 xpm run docker-build-develop --config win32-x64 -C ~/Work/openocd-xpack.git
 ```
 
-Several minutes later, the output of the build script is a compressed
+About 10 minutes later, the output of the build script is a compressed
 archive and its SHA signature, created in the `deploy` folder:
 
 ```console
@@ -364,7 +364,7 @@ xpm run docker-link-deps --config linux-arm64 -C ~/Work/openocd-xpack.git
 xpm run docker-build-develop --config linux-arm64 -C ~/Work/openocd-xpack.git
 ```
 
-Several minutes later, the output of the build script is a compressed
+About 15 minutes later, the output of the build script is a compressed
 archive and its SHA signature, created in the `deploy` folder:
 
 ```console
@@ -396,7 +396,7 @@ xpm run docker-link-deps --config linux-arm -C ~/Work/openocd-xpack.git
 xpm run docker-build-develop --config linux-arm -C ~/Work/openocd-xpack.git
 ```
 
-Several minutes later, the output of the build script is a compressed
+About 15 minutes later, the output of the build script is a compressed
 archive and its SHA signature, created in the `deploy` folder:
 
 ```console
