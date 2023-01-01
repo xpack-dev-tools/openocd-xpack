@@ -78,6 +78,8 @@
       "buildFolderRelativePath": "{{ 'build' | path_join: configuration.name | to_filename | downcase }}",
       "buildFolderRelativePathPosix": "{{ 'build' | path_posix_join: configuration.name | downcase }}",
       "commandBashBuild": "bash {{ properties.dbg }} scripts/build.sh --target {{ configuration.name }} --build-folder {{ properties.buildFolderRelativePathPosix }}",
+      "xpm-version": "latest",
+      "xpm-install-loglevel": "info",
       "dbg": ""
     },
     "actions": {
@@ -115,12 +117,12 @@
         "cp xpacks/xpack-dev-tools-xbb-helper/templates/build.sh scripts/",
         "cp xpacks/xpack-dev-tools-xbb-helper/templates/test.sh scripts/"
       ],
-      "trigger-workflow-build-all": "bash xpacks/xpack-dev-tools-xbb-helper/github-actions/trigger-workflow-build.sh",
-      "trigger-workflow-build-xbbli": "bash xpacks/xpack-dev-tools-xbb-helper/github-actions/trigger-workflow-build.sh --machine xbbli",
-      "trigger-workflow-build-xbbla64": "bash xpacks/xpack-dev-tools-xbb-helper/github-actions/trigger-workflow-build.sh --machine xbbla64",
-      "trigger-workflow-build-xbbla32": "bash xpacks/xpack-dev-tools-xbb-helper/github-actions/trigger-workflow-build.sh --machine xbbla32",
-      "trigger-workflow-build-xbbmi": "bash xpacks/xpack-dev-tools-xbb-helper/github-actions/trigger-workflow-build.sh --machine xbbmi",
-      "trigger-workflow-build-xbbma": "bash xpacks/xpack-dev-tools-xbb-helper/github-actions/trigger-workflow-build.sh --machine xbbma",
+      "trigger-workflow-build-all": "bash xpacks/xpack-dev-tools-xbb-helper/github-actions/trigger-workflow-build.sh --xpm-version {{ properties.xpm-version }} --loglevel {{ properties.xpm-install-loglevel }}",
+      "trigger-workflow-build-xbbli": "bash xpacks/xpack-dev-tools-xbb-helper/github-actions/trigger-workflow-build.sh --machine xbbli --xpm-version {{ properties.xpm-version }} --loglevel {{ properties.xpm-install-loglevel }}",
+      "trigger-workflow-build-xbbla64": "bash xpacks/xpack-dev-tools-xbb-helper/github-actions/trigger-workflow-build.sh --machine xbbla64 --xpm-version {{ properties.xpm-version }} --loglevel {{ properties.xpm-install-loglevel }}",
+      "trigger-workflow-build-xbbla32": "bash xpacks/xpack-dev-tools-xbb-helper/github-actions/trigger-workflow-build.sh --machine xbbla32 --xpm-version {{ properties.xpm-version }} --loglevel {{ properties.xpm-install-loglevel }}",
+      "trigger-workflow-build-xbbmi": "bash xpacks/xpack-dev-tools-xbb-helper/github-actions/trigger-workflow-build.sh --machine xbbmi --xpm-version {{ properties.xpm-version }} --loglevel {{ properties.xpm-install-loglevel }}",
+      "trigger-workflow-build-xbbma": "bash xpacks/xpack-dev-tools-xbb-helper/github-actions/trigger-workflow-build.sh --machine xbbma --xpm-version {{ properties.xpm-version }} --loglevel {{ properties.xpm-install-loglevel }}",
       "trigger-workflow-test-prime": "bash xpacks/xpack-dev-tools-xbb-helper/github-actions/trigger-workflow-test-prime.sh",
       "trigger-workflow-test-docker-linux-intel": "bash xpacks/xpack-dev-tools-xbb-helper/github-actions/trigger-workflow-test-docker-linux-intel.sh",
       "trigger-workflow-test-docker-linux-arm": "bash xpacks/xpack-dev-tools-xbb-helper/github-actions/trigger-workflow-test-docker-linux-arm.sh",
