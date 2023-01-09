@@ -41,7 +41,9 @@ function application_build_versioned_components()
     # Build the target dependencies.
 
     xbb_reset_env
+    # Before set target (to possibly update CC & co variables).
     xbb_activate_installed_bin
+
     xbb_set_target "requested"
 
     # -------------------------------------------------------------------------
