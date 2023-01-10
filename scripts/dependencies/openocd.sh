@@ -67,13 +67,14 @@ function openocd_build()
       # It makes little sense to use -static-libgcc here, since
       # several shared libraries will refer to it anyway.
       LDFLAGS="${XBB_LDFLAGS_APP}"
-      xbb_adjust_ldflags_rpath
 
       LIBS=""
       if [ "${XBB_HOST_PLATFORM}" == "linux" ]
       then
         LIBS+=" -lpthread -lrt -ludev"
       fi
+
+      xbb_adjust_ldflags_rpath
 
       export CPPFLAGS
       export CFLAGS
