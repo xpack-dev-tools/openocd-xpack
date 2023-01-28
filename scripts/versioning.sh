@@ -16,7 +16,7 @@ function application_build_versioned_components()
   # bfdver.h file remains empty.
   XBB_BRANDING="${XBB_APPLICATION_DISTRO_NAME} ${XBB_APPLICATION_NAME} ${XBB_REQUESTED_TARGET_MACHINE}"
 
-  XBB_OPENOCD_VERSION="$(echo "${XBB_RELEASE_VERSION}" | sed -e 's|-.*||')"
+  XBB_OPENOCD_VERSION="$(xbb_strip_version_pre_release "${XBB_RELEASE_VERSION}")"
 
   XBB_OPENOCD_GIT_COMMIT=${XBB_OPENOCD_GIT_COMMIT:-""}
 
@@ -26,7 +26,7 @@ function application_build_versioned_components()
   # XBB_OPENOCD_GIT_BRANCH=${XBB_OPENOCD_GIT_BRANCH:-"xpack-develop"}
   XBB_OPENOCD_GIT_COMMIT=${XBB_OPENOCD_GIT_COMMIT:-"v${XBB_RELEASE_VERSION}-xpack"}
 
-  # Keep them in sync with combo archive content.
+  # Keep them in sync with the combo archive content.
   if [[ "${XBB_RELEASE_VERSION}" =~ 0[.]11[.]0-[5] ]]
   then
     # -------------------------------------------------------------------------
