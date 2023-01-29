@@ -68,7 +68,7 @@
       "openocd": "./.content/bin/openocd"
     },
     "devDependencies": {
-      "@xpack-dev-tools/xbb-helper": "^1.1.4"
+      "@xpack-dev-tools/xbb-helper": "^1.4.1"
     },
     "properties": {
       "appName": "OpenOCD",
@@ -144,10 +144,10 @@
       "common-dependencies": {
         "hidden": true,
         "devDependencies": {
-          "@xpack-dev-tools/cmake": "3.22.6-1.1",
-          "@xpack-dev-tools/m4": "1.4.19-1.1",
-          "@xpack-dev-tools/ninja-build": "1.11.1-1.1",
-          "@xpack-dev-tools/pkg-config": "0.29.2-1.1"
+          "@xpack-dev-tools/cmake": "3.23.5-1.1",
+          "@xpack-dev-tools/m4": "1.4.19-2.1",
+          "@xpack-dev-tools/ninja-build": "1.11.1-2.1",
+          "@xpack-dev-tools/pkg-config": "0.29.2-2.1"
         }
       },
       "common-actions": {
@@ -213,8 +213,8 @@
           "common-actions-native"
         ],
         "devDependencies": {
-          "@xpack-dev-tools/clang": "14.0.6-2.1",
-          "@xpack-dev-tools/realpath": "9.1.0-1.1",
+          "@xpack-dev-tools/clang": "15.0.7-2.1",
+          "@xpack-dev-tools/realpath": "9.1.0-2.1",
           "@xpack-dev-tools/sed": "4.9.0-1.1"
         },
         "actions": {
@@ -237,7 +237,7 @@
         ],
         "devDependencies": {
           "@xpack-dev-tools/gcc": "12.2.0-2.1",
-          "@xpack-dev-tools/patchelf": "0.17.0-1.1"
+          "@xpack-dev-tools/patchelf": "0.17.2-1.1"
         },
         "properties": {
           "dockerImage": "ilegeul/ubuntu:amd64-18.04-xbb-v5.0.0"
