@@ -23,16 +23,40 @@ name: 'Build xPack OpenOCD xbbma'
 
 on:
   workflow_dispatch:
+    # https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#onworkflow_dispatchinputs
     inputs:
       version:
         description: 'The semver of the release'
         required: false
+        type: string
         default: 'current'
+      xpm_version:
+        description: 'The version of xpm to install'
+        required: false
+        type: string
+        default: 'next'
+      xpm_install_loglevel:
+        description: 'Optional loglevel for xpm install'
+        required: false
+        default: 'info'
+        type: choice
+        options:
+        - silent
+        - warn
+        - info
+        - verbose
+        - debug
+        - trace
+      xpm_install_options:
+        description: 'Optional switches to pass to xpm install'
+        required: false
+        type: string
+        default: ''
 
 jobs:
 
   macos-arm64:
-    name: 'macOS Arm - OpenOCD ${{ github.event.inputs.version }} build'
+    name: 'macOS Arm - openocd ${{ github.event.inputs.version }} build'
     timeout-minutes: 2880 # 2 days
 
     runs-on: [self-hosted, macos, apple]
@@ -59,16 +83,18 @@ jobs:
 
       - name: 'Install xpm'
         timeout-minutes: 1440
-        run: npm install --location=global xpm@latest
+        run: |
+          npm install --location=global xpm@${{ github.event.inputs.xpm_version }}
+          xpm --version
 
       - name: 'Install project dependencies'
         timeout-minutes: 1440
-        run: xpm install
+        run: xpm install --loglevel ${{ github.event.inputs.xpm_install_loglevel }} ${{ github.event.inputs.xpm_install_options }}
 
       - name: 'Build macOS arm64 binary'
         timeout-minutes: 1440
         run: |
-          xpm install --config darwin-arm64
+          xpm install --config darwin-arm64 --loglevel ${{ github.event.inputs.xpm_install_loglevel }} ${{ github.event.inputs.xpm_install_options }}
           xpm run build --config darwin-arm64
   
       - name: 'Publish pre-release'

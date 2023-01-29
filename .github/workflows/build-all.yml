@@ -23,16 +23,40 @@ name: 'Build xPack OpenOCD'
 
 on:
   workflow_dispatch:
+    # https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#onworkflow_dispatchinputs
     inputs:
       version:
         description: 'The semver of the release'
         required: false
+        type: string
         default: 'current'
+      xpm_version:
+        description: 'The version of xpm to install'
+        required: false
+        type: string
+        default: 'next'
+      xpm_install_loglevel:
+        description: 'Optional loglevel for xpm install'
+        required: false
+        default: 'info'
+        type: choice
+        options:
+        - silent
+        - warn
+        - info
+        - verbose
+        - debug
+        - trace
+      xpm_install_options:
+        description: 'Optional switches to pass to xpm install'
+        required: false
+        type: string
+        default: ''
 
 jobs:
 
   linux-x64-x:
-    name: 'Linux Intel X - OpenOCD ${{ github.event.inputs.version }} build'
+    name: 'Linux Intel X - openocd ${{ github.event.inputs.version }} build'
     timeout-minutes: 5760 # 4 days
     runs-on: [self-hosted, linux, x64]
     container:
@@ -63,16 +87,18 @@ jobs:
 
       - name: 'Install xpm'
         timeout-minutes: 1440
-        run: npm install --location=global xpm@latest
+        run: |
+          npm install --location=global xpm@${{ github.event.inputs.xpm_version }}
+          xpm --version
 
       - name: 'Install project dependencies'
         timeout-minutes: 1440
-        run: xpm install
+        run: xpm install --loglevel ${{ github.event.inputs.xpm_install_loglevel }} ${{ github.event.inputs.xpm_install_options }}
 
       - name: 'Build Linux x64 binary'
         timeout-minutes: 1440
         run: |
-          xpm install --config linux-x64
+          xpm install --config linux-x64 --loglevel ${{ github.event.inputs.xpm_install_loglevel }} ${{ github.event.inputs.xpm_install_options }}
           xpm run build --config linux-x64
 
       - name: 'Publish pre-release'
@@ -101,7 +127,7 @@ jobs:
 
 
   linux-x64-w:
-    name: 'Linux Intel W - OpenOCD ${{ github.event.inputs.version }} build'
+    name: 'Linux Intel W - openocd ${{ github.event.inputs.version }} build'
     timeout-minutes: 5760 # 4 days
     runs-on: [self-hosted, linux, x64]
     container:
@@ -132,16 +158,18 @@ jobs:
 
       - name: 'Install xpm'
         timeout-minutes: 1440
-        run: npm install --location=global xpm@latest
+        run: |
+          npm install --location=global xpm@${{ github.event.inputs.xpm_version }}
+          xpm --version
 
       - name: 'Install project dependencies'
         timeout-minutes: 1440
-        run: xpm install
+        run: xpm install --loglevel ${{ github.event.inputs.xpm_install_loglevel }} ${{ github.event.inputs.xpm_install_options }}
 
       - name: 'Build Windows x64 binary'
         timeout-minutes: 1440
         run: |
-          xpm install --config win32-x64
+          xpm install --config win32-x64 --loglevel ${{ github.event.inputs.xpm_install_loglevel }} ${{ github.event.inputs.xpm_install_options }}
           xpm run build --config win32-x64
 
       - name: 'Publish pre-release'
@@ -170,7 +198,7 @@ jobs:
 
 
   linux-arm:
-    name: 'Linux Arm 32 - OpenOCD ${{ github.event.inputs.version }} build'
+    name: 'Linux Arm 32 - openocd ${{ github.event.inputs.version }} build'
     timeout-minutes: 2880 # 2 days
     runs-on: [self-hosted, linux, arm, xbbla32]
     container:
@@ -201,16 +229,18 @@ jobs:
 
       - name: 'Install xpm'
         timeout-minutes: 1440
-        run: npm install --location=global xpm@latest
+        run: |
+          npm install --location=global xpm@${{ github.event.inputs.xpm_version }}
+          xpm --version
 
       - name: 'Install project dependencies'
         timeout-minutes: 1440
-        run: xpm install
+        run: xpm install --loglevel ${{ github.event.inputs.xpm_install_loglevel }} ${{ github.event.inputs.xpm_install_options }}
 
       - name: 'Build Linux arm32 binary'
         timeout-minutes: 1440
         run: |
-          xpm install --config linux-arm
+          xpm install --config linux-arm --loglevel ${{ github.event.inputs.xpm_install_loglevel }} ${{ github.event.inputs.xpm_install_options }}
           xpm run build --config linux-arm
 
       - name: 'Publish pre-release'
@@ -238,7 +268,7 @@ jobs:
         run: mv -v build build-$(date -u +%Y%m%d-%H%M%S)
 
   linux-arm64:
-    name: 'Linux Arm 64 - OpenOCD ${{ github.event.inputs.version }} build'
+    name: 'Linux Arm 64 - openocd ${{ github.event.inputs.version }} build'
     timeout-minutes: 2880 # 2 days
     runs-on: [self-hosted, linux, arm64, xbbla64]
     container:
@@ -269,16 +299,18 @@ jobs:
 
       - name: 'Install xpm'
         timeout-minutes: 1440
-        run: npm install --location=global xpm@latest
+        run: |
+          npm install --location=global xpm@${{ github.event.inputs.xpm_version }}
+          xpm --version
 
       - name: 'Install project dependencies'
         timeout-minutes: 1440
-        run: xpm install
+        run: xpm install --loglevel ${{ github.event.inputs.xpm_install_loglevel }} ${{ github.event.inputs.xpm_install_options }}
 
       - name: 'Build Linux arm64 binary'
         timeout-minutes: 1440
         run: |
-          xpm install --config linux-arm64
+          xpm install --config linux-arm64 --loglevel ${{ github.event.inputs.xpm_install_loglevel }} ${{ github.event.inputs.xpm_install_options }}
           xpm run build --config linux-arm64
 
       - name: 'Publish pre-release'
@@ -306,7 +338,7 @@ jobs:
         run: mv -v build build-$(date -u +%Y%m%d-%H%M%S)
 
   macos-x64:
-    name: 'macOS Intel - OpenOCD ${{ github.event.inputs.version }} build'
+    name: 'macOS Intel - openocd ${{ github.event.inputs.version }} build'
     timeout-minutes: 2880 # 2 days
 
     runs-on: [self-hosted, macos, intel]
@@ -333,17 +365,19 @@ jobs:
 
       - name: 'Install xpm'
         timeout-minutes: 1440
-        run: npm install --location=global xpm@latest
+        run: |
+          npm install --location=global xpm@${{ github.event.inputs.xpm_version }}
+          xpm --version
 
       - name: 'Install project dependencies'
         timeout-minutes: 1440
-        run: xpm install
+        run: xpm install --loglevel ${{ github.event.inputs.xpm_install_loglevel }} ${{ github.event.inputs.xpm_install_options }}
 
 
       - name: 'Build macOS x64 binary'
         timeout-minutes: 1440
         run: |
-          xpm install --config darwin-x64
+          xpm install --config darwin-x64 --loglevel ${{ github.event.inputs.xpm_install_loglevel }} ${{ github.event.inputs.xpm_install_options }}
           xpm run build --config darwin-x64
   
       - name: 'Publish pre-release'
@@ -371,7 +405,7 @@ jobs:
         run: mv -v build build-$(date -u +%Y%m%d-%H%M%S)
 
   macos-arm64:
-    name: 'macOS Arm - OpenOCD ${{ github.event.inputs.version }} build'
+    name: 'macOS Arm - openocd ${{ github.event.inputs.version }} build'
     timeout-minutes: 2880 # 2 days
 
     runs-on: [self-hosted, macos, apple]
@@ -398,17 +432,19 @@ jobs:
 
       - name: 'Install xpm'
         timeout-minutes: 1440
-        run: npm install --location=global xpm@latest
+        run: |
+          npm install --location=global xpm@${{ github.event.inputs.xpm_version }}
+          xpm --version
 
       - name: 'Install project dependencies'
         timeout-minutes: 1440
-        run: xpm install
+        run: xpm install --loglevel ${{ github.event.inputs.xpm_install_loglevel }} ${{ github.event.inputs.xpm_install_options }}
 
 
       - name: 'Build macOS arm64 binary'
         timeout-minutes: 1440
         run: |
-          xpm install --config darwin-arm64
+          xpm install --config darwin-arm64 --loglevel ${{ github.event.inputs.xpm_install_loglevel }} ${{ github.event.inputs.xpm_install_options }}
           xpm run build --config darwin-arm64
 
   

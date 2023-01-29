@@ -64,7 +64,7 @@ jobs:
   # https://hub.docker.com/_/ubuntu
   # The ubuntu:12.04 image fails to update.
   ubuntu-arm64:
-    name: 'arm64 OpenOCD ${{ github.event.inputs.version }} test on Ubuntu stable'
+    name: 'arm64 openocd ${{ github.event.inputs.version }} test on Ubuntu stable'
     # runs-on: [self-hosted, linux, arm64, xbbla]
     runs-on: [self-hosted, linux, arm64, xbbla64]
 
@@ -116,7 +116,7 @@ jobs:
   # https://en.wikipedia.org/wiki/Debian_version_history
   # https://hub.docker.com/_/debian
   debian-arm64:
-    name: 'arm64 OpenOCD ${{ github.event.inputs.version }} test on Debian stable'
+    name: 'arm64 openocd ${{ github.event.inputs.version }} test on Debian stable'
     # runs-on: [self-hosted, linux, arm64, xbbla]
     runs-on: [self-hosted, linux, arm64, xbbla64]
 
@@ -163,7 +163,7 @@ jobs:
   # https://hub.docker.com/r/redhat/ubi8
   # `-static` disabled, there is no static libc.a.
   redhat-arm64:
-    name: 'arm64 OpenOCD ${{ github.event.inputs.version }} test on RedHat stable'
+    name: 'arm64 openocd ${{ github.event.inputs.version }} test on RedHat stable'
     # runs-on: [self-hosted, linux, arm64, xbbla]
     runs-on: [self-hosted, linux, arm64, xbbla64]
 
@@ -204,7 +204,7 @@ jobs:
   # https://hub.docker.com/_/fedora
   # `-static` disabled, there is no static libc.a.
   fedora-arm64:
-    name: 'arm64 OpenOCD ${{ github.event.inputs.version }} test on Fedora stable'
+    name: 'arm64 openocd ${{ github.event.inputs.version }} test on Fedora stable'
     # runs-on: [self-hosted, linux, arm64, xbbla]
     runs-on: [self-hosted, linux, arm64, xbbla64]
 
@@ -257,7 +257,7 @@ jobs:
   # https://hub.docker.com/u/opensuse
   # `-static` disabled, there is no static libc.a.
   opensuse-arm64:
-    name: 'arm64 OpenOCD ${{ github.event.inputs.version }} test on OpenSUSE stable'
+    name: 'arm64 openocd ${{ github.event.inputs.version }} test on OpenSUSE stable'
     # runs-on: [self-hosted, linux, arm64, xbbla]
     runs-on: [self-hosted, linux, arm64, xbbla64]
 
@@ -303,7 +303,7 @@ jobs:
   # ---------------------------------------------------------------------------
 
   ubuntu-arm64-latest:
-    name: 'arm64 OpenOCD ${{ github.event.inputs.version }} test on Ubuntu latest'
+    name: 'arm64 openocd ${{ github.event.inputs.version }} test on Ubuntu latest'
     # runs-on: [self-hosted, linux, arm64, xbbla]
     runs-on: [self-hosted, linux, arm64, xbbla64]
 
@@ -342,7 +342,7 @@ jobs:
       # ubuntu:rolling fails during update
 
   debian-arm64-latest:
-    name: 'arm64 OpenOCD ${{ github.event.inputs.version }} test on Debian latest'
+    name: 'arm64 openocd ${{ github.event.inputs.version }} test on Debian latest'
     # runs-on: [self-hosted, linux, arm64, xbbla]
     runs-on: [self-hosted, linux, arm64, xbbla64]
 
@@ -389,7 +389,7 @@ jobs:
   # https://hub.docker.com/_/fedora
   # `-static` disabled, there is no static libc.a.
   fedora-arm64-latest:
-    name: 'arm64 OpenOCD ${{ github.event.inputs.version }} test on Fedora latest'
+    name: 'arm64 openocd ${{ github.event.inputs.version }} test on Fedora latest'
     # runs-on: [self-hosted, linux, arm64, xbbla]
     runs-on: [self-hosted, linux, arm64, xbbla64]
 
@@ -428,7 +428,7 @@ jobs:
 
   # - https://hub.docker.com/r/opensuse/tumbleweed
   opensuse-arm64-latest:
-    name: 'arm64 OpenOCD ${{ github.event.inputs.version }} test on OpenSUSE latest'
+    name: 'arm64 openocd ${{ github.event.inputs.version }} test on OpenSUSE latest'
     # runs-on: [self-hosted, linux, arm64, xbbla]
     runs-on: [self-hosted, linux, arm64, xbbla64]
 
@@ -467,7 +467,7 @@ jobs:
   
   # https://hub.docker.com/r/arm32v7/ubuntu/
   ubuntu-arm:
-    name: 'arm OpenOCD ${{ github.event.inputs.version }} test on Ubuntu stable'
+    name: 'arm openocd ${{ github.event.inputs.version }} test on Ubuntu stable'
     # runs-on: [self-hosted, linux, arm64, xbbla]
     runs-on: [self-hosted, linux, arm, xbbla32]
 
@@ -518,7 +518,7 @@ jobs:
 
   # https://hub.docker.com/r/arm32v7/debian
   debian-arm:
-    name: 'arm OpenOCD ${{ github.event.inputs.version }} test on Debian stable'
+    name: 'arm openocd ${{ github.event.inputs.version }} test on Debian stable'
     # runs-on: [self-hosted, linux, arm64, xbbla]
     runs-on: [self-hosted, linux, arm, xbbla32]
 
@@ -563,7 +563,7 @@ jobs:
 
   # https://hub.docker.com/r/arm32v7/ubuntu/
   ubuntu-arm-latest:
-    name: 'arm OpenOCD ${{ github.event.inputs.version }} test on Ubuntu latest'
+    name: 'arm openocd ${{ github.event.inputs.version }} test on Ubuntu latest'
     # runs-on: [self-hosted, linux, arm64, xbbla]
     runs-on: [self-hosted, linux, arm, xbbla32]
 
@@ -602,7 +602,7 @@ jobs:
 
   # https://hub.docker.com/r/arm32v7/debian
   debian-arm-latest:
-    name: 'arm OpenOCD ${{ github.event.inputs.version }} test on Debian latest'
+    name: 'arm openocd ${{ github.event.inputs.version }} test on Debian latest'
     # runs-on: [self-hosted, linux, arm64, xbbla]
     runs-on: [self-hosted, linux, arm, xbbla32]
 
@@ -649,7 +649,7 @@ jobs:
   # https://hub.docker.com/r/arm32v7/fedora
   # `-static` disabled, there is no static libc.a.
   fedora-arm-latest:
-    name: 'arm OpenOCD ${{ github.event.inputs.version }} test on Fedora latest'
+    name: 'arm openocd ${{ github.event.inputs.version }} test on Fedora latest'
     # runs-on: [self-hosted, linux, arm64, xbbla]
     runs-on: [self-hosted, linux, arm, xbbla32]
 

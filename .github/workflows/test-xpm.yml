@@ -28,7 +28,7 @@ on:
       version:
         description: 'The semver of the npm release'
         required: false
-        default: 'latest'
+        default: 'next'
       helper-git-ref:
         description: 'The helper branch, tag or SHA to checkout'
         required: false

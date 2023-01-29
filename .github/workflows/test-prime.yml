@@ -41,7 +41,7 @@ on:
 jobs:
 
   linux-x64:
-    name: 'Linux x64 OpenOCD ${{ github.event.inputs.version }} test'
+    name: 'Linux x64 openocd ${{ github.event.inputs.version }} test'
     runs-on: ubuntu-20.04
 
     steps:
@@ -71,7 +71,7 @@ jobs:
         run: bash scripts/test.sh --image github-actions-ubuntu-latest --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
   
   linux-arm64:
-    name: 'Linux arm64 OpenOCD ${{ github.event.inputs.version }} test'
+    name: 'Linux arm64 openocd ${{ github.event.inputs.version }} test'
     # runs-on: [self-hosted, linux, arm64, xbbla]
     runs-on: [self-hosted, linux, arm64, xbbla64]
 
@@ -109,7 +109,7 @@ jobs:
           args: /github/workspace/scripts/test.sh --image ubuntu:latest --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
   
   linux-arm32:
-    name: 'Linux arm32 OpenOCD ${{ github.event.inputs.version }} test'
+    name: 'Linux arm32 openocd ${{ github.event.inputs.version }} test'
     # runs-on: [self-hosted, linux, arm64, xbbla]
     runs-on: [self-hosted, linux, arm, xbbla32]
 
@@ -147,7 +147,7 @@ jobs:
           args: /github/workspace/scripts/test.sh --image arm32v7/ubuntu:latest --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
   
   macos-x64:
-    name: 'macOS x64 OpenOCD ${{ github.event.inputs.version }} test'
+    name: 'macOS x64 openocd ${{ github.event.inputs.version }} test'
     runs-on: macos-10.15
 
     steps:
@@ -181,7 +181,7 @@ jobs:
         run: bash scripts/test.sh --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
   
   macos-arm64:
-    name: 'macOS arm64 OpenOCD ${{ github.event.inputs.version }} test'
+    name: 'macOS arm64 openocd ${{ github.event.inputs.version }} test'
     runs-on: [self-hosted, macos, apple]
 
     steps:
@@ -215,7 +215,7 @@ jobs:
         run: bash scripts/test.sh --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
   
   windows-x64:
-    name: 'Windows x64 OpenOCD ${{ github.event.inputs.version }} test'
+    name: 'Windows x64 openocd ${{ github.event.inputs.version }} test'
     runs-on: windows-2022
     defaults:
       run:
