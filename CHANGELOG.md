@@ -2,6 +2,21 @@
 
 Entries in this file are in reverse chronological order.
 
+## 2023-01-30
+
+* f37a409 README update
+* 3b8d65d remove unused XBB_BRANDING
+* bd6d610 openocd.sh: move docs to LIBRARIES
+* 381fa84 versioning.sh: move GIT_URL defs
+* e0f02bf add .vscode/launch.json
+* 61987a9 package.json: bump deps
+* 73ca561 README updates
+* 8bb511b openocd.sh: re-enable parallel build
+* 65aee84 openocd.sh: use only -ludev on linux
+* 2d369c1 openocd.sh: apply patches locally
+* 427c081 .vscode/settings.json: ignoreWords
+* e619b4d prepare v0.12.0-1
+
 ## 2023-01-29
 
 * v0.12.0-1 prepared
