@@ -77,7 +77,8 @@ function openocd_build()
       LIBS=""
       if [ "${XBB_HOST_PLATFORM}" == "linux" ]
       then
-        LIBS+=" -lpthread -lrt -ludev"
+        # LIBS+=" -lpthread -lrt -ludev"
+        LIBS+=" -ludev"
       fi
 
       xbb_adjust_ldflags_rpath
