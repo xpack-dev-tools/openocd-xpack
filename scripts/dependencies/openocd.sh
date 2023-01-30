@@ -140,8 +140,6 @@ function openocd_build()
             config_options+=("--disable-silent-rules") # HB
           fi
 
-          config_options+=("--enable-branding=${XBB_BRANDING}")
-
           # Add explicit functionality.
           config_options+=("--enable-aice")
           config_options+=("--enable-armjtagew")
@@ -271,8 +269,8 @@ function openocd_build()
         echo "Running openocd make..."
 
         # Build.
-        run_verbose make -j ${XBB_JOBS} bindir="bin" pkgdatadir=""
-        # run_verbose make -j 1 bindir="bin" pkgdatadir=""
+        # run_verbose make -j ${XBB_JOBS} bindir="bin" pkgdatadir=""
+        run_verbose make -j ${XBB_JOBS}
 
         if [ "${XBB_WITH_STRIP}" == "y" ]
         then
