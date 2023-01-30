@@ -2,9 +2,166 @@
 
 Entries in this file are in reverse chronological order.
 
+## 2023-01-29
+
+* v0.12.0-1 prepared
+* 02486b4 re-generate workflows
+* 53c05f2 package.json: bump deps
+
+## 2023-01-28
+
+* bcce8c3 versioning.sh: use versioning functions
+* 949bed6 README-MAINTAINER remove caffeinate xpm
+
+## 2023-01-27
+
+* 3b80250 package.json: reorder scripts
+
+## 2023-01-24
+
+* b16e64a README updates
+
+## 2023-01-22
+
+* ac30acd README update
+
+## 2023-01-11
+
+* 4b20bb2 cosmetize xbb_adjust_ldflags_rpath
+
+## 2023-01-09
+
+* ceef268 package.json: bump deps
+* 777c73c package.json: loglevel info
+* 201a58c versioning.sh: add comment before *_installed_bin
+
+## 2023-01-02
+
+* ae9ffd4 package.json: add gcc to windows deps
+
+## 2023-01-01
+
+* 528e1f2 package.json: pass xpm version & loglevel
+* 099a8d5 README update
+
+## 2022-12-30
+
+* fef7655 README-MAINTAINER: xpm run install
+* 3556cba package.json: bump deps
+* f8576b0 versioning.sh: regexp
+
+## 2022-12-27
+
+* d8e72c0 README update
+* 30753c6 echo FUNCNAME[0]
+* 62b1cd0 use autotools_build
+* d588a1f move *_installed_bin to versions.sh
+* c7a592c re-generate from templates
+* 927f3a9 cosmetics: move versions to the top
+
+## 2022-12-26
+
+* 0258972 README updates
+
+## 2022-12-25
+
+* fce7aa2 README update
+* 12952ed versioning.sh: remove explicit xbb_set_executables_install_path
+* 8e83ec7 package.json: add m4 dep
+* 975d1d4 versioning.sh: add comment M4
+
 ## 2022-12-24
 
-* update for XBB v5.0.0
+* 5452b76 README updates
+* 241998a openocd.sh: pass path to test
+* 719eb0a updates for xbb v 5.x
+* 54da172 test.sh: update
+* 3c40213 package.json: update
+* 23269b2 package.json: bump deps
+* 0e195e4 re-generate from templates
+* d93b8ef rename functions
+
+## 2022-12-12
+
+* d41e004 package.json: add caffeinate builds for macOS
+* cca6fcc versioning.sh: use XBB_REQUESTED_*
+
+## 2022-11-18
+
+* e92dd4c .vscode/settings.json: watcherExclude
+
+## 2022-10-28
+
+* 1e9b995 cleanups
+* 6b1c896 tests/run.sh: cosmetics
+* 6237479 README updates
+* 4b65463 README update
+* d713f53 openocd.sh: fix test
+* 33eebca .gitignore xpacks
+
+## 2022-10-27
+
+* 9757baa package.json: bump deps
+* 08b7b90 package.json: bump deps
+* a5e069e package.json: bump deps
+* b2ef4b3 package.json: bump deps
+* b5a9472 versioning.sh: adjust LD_LIBRARY_PATH for libusb1
+* 89e5a13 openocd.sh: set -rpath
+* f40f094 bring build_pkg_config back for macOS
+* af34c4f package.json: add ninja to deps
+* 15f9671 package.json: add cmake to deps
+* ac46aa1 run.sh: cleanups
+* 14be2a2 application.sh: remove pkg-config coreutils
+* 582c24f versioning.sh: remove build_pkg_config
+* 0f5a08d versioning.sh: build_application_versioned_components
+* cc1087a README updates
+* 1183e66 package.json: cp build.sh & test.sh
+* ba1fd0b package.json: bump deps & cleanups
+* cf2b53f .vscode/settings.json: ignoreWords
+* 14504f4 re-generate workflows & scripts
+
+## 2022-10-23
+
+* 821a513 package.json: bump deps
+* f332865 package.json: bump deps
+* c4b9381 READMEs update
+* fb51384 package.json: add devDep realpath
+* 0a13362 package.json: reorder actions
+* c9f1e2e versioning.sh: remove build_coreutils
+* 4a05989 cosmetics
+* d19ddee test.sh: update
+* 19956f9 build.sh: update
+* d328879 rename application.sh
+
+## 2022-10-19
+
+* b853e1c READMEs updates
+* 8b816e4 versioning.sh: add XBB_COREUTILS_INSTALL_REALPATH_ONLY
+* cd61164 updates for xbb v4.0
+* 88d94dc remove patches & pkgconfig (moved to helper)
+* 1a676ae re-generate workflows
+
+## 2022-10-18
+
+* d15ec21 remove submodule
+
+## 2022-10-04
+
+* 101682e README-RELEASE update for bullet lists in CHANGELOG
+
+## 2022-09-25
+
+* 30cf7d8 README-RELEASE update
+
+## 2022-09-17
+
+* d2d81ea package.json: remove -ia32
+* 049765b README update
+* 34d14ba README-BUILD update
+
+## 2022-09-03
+
+* 72e5bc5 READMEs updates
 
 ## 2022-09-01
 

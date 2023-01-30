@@ -101,16 +101,11 @@ After install, the package should create a structure like this (macOS files;
 only the first two depth levels are shown):
 
 ```console
-$ tree -L 2 /Users/ilg/Library/xPacks/\@xpack-dev-tools/openocd/0.11.0-5.1/.content/
-/Users/ilg/Library/xPacks/\@xpack-dev-tools/openocd/0.11.0-5.1/.content/
-├── OpenULINK
-│   └── ulink_firmware.hex
+$ tree -L 2 /Users/ilg/Library/xPacks/\@xpack-dev-tools/openocd/0.12.0-1.1/.content/
+/Users/ilg/Library/xPacks/\@xpack-dev-tools/openocd/0.12.0-1.1/.content/
 ├── README.md
 ├── bin
 │   └── openocd
-├── contrib
-│   ├── 60-openocd.rules
-│   └── libdcc
 ├── distro-info
 │   ├── CHANGELOG.md
 │   ├── licenses
@@ -119,27 +114,16 @@ $ tree -L 2 /Users/ilg/Library/xPacks/\@xpack-dev-tools/openocd/0.11.0-5.1/.cont
 ├── libexec
 │   ├── libftdi1.2.5.0.dylib
 │   ├── libftdi1.2.dylib -> libftdi1.2.5.0.dylib
-│   ├── libgcc_s.1.dylib
-│   ├── libhidapi.0.dylib
+│   ├── libhidapi.0.13.1.dylib
 │   └── libusb-1.0.0.dylib
-├── scripts
-│   ├── bitsbytes.tcl
-│   ├── board
-│   ├── chip
-│   ├── cpld
-│   ├── cpu
-│   ├── fpga
-│   ├── interface
-│   ├── mem_helper.tcl
-│   ├── memory.tcl
-│   ├── mmr_helpers.tcl
-│   ├── target
-│   ├── test
-│   └── tools
+├── openocd
+│   ├── OpenULINK
+│   ├── contrib
+│   └── scripts
 └── share
     └── doc
 
-21 directories, 14 files
+12 directories, 7 files
 ```
 
 No other files are installed in any system folders or other locations.
@@ -180,15 +164,15 @@ For more details please read the
 ### Versioning
 
 The version strings used by the OpenOCD project are three number strings
-like `0.11.0`; to this string the xPack distribution adds a four number,
+like `0.12.0`; to this string the xPack distribution adds a four number,
 but since semver allows only three numbers, all additional ones can
 be added only as pre-release strings, separated by a dash,
-like `0.11.0-5`. When published as a npm package, the version gets
-a fifth number, like `0.11.0-5.1`.
+like `0.12.0-1`. When published as a npm package, the version gets
+a fifth number, like `0.12.0-1.1`.
 
 Since adherence of third party packages to semver is not guaranteed,
-it is recommended to use semver expressions like `^0.11.0` and `~0.11.0`
-with caution, and prefer exact matches, like `0.11.0-5.1`.
+it is recommended to use semver expressions like `^0.12.0` and `~0.12.0`
+with caution, and prefer exact matches, like `0.12.0-1.1`.
 
 ### Windows drivers
 
