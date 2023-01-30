@@ -50,6 +50,7 @@ function openocd_build()
       xbb_activate_dependencies_dev
 
       cd "${XBB_SOURCES_FOLDER_PATH}/${openocd_src_folder_name}"
+
       (
         if [ ! -d "autom4te.cache" ]
         then
@@ -269,8 +270,8 @@ function openocd_build()
         echo "Running openocd make..."
 
         # Build.
-        # run_verbose make -j ${XBB_JOBS} bindir="bin" pkgdatadir=""
-        run_verbose make -j 1 bindir="bin" pkgdatadir=""
+        run_verbose make -j ${XBB_JOBS} bindir="bin" pkgdatadir=""
+        # run_verbose make -j 1 bindir="bin" pkgdatadir=""
 
         if [ "${XBB_WITH_STRIP}" == "y" ]
         then
