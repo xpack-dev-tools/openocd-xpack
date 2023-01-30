@@ -121,10 +121,11 @@ function openocd_build()
 
           config_options+=("--datarootdir=${XBB_EXECUTABLES_INSTALL_FOLDER_PATH}")
           config_options+=("--localedir=${XBB_EXECUTABLES_INSTALL_FOLDER_PATH}/share/locale")
-          config_options+=("--mandir=${XBB_EXECUTABLES_INSTALL_FOLDER_PATH}/share/doc/man")
-          config_options+=("--pdfdir=${XBB_EXECUTABLES_INSTALL_FOLDER_PATH}/share/doc/pdf")
-          config_options+=("--infodir=${XBB_EXECUTABLES_INSTALL_FOLDER_PATH}/share/doc/info")
-          config_options+=("--docdir=${XBB_EXECUTABLES_INSTALL_FOLDER_PATH}/share/doc/")
+
+          config_options+=("--mandir=${XBB_LIBRARIES_INSTALL_FOLDER_PATH}/share/doc/man")
+          config_options+=("--pdfdir=${XBB_LIBRARIES_INSTALL_FOLDER_PATH}/share/doc/pdf")
+          config_options+=("--infodir=${XBB_LIBRARIES_INSTALL_FOLDER_PATH}/share/doc/info")
+          config_options+=("--docdir=${XBB_LIBRARIES_INSTALL_FOLDER_PATH}/share/doc/")
 
           config_options+=("--disable-wextra")
           config_options+=("--disable-werror")
