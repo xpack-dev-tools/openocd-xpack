@@ -4,6 +4,13 @@ Entries in this file are in reverse chronological order.
 
 ## 2023-01-30
 
+* v0.12.0-1 published on npmjs.com
+* f82dae3 package.json: update urls for 0.12.0-1.1 release
+* e79ff4c READMEs updates
+* af00549 body-jekyll update
+* 8022518 CHANGELOG update
+* b6da41e .vscode/settings.json: ignoreWords
+* v0.12.0-1 released
 * f37a409 README update
 * 3b8d65d remove unused XBB_BRANDING
 * bd6d610 openocd.sh: move docs to LIBRARIES
