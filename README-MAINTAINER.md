@@ -470,11 +470,11 @@ This command uses the `xpack-develop` branch of this repo.
 
 The builds take about 10 minutes to complete:
 
-- `xbbmi`: 6 min
-- `xbbma`: 3 min
-- `xbbli`: 5 min (Windows included)
-- `xbbla64`: 8 min
-- `xbbla32`: 8 min
+- `xbbmi`: 7 min
+- `xbbma`: 4 min
+- `xbbli`: 5 min (4 min Linux, 5 min Windows)
+- `xbbla64`: 11 min
+- `xbbla32`: 12 min
 
 The workflow result and logs are available from the
 [Actions](https://github.com/xpack-dev-tools/openocd-xpack/actions/) page.
