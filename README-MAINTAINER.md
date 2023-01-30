@@ -573,7 +573,7 @@ Then it is possible to start openocd:
 
 ```console
 $ .../xpack-openocd-0.12.0-1/bin/openocd -f "board/stm32f4discovery.cfg"
-xPack OpenOCD x86_64 Open On-Chip Debugger 0.12.0+dev (2022-09-01-20:26)
+xPack Open On-Chip Debugger 0.12.0-01004-g9ea7f3d64-dirty (2023-01-30-16:23)
 Licensed under GNU GPL v2
 For bug reports, read
 	http://openocd.org/doc/doxygen/bugs.html
@@ -583,13 +583,14 @@ srst_only separate srst_nogate srst_open_drain connect_deassert_srst
 Info : Listening on port 6666 for tcl connections
 Info : Listening on port 4444 for telnet connections
 Info : clock speed 2000 kHz
-Info : STLINK V2J14S0 (API v2) VID:PID 0483:3748
-Info : Target voltage: 2.893326
-Info : stm32f4x.cpu: hardware has 6 breakpoints, 4 watchpoints
+Info : STLINK V2J39S0 (API v2) VID:PID 0483:3748
+Info : Target voltage: 2.901598
+Info : [stm32f4x.cpu] Cortex-M4 r0p1 processor detected
+Info : [stm32f4x.cpu] target has 6 breakpoints, 4 watchpoints
 Info : starting gdb server for stm32f4x.cpu on 3333
 Info : Listening on port 3333 for gdb connections
-target halted due to breakpoint, current mode: Thread
-xPSR: 0x21000000 pc: 0x0800113c msp: 0x2001ff78
+[stm32f4x.cpu] halted due to breakpoint, current mode: Handler HardFault
+xPSR: 0x61000003 pc: 0x080002d6 msp: 0x2001ff78
 ^C
 shutdown command invoked
 ```
