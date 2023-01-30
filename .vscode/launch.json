@@ -1,0 +1,24 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "(lldb) Launch openocd",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "/Users/ilg/Work/openocd-0.12.0-1/darwin-x64/application/bin/openocd",
+      "args": [
+        "--debug",
+        "--file",
+        "board/stm32f4discovery.cfg"
+      ],
+      "stopAtEntry": true,
+      "cwd": "${fileDirname}",
+      "environment": [],
+      "externalConsole": false,
+      "MIMode": "lldb"
+    }
+  ]
+}
