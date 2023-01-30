@@ -10,9 +10,9 @@ summary: "Version **{{ XBB_RELEASE_VERSION }}** is a new release; it follows the
 
 version: "{{ XBB_RELEASE_VERSION }}"
 npm_subversion: "1"
-upstream_version: "0.11.0"
-upstream_commit: "6db57051d070fc8d6bb54d21413e5e8610972651"
-upstream_release_date: "21 Aug 2022"
+upstream_version: "0.12.0"
+upstream_commit: "9ea7f3d"
+upstream_release_date: "15 Jan 2022"
 download_url: https://github.com/xpack-dev-tools/openocd-xpack/releases/tag/v{{ XBB_RELEASE_VERSION }}/
 
 date:   {{ RELEASE_DATE }}
@@ -134,7 +134,6 @@ There are no functional changes.
 
 Compared to the upstream, the following changes were applied:
 
-- a configure option was added to configure branding (`--enable-branding`)
 - the `src/openocd.c` file was edited to display the branding string
 - the `contrib/60-openocd.rules` file was simplified to avoid protection
   related issues.
