@@ -18,12 +18,12 @@ function application_build_versioned_components()
 
   XBB_OPENOCD_VERSION="$(xbb_strip_version_pre_release "${XBB_RELEASE_VERSION}")"
 
-  XBB_OPENOCD_GIT_URL=${XBB_APPLICATION_OPENOCD_GIT_URL:-"https://github.com/openocd-org/openocd.git"}
-  XBB_OPENOCD_GIT_BRANCH=${XBB_APPLICATION_OPENOCD_GIT_BRANCH:-"master"}
-
   # Keep them in sync with the combo archive content.
   if [[ "${XBB_RELEASE_VERSION}" =~ 0[.]12[.]0-.* ]]
   then
+    XBB_OPENOCD_GIT_URL=${XBB_APPLICATION_OPENOCD_GIT_URL:-"https://github.com/openocd-org/openocd.git"}
+    XBB_OPENOCD_GIT_BRANCH=${XBB_APPLICATION_OPENOCD_GIT_BRANCH:-"master"}
+
     if [ "${XBB_RELEASE_VERSION}" == "0.12.0-1" ]
     then
       XBB_OPENOCD_GIT_COMMIT=${XBB_APPLICATION_OPENOCD_GIT_COMMIT:-"v0.12.0"}
