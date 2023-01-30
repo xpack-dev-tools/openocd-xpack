@@ -57,6 +57,12 @@ function openocd_build()
         fi
       ) 2>&1 | tee "${XBB_LOGS_FOLDER_PATH}/${openocd_folder_name}/configure-output-$(ndate).txt"
 
+      # Personalise the greeting message
+      run_verbose sed -i.bak -e 's|"Open On-Chip Debugger "|"xPack Open On-Chip Debugger "|' "src/openocd.c"
+
+      # Simplify protections for the USB devices, allow access for all.
+      run_verbose sed -i.bak -e 's|MODE="660".*|MODE="666"|' "contrib/60-openocd.rules"
+
       mkdir -pv "${XBB_BUILD_FOLDER_PATH}/${openocd_folder_name}"
       cd "${XBB_BUILD_FOLDER_PATH}/${openocd_folder_name}"
 
