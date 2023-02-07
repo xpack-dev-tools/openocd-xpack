@@ -14,20 +14,20 @@ To clone the stable branch (`xpack`), run the following commands in a
 terminal (on Windows use the _Git Bash_ console):
 
 ```sh
-rm -rf ~/Work/openocd-xpack.git && \
+rm -rf ~/Work/xpacks/openocd-xpack.git && \
 git clone https://github.com/xpack-dev-tools/openocd-xpack.git \
-  ~/Work/openocd-xpack.git
+  ~/Work/xpacks/openocd-xpack.git
 ```
 
 For development purposes, clone the `xpack-develop` branch:
 
 ```sh
-rm -rf ~/Work/openocd-xpack.git && \
-mkdir -p ~/Work && \
+rm -rf ~/Work/xpacks/openocd-xpack.git && \
+mkdir -p ~/Work/xpacks && \
 git clone \
   --branch xpack-develop \
   https://github.com/xpack-dev-tools/openocd-xpack.git \
-  ~/Work/openocd-xpack.git
+  ~/Work/xpacks/openocd-xpack.git
 ```
 
 ## Get helper sources
@@ -36,13 +36,13 @@ The project has a dependency to a common **helper**; clone the
 `xpack-develop` branch and link it to the central xPacks store:
 
 ```sh
-rm -rf ~/Work/xbb-helper-xpack.git && \
-mkdir -p ~/Work && \
+rm -rf ~/Work/xpacks/xbb-helper-xpack.git && \
+mkdir -p ~/Work/xpacks && \
 git clone \
   --branch xpack-develop \
   https://github.com/xpack-dev-tools/xbb-helper-xpack.git \
-  ~/Work/xbb-helper-xpack.git && \
-xpm link -C ~/Work/xbb-helper-xpack.git
+  ~/Work/xpacks/xbb-helper-xpack.git && \
+xpm link -C ~/Work/xpacks/xbb-helper-xpack.git
 ```
 
 Other repositories in use are:
@@ -157,16 +157,16 @@ For Intel macOS, first run the build on the development machine
 
 ```sh
 # Update the build scripts.
-git -C ~/Work/openocd-xpack.git pull
+git -C ~/Work/xpacks/openocd-xpack.git pull
 
-xpm run install -C ~/Work/openocd-xpack.git
+xpm run install -C ~/Work/xpacks/openocd-xpack.git
 
 # For backup overhead reasons, on the development machine
 # the builds happen on a separate Work folder.
 rm -rf ~/Work/openocd-[0-9]*-*
 
-xpm install --config darwin-x64 -C ~/Work/openocd-xpack.git
-xpm run build-develop --config darwin-x64 -C ~/Work/openocd-xpack.git
+xpm install --config darwin-x64 -C ~/Work/xpacks/openocd-xpack.git
+xpm run build-develop --config darwin-x64 -C ~/Work/xpacks/openocd-xpack.git
 ```
 
 When functional, push the `xpack-develop` branch to GitHub.
@@ -181,14 +181,14 @@ caffeinate ssh xbbmi
 
 ```sh
 # Update the build scripts (or clone them the first time).
-git -C ~/Work/openocd-xpack.git pull
+git -C ~/Work/xpacks/openocd-xpack.git pull
 
-xpm run install -C ~/Work/openocd-xpack.git
+xpm run install -C ~/Work/xpacks/openocd-xpack.git
 
-xpm run deep-clean --config darwin-x64 -C ~/Work/openocd-xpack.git
+xpm run deep-clean --config darwin-x64 -C ~/Work/xpacks/openocd-xpack.git
 
-xpm install --config darwin-x64 -C ~/Work/openocd-xpack.git
-xpm run build-develop --config darwin-x64 -C ~/Work/openocd-xpack.git
+xpm install --config darwin-x64 -C ~/Work/xpacks/openocd-xpack.git
+xpm run build-develop --config darwin-x64 -C ~/Work/xpacks/openocd-xpack.git
 ```
 
 The build takes about 5 minutes.
@@ -206,21 +206,21 @@ caffeinate ssh xbbmi
 Repeat the same steps as before.
 
 ```sh
-git -C ~/Work/openocd-xpack.git pull && \
-xpm run install -C ~/Work/openocd-xpack.git && \
-git -C ~/Work/xbb-helper-xpack.git pull && \
-xpm link -C ~/Work/xbb-helper-xpack.git && \
-xpm run link-deps -C ~/Work/openocd-xpack.git && \
-xpm run deep-clean --config darwin-x64  -C ~/Work/openocd-xpack.git && \
-xpm install --config darwin-x64 -C ~/Work/openocd-xpack.git
-xpm run build-develop --config darwin-x64 -C ~/Work/openocd-xpack.git
+git -C ~/Work/xpacks/openocd-xpack.git pull && \
+xpm run install -C ~/Work/xpacks/openocd-xpack.git && \
+git -C ~/Work/xpacks/xbb-helper-xpack.git pull && \
+xpm link -C ~/Work/xpacks/xbb-helper-xpack.git && \
+xpm run link-deps -C ~/Work/xpacks/openocd-xpack.git && \
+xpm run deep-clean --config darwin-x64  -C ~/Work/xpacks/openocd-xpack.git && \
+xpm install --config darwin-x64 -C ~/Work/xpacks/openocd-xpack.git
+xpm run build-develop --config darwin-x64 -C ~/Work/xpacks/openocd-xpack.git
 ```
 
 About 10 minutes later, the output of the build script is a compressed
 archive and its SHA signature, created in the `deploy` folder:
 
 ```console
-$ ls -l ~/Work/openocd-xpack.git/build/darwin-x64/deploy
+$ ls -l ~/Work/xpacks/openocd-xpack.git/build/darwin-x64/deploy
 total 4840
 -rw-r--r--  1 ilg  staff  2471148 Jan 30 11:19 xpack-openocd-0.12.0-1-darwin-x64.tar.gz
 -rw-r--r--  1 ilg  staff      107 Jan 30 11:19 xpack-openocd-0.12.0-1-darwin-x64.tar.gz.sha
@@ -239,21 +239,21 @@ caffeinate ssh xbbma
 Update the build scripts (or clone them at the first use):
 
 ```sh
-git -C ~/Work/openocd-xpack.git pull && \
-xpm run install -C ~/Work/openocd-xpack.git && \
-git -C ~/Work/xbb-helper-xpack.git pull && \
-xpm link -C ~/Work/xbb-helper-xpack.git && \
-xpm run link-deps -C ~/Work/openocd-xpack.git && \
-xpm run deep-clean --config darwin-arm64  -C ~/Work/openocd-xpack.git && \
-xpm install --config darwin-arm64 -C ~/Work/openocd-xpack.git
-xpm run build-develop --config darwin-arm64 -C ~/Work/openocd-xpack.git
+git -C ~/Work/xpacks/openocd-xpack.git pull && \
+xpm run install -C ~/Work/xpacks/openocd-xpack.git && \
+git -C ~/Work/xpacks/xbb-helper-xpack.git pull && \
+xpm link -C ~/Work/xpacks/xbb-helper-xpack.git && \
+xpm run link-deps -C ~/Work/xpacks/openocd-xpack.git && \
+xpm run deep-clean --config darwin-arm64  -C ~/Work/xpacks/openocd-xpack.git && \
+xpm install --config darwin-arm64 -C ~/Work/xpacks/openocd-xpack.git
+xpm run build-develop --config darwin-arm64 -C ~/Work/xpacks/openocd-xpack.git
 ```
 
 Several minutes later, the output of the build script is a compressed
 archive and its SHA signature, created in the `deploy` folder:
 
 ```console
-$ ls -l ~/Work/openocd-xpack.git/build/darwin-arm64/deploy
+$ ls -l ~/Work/xpacks/openocd-xpack.git/build/darwin-arm64/deploy
 total 4800
 -rw-r--r--  1 ilg  staff  2451720 Jan 30 11:17 xpack-openocd-0.12.0-1-darwin-arm64.tar.gz
 -rw-r--r--  1 ilg  staff      109 Jan 30 11:17 xpack-openocd-0.12.0-1-darwin-arm64.tar.gz.sha
@@ -273,22 +273,22 @@ caffeinate ssh xbbli
 Update the build scripts (or clone them at the first use):
 
 ```sh
-git -C ~/Work/openocd-xpack.git pull && \
-xpm run install -C ~/Work/openocd-xpack.git && \
-git -C ~/Work/xbb-helper-xpack.git pull && \
-xpm link -C ~/Work/xbb-helper-xpack.git && \
-xpm run link-deps -C ~/Work/openocd-xpack.git && \
-xpm run deep-clean --config linux-x64 -C ~/Work/openocd-xpack.git && \
-xpm run docker-prepare --config linux-x64 -C ~/Work/openocd-xpack.git && \
-xpm run docker-link-deps --config linux-x64 -C ~/Work/openocd-xpack.git
-xpm run docker-build-develop --config linux-x64 -C ~/Work/openocd-xpack.git
+git -C ~/Work/xpacks/openocd-xpack.git pull && \
+xpm run install -C ~/Work/xpacks/openocd-xpack.git && \
+git -C ~/Work/xpacks/xbb-helper-xpack.git pull && \
+xpm link -C ~/Work/xpacks/xbb-helper-xpack.git && \
+xpm run link-deps -C ~/Work/xpacks/openocd-xpack.git && \
+xpm run deep-clean --config linux-x64 -C ~/Work/xpacks/openocd-xpack.git && \
+xpm run docker-prepare --config linux-x64 -C ~/Work/xpacks/openocd-xpack.git && \
+xpm run docker-link-deps --config linux-x64 -C ~/Work/xpacks/openocd-xpack.git
+xpm run docker-build-develop --config linux-x64 -C ~/Work/xpacks/openocd-xpack.git
 ```
 
 Several minutes later, the output of the build script is a compressed
 archive and its SHA signature, created in the `deploy` folder:
 
 ```console
-$ ls -l ~/Work/openocd-xpack.git/build/linux-x64/deploy
+$ ls -l ~/Work/xpacks/openocd-xpack.git/build/linux-x64/deploy
 total 2732
 -rw-r--r-- 1 ilg ilg 2789919 Jan 30 09:20 xpack-openocd-0.12.0-1-linux-x64.tar.gz
 -rw-r--r-- 1 ilg ilg     106 Jan 30 09:20 xpack-openocd-0.12.0-1-linux-x64.tar.gz.sha
@@ -299,22 +299,22 @@ total 2732
 Clean the build folder and prepare the docker container:
 
 ```sh
-git -C ~/Work/openocd-xpack.git pull && \
-xpm run install -C ~/Work/openocd-xpack.git && \
-git -C ~/Work/xbb-helper-xpack.git pull && \
-xpm link -C ~/Work/xbb-helper-xpack.git && \
-xpm run link-deps -C ~/Work/openocd-xpack.git && \
-xpm run deep-clean --config win32-x64 -C ~/Work/openocd-xpack.git && \
-xpm run docker-prepare --config win32-x64 -C ~/Work/openocd-xpack.git && \
-xpm run docker-link-deps --config win32-x64 -C ~/Work/openocd-xpack.git
-xpm run docker-build-develop --config win32-x64 -C ~/Work/openocd-xpack.git
+git -C ~/Work/xpacks/openocd-xpack.git pull && \
+xpm run install -C ~/Work/xpacks/openocd-xpack.git && \
+git -C ~/Work/xpacks/xbb-helper-xpack.git pull && \
+xpm link -C ~/Work/xpacks/xbb-helper-xpack.git && \
+xpm run link-deps -C ~/Work/xpacks/openocd-xpack.git && \
+xpm run deep-clean --config win32-x64 -C ~/Work/xpacks/openocd-xpack.git && \
+xpm run docker-prepare --config win32-x64 -C ~/Work/xpacks/openocd-xpack.git && \
+xpm run docker-link-deps --config win32-x64 -C ~/Work/xpacks/openocd-xpack.git
+xpm run docker-build-develop --config win32-x64 -C ~/Work/xpacks/openocd-xpack.git
 ```
 
 About 5 minutes later, the output of the build script is a compressed
 archive and its SHA signature, created in the `deploy` folder:
 
 ```console
-$ ls -l ~/Work/openocd-xpack.git/build/win32-x64/deploy
+$ ls -l ~/Work/xpacks/openocd-xpack.git/build/win32-x64/deploy
 total 3088
 -rw-r--r-- 1 ilg ilg 3156989 Jan 30 09:41 xpack-openocd-0.12.0-1-win32-x64.zip
 -rw-r--r-- 1 ilg ilg     103 Jan 30 09:41 xpack-openocd-0.12.0-1-win32-x64.zip.sha
@@ -332,22 +332,22 @@ caffeinate ssh xbbla64
 Update the build scripts (or clone them at the first use):
 
 ```sh
-git -C ~/Work/openocd-xpack.git pull && \
-xpm run install -C ~/Work/openocd-xpack.git && \
-git -C ~/Work/xbb-helper-xpack.git pull && \
-xpm link -C ~/Work/xbb-helper-xpack.git && \
-xpm run link-deps -C ~/Work/openocd-xpack.git && \
-xpm run deep-clean --config linux-arm64 -C ~/Work/openocd-xpack.git && \
-xpm run docker-prepare --config linux-arm64 -C ~/Work/openocd-xpack.git && \
-xpm run docker-link-deps --config linux-arm64 -C ~/Work/openocd-xpack.git
-xpm run docker-build-develop --config linux-arm64 -C ~/Work/openocd-xpack.git
+git -C ~/Work/xpacks/openocd-xpack.git pull && \
+xpm run install -C ~/Work/xpacks/openocd-xpack.git && \
+git -C ~/Work/xpacks/xbb-helper-xpack.git pull && \
+xpm link -C ~/Work/xpacks/xbb-helper-xpack.git && \
+xpm run link-deps -C ~/Work/xpacks/openocd-xpack.git && \
+xpm run deep-clean --config linux-arm64 -C ~/Work/xpacks/openocd-xpack.git && \
+xpm run docker-prepare --config linux-arm64 -C ~/Work/xpacks/openocd-xpack.git && \
+xpm run docker-link-deps --config linux-arm64 -C ~/Work/xpacks/openocd-xpack.git
+xpm run docker-build-develop --config linux-arm64 -C ~/Work/xpacks/openocd-xpack.git
 ```
 
 About 10 minutes later, the output of the build script is a compressed
 archive and its SHA signature, created in the `deploy` folder:
 
 ```console
-$ ls -l ~/Work/openocd-xpack.git/build/linux-arm64/deploy
+$ ls -l ~/Work/xpacks/openocd-xpack.git/build/linux-arm64/deploy
 total 2676
 -rw-r--r-- 1 ilg ilg 2732671 Jan 30 09:24 xpack-openocd-0.12.0-1-linux-arm64.tar.gz
 -rw-r--r-- 1 ilg ilg     108 Jan 30 09:24 xpack-openocd-0.12.0-1-linux-arm64.tar.gz.sha
@@ -365,22 +365,22 @@ caffeinate ssh xbbla32
 Update the build scripts (or clone them at the first use):
 
 ```sh
-git -C ~/Work/openocd-xpack.git pull && \
-xpm run install -C ~/Work/openocd-xpack.git && \
-git -C ~/Work/xbb-helper-xpack.git pull && \
-xpm link -C ~/Work/xbb-helper-xpack.git && \
-xpm run link-deps -C ~/Work/openocd-xpack.git && \
-xpm run deep-clean --config linux-arm -C ~/Work/openocd-xpack.git && \
-xpm run docker-prepare --config linux-arm -C ~/Work/openocd-xpack.git && \
-xpm run docker-link-deps --config linux-arm -C ~/Work/openocd-xpack.git
-xpm run docker-build-develop --config linux-arm -C ~/Work/openocd-xpack.git
+git -C ~/Work/xpacks/openocd-xpack.git pull && \
+xpm run install -C ~/Work/xpacks/openocd-xpack.git && \
+git -C ~/Work/xpacks/xbb-helper-xpack.git pull && \
+xpm link -C ~/Work/xpacks/xbb-helper-xpack.git && \
+xpm run link-deps -C ~/Work/xpacks/openocd-xpack.git && \
+xpm run deep-clean --config linux-arm -C ~/Work/xpacks/openocd-xpack.git && \
+xpm run docker-prepare --config linux-arm -C ~/Work/xpacks/openocd-xpack.git && \
+xpm run docker-link-deps --config linux-arm -C ~/Work/xpacks/openocd-xpack.git
+xpm run docker-build-develop --config linux-arm -C ~/Work/xpacks/openocd-xpack.git
 ```
 
 About 10 minutes later, the output of the build script is a compressed
 archive and its SHA signature, created in the `deploy` folder:
 
 ```console
-$ ls -l ~/Work/openocd-xpack.git/build/linux-arm/deploy
+$ ls -l ~/Work/xpacks/openocd-xpack.git/build/linux-arm/deploy
 total 2592
 -rw-r--r-- 1 ilg ilg 2649660 Jan 30 09:25 xpack-openocd-0.12.0-1-linux-arm.tar.gz
 -rw-r--r-- 1 ilg ilg     106 Jan 30 09:25 xpack-openocd-0.12.0-1-linux-arm.tar.gz.sha
@@ -399,21 +399,18 @@ location (like
 <https://github.com/xpack-dev-tools/files-cache/tree/master/libs>),
 place them in the XBB cache (`Work/cache`) and restart the build.
 
-## Push the build scripts
-
-In this Git repo:
-
-- push the `xpack-develop` branch to GitHub
-- possibly push the helper project too
-
 ## Run the CI build
 
 The automation is provided by GitHub Actions and three self-hosted runners.
 
+### Generate the GitHub workflows
+
 Run the `generate-workflows` to re-generate the
 GitHub workflow files; commit and push if necessary.
 
-- on a permanently running machine (`berry`) open ssh sessions to the build
+### Start the self-hosted runners
+
+- on the development machine (`wksi`) open ssh sessions to the build
 machines (`xbbma`, `xbbli`, `xbbla64` and `xbbla32`):
 
 ```sh
@@ -440,7 +437,19 @@ For `xbbli` & `xbbla64` start two runners:
 ~/actions-runners/xpack-dev-tools/2/run.sh &
 ```
 
-Check that the project is pushed to GitHub.
+### Push the build scripts
+
+- push the `xpack-develop` branch to GitHub
+- possibly push the helper project too
+
+From here it'll be cloned on the production machines.
+
+### Check for disk space
+
+Check if the build machines have enough free space and eventually
+do some cleanups.
+
+### Manually trigger the build GitHub Actions
 
 To trigger the GitHub Actions build, use the xPack action:
 
@@ -453,11 +462,11 @@ To trigger the GitHub Actions build, use the xPack action:
 This is equivalent to:
 
 ```sh
-bash ~/Work/openocd-xpack.git/xpacks/xpack-dev-tools-xbb-helper/github-actions/trigger-workflow-build.sh --machine xbbli
-bash ~/Work/openocd-xpack.git/xpacks/xpack-dev-tools-xbb-helper/github-actions/trigger-workflow-build.sh --machine xbbla64
-bash ~/Work/openocd-xpack.git/xpacks/xpack-dev-tools-xbb-helper/github-actions/trigger-workflow-build.sh --machine xbbla32
-bash ~/Work/openocd-xpack.git/xpacks/xpack-dev-tools-xbb-helper/github-actions/trigger-workflow-build.sh --machine xbbmi
-bash ~/Work/openocd-xpack.git/xpacks/xpack-dev-tools-xbb-helper/github-actions/trigger-workflow-build.sh --machine xbbma
+bash ~/Work/xpacks/openocd-xpack.git/xpacks/xpack-dev-tools-xbb-helper/github-actions/trigger-workflow-build.sh --machine xbbli
+bash ~/Work/xpacks/openocd-xpack.git/xpacks/xpack-dev-tools-xbb-helper/github-actions/trigger-workflow-build.sh --machine xbbla64
+bash ~/Work/xpacks/openocd-xpack.git/xpacks/xpack-dev-tools-xbb-helper/github-actions/trigger-workflow-build.sh --machine xbbla32
+bash ~/Work/xpacks/openocd-xpack.git/xpacks/xpack-dev-tools-xbb-helper/github-actions/trigger-workflow-build.sh --machine xbbmi
+bash ~/Work/xpacks/openocd-xpack.git/xpacks/xpack-dev-tools-xbb-helper/github-actions/trigger-workflow-build.sh --machine xbbma
 ```
 
 These scripts require the `GITHUB_API_DISPATCH_TOKEN` variable to be present
@@ -466,7 +475,9 @@ Settings → Action →
 [Secrets](https://github.com/xpack-dev-tools/openocd-xpack/settings/secrets/actions)
 page.
 
-This command uses the `xpack-develop` branch of this repo.
+These commands use the `xpack-develop` branch of this repo.
+
+## Durations & results
 
 The builds take about 10 minutes to complete:
 
@@ -497,9 +508,9 @@ To trigger the GitHub Actions tests, use the xPack actions:
 These are equivalent to:
 
 ```sh
-bash ~/Work/openocd-xpack.git/xpacks/xpack-dev-tools-xbb-helper/github-actions/trigger-workflow-test-prime.sh
-bash ~/Work/openocd-xpack.git/xpacks/xpack-dev-tools-xbb-helper/github-actions/trigger-workflow-test-docker-linux-intel.sh
-bash ~/Work/openocd-xpack.git/xpacks/xpack-dev-tools-xbb-helper/github-actions/trigger-workflow-test-docker-linux-arm.sh
+bash ~/Work/xpacks/openocd-xpack.git/xpacks/xpack-dev-tools-xbb-helper/github-actions/trigger-workflow-test-prime.sh
+bash ~/Work/xpacks/openocd-xpack.git/xpacks/xpack-dev-tools-xbb-helper/github-actions/trigger-workflow-test-docker-linux-intel.sh
+bash ~/Work/xpacks/openocd-xpack.git/xpacks/xpack-dev-tools-xbb-helper/github-actions/trigger-workflow-test-docker-linux-arm.sh
 ```
 
 These scripts require the `GITHUB_API_DISPATCH_TOKEN` variable to be present
@@ -522,7 +533,7 @@ To trigger the Travis test, use the xPack action:
 This is equivalent to:
 
 ```sh
-bash ~/Work/openocd-xpack.git/xpacks/xpack-dev-tools-xbb-helper/github-actions/trigger-travis-macos.sh
+bash ~/Work/xpacks/openocd-xpack.git/xpacks/xpack-dev-tools-xbb-helper/github-actions/trigger-travis-macos.sh
 ```
 
 This script requires the `TRAVIS_COM_TOKEN` variable to be present
@@ -537,9 +548,9 @@ To download the pre-released archive for the specific platform
 and run the tests, use:
 
 ```sh
-git -C ~/Work/openocd-xpack.git pull
-xpm run install -C ~/Work/openocd-xpack.git
-xpm run test-pre-release -C ~/Work/openocd-xpack.git
+git -C ~/Work/xpacks/openocd-xpack.git pull
+xpm run install -C ~/Work/xpacks/openocd-xpack.git
+xpm run test-pre-release -C ~/Work/xpacks/openocd-xpack.git
 ```
 
 For even more tests, on each platform (MacOS, GNU/Linux, Windows),
@@ -576,7 +587,7 @@ $ .../xpack-openocd-0.12.0-1/bin/openocd -f "board/stm32f4discovery.cfg"
 xPack Open On-Chip Debugger 0.12.0-01004-g9ea7f3d64-dirty (2023-01-30-16:23)
 Licensed under GNU GPL v2
 For bug reports, read
-	http://openocd.org/doc/doxygen/bugs.html
+	https://openocd.org/doc/doxygen/bugs.html
 Info : The selected transport took over low-level target control. The results might differ compared to plain JTAG/SWD
 srst_only separate srst_nogate srst_open_drain connect_deassert_srst
 

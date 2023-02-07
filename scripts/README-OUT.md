@@ -7,7 +7,7 @@ an open-source project.
 For more details, please read the corresponding release pages:
 
 - <https://xpack.github.io/openocd/releases/>
-- <http://openocd.org>
+- <https://openocd.org>
 
 Thank you for using open source software,
 
