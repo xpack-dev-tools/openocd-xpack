@@ -8,7 +8,7 @@ If you have questions/suggestions related to the procedure used to
 build/publish the binary distribution, continue reading the next sections.
 
 If you have problems related to OpenOCD functionality, please use the
-official [OpenOCD support channels](http://openocd.org/discussion/).
+official [OpenOCD support channels](https://openocd.org/discussion/).
 
 ### Prerequisites
 

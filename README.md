@@ -19,7 +19,7 @@ This open source project is hosted on GitHub as
 and provides the platform specific binaries for the
 [xPack OpenOCD](https://xpack.github.io/openocd/).
 
-This distribution follows the official [OpenOCD](http://openocd.org).
+This distribution follows the official [OpenOCD](https://openocd.org).
 
 The binaries can be installed automatically as **binary xPacks** or manually as
 **portable archives**.
@@ -27,7 +27,7 @@ The binaries can be installed automatically as **binary xPacks** or manually as
 ## Release schedule
 
 This distribution generally follows the official
-[OpenOCD](http://openocd.org), with
+[OpenOCD](https://openocd.org), with
 additional releases based on the current Git form time to time.
 
 ## User info
@@ -66,7 +66,7 @@ a dependency for a project is quite easy:
 cd my-project
 xpm init # Only at first use.
 
-xpm install @xpack-dev-tools/openocd@latest
+xpm install @xpack-dev-tools/openocd@latest --verbose
 
 ls -l xpacks/.bin
 ```
@@ -90,7 +90,7 @@ For xPacks aware tools, like the **Eclipse Embedded C/C++ plug-ins**,
 it is also possible to install OpenOCD globally, in the user home folder:
 
 ```sh
-xpm install --global @xpack-dev-tools/openocd@latest
+xpm install --global @xpack-dev-tools/openocd@latest --verbose
 ```
 
 Eclipse will automatically
