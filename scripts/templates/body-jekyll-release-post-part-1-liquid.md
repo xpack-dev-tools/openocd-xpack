@@ -8,11 +8,13 @@ the latest upstream master."
 
 summary: "Version **{{ XBB_RELEASE_VERSION }}** is a new release; it follows the upstream release."
 
-version: "{{ XBB_RELEASE_VERSION }}"
-npm_subversion: "1"
 upstream_version: "0.12.0"
 upstream_commit: "9ea7f3d"
 upstream_release_date: "15 Jan 2022"
+
+version: "{{ XBB_RELEASE_VERSION }}"
+npm_subversion: "1"
+
 download_url: https://github.com/xpack-dev-tools/openocd-xpack/releases/tag/v{{ XBB_RELEASE_VERSION }}/
 
 date:   {{ RELEASE_DATE }}
@@ -29,7 +31,7 @@ tags:
 
 [The xPack OpenOCD](https://xpack.github.io/openocd/)
 is a standalone cross-platform binary distribution of
-[OpenOCD](http://openocd.org).
+[OpenOCD](https://openocd.org).
 
 There are separate binaries for **Windows** (Intel 64-bit),
 **macOS** (Intel 64-bit, Apple Silicon 64-bit)
@@ -61,7 +63,7 @@ The binary files are available from GitHub [Releases]({% raw %}{{ page.download_
 
 The full details of installing the **xPack OpenOCD** on various platforms
 are presented in the separate
-[Install]({% raw %}{{ site.baseurl }}{% endraw %}/openocd/install/) page.
+[Install]({% raw %}{{ site.baseurl }}{% endraw %}/dev-tools/openocd/install/) page.
 
 ### Easy install
 
@@ -79,7 +81,7 @@ a dependency for a project is quite easy:
 cd my-project
 xpm init # Only at first use.
 
-xpm install @xpack-dev-tools/openocd@latest
+xpm install @xpack-dev-tools/openocd@latest --verbose
 
 ls -l xpacks/.bin
 ```
@@ -87,14 +89,14 @@ ls -l xpacks/.bin
 To install this specific version, use:
 
 ```sh
-xpm install @xpack-dev-tools/openocd@{% raw %}{{ page.version }}.{{ page.npm_subversion }}{% endraw %}
+xpm install @xpack-dev-tools/openocd@{% raw %}{{ page.version }}.{{ page.npm_subversion }}{% endraw %} --verbose
 ```
 
 For xPacks aware tools, like the **Eclipse Embedded C/C++ plug-ins**,
 it is also possible to install OpenOCD globally, in the user home folder.
 
 ```sh
-xpm install --global @xpack-dev-tools/openocd@latest
+xpm install --global @xpack-dev-tools/openocd@latest --verbose
 ```
 
 Eclipse will automatically
@@ -120,7 +122,7 @@ xpm uninstall --global @xpack-dev-tools/openocd
 ## Compliance
 
 The xPack OpenOCD generally follows the official
-[OpenOCD](http://openocd.org) releases.
+[OpenOCD](https://openocd.org) releases.
 
 The current version is based on:
 
