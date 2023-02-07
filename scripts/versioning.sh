@@ -65,7 +65,7 @@ function application_build_versioned_components()
     #   libusb0_build "0.1.8"
     # fi
 
-    # http://www.intra2net.com/en/developer/libftdi/download.php
+    # https://www.intra2net.com/en/developer/libftdi/download.php
     libftdi_build "1.5" # ! PATCH
 
     # https://github.com/libusb/hidapi/releases
@@ -131,7 +131,7 @@ function application_build_versioned_components()
       libusb0_build "0.1.5"
     fi
 
-    # http://www.intra2net.com/en/developer/libftdi/download.php
+    # https://www.intra2net.com/en/developer/libftdi/download.php
     libftdi_build "1.5" # ! PATCH
 
     # https://github.com/libusb/hidapi/releases
