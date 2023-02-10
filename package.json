@@ -94,7 +94,7 @@
         "xpm link @xpack-dev-tools/xbb-helper"
       ],
       "git-pull-helper": [
-        "git -C ${HOME}/Work/xbb-helper-xpack.git pull"
+        "git -C ${HOME}/Work/xpacks/xbb-helper-xpack.git pull"
       ],
       "git-log": "git log --pretty='%cd * %h %s' --date=short",
       "generate-workflows": [
@@ -177,7 +177,7 @@
           "docker-prepare": [
             "mkdir -pv ${HOME}/.wine",
             "docker rm --force {{ properties.containerName }}",
-            "docker create --name {{ properties.containerName }} --tty --hostname docker --volume $(pwd):$(pwd) --volume ${HOME}/Work/xbb-helper-xpack.git:${HOME}/Work/xbb-helper-xpack.git --volume ${HOME}/.local/xPacks:${HOME}/.local/xPacks --volume ${HOME}/.cache/xPacks:${HOME}/.cache/xPacks --volume ${HOME}/Work/cache:${HOME}/Work/cache --volume ${HOME}/.wine:${HOME}/.wine --workdir $(pwd) {{ properties.dockerImage }}",
+            "docker create --name {{ properties.containerName }} --tty --hostname docker --volume $(pwd):$(pwd) --volume ${HOME}/Work/xpacks/xbb-helper-xpack.git:${HOME}/Work/xpacks/xbb-helper-xpack.git --volume ${HOME}/.local/xPacks:${HOME}/.local/xPacks --volume ${HOME}/.cache/xPacks:${HOME}/.cache/xPacks --volume ${HOME}/Work/cache:${HOME}/Work/cache --volume ${HOME}/.wine:${HOME}/.wine --workdir $(pwd) {{ properties.dockerImage }}",
             "docker start {{ properties.containerName }}",
             "docker exec {{ properties.containerName }} npm install --location=global xpm@latest",
             "docker exec {{ properties.containerName }} userdel node",
@@ -188,7 +188,7 @@
             "docker exec --user $(id -un) {{ properties.containerName }} xpm install --config {{ configuration.name }}"
           ],
           "docker-link-deps": [
-            "docker exec --user $(id -un) {{ properties.containerName }} xpm link -C ${HOME}/Work/xbb-helper-xpack.git",
+            "docker exec --user $(id -un) {{ properties.containerName }} xpm link -C ${HOME}/Work/xpacks/xbb-helper-xpack.git",
             "docker exec --user $(id -un) {{ properties.containerName }} xpm run link-deps"
           ],
           "docker-build": [
