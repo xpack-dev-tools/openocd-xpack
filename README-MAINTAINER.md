@@ -11,16 +11,16 @@ generated on Intel GNU/Linux, using [mingw-w64](https://mingw-w64.org).
 
 For GNU/Linux the prerequisites are:
 
-- `docker`
-- `git` (installed via the system package manager)
 - `npm` (shipped with Node.js; installed via nvm, not the system package manager)
 - `xpm` (installed via `npm`)
+- `docker`
+- `git` (installed via the system package manager)
 
 For macOS the prerequisites are:
 
-- the Command Line Tools
 - `npm` (shipped with Node.js; installed via nvm)
 - `xpm` (installed via `npm`)
+- the Command Line Tools
 
 For details on installing them, please read the
 [XBB prerequisites page](https://xpack.github.io/xbb/prerequisites/).
