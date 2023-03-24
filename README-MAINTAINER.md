@@ -4,6 +4,26 @@
 
 # Maintainer info
 
+## Prerequisites
+
+The build scripts run on GNU/Linux and macOS.
+
+For GNU/Linux the prerequisites are:
+
+- `docker`
+- `git` (installed via the system package manager)
+- `npm` (shipped with Node.js; installed via nvm, not the system package manager)
+- `xpm` (installed via `npm`)
+
+For macOS the prerequisites are:
+
+- the Command Line Tools
+- `npm` (shipped with Node.js; installed via nvm)
+- `xpm` (installed via `npm`)
+
+For details on installing them, please read the
+[XBB prerequisites page](https://xpack.github.io/xbb/prerequisites/).
+
 ## Get project sources
 
 The project is hosted on GitHub:
@@ -50,10 +70,6 @@ Other repositories in use are:
 - <https://github.com/openocd-org/openocd.git> - a read-only mirror of the
   upstream OpenOCD (<git://git.code.sf.net/p/openocd/code>)
 
-## Prerequisites
-
-A recent [xpm](https://xpack.github.io/xpm/), which is a portable
-[Node.js](https://nodejs.org/) command line application.
 
 ## Release schedule
 
