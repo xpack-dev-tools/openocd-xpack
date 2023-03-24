@@ -71,7 +71,6 @@ Other repositories in use are:
 - <https://github.com/openocd-org/openocd.git> - a read-only mirror of the
   upstream OpenOCD (<git://git.code.sf.net/p/openocd/code>)
 
-
 ## Release schedule
 
 In the past, the OpenOCD had no release schedule, and very rare
