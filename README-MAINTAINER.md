@@ -6,7 +6,8 @@
 
 ## Prerequisites
 
-The build scripts run on GNU/Linux and macOS.
+The build scripts run on GNU/Linux and macOS. The Windows binaries are
+generated on Intel GNU/Linux, using [mingw-w64](https://mingw-w64.org).
 
 For GNU/Linux the prerequisites are:
 
