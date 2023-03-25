@@ -189,7 +189,7 @@ For more details please read the
 ## Maintainer info
 
 For maintainer info, please see the
-[README-MAINTAINER](https://github.com/xpack-dev-tools/openocd-xpack/blob/xpack/README-MAINTAINER.md)
+[README-MAINTAINER](https://github.com/xpack-dev-tools/openocd-xpack/blob/xpack/README-MAINTAINER.md).
 
 ## Support
 
