@@ -186,10 +186,13 @@ the last installation step on GNU/Linux is to configure the UDEV subsystem.
 For more details please read the
 [Install](https://xpack.github.io/openocd/install/) page.
 
-## Maintainer info
+## Developer & Maintainer info
 
-For maintainer info, please see the
-[README-MAINTAINER](https://github.com/xpack-dev-tools/openocd-xpack/blob/xpack/README-MAINTAINER.md).
+For information on how to build the binaries, please see the
+[README-DEVELOPER](README-DEVELOPER.md) page.
+
+For information on the workflow used to make releases, please see the
+[README-MAINTAINER](README-MAINTAINER.md) page.
 
 ## Support
 

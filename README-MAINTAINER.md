@@ -6,21 +6,8 @@
 
 ## Prerequisites
 
-The build scripts run on GNU/Linux and macOS. The Windows binaries are
-generated on Intel GNU/Linux, using [mingw-w64](https://mingw-w64.org).
-
-For GNU/Linux the prerequisites are:
-
-- `npm` (shipped with Node.js; installed via nvm, not the system package manager)
-- `xpm` (installed via `npm`)
-- `docker`
-- `git` (installed via the system package manager)
-
-For macOS the prerequisites are:
-
-- `npm` (shipped with Node.js; installed via nvm)
-- `xpm` (installed via `npm`)
-- the Command Line Tools
+The prerequisites are listed in the
+[README-DEVELOPER](README-DEVELOPER.md) page.
 
 For details on installing them, please read the
 [XBB prerequisites page](https://xpack.github.io/xbb/prerequisites/).
@@ -53,7 +40,9 @@ git clone \
 
 ## Get helper sources
 
-The project has a dependency to a common **helper**; clone the
+The project has a dependency to a common **helper**, that is
+normally installed as a read-only dependency; for development
+purposes, to be able to make changes to the helper, clone the
 `xpack-develop` branch and link it to the central xPacks store:
 
 ```sh
