@@ -73,7 +73,7 @@ Other repositories in use are:
 
 ## How to build
 
-The builds currently run on 5 dedicated machines (Intel GNU/Linux,
+The builds currently require 5 dedicated machines (Intel GNU/Linux,
 Arm 32 GNU/Linux, Arm 64 GNU/Linux, Intel macOS and Apple Silicon macOS).
 
 ### Intel macOS
