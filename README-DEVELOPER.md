@@ -9,10 +9,11 @@ generated on Intel GNU/Linux, using [mingw-w64](https://mingw-w64.org).
 
 For GNU/Linux, the prerequisites are:
 
+- `curl` (installed via the system package manager)
+- `git` (installed via the system package manager)
+- `docker` (preferably a recent one, installed from docker.com)
 - `npm` (shipped with Node.js; installed via nvm, not the system package manager)
 - `xpm` (installed via `npm`)
-- `docker` (preferably a recent one, installed from docker.com)
-- `git` (installed via the system package manager)
 
 For macOS, the prerequisites are:
 
@@ -49,11 +50,11 @@ git clone \
   ~/Work/xpacks/openocd-xpack.git
 ```
 
-## Get helper sources
+## Get helper sources (optional, for development purposes)
 
 The project has a dependency to a common **helper**, that is
-normally installed as a read-only dependency; for development
-purposes, to be able to make changes to the helper, clone the
+normally installed as a read-only dependency; **for development
+purposes**, to be able to make changes to the helper, clone the
 `xpack-develop` branch and link it to the central xPacks store:
 
 ```sh
