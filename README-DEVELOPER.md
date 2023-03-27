@@ -2,6 +2,16 @@
 
 # Developer info
 
+## The xPack Build Box
+
+The build scripts in this project use the **xPack Build Box** (**XBB**)
+tools, which require the usual native development tools
+(packed as a Docker image for GNU/Linux builds), complemented with
+several binary xPacks, installed with `xpm` as development dependencies.
+
+For those interested in understanding how things work, a good starting point
+would be to read the [XBB](https://xpack.github.io/xbb/) page.
+
 ## Prerequisites
 
 The build scripts run on GNU/Linux and macOS. The Windows binaries are
@@ -11,18 +21,26 @@ For GNU/Linux, the prerequisites are:
 
 - `curl` (installed via the system package manager)
 - `git` (installed via the system package manager)
-- `docker` (preferably a recent one, installed from docker.com)
-- `npm` (shipped with Node.js; installed via nvm, not the system package manager)
+- `docker` (preferably a recent one, installed from **docker.com**)
+- `npm` (shipped with Node.js; installed via **nvm**, **not**
+  the system package manager)
 - `xpm` (installed via `npm`)
 
 For macOS, the prerequisites are:
 
-- `npm` (shipped with Node.js; installed via nvm)
+- `npm` (shipped with Node.js; installed via **nvm**)
 - `xpm` (installed via `npm`)
-- the Command Line Tools from Apple
+- the **Command Line Tools** from Apple
 
 For details on installing them, please read the
-[XBB prerequisites page](https://xpack.github.io/xbb/prerequisites/).
+[XBB prerequisites](https://xpack.github.io/xbb/prerequisites/) page.
+
+If you already have a functional configuration from a previous run,
+is is recommended to update **xpm**:
+
+```sh
+npm install --global xpm@latest
+```
 
 ## Get project sources
 
@@ -54,8 +72,9 @@ git clone \
 
 The project has a dependency to a common **helper**, that is
 normally installed as a read-only dependency; **for development
-purposes**, to be able to make changes to the helper, clone the
-`xpack-develop` branch and link it to the central xPacks store:
+purposes**, to be able to make changes to scripts in the helper,
+clone the `xpack-develop` branch and link it to the central
+xPacks store:
 
 ```sh
 rm -rf ~/Work/xpacks/xbb-helper-xpack.git && \
@@ -67,6 +86,8 @@ git clone \
 xpm link -C ~/Work/xpacks/xbb-helper-xpack.git
 ```
 
+## Other repositories
+
 Other repositories in use are:
 
 - <https://github.com/openocd-org/openocd.git> - a read-only mirror of the
@@ -74,12 +95,13 @@ Other repositories in use are:
 
 ## How to build
 
-The builds currently require 5 dedicated machines (Intel GNU/Linux,
-Arm 32 GNU/Linux, Arm 64 GNU/Linux, Intel macOS and Apple Silicon macOS).
+The builds require dedicated machines for each platform
+(Intel GNU/Linux, Arm 32 GNU/Linux, Arm 64 GNU/Linux,
+Intel macOS and Apple Silicon macOS).
 
 ### Intel macOS
 
-Run the native build on an Intel Mac:
+The native build runs on an Intel Mac:
 
 ```sh
 git -C ~/Work/xpacks/openocd-xpack.git pull && \
@@ -101,7 +123,7 @@ total 4840
 
 #### Apple Silicon macOS
 
-Run the native build on an Apple Silicon Mac:
+The native build runs on an Apple Silicon Mac:
 
 ```sh
 git -C ~/Work/xpacks/openocd-xpack.git pull && \
@@ -147,8 +169,6 @@ total 2732
 
 ##### Build the Windows binaries
 
-Clean the build folder and prepare the docker container:
-
 ```sh
 git -C ~/Work/xpacks/openocd-xpack.git pull && \
 xpm run install -C ~/Work/xpacks/openocd-xpack.git && \
@@ -169,7 +189,7 @@ total 3088
 
 #### Arm GNU/Linux 64-bit
 
-Run the docker build on an aarch64 machine:
+The docker build runs on a 64-bit aarch64 GNU/Linux machine:
 
 ```sh
 git -C ~/Work/xpacks/openocd-xpack.git pull && \
@@ -191,7 +211,7 @@ total 2676
 
 #### Arm GNU/Linux 32-bit
 
-Run the docker build on an armv7 machine:
+The docker build runs on a 32-bit armhf GNU/Linux machine:
 
 ```sh
 git -C ~/Work/xpacks/openocd-xpack.git pull && \
