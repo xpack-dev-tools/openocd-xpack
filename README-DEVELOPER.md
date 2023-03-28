@@ -86,6 +86,10 @@ git clone \
 xpm link -C ~/Work/xpacks/xbb-helper-xpack.git
 ```
 
+For more details the how writeable helper can be used via
+`xpm link`, please see the
+[XBB](https://xpack.github.io/xbb/#writable-helper-scripts) documentation.
+
 ## Other repositories
 
 Other repositories in use are:
