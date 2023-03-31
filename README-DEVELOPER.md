@@ -132,7 +132,7 @@ xpm run link-deps -C ~/Work/xpacks/openocd-xpack.git && \
 xpm install --config darwin-x64 -C ~/Work/xpacks/openocd-xpack.git
 ```
 
-Then, to run the build:
+To run the build:
 
 ```sh
 xpm run build --config darwin-x64 -C ~/Work/xpacks/openocd-xpack.git
@@ -177,7 +177,7 @@ xpm run link-deps -C ~/Work/xpacks/openocd-xpack.git && \
 xpm install --config darwin-arm64 -C ~/Work/xpacks/openocd-xpack.git
 ```
 
-Then, to run the build:
+To run the build:
 
 ```sh
 xpm run build --config darwin-arm64 -C ~/Work/xpacks/openocd-xpack.git
@@ -227,7 +227,7 @@ xpm run docker-prepare --config linux-x64 -C ~/Work/xpacks/openocd-xpack.git && 
 xpm run docker-link-deps --config linux-x64 -C ~/Work/xpacks/openocd-xpack.git
 ```
 
-Then, to run the build:
+To run the build:
 
 ```sh
 xpm run docker-build --config linux-x64 -C ~/Work/xpacks/openocd-xpack.git
@@ -273,7 +273,7 @@ xpm run docker-prepare --config win32-x64 -C ~/Work/xpacks/openocd-xpack.git && 
 xpm run docker-link-deps --config win32-x64 -C ~/Work/xpacks/openocd-xpack.git
 ```
 
-Then, to run the build:
+To run the build:
 
 ```sh
 xpm run docker-build --config win32-x64 -C ~/Work/xpacks/openocd-xpack.git
@@ -319,7 +319,7 @@ xpm run docker-prepare --config linux-arm64 -C ~/Work/xpacks/openocd-xpack.git &
 xpm run docker-link-deps --config linux-arm64 -C ~/Work/xpacks/openocd-xpack.git
 ```
 
-Then, to run the build:
+To run the build:
 
 ```sh
 xpm run docker-build --config linux-arm64 -C ~/Work/xpacks/openocd-xpack.git
@@ -365,7 +365,7 @@ xpm run docker-prepare --config linux-arm -C ~/Work/xpacks/openocd-xpack.git && 
 xpm run docker-link-deps --config linux-arm -C ~/Work/xpacks/openocd-xpack.git
 ```
 
-Then, to run the build:
+To run the build:
 
 ```sh
 xpm run docker-build --config linux-arm -C ~/Work/xpacks/openocd-xpack.git
