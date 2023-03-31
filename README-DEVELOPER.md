@@ -103,17 +103,36 @@ The builds require dedicated machines for each platform
 (Intel GNU/Linux, Arm 32 GNU/Linux, Arm 64 GNU/Linux,
 Intel macOS and Apple Silicon macOS).
 
-### Intel macOS
-
-The native build runs on an Intel Mac:
+### Update the repo
 
 ```sh
-git -C ~/Work/xpacks/openocd-xpack.git pull && \
+git -C ~/Work/xpacks/openocd-xpack.git pull
+```
+
+and, if needed, the helper, when using a writeable helper:
+
+```sh
+git -C ~/Work/xpacks/xbb-helper-xpack.git pull
+```
+
+### Intel macOS
+
+To prepare the native build on an Intel Mac:
+
+```sh
 xpm run install -C ~/Work/xpacks/openocd-xpack.git && \
 xpm install --config darwin-x64 -C ~/Work/xpacks/openocd-xpack.git
 ```
 
-Then:
+or, with the writeable helper:
+
+```sh
+xpm run install -C ~/Work/xpacks/openocd-xpack.git && \
+xpm run link-deps -C ~/Work/xpacks/openocd-xpack.git && \
+xpm install --config darwin-x64 -C ~/Work/xpacks/openocd-xpack.git
+```
+
+Then, to run the build:
 
 ```sh
 xpm run build --config darwin-x64 -C ~/Work/xpacks/openocd-xpack.git
@@ -143,15 +162,22 @@ xpm run deep-clean --config darwin-x64 -C ~/Work/xpacks/openocd-xpack.git
 
 #### Apple Silicon macOS
 
-The native build runs on an Apple Silicon Mac:
+To prepare the native build on an Apple Silicon Mac:
 
 ```sh
-git -C ~/Work/xpacks/openocd-xpack.git pull && \
 xpm run install -C ~/Work/xpacks/openocd-xpack.git && \
 xpm install --config darwin-arm64 -C ~/Work/xpacks/openocd-xpack.git
 ```
 
-Then:
+or, with the writeable helper:
+
+```sh
+xpm run install -C ~/Work/xpacks/openocd-xpack.git && \
+xpm run link-deps -C ~/Work/xpacks/openocd-xpack.git && \
+xpm install --config darwin-arm64 -C ~/Work/xpacks/openocd-xpack.git
+```
+
+Then, to run the build:
 
 ```sh
 xpm run build --config darwin-arm64 -C ~/Work/xpacks/openocd-xpack.git
@@ -185,13 +211,23 @@ The docker builds run on a 64-bit Intel GNU/Linux.
 
 ##### Build the GNU/Linux binaries
 
+To prepare the build on Intel GNU/Linux:
+
 ```sh
-git -C ~/Work/xpacks/openocd-xpack.git pull && \
 xpm run install -C ~/Work/xpacks/openocd-xpack.git && \
 xpm run docker-prepare --config linux-x64 -C ~/Work/xpacks/openocd-xpack.git
 ```
 
-Then:
+or, with the writeable helper:
+
+```sh
+xpm run install -C ~/Work/xpacks/openocd-xpack.git && \
+xpm run link-deps -C ~/Work/xpacks/openocd-xpack.git && \
+xpm run docker-prepare --config linux-x64 -C ~/Work/xpacks/openocd-xpack.git && \
+xpm run docker-link-deps --config linux-x64 -C ~/Work/xpacks/openocd-xpack.git
+```
+
+Then, to run the build:
 
 ```sh
 xpm run docker-build --config linux-x64 -C ~/Work/xpacks/openocd-xpack.git
@@ -221,13 +257,23 @@ xpm run deep-clean --config linux-x64 -C ~/Work/xpacks/openocd-xpack.git
 
 ##### Build the Windows binaries
 
+To prepare the build on Intel GNU/Linux:
+
 ```sh
-git -C ~/Work/xpacks/openocd-xpack.git pull && \
 xpm run install -C ~/Work/xpacks/openocd-xpack.git && \
 xpm run docker-prepare --config win32-x64 -C ~/Work/xpacks/openocd-xpack.git
 ```
 
-Then:
+or, with the writeable helper:
+
+```sh
+xpm run install -C ~/Work/xpacks/openocd-xpack.git && \
+xpm run link-deps -C ~/Work/xpacks/openocd-xpack.git && \
+xpm run docker-prepare --config win32-x64 -C ~/Work/xpacks/openocd-xpack.git && \
+xpm run docker-link-deps --config win32-x64 -C ~/Work/xpacks/openocd-xpack.git
+```
+
+Then, to run the build:
 
 ```sh
 xpm run docker-build --config win32-x64 -C ~/Work/xpacks/openocd-xpack.git
@@ -257,15 +303,23 @@ xpm run deep-clean --config win32-x64 -C ~/Work/xpacks/openocd-xpack.git
 
 #### Arm GNU/Linux 64-bit
 
-The docker build runs on a 64-bit aarch64 GNU/Linux machine:
+To prepare the docker build on a 64-bit aarch64 GNU/Linux machine:
 
 ```sh
-git -C ~/Work/xpacks/openocd-xpack.git pull && \
 xpm run install -C ~/Work/xpacks/openocd-xpack.git && \
 xpm run docker-prepare --config linux-arm64 -C ~/Work/xpacks/openocd-xpack.git
 ```
 
-Then:
+or, with the writeable helper:
+
+```sh
+xpm run install -C ~/Work/xpacks/openocd-xpack.git && \
+xpm run link-deps -C ~/Work/xpacks/openocd-xpack.git && \
+xpm run docker-prepare --config linux-arm64 -C ~/Work/xpacks/openocd-xpack.git && \
+xpm run docker-link-deps --config linux-arm64 -C ~/Work/xpacks/openocd-xpack.git
+```
+
+Then, to run the build:
 
 ```sh
 xpm run docker-build --config linux-arm64 -C ~/Work/xpacks/openocd-xpack.git
@@ -295,15 +349,23 @@ xpm run deep-clean --config linux-arm64 -C ~/Work/xpacks/openocd-xpack.git
 
 #### Arm GNU/Linux 32-bit
 
-The docker build runs on a 32-bit armhf GNU/Linux machine:
+To prepare the docker build on a 32-bit armhf GNU/Linux machine:
 
 ```sh
-git -C ~/Work/xpacks/openocd-xpack.git pull && \
 xpm run install -C ~/Work/xpacks/openocd-xpack.git && \
 xpm run docker-prepare --config linux-arm -C ~/Work/xpacks/openocd-xpack.git
 ```
 
-Then:
+or, with the writeable helper:
+
+```sh
+xpm run install -C ~/Work/xpacks/openocd-xpack.git && \
+xpm run link-deps -C ~/Work/xpacks/openocd-xpack.git && \
+xpm run docker-prepare --config linux-arm -C ~/Work/xpacks/openocd-xpack.git && \
+xpm run docker-link-deps --config linux-arm -C ~/Work/xpacks/openocd-xpack.git
+```
+
+Then, to run the build:
 
 ```sh
 xpm run docker-build --config linux-arm -C ~/Work/xpacks/openocd-xpack.git
