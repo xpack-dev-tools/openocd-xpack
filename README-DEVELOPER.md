@@ -36,7 +36,7 @@ For details on installing them, please read the
 [XBB prerequisites](https://xpack.github.io/xbb/prerequisites/) page.
 
 If you already have a functional configuration from a previous run,
-is is recommended to update **xpm**:
+it is recommended to update **xpm**:
 
 ```sh
 npm install --global xpm@latest
