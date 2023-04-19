@@ -1,7 +1,7 @@
 # The xPack OpenOCD
 
 The **xPack OpenOCD** (formerly GNU MCU Eclipse OpenOCD)
-is is the **xPack** version of **OpenOCD**,
+is the **xPack** version of **OpenOCD**,
 an open-source project.
 
 For more details, please read the corresponding release pages:
