@@ -103,15 +103,44 @@ The builds require dedicated machines for each platform
 (Intel GNU/Linux, Arm 32 GNU/Linux, Arm 64 GNU/Linux,
 Intel macOS and Apple Silicon macOS).
 
-### Intel macOS
-
-The native build runs on an Intel Mac:
+### Update the repo
 
 ```sh
-git -C ~/Work/xpacks/openocd-xpack.git pull && \
+git -C ~/Work/xpacks/openocd-xpack.git pull
+```
+
+and, if needed, the helper, when using a writeable helper:
+
+```sh
+git -C ~/Work/xpacks/xbb-helper-xpack.git pull
+```
+
+### Intel macOS
+
+To prepare the native build on an Intel Mac:
+
+```sh
 xpm run install -C ~/Work/xpacks/openocd-xpack.git && \
 xpm install --config darwin-x64 -C ~/Work/xpacks/openocd-xpack.git
+```
 
+or, with the writeable helper:
+
+```sh
+xpm run install -C ~/Work/xpacks/openocd-xpack.git && \
+xpm run link-deps -C ~/Work/xpacks/openocd-xpack.git && \
+xpm install --config darwin-x64 -C ~/Work/xpacks/openocd-xpack.git
+```
+
+To run the build:
+
+```sh
+xpm run build --config darwin-x64 -C ~/Work/xpacks/openocd-xpack.git
+```
+
+or, for more verbosity:
+
+```sh
 xpm run build-develop --config darwin-x64 -C ~/Work/xpacks/openocd-xpack.git
 ```
 
@@ -125,16 +154,39 @@ total 4840
 -rw-r--r--  1 ilg  staff      107 Jan 30 11:19 xpack-openocd-0.12.0-1-darwin-x64.tar.gz.sha
 ```
 
-#### Apple Silicon macOS
-
-The native build runs on an Apple Silicon Mac:
+To rerun the build, invoke the deep-clean action and repeat from install:
 
 ```sh
-git -C ~/Work/xpacks/openocd-xpack.git pull && \
+xpm run deep-clean --config darwin-x64 -C ~/Work/xpacks/openocd-xpack.git
+```
+
+#### Apple Silicon macOS
+
+To prepare the native build on an Apple Silicon Mac:
+
+```sh
 xpm run install -C ~/Work/xpacks/openocd-xpack.git && \
 xpm install --config darwin-arm64 -C ~/Work/xpacks/openocd-xpack.git
+```
 
+or, with the writeable helper:
+
+```sh
+xpm run install -C ~/Work/xpacks/openocd-xpack.git && \
+xpm run link-deps -C ~/Work/xpacks/openocd-xpack.git && \
+xpm install --config darwin-arm64 -C ~/Work/xpacks/openocd-xpack.git
+```
+
+To run the build:
+
+```sh
 xpm run build --config darwin-arm64 -C ~/Work/xpacks/openocd-xpack.git
+```
+
+or, for more verbosity:
+
+```sh
+xpm run build-develop --config darwin-arm64 -C ~/Work/xpacks/openocd-xpack.git
 ```
 
 Several minutes later, the output of the build script is a compressed
@@ -147,18 +199,44 @@ total 4800
 -rw-r--r--  1 ilg  staff      109 Jan 30 11:17 xpack-openocd-0.12.0-1-darwin-arm64.tar.gz.sha
 ```
 
+To rerun the build, invoke the deep-clean action and repeat from install:
+
+```sh
+xpm run deep-clean --config darwin-arm64 -C ~/Work/xpacks/openocd-xpack.git
+```
+
 #### Intel GNU/Linux
 
 The docker builds run on a 64-bit Intel GNU/Linux.
 
 ##### Build the GNU/Linux binaries
 
+To prepare the build on Intel GNU/Linux:
+
 ```sh
-git -C ~/Work/xpacks/openocd-xpack.git pull && \
 xpm run install -C ~/Work/xpacks/openocd-xpack.git && \
 xpm run docker-prepare --config linux-x64 -C ~/Work/xpacks/openocd-xpack.git
+```
 
+or, with the writeable helper:
+
+```sh
+xpm run install -C ~/Work/xpacks/openocd-xpack.git && \
+xpm run link-deps -C ~/Work/xpacks/openocd-xpack.git && \
+xpm run docker-prepare --config linux-x64 -C ~/Work/xpacks/openocd-xpack.git && \
+xpm run docker-link-deps --config linux-x64 -C ~/Work/xpacks/openocd-xpack.git
+```
+
+To run the build:
+
+```sh
 xpm run docker-build --config linux-x64 -C ~/Work/xpacks/openocd-xpack.git
+```
+
+or, for more verbosity:
+
+```sh
+xpm run docker-build-develop --config linux-x64 -C ~/Work/xpacks/openocd-xpack.git
 ```
 
 Several minutes later, the output of the build script is a compressed
@@ -171,14 +249,40 @@ total 2732
 -rw-r--r-- 1 ilg ilg     106 Jan 30 09:20 xpack-openocd-0.12.0-1-linux-x64.tar.gz.sha
 ```
 
-##### Build the Windows binaries
+To rerun the build, invoke the deep-clean action and repeat from docker-prepare:
 
 ```sh
-git -C ~/Work/xpacks/openocd-xpack.git pull && \
+xpm run deep-clean --config linux-x64 -C ~/Work/xpacks/openocd-xpack.git
+```
+
+##### Build the Windows binaries
+
+To prepare the build on Intel GNU/Linux:
+
+```sh
 xpm run install -C ~/Work/xpacks/openocd-xpack.git && \
 xpm run docker-prepare --config win32-x64 -C ~/Work/xpacks/openocd-xpack.git
+```
 
+or, with the writeable helper:
+
+```sh
+xpm run install -C ~/Work/xpacks/openocd-xpack.git && \
+xpm run link-deps -C ~/Work/xpacks/openocd-xpack.git && \
+xpm run docker-prepare --config win32-x64 -C ~/Work/xpacks/openocd-xpack.git && \
+xpm run docker-link-deps --config win32-x64 -C ~/Work/xpacks/openocd-xpack.git
+```
+
+To run the build:
+
+```sh
 xpm run docker-build --config win32-x64 -C ~/Work/xpacks/openocd-xpack.git
+```
+
+or, for more verbosity:
+
+```sh
+xpm run docker-build-develop --config win32-x64 -C ~/Work/xpacks/openocd-xpack.git
 ```
 
 About 5 minutes later, the output of the build script is a compressed
@@ -191,16 +295,40 @@ total 3088
 -rw-r--r-- 1 ilg ilg     103 Jan 30 09:41 xpack-openocd-0.12.0-1-win32-x64.zip.sha
 ```
 
-#### Arm GNU/Linux 64-bit
-
-The docker build runs on a 64-bit aarch64 GNU/Linux machine:
+To rerun the build, invoke the deep-clean action and repeat from docker-prepare:
 
 ```sh
-git -C ~/Work/xpacks/openocd-xpack.git pull && \
+xpm run deep-clean --config win32-x64 -C ~/Work/xpacks/openocd-xpack.git
+```
+
+#### Arm GNU/Linux 64-bit
+
+To prepare the docker build on a 64-bit aarch64 GNU/Linux machine:
+
+```sh
 xpm run install -C ~/Work/xpacks/openocd-xpack.git && \
 xpm run docker-prepare --config linux-arm64 -C ~/Work/xpacks/openocd-xpack.git
+```
 
+or, with the writeable helper:
+
+```sh
+xpm run install -C ~/Work/xpacks/openocd-xpack.git && \
+xpm run link-deps -C ~/Work/xpacks/openocd-xpack.git && \
+xpm run docker-prepare --config linux-arm64 -C ~/Work/xpacks/openocd-xpack.git && \
+xpm run docker-link-deps --config linux-arm64 -C ~/Work/xpacks/openocd-xpack.git
+```
+
+To run the build:
+
+```sh
 xpm run docker-build --config linux-arm64 -C ~/Work/xpacks/openocd-xpack.git
+```
+
+or, for more verbosity:
+
+```sh
+xpm run docker-build-develop --config linux-arm64 -C ~/Work/xpacks/openocd-xpack.git
 ```
 
 About 10 minutes later, the output of the build script is a compressed
@@ -213,16 +341,40 @@ total 2676
 -rw-r--r-- 1 ilg ilg     108 Jan 30 09:24 xpack-openocd-0.12.0-1-linux-arm64.tar.gz.sha
 ```
 
-#### Arm GNU/Linux 32-bit
-
-The docker build runs on a 32-bit armhf GNU/Linux machine:
+To rerun the build, invoke the deep-clean action and repeat from docker-prepare:
 
 ```sh
-git -C ~/Work/xpacks/openocd-xpack.git pull && \
+xpm run deep-clean --config linux-arm64 -C ~/Work/xpacks/openocd-xpack.git
+```
+
+#### Arm GNU/Linux 32-bit
+
+To prepare the docker build on a 32-bit armhf GNU/Linux machine:
+
+```sh
 xpm run install -C ~/Work/xpacks/openocd-xpack.git && \
 xpm run docker-prepare --config linux-arm -C ~/Work/xpacks/openocd-xpack.git
+```
 
+or, with the writeable helper:
+
+```sh
+xpm run install -C ~/Work/xpacks/openocd-xpack.git && \
+xpm run link-deps -C ~/Work/xpacks/openocd-xpack.git && \
+xpm run docker-prepare --config linux-arm -C ~/Work/xpacks/openocd-xpack.git && \
+xpm run docker-link-deps --config linux-arm -C ~/Work/xpacks/openocd-xpack.git
+```
+
+To run the build:
+
+```sh
 xpm run docker-build --config linux-arm -C ~/Work/xpacks/openocd-xpack.git
+```
+
+or, for more verbosity:
+
+```sh
+xpm run docker-build-develop --config linux-arm -C ~/Work/xpacks/openocd-xpack.git
 ```
 
 About 10 minutes later, the output of the build script is a compressed
@@ -233,6 +385,12 @@ $ ls -l ~/Work/xpacks/openocd-xpack.git/build/linux-arm/deploy
 total 2592
 -rw-r--r-- 1 ilg ilg 2649660 Jan 30 09:25 xpack-openocd-0.12.0-1-linux-arm.tar.gz
 -rw-r--r-- 1 ilg ilg     106 Jan 30 09:25 xpack-openocd-0.12.0-1-linux-arm.tar.gz.sha
+```
+
+To rerun the build, invoke the deep-clean action and repeat from docker-prepare:
+
+```sh
+xpm run deep-clean --config linux-arm -C ~/Work/xpacks/openocd-xpack.git
 ```
 
 ### Files cache

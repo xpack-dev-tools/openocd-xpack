@@ -140,6 +140,10 @@ function openocd_build()
             config_options+=("--disable-silent-rules") # HB
           fi
 
+          # The internal libjaylink is now deprecated.
+          # https://github.com/openocd-org/openocd/commit/8bb926eb01022998ceefe666f8df102e59404015
+          config_options+=("--enable-internal-libjaylink")
+
           # Add explicit functionality.
           config_options+=("--enable-aice")
           config_options+=("--enable-armjtagew")
