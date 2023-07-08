@@ -150,8 +150,8 @@ archive and its SHA signature, created in the `deploy` folder:
 ```console
 $ ls -l ~/Work/xpacks/openocd-xpack.git/build/darwin-x64/deploy
 total 4840
--rw-r--r--  1 ilg  staff  2471148 Jan 30 11:19 xpack-openocd-0.12.0-1-darwin-x64.tar.gz
--rw-r--r--  1 ilg  staff      107 Jan 30 11:19 xpack-openocd-0.12.0-1-darwin-x64.tar.gz.sha
+-rw-r--r--  1 ilg  staff  2471148 Jan 30 11:19 xpack-openocd-0.12.0-2-darwin-x64.tar.gz
+-rw-r--r--  1 ilg  staff      107 Jan 30 11:19 xpack-openocd-0.12.0-2-darwin-x64.tar.gz.sha
 ```
 
 To rerun the build, invoke the deep-clean action and repeat from install:
@@ -195,8 +195,8 @@ archive and its SHA signature, created in the `deploy` folder:
 ```console
 $ ls -l ~/Work/xpacks/openocd-xpack.git/build/darwin-arm64/deploy
 total 4800
--rw-r--r--  1 ilg  staff  2451720 Jan 30 11:17 xpack-openocd-0.12.0-1-darwin-arm64.tar.gz
--rw-r--r--  1 ilg  staff      109 Jan 30 11:17 xpack-openocd-0.12.0-1-darwin-arm64.tar.gz.sha
+-rw-r--r--  1 ilg  staff  2451720 Jan 30 11:17 xpack-openocd-0.12.0-2-darwin-arm64.tar.gz
+-rw-r--r--  1 ilg  staff      109 Jan 30 11:17 xpack-openocd-0.12.0-2-darwin-arm64.tar.gz.sha
 ```
 
 To rerun the build, invoke the deep-clean action and repeat from install:
@@ -245,8 +245,8 @@ archive and its SHA signature, created in the `deploy` folder:
 ```console
 $ ls -l ~/Work/xpacks/openocd-xpack.git/build/linux-x64/deploy
 total 2732
--rw-r--r-- 1 ilg ilg 2789919 Jan 30 09:20 xpack-openocd-0.12.0-1-linux-x64.tar.gz
--rw-r--r-- 1 ilg ilg     106 Jan 30 09:20 xpack-openocd-0.12.0-1-linux-x64.tar.gz.sha
+-rw-r--r-- 1 ilg ilg 2789919 Jan 30 09:20 xpack-openocd-0.12.0-2-linux-x64.tar.gz
+-rw-r--r-- 1 ilg ilg     106 Jan 30 09:20 xpack-openocd-0.12.0-2-linux-x64.tar.gz.sha
 ```
 
 To rerun the build, invoke the deep-clean action and repeat from docker-prepare:
@@ -291,8 +291,8 @@ archive and its SHA signature, created in the `deploy` folder:
 ```console
 $ ls -l ~/Work/xpacks/openocd-xpack.git/build/win32-x64/deploy
 total 3088
--rw-r--r-- 1 ilg ilg 3156989 Jan 30 09:41 xpack-openocd-0.12.0-1-win32-x64.zip
--rw-r--r-- 1 ilg ilg     103 Jan 30 09:41 xpack-openocd-0.12.0-1-win32-x64.zip.sha
+-rw-r--r-- 1 ilg ilg 3156989 Jan 30 09:41 xpack-openocd-0.12.0-2-win32-x64.zip
+-rw-r--r-- 1 ilg ilg     103 Jan 30 09:41 xpack-openocd-0.12.0-2-win32-x64.zip.sha
 ```
 
 To rerun the build, invoke the deep-clean action and repeat from docker-prepare:
@@ -337,8 +337,8 @@ archive and its SHA signature, created in the `deploy` folder:
 ```console
 $ ls -l ~/Work/xpacks/openocd-xpack.git/build/linux-arm64/deploy
 total 2676
--rw-r--r-- 1 ilg ilg 2732671 Jan 30 09:24 xpack-openocd-0.12.0-1-linux-arm64.tar.gz
--rw-r--r-- 1 ilg ilg     108 Jan 30 09:24 xpack-openocd-0.12.0-1-linux-arm64.tar.gz.sha
+-rw-r--r-- 1 ilg ilg 2732671 Jan 30 09:24 xpack-openocd-0.12.0-2-linux-arm64.tar.gz
+-rw-r--r-- 1 ilg ilg     108 Jan 30 09:24 xpack-openocd-0.12.0-2-linux-arm64.tar.gz.sha
 ```
 
 To rerun the build, invoke the deep-clean action and repeat from docker-prepare:
@@ -383,8 +383,8 @@ archive and its SHA signature, created in the `deploy` folder:
 ```console
 $ ls -l ~/Work/xpacks/openocd-xpack.git/build/linux-arm/deploy
 total 2592
--rw-r--r-- 1 ilg ilg 2649660 Jan 30 09:25 xpack-openocd-0.12.0-1-linux-arm.tar.gz
--rw-r--r-- 1 ilg ilg     106 Jan 30 09:25 xpack-openocd-0.12.0-1-linux-arm.tar.gz.sha
+-rw-r--r-- 1 ilg ilg 2649660 Jan 30 09:25 xpack-openocd-0.12.0-2-linux-arm.tar.gz
+-rw-r--r-- 1 ilg ilg     106 Jan 30 09:25 xpack-openocd-0.12.0-2-linux-arm.tar.gz.sha
 ```
 
 To rerun the build, invoke the deep-clean action and repeat from docker-prepare:
@@ -418,14 +418,14 @@ to configure the rights, otherwise LIBUSB will issue the _libusb_open
 failed: LIBUSB_ERROR_ACCESS_ error.
 
 ```sh
-sudo cp ~/Downloads/xpack-openocd-0.12.0-1/contrib/60-openocd.rules /etc/udev/rules.d
+sudo cp ~/Downloads/xpack-openocd-0.12.0-2/contrib/60-openocd.rules /etc/udev/rules.d
 sudo udevadm control --reload-rules
 ```
 
 Then it is possible to start openocd:
 
 ```console
-$ .../xpack-openocd-0.12.0-1/bin/openocd -f "board/stm32f4discovery.cfg"
+$ .../xpack-openocd-0.12.0-2/bin/openocd -f "board/stm32f4discovery.cfg"
 xPack Open On-Chip Debugger 0.12.0-01004-g9ea7f3d64-dirty (2023-01-30-16:23)
 Licensed under GNU GPL v2
 For bug reports, read
