@@ -31,7 +31,7 @@ For development purposes, clone the `xpack-develop` branch:
 
 ```sh
 rm -rf ~/Work/xpack-dev-tools/openocd-xpack.git && \
-mkdir -p ~/Work/xpacks && \
+mkdir -p ~/Work/xpack-dev-tools && \
 git clone \
   --branch xpack-develop \
   https://github.com/xpack-dev-tools/openocd-xpack.git \
@@ -41,7 +41,7 @@ git clone \
 Or, if the repo was already cloned:
 
 ```sh
-git -C ~/Work/xpacks/openocd-xpack.git pull
+git -C ~/Work/xpack-dev-tools/openocd-xpack.git pull
 ```
 
 ## Get helper sources
@@ -53,7 +53,7 @@ purposes, to be able to make changes to the helper, clone the
 
 ```sh
 rm -rf ~/Work/xpack-dev-tools/xbb-helper-xpack.git && \
-mkdir -p ~/Work/xpacks && \
+mkdir -p ~/Work/xpack-dev-tools && \
 git clone \
   --branch xpack-develop \
   https://github.com/xpack-dev-tools/xbb-helper-xpack.git \
@@ -64,8 +64,8 @@ xpm link -C ~/Work/xpack-dev-tools/xbb-helper-xpack.git
 Or, if the repo was already cloned:
 
 ```sh
-git -C ~/Work/xpacks/xbb-helper-xpack.git pull
-xpm link -C ~/Work/xpacks/xbb-helper-xpack.git
+git -C ~/Work/xpack-dev-tools/xbb-helper-xpack.git pull
+xpm link -C ~/Work/xpack-dev-tools/xbb-helper-xpack.git
 ```
 
 Other repositories in use are:

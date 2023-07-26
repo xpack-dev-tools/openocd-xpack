@@ -61,7 +61,7 @@ For development purposes, clone the `xpack-develop` branch:
 
 ```sh
 rm -rf ~/Work/xpack-dev-tools/openocd-xpack.git && \
-mkdir -p ~/Work/xpacks && \
+mkdir -p ~/Work/xpack-dev-tools && \
 git clone \
   --branch xpack-develop \
   https://github.com/xpack-dev-tools/openocd-xpack.git \
@@ -78,7 +78,7 @@ xPacks store:
 
 ```sh
 rm -rf ~/Work/xpack-dev-tools/xbb-helper-xpack.git && \
-mkdir -p ~/Work/xpacks && \
+mkdir -p ~/Work/xpack-dev-tools && \
 git clone \
   --branch xpack-develop \
   https://github.com/xpack-dev-tools/xbb-helper-xpack.git \
