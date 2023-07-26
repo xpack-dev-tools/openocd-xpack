@@ -8,12 +8,35 @@
       "name": "(lldb) Launch openocd",
       "type": "cppdbg",
       "request": "launch",
-      "program": "/Users/ilg/Work/openocd-0.12.0-1/darwin-x64/application/bin/openocd",
+      "program": "/Users/ilg/Work/xpack-dev-tools-build/openocd-0.12.0-2/darwin-x64/application/bin/openocd",
       "args": [
         "--debug",
         "--file",
         "board/stm32f4discovery.cfg"
       ],
+      "stopAtEntry": true,
+      "cwd": "${fileDirname}",
+      "environment": [],
+      "externalConsole": false,
+      "MIMode": "lldb"
+    },
+    {
+      "name": "(lldb) Launch openocd nucleo",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "/Users/ilg/Work/xpack-dev-tools-build/openocd-0.12.0-2/darwin-x64/application/bin/openocd",
+      "args": [
+        "-d3",
+        "-c", "tcl_port disabled",
+        "-c", "telnet_port disabled",
+        "-f", "interface/stlink.cfg",
+        "-c", "adapter speed 5000",
+        "-f", "target/stm32f7x.cfg",
+        "-c", "program /Users/ilg/MyProjects/micro-os-plus.github/micro-os-plus-iii/micro-os-plus-iii.git/tests/build/nucleo-f767zi-cmake-release/platform-bin/rtos-apis-test.elf  verify",
+        "-c", "arm semihosting enable",
+        "-c", "arm semihosting_cmdline test one two",
+        "-c", "reset"
+        ],
       "stopAtEntry": true,
       "cwd": "${fileDirname}",
       "environment": [],
