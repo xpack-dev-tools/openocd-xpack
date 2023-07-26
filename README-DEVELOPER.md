@@ -39,7 +39,7 @@ If you already have a functional configuration from a previous run,
 it is recommended to update **xpm**:
 
 ```sh
-npm install --global xpm@latest
+npm install --location=global xpm@latest
 ```
 
 ## Get project sources

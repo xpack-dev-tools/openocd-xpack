@@ -38,6 +38,12 @@ git clone \
   ~/Work/xpack-dev-tools/openocd-xpack.git
 ```
 
+Or, if the repo was already cloned:
+
+```sh
+git -C ~/Work/xpacks/openocd-xpack.git pull
+```
+
 ## Get helper sources
 
 The project has a dependency to a common **helper**, that is
@@ -53,6 +59,13 @@ git clone \
   https://github.com/xpack-dev-tools/xbb-helper-xpack.git \
   ~/Work/xpack-dev-tools/xbb-helper-xpack.git && \
 xpm link -C ~/Work/xpack-dev-tools/xbb-helper-xpack.git
+```
+
+Or, if the repo was already cloned:
+
+```sh
+git -C ~/Work/xpacks/xbb-helper-xpack.git pull
+xpm link -C ~/Work/xpacks/xbb-helper-xpack.git
 ```
 
 Other repositories in use are:
@@ -566,7 +579,7 @@ and check the binaries.
 On macOS, remove the `com.apple.quarantine` flag:
 
 ```sh
-xattr -dr com.apple.quarantine ${HOME}/Downloads/xpack-*
+xattr -cr ${HOME}/Downloads/xpack-*
 ```
 
 Functional tests cannot run on CI since they require physical hardware.
