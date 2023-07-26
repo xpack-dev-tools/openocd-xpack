@@ -4,10 +4,6 @@
   "description": "A binary xPack with the OpenOCD executable",
   "main": "",
   "scripts": {
-    "npm-install": "npm install",
-    "npm-pack": "npm pack",
-    "npm-version-patch": "npm version patch",
-    "npm-version-minor": "npm version minor",
     "postversion": "git push origin --all && git push origin --tags",
     "test": "echo \"Error: no test specified\" && exit 1",
     "liquidjs": "liquidjs"
@@ -82,6 +78,10 @@
       "dbg": ""
     },
     "actions": {
+      "npm-install": "npm install",
+      "npm-pack": "npm pack",
+      "npm-version-patch": "npm version patch",
+      "npm-version-minor": "npm version minor",
       "deep-clean": [
         "rm -rf build xpacks node_modules package-lock.json",
         "rm -rf ${HOME}/Work/{{ properties.appLcName }}-[0-9]*-*"
