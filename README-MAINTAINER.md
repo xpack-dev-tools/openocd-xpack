@@ -179,37 +179,16 @@ git -C ~/Work/xpack-dev-tools/openocd-xpack.git pull
 
 xpm run install -C ~/Work/xpack-dev-tools/openocd-xpack.git
 
+git -C ~/Work/xpack-dev-tools/xbb-helper-xpack.git pull
+xpm run link-deps -C ~/Work/xpack-dev-tools/openocd-xpack.git
+
 # For backup overhead reasons, on the development machine
 # the builds happen on a separate Work folder.
-rm -rf ~/Work/openocd-[0-9]*-*
+rm -rf ~/Work/xpack-dev-tools-build/openocd-[0-9]*-*
 
 xpm install --config darwin-x64 -C ~/Work/xpack-dev-tools/openocd-xpack.git
 xpm run build-develop --config darwin-x64 -C ~/Work/xpack-dev-tools/openocd-xpack.git
 ```
-
-When functional, push the `xpack-develop` branch to GitHub.
-
-Run the native build on the production machine
-(`xbbmi`, an older macOS);
-start a VS Code remote session, or connect with a terminal:
-
-```sh
-caffeinate ssh xbbmi
-```
-
-```sh
-# Update the build scripts (or clone them the first time).
-git -C ~/Work/xpack-dev-tools/openocd-xpack.git pull
-
-xpm run install -C ~/Work/xpack-dev-tools/openocd-xpack.git
-
-xpm run deep-clean --config darwin-x64 -C ~/Work/xpack-dev-tools/openocd-xpack.git
-
-xpm install --config darwin-x64 -C ~/Work/xpack-dev-tools/openocd-xpack.git
-xpm run build-develop --config darwin-x64 -C ~/Work/xpack-dev-tools/openocd-xpack.git
-```
-
-The build takes about 5 minutes.
 
 When functional, push the `xpack-develop` branch to GitHub.
 
@@ -438,7 +417,18 @@ caffeinate ssh xbbla64
 caffeinate ssh xbbla32
 ```
 
-Start the runners on all machines:
+For `xbbli` & `xbbla64` start two runners:
+
+```sh
+screen -S ga
+
+~/actions-runners/xpack-dev-tools/1/run.sh &
+~/actions-runners/xpack-dev-tools/2/run.sh &
+
+# Ctrl-a Ctrl-d
+```
+
+On all other machines start a single runner:
 
 ```sh
 screen -S ga
@@ -446,13 +436,6 @@ screen -S ga
 ~/actions-runners/xpack-dev-tools/run.sh &
 
 # Ctrl-a Ctrl-d
-```
-
-For `xbbli` & `xbbla64` start two runners:
-
-```sh
-~/actions-runners/xpack-dev-tools/1/run.sh &
-~/actions-runners/xpack-dev-tools/2/run.sh &
 ```
 
 ### Push the build scripts
