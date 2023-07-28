@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # -----------------------------------------------------------------------------
-# DO NOT EDIT! Generated from xpacks/xpack-dev-tools-xbb-helper/templates/*.
+# DO NOT EDIT! Generated from xpacks/@xpack-dev-tools/xbb-helper/templates/*.
 #
 # This file is part of the xPack distribution.
 #   (https://xpack.github.io)
@@ -45,7 +45,7 @@ script_folder_name="$(basename "${script_folder_path}")"
 
 scripts_folder_path="${script_folder_path}"
 project_folder_path="$(dirname ${script_folder_path})"
-helper_folder_path="${project_folder_path}/xpacks/xpack-dev-tools-xbb-helper"
+helper_folder_path="${project_folder_path}/xpacks/@xpack-dev-tools/xbb-helper"
 
 # -----------------------------------------------------------------------------
 
