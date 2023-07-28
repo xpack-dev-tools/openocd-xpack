@@ -1,6 +1,6 @@
 
 # -----------------------------------------------------------------------------
-# DO NOT EDIT! Generated from xpacks/xpack-dev-tools-xbb-helper/templates/*.
+# DO NOT EDIT! Generated from xpacks/@xpack-dev-tools/xbb-helper/templates/*.
 #
 # This file is part of the xPack distribution.
 #   (https://xpack.github.io)
@@ -38,7 +38,7 @@ jobs:
 
   linux-x64:
     name: 'Linux Intel 64-bit OpenOCD@${{ github.event.inputs.version }} test'
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
 
     steps:
       - name: 'Environment'
@@ -53,15 +53,15 @@ jobs:
       - name: 'Checkout project'
         uses: actions/checkout@v3
         with:
-          fetch-depth: 1
+          fetch-depth: 3
 
       - name: 'Checkout helper ${{ github.event.inputs.helper-git-ref }}'
         uses: actions/checkout@v3
         with:
           repository: xpack-dev-tools/xbb-helper-xpack
-          path: xpacks/xpack-dev-tools-xbb-helper
+          path: xpacks/@xpack-dev-tools/xbb-helper
           ref: ${{ github.event.inputs.helper-git-ref }}
-          fetch-depth: 1
+          fetch-depth: 3
 
       - name: 'Run ${{ github.event.inputs.version }} xpm docker test'
         uses: docker://node:lts-slim
@@ -91,15 +91,15 @@ jobs:
       - name: 'Checkout project'
         uses: actions/checkout@v3
         with:
-          fetch-depth: 1
+          fetch-depth: 3
 
       - name: 'Checkout helper ${{ github.event.inputs.helper-git-ref }}'
         uses: actions/checkout@v3
         with:
           repository: xpack-dev-tools/xbb-helper-xpack
-          path: xpacks/xpack-dev-tools-xbb-helper
+          path: xpacks/@xpack-dev-tools/xbb-helper
           ref: ${{ github.event.inputs.helper-git-ref }}
-          fetch-depth: 1
+          fetch-depth: 3
 
       - name: 'Run ${{ github.event.inputs.version }} xpm docker test'
         uses: docker://node:lts-slim
@@ -129,15 +129,15 @@ jobs:
       - name: 'Checkout project'
         uses: actions/checkout@v3
         with:
-          fetch-depth: 1
+          fetch-depth: 3
 
       - name: 'Checkout helper ${{ github.event.inputs.helper-git-ref }}'
         uses: actions/checkout@v3
         with:
           repository: xpack-dev-tools/xbb-helper-xpack
-          path: xpacks/xpack-dev-tools-xbb-helper
+          path: xpacks/@xpack-dev-tools/xbb-helper
           ref: ${{ github.event.inputs.helper-git-ref }}
-          fetch-depth: 1
+          fetch-depth: 3
 
       - name: 'Run ${{ github.event.inputs.version }} xpm docker test'
         uses: docker://arm32v7/node:lts-slim
@@ -147,7 +147,7 @@ jobs:
   
   macos-x64:
     name: 'macOS Intel 64-bit OpenOCD@${{ github.event.inputs.version }} test'
-    runs-on: macos-10.15
+    runs-on: macos-12
 
     steps:
       - name: 'Environment'
@@ -166,15 +166,15 @@ jobs:
       - name: 'Checkout project'
         uses: actions/checkout@v3
         with:
-          fetch-depth: 1
+          fetch-depth: 3
 
       - name: 'Checkout helper ${{ github.event.inputs.helper-git-ref }}'
         uses: actions/checkout@v3
         with:
           repository: xpack-dev-tools/xbb-helper-xpack
-          path: xpacks/xpack-dev-tools-xbb-helper
+          path: xpacks/@xpack-dev-tools/xbb-helper
           ref: ${{ github.event.inputs.helper-git-ref }}
-          fetch-depth: 1
+          fetch-depth: 3
 
       - name: 'Run ${{ github.event.inputs.version }} xpm test'
         run: bash scripts/test.sh --version ${{ github.event.inputs.version }} --xpm
@@ -200,15 +200,15 @@ jobs:
       - name: 'Checkout project'
         uses: actions/checkout@v3
         with:
-          fetch-depth: 1
+          fetch-depth: 3
 
       - name: 'Checkout helper ${{ github.event.inputs.helper-git-ref }}'
         uses: actions/checkout@v3
         with:
           repository: xpack-dev-tools/xbb-helper-xpack
-          path: xpacks/xpack-dev-tools-xbb-helper
+          path: xpacks/@xpack-dev-tools/xbb-helper
           ref: ${{ github.event.inputs.helper-git-ref }}
-          fetch-depth: 1
+          fetch-depth: 3
 
       - name: 'Run ${{ github.event.inputs.version }} xpm test'
         run: bash scripts/test.sh --version ${{ github.event.inputs.version }} --xpm
@@ -235,15 +235,15 @@ jobs:
       - name: 'Checkout project'
         uses: actions/checkout@v3
         with:
-          fetch-depth: 1
+          fetch-depth: 3
 
       - name: 'Checkout helper ${{ github.event.inputs.helper-git-ref }}'
         uses: actions/checkout@v3
         with:
           repository: xpack-dev-tools/xbb-helper-xpack
-          path: xpacks/xpack-dev-tools-xbb-helper
+          path: xpacks/@xpack-dev-tools/xbb-helper
           ref: ${{ github.event.inputs.helper-git-ref }}
-          fetch-depth: 1
+          fetch-depth: 3
 
       - name: 'Run ${{ github.event.inputs.version }} xpm test'
         run: bash scripts/test.sh --version ${{ github.event.inputs.version }} --xpm

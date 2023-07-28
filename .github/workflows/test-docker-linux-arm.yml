@@ -1,6 +1,6 @@
 
 # -----------------------------------------------------------------------------
-# DO NOT EDIT! Generated from xpacks/xpack-dev-tools-xbb-helper/templates/*.
+# DO NOT EDIT! Generated from xpacks/@xpack-dev-tools/xbb-helper/templates/*.
 #
 # This file is part of the xPack distribution.
 #   (https://xpack.github.io)
@@ -85,15 +85,15 @@ jobs:
       - name: 'Checkout project'
         uses: actions/checkout@v3
         with:
-          fetch-depth: 1
+          fetch-depth: 3
 
       - name: 'Checkout helper ${{ github.event.inputs.helper-git-ref }}'
         uses: actions/checkout@v3
         with:
           repository: xpack-dev-tools/xbb-helper-xpack
-          path: xpacks/xpack-dev-tools-xbb-helper
+          path: xpacks/@xpack-dev-tools/xbb-helper
           ref: ${{ github.event.inputs.helper-git-ref }}
-          fetch-depth: 1
+          fetch-depth: 3
 
       - name: 'Ubuntu 22.04 arm64'
         uses: docker://ubuntu:22.04
@@ -137,15 +137,15 @@ jobs:
       - name: 'Checkout project'
         uses: actions/checkout@v3
         with:
-          fetch-depth: 1
+          fetch-depth: 3
 
       - name: 'Checkout helper ${{ github.event.inputs.helper-git-ref }}'
         uses: actions/checkout@v3
         with:
           repository: xpack-dev-tools/xbb-helper-xpack
-          path: xpacks/xpack-dev-tools-xbb-helper
+          path: xpacks/@xpack-dev-tools/xbb-helper
           ref: ${{ github.event.inputs.helper-git-ref }}
-          fetch-depth: 1
+          fetch-depth: 3
 
       - name: 'Debian 11 arm64'
         uses: docker://debian:bullseye
@@ -184,15 +184,15 @@ jobs:
       - name: 'Checkout project'
         uses: actions/checkout@v3
         with:
-          fetch-depth: 1
+          fetch-depth: 3
 
       - name: 'Checkout helper ${{ github.event.inputs.helper-git-ref }}'
         uses: actions/checkout@v3
         with:
           repository: xpack-dev-tools/xbb-helper-xpack
-          path: xpacks/xpack-dev-tools-xbb-helper
+          path: xpacks/@xpack-dev-tools/xbb-helper
           ref: ${{ github.event.inputs.helper-git-ref }}
-          fetch-depth: 1
+          fetch-depth: 3
 
       - name: 'RedHat 8 arm64'
         uses: docker://redhat/ubi8
@@ -225,15 +225,15 @@ jobs:
       - name: 'Checkout project'
         uses: actions/checkout@v3
         with:
-          fetch-depth: 1
+          fetch-depth: 3
 
       - name: 'Checkout helper ${{ github.event.inputs.helper-git-ref }}'
         uses: actions/checkout@v3
         with:
           repository: xpack-dev-tools/xbb-helper-xpack
-          path: xpacks/xpack-dev-tools-xbb-helper
+          path: xpacks/@xpack-dev-tools/xbb-helper
           ref: ${{ github.event.inputs.helper-git-ref }}
-          fetch-depth: 1
+          fetch-depth: 3
 
       - name: 'Fedora 37 arm64'
         uses: docker://fedora:37
@@ -278,15 +278,15 @@ jobs:
       - name: 'Checkout project'
         uses: actions/checkout@v3
         with:
-          fetch-depth: 1
+          fetch-depth: 3
 
       - name: 'Checkout helper ${{ github.event.inputs.helper-git-ref }}'
         uses: actions/checkout@v3
         with:
           repository: xpack-dev-tools/xbb-helper-xpack
-          path: xpacks/xpack-dev-tools-xbb-helper
+          path: xpacks/@xpack-dev-tools/xbb-helper
           ref: ${{ github.event.inputs.helper-git-ref }}
-          fetch-depth: 1
+          fetch-depth: 3
 
       - name: 'OpenSUSE 15.4 arm64'
         uses: docker://opensuse/leap:15.4
@@ -324,21 +324,21 @@ jobs:
       - name: 'Checkout project'
         uses: actions/checkout@v3
         with:
-          fetch-depth: 1
+          fetch-depth: 3
 
       - name: 'Checkout helper ${{ github.event.inputs.helper-git-ref }}'
         uses: actions/checkout@v3
         with:
           repository: xpack-dev-tools/xbb-helper-xpack
-          path: xpacks/xpack-dev-tools-xbb-helper
+          path: xpacks/@xpack-dev-tools/xbb-helper
           ref: ${{ github.event.inputs.helper-git-ref }}
-          fetch-depth: 1
+          fetch-depth: 3
 
       - name: 'Ubuntu latest arm64'
-        uses: docker://ubuntu:latest
+        uses: docker://ubuntu:22.04
         with:
           entrypoint: /bin/bash
-          args: /github/workspace/scripts/test.sh --image ubuntu:latest --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+          args: /github/workspace/scripts/test.sh --image ubuntu:22.04 --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
       # ubuntu:rolling fails during update
 
   debian-arm64-latest:
@@ -363,15 +363,15 @@ jobs:
       - name: 'Checkout project'
         uses: actions/checkout@v3
         with:
-          fetch-depth: 1
+          fetch-depth: 3
 
       - name: 'Checkout helper ${{ github.event.inputs.helper-git-ref }}'
         uses: actions/checkout@v3
         with:
           repository: xpack-dev-tools/xbb-helper-xpack
-          path: xpacks/xpack-dev-tools-xbb-helper
+          path: xpacks/@xpack-dev-tools/xbb-helper
           ref: ${{ github.event.inputs.helper-git-ref }}
-          fetch-depth: 1
+          fetch-depth: 3
 
       - name: 'Debian testing arm64'
         uses: docker://debian:testing
@@ -410,15 +410,15 @@ jobs:
       - name: 'Checkout project'
         uses: actions/checkout@v3
         with:
-          fetch-depth: 1
+          fetch-depth: 3
 
       - name: 'Checkout helper ${{ github.event.inputs.helper-git-ref }}'
         uses: actions/checkout@v3
         with:
           repository: xpack-dev-tools/xbb-helper-xpack
-          path: xpacks/xpack-dev-tools-xbb-helper
+          path: xpacks/@xpack-dev-tools/xbb-helper
           ref: ${{ github.event.inputs.helper-git-ref }}
-          fetch-depth: 1
+          fetch-depth: 3
 
       - name: 'Fedora latest arm64'
         uses: docker://fedora:latest
@@ -449,15 +449,15 @@ jobs:
       - name: 'Checkout project'
         uses: actions/checkout@v3
         with:
-          fetch-depth: 1
+          fetch-depth: 3
 
       - name: 'Checkout helper ${{ github.event.inputs.helper-git-ref }}'
         uses: actions/checkout@v3
         with:
           repository: xpack-dev-tools/xbb-helper-xpack
-          path: xpacks/xpack-dev-tools-xbb-helper
+          path: xpacks/@xpack-dev-tools/xbb-helper
           ref: ${{ github.event.inputs.helper-git-ref }}
-          fetch-depth: 1
+          fetch-depth: 3
 
       - name: 'OpenSUSE tumbleweed arm64'
         uses: docker://opensuse/tumbleweed
@@ -488,15 +488,15 @@ jobs:
       - name: 'Checkout project'
         uses: actions/checkout@v3
         with:
-          fetch-depth: 1
+          fetch-depth: 3
 
       - name: 'Checkout helper ${{ github.event.inputs.helper-git-ref }}'
         uses: actions/checkout@v3
         with:
           repository: xpack-dev-tools/xbb-helper-xpack
-          path: xpacks/xpack-dev-tools-xbb-helper
+          path: xpacks/@xpack-dev-tools/xbb-helper
           ref: ${{ github.event.inputs.helper-git-ref }}
-          fetch-depth: 1
+          fetch-depth: 3
 
       - name: 'Ubuntu 22.04 arm'
         uses: docker://arm32v7/ubuntu:22.04
@@ -539,15 +539,15 @@ jobs:
       - name: 'Checkout project'
         uses: actions/checkout@v3
         with:
-          fetch-depth: 1
+          fetch-depth: 3
 
       - name: 'Checkout helper ${{ github.event.inputs.helper-git-ref }}'
         uses: actions/checkout@v3
         with:
           repository: xpack-dev-tools/xbb-helper-xpack
-          path: xpacks/xpack-dev-tools-xbb-helper
+          path: xpacks/@xpack-dev-tools/xbb-helper
           ref: ${{ github.event.inputs.helper-git-ref }}
-          fetch-depth: 1
+          fetch-depth: 3
 
       - name: 'Debian 11 arm'
         uses: docker://arm32v7/debian:bullseye
@@ -584,21 +584,21 @@ jobs:
       - name: 'Checkout project'
         uses: actions/checkout@v3
         with:
-          fetch-depth: 1
+          fetch-depth: 3
 
       - name: 'Checkout helper ${{ github.event.inputs.helper-git-ref }}'
         uses: actions/checkout@v3
         with:
           repository: xpack-dev-tools/xbb-helper-xpack
-          path: xpacks/xpack-dev-tools-xbb-helper
+          path: xpacks/@xpack-dev-tools/xbb-helper
           ref: ${{ github.event.inputs.helper-git-ref }}
-          fetch-depth: 1
+          fetch-depth: 3
 
       - name: 'Ubuntu latest arm'
-        uses: docker://arm32v7/ubuntu:latest
+        uses: docker://arm32v7/ubuntu:22.04
         with:
           entrypoint: /bin/bash # /usr/bin/linux32
-          args: /github/workspace/scripts/test.sh --image arm32v7/ubuntu:latest --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+          args: /github/workspace/scripts/test.sh --image arm32v7/ubuntu:22.04 --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
 
   # https://hub.docker.com/r/arm32v7/debian
   debian-arm-latest:
@@ -623,15 +623,15 @@ jobs:
       - name: 'Checkout project'
         uses: actions/checkout@v3
         with:
-          fetch-depth: 1
+          fetch-depth: 3
 
       - name: 'Checkout helper ${{ github.event.inputs.helper-git-ref }}'
         uses: actions/checkout@v3
         with:
           repository: xpack-dev-tools/xbb-helper-xpack
-          path: xpacks/xpack-dev-tools-xbb-helper
+          path: xpacks/@xpack-dev-tools/xbb-helper
           ref: ${{ github.event.inputs.helper-git-ref }}
-          fetch-depth: 1
+          fetch-depth: 3
 
       - name: 'Debian testing arm'
         uses: docker://arm32v7/debian:testing
@@ -670,15 +670,15 @@ jobs:
       - name: 'Checkout project'
         uses: actions/checkout@v3
         with:
-          fetch-depth: 1
+          fetch-depth: 3
 
       - name: 'Checkout helper ${{ github.event.inputs.helper-git-ref }}'
         uses: actions/checkout@v3
         with:
           repository: xpack-dev-tools/xbb-helper-xpack
-          path: xpacks/xpack-dev-tools-xbb-helper
+          path: xpacks/@xpack-dev-tools/xbb-helper
           ref: ${{ github.event.inputs.helper-git-ref }}
-          fetch-depth: 1
+          fetch-depth: 3
 
       - name: 'Fedora latest arm'
         uses: docker://arm32v7/fedora:latest

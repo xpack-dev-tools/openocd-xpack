@@ -1,5 +1,5 @@
 # -----------------------------------------------------------------------------
-# DO NOT EDIT! Generated from xpacks/xpack-dev-tools-xbb-helper/templates/*.
+# DO NOT EDIT! Generated from xpacks/@xpack-dev-tools/xbb-helper/templates/*.
 #
 # This file is part of the xPack distribution.
 #   (https://xpack.github.io)
@@ -36,7 +36,7 @@ on:
 jobs:
   create-release:
     name: 'Create the pre-release'
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
 
     steps:
       - name: 'Environment'
@@ -52,15 +52,15 @@ jobs:
       - name: 'Checkout project'
         uses: actions/checkout@v3
         with:
-          fetch-depth: 1
+          fetch-depth: 3
 
       - name: 'Checkout helper ${{ github.event.inputs.helper-git-ref }}'
         uses: actions/checkout@v3
         with:
           repository: xpack-dev-tools/xbb-helper-xpack
-          path: xpacks/xpack-dev-tools-xbb-helper
+          path: xpacks/@xpack-dev-tools/xbb-helper
           ref: ${{ github.event.inputs.helper-git-ref }}
-          fetch-depth: 1
+          fetch-depth: 3
 
       - name: 'Create body'
         run: |
@@ -89,7 +89,7 @@ jobs:
           token: ${{ secrets.PUBLISH_TOKEN }}
 
       - name: 'Gather artifacts'
-        run: 'bash xpacks/xpack-dev-tools-xbb-helper/github-actions/download-all-binaries.sh'
+        run: 'bash xpacks/@xpack-dev-tools/xbb-helper/github-actions/download-all-binaries.sh'
 
       - name: 'Publish artifacts'
         # https://github.com/ncipollo/release-action
