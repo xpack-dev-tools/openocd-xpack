@@ -768,6 +768,10 @@ In case the previous version is not functional and needs to be unpublished:
   [release](https://xpack.github.io/openocd/releases/)
 - click the **Tweet** button
 
+## Check SourceForge mirror
+
+- <https://sourceforge.net/projects/openocd-xpack/files/>
+
 ## Remove the pre-release binaries
 
 - go to <https://github.com/xpack-dev-tools/pre-releases/releases/tag/test/>
