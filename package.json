@@ -69,7 +69,7 @@
       "appName": "OpenOCD",
       "appLcName": "openocd",
       "platforms": "all",
-      "LIQUIDJS": "liquidjs '{ \"XBB_APPLICATION_NAME\": \"{{ properties.appName }}\", \"XBB_APPLICATION_LOWER_CASE_NAME\": \"{{ properties.appLcName }}\", \"platforms\": \"{{ properties.platforms }}\" }'",
+      "LIQUIDJS": "liquidjs --context '{ \"XBB_APPLICATION_NAME\": \"{{ properties.appName }}\", \"XBB_APPLICATION_LOWER_CASE_NAME\": \"{{ properties.appLcName }}\", \"platforms\": \"{{ properties.platforms }}\" }'",
       "buildFolderRelativePath": "{{ 'build' | path_join: configuration.name | to_filename | downcase }}",
       "buildFolderRelativePathPosix": "{{ 'build' | path_posix_join: configuration.name | downcase }}",
       "commandBashBuild": "bash {{ properties.dbg }} scripts/build.sh --target {{ configuration.name }} --build-folder {{ properties.buildFolderRelativePathPosix }}",
@@ -100,18 +100,18 @@
       "generate-workflows": [
         "mkdir -p .github/workflows/",
         "cp xpacks/@xpack-dev-tools/xbb-helper/templates/body-github-pre-releases-test.md .github/workflows/",
-        "cat xpacks/@xpack-dev-tools/xbb-helper/templates/build-liquid.yml | {{ properties.LIQUIDJS }} > .github/workflows/build-all.yml",
-        "cat xpacks/@xpack-dev-tools/xbb-helper/templates/build-xbbli-liquid.yml | {{ properties.LIQUIDJS }} > .github/workflows/build-xbbli.yml",
-        "cat xpacks/@xpack-dev-tools/xbb-helper/templates/build-xbbla32-liquid.yml | {{ properties.LIQUIDJS }} > .github/workflows/build-xbbla32.yml",
-        "cat xpacks/@xpack-dev-tools/xbb-helper/templates/build-xbbla64-liquid.yml | {{ properties.LIQUIDJS }} > .github/workflows/build-xbbla64.yml",
-        "cat xpacks/@xpack-dev-tools/xbb-helper/templates/build-xbbmi-liquid.yml | {{ properties.LIQUIDJS }} > .github/workflows/build-xbbmi.yml",
-        "cat xpacks/@xpack-dev-tools/xbb-helper/templates/build-xbbma-liquid.yml | {{ properties.LIQUIDJS }} > .github/workflows/build-xbbma.yml",
-        "cat xpacks/@xpack-dev-tools/xbb-helper/templates/test-prime-liquid.yml | {{ properties.LIQUIDJS }} > .github/workflows/test-prime.yml",
-        "cat xpacks/@xpack-dev-tools/xbb-helper/templates/test-docker-linux-intel-liquid.yml | {{ properties.LIQUIDJS }} > .github/workflows/test-docker-linux-intel.yml",
-        "cat xpacks/@xpack-dev-tools/xbb-helper/templates/test-docker-linux-arm-liquid.yml | {{ properties.LIQUIDJS }} > .github/workflows/test-docker-linux-arm.yml",
-        "cat xpacks/@xpack-dev-tools/xbb-helper/templates/publish-release-liquid.yml | {{ properties.LIQUIDJS }} > .github/workflows/publish-release.yml",
-        "cat xpacks/@xpack-dev-tools/xbb-helper/templates/test-xpm-liquid.yml | {{ properties.LIQUIDJS }} > .github/workflows/test-xpm.yml",
-        "cat xpacks/@xpack-dev-tools/xbb-helper/templates/deep-clean-liquid.yml | {{ properties.LIQUIDJS }} > .github/workflows/deep-clean.yml",
+        "{{ properties.LIQUIDJS }} --template @xpacks/@xpack-dev-tools/xbb-helper/templates/build-liquid.yml > .github/workflows/build-all.yml",
+        "{{ properties.LIQUIDJS }} --template @xpacks/@xpack-dev-tools/xbb-helper/templates/build-xbbli-liquid.yml > .github/workflows/build-xbbli.yml",
+        "{{ properties.LIQUIDJS }} --template @xpacks/@xpack-dev-tools/xbb-helper/templates/build-xbbla32-liquid.yml > .github/workflows/build-xbbla32.yml",
+        "{{ properties.LIQUIDJS }} --template @xpacks/@xpack-dev-tools/xbb-helper/templates/build-xbbla64-liquid.yml > .github/workflows/build-xbbla64.yml",
+        "{{ properties.LIQUIDJS }} --template @xpacks/@xpack-dev-tools/xbb-helper/templates/build-xbbmi-liquid.yml > .github/workflows/build-xbbmi.yml",
+        "{{ properties.LIQUIDJS }} --template @xpacks/@xpack-dev-tools/xbb-helper/templates/build-xbbma-liquid.yml > .github/workflows/build-xbbma.yml",
+        "{{ properties.LIQUIDJS }} --template @xpacks/@xpack-dev-tools/xbb-helper/templates/test-prime-liquid.yml > .github/workflows/test-prime.yml",
+        "{{ properties.LIQUIDJS }} --template @xpacks/@xpack-dev-tools/xbb-helper/templates/test-docker-linux-intel-liquid.yml > .github/workflows/test-docker-linux-intel.yml",
+        "{{ properties.LIQUIDJS }} --template @xpacks/@xpack-dev-tools/xbb-helper/templates/test-docker-linux-arm-liquid.yml > .github/workflows/test-docker-linux-arm.yml",
+        "{{ properties.LIQUIDJS }} --template @xpacks/@xpack-dev-tools/xbb-helper/templates/publish-release-liquid.yml > .github/workflows/publish-release.yml",
+        "{{ properties.LIQUIDJS }} --template @xpacks/@xpack-dev-tools/xbb-helper/templates/test-xpm-liquid.yml  > .github/workflows/test-xpm.yml",
+        "{{ properties.LIQUIDJS }} --template @xpacks/@xpack-dev-tools/xbb-helper/templates/deep-clean-liquid.yml  > .github/workflows/deep-clean.yml",
         "cp xpacks/@xpack-dev-tools/xbb-helper/templates/dot.gitignore .gitignore",
         "cp xpacks/@xpack-dev-tools/xbb-helper/templates/dot.npmignore .npmignore",
         "cp xpacks/@xpack-dev-tools/xbb-helper/templates/build.sh scripts/",
@@ -295,6 +295,6 @@
     "https://www.npmjs.com/package/liquidjs"
   ],
   "devDependencies": {
-    "liquidjs": "^10.3.3"
+    "liquidjs": "^10.8.4"
   }
 }
