@@ -118,11 +118,11 @@
         "cp xpacks/@xpack-dev-tools/xbb-helper/templates/test.sh scripts/"
       ],
       "trigger-workflow-build-all": "bash xpacks/@xpack-dev-tools/xbb-helper/github-actions/trigger-workflow-build.sh --xpm-version {{ properties.xpm-version }} --loglevel {{ properties.xpm-install-loglevel }}",
+      "trigger-workflow-build-xbbmi": "bash xpacks/@xpack-dev-tools/xbb-helper/github-actions/trigger-workflow-build.sh --machine xbbmi --xpm-version {{ properties.xpm-version }} --loglevel {{ properties.xpm-install-loglevel }}",
+      "trigger-workflow-build-xbbma": "bash xpacks/@xpack-dev-tools/xbb-helper/github-actions/trigger-workflow-build.sh --machine xbbma --xpm-version {{ properties.xpm-version }} --loglevel {{ properties.xpm-install-loglevel }}",
       "trigger-workflow-build-xbbli": "bash xpacks/@xpack-dev-tools/xbb-helper/github-actions/trigger-workflow-build.sh --machine xbbli --xpm-version {{ properties.xpm-version }} --loglevel {{ properties.xpm-install-loglevel }}",
       "trigger-workflow-build-xbbla64": "bash xpacks/@xpack-dev-tools/xbb-helper/github-actions/trigger-workflow-build.sh --machine xbbla64 --xpm-version {{ properties.xpm-version }} --loglevel {{ properties.xpm-install-loglevel }}",
       "trigger-workflow-build-xbbla32": "bash xpacks/@xpack-dev-tools/xbb-helper/github-actions/trigger-workflow-build.sh --machine xbbla32 --xpm-version {{ properties.xpm-version }} --loglevel {{ properties.xpm-install-loglevel }}",
-      "trigger-workflow-build-xbbmi": "bash xpacks/@xpack-dev-tools/xbb-helper/github-actions/trigger-workflow-build.sh --machine xbbmi --xpm-version {{ properties.xpm-version }} --loglevel {{ properties.xpm-install-loglevel }}",
-      "trigger-workflow-build-xbbma": "bash xpacks/@xpack-dev-tools/xbb-helper/github-actions/trigger-workflow-build.sh --machine xbbma --xpm-version {{ properties.xpm-version }} --loglevel {{ properties.xpm-install-loglevel }}",
       "trigger-workflow-test-prime": "bash xpacks/@xpack-dev-tools/xbb-helper/github-actions/trigger-workflow-test-prime.sh",
       "trigger-workflow-test-docker-linux-intel": "bash xpacks/@xpack-dev-tools/xbb-helper/github-actions/trigger-workflow-test-docker-linux-intel.sh",
       "trigger-workflow-test-docker-linux-arm": "bash xpacks/@xpack-dev-tools/xbb-helper/github-actions/trigger-workflow-test-docker-linux-arm.sh",
