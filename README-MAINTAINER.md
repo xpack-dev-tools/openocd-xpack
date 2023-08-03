@@ -453,7 +453,7 @@ From here it'll be cloned on the production machines.
 ### Check for disk space
 
 Check if the build machines have enough free space and eventually
-do some cleanups.
+do some cleanups (`df -BG -H /` on Linux, `df -gH /` on macOS).
 
 ### Manually trigger the build GitHub Actions
 
