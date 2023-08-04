@@ -393,6 +393,16 @@ To rerun the build, invoke the deep-clean action and repeat from docker-prepare:
 xpm run deep-clean --config linux-arm -C ~/Work/xpack-dev-tools/openocd-xpack.git
 ```
 
+### Build a debug version
+
+In some cases it is necessary to run a debug session in the binaries,
+or even in the libraries functions.
+
+For these cases, the build script accepts the `--debug` options.
+
+There are also xPack actions that use this option (`build-develop-debug`
+and `docker-build-develop-debug`).
+
 ### Files cache
 
 The XBB build scripts use a local cache such that files are downloaded only
