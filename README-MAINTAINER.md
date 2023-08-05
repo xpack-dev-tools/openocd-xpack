@@ -145,6 +145,10 @@ but in the version specific release page.
 - update version in `README-MAINTAINER.md`
 - update version in `README.md`
 
+### Update version in `package.json` to a pre-release
+
+Use a new version, suffixed by `.pre`.
+
 ### Update `CHANGELOG.md`
 
 - open the `CHANGELOG.md` file
