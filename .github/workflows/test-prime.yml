@@ -69,11 +69,11 @@ jobs:
 
       - name: 'Run ${{ github.event.inputs.version }} native test'
         run: bash scripts/test.sh --image github-actions-ubuntu-latest --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
-  
+
   linux-arm64:
     name: 'Linux arm64 openocd ${{ github.event.inputs.version }} test'
     # runs-on: [self-hosted, linux, arm64, xbbla]
-    runs-on: [self-hosted, linux, arm64, xbbla64]
+    runs-on: [self-hosted, linux, arm64, xbbla]
 
     steps:
       - name: 'Environment'
@@ -107,7 +107,7 @@ jobs:
         with:
           entrypoint: /bin/bash
           args: /github/workspace/scripts/test.sh --image ubuntu:22.04 --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
-  
+
   linux-arm32:
     name: 'Linux arm32 openocd ${{ github.event.inputs.version }} test'
     # runs-on: [self-hosted, linux, arm64, xbbla]
@@ -145,7 +145,7 @@ jobs:
         with:
           entrypoint: /bin/bash # /usr/bin/linux32
           args: /github/workspace/scripts/test.sh --image arm32v7/ubuntu:22.04 --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
-  
+
   macos-x64:
     name: 'macOS x64 openocd ${{ github.event.inputs.version }} test'
     runs-on: macos-12
@@ -179,7 +179,7 @@ jobs:
 
       - name: 'Run ${{ github.event.inputs.version }} native test'
         run: bash scripts/test.sh --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
-  
+
   macos-arm64:
     name: 'macOS arm64 openocd ${{ github.event.inputs.version }} test'
     runs-on: [self-hosted, macos, apple]
@@ -213,7 +213,7 @@ jobs:
 
       - name: 'Run ${{ github.event.inputs.version }} native test'
         run: bash scripts/test.sh --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
-  
+
   windows-x64:
     name: 'Windows x64 openocd ${{ github.event.inputs.version }} test'
     runs-on: windows-2022
@@ -248,5 +248,5 @@ jobs:
 
       - name: 'Run ${{ github.event.inputs.version }} native test'
         run: bash scripts/test.sh --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
-  
+
 # -----------------------------------------------------------------------------

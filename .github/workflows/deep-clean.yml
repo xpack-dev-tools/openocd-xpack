@@ -73,7 +73,7 @@ jobs:
   linux-arm64:
     name: 'Linux Arm 64 - openocd ${{ github.event.inputs.version }} clean'
     timeout-minutes: 2880 # 2 days
-    runs-on: [self-hosted, linux, arm64, xbbla64]
+    runs-on: [self-hosted, linux, arm64, xbbla]
     steps:
       - name: 'Environment'
         run: |

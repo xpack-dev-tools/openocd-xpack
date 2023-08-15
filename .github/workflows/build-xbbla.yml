@@ -19,7 +19,7 @@
 # -----------------------------------------------------------------------------
 
 
-name: 'Build xPack OpenOCD xbbla64'
+name: 'Build xPack OpenOCD xbbla'
 
 on:
   workflow_dispatch:
@@ -58,7 +58,7 @@ jobs:
   linux-arm64:
     name: 'Linux Arm 64 - openocd ${{ github.event.inputs.version }} build'
     timeout-minutes: 2880 # 2 days
-    runs-on: [self-hosted, linux, arm64, xbbla64]
+    runs-on: [self-hosted, linux, arm64, xbbla]
     container:
       image: ilegeul/ubuntu:arm64v8-18.04-xbb-v5.0.0
     defaults:

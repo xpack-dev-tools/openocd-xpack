@@ -68,11 +68,11 @@ jobs:
         with:
           entrypoint: /bin/bash
           args: /github/workspace/scripts/test.sh --image debian --version ${{ github.event.inputs.version }} --xpm
-  
+
   linux-arm64:
     name: 'Linux Arm 64-bit OpenOCD@${{ github.event.inputs.version }} test'
     # runs-on: [self-hosted, linux, arm64, xbbla]
-    runs-on: [self-hosted, linux, arm64, xbbla64]
+    runs-on: [self-hosted, linux, arm64, xbbla]
 
     steps:
       - name: 'Environment'
@@ -106,7 +106,7 @@ jobs:
         with:
           entrypoint: /bin/bash
           args: /github/workspace/scripts/test.sh --image debian --version ${{ github.event.inputs.version }} --xpm
-  
+
   linux-arm32:
     name: 'Linux Arm 32-bit OpenOCD@${{ github.event.inputs.version }} test'
     # runs-on: [self-hosted, linux, arm64, xbbla]
@@ -144,7 +144,7 @@ jobs:
         with:
           entrypoint: /bin/bash # /usr/bin/linux32
           args: /github/workspace/scripts/test.sh --image debian --version ${{ github.event.inputs.version }} --xpm
-  
+
   macos-x64:
     name: 'macOS Intel 64-bit OpenOCD@${{ github.event.inputs.version }} test'
     runs-on: macos-12
@@ -178,7 +178,7 @@ jobs:
 
       - name: 'Run ${{ github.event.inputs.version }} xpm test'
         run: bash scripts/test.sh --version ${{ github.event.inputs.version }} --xpm
-  
+
   macos-arm64:
     name: 'macOS Arm 64-bit OpenOCD@${{ github.event.inputs.version }} test'
     runs-on: [self-hosted, macos, apple]
@@ -212,7 +212,7 @@ jobs:
 
       - name: 'Run ${{ github.event.inputs.version }} xpm test'
         run: bash scripts/test.sh --version ${{ github.event.inputs.version }} --xpm
-  
+
   windows-x64:
     name: 'Windows 64-bit OpenOCD@${{ github.event.inputs.version }} test'
     runs-on: windows-2022
@@ -247,5 +247,5 @@ jobs:
 
       - name: 'Run ${{ github.event.inputs.version }} xpm test'
         run: bash scripts/test.sh --version ${{ github.event.inputs.version }} --xpm
-  
+
 # -----------------------------------------------------------------------------
