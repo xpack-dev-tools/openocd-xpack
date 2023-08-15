@@ -334,11 +334,11 @@ total 3088
 
 #### Arm GNU/Linux 64-bit
 
-Run the docker build on the production machine (`xbbla64`);
+Run the docker build on the production machine (`xbbla`);
 start a VS Code remote session, or connect with a terminal:
 
 ```sh
-caffeinate ssh xbbla64
+caffeinate ssh xbbla
 ```
 
 Update the build scripts (or clone them at the first use):
@@ -433,17 +433,17 @@ GitHub workflow files; commit and push if necessary.
 ### Start the self-hosted runners
 
 - on the development machine (`wksi`) open ssh sessions to the build
-machines (`xbbmi`, `xbbma`, `xbbli`, `xbbla64` and `xbbla32`):
+machines (`xbbmi`, `xbbma`, `xbbli`, `xbbla` and `xbbla32`):
 
 ```sh
 caffeinate ssh xbbmi
 caffeinate ssh xbbma
 caffeinate ssh xbbli
-caffeinate ssh xbbla64
+caffeinate ssh xbbla
 caffeinate ssh xbbla32
 ```
 
-For `xbbli` & `xbbla64` start two runners:
+For `xbbli` & `xbbla` start two runners:
 
 ```sh
 screen -S ga
@@ -483,7 +483,7 @@ To trigger the GitHub Actions build, use the xPack action:
 - `trigger-workflow-build-xbbmi`
 - `trigger-workflow-build-xbbma`
 - `trigger-workflow-build-xbbli`
-- `trigger-workflow-build-xbbla64`
+- `trigger-workflow-build-xbbla`
 - `trigger-workflow-build-xbbla32`
 
 This is equivalent to:
@@ -492,7 +492,7 @@ This is equivalent to:
 bash ~/Work/xpack-dev-tools/openocd-xpack.git/xpacks/@xpack-dev-tools/xbb-helper/github-actions/trigger-workflow-build.sh --machine xbbmi
 bash ~/Work/xpack-dev-tools/openocd-xpack.git/xpacks/@xpack-dev-tools/xbb-helper/github-actions/trigger-workflow-build.sh --machine xbbma
 bash ~/Work/xpack-dev-tools/openocd-xpack.git/xpacks/@xpack-dev-tools/xbb-helper/github-actions/trigger-workflow-build.sh --machine xbbli
-bash ~/Work/xpack-dev-tools/openocd-xpack.git/xpacks/@xpack-dev-tools/xbb-helper/github-actions/trigger-workflow-build.sh --machine xbbla64
+bash ~/Work/xpack-dev-tools/openocd-xpack.git/xpacks/@xpack-dev-tools/xbb-helper/github-actions/trigger-workflow-build.sh --machine xbbla
 bash ~/Work/xpack-dev-tools/openocd-xpack.git/xpacks/@xpack-dev-tools/xbb-helper/github-actions/trigger-workflow-build.sh --machine xbbla32
 ```
 
@@ -511,7 +511,7 @@ The builds take about 10 minutes to complete:
 - `xbbmi`: 7 min
 - `xbbma`: 4 min
 - `xbbli`: 5 min (4 min Linux, 5 min Windows)
-- `xbbla64`: 11 min
+- `xbbla`: 11 min
 - `xbbla32`: 12 min
 
 The workflow result and logs are available from the
