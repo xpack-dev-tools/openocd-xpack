@@ -433,9 +433,10 @@ GitHub workflow files; commit and push if necessary.
 ### Start the self-hosted runners
 
 - on the development machine (`wksi`) open ssh sessions to the build
-machines (`xbbma`, `xbbli`, `xbbla64` and `xbbla32`):
+machines (`xbbmi`, `xbbma`, `xbbli`, `xbbla64` and `xbbla32`):
 
 ```sh
+caffeinate ssh xbbmi
 caffeinate ssh xbbma
 caffeinate ssh xbbli
 caffeinate ssh xbbla64
