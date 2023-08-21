@@ -393,7 +393,19 @@ To rerun the build, invoke the deep-clean action and repeat from docker-prepare:
 xpm run deep-clean --config linux-arm -C ~/Work/xpack-dev-tools/openocd-xpack.git
 ```
 
-### Build a debug version
+### Update README-MAINTAINER listing output
+
+- check and possibly update the `ls -l` output in README-MAINTAINER
+
+### Update the list of links in package.json
+
+Copy/paste the full list of links displayed at the end of the build, in
+sequence, for each platform (GNU/Linux, macOS, Windows), and check the
+differences compared to the repository.
+
+Commit if necessary.
+
+### How to build a debug version
 
 In some cases it is necessary to run a debug session in the binaries,
 or even in the libraries functions.
