@@ -84,7 +84,7 @@
       "npm-version-minor": "npm version minor",
       "deep-clean": [
         "rm -rf build xpacks node_modules package-lock.json",
-        "rm -rf ${HOME}/Work/{{ properties.appLcName }}-[0-9]*-*"
+        "rm -rf ${HOME}/Work/xpack-dev-tools-build/{{ properties.appLcName }}-[0-9]*-*"
       ],
       "install": [
         "npm install",
@@ -156,7 +156,7 @@
         "actions": {
           "deep-clean": [
             "rm -rf {{ properties.buildFolderRelativePathPosix }}",
-            "rm -rf ${HOME}/Work/{{ properties.appLcName }}-[0-9]*-*/{{ configuration.name }}"
+            "rm -rf ${HOME}/Work/xpack-dev-tools-build/{{ properties.appLcName }}-[0-9]*-*/{{ configuration.name }}"
           ],
           "install": "xpm install --config {{ configuration.name }}"
         }
