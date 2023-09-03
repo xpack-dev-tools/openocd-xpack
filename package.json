@@ -63,7 +63,7 @@
       "openocd": "./.content/bin/openocd"
     },
     "devDependencies": {
-      "@xpack-dev-tools/xbb-helper": "^1.10.0"
+      "@xpack-dev-tools/xbb-helper": "^1.10.8"
     },
     "properties": {
       "appName": "OpenOCD",
@@ -244,7 +244,7 @@
           "common-docker"
         ],
         "devDependencies": {
-          "@xpack-dev-tools/gcc": "12.2.0-2.1",
+          "@xpack-dev-tools/gcc": "13.2.0-1.1",
           "@xpack-dev-tools/patchelf": "0.17.2-1.1"
         },
         "properties": {
@@ -274,8 +274,8 @@
           "common-docker"
         ],
         "devDependencies": {
-          "@xpack-dev-tools/gcc": "12.2.0-2.1",
-          "@xpack-dev-tools/mingw-w64-gcc": "12.2.0-1.1",
+          "@xpack-dev-tools/gcc": "13.2.0-1.1",
+          "@xpack-dev-tools/mingw-w64-gcc": "13.2.0-1.1",
           "@xpack-dev-tools/wine": "7.22.0-1.1"
         },
         "properties": {
