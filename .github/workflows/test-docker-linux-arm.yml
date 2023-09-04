@@ -65,7 +65,6 @@ jobs:
   # The ubuntu:12.04 image fails to update.
   ubuntu-arm64:
     name: 'arm64 openocd ${{ github.event.inputs.version }} test on Ubuntu stable'
-    # runs-on: [self-hosted, linux, arm64, xbbla]
     runs-on: [self-hosted, linux, arm64, xbbla]
 
     steps:
@@ -117,7 +116,6 @@ jobs:
   # https://hub.docker.com/_/debian
   debian-arm64:
     name: 'arm64 openocd ${{ github.event.inputs.version }} test on Debian stable'
-    # runs-on: [self-hosted, linux, arm64, xbbla]
     runs-on: [self-hosted, linux, arm64, xbbla]
 
     steps:
@@ -164,7 +162,6 @@ jobs:
   # `-static` disabled, there is no static libc.a.
   redhat-arm64:
     name: 'arm64 openocd ${{ github.event.inputs.version }} test on RedHat stable'
-    # runs-on: [self-hosted, linux, arm64, xbbla]
     runs-on: [self-hosted, linux, arm64, xbbla]
 
     steps:
@@ -205,7 +202,6 @@ jobs:
   # `-static` disabled, there is no static libc.a.
   fedora-arm64:
     name: 'arm64 openocd ${{ github.event.inputs.version }} test on Fedora stable'
-    # runs-on: [self-hosted, linux, arm64, xbbla]
     runs-on: [self-hosted, linux, arm64, xbbla]
 
     steps:
@@ -258,7 +254,6 @@ jobs:
   # `-static` disabled, there is no static libc.a.
   opensuse-arm64:
     name: 'arm64 openocd ${{ github.event.inputs.version }} test on OpenSUSE stable'
-    # runs-on: [self-hosted, linux, arm64, xbbla]
     runs-on: [self-hosted, linux, arm64, xbbla]
 
     steps:
@@ -304,7 +299,6 @@ jobs:
 
   ubuntu-arm64-latest:
     name: 'arm64 openocd ${{ github.event.inputs.version }} test on Ubuntu latest'
-    # runs-on: [self-hosted, linux, arm64, xbbla]
     runs-on: [self-hosted, linux, arm64, xbbla]
 
     steps:
@@ -343,7 +337,6 @@ jobs:
 
   debian-arm64-latest:
     name: 'arm64 openocd ${{ github.event.inputs.version }} test on Debian latest'
-    # runs-on: [self-hosted, linux, arm64, xbbla]
     runs-on: [self-hosted, linux, arm64, xbbla]
 
     steps:
@@ -390,7 +383,6 @@ jobs:
   # `-static` disabled, there is no static libc.a.
   fedora-arm64-latest:
     name: 'arm64 openocd ${{ github.event.inputs.version }} test on Fedora latest'
-    # runs-on: [self-hosted, linux, arm64, xbbla]
     runs-on: [self-hosted, linux, arm64, xbbla]
 
     steps:
@@ -429,7 +421,6 @@ jobs:
   # - https://hub.docker.com/r/opensuse/tumbleweed
   opensuse-arm64-latest:
     name: 'arm64 openocd ${{ github.event.inputs.version }} test on OpenSUSE latest'
-    # runs-on: [self-hosted, linux, arm64, xbbla]
     runs-on: [self-hosted, linux, arm64, xbbla]
 
     steps:
@@ -464,11 +455,10 @@ jobs:
         with:
           entrypoint: /bin/bash
           args: /github/workspace/scripts/test.sh --image opensuse/tumbleweed --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
-
+  
   # https://hub.docker.com/r/arm32v7/ubuntu/
   ubuntu-arm:
     name: 'arm openocd ${{ github.event.inputs.version }} test on Ubuntu stable'
-    # runs-on: [self-hosted, linux, arm64, xbbla]
     runs-on: [self-hosted, linux, arm, xbbla32]
 
     steps:
@@ -519,7 +509,6 @@ jobs:
   # https://hub.docker.com/r/arm32v7/debian
   debian-arm:
     name: 'arm openocd ${{ github.event.inputs.version }} test on Debian stable'
-    # runs-on: [self-hosted, linux, arm64, xbbla]
     runs-on: [self-hosted, linux, arm, xbbla32]
 
     steps:
@@ -564,7 +553,6 @@ jobs:
   # https://hub.docker.com/r/arm32v7/ubuntu/
   ubuntu-arm-latest:
     name: 'arm openocd ${{ github.event.inputs.version }} test on Ubuntu latest'
-    # runs-on: [self-hosted, linux, arm64, xbbla]
     runs-on: [self-hosted, linux, arm, xbbla32]
 
     steps:
@@ -603,7 +591,6 @@ jobs:
   # https://hub.docker.com/r/arm32v7/debian
   debian-arm-latest:
     name: 'arm openocd ${{ github.event.inputs.version }} test on Debian latest'
-    # runs-on: [self-hosted, linux, arm64, xbbla]
     runs-on: [self-hosted, linux, arm, xbbla32]
 
     steps:
@@ -650,7 +637,6 @@ jobs:
   # `-static` disabled, there is no static libc.a.
   fedora-arm-latest:
     name: 'arm openocd ${{ github.event.inputs.version }} test on Fedora latest'
-    # runs-on: [self-hosted, linux, arm64, xbbla]
     runs-on: [self-hosted, linux, arm, xbbla32]
 
     steps:
@@ -689,5 +675,5 @@ jobs:
   # - https://hub.docker.com/r/arm32v7/opensuse
   # arm32v7/opensuse:latest is leap 42.3 and fails due to http: URLs
   # (zypper lr -u)
-
+  
 # -----------------------------------------------------------------------------
