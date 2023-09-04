@@ -78,6 +78,7 @@ jobs:
           echo "node: $(node --version)"
           echo "npm: $(npm --version)"
           ls -lLA
+          ls -lLA $HOME
           env | sort | egrep '^[^ \t]+='
 
       - name: 'Clean working area'
