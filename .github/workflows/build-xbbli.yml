@@ -78,7 +78,8 @@ jobs:
           echo "node: $(node --version)"
           echo "npm: $(npm --version)"
           ls -lLA
-          ls -lLA $HOME
+          ls -lLA $HOME/.ssh
+          ssh -T -v git@github.com
           env | sort | egrep '^[^ \t]+='
 
       - name: 'Clean working area'
