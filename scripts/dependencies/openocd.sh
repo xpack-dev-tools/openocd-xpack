@@ -61,8 +61,12 @@ function openocd_build()
       # Personalise the greeting message
       run_verbose sed -i.bak -e 's|"Open On-Chip Debugger "|"xPack Open On-Chip Debugger "|' "src/openocd.c"
 
+      run_verbose diff "src/openocd.c.bak" "src/openocd.c" || true
+
       # Simplify protections for the USB devices, allow access for all.
       run_verbose sed -i.bak -e 's|MODE="660".*|MODE="666"|' "contrib/60-openocd.rules"
+
+      run_verbose diff "contrib/60-openocd.rules.bak" "contrib/60-openocd.rules" || true
 
       mkdir -pv "${XBB_BUILD_FOLDER_PATH}/${openocd_folder_name}"
       cd "${XBB_BUILD_FOLDER_PATH}/${openocd_folder_name}"
