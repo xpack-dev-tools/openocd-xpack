@@ -9,8 +9,8 @@ the latest upstream master."
 summary: "Version **{{ XBB_RELEASE_VERSION }}** is a new release; it follows the upstream release."
 
 upstream_version: "0.12.0"
-upstream_commit: "9ea7f3d"
-upstream_release_date: "15 Jan 2022"
+upstream_commit: "18281b0"
+upstream_release_date: "Sep 2, 2023"
 
 version: "{{ XBB_RELEASE_VERSION }}"
 npm_subversion: "1"
