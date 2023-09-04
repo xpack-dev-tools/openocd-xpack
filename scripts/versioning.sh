@@ -37,7 +37,7 @@ function application_build_versioned_components()
     autotools_build
 
     # https://ftp.gnu.org/gnu/texinfo/
-    texinfo_build "7.0"
+    texinfo_build "7.0.3"
 
     # -------------------------------------------------------------------------
     # Build the target dependencies.
@@ -73,7 +73,7 @@ function application_build_versioned_components()
     libftdi_build "1.5" # ! PATCH
 
     # https://github.com/libusb/hidapi/releases
-    hidapi_build "0.13.1" # "0.12.0"
+    hidapi_build "0.14.0" # "0.12.0"
 
     # -------------------------------------------------------------------------
     # Build the application binaries.
