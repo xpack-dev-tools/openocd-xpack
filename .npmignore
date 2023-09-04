@@ -3,16 +3,28 @@
 .github/
 .gitignore
 .gitmodules
+.clang-*
+.cmake-format
 
 .vscode/
 
 patches/
 pkgconfig/
 scripts/
-tests/
-extras/
+test*/
+build*/
+ci/
+docs/
+example*/
+
+xpacks/
+node_modules/
+
+/*.tgz
 
 README-*
 LICENSE-*
+CONTRIBUTING**
 
-*.tgz
+wrappers/
+extras/
