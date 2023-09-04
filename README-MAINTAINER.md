@@ -204,6 +204,8 @@ For a debug build:
 xpm run build-develop-debug --config darwin-x64 -C ~/Work/xpack-dev-tools/openocd-xpack.git
 ```
 
+The build takes about 6 minutes.
+
 When functional, push the `xpack-develop` branch to GitHub.
 
 Run the native build on the production machine
@@ -228,14 +230,14 @@ xpm install --config darwin-x64 -C ~/Work/xpack-dev-tools/openocd-xpack.git && \
 xpm run build-develop --config darwin-x64 -C ~/Work/xpack-dev-tools/openocd-xpack.git
 ```
 
-About 10 minutes later, the output of the build script is a compressed
+Several minutes later, the output of the build script is a compressed
 archive and its SHA signature, created in the `deploy` folder:
 
 ```console
 $ ls -l ~/Work/xpack-dev-tools/openocd-xpack.git/build/darwin-x64/deploy
-total 4840
--rw-r--r--  1 ilg  staff  2471148 Jan 30 11:19 xpack-openocd-0.12.0-2-darwin-x64.tar.gz
--rw-r--r--  1 ilg  staff      107 Jan 30 11:19 xpack-openocd-0.12.0-2-darwin-x64.tar.gz.sha
+total 4480
+-rw-r--r--  1 ilg  staff  2288746 Sep  4 20:30 xpack-openocd-0.12.0-2-darwin-x64.tar.gz
+-rw-r--r--  1 ilg  staff      107 Sep  4 20:30 xpack-openocd-0.12.0-2-darwin-x64.tar.gz.sha
 ```
 
 #### Apple Silicon macOS
@@ -267,9 +269,9 @@ archive and its SHA signature, created in the `deploy` folder:
 
 ```console
 $ ls -l ~/Work/xpack-dev-tools/openocd-xpack.git/build/darwin-arm64/deploy
-total 4800
--rw-r--r--  1 ilg  staff  2451720 Jan 30 11:17 xpack-openocd-0.12.0-2-darwin-arm64.tar.gz
--rw-r--r--  1 ilg  staff      109 Jan 30 11:17 xpack-openocd-0.12.0-2-darwin-arm64.tar.gz.sha
+total 4336
+-rw-r--r--  1 ilg  staff  2212473 Sep  4 20:30 xpack-openocd-0.12.0-2-darwin-arm64.tar.gz
+-rw-r--r--  1 ilg  staff      109 Sep  4 20:30 xpack-openocd-0.12.0-2-darwin-arm64.tar.gz.sha
 ```
 
 #### Intel GNU/Linux
@@ -303,9 +305,9 @@ archive and its SHA signature, created in the `deploy` folder:
 
 ```console
 $ ls -l ~/Work/xpack-dev-tools/openocd-xpack.git/build/linux-x64/deploy
-total 2732
--rw-r--r-- 1 ilg ilg 2789919 Jan 30 09:20 xpack-openocd-0.12.0-2-linux-x64.tar.gz
--rw-r--r-- 1 ilg ilg     106 Jan 30 09:20 xpack-openocd-0.12.0-2-linux-x64.tar.gz.sha
+total 2528
+-rw-r--r-- 1 ilg ilg 2580723 Sep  4 17:30 xpack-openocd-0.12.0-2-linux-x64.tar.gz
+-rw-r--r-- 1 ilg ilg     106 Sep  4 17:30 xpack-openocd-0.12.0-2-linux-x64.tar.gz.sha
 ```
 
 ##### Build the Intel Windows binaries
@@ -325,14 +327,14 @@ xpm run docker-link-deps --config win32-x64 -C ~/Work/xpack-dev-tools/openocd-xp
 xpm run docker-build-develop --config win32-x64 -C ~/Work/xpack-dev-tools/openocd-xpack.git
 ```
 
-About 5 minutes later, the output of the build script is a compressed
+Several minutes later, the output of the build script is a compressed
 archive and its SHA signature, created in the `deploy` folder:
 
 ```console
 $ ls -l ~/Work/xpack-dev-tools/openocd-xpack.git/build/win32-x64/deploy
-total 3088
--rw-r--r-- 1 ilg ilg 3156989 Jan 30 09:41 xpack-openocd-0.12.0-2-win32-x64.zip
--rw-r--r-- 1 ilg ilg     103 Jan 30 09:41 xpack-openocd-0.12.0-2-win32-x64.zip.sha
+total 2928
+-rw-r--r-- 1 ilg ilg 2990482 Sep  4 17:56 xpack-openocd-0.12.0-2-win32-x64.zip
+-rw-r--r-- 1 ilg ilg     103 Sep  4 17:56 xpack-openocd-0.12.0-2-win32-x64.zip.sha
 ```
 
 #### Arm GNU/Linux 64-bit
@@ -359,14 +361,14 @@ xpm run docker-link-deps --config linux-arm64 -C ~/Work/xpack-dev-tools/openocd-
 xpm run docker-build-develop --config linux-arm64 -C ~/Work/xpack-dev-tools/openocd-xpack.git
 ```
 
-About 10 minutes later, the output of the build script is a compressed
+About 9 minutes later, the output of the build script is a compressed
 archive and its SHA signature, created in the `deploy` folder:
 
 ```console
 $ ls -l ~/Work/xpack-dev-tools/openocd-xpack.git/build/linux-arm64/deploy
-total 2676
--rw-r--r-- 1 ilg ilg 2732671 Jan 30 09:24 xpack-openocd-0.12.0-2-linux-arm64.tar.gz
--rw-r--r-- 1 ilg ilg     108 Jan 30 09:24 xpack-openocd-0.12.0-2-linux-arm64.tar.gz.sha
+total 2476
+-rw-r--r-- 1 ilg ilg 2529316 Sep  4 17:38 xpack-openocd-0.12.0-2-linux-arm64.tar.gz
+-rw-r--r-- 1 ilg ilg     108 Sep  4 17:38 xpack-openocd-0.12.0-2-linux-arm64.tar.gz.sha
 ```
 
 #### Arm GNU/Linux 32-bit
@@ -393,14 +395,14 @@ xpm run docker-link-deps --config linux-arm -C ~/Work/xpack-dev-tools/openocd-xp
 xpm run docker-build-develop --config linux-arm -C ~/Work/xpack-dev-tools/openocd-xpack.git
 ```
 
-About 10 minutes later, the output of the build script is a compressed
+About 9 minutes later, the output of the build script is a compressed
 archive and its SHA signature, created in the `deploy` folder:
 
 ```console
 $ ls -l ~/Work/xpack-dev-tools/openocd-xpack.git/build/linux-arm/deploy
-total 2592
--rw-r--r-- 1 ilg ilg 2649660 Jan 30 09:25 xpack-openocd-0.12.0-2-linux-arm.tar.gz
--rw-r--r-- 1 ilg ilg     106 Jan 30 09:25 xpack-openocd-0.12.0-2-linux-arm.tar.gz.sha
+total 2400
+-rw-r--r-- 1 ilg ilg 2453425 Sep  4 17:38 xpack-openocd-0.12.0-2-linux-arm.tar.gz
+-rw-r--r-- 1 ilg ilg     106 Sep  4 17:38 xpack-openocd-0.12.0-2-linux-arm.tar.gz.sha
 ```
 
 ### Update README-MAINTAINER listing output
