@@ -4,7 +4,12 @@ Entries in this file are in reverse chronological order.
 
 ## 2023-09-05
 
-* v0.12.0-2 released
+* v0.12.0-2 published on npmjs.com
+* c362266 README update
+* aaf3335 package.json: update urls for 0.12.0-2.1 release
+* d1e8174 templates/jekyll update
+* 7ef6356 package.json: fix syntax
+* 06c28ac CHANGELOG update
 * 22df712 package.json: revert to npmjs.com helper
 * 5f28a5d restore package.json
 * 6d42264 restore build-xbbli.yml
