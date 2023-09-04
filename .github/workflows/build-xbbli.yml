@@ -62,7 +62,7 @@ jobs:
     container:
       image: ilegeul/ubuntu:amd64-18.04-xbb-v5.1.0
       volumes:
-        - ${{ env.HOME }}/.ssh:/github/home/.ssh
+        - /home/ilg/.ssh:/github/home/.ssh
 
     defaults:
       run:
@@ -135,7 +135,7 @@ jobs:
     container:
       image: ilegeul/ubuntu:amd64-18.04-xbb-v5.1.0
       volumes:
-        - ${{ env.HOME }}/.ssh:/github/home/.ssh
+        - /home/ilg/.ssh:/github/home/.ssh
     defaults:
       run:
         shell: bash
