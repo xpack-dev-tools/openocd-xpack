@@ -4,6 +4,13 @@ Entries in this file are in reverse chronological order.
 
 ## 2023-09-04
 
+* 8186554 package-lock.json update
+* bdd0375 package.json: use github: helper
+* 43fb8ee package.json: remove pkg-config from deps
+* 99526e9 versioning.sh: bump deps
+* 6743160 versioning.sh: update for latest commit
+* f8e0808 openocd.sh: run_verbose diff
+* c8379f3 CHANGELOG update
 * 5a3f058 README updates
 * 88994ee package.json: bump deps
 * 012f130 dot.*ignore update
