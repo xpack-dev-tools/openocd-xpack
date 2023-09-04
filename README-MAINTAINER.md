@@ -6,10 +6,10 @@
 
 ## Prerequisites
 
-The prerequisites are listed in the
-[README-DEVELOPER](README-DEVELOPER.md) page.
+The build scripts run on GNU/Linux and macOS. The Windows binaries are
+generated on Intel GNU/Linux, using [mingw-w64](https://mingw-w64.org).
 
-For details on installing them, please read the
+For details on installing the prerequisites, please read the
 [XBB prerequisites page](https://xpack.github.io/xbb/prerequisites/).
 
 ## Get project sources
@@ -281,7 +281,7 @@ start a VS Code remote session, or connect with a terminal:
 caffeinate ssh xbbli
 ```
 
-##### Build the GNU/Linux binaries
+##### Build the Intel GNU/Linux binaries
 
 Update the build scripts (or clone them at the first use):
 
@@ -308,7 +308,7 @@ total 2732
 -rw-r--r-- 1 ilg ilg     106 Jan 30 09:20 xpack-openocd-0.12.0-2-linux-x64.tar.gz.sha
 ```
 
-##### Build the Windows binaries
+##### Build the Intel Windows binaries
 
 Clean the build folder and prepare the docker container:
 
