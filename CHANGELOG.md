@@ -2,13 +2,152 @@
 
 Entries in this file are in reverse chronological order.
 
+## 2023-09-04
+
+* 5a3f058 README updates
+* 88994ee package.json: bump deps
+* 012f130 dot.*ignore update
+* d3d94dd re-generate workflows
+
+## 2023-09-03
+
+* 70caa99 package.json: bump deps
+
+## 2023-08-28
+
+* b3de5ce READMEs update
+
+## 2023-08-25
+
+* e0e3c8e package.json: rm xpack-dev-tools-build/*
+* e4c5804 package.json: bump deps
+
+## 2023-08-21
+
+* e13385a READMEs update
+* 82b20e2 package.json: bump deps
+
+## 2023-08-19
+
+* c1aa321 READMEs update
+* f2f7239 package.json: bump deps
+
+## 2023-08-15
+
+* 8dd0d21 re-generate workflows
+* f959671 README-MAINTAINER rename xbbla
+* 60ff8ef package.json: rename xbbla
+* a20733a package.json: bump deps
+* 27277ab READMEs update
+* ddcc6a0 package.json: bump deps
+
+## 2023-08-05
+
+* 378cbda READMEs update
+
+## 2023-08-04
+
+* 3c3e82e READMEs update
+* 835a8d2 READMEs update
+* 1188627 READMEs update
+
+## 2023-08-03
+
+* 92f9c49 package.json: reorder build actions
+* 7a5f3eb READMEs update
+* 5be3464 package.json: bump deps
+
+## 2023-07-28
+
+* 0f34460 READMEs update
+* 3e3bceb READMEs update
+* f743191 package.json: bump deps
+* bbd6eb2 package.json: liquidjs --context --template
+* 65ea0a9 scripts cosmetics
+* cb1d34c re-generate workflows
+* 629a380 READMEs update
+* 9cdb678 package.json: minXpm 0.16.3 & @xpack-dev-tools/xbb-helper
+* 40dfb2a READMEs update
+* 77b1b4b package.json: bump deps
+
+## 2023-07-26
+
+* 60a3907 package.json: move scripts to actions
+* c26109e package.json: update xpack-dev-tools path
+* 193f4d5 READMEs update xpack-dev-tools path
+* ef9e796 .vscode/launch.json update
+* fc6ac8c body-jekyll update
+* 2774d4e READMEs update
+
+## 2023-07-17
+
+* 03631fd package.json: bump deps
+* 05f05aa package.json: add -develop-debug actions
+
 ## 2023-07-08
 
-* v0.12.0-2 prepared
+* 08fe285 versioning.sh: add 0.12.0-2 commit id
+* 592885b ~/Work/xpack-dev-tools/
+* 5423546 prepare v0.12.0-2
+
+## 2023-04-19
+
+* a6ed8e5 Merge pull request #26 from zqb-all/fix_typo
+* 2aab171 README: fix typo
+
+## 2023-03-31
+
+* 574ff3c README-DEVELOP.md: update
+* 3909232 README-DEVELOP.md: update
+* 63a1335 README-DEVELOP.md: update deep-clean
+* 8e35423 openocd.sh: --enable-internal-libjaylink
+
+## 2023-03-28
+
+* 068dc2d README-DEVELOPER update
+
+## 2023-03-27
+
+* d531f0b README-DEVELOPER update
+* 180d15d README-DEVELOPER update
+
+## 2023-03-25
+
+* 7f7d1db README update
+* c1891fb add README-DEVELOPER.md
+* 29c93c1 READMEs update
+* 26ecf82 READMEs update prerequisites
+
+## 2023-03-24
+
+* 85dfffc package.json: mkdir -pv cache
+* b5081e9 README update
+* c312703 .vscode/settings.json: ignoreWords
+* 07cb567 README-MAINTAINER.md update
+* e320656 README-MAINTAINER: update prerequisites
+
+## 2023-02-22
+
+* 33e43d0 READMEs update
+
+## 2023-02-14
+
+* 32fbd24 body-jekyll update
+
+* ebf9368 package.json: update Work/xpacks
+* 73b0ea7 READMEs update
+
+## 2023-02-07
+
+* 65251a2 READMEs update
+* 813a0e2 package.json: bump deps & reorder git-log
+* 68ba49c versioning.sh: update for https
+* 1ed35c9 body-jekyll update
 
 ## 2023-01-30
 
-* v0.12.0-1 published on npmjs.com
+* 65cdee4 0.12.0-1.1
+* 85ad2d2 CHANGELOG: publish npm v0.12.0-1.1
 * f82dae3 package.json: update urls for 0.12.0-1.1 release
 * e79ff4c READMEs updates
 * af00549 body-jekyll update
