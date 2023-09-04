@@ -2,8 +2,23 @@
 
 Entries in this file are in reverse chronological order.
 
+## 2023-09-05
+
+* v0.12.0-2 released
+* 22df712 package.json: revert to npmjs.com helper
+* 5f28a5d restore package.json
+* 6d42264 restore build-xbbli.yml
+* 8c4438c build-xbbli.yml: try to mount .ssh
+* 72c68d6 build-xbbli.yml: try to mount .ssh
+* c661422 build-xbbli.yml: try to mount .ssh
+* e118e81 build-xbbli.yml: try to mount .ssh
+
 ## 2023-09-04
 
+* cf5b35d package.json: mount .ssh to docker
+* 9e0ef3c CHANGELOG update
+* 4d284d9 README updates
+* 024423c package.json: bump deps
 * 8186554 package-lock.json update
 * bdd0375 package.json: use github: helper
 * 43fb8ee package.json: remove pkg-config from deps
