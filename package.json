@@ -144,11 +144,11 @@
     "buildConfigurations": {
       "common-dependencies": {
         "hidden": true,
+        "$comment": "pkg-config is part of autotools, compiled locally",
         "devDependencies": {
           "@xpack-dev-tools/cmake": "3.26.5-1.1",
           "@xpack-dev-tools/m4": "1.4.19-2.1",
-          "@xpack-dev-tools/ninja-build": "1.11.1-2.1",
-          "@xpack-dev-tools/pkg-config": "0.29.2-2.1"
+          "@xpack-dev-tools/ninja-build": "1.11.1-2.1"
         }
       },
       "common-actions": {
