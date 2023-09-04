@@ -61,9 +61,6 @@ jobs:
     runs-on: [self-hosted, linux, x64]
     container:
       image: ilegeul/ubuntu:amd64-18.04-xbb-v5.1.0
-      volumes:
-        - /home/ilg/.ssh:/github/home/.ssh
-
     defaults:
       run:
         shell: bash
@@ -78,8 +75,6 @@ jobs:
           echo "node: $(node --version)"
           echo "npm: $(npm --version)"
           ls -lLA
-          ls -lLA $HOME/.ssh
-          ssh -T -v git@github.com
           env | sort | egrep '^[^ \t]+='
 
       - name: 'Clean working area'
@@ -136,8 +131,6 @@ jobs:
     runs-on: [self-hosted, linux, x64]
     container:
       image: ilegeul/ubuntu:amd64-18.04-xbb-v5.1.0
-      volumes:
-        - /home/ilg/.ssh:/github/home/.ssh
     defaults:
       run:
         shell: bash
@@ -177,7 +170,7 @@ jobs:
         run: |
           xpm install --config win32-x64 --loglevel ${{ github.event.inputs.xpm_install_loglevel }} ${{ github.event.inputs.xpm_install_options }}
           xpm run build --config win32-x64
-
+  
       - name: 'Publish pre-release'
         # https://github.com/ncipollo/release-action
         uses: ncipollo/release-action@v1
