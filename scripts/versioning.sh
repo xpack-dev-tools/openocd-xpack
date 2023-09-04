@@ -24,7 +24,8 @@ function application_build_versioned_components()
       XBB_OPENOCD_GIT_COMMIT=${XBB_APPLICATION_OPENOCD_GIT_COMMIT:-"v0.12.0"}
     elif [ "${XBB_RELEASE_VERSION}" == "0.12.0-2" ]
     then
-      XBB_OPENOCD_GIT_COMMIT=${XBB_APPLICATION_OPENOCD_GIT_COMMIT:-"56fd04832abc0ebadc21ee6127be4be9c7b46e15"}
+      # Sep 2, 2023
+      XBB_OPENOCD_GIT_COMMIT=${XBB_APPLICATION_OPENOCD_GIT_COMMIT:-"18281b0c497694d91c5608be54583172838be75c"}
     else
       echo "Unsupported ${XBB_APPLICATION_LOWER_CASE_NAME} version ${XBB_RELEASE_VERSION}"
       exit 1
