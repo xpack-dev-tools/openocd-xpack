@@ -61,6 +61,9 @@ jobs:
     runs-on: [self-hosted, linux, x64]
     container:
       image: ilegeul/ubuntu:amd64-18.04-xbb-v5.1.0
+      volumes:
+        - ${{ env.HOME }}/.ssh:/github/home/.ssh
+
     defaults:
       run:
         shell: bash
@@ -131,6 +134,8 @@ jobs:
     runs-on: [self-hosted, linux, x64]
     container:
       image: ilegeul/ubuntu:amd64-18.04-xbb-v5.1.0
+      volumes:
+        - ${{ env.HOME }}/.ssh:/github/home/.ssh
     defaults:
       run:
         shell: bash
@@ -170,7 +175,7 @@ jobs:
         run: |
           xpm install --config win32-x64 --loglevel ${{ github.event.inputs.xpm_install_loglevel }} ${{ github.event.inputs.xpm_install_options }}
           xpm run build --config win32-x64
-  
+
       - name: 'Publish pre-release'
         # https://github.com/ncipollo/release-action
         uses: ncipollo/release-action@v1
