@@ -118,14 +118,15 @@ $ tree -L 2 /Users/ilg/Library/xPacks/\@xpack-dev-tools/openocd/0.12.0-2.1/.cont
 ├── libexec
 │   ├── libftdi1.2.5.0.dylib
 │   ├── libftdi1.2.dylib -> libftdi1.2.5.0.dylib
-│   ├── libhidapi.0.13.1.dylib
+│   ├── libhidapi.0.14.0.dylib
 │   └── libusb-1.0.0.dylib
 └── openocd
     ├── OpenULINK
+    ├── angie
     ├── contrib
     └── scripts
 
-10 directories, 7 files
+12 directories, 7 files
 ```
 
 No other files are installed in any system folders or other locations.
