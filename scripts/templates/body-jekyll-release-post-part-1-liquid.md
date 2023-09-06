@@ -10,7 +10,7 @@ summary: "Version **{{ XBB_RELEASE_VERSION }}** is a new release; it follows the
 
 upstream_version: "0.12.0"
 upstream_commit: "18281b0"
-upstream_release_date: "Sep 2, 2023"
+upstream_release_date: "2 Sep 2023"
 
 version: "{{ XBB_RELEASE_VERSION }}"
 npm_subversion: "1"
@@ -21,10 +21,12 @@ comments: true
 
 date:   {{ RELEASE_DATE }}
 
+# For Jekyll releases selection.
 categories:
   - releases
   - openocd
 
+# For navigation; use scripts/createtag.sh in Jekyll.
 tags:
   - releases
   - openocd
