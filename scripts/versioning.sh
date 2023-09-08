@@ -31,8 +31,14 @@ function application_build_versioned_components()
       exit 1
     fi
 
+    XBB_LIBICONV_VERSION="1.17" # "1.16"
+
     # -------------------------------------------------------------------------
     # Build the native dependencies.
+
+    # Required by autotools.
+    # https://ftp.gnu.org/pub/gnu/libiconv/
+    libiconv_build "${XBB_LIBICONV_VERSION}"
 
     autotools_build
 
@@ -51,7 +57,7 @@ function application_build_versioned_components()
     # -------------------------------------------------------------------------
 
     # https://ftp.gnu.org/pub/gnu/libiconv/
-    libiconv_build "1.17"
+    libiconv_build "${XBB_LIBICONV_VERSION}"
 
     # -------------------------------------------------------------------------
 
@@ -95,6 +101,10 @@ function application_build_versioned_components()
 
     # -------------------------------------------------------------------------
     # Build the native dependencies.
+
+    # Required by autotools.
+    # https://ftp.gnu.org/pub/gnu/libiconv/
+    libiconv_build "1.17" # "1.16"
 
     autotools_build
 
