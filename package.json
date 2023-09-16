@@ -173,7 +173,8 @@
       "common-docker": {
         "hidden": true,
         "properties": {
-          "containerName": "{{ properties.appLcName }}-{{ package.version }}-{{ configuration.name }}"
+          "containerName": "{{ properties.appLcName }}-{{ package.version }}-{{ configuration.name }}",
+          "force32": ""
         },
         "actions": {
           "docker-prepare": [
@@ -181,31 +182,32 @@
             "mkdir -pv ${HOME}/.local/xPacks ${HOME}/.cache/xPacks ${HOME}/Work/cache",
             "mkdir -pv ${HOME}/.wine",
             "docker rm --force {{ properties.containerName }}",
-            "docker create --name {{ properties.containerName }} --tty --hostname docker --volume $(pwd):$(pwd) --volume ${HOME}/Work/xpack-dev-tools/xbb-helper-xpack.git:${HOME}/Work/xpack-dev-tools/xbb-helper-xpack.git --volume ${HOME}/.local/xPacks:${HOME}/.local/xPacks --volume ${HOME}/.cache/xPacks:${HOME}/.cache/xPacks --volume ${HOME}/Work/cache:${HOME}/Work/cache --volume ${HOME}/.wine:${HOME}/.wine --workdir $(pwd) {{ properties.dockerImage }}",
+            "docker create --name {{ properties.containerName }} --tty --hostname docker --volume $(pwd):$(pwd) --volume ${HOME}/Work/xpack-dev-tools/xbb-helper-xpack.git:${HOME}/Work/xpack-dev-tools/xbb-helper-xpack.git --volume ${HOME}/.cache/xPacks:${HOME}/.cache/xPacks --volume ${HOME}/Work/cache:${HOME}/Work/cache --volume ${HOME}/.wine:${HOME}/.wine --workdir $(pwd) {{ properties.dockerImage }}",
             "docker start {{ properties.containerName }}",
-            "docker exec {{ properties.containerName }} npm install --location=global xpm@latest",
-            "docker exec {{ properties.containerName }} userdel node",
-            "docker exec {{ properties.containerName }} groupadd --gid $(id -g) --force $(id -gn)",
-            "docker exec {{ properties.containerName }} useradd --home-dir ${HOME} --uid $(id -u) --gid $(id -g) $(id -un)",
-            "docker exec --user $(id -un) {{ properties.containerName }} bash -c 'lsb_release -sd && whoami && pwd && ls -lLA'",
-            "docker exec --user $(id -un) {{ properties.containerName }} xpm install",
-            "docker exec --user $(id -un) {{ properties.containerName }} xpm install --config {{ configuration.name }}"
+            "docker exec {{ properties.containerName }} {{ properties.force32 }} npm install --location=global xpm@latest",
+            "docker exec {{ properties.containerName }} {{ properties.force32 }} userdel node",
+            "docker exec {{ properties.containerName }} {{ properties.force32 }} groupadd --gid $(id -g) --force $(id -gn)",
+            "docker exec {{ properties.containerName }} {{ properties.force32 }} useradd --home-dir ${HOME} --uid $(id -u) --gid $(id -g) $(id -un) --create-home",
+            "docker exec {{ properties.containerName }} {{ properties.force32 }} chown --recursive $(id -u):$(id -g) ${HOME}",
+            "docker exec --user $(id -un) {{ properties.containerName }} {{ properties.force32 }} bash -c 'lsb_release -sd && whoami && pwd && ls -lLA && ls -l ${HOME}'",
+            "docker exec --user $(id -un) {{ properties.containerName }} {{ properties.force32 }} xpm install",
+            "docker exec --user $(id -un) {{ properties.containerName }} {{ properties.force32 }} xpm install --config {{ configuration.name }}"
           ],
           "docker-link-deps": [
-            "docker exec --user $(id -un) {{ properties.containerName }} xpm link -C ${HOME}/Work/xpack-dev-tools/xbb-helper-xpack.git",
-            "docker exec --user $(id -un) {{ properties.containerName }} xpm run link-deps"
+            "docker exec --user $(id -un) {{ properties.containerName }} {{ properties.force32 }} xpm link -C ${HOME}/Work/xpack-dev-tools/xbb-helper-xpack.git",
+            "docker exec --user $(id -un) {{ properties.containerName }} {{ properties.force32 }} xpm run link-deps"
           ],
           "docker-build": [
-            "docker exec --user $(id -un) {{ properties.containerName }} xpm run build --config {{ configuration.name }}"
+            "docker exec --user $(id -un) {{ properties.containerName }} {{ properties.force32 }} xpm run build --config {{ configuration.name }}"
           ],
           "docker-build-develop": [
-            "docker exec --user $(id -un) {{ properties.containerName }} xpm run build-develop --config {{ configuration.name }}"
+            "docker exec --user $(id -un) {{ properties.containerName }} {{ properties.force32 }} xpm run build-develop --config {{ configuration.name }}"
           ],
           "docker-build-develop-debug": [
-            "docker exec --user $(id -un) {{ properties.containerName }} xpm run build-develop-debug --config {{ configuration.name }}"
+            "docker exec --user $(id -un) {{ properties.containerName }} {{ properties.force32 }} xpm run build-develop-debug --config {{ configuration.name }}"
           ],
           "docker-build-develop-tests-only": [
-            "docker exec --user $(id -un) {{ properties.containerName }} xpm run build-develop-tests-only --config {{ configuration.name }}"
+            "docker exec --user $(id -un) {{ properties.containerName }} {{ properties.force32 }} xpm run build-develop-tests-only --config {{ configuration.name }}"
           ],
           "docker-remove": [
             "docker stop {{ properties.containerName }}",
@@ -263,8 +265,9 @@
         "inherit": [
           "linux-x64"
         ],
-        "properties": {
-          "dockerImage": "ilegeul/ubuntu:arm32v7-18.04-xbb-v5.1.1"
+          "properties": {
+          "dockerImage": "ilegeul/ubuntu:arm32v7-18.04-xbb-v5.1.1",
+          "force32": "linux32"
         }
       },
       "win32-x64": {
