@@ -60,7 +60,7 @@ jobs:
     timeout-minutes: 2880 # 2 days
     runs-on: [self-hosted, linux, arm64, xbbla]
     container:
-      image: ilegeul/ubuntu:arm64v8-18.04-xbb-v5.1.0
+      image: ilegeul/ubuntu:arm64v8-18.04-xbb-v5.1.1
     defaults:
       run:
         shell: bash

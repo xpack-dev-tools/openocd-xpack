@@ -60,7 +60,7 @@ jobs:
     timeout-minutes: 5760 # 4 days
     runs-on: [self-hosted, linux, x64]
     container:
-      image: ilegeul/ubuntu:amd64-18.04-xbb-v5.1.0
+      image: ilegeul/ubuntu:amd64-18.04-xbb-v5.1.1
     defaults:
       run:
         shell: bash
@@ -131,7 +131,7 @@ jobs:
     timeout-minutes: 5760 # 4 days
     runs-on: [self-hosted, linux, x64]
     container:
-      image: ilegeul/ubuntu:amd64-18.04-xbb-v5.1.0
+      image: ilegeul/ubuntu:amd64-18.04-xbb-v5.1.1
     defaults:
       run:
         shell: bash
@@ -202,7 +202,7 @@ jobs:
     timeout-minutes: 2880 # 2 days
     runs-on: [self-hosted, linux, arm, xbbla32]
     container:
-      image: ilegeul/ubuntu:arm32v7-18.04-xbb-v5.1.0
+      image: ilegeul/ubuntu:arm32v7-18.04-xbb-v5.1.1
     defaults:
       run:
         shell: bash
@@ -272,7 +272,7 @@ jobs:
     timeout-minutes: 2880 # 2 days
     runs-on: [self-hosted, linux, arm64, xbbla]
     container:
-      image: ilegeul/ubuntu:arm64v8-18.04-xbb-v5.1.0
+      image: ilegeul/ubuntu:arm64v8-18.04-xbb-v5.1.1
     defaults:
       run:
         shell: bash
@@ -379,7 +379,7 @@ jobs:
         run: |
           xpm install --config darwin-x64 --loglevel ${{ github.event.inputs.xpm_install_loglevel }} ${{ github.event.inputs.xpm_install_options }}
           xpm run build --config darwin-x64
-  
+
       - name: 'Publish pre-release'
         # https://github.com/ncipollo/release-action
         uses: ncipollo/release-action@v1
@@ -447,7 +447,7 @@ jobs:
           xpm install --config darwin-arm64 --loglevel ${{ github.event.inputs.xpm_install_loglevel }} ${{ github.event.inputs.xpm_install_options }}
           xpm run build --config darwin-arm64
 
-  
+
       - name: 'Publish pre-release'
         # https://github.com/ncipollo/release-action
         uses: ncipollo/release-action@v1
