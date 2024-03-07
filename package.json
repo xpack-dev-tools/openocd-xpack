@@ -222,7 +222,7 @@
           "common-actions-native"
         ],
         "devDependencies": {
-          "@xpack-dev-tools/clang": "16.0.6-1.1",
+          "@xpack-dev-tools/clang": "17.0.6-1.1",
           "@xpack-dev-tools/realpath": "9.4.0-1.1",
           "@xpack-dev-tools/sed": "4.9.0-3.1"
         },
@@ -246,7 +246,7 @@
           "common-docker"
         ],
         "devDependencies": {
-          "@xpack-dev-tools/gcc": "13.2.0-1.1",
+          "@xpack-dev-tools/gcc": "13.2.0-2.1",
           "@xpack-dev-tools/patchelf": "0.18.0-1.1"
         },
         "properties": {
@@ -277,7 +277,7 @@
           "common-docker"
         ],
         "devDependencies": {
-          "@xpack-dev-tools/gcc": "13.2.0-1.1",
+          "@xpack-dev-tools/gcc": "13.2.0-2.1",
           "@xpack-dev-tools/mingw-w64-gcc": "13.2.0-1.1",
           "@xpack-dev-tools/wine": "8.0.2-1.1"
         },
