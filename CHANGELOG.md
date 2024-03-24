@@ -2,9 +2,74 @@
 
 Entries in this file are in reverse chronological order.
 
+## 2024-03-24
+
+* v0.12.0-3 prepared
+
+## 2024-03-22
+
+* ea317ed package.json: xpm-version 0.18.0
+
+## 2024-03-08
+
+* e668afb package.json: xpm-version 0.18.0
+
+## 2024-03-07
+
+* 9f36bdd package.json: xpm-version 0.18.0
+* bdad9eb package.json: bump deps
+
+## 2024-03-06
+
+* d0d5720 body-jekyll update
+* 25c27ad package.json: bump deps
+
+## 2024-02-07
+
+* fac8054 READMEs update
+* f77984e package.json: bump deps
+
+## 2023-12-03
+
+* cb033e0 package.json: bump deps
+* 2970499 re-generate workflows
+
+## 2023-11-12
+
+* af43a5e package.json: bump deps
+
+## 2023-09-25
+
+* 485ef61 body-jekyll update
+
+## 2023-09-20
+
+* ddc7da8 package.json: bump deps
+
+## 2023-09-16
+
+* db10487 package.json: add linux32
+* 9a7fcd0 body-jekyll update
+
+## 2023-09-11
+
+* 8b25f59 package.json: bump deps
+
+## 2023-09-08
+
+* 98f3c5b package.json: bump deps
+* 4034ed7 versioning.sh: explicit libiconv for autotools
+
+## 2023-09-06
+
+* 5543d33 package.json: bump deps
+* f388e38 READMEs update
+* 863383a body-jekyll update
+
 ## 2023-09-05
 
-* v0.12.0-2 published on npmjs.com
+* ccc8345 0.12.0-2.1
+* 9e7c4e2 CHANGELOG: publish npm v0.12.0-2.1
 * c362266 README update
 * aaf3335 package.json: update urls for 0.12.0-2.1 release
 * d1e8174 templates/jekyll update

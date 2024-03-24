@@ -19,6 +19,15 @@ function application_build_versioned_components()
     XBB_OPENOCD_GIT_URL=${XBB_APPLICATION_OPENOCD_GIT_URL:-"https://github.com/openocd-org/openocd.git"}
     XBB_OPENOCD_GIT_BRANCH=${XBB_APPLICATION_OPENOCD_GIT_BRANCH:-"master"}
 
+    # https://ftp.gnu.org/pub/gnu/libiconv/
+    XBB_LIBICONV_VERSION="1.17"
+
+    # https://ftp.gnu.org/gnu/texinfo/
+    XBB_TEXINFO_VERSION="7.0.3"
+
+    # https://sourceforge.net/projects/libusb/files/libusb-1.0/
+    XBB_LIBUSB1_VERSION="1.0.26"
+
     if [ "${XBB_RELEASE_VERSION}" == "0.12.0-1" ]
     then
       XBB_OPENOCD_GIT_COMMIT=${XBB_APPLICATION_OPENOCD_GIT_COMMIT:-"v0.12.0"}
@@ -26,24 +35,28 @@ function application_build_versioned_components()
     then
       # Sep 2, 2023
       XBB_OPENOCD_GIT_COMMIT=${XBB_APPLICATION_OPENOCD_GIT_COMMIT:-"18281b0c497694d91c5608be54583172838be75c"}
+    elif [ "${XBB_RELEASE_VERSION}" == "0.12.0-3" ]
+    then
+      # Mar 16, 2024
+      XBB_OPENOCD_GIT_COMMIT=${XBB_APPLICATION_OPENOCD_GIT_COMMIT:-"01a797af143398c6f3aa1eb6f8949deff4ccf044"}
+
+      XBB_TEXINFO_VERSION="7.1"
+      XBB_LIBUSB1_VERSION="1.0.27"
     else
       echo "Unsupported ${XBB_APPLICATION_LOWER_CASE_NAME} version ${XBB_RELEASE_VERSION}"
       exit 1
     fi
 
-    XBB_LIBICONV_VERSION="1.17" # "1.16"
 
     # -------------------------------------------------------------------------
     # Build the native dependencies.
 
     # Required by autotools.
-    # https://ftp.gnu.org/pub/gnu/libiconv/
     libiconv_build "${XBB_LIBICONV_VERSION}"
 
     autotools_build
 
-    # https://ftp.gnu.org/gnu/texinfo/
-    texinfo_build "7.0.3"
+    texinfo_build "${XBB_TEXINFO_VERSION}"
 
     # -------------------------------------------------------------------------
     # Build the target dependencies.
@@ -56,13 +69,11 @@ function application_build_versioned_components()
 
     # -------------------------------------------------------------------------
 
-    # https://ftp.gnu.org/pub/gnu/libiconv/
     libiconv_build "${XBB_LIBICONV_VERSION}"
 
     # -------------------------------------------------------------------------
 
-    # https://sourceforge.net/projects/libusb/files/libusb-1.0/
-    libusb1_build "1.0.26"
+    libusb1_build "${XBB_LIBUSB1_VERSION}"
 
     # Starting with v0.12.0, libusb0 is no longer needed.
     # if [ "${XBB_REQUESTED_HOST_PLATFORM}" == "win32" ]

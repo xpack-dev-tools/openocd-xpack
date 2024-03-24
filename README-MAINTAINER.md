@@ -122,7 +122,7 @@ as below.
 ### Increase the version
 
 Determine the version (like `0.12.0`) and update the `scripts/VERSION`
-file; the format is `0.12.0-2`. The fourth number is the xPack release number
+file; the format is `0.12.0-3`. The fourth number is the xPack release number
 of this version. A fifth number will be added when publishing
 the package on the `npm` server.
 
@@ -132,7 +132,7 @@ Check GitHub issues and pull requests:
 
 - <https://github.com/xpack-dev-tools/openocd-xpack/issues/>
 
-and fix them; assign them to a milestone (like `0.12.0-2`).
+and fix them; assign them to a milestone (like `0.12.0-3`).
 
 ### Check `README.md`
 
@@ -147,14 +147,14 @@ but in the version specific release page.
 
 ### Update version in `package.json` to a pre-release
 
-Use the new version, suffixed by `pre`, like `0.12.0-2.pre`.
+Use the new version, suffixed by `pre`, like `0.12.0-3.pre`.
 
 ### Update `CHANGELOG.md`
 
 - open the `CHANGELOG.md` file
 - check if all previous fixed issues are in
-- add a new entry like _* v0.12.0-2 prepared_
-- commit with a message like _prepare v0.12.0-2_
+- add a new entry like _* v0.12.0-3 prepared_
+- commit with a message like _prepare v0.12.0-3_
 
 ### Update the version specific code
 
@@ -184,6 +184,7 @@ For Intel macOS, first run the build on the development machine
 
 ```sh
 # Update the build scripts.
+rm -f ~/Work/xpack-dev-tools/openocd-xpack.git/package-lock.json
 git -C ~/Work/xpack-dev-tools/openocd-xpack.git pull
 
 xpm run install -C ~/Work/xpack-dev-tools/openocd-xpack.git
@@ -219,6 +220,7 @@ caffeinate ssh xbbmi
 Repeat the same steps as before.
 
 ```sh
+rm -f ~/Work/xpack-dev-tools/openocd-xpack.git/package-lock.json && \
 git -C ~/Work/xpack-dev-tools/openocd-xpack.git pull && \
 xpm run install -C ~/Work/xpack-dev-tools/openocd-xpack.git && \
 git -C ~/Work/xpack-dev-tools/xbb-helper-xpack.git pull && \
@@ -236,8 +238,8 @@ archive and its SHA signature, created in the `deploy` folder:
 ```console
 $ ls -l ~/Work/xpack-dev-tools/openocd-xpack.git/build/darwin-x64/deploy
 total 4480
--rw-r--r--  1 ilg  staff  2288746 Sep  4 20:30 xpack-openocd-0.12.0-2-darwin-x64.tar.gz
--rw-r--r--  1 ilg  staff      107 Sep  4 20:30 xpack-openocd-0.12.0-2-darwin-x64.tar.gz.sha
+-rw-r--r--  1 ilg  staff  2288746 Sep  4 20:30 xpack-openocd-0.12.0-3-darwin-x64.tar.gz
+-rw-r--r--  1 ilg  staff      107 Sep  4 20:30 xpack-openocd-0.12.0-3-darwin-x64.tar.gz.sha
 ```
 
 #### Apple Silicon macOS
@@ -253,6 +255,7 @@ caffeinate ssh xbbma
 Update the build scripts (or clone them at the first use):
 
 ```sh
+rm -f ~/Work/xpack-dev-tools/openocd-xpack.git/package-lock.json && \
 git -C ~/Work/xpack-dev-tools/openocd-xpack.git pull && \
 xpm run install -C ~/Work/xpack-dev-tools/openocd-xpack.git && \
 git -C ~/Work/xpack-dev-tools/xbb-helper-xpack.git pull && \
@@ -270,8 +273,8 @@ archive and its SHA signature, created in the `deploy` folder:
 ```console
 $ ls -l ~/Work/xpack-dev-tools/openocd-xpack.git/build/darwin-arm64/deploy
 total 4336
--rw-r--r--  1 ilg  staff  2212473 Sep  4 20:30 xpack-openocd-0.12.0-2-darwin-arm64.tar.gz
--rw-r--r--  1 ilg  staff      109 Sep  4 20:30 xpack-openocd-0.12.0-2-darwin-arm64.tar.gz.sha
+-rw-r--r--  1 ilg  staff  2212473 Sep  4 20:30 xpack-openocd-0.12.0-3-darwin-arm64.tar.gz
+-rw-r--r--  1 ilg  staff      109 Sep  4 20:30 xpack-openocd-0.12.0-3-darwin-arm64.tar.gz.sha
 ```
 
 #### Intel GNU/Linux
@@ -288,6 +291,7 @@ caffeinate ssh xbbli
 Update the build scripts (or clone them at the first use):
 
 ```sh
+rm -f ~/Work/xpack-dev-tools/openocd-xpack.git/package-lock.json && \
 git -C ~/Work/xpack-dev-tools/openocd-xpack.git pull && \
 xpm run install -C ~/Work/xpack-dev-tools/openocd-xpack.git && \
 git -C ~/Work/xpack-dev-tools/xbb-helper-xpack.git pull && \
@@ -306,8 +310,8 @@ archive and its SHA signature, created in the `deploy` folder:
 ```console
 $ ls -l ~/Work/xpack-dev-tools/openocd-xpack.git/build/linux-x64/deploy
 total 2528
--rw-r--r-- 1 ilg ilg 2580723 Sep  4 17:30 xpack-openocd-0.12.0-2-linux-x64.tar.gz
--rw-r--r-- 1 ilg ilg     106 Sep  4 17:30 xpack-openocd-0.12.0-2-linux-x64.tar.gz.sha
+-rw-r--r-- 1 ilg ilg 2580723 Sep  4 17:30 xpack-openocd-0.12.0-3-linux-x64.tar.gz
+-rw-r--r-- 1 ilg ilg     106 Sep  4 17:30 xpack-openocd-0.12.0-3-linux-x64.tar.gz.sha
 ```
 
 ##### Build the Intel Windows binaries
@@ -315,6 +319,7 @@ total 2528
 Clean the build folder and prepare the docker container:
 
 ```sh
+rm -f ~/Work/xpack-dev-tools/openocd-xpack.git/package-lock.json && \
 git -C ~/Work/xpack-dev-tools/openocd-xpack.git pull && \
 xpm run install -C ~/Work/xpack-dev-tools/openocd-xpack.git && \
 git -C ~/Work/xpack-dev-tools/xbb-helper-xpack.git pull && \
@@ -333,8 +338,8 @@ archive and its SHA signature, created in the `deploy` folder:
 ```console
 $ ls -l ~/Work/xpack-dev-tools/openocd-xpack.git/build/win32-x64/deploy
 total 2928
--rw-r--r-- 1 ilg ilg 2990482 Sep  4 17:56 xpack-openocd-0.12.0-2-win32-x64.zip
--rw-r--r-- 1 ilg ilg     103 Sep  4 17:56 xpack-openocd-0.12.0-2-win32-x64.zip.sha
+-rw-r--r-- 1 ilg ilg 2990482 Sep  4 17:56 xpack-openocd-0.12.0-3-win32-x64.zip
+-rw-r--r-- 1 ilg ilg     103 Sep  4 17:56 xpack-openocd-0.12.0-3-win32-x64.zip.sha
 ```
 
 #### Arm GNU/Linux 64-bit
@@ -349,6 +354,7 @@ caffeinate ssh xbbla
 Update the build scripts (or clone them at the first use):
 
 ```sh
+rm -f ~/Work/xpack-dev-tools/openocd-xpack.git/package-lock.json && \
 git -C ~/Work/xpack-dev-tools/openocd-xpack.git pull && \
 xpm run install -C ~/Work/xpack-dev-tools/openocd-xpack.git && \
 git -C ~/Work/xpack-dev-tools/xbb-helper-xpack.git pull && \
@@ -367,8 +373,8 @@ archive and its SHA signature, created in the `deploy` folder:
 ```console
 $ ls -l ~/Work/xpack-dev-tools/openocd-xpack.git/build/linux-arm64/deploy
 total 2476
--rw-r--r-- 1 ilg ilg 2529316 Sep  4 17:38 xpack-openocd-0.12.0-2-linux-arm64.tar.gz
--rw-r--r-- 1 ilg ilg     108 Sep  4 17:38 xpack-openocd-0.12.0-2-linux-arm64.tar.gz.sha
+-rw-r--r-- 1 ilg ilg 2529316 Sep  4 17:38 xpack-openocd-0.12.0-3-linux-arm64.tar.gz
+-rw-r--r-- 1 ilg ilg     108 Sep  4 17:38 xpack-openocd-0.12.0-3-linux-arm64.tar.gz.sha
 ```
 
 #### Arm GNU/Linux 32-bit
@@ -383,6 +389,7 @@ caffeinate ssh xbbla32
 Update the build scripts (or clone them at the first use):
 
 ```sh
+rm -f ~/Work/xpack-dev-tools/openocd-xpack.git/package-lock.json && \
 git -C ~/Work/xpack-dev-tools/openocd-xpack.git pull && \
 xpm run install -C ~/Work/xpack-dev-tools/openocd-xpack.git && \
 git -C ~/Work/xpack-dev-tools/xbb-helper-xpack.git pull && \
@@ -401,8 +408,8 @@ archive and its SHA signature, created in the `deploy` folder:
 ```console
 $ ls -l ~/Work/xpack-dev-tools/openocd-xpack.git/build/linux-arm/deploy
 total 2400
--rw-r--r-- 1 ilg ilg 2453425 Sep  4 17:38 xpack-openocd-0.12.0-2-linux-arm.tar.gz
--rw-r--r-- 1 ilg ilg     106 Sep  4 17:38 xpack-openocd-0.12.0-2-linux-arm.tar.gz.sha
+-rw-r--r-- 1 ilg ilg 2453425 Sep  4 17:38 xpack-openocd-0.12.0-3-linux-arm.tar.gz
+-rw-r--r-- 1 ilg ilg     106 Sep  4 17:38 xpack-openocd-0.12.0-3-linux-arm.tar.gz.sha
 ```
 
 ### Update README-MAINTAINER listing output
@@ -632,14 +639,14 @@ to configure the rights, otherwise LIBUSB will issue the _libusb_open
 failed: LIBUSB_ERROR_ACCESS_ error.
 
 ```sh
-sudo cp ~/Downloads/xpack-openocd-0.12.0-2/contrib/60-openocd.rules /etc/udev/rules.d
+sudo cp ~/Downloads/xpack-openocd-0.12.0-3/contrib/60-openocd.rules /etc/udev/rules.d
 sudo udevadm control --reload-rules
 ```
 
 Then it is possible to start openocd:
 
 ```console
-$ .../xpack-openocd-0.12.0-2/bin/openocd -f "board/stm32f4discovery.cfg"
+$ .../xpack-openocd-0.12.0-3/bin/openocd -f "board/stm32f4discovery.cfg"
 xPack Open On-Chip Debugger 0.12.0-01004-g9ea7f3d64-dirty (2023-01-30-16:23)
 Licensed under GNU GPL v2
 For bug reports, read
@@ -674,7 +681,7 @@ launcher).
 
 ## Create a new GitHub pre-release draft
 
-- in `CHANGELOG.md`, add the release date and a message like _* v0.12.0-2 released_
+- in `CHANGELOG.md`, add the release date and a message like _* v0.12.0-3 released_
 - commit with _CHANGELOG update_
 - check and possibly update the `templates/body-github-release-liquid.md`
 - push the `xpack-develop` branch
@@ -685,8 +692,8 @@ The workflow result and logs are available from the
 
 The result is a
 [draft pre-release](https://github.com/xpack-dev-tools/openocd-xpack/releases/)
-tagged like **v0.12.0-2** (mind the dash in the middle!) and
-named like **xPack OpenOCD v0.12.0-2** (mind the dash),
+tagged like **v0.12.0-3** (mind the dash in the middle!) and
+named like **xPack OpenOCD v0.12.0-3** (mind the dash),
 with all binaries attached.
 
 - edit the draft and attach it to the `xpack-develop` branch (important!)
@@ -709,7 +716,7 @@ If any, refer to closed
 ## Update the preview Web
 
 - commit the `develop` branch of `xpack/web-jekyll` GitHub repo;
-  use a message like _xPack OpenOCD v0.12.0-2 released_
+  use a message like _xPack OpenOCD v0.12.0-3 released_
 - push to GitHub
 - wait for the GitHub Pages build to complete
 - the preview web is <https://xpack.github.io/web-preview/news/>
@@ -750,18 +757,18 @@ watching this project.
 - compare the SHA sums with those shown by `cat *.sha`
 - check the executable names
 - commit all changes, use a message like
-  _package.json: update urls for 0.12.0-2.1 release_ (without _v_)
+  _package.json: update urls for 0.12.0-3.1 release_ (without _v_)
 
 ## Publish on the npmjs.com server
 
 - select the `xpack-develop` branch
 - check the latest commits `npm run git-log`
-- update `CHANGELOG.md`, add a line like _* v0.12.0-2 published on npmjs.com_
-- commit with a message like _CHANGELOG: publish npm v0.12.0-2.1_
+- update `CHANGELOG.md`, add a line like _* v0.12.0-3 published on npmjs.com_
+- commit with a message like _CHANGELOG: publish npm v0.12.0-3.1_
 - `npm pack` and check the content of the archive, which should list
   only the `package.json`, the `README.md`, `LICENSE` and `CHANGELOG.md`;
   possibly adjust `.npmignore`
-- `npm version 0.12.0-2.1`; the first 4 numbers are the same as the
+- `npm version 0.12.0-3.1`; the first 4 numbers are the same as the
   GitHub release; the fifth number is the npm specific version
 - the commits and the tag should have been pushed by the `postversion` script;
   if not, push them with `git push origin --tags`
@@ -790,12 +797,12 @@ The tests results are available from the
 When the release is considered stable, promote it as `latest`:
 
 - `npm dist-tag ls @xpack-dev-tools/openocd`
-- `npm dist-tag add @xpack-dev-tools/openocd@0.12.0-2.1 latest`
+- `npm dist-tag add @xpack-dev-tools/openocd@0.12.0-3.1 latest`
 - `npm dist-tag ls @xpack-dev-tools/openocd`
 
 In case the previous version is not functional and needs to be unpublished:
 
-- `npm unpublish @xpack-dev-tools/openocd@0.12.0-2.1`
+- `npm unpublish @xpack-dev-tools/openocd@0.12.0-3.1`
 
 ## Update the Web
 
@@ -817,7 +824,7 @@ In case the previous version is not functional and needs to be unpublished:
 
 - in a separate browser windows, open [X/Twitter](https://twitter.com)
 - using the `@xpack_project` account
-- paste the release name like **xPack OpenOCD v0.12.0-2 released**
+- paste the release name like **xPack OpenOCD v0.12.0-3 released**
 - paste the link to the Web page
   [release](https://xpack.github.io/openocd/releases/)
 - click the **Tweet** button
