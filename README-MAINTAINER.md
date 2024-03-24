@@ -205,7 +205,7 @@ For a debug build:
 xpm run build-develop-debug --config darwin-x64 -C ~/Work/xpack-dev-tools/openocd-xpack.git
 ```
 
-The build takes about 6 minutes.
+The build takes about 7 minutes.
 
 When functional, push the `xpack-develop` branch to GitHub.
 
@@ -237,9 +237,9 @@ archive and its SHA signature, created in the `deploy` folder:
 
 ```console
 $ ls -l ~/Work/xpack-dev-tools/openocd-xpack.git/build/darwin-x64/deploy
-total 4480
--rw-r--r--  1 ilg  staff  2288746 Sep  4 20:30 xpack-openocd-0.12.0-3-darwin-x64.tar.gz
--rw-r--r--  1 ilg  staff      107 Sep  4 20:30 xpack-openocd-0.12.0-3-darwin-x64.tar.gz.sha
+total 4552
+-rw-r--r--  1 ilg  staff  2325120 Mar 24 11:10 xpack-openocd-0.12.0-3-darwin-x64.tar.gz
+-rw-r--r--  1 ilg  staff      107 Mar 24 11:10 xpack-openocd-0.12.0-3-darwin-x64.tar.gz.sha
 ```
 
 #### Apple Silicon macOS
@@ -272,9 +272,9 @@ archive and its SHA signature, created in the `deploy` folder:
 
 ```console
 $ ls -l ~/Work/xpack-dev-tools/openocd-xpack.git/build/darwin-arm64/deploy
-total 4336
--rw-r--r--  1 ilg  staff  2212473 Sep  4 20:30 xpack-openocd-0.12.0-3-darwin-arm64.tar.gz
--rw-r--r--  1 ilg  staff      109 Sep  4 20:30 xpack-openocd-0.12.0-3-darwin-arm64.tar.gz.sha
+total 4400
+-rw-r--r--  1 ilg  staff  2245422 Mar 24 11:09 xpack-openocd-0.12.0-3-darwin-arm64.tar.gz
+-rw-r--r--  1 ilg  staff      109 Mar 24 11:09 xpack-openocd-0.12.0-3-darwin-arm64.tar.gz.sha
 ```
 
 #### Intel GNU/Linux
@@ -309,9 +309,9 @@ archive and its SHA signature, created in the `deploy` folder:
 
 ```console
 $ ls -l ~/Work/xpack-dev-tools/openocd-xpack.git/build/linux-x64/deploy
-total 2528
--rw-r--r-- 1 ilg ilg 2580723 Sep  4 17:30 xpack-openocd-0.12.0-3-linux-x64.tar.gz
--rw-r--r-- 1 ilg ilg     106 Sep  4 17:30 xpack-openocd-0.12.0-3-linux-x64.tar.gz.sha
+total 2552
+-rw-r--r-- 1 ilg ilg 2605180 Mar 24 09:09 xpack-openocd-0.12.0-3-linux-x64.tar.gz
+-rw-r--r-- 1 ilg ilg     106 Mar 24 09:09 xpack-openocd-0.12.0-3-linux-x64.tar.gz.sha
 ```
 
 ##### Build the Intel Windows binaries
@@ -337,9 +337,9 @@ archive and its SHA signature, created in the `deploy` folder:
 
 ```console
 $ ls -l ~/Work/xpack-dev-tools/openocd-xpack.git/build/win32-x64/deploy
-total 2928
--rw-r--r-- 1 ilg ilg 2990482 Sep  4 17:56 xpack-openocd-0.12.0-3-win32-x64.zip
--rw-r--r-- 1 ilg ilg     103 Sep  4 17:56 xpack-openocd-0.12.0-3-win32-x64.zip.sha
+total 2972
+-rw-r--r-- 1 ilg ilg 3037346 Mar 24 09:10 xpack-openocd-0.12.0-3-win32-x64.zip
+-rw-r--r-- 1 ilg ilg     103 Mar 24 09:10 xpack-openocd-0.12.0-3-win32-x64.zip.sha
 ```
 
 #### Arm GNU/Linux 64-bit
@@ -367,14 +367,14 @@ xpm run docker-link-deps --config linux-arm64 -C ~/Work/xpack-dev-tools/openocd-
 xpm run docker-build-develop --config linux-arm64 -C ~/Work/xpack-dev-tools/openocd-xpack.git
 ```
 
-About 9 minutes later, the output of the build script is a compressed
+About 10 minutes later (3 on ampere), the output of the build script is a compressed
 archive and its SHA signature, created in the `deploy` folder:
 
 ```console
 $ ls -l ~/Work/xpack-dev-tools/openocd-xpack.git/build/linux-arm64/deploy
-total 2476
--rw-r--r-- 1 ilg ilg 2529316 Sep  4 17:38 xpack-openocd-0.12.0-3-linux-arm64.tar.gz
--rw-r--r-- 1 ilg ilg     108 Sep  4 17:38 xpack-openocd-0.12.0-3-linux-arm64.tar.gz.sha
+total 2500
+-rw-r--r-- 1 ilg ilg 2554110 Mar 24 09:20 xpack-openocd-0.12.0-3-linux-arm64.tar.gz
+-rw-r--r-- 1 ilg ilg     108 Mar 24 09:20 xpack-openocd-0.12.0-3-linux-arm64.tar.gz.sha
 ```
 
 #### Arm GNU/Linux 32-bit
@@ -402,14 +402,14 @@ xpm run docker-link-deps --config linux-arm -C ~/Work/xpack-dev-tools/openocd-xp
 xpm run docker-build-develop --config linux-arm -C ~/Work/xpack-dev-tools/openocd-xpack.git
 ```
 
-About 9 minutes later, the output of the build script is a compressed
+About 10 minutes later, the output of the build script is a compressed
 archive and its SHA signature, created in the `deploy` folder:
 
 ```console
 $ ls -l ~/Work/xpack-dev-tools/openocd-xpack.git/build/linux-arm/deploy
-total 2400
--rw-r--r-- 1 ilg ilg 2453425 Sep  4 17:38 xpack-openocd-0.12.0-3-linux-arm.tar.gz
--rw-r--r-- 1 ilg ilg     106 Sep  4 17:38 xpack-openocd-0.12.0-3-linux-arm.tar.gz.sha
+total 2424
+-rw-r--r-- 1 ilg ilg 2477691 Mar 24 09:19 xpack-openocd-0.12.0-3-linux-arm.tar.gz
+-rw-r--r-- 1 ilg ilg     106 Mar 24 09:19 xpack-openocd-0.12.0-3-linux-arm.tar.gz.sha
 ```
 
 ### Update README-MAINTAINER listing output
