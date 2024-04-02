@@ -2,9 +2,17 @@
 
 Entries in this file are in reverse chronological order.
 
-## 2024-03-24
+## 2024-04-02
 
 * v0.12.0-3 prepared
+* d7044a7 package.json: bump deps
+* cbebec9 README update
+* 24ac2d7 package.json: bump deps
+
+## 2024-03-24
+
+* d3024ab README update
+* fa87ff7 prepare v0.12.0-3
 
 ## 2024-03-22
 

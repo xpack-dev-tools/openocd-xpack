@@ -28,6 +28,7 @@ function application_build_versioned_components()
     # https://sourceforge.net/projects/libusb/files/libusb-1.0/
     XBB_LIBUSB1_VERSION="1.0.26"
 
+    # https://github.com/openocd-org/openocd/commits/master/
     if [ "${XBB_RELEASE_VERSION}" == "0.12.0-1" ]
     then
       XBB_OPENOCD_GIT_COMMIT=${XBB_APPLICATION_OPENOCD_GIT_COMMIT:-"v0.12.0"}
@@ -37,8 +38,8 @@ function application_build_versioned_components()
       XBB_OPENOCD_GIT_COMMIT=${XBB_APPLICATION_OPENOCD_GIT_COMMIT:-"18281b0c497694d91c5608be54583172838be75c"}
     elif [ "${XBB_RELEASE_VERSION}" == "0.12.0-3" ]
     then
-      # Mar 16, 2024
-      XBB_OPENOCD_GIT_COMMIT=${XBB_APPLICATION_OPENOCD_GIT_COMMIT:-"01a797af143398c6f3aa1eb6f8949deff4ccf044"}
+      # Apr 1, 2024
+      XBB_OPENOCD_GIT_COMMIT=${XBB_APPLICATION_OPENOCD_GIT_COMMIT:-"dd1758272276e20d5b60c16146a820ec8b5bfaa1"}
 
       XBB_TEXINFO_VERSION="7.1"
       XBB_LIBUSB1_VERSION="1.0.27"
