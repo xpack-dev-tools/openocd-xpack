@@ -30,32 +30,32 @@
     "minimumXpmRequired": "0.16.3",
     "binaries": {
       "destination": "./.content",
-      "baseUrl": "https://github.com/xpack-dev-tools/openocd-xpack/releases/download/v0.12.0-2",
+      "baseUrl": "https://github.com/xpack-dev-tools/openocd-xpack/releases/download/v0.12.0-3",
       "skip": 1,
       "platforms": {
         "darwin-arm64": {
-          "fileName": "xpack-openocd-0.12.0-2-darwin-arm64.tar.gz",
-          "sha256": "7b35c4a01dc8e74fbf3a217f78bd01d61112a09be2f2e2ba9e8e737b12c84562"
+          "fileName": "xpack-openocd-0.12.0-3-darwin-arm64.tar.gz",
+          "sha256": "0084761ef77a5c3f2e098993f17cb4225819462b90c1378a1b35cea9cd466288"
         },
         "darwin-x64": {
-          "fileName": "xpack-openocd-0.12.0-2-darwin-x64.tar.gz",
-          "sha256": "71942e8db55ed68cad45e07c2065e6c7cc0e127797ee26c298ec4dcaebc9232c"
+          "fileName": "xpack-openocd-0.12.0-3-darwin-x64.tar.gz",
+          "sha256": "47931a1adde58ae6a7d99e4b0db5b9a62c568ce8e5232e958325d733f09e9995"
         },
         "linux-arm64": {
-          "fileName": "xpack-openocd-0.12.0-2-linux-arm64.tar.gz",
-          "sha256": "d4fad1505ef299f511eb2324c6e2c7bbef1101a22155b70478d89428c3fb515b"
+          "fileName": "xpack-openocd-0.12.0-3-linux-arm64.tar.gz",
+          "sha256": "892b2ecc624521e5947e4857d7dfd4af03e19ef37da73ae91215a1001864ed75"
         },
         "linux-arm": {
-          "fileName": "xpack-openocd-0.12.0-2-linux-arm.tar.gz",
-          "sha256": "bc123785e9009caa6ce166afb4298104a19c20f734ae044f3caf37896d401a45"
+          "fileName": "xpack-openocd-0.12.0-3-linux-arm.tar.gz",
+          "sha256": "8f956ed0c5027c5e655fe590712aef2dbd21a01777b5c008f772b2d1b45fb095"
         },
         "linux-x64": {
-          "fileName": "xpack-openocd-0.12.0-2-linux-x64.tar.gz",
-          "sha256": "1dc8e63694204b73107fe5b23267238af2c6ce14726e4aa244a2123a98805335"
+          "fileName": "xpack-openocd-0.12.0-3-linux-x64.tar.gz",
+          "sha256": "98c07aa34c6e02ac6ef0794494bc3bd9e2409d587723c5191ee4f0a4d179e39b"
         },
         "win32-x64": {
-          "fileName": "xpack-openocd-0.12.0-2-win32-x64.zip",
-          "sha256": "6cb8a5f9290c59be3e42a6f1066f23ff5a9dbe5b83bdecd0e9d4c7dcc1233517"
+          "fileName": "xpack-openocd-0.12.0-3-win32-x64.zip",
+          "sha256": "94b51be5e5b38ac1c5814972eee9b062f0805bcd3ecc3bad5190fd659f6a3ab3"
         }
       }
     },
@@ -265,7 +265,7 @@
         "inherit": [
           "linux-x64"
         ],
-          "properties": {
+        "properties": {
           "dockerImage": "ilegeul/ubuntu:arm32v7-18.04-xbb-v5.1.1",
           "force32": "linux32"
         }
