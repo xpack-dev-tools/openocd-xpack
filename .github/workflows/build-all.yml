@@ -103,7 +103,7 @@ jobs:
 
       - name: 'Publish pre-release'
         # https://github.com/ncipollo/release-action
-        uses: ncipollo/release-action@v1
+        uses: ncipollo/release-action@v1.13.0
         with:
           allowUpdates: true
           artifacts: 'build/linux-x64/deploy/*'
@@ -174,7 +174,7 @@ jobs:
 
       - name: 'Publish pre-release'
         # https://github.com/ncipollo/release-action
-        uses: ncipollo/release-action@v1
+        uses: ncipollo/release-action@v1.13.0
         with:
           allowUpdates: true
           artifacts: 'build/win32-x64/deploy/*'
@@ -245,7 +245,7 @@ jobs:
 
       - name: 'Publish pre-release'
         # https://github.com/ncipollo/release-action
-        uses: ncipollo/release-action@v1
+        uses: ncipollo/release-action@v1.13.0
         with:
           allowUpdates: true
           artifacts: 'build/linux-arm/deploy/*'
@@ -315,7 +315,7 @@ jobs:
 
       - name: 'Publish pre-release'
         # https://github.com/ncipollo/release-action
-        uses: ncipollo/release-action@v1
+        uses: ncipollo/release-action@v1.13.0
         with:
           allowUpdates: true
           artifacts: 'build/linux-arm64/deploy/*'
@@ -379,10 +379,10 @@ jobs:
         run: |
           xpm install --config darwin-x64 --loglevel ${{ github.event.inputs.xpm_install_loglevel }} ${{ github.event.inputs.xpm_install_options }}
           xpm run build --config darwin-x64
-
+  
       - name: 'Publish pre-release'
         # https://github.com/ncipollo/release-action
-        uses: ncipollo/release-action@v1
+        uses: ncipollo/release-action@v1.13.0
         with:
           allowUpdates: true
           artifacts: 'build/darwin-x64/deploy/*'
@@ -447,10 +447,10 @@ jobs:
           xpm install --config darwin-arm64 --loglevel ${{ github.event.inputs.xpm_install_loglevel }} ${{ github.event.inputs.xpm_install_options }}
           xpm run build --config darwin-arm64
 
-
+  
       - name: 'Publish pre-release'
         # https://github.com/ncipollo/release-action
-        uses: ncipollo/release-action@v1
+        uses: ncipollo/release-action@v1.13.0
         with:
           allowUpdates: true
           artifacts: 'build/darwin-arm64/deploy/*'

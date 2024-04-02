@@ -103,7 +103,7 @@ jobs:
 
       - name: 'Publish pre-release'
         # https://github.com/ncipollo/release-action
-        uses: ncipollo/release-action@v1
+        uses: ncipollo/release-action@v1.13.0
         with:
           allowUpdates: true
           artifacts: 'build/linux-arm64/deploy/*'
