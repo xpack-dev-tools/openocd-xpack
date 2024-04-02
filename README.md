@@ -111,10 +111,7 @@ $ tree -L 2 /Users/ilg/Library/xPacks/\@xpack-dev-tools/openocd/0.12.0-3.1/.cont
 ├── bin
 │   └── openocd
 ├── distro-info
-│   ├── CHANGELOG.md
-│   ├── licenses
-│   ├── patches
-│   └── scripts
+│   └── licenses
 ├── libexec
 │   ├── libftdi1.2.5.0.dylib
 │   ├── libftdi1.2.dylib -> libftdi1.2.5.0.dylib
@@ -126,7 +123,7 @@ $ tree -L 2 /Users/ilg/Library/xPacks/\@xpack-dev-tools/openocd/0.12.0-3.1/.cont
     ├── contrib
     └── scripts
 
-12 directories, 7 files
+10 directories, 6 files
 ```
 
 No other files are installed in any system folders or other locations.
