@@ -367,7 +367,7 @@ xpm run docker-link-deps --config linux-arm64 -C ~/Work/xpack-dev-tools/openocd-
 xpm run docker-build-develop --config linux-arm64 -C ~/Work/xpack-dev-tools/openocd-xpack.git
 ```
 
-About 10 minutes later (3 on ampere), the output of the build script is a compressed
+About 10 minutes later (3 minutes on ampere), the output of the build script is a compressed
 archive and its SHA signature, created in the `deploy` folder:
 
 ```console
