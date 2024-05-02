@@ -222,7 +222,7 @@
           "common-actions-native"
         ],
         "devDependencies": {
-          "@xpack-dev-tools/clang": "16.0.6-1.1",
+          "@xpack-dev-tools/clang": "17.0.6-1.1",
           "@xpack-dev-tools/realpath": "9.4.0-1.1",
           "@xpack-dev-tools/sed": "4.9.0-3.1"
         },
