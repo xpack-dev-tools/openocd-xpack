@@ -14,11 +14,14 @@ function openocd_download()
   if [ ! -d "${XBB_SOURCES_FOLDER_PATH}/${openocd_src_folder_name}" ]
   then
     (
-      cd "${XBB_SOURCES_FOLDER_PATH}"
-      git_clone "${XBB_OPENOCD_GIT_URL}" "${XBB_OPENOCD_GIT_BRANCH}" \
-          "${XBB_OPENOCD_GIT_COMMIT}" "${openocd_src_folder_name}"
-      cd "${XBB_SOURCES_FOLDER_PATH}/${openocd_src_folder_name}"
-      git submodule update --init --recursive --remote
+      run_verbose_develop cd "${XBB_SOURCES_FOLDER_PATH}"
+      run_verbose git_clone \
+        "${XBB_OPENOCD_GIT_URL}" \
+        "${openocd_src_folder_name}" \
+        --branch="${XBB_OPENOCD_GIT_BRANCH}" \
+        --commit="${XBB_OPENOCD_GIT_COMMIT}"
+      run_verbose_develop cd "${XBB_SOURCES_FOLDER_PATH}/${openocd_src_folder_name}"
+      run_verbose git submodule update --init --recursive --remote
     )
   fi
 }
