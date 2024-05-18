@@ -183,7 +183,7 @@
             "mkdir -pv ${HOME}/.local/xPacks ${HOME}/.cache/xPacks ${HOME}/Work/cache",
             "mkdir -pv ${HOME}/.wine",
             "docker rm --force {{ properties.containerName }}",
-            "docker create --name {{ properties.containerName }} --tty --hostname docker --volume $(pwd):$(pwd) --volume ${HOME}/Work/xpack-dev-tools/xbb-helper-xpack.git:${HOME}/Work/xpack-dev-tools/xbb-helper-xpack.git --volume ${HOME}/.cache/xPacks:${HOME}/.cache/xPacks --volume ${HOME}/Work/cache:${HOME}/Work/cache --volume ${HOME}/.wine:${HOME}/.wine --workdir $(pwd) {{ properties.dockerImage }}",
+            "docker create --name {{ properties.containerName }} --tty --hostname docker --env XBB_ENVIRONMENT_SKIP_CHECKS=${XBB_ENVIRONMENT_SKIP_CHECKS:-} --volume $(pwd):$(pwd) --volume ${HOME}/Work/xpack-dev-tools/xbb-helper-xpack.git:${HOME}/Work/xpack-dev-tools/xbb-helper-xpack.git --volume ${HOME}/.cache/xPacks:${HOME}/.cache/xPacks --volume ${HOME}/Work/cache:${HOME}/Work/cache --volume ${HOME}/.wine:${HOME}/.wine --workdir $(pwd) {{ properties.dockerImage }}",
             "docker start {{ properties.containerName }}",
             "docker exec {{ properties.containerName }} {{ properties.force32 }} npm install --location=global xpm@{{ properties.xpm-version }}",
             "docker exec {{ properties.containerName }} {{ properties.force32 }} userdel node",
