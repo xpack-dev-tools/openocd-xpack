@@ -25,6 +25,7 @@ node_modules/
 README-*
 LICENSE-*
 CONTRIBUTING**
+NOTES.md
 
 wrappers/
 extras/
