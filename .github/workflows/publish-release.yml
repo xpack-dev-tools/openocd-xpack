@@ -16,6 +16,10 @@
 # https://docs.github.com/en/developers/webhooks-and-events/webhooks/webhook-events-and-payloads#workflow_dispatch
 # https://docs.github.com/en/rest/reference/actions#create-a-workflow-dispatch-event
 
+# https://github.com/actions/checkout
+# https://github.com/actions/upload-artifact
+# https://github.com/actions/download-artifact
+
 # -----------------------------------------------------------------------------
 
 
@@ -39,23 +43,23 @@ jobs:
     runs-on: ubuntu-22.04
 
     steps:
-      - name: 'Environment'
+      - name: 'Show environment'
         run: |
           uname -a
           lsb_release -sd
           echo "whoami: $(whoami)"
           echo "pwd: $(pwd)"
           ls -lLA
-          env | sort | egrep '^[^ \t]+='
+          env | sort | grep -E '^[^ \t]+='
 
       # https://github.com/actions/checkout
       - name: 'Checkout project'
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 3
 
       - name: 'Checkout helper ${{ github.event.inputs.helper-git-ref }}'
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           repository: xpack-dev-tools/xbb-helper-xpack
           path: xpacks/@xpack-dev-tools/xbb-helper
@@ -70,7 +74,7 @@ jobs:
 
       - name: 'Publish release'
         # https://github.com/ncipollo/release-action
-        uses: ncipollo/release-action@v1.13.0
+        uses: ncipollo/release-action@v1.14.0
         with:
           allowUpdates: false
           bodyFile: '.github/workflows/body-github-release.md'
@@ -93,7 +97,7 @@ jobs:
 
       - name: 'Publish artifacts'
         # https://github.com/ncipollo/release-action
-        uses: ncipollo/release-action@v1.13.0
+        uses: ncipollo/release-action@v1.14.0
         with:
           allowUpdates: true
           artifacts: '~/Downloads/xpack-binaries/openocd/*'

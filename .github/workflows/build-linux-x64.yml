@@ -16,10 +16,14 @@
 # https://docs.github.com/en/developers/webhooks-and-events/webhooks/webhook-events-and-payloads#workflow_dispatch
 # https://docs.github.com/en/rest/reference/actions#create-a-workflow-dispatch-event
 
+# https://github.com/actions/checkout
+# https://github.com/actions/upload-artifact
+# https://github.com/actions/download-artifact
+
 # -----------------------------------------------------------------------------
 
 
-name: 'Build xPack OpenOCD xbbla32'
+name: 'Build xPack OpenOCD linux-x64'
 
 on:
   workflow_dispatch:
@@ -52,21 +56,25 @@ on:
         required: false
         type: string
         default: ''
+      helper-git-ref:
+        description: 'The helper branch, tag or SHA to checkout'
+        required: false
+        default: 'xpack-develop'
 
 jobs:
 
-  linux-arm:
-    name: 'Linux Arm 32 - openocd ${{ github.event.inputs.version }} build'
-    timeout-minutes: 2880 # 2 days
-    runs-on: [self-hosted, linux, arm, xbbla32]
+  linux-x64-build:
+    name: 'linux-x64 openocd ${{ github.event.inputs.version }} build'
+    timeout-minutes: 5760 # 4 days
+    runs-on: [self-hosted, linux, x64]
     container:
-      image: ilegeul/ubuntu:arm32v7-18.04-xbb-v5.1.1
+      image: ilegeul/ubuntu:amd64-18.04-xbb-v5.2.1
     defaults:
       run:
         shell: bash
 
     steps:
-      - name: 'Environment'
+      - name: 'Show environment'
         run: |
           uname -a
           lsb_release -sd
@@ -75,10 +83,12 @@ jobs:
           echo "node: $(node --version)"
           echo "npm: $(npm --version)"
           ls -lLA
-          env | sort | egrep '^[^ \t]+='
+          env | sort | grep -E '^[^ \t]+='
 
-      - name: 'Clean working area'
-        run: rm -rf * .git*
+      - name: 'Clean working area' # Mandatory for self-hosted runners.
+        run: |
+          chmod -Rf a+w * || true
+          rm -rf * .git*
 
       - name: 'Checkout project'
         uses: actions/checkout@v1 # v1 for old Git
@@ -95,18 +105,25 @@ jobs:
         timeout-minutes: 1440
         run: xpm install --loglevel ${{ github.event.inputs.xpm_install_loglevel }} ${{ github.event.inputs.xpm_install_options }}
 
-      - name: 'Build Linux arm32 binary'
+      - name: 'Build linux-x64 binaries'
         timeout-minutes: 1440
         run: |
-          xpm install --config linux-arm --loglevel ${{ github.event.inputs.xpm_install_loglevel }} ${{ github.event.inputs.xpm_install_options }}
-          xpm run build --config linux-arm
+          xpm install --config linux-x64 --loglevel ${{ github.event.inputs.xpm_install_loglevel }} ${{ github.event.inputs.xpm_install_options }}
+          xpm run build --config linux-x64
+
+      - name: Upload platform artefacts
+        uses: actions/upload-artifact@v3 # v3 for 18.04
+        with:
+          name: deploy-linux-x64
+          path: ${{ github.workspace }}/build/linux-x64/deploy/*
+          overwrite: true
 
       - name: 'Publish pre-release'
         # https://github.com/ncipollo/release-action
-        uses: ncipollo/release-action@v1.13.0
+        uses: ncipollo/release-action@v1.13.0 # v1.13 for 18.04
         with:
           allowUpdates: true
-          artifacts: 'build/linux-arm/deploy/*'
+          artifacts: 'build/linux-x64/deploy/*'
           bodyFile: '.github/workflows/body-github-pre-releases-test.md'
           commit: 'master'
           draft: false
@@ -124,3 +141,41 @@ jobs:
       - name: 'Rename working area'
         # For just in case absolute paths remain unprocessed.
         run: mv -v build build-$(date -u +%Y%m%d-%H%M%S)
+
+  linux-x64-test:
+    name: 'linux-x64 openocd ${{ github.event.inputs.version }} test'
+    runs-on: ubuntu-22.04
+    needs: [linux-x64-build]
+
+    steps:
+      - name: 'Show environment'
+        run: |
+          uname -a
+          lsb_release -sd
+          echo "whoami: $(whoami)"
+          echo "pwd: $(pwd)"
+          ls -lLA
+          env | sort | grep -E '^[^ \t]+='
+
+      - name: 'Checkout project'
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 3
+
+      - name: 'Checkout helper ${{ github.event.inputs.helper-git-ref }}'
+        uses: actions/checkout@v4
+        with:
+          repository: xpack-dev-tools/xbb-helper-xpack
+          path: xpacks/@xpack-dev-tools/xbb-helper
+          ref: ${{ github.event.inputs.helper-git-ref }}
+          fetch-depth: 3
+
+      - name: 'Run ${{ github.event.inputs.version }} native test'
+        run: bash scripts/test.sh --image github-actions-ubuntu-latest --version ${{ github.event.inputs.version }} --base-url pre-release
+
+      - name: Upload platform tests report
+        uses: actions/upload-artifact@v4
+        with:
+          name: tests-report-linux-x64
+          path: ${{ github.workspace }}/build/linux-x64/artefacts/tests-report-*.md
+          overwrite: true

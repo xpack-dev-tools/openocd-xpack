@@ -17,6 +17,10 @@
 # https://docs.github.com/en/developers/webhooks-and-events/webhooks/webhook-events-and-payloads#workflow_dispatch
 # https://docs.github.com/en/rest/reference/actions#create-a-workflow-dispatch-event
 
+# https://github.com/actions/checkout
+# https://github.com/actions/upload-artifact
+# https://github.com/actions/download-artifact
+
 # -----------------------------------------------------------------------------
 
 
@@ -25,10 +29,14 @@ name: 'Test xPack OpenOCD via xpm'
 on:
   workflow_dispatch:
     inputs:
-      version:
+      package-version:
         description: 'The semver of the npm release'
         required: false
         default: 'next'
+      version:
+        description: 'The GitHub release version'
+        required: false
+        default: 'current'
       helper-git-ref:
         description: 'The helper branch, tag or SHA to checkout'
         required: false
@@ -36,27 +44,27 @@ on:
 
 jobs:
 
-  linux-x64:
-    name: 'Linux Intel 64-bit OpenOCD@${{ github.event.inputs.version }} test'
+  linux-x64-test:
+    name: 'linux-x64 OpenOCD@${{ github.event.inputs.version }} test'
     runs-on: ubuntu-22.04
 
     steps:
-      - name: 'Environment'
+      - name: 'Show environment'
         run: |
           uname -a
           lsb_release -sd
           echo "whoami: $(whoami)"
           echo "pwd: $(pwd)"
           ls -lLA
-          env | sort | egrep '^[^ \t]+='
+          env | sort | grep -E '^[^ \t]+='
 
       - name: 'Checkout project'
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 3
 
       - name: 'Checkout helper ${{ github.event.inputs.helper-git-ref }}'
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           repository: xpack-dev-tools/xbb-helper-xpack
           path: xpacks/@xpack-dev-tools/xbb-helper
@@ -67,33 +75,42 @@ jobs:
         uses: docker://node:lts-slim
         with:
           entrypoint: /bin/bash
-          args: /github/workspace/scripts/test.sh --image debian --version ${{ github.event.inputs.version }} --xpm
-  
-  linux-arm64:
-    name: 'Linux Arm 64-bit OpenOCD@${{ github.event.inputs.version }} test'
+          args: /github/workspace/scripts/test.sh --image debian --package-version ${{ github.event.inputs.package-version }} --version ${{ github.event.inputs.version }} --xpm
+
+      - name: Upload platform tests report
+        uses: actions/upload-artifact@v4
+        with:
+          name: tests-report-linux-x64
+          path: ${{ github.workspace }}/build/linux-x64/artefacts/tests-report-*.md
+          overwrite: true
+
+  linux-arm64-test:
+    name: 'linux-arm64 OpenOCD@${{ github.event.inputs.version }} test'
     runs-on: [self-hosted, linux, arm64, xbbla]
 
     steps:
-      - name: 'Environment'
+      - name: 'Show environment'
         run: |
           uname -a
           lsb_release -sd
           echo "whoami: $(whoami)"
           echo "pwd: $(pwd)"
           ls -lLA
-          env | sort | egrep '^[^ \t]+='
+          env | sort | grep -E '^[^ \t]+='
 
       - name: 'Clean working area' # Mandatory for self-hosted runners.
-        run: rm -rf * .git*
+        run: |
+          chmod -Rf a+w * || true
+          rm -rf * .git*
 
       # https://github.com/actions/checkout
       - name: 'Checkout project'
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 3
 
       - name: 'Checkout helper ${{ github.event.inputs.helper-git-ref }}'
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           repository: xpack-dev-tools/xbb-helper-xpack
           path: xpacks/@xpack-dev-tools/xbb-helper
@@ -101,36 +118,45 @@ jobs:
           fetch-depth: 3
 
       - name: 'Run ${{ github.event.inputs.version }} xpm docker test'
-        uses: docker://node:lts-slim
+        uses: docker://node:lts-slim # Currently based on debian:12-slim
         with:
           entrypoint: /bin/bash
-          args: /github/workspace/scripts/test.sh --image debian --version ${{ github.event.inputs.version }} --xpm
-  
-  linux-arm32:
-    name: 'Linux Arm 32-bit OpenOCD@${{ github.event.inputs.version }} test'
+          args: /github/workspace/scripts/test.sh --image debian --package-version ${{ github.event.inputs.package-version }} --version ${{ github.event.inputs.version }} --xpm
+
+      - name: Upload platform tests report
+        uses: actions/upload-artifact@v4
+        with:
+          name: tests-report-linux-arm64
+          path: ${{ github.workspace }}/build/linux-arm64/artefacts/tests-report-*.md
+          overwrite: true
+
+  linux-arm-test:
+    name: 'linux-arm OpenOCD@${{ github.event.inputs.version }} test'
     runs-on: [self-hosted, linux, arm, xbbla32]
 
     steps:
-      - name: 'Environment'
+      - name: 'Show environment'
         run: |
           uname -a
           lsb_release -sd
           echo "whoami: $(whoami)"
           echo "pwd: $(pwd)"
           ls -lLA
-          env | sort | egrep '^[^ \t]+='
+          env | sort | grep -E '^[^ \t]+='
 
       - name: 'Clean working area' # Mandatory for self-hosted runners.
-        run: rm -rf * .git*
+        run: |
+          chmod -Rf a+w * || true
+          rm -rf * .git*
 
       # https://github.com/actions/checkout
       - name: 'Checkout project'
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 3
 
       - name: 'Checkout helper ${{ github.event.inputs.helper-git-ref }}'
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           repository: xpack-dev-tools/xbb-helper-xpack
           path: xpacks/@xpack-dev-tools/xbb-helper
@@ -138,36 +164,52 @@ jobs:
           fetch-depth: 3
 
       - name: 'Run ${{ github.event.inputs.version }} xpm docker test'
-        uses: docker://arm32v7/node:lts-slim
+        uses: docker://arm32v7/node:lts-slim # Currently based on debian:12-slim
         with:
           entrypoint: /bin/bash # /usr/bin/linux32
-          args: /github/workspace/scripts/test.sh --image debian --version ${{ github.event.inputs.version }} --xpm
-  
-  macos-x64:
-    name: 'macOS Intel 64-bit OpenOCD@${{ github.event.inputs.version }} test'
+          args: /github/workspace/scripts/test.sh --image debian --package-version ${{ github.event.inputs.package-version }} --version ${{ github.event.inputs.version }} --xpm
+
+      - name: Upload platform tests report
+        uses: actions/upload-artifact@v4
+        with:
+          name: tests-report-linux-arm
+          path: ${{ github.workspace }}/build/linux-arm/artefacts/tests-report-*.md
+          overwrite: true
+
+  darwin-x64-test:
+    name: 'darwin-x64 OpenOCD@${{ github.event.inputs.version }} test'
     runs-on: macos-12
 
     steps:
-      - name: 'Environment'
+      - name: 'Show environment'
         run: |
           uname -a
-          sw_vers # lsb_release -sd
+          sw_vers
+          ls -lA /Library/Developer/CommandLineTools/SDKs || true
+          ls -lA /Applications
+          sudo xcode-select --switch /Applications/Xcode_14.2.app
+          xcode-select --print-path
+          xcodebuild -version || true
+          pkgutil --pkg-info=com.apple.pkg.CLTools_Executables || true
+          clang++ -v
           echo "whoami: $(whoami)"
           echo "pwd: $(pwd)"
           ls -lLA
-          env | sort | egrep '^[^ \t]+='
+          env | sort | grep -E '^[^ \t]+='
 
       - name: 'Clean working area' # Mandatory for self-hosted runners.
-        run: rm -rf * .git*
+        run: |
+          chmod -Rf a+w * || true
+          rm -rf * .git*
 
       # https://github.com/actions/checkout
       - name: 'Checkout project'
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 3
 
       - name: 'Checkout helper ${{ github.event.inputs.helper-git-ref }}'
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           repository: xpack-dev-tools/xbb-helper-xpack
           path: xpacks/@xpack-dev-tools/xbb-helper
@@ -175,33 +217,49 @@ jobs:
           fetch-depth: 3
 
       - name: 'Run ${{ github.event.inputs.version }} xpm test'
-        run: bash scripts/test.sh --version ${{ github.event.inputs.version }} --xpm
-  
-  macos-arm64:
-    name: 'macOS Arm 64-bit OpenOCD@${{ github.event.inputs.version }} test'
-    runs-on: [self-hosted, macos, apple]
+        run: bash scripts/test.sh --package-version ${{ github.event.inputs.package-version }} --version ${{ github.event.inputs.version }} --xpm
+
+      - name: Upload platform tests report
+        uses: actions/upload-artifact@v4
+        with:
+          name: tests-report-darwin-x64
+          path: ${{ github.workspace }}/build/darwin-x64/artefacts/tests-report-*.md
+          overwrite: true
+
+  darwin-arm64-test:
+    name: 'darwin-arm64 OpenOCD@${{ github.event.inputs.version }} test'
+    runs-on: macos-14
 
     steps:
-      - name: 'Environment'
+      - name: 'Show environment'
         run: |
           uname -a
-          sw_vers # lsb_release -sd
+          sw_vers
+          ls -lA /Library/Developer/CommandLineTools/SDKs || true
+          ls -lA /Applications
+          sudo xcode-select --switch /Applications/Xcode_15.4.app
+          xcode-select --print-path
+          xcodebuild -version || true
+          pkgutil --pkg-info=com.apple.pkg.CLTools_Executables || true
+          clang++ -v
           echo "whoami: $(whoami)"
           echo "pwd: $(pwd)"
           ls -lLA
-          env | sort | egrep '^[^ \t]+='
+          env | sort | grep -E '^[^ \t]+='
 
       - name: 'Clean working area' # Mandatory for self-hosted runners.
-        run: rm -rf * .git*
+        run: |
+          chmod -Rf a+w * || true
+          rm -rf * .git*
 
       # https://github.com/actions/checkout
       - name: 'Checkout project'
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 3
 
       - name: 'Checkout helper ${{ github.event.inputs.helper-git-ref }}'
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           repository: xpack-dev-tools/xbb-helper-xpack
           path: xpacks/@xpack-dev-tools/xbb-helper
@@ -209,10 +267,17 @@ jobs:
           fetch-depth: 3
 
       - name: 'Run ${{ github.event.inputs.version }} xpm test'
-        run: bash scripts/test.sh --version ${{ github.event.inputs.version }} --xpm
-  
-  windows-x64:
-    name: 'Windows 64-bit OpenOCD@${{ github.event.inputs.version }} test'
+        run: bash scripts/test.sh --package-version ${{ github.event.inputs.package-version }} --version ${{ github.event.inputs.version }} --xpm
+
+      - name: Upload platform tests report
+        uses: actions/upload-artifact@v4
+        with:
+          name: tests-report-darwin-arm64
+          path: ${{ github.workspace }}/build/darwin-arm64/artefacts/tests-report-*.md
+          overwrite: true
+
+  win32-x64-test:
+    name: 'win32-x64 OpenOCD@${{ github.event.inputs.version }} test'
     runs-on: windows-2022
     defaults:
       run:
@@ -220,23 +285,23 @@ jobs:
         shell: bash # for --
 
     steps:
-      - name: 'Environment'
+      - name: 'Show environment'
         run: |
           uname -a
           systeminfo # lsb_release -sd
           echo "whoami: $(whoami)"
           echo "pwd: $(pwd)"
           ls -lLA
-          env | sort | egrep '^[^ \t]+='
+          env | sort | grep -E '^[^ \t]+='
 
       # https://github.com/actions/checkout
       - name: 'Checkout project'
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 3
 
       - name: 'Checkout helper ${{ github.event.inputs.helper-git-ref }}'
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           repository: xpack-dev-tools/xbb-helper-xpack
           path: xpacks/@xpack-dev-tools/xbb-helper
@@ -244,6 +309,49 @@ jobs:
           fetch-depth: 3
 
       - name: 'Run ${{ github.event.inputs.version }} xpm test'
-        run: bash scripts/test.sh --version ${{ github.event.inputs.version }} --xpm
-  
+        run: bash scripts/test.sh --package-version ${{ github.event.inputs.package-version }} --version ${{ github.event.inputs.version }} --xpm
+
+      - name: Upload platform tests report
+        uses: actions/upload-artifact@v4
+        with:
+          name: tests-report-win32-x64
+          path: ${{ github.workspace }}/build/win32-x64/artefacts/tests-report-*.md
+          overwrite: true
+
+  generate-tests-report:
+    name: 'Generate tests report for OpenOCD@${{ github.event.inputs.version }}'
+    runs-on: ubuntu-22.04
+    needs: [linux-x64, linux-arm64, linux-arm, darwin-x64, darwin-arm64, win32-x64]
+
+    steps:
+      - name: Download platform test reports
+        uses: actions/download-artifact@v4
+        with:
+          path: ${{ github.workspace }}/artefacts
+          merge-multiple: true
+
+      - name: Concatenate platform test reports
+        run: |
+          ls -lR ${{ github.workspace }}/artefacts
+          touch ${{ github.workspace }}/artefacts/tests-report.md
+          echo "---" >>${{ github.workspace }}/artefacts/tests-report.md
+          echo "title: OpenOCD ${{ github.event.inputs.version }} test results" >>${{ github.workspace }}/artefacts/tests-report.md
+          echo "permalink: /dev-tools/openocd/tests/${{ github.event.inputs.version }}/" >>${{ github.workspace }}/artefacts/tests-report.md
+          echo >>${{ github.workspace }}/artefacts/tests-report.md
+          echo "comments: true" >>${{ github.workspace }}/artefacts/tests-report.md
+          echo >>${{ github.workspace }}/artefacts/tests-report.md
+          echo "date: $(date "+%Y-%m-%d %H:%M:%S %z")" >>${{ github.workspace }}/artefacts/tests-report.md
+          echo >>${{ github.workspace }}/artefacts/tests-report.md
+          echo "---" >>${{ github.workspace }}/artefacts/tests-report.md
+          echo >>${{ github.workspace }}/artefacts/tests-report.md
+          (cd ${{ github.workspace }}; cat -s artefacts/tests-report-linux-x64.md artefacts/tests-report-linux-arm64.md artefacts/tests-report-linux-arm.md artefacts/tests-report-darwin-x64.md artefacts/tests-report-darwin-arm64.md artefacts/tests-report-win32-x64.md  | tee -a artefacts/tests-report.md)
+          mv -v ${{ github.workspace }}/artefacts/tests-report.md ${{ github.workspace }}/artefacts/${{ github.event.inputs.version }}.md
+
+      - name: Upload tests report
+        uses: actions/upload-artifact@v4
+        with:
+          name: tests-report
+          path: ${{ github.workspace }}/artefacts/${{ github.event.inputs.version }}.md
+          overwrite: true
+
 # -----------------------------------------------------------------------------

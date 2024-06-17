@@ -1,0 +1,190 @@
+# -----------------------------------------------------------------------------
+# DO NOT EDIT! Generated from xpacks/@xpack-dev-tools/xbb-helper/templates/*.
+#
+# This file is part of the xPack distribution.
+#   (https://xpack.github.io)
+# Copyright (c) 2021 Liviu Ionescu.
+#
+# Permission to use, copy, modify, and/or distribute this software
+# for any purpose is hereby granted, under the terms of the MIT license.
+# -----------------------------------------------------------------------------
+
+# https://help.github.com/en/actions
+# https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners
+
+# https://docs.github.com/en/actions/reference/events-that-trigger-workflows#workflow_dispatch
+# https://docs.github.com/en/developers/webhooks-and-events/webhooks/webhook-events-and-payloads#workflow_dispatch
+# https://docs.github.com/en/rest/reference/actions#create-a-workflow-dispatch-event
+
+# https://github.com/actions/checkout
+# https://github.com/actions/upload-artifact
+# https://github.com/actions/download-artifact
+
+# -----------------------------------------------------------------------------
+
+
+name: 'Build xPack OpenOCD linux-arm'
+
+on:
+  workflow_dispatch:
+    # https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#onworkflow_dispatchinputs
+    inputs:
+      version:
+        description: 'The semver of the release'
+        required: false
+        type: string
+        default: 'current'
+      xpm_version:
+        description: 'The version of xpm to install'
+        required: false
+        type: string
+        default: 'next'
+      xpm_install_loglevel:
+        description: 'Optional loglevel for xpm install'
+        required: false
+        default: 'info'
+        type: choice
+        options:
+        - silent
+        - warn
+        - info
+        - verbose
+        - debug
+        - trace
+      xpm_install_options:
+        description: 'Optional switches to pass to xpm install'
+        required: false
+        type: string
+        default: ''
+      helper-git-ref:
+        description: 'The helper branch, tag or SHA to checkout'
+        required: false
+        default: 'xpack-develop'
+
+jobs:
+
+  linux-arm-build:
+    name: 'linux-arm openocd ${{ github.event.inputs.version }} build'
+    timeout-minutes: 2880 # 2 days
+    runs-on: [self-hosted, linux, arm, xbbla32]
+    container:
+      image: ilegeul/ubuntu:arm32v7-18.04-xbb-v5.2.1
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+      - name: 'Show environment'
+        run: |
+          uname -a
+          lsb_release -sd
+          echo "whoami: $(whoami)"
+          echo "pwd: $(pwd)"
+          echo "node: $(node --version)"
+          echo "npm: $(npm --version)"
+          ls -lLA
+          env | sort | grep -E '^[^ \t]+='
+
+      - name: 'Clean working area' # Mandatory for self-hosted runners.
+        run: |
+          chmod -Rf a+w * || true
+          rm -rf * .git*
+
+      - name: 'Checkout project'
+        uses: actions/checkout@v1 # v1 for old Git
+        with:
+          fetch-depth: 3
+
+      - name: 'Install xpm'
+        timeout-minutes: 1440
+        run: |
+          npm install --location=global xpm@${{ github.event.inputs.xpm_version }}
+          xpm --version
+
+      - name: 'Install project dependencies'
+        timeout-minutes: 1440
+        run: xpm install --loglevel ${{ github.event.inputs.xpm_install_loglevel }} ${{ github.event.inputs.xpm_install_options }}
+
+      - name: 'Build linux-arm binaries'
+        timeout-minutes: 1440
+        run: |
+          xpm install --config linux-arm --loglevel ${{ github.event.inputs.xpm_install_loglevel }} ${{ github.event.inputs.xpm_install_options }}
+          xpm run build --config linux-arm
+
+      - name: Upload platform artefacts
+        uses: actions/upload-artifact@v3 # v3 for 18.04
+        with:
+          name: deploy-linux-arm
+          path: ${{ github.workspace }}/build/linux-arm/deploy/*
+          overwrite: true
+
+      - name: 'Publish pre-release'
+        # https://github.com/ncipollo/release-action
+        uses: ncipollo/release-action@v1.13.0 # v1.13 for 18.04
+        with:
+          allowUpdates: true
+          artifacts: 'build/linux-arm/deploy/*'
+          bodyFile: '.github/workflows/body-github-pre-releases-test.md'
+          commit: 'master'
+          draft: false
+          name: 'Test binaries'
+          omitBodyDuringUpdate: true
+          omitDraftDuringUpdate: true
+          omitNameDuringUpdate: true
+          owner: 'xpack-dev-tools'
+          prerelease: true
+          replacesArtifacts: true
+          repo: 'pre-releases'
+          tag: 'test'
+          token: ${{ secrets.PUBLISH_TOKEN }}
+
+      - name: 'Rename working area'
+        # For just in case absolute paths remain unprocessed.
+        run: mv -v build build-$(date -u +%Y%m%d-%H%M%S)
+
+  linux-arm-test:
+    name: 'linux-arm openocd@${{ github.event.inputs.version }} test'
+    runs-on: [self-hosted, linux, arm, xbbla32]
+    needs: [linux-arm-build]
+
+    steps:
+      - name: 'Show environment'
+        run: |
+          uname -a
+          lsb_release -sd
+          echo "whoami: $(whoami)"
+          echo "pwd: $(pwd)"
+          ls -lLA
+          env | sort | grep -E '^[^ \t]+='
+
+      - name: 'Clean working area' # Mandatory for self-hosted runners.
+        run: |
+          chmod -Rf a+w * || true
+          rm -rf * .git*
+
+      # https://github.com/actions/checkout
+      - name: 'Checkout project'
+        uses: actions/checkout@v3 # v3 for 18.04
+        with:
+          fetch-depth: 3
+
+      - name: 'Checkout helper ${{ github.event.inputs.helper-git-ref }}'
+        uses: actions/checkout@v4
+        with:
+          repository: xpack-dev-tools/xbb-helper-xpack
+          path: xpacks/@xpack-dev-tools/xbb-helper
+          ref: ${{ github.event.inputs.helper-git-ref }}
+          fetch-depth: 3
+
+      - name: 'Run ${{ github.event.inputs.version }} docker test'
+        uses: docker://arm32v7/node:lts-slim # Currently based on debian:12-slim
+        with:
+          entrypoint: /bin/bash # /usr/bin/linux32
+          args: /github/workspace/scripts/test.sh --image debian --version ${{ github.event.inputs.version }} --base-url pre-release
+
+      - name: Upload platform tests report
+        uses: actions/upload-artifact@v3 # v3 for 18.04
+        with:
+          name: tests-report-linux-arm
+          path: ${{ github.workspace }}/build/linux-arm/artefacts/tests-report-*.md
+          overwrite: true

@@ -16,10 +16,14 @@
 # https://docs.github.com/en/developers/webhooks-and-events/webhooks/webhook-events-and-payloads#workflow_dispatch
 # https://docs.github.com/en/rest/reference/actions#create-a-workflow-dispatch-event
 
+# https://github.com/actions/checkout
+# https://github.com/actions/upload-artifact
+# https://github.com/actions/download-artifact
+
 # -----------------------------------------------------------------------------
 
 
-name: 'Build xPack OpenOCD xbbma'
+name: 'Build xPack OpenOCD darwin-x64'
 
 on:
   workflow_dispatch:
@@ -52,29 +56,41 @@ on:
         required: false
         type: string
         default: ''
+      helper-git-ref:
+        description: 'The helper branch, tag or SHA to checkout'
+        required: false
+        default: 'xpack-develop'
 
 jobs:
 
-  macos-arm64:
-    name: 'macOS Arm - openocd ${{ github.event.inputs.version }} build'
+  darwin-x64-build:
+    name: 'darwin-x64 openocd ${{ github.event.inputs.version }} build'
     timeout-minutes: 2880 # 2 days
 
-    runs-on: [self-hosted, macos, apple]
+    runs-on: [self-hosted, macos, intel]
 
     steps:
-      - name: 'Environment'
+      - name: 'Show environment'
         run: |
           uname -a
           sw_vers
-          echo "whoami: $(whoami)"
+          ls -lA /Library/Developer/CommandLineTools/SDKs || true
+          ls -lA /Applications
+          xcode-select --print-path
+          xcodebuild -version || true
+          pkgutil --pkg-info=com.apple.pkg.CLTools_Executables || true
+          ls -l /Library/Developer/CommandLineTools/usr/include || true
           echo "pwd: $(pwd)"
+          echo "whoami: $(whoami)"
           echo "node: $(node --version)"
           echo "npm: $(npm --version)"
           ls -lLA
-          env | sort | egrep '^[^ \t]+='
+          env | sort | grep -E '^[^ \t]+='
 
-      - name: 'Clean working area'
-        run: rm -rf * .git*
+      - name: 'Clean working area' # Mandatory for self-hosted runners.
+        run: |
+          chmod -Rf a+w * || true
+          rm -rf * .git*
 
       - name: 'Checkout project'
         uses: actions/checkout@v1 # v1 for old Git
@@ -91,18 +107,25 @@ jobs:
         timeout-minutes: 1440
         run: xpm install --loglevel ${{ github.event.inputs.xpm_install_loglevel }} ${{ github.event.inputs.xpm_install_options }}
 
-      - name: 'Build macOS arm64 binary'
+      - name: 'Build darwin-x64 binaries'
         timeout-minutes: 1440
         run: |
-          xpm install --config darwin-arm64 --loglevel ${{ github.event.inputs.xpm_install_loglevel }} ${{ github.event.inputs.xpm_install_options }}
-          xpm run build --config darwin-arm64
-  
+          xpm install --config darwin-x64 --loglevel ${{ github.event.inputs.xpm_install_loglevel }} ${{ github.event.inputs.xpm_install_options }}
+          xpm run build --config darwin-x64
+
+      - name: Upload platform artefacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: deploy-darwin-x64
+          path: ${{ github.workspace }}/build/darwin-x64/deploy/*
+          overwrite: true
+
       - name: 'Publish pre-release'
         # https://github.com/ncipollo/release-action
-        uses: ncipollo/release-action@v1.13.0
+        uses: ncipollo/release-action@v1.14.0
         with:
           allowUpdates: true
-          artifacts: 'build/darwin-arm64/deploy/*'
+          artifacts: 'build/darwin-x64/deploy/*'
           bodyFile: '.github/workflows/body-github-pre-releases-test.md'
           commit: 'master'
           draft: false
@@ -120,3 +143,50 @@ jobs:
       - name: 'Rename working area'
         # For just in case absolute paths remain unprocessed.
         run: mv -v build build-$(date -u +%Y%m%d-%H%M%S)
+
+  darwin-x64-test:
+    name: 'darwin-x64 openocd ${{ github.event.inputs.version }} test'
+    # https://github.com/actions/runner-images/blob/main/images/macos/macos-12-Readme.md
+    runs-on: macos-12
+    needs: [darwin-x64-build]
+
+    steps:
+      - name: 'Show environment'
+        run: |
+          uname -a
+          sw_vers
+          ls -lA /Library/Developer/CommandLineTools/SDKs || true
+          ls -lA /Applications
+          sudo xcode-select --switch /Applications/Xcode_14.2.app
+          xcode-select --print-path
+          xcodebuild -version || true
+          pkgutil --pkg-info=com.apple.pkg.CLTools_Executables || true
+          clang++ -v
+          echo "whoami: $(whoami)"
+          echo "pwd: $(pwd)"
+          ls -lLA
+          env | sort | grep -E '^[^ \t]+='
+
+      # https://github.com/actions/checkout
+      - name: 'Checkout project'
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 3
+
+      - name: 'Checkout helper ${{ github.event.inputs.helper-git-ref }}'
+        uses: actions/checkout@v4
+        with:
+          repository: xpack-dev-tools/xbb-helper-xpack
+          path: xpacks/@xpack-dev-tools/xbb-helper
+          ref: ${{ github.event.inputs.helper-git-ref }}
+          fetch-depth: 3
+
+      - name: 'Run ${{ github.event.inputs.version }} native test'
+        run: bash scripts/test.sh --version ${{ github.event.inputs.version }} --base-url pre-release
+
+      - name: Upload platform tests report
+        uses: actions/upload-artifact@v4
+        with:
+          name: tests-report-darwin-x64
+          path: ${{ github.workspace }}/build/darwin-x64/artefacts/tests-report-*.md
+          overwrite: true
