@@ -52,6 +52,13 @@ helper_folder_path="${project_folder_path}/xpacks/@xpack-dev-tools/xbb-helper"
 tests_folder_path="$(dirname "${scripts_folder_path}")/tests"
 
 # -----------------------------------------------------------------------------
+# Options must be parsed as early as possible, being used even in application.sh.
+
+source "${helper_folder_path}/scripts/test-parse-options.sh"
+
+tests_parse_options "$@"
+
+# -----------------------------------------------------------------------------
 
 source "${scripts_folder_path}/application.sh"
 
@@ -84,8 +91,6 @@ then
 fi
 
 # -----------------------------------------------------------------------------
-
-tests_parse_options "$@"
 
 tests_perform_common
 
