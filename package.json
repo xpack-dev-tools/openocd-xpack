@@ -112,6 +112,7 @@
         "{{ properties.LIQUIDJS }} --template @xpacks/@xpack-dev-tools/xbb-helper/templates/publish-release-liquid.yml > .github/workflows/publish-release.yml",
         "{{ properties.LIQUIDJS }} --template @xpacks/@xpack-dev-tools/xbb-helper/templates/test-xpm-liquid.yml  > .github/workflows/test-xpm.yml",
         "{{ properties.LIQUIDJS }} --template @xpacks/@xpack-dev-tools/xbb-helper/templates/deep-clean-liquid.yml  > .github/workflows/deep-clean.yml",
+        "cp xpacks/@xpack-dev-tools/xbb-helper/templates/publish-github-pages.yml .github/workflows/publish-github-pages.yml",
         "cp xpacks/@xpack-dev-tools/xbb-helper/templates/dot.gitignore .gitignore",
         "cp xpacks/@xpack-dev-tools/xbb-helper/templates/dot.npmignore .npmignore",
         "cp xpacks/@xpack-dev-tools/xbb-helper/templates/build.sh scripts/",
