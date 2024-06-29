@@ -59,7 +59,7 @@ presented in the separate
 
 The original OpenOCD documentation is available in the project web:
 
-- https://openocd.org/pages/documentation.html ([PDF](http://openocd.org/doc-release/pdf/openocd.pdf))
+- https://openocd.org/pages/documentation.html ([PDF](https://openocd.org/doc/pdf/openocd.pdf))
 
 ## Support
 
