@@ -14,28 +14,33 @@ const FeatureList: FeatureItem[] = [
     Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        The xPack binaries can be added to projects
+        as <strong>development dependencies</strong>,
+        and conveniently installed with <code>xpm install</code>, a feature
+        especially useful in CI environments.
       </>
     ),
   },
   {
-    title: 'Focus on What Matters',
+    title: 'Multi-version, cross-platform',
     Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
     description: (
       <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
+        By design, <strong>multiple versions</strong> of the same tool
+        can be installed
+        at the same time on the same system. Most modern platforms are
+        supported.
       </>
     ),
   },
   {
-    title: 'Powered by React',
+    title: 'Part of the Node.js ecosystem',
     Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+        The <code>xpm</code> tool is an extension of <code>npm</code>, and
+        binary xPacks nicely integrate into the Node.js ecosystem, while still
+        allowing to install the binary archives manually.
       </>
     ),
   },

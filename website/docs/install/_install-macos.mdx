@@ -1,0 +1,72 @@
+
+import InstallEasy from './_install-easy.md';
+import InstallManual from './_install-manual.md';
+
+<InstallEasy/>
+
+### Test
+
+To check if the xpm installed OpenOCD starts, use something like:
+
+<pre><code className="language-console">{
+`$ ~/.local/xPacks/@xpack-dev-tools/openocd/${ props.version }-${ props.xpack_subversion }.1/.content/bin/openocd --version
+${ props.version }
+`}</code></pre>
+
+<InstallManual/>
+
+
+### Download
+
+The macOS versions of **xPack OpenOCD**
+are packed as `.tar.gz` archives.
+Download the latest version named like:
+
+<ul>
+<li><code>xpack-openocd-{ props.version }-{ props.xpack_subversion }-darwin-x64.tar.gz</code></li>
+<li><code>xpack-openocd-{ props.version }-{ props.xpack_subversion }-darwin-arm64.tar.gz</code></li>
+</ul>
+
+### Unpack
+
+<p>To manually install the xPack OpenOCD,
+unpack the archive and move it to <code>~/.local/xPacks/openocd/xpack-openocd-{ props.version }-{ props.xpack_subversion }</code>:</p>
+
+<pre><code className="language-console">{
+`mkdir -p ~/.local/xPacks/openocd
+cd ~/.local/xPacks/openocd
+
+tar xvf ~/Downloads/xpack-openocd-${ props.version }-${ props.xpack_subversion }-darwin-x64.tar.gz
+chmod -R -w xpack-openocd-${ props.version }-${ props.xpack_subversion }
+`}</code></pre>
+
+:::info
+For manual installs, the recommended
+install location is different from the xpm install folders.
+:::
+
+The result is a structure like:
+
+<pre><code className="language-console">{
+`$ tree -L 2 /Users/ilg/.local/xPacks/openocd/xpack-openocd-${ props.version }-${ props.xpack_subversion }
+/Users/ilg/.local/xPacks/openocd/xpack-openocd-${ props.version }-${ props.xpack_subversion }/
+├── README.md
+├── bin
+│   └── openocd
+└── distro-info
+    ├── CHANGELOG.md
+    ├── licenses
+    ├── patches
+    └── scripts
+
+5 directories, 3 files
+`}</code></pre>
+
+### Test
+
+To check if the manually installed OpenOCD starts, use something like:
+
+<pre><code className="language-console">{
+`$ ~/.local/xPacks/openocd/${ props.version }-${ props.xpack_subversion }/bin/openocd --version
+${ props.version }
+`}</code></pre>

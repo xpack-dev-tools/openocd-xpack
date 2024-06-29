@@ -1,0 +1,141 @@
+---
+title: A title
+description: A short description
+
+something: "Some text"
+
+# https://docusaurus.io/docs/api/plugins/@docusaurus/plugin-content-docs#markdown-front-matter
+---
+import CodeBlock from '@theme/CodeBlock';
+
+export const world = 'World'
+export const version = '11.2.1'
+export const xpackSubversion = '1.2'
+
+{frontMatter.description}
+
+{frontMatter.something}
+
+<p>abc {frontMatter.something} cde</p>
+
+Hello {world}!
+
+# Hello {world}!
+
+- Hello {world}!
+
+    One
+    Hello {world}!
+    Two
+
+Three `Hello {world}!` Four
+
+Three <code>Hello {world}!</code> Four
+
+<p>Three <code>Hello {world}!</code> Four</p>
+
+```bash
+Five
+Hello {world}!
+Six
+```
+
+<CodeBlock>
+Seven
+Hello {world}!
+Eight
+</CodeBlock>
+
+---
+
+## Admonitions
+
+:::note
+
+Some **content** with _Markdown_ `syntax`. Check [this `api`](#).
+
+:::
+
+:::note Custom text
+
+Some **content** with _Markdown_ `syntax`. Check [this `api`](#).
+
+:::
+
+:::tip
+
+Some **content** with _Markdown_ `syntax`. Check [this `api`](#).
+
+:::
+
+:::info
+
+Some **content** with _Markdown_ `syntax`. Check [this `api`](#).
+
+:::
+
+:::caution
+
+Some **content** with _Markdown_ `syntax`. Check [this `api`](#).
+
+:::
+
+:::danger
+
+Some **content** with _Markdown_ `syntax`. Check [this `api`](#).
+
+:::
+
+---
+
+## Expandable details
+
+<details>
+  <summary>How are <code>remark-math</code> and <code>rehype-katex</code> different?</summary>
+
+In case you are wondering how Remark and Rehype are different, here is a good example. `remark-math` operates on the Markdown AST, where it sees text like `$...$`, and all it does is transform that to the JSX `<span class="math math-inline">...</span>` without doing too much with the content. This decouples the extraction of math formulae from their rendering, which means you can swap $\KaTeX$ out with other math renderers, like MathJax (with [`rehype-mathjax`](https://github.com/remarkjs/remark-math/tree/main/packages/rehype-mathjax)), just by replacing the Rehype plugin.
+
+Next, the `rehype-katex` operates on the Hypertext AST where everything has been converted to HTML-like tags already. It traverses all the elements with `math` class and uses $\KaTeX$ to parse and render the content to actual HTML.
+
+</details>
+
+---
+
+## Section name with custom url {#custom}
+
+By default the url concatenates the words joined by dash.
+
+---
+
+## Code with file name
+
+```js title="src/remark/section-prefix.js"
+const visit = require('unist-util-visit');
+```
+
+---
+
+## Syntax highlighting
+
+- https://docusaurus.io/docs/markdown-features/code-blocks#syntax-highlighting
+- https://github.com/FormidableLabs/prism-react-renderer
+- https://github.com/FormidableLabs/prism-react-renderer/blob/master/packages/generate-prism-languages/index.ts
+
+---
+
+<pre><code className="language-console">{
+`$ tree -L 2 /home/ilg/.local/xPacks/arm-none-eabi-gcc/xpack-arm-none-eabi-gcc-${ version }-${ xpackSubversion }
+/home/ilg/.local/xPacks/arm-none-eabi-gcc/xpack-arm-none-eabi-gcc-${ version }-${ xpackSubversion }
+├── arm-none-eabi
+│   ├── bin
+│   ├── include
+│   ├── lib
+│   └── share
+├── README.md
+└── share
+    ├── doc
+    └── gcc-arm-none-eabi
+
+21 directories, 62 files
+`}</code></pre>
+

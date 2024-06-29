@@ -3,20 +3,20 @@ import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
-  title: 'My Site',
-  tagline: 'Dinosaurs are cool',
+  title: 'xPack OpenOCD',
+  tagline: 'A binary distribution of OpenOCD',
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
-  url: 'https://your-docusaurus-site.example.com',
+  url: 'https://xpack-dev-tools.github.io',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/',
+  baseUrl: '/openocd-xpack',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'facebook', // Usually your GitHub org/user name.
-  projectName: 'docusaurus', // Usually your repo name.
+  organizationName: 'xpack-dev-tools', // Usually your GitHub org/user name.
+  projectName: 'openocd-xpack', // Usually your repo name.
 
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -38,8 +38,10 @@ const config: Config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
-        },
+            'https://github.com/xpack-dev-tools/openocd-xpack/edit/xpack/website/',
+          showLastUpdateAuthor: true,
+          showLastUpdateTime: true,
+          },
         blog: {
           showReadingTime: true,
           // Please change this to your repo.
@@ -54,26 +56,74 @@ const config: Config = {
     ],
   ],
 
+  plugins: [
+    [
+      '@docusaurus/plugin-ideal-image',
+      {
+        quality: 70,
+        max: 1030, // max resized image's size.
+        min: 640, // min resized image's size. if original is lower, use that size.
+        steps: 2, // the max number of images generated between min and max (inclusive)
+        disableInDev: false,
+      },
+    ],
+  ],
+
   themeConfig: {
     // Replace with your project's social card
-    image: 'img/docusaurus-social-card.jpg',
+    // image: 'img/docusaurus-social-card.jpg',
     navbar: {
-      title: 'My Site',
+      title: 'The xPack Project',
       logo: {
         alt: 'My Site Logo',
-        src: 'img/logo.svg',
+        src: 'img/components-256.png',
+        href: 'https://xpack.github.io/',
       },
       items: [
         {
-          type: 'docSidebar',
-          sidebarId: 'tutorialSidebar',
-          position: 'left',
-          label: 'Tutorial',
+          to: '/',
+          // label: 'Home',
+          className: 'header-home-link',
+          position: 'left'
         },
-        {to: '/blog', label: 'Blog', position: 'left'},
         {
-          href: 'https://github.com/facebook/docusaurus',
-          label: 'GitHub',
+          type: 'dropdown',
+          label: 'Docs',
+          to: 'docs/overview',
+          position: 'left',
+          items: [
+            {
+              label: 'Overview',
+              to: '/docs/overview'
+            },
+            {
+              label: 'Install',
+              to: '/docs/install'
+            },
+            {
+              label: 'Support',
+              to: '/docs/support'
+            },
+            {
+              label: 'Releases',
+              to: '/docs/releases'
+            }
+          ]
+        },
+        {
+          to: '/blog',
+          label: 'Blog',
+          position: 'left'
+        },
+        {
+          href: 'https://github.com/xpack-dev-tools/openocd-xpack/',
+          position: 'right',
+          className: 'header-github-link',
+          'aria-label': 'GitHub repository',
+        },
+        {
+          href: 'https://github.com/xpack-dev-tools/',
+          label: 'xpack-dev-tools',
           position: 'right',
         },
       ],
@@ -85,8 +135,16 @@ const config: Config = {
           title: 'Docs',
           items: [
             {
-              label: 'Tutorial',
-              to: '/docs/intro',
+              label: 'Install',
+              to: '/docs/install',
+            },
+            {
+              label: 'Support',
+              to: '/docs/support',
+            },
+            {
+              label: 'Releases',
+              to: '/docs/releases',
             },
           ],
         },
@@ -95,15 +153,15 @@ const config: Config = {
           items: [
             {
               label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/questions/tagged/docusaurus',
+              href: 'https://stackoverflow.com/questions/tagged/xpack',
             },
             {
               label: 'Discord',
-              href: 'https://discordapp.com/invite/docusaurus',
+              href: 'https://discord.gg/kbzWaJerFG',
             },
             {
               label: 'Twitter',
-              href: 'https://twitter.com/docusaurus',
+              href: 'https://twitter.com/xpack_project',
             },
           ],
         },
@@ -116,12 +174,16 @@ const config: Config = {
             },
             {
               label: 'GitHub',
-              href: 'https://github.com/facebook/docusaurus',
+              href: 'https://github.com/xpack-dev-tools/openocd-xpack/',
+            },
+            {
+              label: 'xpack-dev-tools',
+              href: 'https://github.com/xpack-dev-tools/',
             },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Liviu Ionescu. Built with Docusaurus.`,
     },
     prism: {
       theme: prismThemes.github,

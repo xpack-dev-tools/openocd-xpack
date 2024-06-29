@@ -1,0 +1,76 @@
+
+import InstallEasy from './_install-easy.md';
+import InstallManual from './_install-manual.md';
+
+<InstallEasy/>
+
+### Test
+
+To check if the xpm installed OpenOCD starts, use something like:
+
+<pre><code className="language-console">{
+`$ ~/.local/xPacks/@xpack-dev-tools/openocd/${ props.version }-${ props.xpack_subversion }.1/.content/bin/openocd --version
+${ props.version }
+`}</code></pre>
+
+<InstallManual/>
+
+### Download
+
+The GNU/Linux versions of **xPack OpenOCD**
+are packed as `.tar.gz` archives.
+Download the latest version named like:
+
+<ul>
+<li><code>xpack-openocd-{ props.version }-{ props.xpack_subversion }-linux-x64.tar.gz</code></li>
+<li><code>xpack-openocd-{ props.version }-{ props.xpack_subversion }-linux-arm.tar.gz</code></li>
+<li><code>xpack-openocd-{ props.version }-{ props.xpack_subversion }-linux-arm64.tar.gz</code></li>
+</ul>
+
+As the name implies, these are GNU/Linux `tar.gz` archives; they were build on
+Ubuntu, but can be executed on most recent GNU/Linux distributions.
+
+### Unpack
+
+<p>To manually install the xPack OpenOCD,
+unpack the archive and move it
+to <code>~/.local/xPacks/openocd/xpack-openocd-{ props.version }-{ props.xpack_subversion }</code>:</p>
+
+<pre><code className="language-console">{
+`mkdir -p ~/.local/xPacks/openocd
+cd ~/.local/xPacks/openocd
+
+tar xvf ~/Downloads/xpack-openocd-${ props.version }-${ props.xpack_subversion }-linux-x64.tar.gz
+chmod -R -w xpack-openocd-${ props.version }-${ props.xpack_subversion }
+`}</code></pre>
+
+:::info
+For manual installs, the recommended
+install location is slightly different from the xpm install folders,
+which use the scope (like `@xpack-dev-tools`) to group different tools,
+and `.content` to store the unpacked archive."
+:::
+
+<pre><code className="language-console">{
+`$ tree -L 2 /home/ilg/.local/xPacks/openocd/xpack-openocd-${ props.version }-${ props.xpack_subversion }
+/home/ilg/.local/xPacks/openocd/xpack-openocd-${ props.version }-${ props.xpack_subversion }/
+├── bin
+│   └── openocd
+├── distro-info
+│   ├── CHANGELOG.md
+│   ├── licenses
+│   ├── patches
+│   └── scripts
+└── README.md
+
+5 directories, 3 files
+`}</code></pre>
+
+### Test
+
+To check if the manually installed OpenOCD starts, use something like:
+
+<pre><code className="language-console">{
+`$ ~/.local/xPacks/openocd/xpack-openocd-${ props.version }-${ props.xpack_subversion }/bin/openocd --version
+${ props.version }
+`}</code></pre>

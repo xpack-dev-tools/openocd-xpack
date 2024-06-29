@@ -1,0 +1,40 @@
+---
+title: How to install the xPack OpenOCD binaries
+
+summary: "The recommended method is via xpm."
+
+date: 2020-09-27 11:09:00 +0300
+
+version: "0.12.0"
+xpack_subversion: "3"
+
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+import InstallWindows from './_install-windows.mdx';
+import InstallMacOS from './_install-macos.mdx';
+import InstallLinux from './_install-linux.mdx';
+
+## Overview
+
+The **xPack OpenOCD** can be installed automatically, via `xpm` (the
+recommended method), or manually, by downloading and unpacking one of the
+portable archives.
+
+<Tabs groupId="operating-systems">
+  <TabItem value="windows" label="Windows" default>
+    <InstallWindows version={frontMatter.version} xpack_subversion={frontMatter.xpack_subversion}/>
+  </TabItem>
+  <TabItem value="macos" label="macOS">
+    <InstallMacOS version={frontMatter.version} xpack_subversion={frontMatter.xpack_subversion}/>
+  </TabItem>
+  <TabItem value="linux" label="GNU/Linux">
+    <InstallLinux version={frontMatter.version} xpack_subversion={frontMatter.xpack_subversion}/>
+  </TabItem>
+</Tabs>
+
+## Testing
+
+TODO

@@ -3,8 +3,8 @@
  * and scoped locally.
  */
 
-.heroBanner {
-  padding: 4rem 0;
+ .heroBanner {
+  padding: 2rem 0; /* 4rem 0; */
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -21,3 +21,17 @@
   align-items: center;
   justify-content: center;
 }
+
+/* -------------------------------------------------------------------------- */
+
+/** Reduce the width of the install code */
+.installWithCopy {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.installWithCopy > div > div {
+  padding: 0 2em;
+}
+
+/* -------------------------------------------------------------------------- */
