@@ -57,9 +57,9 @@ presented in the separate
 
 ## Documentation
 
-The original OpenOCD documentation is available in the installed folders:
+The original OpenOCD documentation is available in the project web:
 
-- https://openocd.org/pages/documentation.html
+- https://openocd.org/pages/documentation.html ([PDF](http://openocd.org/doc-release/pdf/openocd.pdf))
 
 ## Support
 
