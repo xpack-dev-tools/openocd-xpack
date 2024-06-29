@@ -56,6 +56,27 @@ jobs:
 
 
 
+  win32-x64:
+    name: 'win32-x64 openocd ${{ github.event.inputs.version }} clean'
+    timeout-minutes: 5760 # 4 days
+    runs-on: [self-hosted, linux, x64]
+    steps:
+      - name: 'Show environment'
+        run: |
+          uname -a
+          lsb_release -sd
+          echo "whoami: $(whoami)"
+          echo "pwd: $(pwd)"
+          ls -lLA
+          env | sort | grep -E '^[^ \t]+='
+
+      - name: 'Clean working area' # Mandatory for self-hosted runners.
+        run: |
+          chmod -Rf a+w * || true
+          rm -rf * .git*
+
+
+
   linux-arm:
     name: 'linux-arm openocd ${{ github.event.inputs.version }} clean'
     timeout-minutes: 2880 # 2 days
