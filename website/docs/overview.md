@@ -27,21 +27,22 @@ All binaries are:
 - **file-system relocatable**
 (can be installed in any location).
 
-Multiple versions can be installed on the same system, for each project.
+It is perfectly possible to install multiple versions concurrently on the
+same system, allowing different projects to be tied to specific versions.
 
 ## Benefits
 
 The main advantages of using the **xPack OpenOCD** are:
 
-- a convenient, uniform and portable install/uninstall/upgrade procedure,
+- a convenient, uniform and portable install/uninstall/upgrade procedure;
   the same procedure is used for all major
   platforms (**Intel Windows** 64-bit,
   **Intel GNU/Linux** 64-bit,
   **Arm GNU/Linux** 64/32-bit,
   **Intel macOS** 64-bit,
   **Apple Silicon macOS** 64-bit)
-- a good integration with development environments (no Docker images)
-- a simplifying solution for **CI** environment
+- a good integration with development environments (no need for Docker images)
+- an easy to use solution for **CI** environments
 
 ## Compatibility
 
