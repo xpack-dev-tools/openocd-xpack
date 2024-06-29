@@ -21,8 +21,13 @@ an open source project hosted on
 
 ## Features
 
-All binaries are **self-contained** (include all required libraries) and **file-system relocatable**
-(can be installed in any location). Multiple versions can be installed on the same system, for each project.
+All binaries are:
+
+- **self-contained** (include all required libraries)
+- **file-system relocatable**
+(can be installed in any location).
+
+Multiple versions can be installed on the same system, for each project.
 
 ## Benefits
 
