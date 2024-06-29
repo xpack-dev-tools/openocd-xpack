@@ -12,6 +12,9 @@
 
 function tests_run_all()
 {
+  echo
+  echo "[${FUNCNAME[0]} $@]"
+
   local test_bin_path="$1"
 
   openocd_test "${test_bin_path}"
