@@ -43,6 +43,11 @@ function application_build_versioned_components()
 
       XBB_TEXINFO_VERSION="7.1"
       XBB_LIBUSB1_VERSION="1.0.27"
+    elif [ "${XBB_RELEASE_VERSION}" == "0.12.0-4" ]
+    then
+      XBB_OPENOCD_GIT_URL="https://github.com/openocd-org/openocd.git"
+      XBB_OPENOCD_GIT_BRANCH="master"
+      XBB_OPENOCD_GIT_COMMIT="HEAD"
     else
       echo "Unsupported ${XBB_APPLICATION_LOWER_CASE_NAME} version ${XBB_RELEASE_VERSION}"
       exit 1
