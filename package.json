@@ -63,7 +63,7 @@
       "openocd": "./.content/bin/openocd"
     },
     "devDependencies": {
-      "@xpack-dev-tools/xbb-helper": "^2.1.35"
+      "@xpack-dev-tools/xbb-helper": "^2.1.20"
     },
     "properties": {
       "appName": "OpenOCD",
@@ -74,7 +74,7 @@
       "buildFolderRelativePathPosix": "{{ 'build' | path_posix_join: configuration.name | downcase }}",
       "commandBashBuild": "bash {{ properties.dbg }} scripts/build.sh --target {{ configuration.name }} --build-folder {{ properties.buildFolderRelativePathPosix }}",
       "xpm-version": "0.18.0",
-      "xpm-install-loglevel": "trace",
+      "xpm-install-loglevel": "info",
       "dbg": ""
     },
     "actions": {
