@@ -28,7 +28,7 @@ maintenance window for Long-Term Support (LTS) release on 31 May 2023.
 As a courtesy, the xPack GNU/Linux releases will continue to be based on
 Ubuntu 18.04 for another year.
 
-From mid-2024 onwards, the GNU/Linux binaries will be built on **Debian 10**,
+From 2025 onwards, the GNU/Linux binaries will be built on **Debian 10**,
 (**GLIBC 2.28**), and are also expected to run on RedHat 8.
 
 Users are urged to update their build and test infrastructure to
