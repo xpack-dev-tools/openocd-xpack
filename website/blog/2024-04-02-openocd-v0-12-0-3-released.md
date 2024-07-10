@@ -18,15 +18,9 @@ comments: true
 date:   2024-04-02 10:43:52 +0300
 authors: ilg-ul
 
-# For Jekyll releases selection.
-categories:
-  - releases
-  - openocd
-
-# For navigation; use scripts/createtag.sh in Jekyll.
+# To be listed in the Releases page.
 tags:
-  - releases
-  - openocd
+  - release
 
 ---
 

@@ -7,4 +7,6 @@ date: 2020-09-28 17:53:00 +0300
 
 ---
 
-TBD
+import { ReleasesList } from '@site/src/components/ReleasesList';
+
+<ReleasesList />

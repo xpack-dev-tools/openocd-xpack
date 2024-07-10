@@ -67,6 +67,7 @@ const config: Config = {
         disableInDev: false,
       },
     ],
+    './src/plugins/SelectReleasesPlugin',
   ],
 
   themeConfig: {
