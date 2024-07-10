@@ -1,13 +1,6 @@
 ---
 title:  xPack OpenOCD v0.10.0-13 released
 
-summary: "Version 0.10.0-13 is a maintenance release of **xPack OpenOCD**; it updates to
-the latest upstream master."
-
-version: 0.10.0-13
-npm_subversion: 1
-download_url: https://github.com/xpack-dev-tools/openocd-xpack/releases/tag/v0.10.0-13/
-
 date:   2019-07-17 19:57:00 +0300
 
 authors: ilg-ul
@@ -15,6 +8,11 @@ authors: ilg-ul
 # To be listed in the Releases page.
 tags:
   - release
+
+# Custom properties.
+version: 0.10.0-13
+npm_subversion: 1
+download_url: https://github.com/xpack-dev-tools/openocd-xpack/releases/tag/v0.10.0-13/
 
 ---
 

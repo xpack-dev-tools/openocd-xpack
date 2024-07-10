@@ -1,18 +1,6 @@
 ---
 title:  xPack OpenOCD v0.11.0-5 released
 
-TODO: select one summary
-
-summary: "Version **0.11.0-5** is a maintenance release of **xPack OpenOCD**; it updates to
-the latest upstream master."
-
-version: "0.11.0-5"
-npm_subversion: "1"
-upstream_version: "0.11.0"
-upstream_commit: "6db57051d070fc8d6bb54d21413e5e8610972651"
-upstream_release_date: "21 Aug 2022"
-download_url: https://github.com/xpack-dev-tools/openocd-xpack/releases/tag/v0.11.0-5/
-
 date:   2022-09-01 21:29:34 +0300
 
 authors: ilg-ul
@@ -20,6 +8,14 @@ authors: ilg-ul
 # To be listed in the Releases page.
 tags:
   - release
+
+# Custom properties.
+version: "0.11.0-5"
+npm_subversion: "1"
+upstream_version: "0.11.0"
+upstream_commit: "6db57051d070fc8d6bb54d21413e5e8610972651"
+upstream_release_date: "21 Aug 2022"
+download_url: https://github.com/xpack-dev-tools/openocd-xpack/releases/tag/v0.11.0-5/
 
 ---
 

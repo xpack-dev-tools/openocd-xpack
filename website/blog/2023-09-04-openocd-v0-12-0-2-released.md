@@ -1,9 +1,15 @@
 ---
 title:  xPack OpenOCD v0.12.0-2 released
 
-summary: "Version **0.12.0-2** is a maintenance release of **xPack OpenOCD**; it updates to
-the latest upstream master."
+date:   2023-09-05 02:21:20 +0300
 
+authors: ilg-ul
+
+# To be listed in the Releases page.
+tags:
+  - release
+
+# Custom properties.
 upstream_version: "0.12.0"
 upstream_commit: "18281b0"
 upstream_release_date: "Sep 2, 2023"
@@ -12,14 +18,6 @@ version: "0.12.0-2"
 npm_subversion: "1"
 
 download_url: https://github.com/xpack-dev-tools/openocd-xpack/releases/tag/v0.12.0-2/
-
-date:   2023-09-05 02:21:20 +0300
-
-authors: ilg-ul
-
-# To be listed in the Releases page.
-tags:
-  - release
 
 ---
 

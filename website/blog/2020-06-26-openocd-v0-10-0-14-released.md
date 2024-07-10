@@ -1,14 +1,6 @@
 ---
 title:  xPack OpenOCD v0.10.0-14 released
 
-summary: "Version 0.10.0-14 is a maintenance release of **xPack OpenOCD**; it updates to
-the latest upstream master and adds support for running on Arm
-platforms, like Raspberry Pi."
-
-version: 0.10.0-14
-npm_subversion: 3
-download_url: https://github.com/xpack-dev-tools/openocd-xpack/releases/tag/v0.10.0-14/
-
 date:   2020-06-24 13:05:00 +0300
 
 authors: ilg-ul
@@ -16,6 +8,11 @@ authors: ilg-ul
 # To be listed in the Releases page.
 tags:
   - release
+
+# Custom properties.
+version: 0.10.0-14
+npm_subversion: 3
+download_url: https://github.com/xpack-dev-tools/openocd-xpack/releases/tag/v0.10.0-14/
 
 ---
 

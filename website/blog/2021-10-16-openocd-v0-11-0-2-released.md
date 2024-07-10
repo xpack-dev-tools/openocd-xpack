@@ -1,15 +1,6 @@
 ---
 title:  xPack OpenOCD v0.11.0-2 released
 
-TODO: select one summary
-
-summary: "Version **0.11.0-2** is a maintenance release of **xPack OpenOCD**; it updates to
-the latest upstream master."
-
-version: 0.11.0-2
-npm_subversion: 1
-download_url: https://github.com/xpack-dev-tools/openocd-xpack/releases/tag/v0.11.0-2/
-
 date:   2021-10-17 01:27:46 +0300
 
 # redirect_from:
@@ -20,6 +11,11 @@ authors: ilg-ul
 # To be listed in the Releases page.
 tags:
   - release
+
+# Custom properties.
+version: 0.11.0-2
+npm_subversion: 1
+download_url: https://github.com/xpack-dev-tools/openocd-xpack/releases/tag/v0.11.0-2/
 
 ---
 

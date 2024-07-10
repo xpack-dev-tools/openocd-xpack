@@ -1,12 +1,6 @@
 ---
 title:  xPack OpenOCD v0.11.0-3 released
 
-summary: "Version **0.11.0-3** is a maintenance release of **xPack OpenOCD**; it updates to the latest upstream master, **adds support for Apple Silicon** and uses the latest build scripts."
-
-version: 0.11.0-3
-npm_subversion: 1
-download_url: https://github.com/xpack-dev-tools/openocd-xpack/releases/tag/v0.11.0-3/
-
 date:   2021-12-07 20:11:14 +0200
 
 authors: ilg-ul
@@ -15,11 +9,16 @@ authors: ilg-ul
 tags:
   - release
 
+# Custom properties.
+version: 0.11.0-3
+npm_subversion: 1
+download_url: https://github.com/xpack-dev-tools/openocd-xpack/releases/tag/v0.11.0-3/
+
 ---
 
 import CodeBlock from '@theme/CodeBlock';
 
-Version **0.11.0-3** is a maintenance release of **xPack OpenOCD**; it updates to the latest upstream master, adds support for Apple Silicon and uses the latest build scripts.
+Version **0.11.0-3** is a maintenance release of **xPack OpenOCD**; it updates to the latest upstream master, **adds support for Apple Silicon** and uses the latest build scripts.
 
 <!-- truncate -->
 

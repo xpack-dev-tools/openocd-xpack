@@ -1,13 +1,6 @@
 ---
 title:  xPack OpenOCD v0.11.0-1 released
 
-summary: "Version 0.11.0-1 is a new major release; it updates to
-the latest upstream major release."
-
-version: 0.11.0-1
-npm_subversion: 1
-download_url: https://github.com/xpack-dev-tools/openocd-xpack/releases/tag/v0.11.0-1/
-
 date:   2021-03-15 19:07:00 +0200
 
 authors: ilg-ul
@@ -15,6 +8,11 @@ authors: ilg-ul
 # To be listed in the Releases page.
 tags:
   - release
+
+# Custom properties.
+version: 0.11.0-1
+npm_subversion: 1
+download_url: https://github.com/xpack-dev-tools/openocd-xpack/releases/tag/v0.11.0-1/
 
 ---
 

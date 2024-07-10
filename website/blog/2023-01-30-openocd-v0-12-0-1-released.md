@@ -1,15 +1,6 @@
 ---
 title:  xPack OpenOCD v0.12.0-1 released
 
-summary: "Version **0.12.0-1** is a new release; it follows the upstream release."
-
-version: "0.12.0-1"
-npm_subversion: "1"
-upstream_version: "0.12.0"
-upstream_commit: "9ea7f3d"
-upstream_release_date: "15 Jan 2022"
-download_url: https://github.com/xpack-dev-tools/openocd-xpack/releases/tag/v0.12.0-1/
-
 date:   2023-01-30 18:00:11 +0200
 
 authors: ilg-ul
@@ -17,6 +8,14 @@ authors: ilg-ul
 # To be listed in the Releases page.
 tags:
   - release
+
+# Custom properties.
+version: "0.12.0-1"
+npm_subversion: "1"
+upstream_version: "0.12.0"
+upstream_commit: "9ea7f3d"
+upstream_release_date: "15 Jan 2022"
+download_url: https://github.com/xpack-dev-tools/openocd-xpack/releases/tag/v0.12.0-1/
 
 ---
 
