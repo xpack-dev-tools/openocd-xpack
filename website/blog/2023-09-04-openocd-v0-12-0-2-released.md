@@ -126,7 +126,7 @@ xpm uninstall --global @xpack-dev-tools/openocd
 
 ## Compliance
 
-The xPack OpenOCD generally follows the official
+The **xPack OpenOCD** generally follows the official
 [OpenOCD](https://openocd.org) releases.
 
 The current version is based on:
