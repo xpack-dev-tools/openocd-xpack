@@ -38,8 +38,8 @@ like **Raspberry Pi**, was added.
 
 ## Download
 
-The binary files are available from GitHub
-<a href={frontMatter.download_url}>Releases</a>.
+The binary files are available from
+<a href={frontMatter.download_url}>GitHub Releases</a>.
 
 ## Install
 
