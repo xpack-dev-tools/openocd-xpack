@@ -1,0 +1,240 @@
+---
+title:  xPack OpenOCD v0.11.0-1 released
+
+summary: "Version 0.11.0-1 is a new major release; it updates to
+the latest upstream major release."
+
+version: 0.11.0-1
+npm_subversion: 1
+download_url: https://github.com/xpack-dev-tools/openocd-xpack/releases/tag/v0.11.0-1/
+
+date:   2021-03-15 19:07:00 +0200
+
+authors: ilg-ul
+
+# To be listed in the Releases page.
+tags:
+  - release
+
+---
+
+import CodeBlock from '@theme/CodeBlock';
+
+Version **0.11.0-1** is a new release of **xPack OpenOCD**, following the OpenOCD release.
+
+<!-- truncate -->
+
+[The xPack OpenOCD](https://xpack.github.io/openocd/)
+is a standalone cross-platform binary distribution of
+[OpenOCD](https://openocd.org).
+
+There are separate binaries for **Windows** (Intel 32/64-bit),
+**macOS** (Intel 64-bit) and **GNU/Linux** (Intel 32/64-bit, Arm 32/64-bit).
+
+:::note Raspberry Pi
+
+The main targets for the Arm binaries
+are the **Raspberry Pi** class devices (armv7l and aarch64;
+armv6 is not supported).
+
+:::
+
+## Download
+
+The binary files are available from GitHub
+<a href={frontMatter.download_url}>Releases</a>.
+
+## Install
+
+The full details of installing the **xPack OpenOCD** on various platforms
+are presented in the separate
+[Install](/docs/install/) page.
+
+### Easy install
+
+The easiest way to install OpenOCD is with
+[`xpm`](https://xpack.github.io/xpm/)
+by using the **binary xPack**, available as
+[`@xpack-dev-tools/openocd`](https://www.npmjs.com/package/@xpack-dev-tools/openocd)
+from the [`npmjs.com`](https://www.npmjs.com) registry.
+
+To install the latest version available, use:
+
+```sh
+xpm install --global @xpack-dev-tools/openocd@latest --verbose
+```
+
+To install this specific version, use:
+
+<CodeBlock language="sh">
+{'xpm install @xpack-dev-tools/openocd@' + frontMatter.version + '.' + frontMatter.npm_subversion + ' --verbose'}
+</CodeBlock>
+
+## Compliance
+
+The xPack OpenOCD generally follows the official
+[OpenOCD](https://openocd.org) releases.
+
+The current version is based on:
+
+- OpenOCD version 0.11.0, the development commit
+[f342aac08](https://github.com/xpack-dev-tools/openocd/commit/f342aac0845a69d591ad39a025d74e9c765f6420)
+from March 7, 2021.
+
+## Changes
+
+There are no functional changes.
+
+Compared to the upstream, the following changes were applied:
+
+- a configure option was added to configure branding (`--enable-branding`)
+- the `src/openocd.c` file was edited to display the branding string
+- the `contrib/60-openocd.rules` file was simplified to avoid protection
+  related issues.
+
+## Bug fixes
+
+- none
+
+## Enhancements
+
+- none
+
+## Known problems
+
+- none
+
+## Shared libraries
+
+On all platforms the packages are standalone, and expect only the standard
+runtime to be present on the host.
+
+All dependencies that are build as shared libraries are copied locally in the
+same folder as the executable.
+
+### `DT_RPATH` and `LD_LIBRARY_PATH`
+
+On GNU/Linux the binaries are adjusted to use a relative path:
+
+```console
+$ readelf -d library.so | grep runpath
+ 0x000000000000001d (RPATH)            Library rpath: [$ORIGIN]
+```
+
+In the GNU ld.so search strategy, the `DT_RPATH` has
+the highest priority, higher than `LD_LIBRARY_PATH`, so if this later one
+is set in the environment, it should not interfere with the xPack binaries.
+
+Please note that previous versions, up to mid-2020, used `DT_RUNPATH`, which
+has a priority lower than `LD_LIBRARY_PATH`, and does not tolerate setting
+it in the environment.
+
+### `@executable_path`
+
+Similarly, on macOS, the binaries are adjusted with `otool` to use a
+relative path.
+
+## Documentation
+
+The original documentation is available in the `share/doc` folder.
+
+## Supported platforms
+
+Binaries for **Windows**, **macOS** and **Intel/Arm GNU/Linux** are provided.
+
+The binaries were built using the
+[xPack Build Box (XBB)](https://github.com/xpack/xpack-build-box), a set
+of build environments based on slightly older distributions, that should be
+compatible with most recent systems.
+
+- Intel GNU/Linux: all binaries were built with GCC 9.3, running in an
+  Ubuntu 12 Docker container
+- Arm GNU/Linux: all binaries were built with GCC 9.3, running in an
+  Ubuntu 16 Docker container (added in mid-2020)
+- Windows: all binaries were built with mingw-w64 GCC 9.3, running in an
+  Ubuntu 12 Docker container
+- macOS: all binaries were built with GCC 9.3, running in a separate
+  folder on macOS 10.10.5.
+
+## Build
+
+The scripts used to build this distribution are in:
+
+- `distro-info/scripts`
+
+For the prerequisites and more details on the build procedure, please see the
+[README-MAINTAINER](https://github.com/xpack-dev-tools/openocd-xpack/blob/xpack/README-MAINTAINER.md) page.
+
+## Travis tests
+
+The first set of tests were performed on Travis, by running
+a simple script to check if the binaries start on a wide range of
+platforms and distributions:
+
+- [test xPack OpenOCD on stable platforms](https://travis-ci.com/github/xpack-dev-tools/openocd-xpack/builds/220170135)
+- [test xPack OpenOCD on latest platforms](https://travis-ci.com/github/xpack-dev-tools/openocd-xpack/builds/220171082)
+
+## Tests
+
+The binaries were testes on Windows 10 Pro 32/64-bit, Intel Ubuntu 18
+LTS 64-bit, Intel Xubuntu 18 LTS 32-bit and macOS 10.15.
+
+Install the package with xpm.
+
+The simple test, consists in starting the binaries
+only to identify the STM32F4DISCOVERY board.
+
+```console
+.../xpack-openocd-0.11.0-1/bin/openocd -f board/stm32f4discovery.cfg
+```
+
+A more complex test consist in programming and debugging a simple blinky
+application on the STM32F4DISCOVERY board. The binaries were
+those generated by
+[simple Eclipse projects](https://github.com/xpack-dev-tools/arm-none-eabi-gcc-xpack/tree/xpack/tests/eclipse)
+available in the **xPack GNU Arm Embedded GCC** project.
+
+## Checksums
+
+The SHA-256 hashes for the files are:
+
+```txt
+3e3719fd059d87f3433f1f6d8e37b8582e87ae6a168287eb32a85dbc0f2e1708
+xpack-openocd-0.11.0-1-darwin-x64.tar.gz
+
+6ffe37f305e117e21ca2b7a82b10ed06758968472aa39a2573911ae74a67da3e
+xpack-openocd-0.11.0-1-linux-arm64.tar.gz
+
+24c5de0839b8c5cb3476d6fb7b9f528daba14b434a00d60ef71d4e4da3131262
+xpack-openocd-0.11.0-1-linux-arm.tar.gz
+
+fb38cc36c31eccbfcb824684596fb16dde91f9c9a42a954d9c26e678cc1a5fc1
+xpack-openocd-0.11.0-1-linux-ia32.tar.gz
+
+5972fe70a274f054503dd519b68d3909b83f017b5b8dd2b59e84b3b72c9bc3e1
+xpack-openocd-0.11.0-1-linux-x64.tar.gz
+
+b556754ee621962d41f89b229115ecf5e067b6ae76e91e210d7f53d657769296
+xpack-openocd-0.11.0-1-win32-ia32.zip
+
+ec37f535265ce93953a874b10d07e8578f9814c206d8bce6a241ba7016297e4f
+xpack-openocd-0.11.0-1-win32-x64.zip
+```
+
+## Download analytics
+
+import Image from '@theme/IdealImage';
+
+- GitHub [xpack-dev-tools/openocd-xpack](https://github.com/xpack-dev-tools/openocd-xpack/)
+  - this release <a href={ 'https://github.com/xpack-dev-tools/openocd-xpack/releases/v' + frontMatter.version + '/' }><Image img={ 'https://img.shields.io/github/downloads/xpack-dev-tools/openocd-xpack/v' + frontMatter.version + '/total.svg' } alt='Github Release'/></a>
+  - all xPack releases [![Github All Releases](https://img.shields.io/github/downloads/xpack-dev-tools/openocd-xpack/total.svg)](https://github.com/xpack-dev-tools/openocd-xpack/releases/)
+  - all GNU MCU Eclipse releases [![Github All Releases](https://img.shields.io/github/downloads/gnu-mcu-eclipse/openocd/total.svg)](https://github.com/gnu-mcu-eclipse/openocd/releases/)
+  - [individual file counters](https://somsubhra.github.io/github-release-stats/?username=xpack-dev-tools&repository=openocd-xpack) (grouped per release)
+- npmjs.com [@xpack-dev-tools/openocd](https://www.npmjs.com/package/@xpack-dev-tools/openocd)
+  - latest releases [![npm](https://img.shields.io/npm/dw/@xpack-dev-tools/openocd.svg)](https://www.npmjs.com/package/@xpack-dev-tools/openocd/)
+  - all @xpack-dev-tools releases [![npm](https://img.shields.io/npm/dt/@xpack-dev-tools/openocd.svg)](https://www.npmjs.com/package/@xpack-dev-tools/openocd/)
+  - all @gnu-mcu-eclipse releases [![npm](https://img.shields.io/npm/dt/@gnu-mcu-eclipse/openocd.svg)](https://www.npmjs.com/package/@gnu-mcu-eclipse/openocd/)
+
+Credit to [Shields IO](https://shields.io) for the badges and to
+[Somsubhra/github-release-stats](https://github.com/Somsubhra/github-release-stats)
+for the individual file counters.

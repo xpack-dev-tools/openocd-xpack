@@ -1,18 +1,13 @@
 ---
-title:  xPack OpenOCD v0.12.0-3 released
+title:  xPack OpenOCD v0.11.0-3 released
 
-summary: "Version **0.12.0-3** is a maintenance release of **xPack OpenOCD**; it updates to the latest upstream master."
+summary: "Version **0.11.0-3** is a maintenance release of **xPack OpenOCD**; it updates to the latest upstream master, **adds support for Apple Silicon** and uses the latest build scripts."
 
-upstream_version: "0.12.0"
-upstream_commit: "dd175827"
-upstream_release_date: "1 Apr 2024"
+version: 0.11.0-3
+npm_subversion: 1
+download_url: https://github.com/xpack-dev-tools/openocd-xpack/releases/tag/v0.11.0-3/
 
-version: "0.12.0-3"
-npm_subversion: "1"
-
-download_url: https://github.com/xpack-dev-tools/openocd-xpack/releases/tag/v0.12.0-3/
-
-date:   2024-04-02 10:43:52 +0300
+date:   2021-12-07 20:11:14 +0200
 
 authors: ilg-ul
 
@@ -24,18 +19,17 @@ tags:
 
 import CodeBlock from '@theme/CodeBlock';
 
-Version **0.12.0-3** is a maintenance release of **xPack OpenOCD**; it updates to
-the latest upstream master.
+Version **0.11.0-3** is a maintenance release of **xPack OpenOCD**; it updates to the latest upstream master, adds support for Apple Silicon and uses the latest build scripts.
 
-<!--truncate-->
+<!-- truncate -->
 
-[The xPack OpenOCD](https://xpack.github.io/openocd/)
+[The xPack OpenOCD](https://xpack.github.io/dev-tools/openocd/)
 is a standalone cross-platform binary distribution of
 [OpenOCD](https://openocd.org).
 
-There are separate binaries for **Windows** (Intel 64-bit),
+There are separate binaries for **Windows** (Intel 32/64-bit),
 **macOS** (Intel 64-bit, Apple Silicon 64-bit)
-and **GNU/Linux** (Intel 64-bit, Arm 32/64-bit).
+and **GNU/Linux** (Intel 32/64-bit, Arm 32/64-bit).
 
 :::note Raspberry Pi
 
@@ -52,13 +46,13 @@ The binary files are available from GitHub
 
 ## Prerequisites
 
-- GNU/Linux Intel 64-bit: any system with **GLIBC 2.27** or higher
-  (like Ubuntu 18 or later, Debian 10 or later, RedHat 8 later,
-  Fedora 29 or later, etc)
-- GNU/Linux Arm 32/64-bit: any system with **GLIBC 2.27** or higher
-  (like Raspberry Pi OS, Ubuntu 18 or later, Debian 10 or later, RedHat 8 later,
-  Fedora 29 or later, etc)
-- Intel Windows 64-bit: Windows 7 with the Universal C Runtime
+- Intel GNU/Linux 32/64-bit: any system with **GLIBC 2.15** or higher
+  (like Ubuntu 12 or later, Debian 8 or later, RedHat/CentOS 7 later,
+  Fedora 20 or later, etc)
+- Arm GNU/Linux 32/64-bit: any system with **GLIBC 2.23** or higher
+  (like Ubuntu 16 or later, Debian 9 or later, RedHat/CentOS 8 or later,
+  Fedora 24 or later, etc)
+- Intel Windows 32/64-bit: Windows 7 with the Universal C Runtime
   ([UCRT](https://support.microsoft.com/en-us/topic/update-for-universal-c-runtime-in-windows-c0514201-7fe6-95a3-b0a5-287930f3560c)),
   Windows 8, Windows 10
 - Intel macOS 64-bit: 10.13 or later
@@ -80,13 +74,13 @@ from the [`npmjs.com`](https://www.npmjs.com) registry.
 
 With the `xpm` tool available, installing
 the latest version of the package and adding it as
-a development dependency for a project is quite easy:
+a dependency for a project is quite easy:
 
 ```sh
 cd my-project
-xpm init # Add a package.json if not already present
+xpm init # Only at first use.
 
-xpm install @xpack-dev-tools/openocd@latest --verbose
+xpm install @xpack-dev-tools/openocd@latest
 
 ls -l xpacks/.bin
 ```
@@ -110,7 +104,7 @@ identify binaries installed with
 
 ### Uninstall
 
-To remove the links created by xpm in the current project:
+To remove the links from the current project:
 
 ```sh
 cd my-project
@@ -118,7 +112,7 @@ cd my-project
 xpm uninstall @xpack-dev-tools/openocd
 ```
 
-To completely remove the package from the central xPack store:
+To completely remove the package from the central xPacks store:
 
 ```sh
 xpm uninstall --global @xpack-dev-tools/openocd
@@ -131,9 +125,11 @@ The xPack OpenOCD generally follows the official
 
 The current version is based on:
 
-- OpenOCD version {frontMatter.upstream_version}, the development commit
-[{frontMatter.upstream_commit}](https://github.com/xpack-dev-tools/openocd/commit/{frontMatter.upstream_commit}/)
-from {frontMatter.upstream_release_date}.
+TODO: update commit id and date.
+
+- OpenOCD version 0.11.0, the development commit
+[7ed7eba](https://github.com/xpack-dev-tools/openocd/commit/7ed7eba33140d8745f3343be7752bf2b0aafb6d8)
+from Dec. 4th, 2021.
 
 ## Changes
 
@@ -141,6 +137,7 @@ There are no functional changes.
 
 Compared to the upstream, the following changes were applied:
 
+- a configure option was added to configure branding (`--enable-branding`)
 - the `src/openocd.c` file was edited to display the branding string
 - the `contrib/60-openocd.rules` file was simplified to avoid protection
   related issues.
@@ -189,9 +186,7 @@ relative path.
 
 ## Documentation
 
-The original documentation is available online:
-
-- https://openocd.org/doc/pdf/openocd.pdf
+The original documentation is available in the `share/doc` folder.
 
 ## Build
 
@@ -200,6 +195,10 @@ The binaries for all supported platforms
 [xPack Build Box (XBB)](https://xpack.github.io/xbb/), a set
 of build environments based on slightly older distributions, that should be
 compatible with most recent systems.
+
+The scripts used to build this distribution are in:
+
+- `distro-info/scripts`
 
 For the prerequisites and more details on the build procedure, please see the
 [README-MAINTAINER](https://github.com/xpack-dev-tools/openocd-xpack/blob/xpack/README-MAINTAINER.md) page.
@@ -222,9 +221,9 @@ Install the package with xpm.
 The simple test, consists in starting the binaries
 only to identify the STM32F4DISCOVERY board.
 
-<CodeBlock language="sh">
-{'.../xpack-openocd-' + frontMatter.version + '/bin/openocd -f board/stm32f4discovery.cfg'}
-</CodeBlock>
+```sh
+.../xpack-openocd-0.11.0-3/bin/openocd -f board/stm32f4discovery.cfg
+```
 
 A more complex test consist in programming and debugging a simple blinky
 application on the STM32F4DISCOVERY board. The binaries were
@@ -237,60 +236,45 @@ available in the **xPack GNU Arm Embedded GCC** project.
 The SHA-256 hashes for the files are:
 
 ```txt
-0084761ef77a5c3f2e098993f17cb4225819462b90c1378a1b35cea9cd466288
-xpack-openocd-0.12.0-3-darwin-arm64.tar.gz
+a6dce7e6e7808ce7503ff1f033ad83782566d1b7424de3635d5cae7fbf433f84
+xpack-openocd-0.11.0-3-darwin-arm64.tar.gz
 
-47931a1adde58ae6a7d99e4b0db5b9a62c568ce8e5232e958325d733f09e9995
-xpack-openocd-0.12.0-3-darwin-x64.tar.gz
+3000f2b942b9066e0a984f98a4f0e833bdd596c8ee20fb45e14c2ace27a9635f
+xpack-openocd-0.11.0-3-darwin-x64.tar.gz
 
-8f956ed0c5027c5e655fe590712aef2dbd21a01777b5c008f772b2d1b45fb095
-xpack-openocd-0.12.0-3-linux-arm.tar.gz
+d0154dccdfb7d46056ec70c1c306a7fc8a872ab18bb84971f47b7edb7ea1610e
+xpack-openocd-0.11.0-3-linux-arm.tar.gz
 
-892b2ecc624521e5947e4857d7dfd4af03e19ef37da73ae91215a1001864ed75
-xpack-openocd-0.12.0-3-linux-arm64.tar.gz
+960e662946c13a2243c0ffbaa2a6e5ad26487cb1cf58a2265a97e1181937a28b
+xpack-openocd-0.11.0-3-linux-arm64.tar.gz
 
-98c07aa34c6e02ac6ef0794494bc3bd9e2409d587723c5191ee4f0a4d179e39b
-xpack-openocd-0.12.0-3-linux-x64.tar.gz
+8eb54a7b45125f32592dbc33de92e734d8cc9704a3293c529867104f244b1046
+xpack-openocd-0.11.0-3-linux-ia32.tar.gz
 
-94b51be5e5b38ac1c5814972eee9b062f0805bcd3ecc3bad5190fd659f6a3ab3
-xpack-openocd-0.12.0-3-win32-x64.zip
+983ade5cdf585c5260b3086e430ed5e21f1a5b52c45a3685078cc2b5c2e9106c
+xpack-openocd-0.11.0-3-linux-x64.tar.gz
+
+9be728d4fff63d96c6f8d9e26a1298a860c5842d54e8a678732f8b51811ee72a
+xpack-openocd-0.11.0-3-win32-ia32.zip
+
+04d3ea366ae37dbf2c767c52b19c74a606c5710c54055db795da1ab4578f18cf
+xpack-openocd-0.11.0-3-win32-x64.zip
 
 ```
 
 ## Deprecation notices
 
-### Linux minimum requirements
-
-The minimum requirement is GLIBC 2.27, available starting
-with Ubuntu 18, Debian 10 and RedHat 8.
-Support for RedHat 7 was dropped in 2022.
-
 ### 32-bit support
 
-Support for 32-bit Intel Linux and Intel Windows was
-dropped in 2022.
+Support for 32-bit Intel Linux and Intel Windows will most probably
+be dropped in 2022. Support for 32-bit Arm Linux will be preserved
+for a while, due to the large user base of 32-bit Raspberry Pi systems.
 
-### Pre-deprecation notice for 32-bit Arm Linux
+### Linux minimum requirements
 
-Due to the large user base of 32-bit Raspberry Pi systems,
-support for 32-bit Arm Linux (armv7l) will be preserved
-for a little while, but expect it to be dropped by 2025,
-so it is recommended to consider an upgrade to a RPi 4 or 5 with
-at least 4 GB (preferably 8 GB) of RAM.
-
-## Pre-deprecation notice for Ubuntu 18.04
-
-Ubuntu 18.04 LTS _Bionic Beaver_ reached the end of the standard five-year
-maintenance window for Long-Term Support (LTS) release on 31 May 2023.
-
-As a courtesy, the xPack GNU/Linux releases will continue to be based on
-Ubuntu 18.04 for another year.
-
-From 2025 onwards, the GNU/Linux binaries will be built on **Debian 10**,
-(**GLIBC 2.28**), and are also expected to run on RedHat 8.
-
-Users are urged to update their build and test infrastructure to
-ensure a smooth transition to the next xPack releases.
+Support for RedHat 7 will most probably be dropped in 2022, and the
+minimum requirement will be raised to GLIBC 2.27, available starting
+with Ubuntu 18 and RedHat 8.
 
 ## Download analytics
 

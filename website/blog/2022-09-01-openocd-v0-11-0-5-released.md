@@ -1,18 +1,19 @@
 ---
-title:  xPack OpenOCD v0.12.0-3 released
+title:  xPack OpenOCD v0.11.0-5 released
 
-summary: "Version **0.12.0-3** is a maintenance release of **xPack OpenOCD**; it updates to the latest upstream master."
+TODO: select one summary
 
-upstream_version: "0.12.0"
-upstream_commit: "dd175827"
-upstream_release_date: "1 Apr 2024"
+summary: "Version **0.11.0-5** is a maintenance release of **xPack OpenOCD**; it updates to
+the latest upstream master."
 
-version: "0.12.0-3"
+version: "0.11.0-5"
 npm_subversion: "1"
+upstream_version: "0.11.0"
+upstream_commit: "6db57051d070fc8d6bb54d21413e5e8610972651"
+upstream_release_date: "21 Aug 2022"
+download_url: https://github.com/xpack-dev-tools/openocd-xpack/releases/tag/v0.11.0-5/
 
-download_url: https://github.com/xpack-dev-tools/openocd-xpack/releases/tag/v0.12.0-3/
-
-date:   2024-04-02 10:43:52 +0300
+date:   2022-09-01 21:29:34 +0300
 
 authors: ilg-ul
 
@@ -24,12 +25,11 @@ tags:
 
 import CodeBlock from '@theme/CodeBlock';
 
-Version **0.12.0-3** is a maintenance release of **xPack OpenOCD**; it updates to
-the latest upstream master.
+Version **0.11.0-5** is a maintenance release of **xPack OpenOCD**; it updates to the latest upstream master.
 
-<!--truncate-->
+<!-- truncate -->
 
-[The xPack OpenOCD](https://xpack.github.io/openocd/)
+[The xPack OpenOCD](https://xpack.github.io/dev-tools/openocd/)
 is a standalone cross-platform binary distribution of
 [OpenOCD](https://openocd.org).
 
@@ -80,13 +80,13 @@ from the [`npmjs.com`](https://www.npmjs.com) registry.
 
 With the `xpm` tool available, installing
 the latest version of the package and adding it as
-a development dependency for a project is quite easy:
+a dependency for a project is quite easy:
 
 ```sh
 cd my-project
-xpm init # Add a package.json if not already present
+xpm init # Only at first use.
 
-xpm install @xpack-dev-tools/openocd@latest --verbose
+xpm install @xpack-dev-tools/openocd@latest
 
 ls -l xpacks/.bin
 ```
@@ -110,7 +110,7 @@ identify binaries installed with
 
 ### Uninstall
 
-To remove the links created by xpm in the current project:
+To remove the links from the current project:
 
 ```sh
 cd my-project
@@ -118,7 +118,7 @@ cd my-project
 xpm uninstall @xpack-dev-tools/openocd
 ```
 
-To completely remove the package from the central xPack store:
+To completely remove the package from the central xPacks store:
 
 ```sh
 xpm uninstall --global @xpack-dev-tools/openocd
@@ -132,7 +132,7 @@ The xPack OpenOCD generally follows the official
 The current version is based on:
 
 - OpenOCD version {frontMatter.upstream_version}, the development commit
-[{frontMatter.upstream_commit}](https://github.com/xpack-dev-tools/openocd/commit/{frontMatter.upstream_commit}/)
+<a href={'https://github.com/xpack-dev-tools/openocd/commit/' + frontMatter.upstream_commit + '/'}>{frontMatter.upstream_commit}</a>
 from {frontMatter.upstream_release_date}.
 
 ## Changes
@@ -141,6 +141,7 @@ There are no functional changes.
 
 Compared to the upstream, the following changes were applied:
 
+- a configure option was added to configure branding (`--enable-branding`)
 - the `src/openocd.c` file was edited to display the branding string
 - the `contrib/60-openocd.rules` file was simplified to avoid protection
   related issues.
@@ -201,6 +202,10 @@ The binaries for all supported platforms
 of build environments based on slightly older distributions, that should be
 compatible with most recent systems.
 
+The scripts used to build this distribution are in:
+
+- `distro-info/scripts`
+
 For the prerequisites and more details on the build procedure, please see the
 [README-MAINTAINER](https://github.com/xpack-dev-tools/openocd-xpack/blob/xpack/README-MAINTAINER.md) page.
 
@@ -222,9 +227,9 @@ Install the package with xpm.
 The simple test, consists in starting the binaries
 only to identify the STM32F4DISCOVERY board.
 
-<CodeBlock language="sh">
-{'.../xpack-openocd-' + frontMatter.version + '/bin/openocd -f board/stm32f4discovery.cfg'}
-</CodeBlock>
+```sh
+.../xpack-openocd-0.11.0-5/bin/openocd -f board/stm32f4discovery.cfg
+```
 
 A more complex test consist in programming and debugging a simple blinky
 application on the STM32F4DISCOVERY board. The binaries were
@@ -237,60 +242,39 @@ available in the **xPack GNU Arm Embedded GCC** project.
 The SHA-256 hashes for the files are:
 
 ```txt
-0084761ef77a5c3f2e098993f17cb4225819462b90c1378a1b35cea9cd466288
-xpack-openocd-0.12.0-3-darwin-arm64.tar.gz
+49ebc4bfbeb191dcb29f0a3ff03e2d4a1b9588b68093dc0159beeff6ab2a22be
+xpack-openocd-0.11.0-5-darwin-arm64.tar.gz
 
-47931a1adde58ae6a7d99e4b0db5b9a62c568ce8e5232e958325d733f09e9995
-xpack-openocd-0.12.0-3-darwin-x64.tar.gz
+df33f2c46804031f895f5c83f984c6b5e05084770e0fe8feb034d91552861301
+xpack-openocd-0.11.0-5-darwin-x64.tar.gz
 
-8f956ed0c5027c5e655fe590712aef2dbd21a01777b5c008f772b2d1b45fb095
-xpack-openocd-0.12.0-3-linux-arm.tar.gz
+91d7076b3d078b91d0390996657539dcbb7794deaf8b1eec12928e395981b499
+xpack-openocd-0.11.0-5-linux-arm.tar.gz
 
-892b2ecc624521e5947e4857d7dfd4af03e19ef37da73ae91215a1001864ed75
-xpack-openocd-0.12.0-3-linux-arm64.tar.gz
+bf8c128d8febc22108be3e75f16250054b636c92de2fd5a67d742cb58092a0fd
+xpack-openocd-0.11.0-5-linux-arm64.tar.gz
 
-98c07aa34c6e02ac6ef0794494bc3bd9e2409d587723c5191ee4f0a4d179e39b
-xpack-openocd-0.12.0-3-linux-x64.tar.gz
+19403370891605e1994e1eceb5e0c442f8c6fbc60b026851a6e257d524ecd6d1
+xpack-openocd-0.11.0-5-linux-x64.tar.gz
 
-94b51be5e5b38ac1c5814972eee9b062f0805bcd3ecc3bad5190fd659f6a3ab3
-xpack-openocd-0.12.0-3-win32-x64.zip
+1d062e422e71f56bb490a4713440b8a6da09e25e314c39ed63a66bd6e7a62ef4
+xpack-openocd-0.11.0-5-win32-x64.zip
 
 ```
 
 ## Deprecation notices
 
-### Linux minimum requirements
-
-The minimum requirement is GLIBC 2.27, available starting
-with Ubuntu 18, Debian 10 and RedHat 8.
-Support for RedHat 7 was dropped in 2022.
-
 ### 32-bit support
 
 Support for 32-bit Intel Linux and Intel Windows was
-dropped in 2022.
+dropped in 2022. Support for 32-bit Arm Linux (armv7l) will be preserved
+for a while, due to the large user base of 32-bit Raspberry Pi systems.
 
-### Pre-deprecation notice for 32-bit Arm Linux
+### Linux minimum requirements
 
-Due to the large user base of 32-bit Raspberry Pi systems,
-support for 32-bit Arm Linux (armv7l) will be preserved
-for a little while, but expect it to be dropped by 2025,
-so it is recommended to consider an upgrade to a RPi 4 or 5 with
-at least 4 GB (preferably 8 GB) of RAM.
-
-## Pre-deprecation notice for Ubuntu 18.04
-
-Ubuntu 18.04 LTS _Bionic Beaver_ reached the end of the standard five-year
-maintenance window for Long-Term Support (LTS) release on 31 May 2023.
-
-As a courtesy, the xPack GNU/Linux releases will continue to be based on
-Ubuntu 18.04 for another year.
-
-From 2025 onwards, the GNU/Linux binaries will be built on **Debian 10**,
-(**GLIBC 2.28**), and are also expected to run on RedHat 8.
-
-Users are urged to update their build and test infrastructure to
-ensure a smooth transition to the next xPack releases.
+Support for RedHat 7 was dropped in 2022 and the
+minimum requirement was raised to GLIBC 2.27, available starting
+with Ubuntu 18, Debian 10 and RedHat 8.
 
 ## Download analytics
 

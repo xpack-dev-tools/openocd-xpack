@@ -1,18 +1,19 @@
 ---
-title:  xPack OpenOCD v0.12.0-3 released
+title:  xPack OpenOCD v0.12.0-2 released
 
-summary: "Version **0.12.0-3** is a maintenance release of **xPack OpenOCD**; it updates to the latest upstream master."
+summary: "Version **0.12.0-2** is a maintenance release of **xPack OpenOCD**; it updates to
+the latest upstream master."
 
 upstream_version: "0.12.0"
-upstream_commit: "dd175827"
-upstream_release_date: "1 Apr 2024"
+upstream_commit: "18281b0"
+upstream_release_date: "Sep 2, 2023"
 
-version: "0.12.0-3"
+version: "0.12.0-2"
 npm_subversion: "1"
 
-download_url: https://github.com/xpack-dev-tools/openocd-xpack/releases/tag/v0.12.0-3/
+download_url: https://github.com/xpack-dev-tools/openocd-xpack/releases/tag/v0.12.0-2/
 
-date:   2024-04-02 10:43:52 +0300
+date:   2023-09-05 02:21:20 +0300
 
 authors: ilg-ul
 
@@ -24,10 +25,9 @@ tags:
 
 import CodeBlock from '@theme/CodeBlock';
 
-Version **0.12.0-3** is a maintenance release of **xPack OpenOCD**; it updates to
-the latest upstream master.
+Version **0.12.0-2** is a maintenance release of **xPack OpenOCD**; it updates to the latest upstream master.
 
-<!--truncate-->
+<!-- truncate -->
 
 [The xPack OpenOCD](https://xpack.github.io/openocd/)
 is a standalone cross-platform binary distribution of
@@ -237,46 +237,39 @@ available in the **xPack GNU Arm Embedded GCC** project.
 The SHA-256 hashes for the files are:
 
 ```txt
-0084761ef77a5c3f2e098993f17cb4225819462b90c1378a1b35cea9cd466288
-xpack-openocd-0.12.0-3-darwin-arm64.tar.gz
+7b35c4a01dc8e74fbf3a217f78bd01d61112a09be2f2e2ba9e8e737b12c84562
+xpack-openocd-0.12.0-2-darwin-arm64.tar.gz
 
-47931a1adde58ae6a7d99e4b0db5b9a62c568ce8e5232e958325d733f09e9995
-xpack-openocd-0.12.0-3-darwin-x64.tar.gz
+71942e8db55ed68cad45e07c2065e6c7cc0e127797ee26c298ec4dcaebc9232c
+xpack-openocd-0.12.0-2-darwin-x64.tar.gz
 
-8f956ed0c5027c5e655fe590712aef2dbd21a01777b5c008f772b2d1b45fb095
-xpack-openocd-0.12.0-3-linux-arm.tar.gz
+bc123785e9009caa6ce166afb4298104a19c20f734ae044f3caf37896d401a45
+xpack-openocd-0.12.0-2-linux-arm.tar.gz
 
-892b2ecc624521e5947e4857d7dfd4af03e19ef37da73ae91215a1001864ed75
-xpack-openocd-0.12.0-3-linux-arm64.tar.gz
+d4fad1505ef299f511eb2324c6e2c7bbef1101a22155b70478d89428c3fb515b
+xpack-openocd-0.12.0-2-linux-arm64.tar.gz
 
-98c07aa34c6e02ac6ef0794494bc3bd9e2409d587723c5191ee4f0a4d179e39b
-xpack-openocd-0.12.0-3-linux-x64.tar.gz
+1dc8e63694204b73107fe5b23267238af2c6ce14726e4aa244a2123a98805335
+xpack-openocd-0.12.0-2-linux-x64.tar.gz
 
-94b51be5e5b38ac1c5814972eee9b062f0805bcd3ecc3bad5190fd659f6a3ab3
-xpack-openocd-0.12.0-3-win32-x64.zip
+6cb8a5f9290c59be3e42a6f1066f23ff5a9dbe5b83bdecd0e9d4c7dcc1233517
+xpack-openocd-0.12.0-2-win32-x64.zip
 
 ```
 
 ## Deprecation notices
 
-### Linux minimum requirements
-
-The minimum requirement is GLIBC 2.27, available starting
-with Ubuntu 18, Debian 10 and RedHat 8.
-Support for RedHat 7 was dropped in 2022.
-
 ### 32-bit support
 
 Support for 32-bit Intel Linux and Intel Windows was
-dropped in 2022.
+dropped in 2022. Support for 32-bit Arm Linux (armv7l) will be preserved
+for a while, due to the large user base of 32-bit Raspberry Pi systems.
 
-### Pre-deprecation notice for 32-bit Arm Linux
+### Linux minimum requirements
 
-Due to the large user base of 32-bit Raspberry Pi systems,
-support for 32-bit Arm Linux (armv7l) will be preserved
-for a little while, but expect it to be dropped by 2025,
-so it is recommended to consider an upgrade to a RPi 4 or 5 with
-at least 4 GB (preferably 8 GB) of RAM.
+Support for RedHat 7 was dropped in 2022 and the
+minimum requirement was raised to GLIBC 2.27, available starting
+with Ubuntu 18, Debian 10 and RedHat 8.
 
 ## Pre-deprecation notice for Ubuntu 18.04
 
