@@ -24,7 +24,7 @@ Version **0.11.0-1** is a new release of **xPack OpenOCD**, following the OpenOC
 
 <!-- truncate -->
 
-[The xPack OpenOCD](https://xpack.github.io/openocd/)
+The [xPack OpenOCD](https://xpack.github.io/openocd/)
 is a standalone cross-platform binary distribution of
 [OpenOCD](https://openocd.org).
 

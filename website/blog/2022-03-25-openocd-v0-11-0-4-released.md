@@ -27,7 +27,7 @@ Version **0.11.0-4** is a maintenance release of **xPack OpenOCD**; it updates t
 
 <!-- truncate -->
 
-[The xPack OpenOCD](https://xpack.github.io/dev-tools/openocd/)
+The [xPack OpenOCD](https://xpack.github.io/dev-tools/openocd/)
 is a standalone cross-platform binary distribution of
 [OpenOCD](https://openocd.org).
 

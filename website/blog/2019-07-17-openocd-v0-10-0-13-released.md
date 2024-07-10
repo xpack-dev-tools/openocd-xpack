@@ -24,7 +24,7 @@ Version **0.10.0-13** is a maintenance release of **xPack OpenOCD**; it updates 
 
 <!-- truncate -->
 
-[The xPack OpenOCD](https://xpack.github.io/openocd/)
+The [xPack OpenOCD](https://xpack.github.io/openocd/)
 is a standalone cross-platform binary distribution of
 [OpenOCD](https://openocd.org).
 

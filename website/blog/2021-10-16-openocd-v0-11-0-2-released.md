@@ -30,7 +30,7 @@ it updates to the latest upstream master.
 
 <!-- truncate -->
 
-[The xPack OpenOCD](https://xpack.github.io/dev-tools/openocd/)
+The [xPack OpenOCD](https://xpack.github.io/dev-tools/openocd/)
 is a standalone cross-platform binary distribution of
 [OpenOCD](https://openocd.org).
 

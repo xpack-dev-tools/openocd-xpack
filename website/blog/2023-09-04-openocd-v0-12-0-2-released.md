@@ -29,7 +29,7 @@ Version **0.12.0-2** is a maintenance release of **xPack OpenOCD**; it updates t
 
 <!-- truncate -->
 
-[The xPack OpenOCD](https://xpack.github.io/openocd/)
+The [xPack OpenOCD](https://xpack.github.io/openocd/)
 is a standalone cross-platform binary distribution of
 [OpenOCD](https://openocd.org).
 
