@@ -39,6 +39,16 @@ p.hero__code code  {
   font-size: 2.5rem; /* 3rem; */
 }
 
+h1[class*="title"]
+{
+  font-size: 2.5rem;
+}
+
+h2[class*="title"]
+{
+  font-size: 2.5rem;
+}
+
 .markdown h1:first-child {
   --ifm-h1-font-size: 2.5em
 }
