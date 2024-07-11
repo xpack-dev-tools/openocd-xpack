@@ -28,6 +28,11 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'doc',
+      id: 'user-info',
+      label: 'User Info'
+    },
+    {
+      type: 'doc',
       id: 'faq',
       label: 'FAQ'
     },
