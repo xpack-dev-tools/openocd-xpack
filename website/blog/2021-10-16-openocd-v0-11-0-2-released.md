@@ -220,8 +220,8 @@ Install the package with xpm.
 The simple test, consists in starting the binaries
 only to identify the STM32F4DISCOVERY board.
 
-```sh
-.../xpack-openocd-0.11.0-2/bin/openocd -f board/stm32f4discovery.cfg
+<CodeBlock language="console">
+{'% ~/Library/xPacks/@xpack-dev-tools/openocd/' + frontMatter.version + '.' + frontMatter.npm_subversion + '/.content/bin/openocd -f board/stm32f4discovery.cfg'}
 xPack OpenOCD x86_64 Open On-Chip Debugger 0.11.0+dev (2021-10-17-00:10)
 Licensed under GNU GPL v2
 For bug reports, read
@@ -241,7 +241,7 @@ Info : Listening on port 3333 for gdb connections
 target halted due to breakpoint, current mode: Thread
 xPSR: 0x21000000 pc: 0x0800113c msp: 0x2001ff78
 ^Cshutdown command invoked
-```
+</CodeBlock>
 
 A more complex test consist in programming and debugging a simple blinky
 application on the STM32F4DISCOVERY board. The binaries were

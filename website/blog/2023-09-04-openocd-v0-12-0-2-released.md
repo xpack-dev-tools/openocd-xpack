@@ -221,7 +221,7 @@ The simple test, consists in starting the binaries
 only to identify the STM32F4DISCOVERY board.
 
 <CodeBlock language="sh">
-{'.../xpack-openocd-' + frontMatter.version + '/bin/openocd -f board/stm32f4discovery.cfg'}
+{'~/Library/xPacks/@xpack-dev-tools/openocd/' + frontMatter.version + '.' + frontMatter.npm_subversion + '/.content/bin/openocd -f board/stm32f4discovery.cfg'}
 </CodeBlock>
 
 A more complex test consist in programming and debugging a simple blinky

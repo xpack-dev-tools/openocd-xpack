@@ -222,9 +222,9 @@ Install the package with xpm.
 The simple test, consists in starting the binaries
 only to identify the STM32F4DISCOVERY board.
 
-```sh
-.../xpack-openocd-0.12.0-1/bin/openocd -f board/stm32f4discovery.cfg
-```
+<CodeBlock language="sh">
+{'~/Library/xPacks/@xpack-dev-tools/openocd/' + frontMatter.version + '.' + frontMatter.npm_subversion + '/.content/bin/openocd -f board/stm32f4discovery.cfg'}
+</CodeBlock>
 
 A more complex test consist in programming and debugging a simple blinky
 application on the STM32F4DISCOVERY board. The binaries were
