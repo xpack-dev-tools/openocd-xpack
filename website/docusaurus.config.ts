@@ -112,9 +112,21 @@ const config: Config = {
           ]
         },
         {
+          type: 'dropdown',
           to: '/blog',
           label: 'Blog',
-          position: 'left'
+          position: 'left',
+          items: [
+            {
+              label: 'Recent',
+              to: '/blog'
+            },
+            {
+              label: 'Archive',
+              to: '/blog/archive'
+            },
+
+          ]
         },
         {
           href: 'https://github.com/xpack-dev-tools/openocd-xpack/',
