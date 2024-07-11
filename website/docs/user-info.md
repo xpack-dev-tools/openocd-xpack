@@ -3,23 +3,29 @@ title: User Info
 
 date: 2024-07-11 18:56:00 +0300
 
+# Custom properties.
+version: "0.12.0"
+xpack_subversion: "3"
+npm_subversion: "1"
+
 ---
 
 This page is intended for those who plan
-to use the OpenOCD binaries.
+to use the OpenOCD binaries in their workflows.
 
 ## Versioning
 
-The version strings used by the OpenOCD project are three number strings
-like `0.12.0`; to this string the xPack distribution adds a four number,
+The version string used by the OpenOCD project is a three number string
+like <code>{ frontMatter.version }</code>; to this string the xPack distribution adds a four number,
 but since semver allows only three numbers, all additional ones can
 be added only as pre-release strings, separated by a dash,
-like `0.12.0-3`. When published as a npm package, the version gets
-a fifth number, like `0.12.0-3.1`.
+like <code>{ frontMatter.version }-{ frontMatter.xpack_subversion }</code>. When published as a npm package, the version gets
+a fifth number, like <code>{ frontMatter.version }-{ frontMatter.xpack_subversion }.{ frontMatter.npm_subversion }</code>.
 
 Since adherence of third party packages to semver is not guaranteed,
-it is recommended to avoid using semver expressions like `^0.12.0` or
-`~0.12.0`, and prefer exact matches, like `0.12.0-3.1`.
+it is recommended to avoid referring to the OpenOCD dependency via
+a semver expressions like <code>^{ frontMatter.version }</code> or
+<code>~{ frontMatter.version }</code>, and prefer exact matches, like <code>{ frontMatter.version }-{ frontMatter.xpack_subversion }.{ frontMatter.npm_subversion }</code>.
 
 ## Drivers
 
@@ -36,3 +42,8 @@ the last installation step on GNU/Linux is to configure the UDEV subsystem.
 
 For more details please read the
 [Install](https://xpack.github.io/openocd/install/) page.
+
+### macOS
+
+On macOS, JTAG probes implemented as USB devices usually are
+recognised directly and do not need explicit drivers.
