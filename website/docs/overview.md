@@ -12,7 +12,7 @@ date: 2020-09-28 17:49:00 +0300
 
 ## Overview
 
-The **xPack OpenOCD** is a standalone cross-platform (Windows/macOS/Linux)
+The **xPack OpenOCD** is a standalone cross-platform (Windows, macOS, GNU/Linux)
 binary distribution of [OpenOCD](https://openocd.org),
 intended for reproducible builds.
 
@@ -21,10 +21,12 @@ OpenOCD, the **Open On-Chip Debugger**, is an open source project hosted on
 
 **xPack OpenOCD** is an open source project hosted on GitHub as
 [`xpack-dev-tools/openocd-xpack`](https://github.com/xpack-dev-tools/openocd-xpack);
-it provides the platform specific binaries as release assets.
+it provides the platform specific binaries as
+[release assets](https://github.com/xpack-dev-tools/openocd-xpack/releases).
 
 In addition to the the binary archives and the package metadata,
-this project also includes the build scripts.
+this project also includes the
+[build scripts](https://github.com/xpack-dev-tools/openocd-xpack/tree/xpack/scripts).
 
 ## Features
 
@@ -48,7 +50,7 @@ The main advantages of using the **xPack OpenOCD** are:
   **Intel macOS** 64-bit,
   **Apple Silicon macOS** 64-bit)
 - a good integration with development environments (no need for Docker images)
-- an easy to use solution for **CI** environments
+- an easy to use solution for **CI/CD** environments
 
 ## Compatibility
 
