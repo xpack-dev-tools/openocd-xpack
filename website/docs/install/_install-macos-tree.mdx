@@ -1,0 +1,23 @@
+import CodeBlock from '@theme/CodeBlock';
+
+<CodeBlock language="console"> {
+`$ tree -L 2 ~/Library/xPacks/\@xpack-dev-tools/openocd/${ props.version }-${ props.xpack_subversion }.${ props.npm_subversion }/.content/
+/Users/ilg/Library/xPacks/\@xpack-dev-tools/openocd/${ props.version }-${ props.xpack_subversion }.${ props.npm_subversion }/.content/
+├── README.md
+├── bin
+│   └── openocd
+├── distro-info
+│   └── licenses
+├── libexec
+│   ├── libftdi1.2.5.0.dylib
+│   ├── libftdi1.2.dylib -> libftdi1.2.5.0.dylib
+│   ├── libhidapi.0.14.0.dylib
+│   └── libusb-1.0.0.dylib
+└── openocd
+    ├── OpenULINK
+    ├── angie
+    ├── contrib
+    └── scripts
+
+10 directories, 6 files`
+}</CodeBlock>

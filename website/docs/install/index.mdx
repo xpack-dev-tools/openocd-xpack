@@ -1,10 +1,13 @@
 ---
 title: How to install the xPack OpenOCD binaries
 
+hide_table_of_contents: true
+
 date: 2020-09-27 11:09:00 +0300
 
 version: "0.12.0"
 xpack_subversion: "3"
+npm_subversion: "1"
 
 ---
 
@@ -14,21 +17,45 @@ import TabItem from '@theme/TabItem';
 import InstallWindows from './_install-windows.mdx';
 import InstallMacOS from './_install-macos.mdx';
 import InstallLinux from './_install-linux.mdx';
+import CodeBlock from '@theme/CodeBlock';
 
-## Overview
-
-The **xPack OpenOCD** can be installed automatically, via `xpm` (the
-recommended method), or manually, by downloading and unpacking one of the
+The **xPack OpenOCD** can be installed automatically, using the `xpm` command
+(the recommended method), or manually, by downloading and unpacking one of the
 portable archives.
 
 <Tabs groupId="operating-systems">
   <TabItem value="windows" label="Windows" default>
-    <InstallWindows version={frontMatter.version} xpack_subversion={frontMatter.xpack_subversion}/>
+    <InstallWindows version={ frontMatter.version } xpack_subversion={ frontMatter.xpack_subversion } npm_subversion={ frontMatter.npm_subversion } is_windows="True"/>
   </TabItem>
   <TabItem value="macos" label="macOS">
-    <InstallMacOS version={frontMatter.version} xpack_subversion={frontMatter.xpack_subversion}/>
+    <InstallMacOS version={ frontMatter.version } xpack_subversion={ frontMatter.xpack_subversion } npm_subversion={ frontMatter.npm_subversion }/>
   </TabItem>
   <TabItem value="linux" label="GNU/Linux">
-    <InstallLinux version={frontMatter.version} xpack_subversion={frontMatter.xpack_subversion}/>
+    <InstallLinux version={ frontMatter.version } xpack_subversion={ frontMatter.xpack_subversion } npm_subversion={ frontMatter.npm_subversion }/>
   </TabItem>
 </Tabs>
+
+### Testing
+
+To test if the xpm installed OpenOCD is able to connect to a specific board, it is generally necessary to select the interface and the processor. As a shortcut, for some well known boards, there are ready made configuration files to set both the interface and the processor. For example to test a connection via ST/LINK to the STM32F4DISCOVERY board, you can use something like this:
+
+<CodeBlock language="console"> {
+`$ .../xPacks/@xpack-dev-tools/openocd/${ frontMatter.version }-${ frontMatter.xpack_subversion }.1/.content/bin/openocd -f board/stm32f4discovery.cfg
+xPack OpenOCD x86_64 Open On-Chip Debugger ${ frontMatter.version }+dev
+Licensed under GNU GPL v2
+For bug reports, read
+	http://openocd.org/doc/doxygen/bugs.html
+Info : The selected transport took over low-level target control. The results might differ compared to plain JTAG/SWD
+adapter speed: 2000 kHz
+adapter_nsrst_delay: 100
+none separate
+srst_only separate srst_nogate srst_open_drain connect_deassert_srst
+Info : Listening on port 6666 for tcl connections
+Info : Listening on port 4444 for telnet connections
+Info : clock speed 2000 kHz
+Info : STLINK V2J14S0 (API v2) VID:PID 0483:3748
+Info : Target voltage: 2.881412
+Info : stm32f4x.cpu: hardware has 6 breakpoints, 4 watchpoints
+Info : Listening on port 3333 for gdb connections
+^C`
+}</CodeBlock>

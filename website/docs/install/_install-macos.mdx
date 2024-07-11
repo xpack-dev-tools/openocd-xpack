@@ -1,20 +1,29 @@
 
 import InstallEasy from './_install-easy.md';
+import InstallMacTree from './_install-macos-tree.mdx';
+import UninstallEasy from './_uninstall-easy.md';
 import InstallManual from './_install-manual.md';
+import InstallManualInfo from './_install-manual-info.mdx';
+import CodeBlock from '@theme/CodeBlock';
 
 <InstallEasy/>
 
-### Test
+<InstallMacTree version={ props.version } xpack_subversion={ props.xpack_subversion } npm_subversion={ props.npm_subversion }/>
+
+No other files are installed in any system folders or other locations.
+
+<UninstallEasy/>
+
+### Quick test
 
 To check if the xpm installed OpenOCD starts, use something like:
 
-<pre><code className="language-console">{
-`$ ~/.local/xPacks/@xpack-dev-tools/openocd/${ props.version }-${ props.xpack_subversion }.1/.content/bin/openocd --version
-${ props.version }
-`}</code></pre>
+<CodeBlock language="console"> {
+`$ ~/.local/xPacks/@xpack-dev-tools/openocd/${ props.version }-${ props.xpack_subversion }.${ props.npm_subversion }/.content/bin/openocd --version
+${ props.version }`
+}</CodeBlock>
 
 <InstallManual/>
-
 
 ### Download
 
@@ -22,51 +31,43 @@ The macOS versions of **xPack OpenOCD**
 are packed as `.tar.gz` archives.
 Download the latest version named like:
 
-<ul>
-<li><code>xpack-openocd-{ props.version }-{ props.xpack_subversion }-darwin-x64.tar.gz</code></li>
-<li><code>xpack-openocd-{ props.version }-{ props.xpack_subversion }-darwin-arm64.tar.gz</code></li>
-</ul>
+* <code>xpack-openocd-{ props.version }-{ props.xpack_subversion }-darwin-x64.tar.gz</code>
+* <code>xpack-openocd-{ props.version }-{ props.xpack_subversion }-darwin-arm64.tar.gz</code>
+
+:::note
+
+In case you wonder where the suffix comes
+from, it is exactly the Node.js `process.platform` and `process.arch`.
+
+:::
 
 ### Unpack
 
-<p>To manually install the xPack OpenOCD,
-unpack the archive and move it to <code>~/.local/xPacks/openocd/xpack-openocd-{ props.version }-{ props.xpack_subversion }</code>:</p>
+To manually install the <b>xPack OpenOCD</b>,
+unpack the archive and move it to <code>~/.local/xPacks/openocd/xpack-openocd-{ props.version }-{ props.xpack_subversion }</code>:
 
-<pre><code className="language-console">{
+<CodeBlock language="console"> {
 `mkdir -p ~/.local/xPacks/openocd
 cd ~/.local/xPacks/openocd
 
 tar xvf ~/Downloads/xpack-openocd-${ props.version }-${ props.xpack_subversion }-darwin-x64.tar.gz
-chmod -R -w xpack-openocd-${ props.version }-${ props.xpack_subversion }
-`}</code></pre>
+chmod -R -w xpack-openocd-${ props.version }-${ props.xpack_subversion }`
+}</CodeBlock>
 
-:::info
-For manual installs, the recommended
-install location is different from the xpm install folders.
-:::
+<InstallManualInfo/>
 
-The result is a structure like:
+The result is a structure identical to the above.
 
-<pre><code className="language-console">{
-`$ tree -L 2 /Users/ilg/.local/xPacks/openocd/xpack-openocd-${ props.version }-${ props.xpack_subversion }
-/Users/ilg/.local/xPacks/openocd/xpack-openocd-${ props.version }-${ props.xpack_subversion }/
-├── README.md
-├── bin
-│   └── openocd
-└── distro-info
-    ├── CHANGELOG.md
-    ├── licenses
-    ├── patches
-    └── scripts
-
-5 directories, 3 files
-`}</code></pre>
-
-### Test
+### Quick test
 
 To check if the manually installed OpenOCD starts, use something like:
 
-<pre><code className="language-console">{
+<CodeBlock language="console"> {
 `$ ~/.local/xPacks/openocd/${ props.version }-${ props.xpack_subversion }/bin/openocd --version
-${ props.version }
-`}</code></pre>
+${ props.version }`
+}</CodeBlock>
+
+## Drivers
+
+On macOS, JTAG probes implemented as USB devices usually are
+recognised directly and do not need explicit drivers.

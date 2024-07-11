@@ -1,0 +1,27 @@
+import CodeBlock from '@theme/CodeBlock';
+
+<CodeBlock language="console"> {
+`$ tree -L 2 ~/.local/xPacks/\@xpack-dev-tools/openocd/${ props.version }-${ props.xpack_subversion }.${ props.npm_subversion }/.content/
+/home/ilg/.local/xPacks/\@xpack-dev-tools/openocd/${ props.version }-${ props.xpack_subversion }.${ props.npm_subversion }/.content/
+├── README.md
+├── bin
+│   └── openocd
+├── distro-info
+│   └── licenses
+├── libexec
+│   ├── libftdi1.so.2 -> libftdi1.so.2.5.0
+│   ├── libftdi1.so.2.5.0
+│   ├── libhidapi-hidraw.so.0 -> libhidapi-hidraw.so.0.14.0
+│   ├── libhidapi-hidraw.so.0.14.0
+│   ├── libudev.so.1 -> libudev.so.1.6.9
+│   ├── libudev.so.1.6.9
+│   ├── libusb-1.0.so.0 -> libusb-1.0.so.0.4.0
+│   └── libusb-1.0.so.0.4.0
+└── openocd
+    ├── OpenULINK
+    ├── angie
+    ├── contrib
+    └── scripts
+
+9 directories, 10 files`
+}</CodeBlock>
