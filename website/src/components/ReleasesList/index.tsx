@@ -11,7 +11,7 @@ export function ReleasesList({ items }): JSX.Element {
       {
         pluginData.releasesTable.map(release => (
           <li>
-            <a href={release.permalink}>{release.title}</a> <a href={release.downloadUrl}><img src={useBaseUrl('/img/download-icon.png')} /></a>
+            <a href={release.permalink}>{release.title}</a> (<a href={release.downloadUrl}>download</a>)
           </li>
         ))
       }
