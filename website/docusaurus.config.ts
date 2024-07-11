@@ -76,7 +76,7 @@ const config: Config = {
     navbar: {
       title: 'The xPack Project',
       logo: {
-        alt: 'My Site Logo',
+        alt: 'xPack Logo',
         src: 'img/components-256.png',
         href: 'https://xpack.github.io/',
       },
@@ -94,7 +94,7 @@ const config: Config = {
           position: 'left',
           items: [
             {
-              label: 'Overview',
+              label: 'Getting Started',
               to: '/docs/overview'
             },
             {

@@ -10,26 +10,28 @@ type FeatureItem = {
 
 const FeatureList: FeatureItem[] = [
   {
-    title: 'Easy to Use',
+    title: 'Multi-version, cross-platform',
+    Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
+    description: (
+      <>
+        By design, <strong>multiple versions</strong> of the same tools
+        can be installed
+        at the same time on the same system. Windows, macOS, GNU/Linux are
+        supported. The tools include all
+        needed libraries and can be installed in any folder.
+      </>
+    ),
+  },
+  {
+    title: 'Easy to Use & Reproducible',
     Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
     description: (
       <>
         The xPack binaries can be added to projects
         as <strong>development dependencies</strong>,
-        and conveniently installed with <code>xpm install</code>, a feature
-        especially useful in CI environments.
-      </>
-    ),
-  },
-  {
-    title: 'Multi-version, cross-platform',
-    Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
-    description: (
-      <>
-        By design, <strong>multiple versions</strong> of the same tool
-        can be installed
-        at the same time on the same system. Most modern platforms are
-        supported.
+        and conveniently installed with <code>xpm install</code>.
+        This also provides reproducibility, a feature that is
+        especially useful in <b>CI/CD</b> environments.
       </>
     ),
   },
@@ -38,9 +40,11 @@ const FeatureList: FeatureItem[] = [
     Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
     description: (
       <>
-        The <code>xpm</code> tool is an extension of <code>npm</code>, and
-        binary xPacks nicely integrate into the Node.js ecosystem, while still
-        allowing to install the binary archives manually.
+        The <b>xpm</b> tool complements <b>npm</b> with
+        several extra features specific to <b>C/C++ projects</b>.
+        This allows the
+        binary xPacks to nicely integrate into the Node.js ecosystem,
+        while still allowing the binary archives to be installed manually.
       </>
     ),
   },
@@ -49,9 +53,9 @@ const FeatureList: FeatureItem[] = [
 function Feature({title, Svg, description}: FeatureItem) {
   return (
     <div className={clsx('col col--4')}>
-      <div className="text--center">
+      {/* <div className="text--center">
         <Svg className={styles.featureSvg} role="img" />
-      </div>
+      </div> */}
       <div className="text--center padding-horiz--md">
         <Heading as="h3">{title}</Heading>
         <p>{description}</p>
