@@ -19,7 +19,7 @@ const sidebars: SidebarsConfig = {
     {
       type: 'doc',
       id: 'overview',
-      label: 'Overview'
+      label: 'Getting Started'
     },
     {
       type: 'doc',
