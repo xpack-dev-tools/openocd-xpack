@@ -25,7 +25,11 @@ const config: Config = {
   projectName: 'openocd-xpack', // Usually your repo name.
 
   onBrokenLinks: 'throw',
-  onBrokenMarkdownLinks: 'warn',
+  onBrokenMarkdownLinks: 'throw',
+
+  // Useful for the sitemap.xml, to avoid redirects, since
+  // GitHub redirects all to trailing slash.
+  trailingSlash: true,
 
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you
@@ -34,8 +38,6 @@ const config: Config = {
     defaultLocale: 'en',
     locales: ['en'],
   },
-
-  customFields: customFields,
 
   presets: [
     [
@@ -47,7 +49,7 @@ const config: Config = {
           // Remove this to remove the "edit this page" links.
           editUrl:
             'https://github.com/xpack-dev-tools/openocd-xpack/edit/xpack/website/',
-          showLastUpdateAuthor: true,
+          // showLastUpdateAuthor: true,
           showLastUpdateTime: true,
           },
         blog: {
@@ -56,6 +58,7 @@ const config: Config = {
           // Remove this to remove the "edit this page" links.
           editUrl:
             'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+          showLastUpdateTime: true,
         },
         theme: {
           customCss: './src/css/custom.css',
@@ -225,6 +228,8 @@ const config: Config = {
       darkTheme: prismThemes.dracula,
     },
   } satisfies Preset.ThemeConfig,
+
+  customFields: customFields,
 };
 
 export default config;
