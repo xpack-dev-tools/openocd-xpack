@@ -60,6 +60,12 @@ const config: Config = {
         theme: {
           customCss: './src/css/custom.css',
         },
+        // https://docusaurus.io/docs/api/plugins/@docusaurus/plugin-google-gtag
+        // https://tagassistant.google.com
+        gtag: {
+          trackingID: 'G-7QE5W7V05S',
+          anonymizeIP: false,
+        },
       } satisfies Preset.Options,
     ],
   ],
