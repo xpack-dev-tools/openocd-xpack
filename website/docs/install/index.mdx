@@ -41,7 +41,7 @@ portable archives.
 To test if the xpm installed OpenOCD is able to connect to a specific board, it is generally necessary to select the interface and the processor. As a shortcut, for some well known boards, there are ready made configuration files to set both the interface and the processor. For example to test a connection via ST/LINK to the STM32F4DISCOVERY board, you can use something like this:
 
 <CodeBlock language="console"> {
-`$ .../xPacks/@xpack-dev-tools/openocd/${ frontMatter.version }-${ frontMatter.xpack_subversion }.1/.content/bin/openocd -f board/stm32f4discovery.cfg
+`$ .../xPacks/@xpack-dev-tools/openocd/${ frontMatter.version }-${ frontMatter.xpack_subversion }.${ frontMatter.npm_subversion }/.content/bin/openocd -f board/stm32f4discovery.cfg
 xPack OpenOCD x86_64 Open On-Chip Debugger ${ frontMatter.version }+dev
 Licensed under GNU GPL v2
 For bug reports, read
