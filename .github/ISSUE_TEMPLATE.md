@@ -14,17 +14,17 @@ official [OpenOCD support channels](https://openocd.org/discussion/).
 
 Before entering a new ticket, please consider the following:
 
-- [ ] read the documentation pages carefully (`share/doc/pdf/openocd.pdf`)
-- [ ] check the [xPack Forums](https://www.tapatalk.com/groups/xpack/) for similar problems
+- [ ] read the documentation pages carefully (https://openocd.org/doc/pdf/openocd.pd)
+- [ ] check the [GitHub Discussions](https://github.com/xpack-dev-tools/openocd-xpack/discussions/) for similar problems
 - [ ] check the [GitHub Issues](https://github.com/xpack-dev-tools/openocd-xpack/issues/)
 
 If you still could not find a solution, if you have interesting use
 cases, if you have custom configurations, and generally if you have
 any experience that you want to share with others, use the
-[xPack Forums](https://www.tapatalk.com/groups/xpack/), the OpenOCD section.
+[GitHub Discussions](https://github.com/xpack-dev-tools/openocd-xpack/discussions/).
 
 If you are convinced that you identified a bug related to the binary
-distribution, not OpenOCD itself (if you have doubts, use the forum),
+distribution, not OpenOCD itself (if you have doubts, use the Discussions),
 or you have a pertinent suggestion how to enhance the xPack OpenOCD
 distribution, continue and register a new issue.
 
