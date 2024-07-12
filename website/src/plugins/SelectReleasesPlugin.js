@@ -18,7 +18,7 @@ export default async function SelectReleasesPlugin(context, options) {
       blogPosts.forEach(post => {
         // logger.info('SelectReleasesPlugin 3 ' + util.inspect(post.metadata.tags))
         post.metadata.tags.forEach(tag => {
-          if (tag.label === 'release') {
+          if (tag.label === 'releases') {
             releasesTable.push({
               title: post.metadata.title,
               permalink: post.metadata.permalink,

@@ -7,7 +7,7 @@ authors: ilg-ul
 
 # To be listed in the Releases page.
 tags:
-  - release
+  - releases
 
 # Custom properties.
 version: "0.11.0-5"
