@@ -3,12 +3,9 @@ title: User Info
 
 date: 2024-07-11 18:56:00 +0300
 
-# Custom properties.
-version: "0.12.0"
-xpack_subversion: "3"
-npm_subversion: "1"
-
 ---
+
+import { customFields } from '/docusaurus.config';
 
 This page is intended for those who plan
 to use the OpenOCD binaries in their workflows.
@@ -16,16 +13,16 @@ to use the OpenOCD binaries in their workflows.
 ## Versioning
 
 The version string used by the OpenOCD project is a three number string
-like <code>{ frontMatter.version }</code>; to this string the xPack distribution adds a four number,
+like <code>{ customFields.version }</code>; to this string the xPack distribution adds a four number,
 but since semver allows only three numbers, all additional ones can
 be added only as pre-release strings, separated by a dash,
-like <code>{ frontMatter.version }-{ frontMatter.xpack_subversion }</code>. When published as a npm package, the version gets
-a fifth number, like <code>{ frontMatter.version }-{ frontMatter.xpack_subversion }.{ frontMatter.npm_subversion }</code>.
+like <code>{ customFields.version }-{ customFields.xpack_subversion }</code>. When published as a npm package, the version gets
+a fifth number, like <code>{ customFields.version }-{ customFields.xpack_subversion }.{ customFields.npm_subversion }</code>.
 
 Since adherence of third party packages to semver is not guaranteed,
 it is recommended to avoid referring to the OpenOCD dependency via
-a semver expressions like <code>^{ frontMatter.version }</code> or
-<code>~{ frontMatter.version }</code>, and prefer exact matches, like <code>{ frontMatter.version }-{ frontMatter.xpack_subversion }.{ frontMatter.npm_subversion }</code>.
+a semver expressions like <code>^{ customFields.version }</code> or
+<code>~{ customFields.version }</code>, and prefer exact matches, like <code>{ customFields.version }-{ customFields.xpack_subversion }.{ customFields.npm_subversion }</code>.
 
 ## Drivers
 

@@ -5,11 +5,6 @@ hide_table_of_contents: true
 
 date: 2020-09-27 11:09:00 +0300
 
-# Custom properties.
-version: "0.12.0"
-xpack_subversion: "3"
-npm_subversion: "1"
-
 ---
 
 import Tabs from '@theme/Tabs';
@@ -19,6 +14,7 @@ import InstallWindows from './_install-windows.mdx';
 import InstallMacOS from './_install-macos.mdx';
 import InstallLinux from './_install-linux.mdx';
 import CodeBlock from '@theme/CodeBlock';
+import { customFields } from '/docusaurus.config';
 
 The **xPack OpenOCD** can be installed automatically, using the `xpm` command
 (the recommended method), or manually, by downloading and unpacking one of the
@@ -26,13 +22,13 @@ portable archives.
 
 <Tabs groupId="operating-systems">
   <TabItem value="windows" label="Windows" default>
-    <InstallWindows version={ frontMatter.version } xpack_subversion={ frontMatter.xpack_subversion } npm_subversion={ frontMatter.npm_subversion } is_windows="True"/>
+    <InstallWindows version={ customFields.version } xpack_subversion={ customFields.xpack_subversion } npm_subversion={ customFields.npm_subversion } is_windows="True"/>
   </TabItem>
   <TabItem value="macos" label="macOS">
-    <InstallMacOS version={ frontMatter.version } xpack_subversion={ frontMatter.xpack_subversion } npm_subversion={ frontMatter.npm_subversion }/>
+    <InstallMacOS version={ customFields.version } xpack_subversion={ customFields.xpack_subversion } npm_subversion={ customFields.npm_subversion }/>
   </TabItem>
   <TabItem value="linux" label="GNU/Linux">
-    <InstallLinux version={ frontMatter.version } xpack_subversion={ frontMatter.xpack_subversion } npm_subversion={ frontMatter.npm_subversion }/>
+    <InstallLinux version={ customFields.version } xpack_subversion={ customFields.xpack_subversion } npm_subversion={ customFields.npm_subversion }/>
   </TabItem>
 </Tabs>
 
@@ -41,8 +37,8 @@ portable archives.
 To test if the xpm installed OpenOCD is able to connect to a specific board, it is generally necessary to select the interface and the processor. As a shortcut, for some well known boards, there are ready made configuration files to set both the interface and the processor. For example to test a connection via ST/LINK to the STM32F4DISCOVERY board, you can use something like this:
 
 <CodeBlock language="console"> {
-`$ .../xPacks/@xpack-dev-tools/openocd/${ frontMatter.version }-${ frontMatter.xpack_subversion }.${ frontMatter.npm_subversion }/.content/bin/openocd -f board/stm32f4discovery.cfg
-xPack OpenOCD x86_64 Open On-Chip Debugger ${ frontMatter.version }+dev
+`$ .../xPacks/@xpack-dev-tools/openocd/${ customFields.version }-${ customFields.xpack_subversion }.${ customFields.npm_subversion }/.content/bin/openocd -f board/stm32f4discovery.cfg
+xPack OpenOCD x86_64 Open On-Chip Debugger ${ customFields.version }+dev
 Licensed under GNU GPL v2
 For bug reports, read
 	http://openocd.org/doc/doxygen/bugs.html
