@@ -94,12 +94,10 @@ The release and change log is available in the repository
 ## Maintainer & Developer info
 
 For information on the workflow used to make releases, please see the
-[README-MAINTAINER](https://github.com/xpack-dev-tools/openocd-xpack/blob/xpack/README-MAINTAINER.md)
-file.
+[Maintainer Info](/docs/maintainer-info/) page.
 
 For information on how to build the binaries, please see the
-[README-DEVELOPER](https://github.com/xpack-dev-tools/openocd-xpack/blob/xpack/README-DEVELOPER.md)
-file.
+[Developer Info](/docs/developer-info/) page.
 
 However, the ultimate source for details are the build scripts themselves,
 all available from the
