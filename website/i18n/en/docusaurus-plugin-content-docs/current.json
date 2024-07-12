@@ -3,28 +3,28 @@
     "message": "Next",
     "description": "The label for version current"
   },
-  "sidebar.tutorialSidebar.doc.Getting Started": {
+  "sidebar.docsSidebar.doc.Getting Started": {
     "message": "Getting Started",
-    "description": "The label for the doc item Getting Started in sidebar tutorialSidebar, linking to the doc overview"
+    "description": "The label for the doc item Getting Started in sidebar docsSidebar, linking to the doc overview"
   },
-  "sidebar.tutorialSidebar.doc.Install": {
+  "sidebar.docsSidebar.doc.Install": {
     "message": "Install",
-    "description": "The label for the doc item Install in sidebar tutorialSidebar, linking to the doc install/index"
+    "description": "The label for the doc item Install in sidebar docsSidebar, linking to the doc install/index"
   },
-  "sidebar.tutorialSidebar.doc.User Info": {
+  "sidebar.docsSidebar.doc.User Info": {
     "message": "User Info",
-    "description": "The label for the doc item User Info in sidebar tutorialSidebar, linking to the doc user-info"
+    "description": "The label for the doc item User Info in sidebar docsSidebar, linking to the doc user-info"
   },
-  "sidebar.tutorialSidebar.doc.FAQ": {
+  "sidebar.docsSidebar.doc.FAQ": {
     "message": "FAQ",
-    "description": "The label for the doc item FAQ in sidebar tutorialSidebar, linking to the doc faq"
+    "description": "The label for the doc item FAQ in sidebar docsSidebar, linking to the doc faq"
   },
-  "sidebar.tutorialSidebar.doc.Support": {
+  "sidebar.docsSidebar.doc.Support": {
     "message": "Support",
-    "description": "The label for the doc item Support in sidebar tutorialSidebar, linking to the doc support"
+    "description": "The label for the doc item Support in sidebar docsSidebar, linking to the doc support"
   },
-  "sidebar.tutorialSidebar.doc.Releases": {
+  "sidebar.docsSidebar.doc.Releases": {
     "message": "Releases",
-    "description": "The label for the doc item Releases in sidebar tutorialSidebar, linking to the doc releases"
+    "description": "The label for the doc item Releases in sidebar docsSidebar, linking to the doc releases"
   }
 }
