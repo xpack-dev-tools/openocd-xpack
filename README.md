@@ -10,7 +10,7 @@ A standalone cross-platform (Windows, macOS, GNU/Linux)
 binary distribution of [OpenOCD](https://openocd.org),
 intended for reproducible builds.
 
-## [Project documentation](https://xpack-dev-tools.github.io/openocd-xpack/)
+## Project documentation
 
 For information on how to install and use this library, please refer to the
 [project documentation](https://xpack-dev-tools.github.io/openocd-xpack/) web site.
