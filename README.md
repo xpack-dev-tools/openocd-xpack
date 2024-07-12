@@ -12,8 +12,8 @@ intended for reproducible builds.
 
 ## Project documentation
 
-For information on how to install and use this library, please refer to the
-[project documentation](https://xpack-dev-tools.github.io/openocd-xpack/) web site.
+For information on how to install and use this project, please refer to the
+[project web site](https://xpack-dev-tools.github.io/openocd-xpack/).
 
 ## License
 
