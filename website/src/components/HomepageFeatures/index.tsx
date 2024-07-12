@@ -25,9 +25,9 @@ const FeatureList: FeatureItem[] = [
     Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
     description: (
       <>
-        By design, <strong>multiple versions</strong> of the same tools
+        By design, <b>multiple versions</b> of the same tools
         can be installed
-        at the same time on the same system. Windows, macOS, GNU/Linux are
+        at the same time on the same system. <b>Windows</b>, <b>macOS</b>, <b>GNU/Linux</b> are
         supported. The tools include all
         needed libraries and can be installed in any folder.
       </>
@@ -39,7 +39,7 @@ const FeatureList: FeatureItem[] = [
     description: (
       <>
         The xPack binaries can be added to projects
-        as <strong>development dependencies</strong>,
+        as <b>development dependencies</b>,
         and conveniently installed with <code>xpm install</code>.
         This also provides reproducibility, a feature that is
         especially useful in <b>CI/CD</b> environments.
