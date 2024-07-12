@@ -55,7 +55,7 @@ The main advantages of using the **xPack OpenOCD** are:
 ## Compatibility
 
 The **xPack OpenOCD** is fully compatible with the original **OpenOCD**
-distribution.
+source distribution.
 
 ## Install
 
