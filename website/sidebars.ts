@@ -43,6 +43,11 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'doc',
+      id: 'developer-info/index',
+      label: 'Developer Info'
+    },
+    {
+      type: 'doc',
       id: 'maintainer-info/index',
       label: 'Maintainer Info'
     },
