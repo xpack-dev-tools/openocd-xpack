@@ -146,9 +146,9 @@ const config: Config = {
           'aria-label': 'GitHub repository',
         },
         {
-          label: `v${customFields.version}.${customFields.xpack_subversion}`,
+          label: `v${customFields.version}-${customFields.xpack_subversion}`,
           position: 'right',
-          href: `https://github.com/xpack-dev-tools/openocd-xpack/releases/tag/v${customFields.version}.${customFields.xpack_subversion}`,
+          href: `https://github.com/xpack-dev-tools/openocd-xpack/releases/tag/v${customFields.version}-${customFields.xpack_subversion}`,
         },
         {
           href: 'https://github.com/xpack-dev-tools/',
