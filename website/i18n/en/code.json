@@ -4,11 +4,11 @@
     "description": "The title of the fallback page when the page crashed"
   },
   "theme.blog.archive.title": {
-    "message": "Archive",
+    "message": "Blog Archive",
     "description": "The page & hero title of the blog archive page"
   },
   "theme.blog.archive.description": {
-    "message": "Archive",
+    "message": "Posts grouped by year",
     "description": "The page & hero description of the blog archive page"
   },
   "theme.BackToTopButton.buttonAriaLabel": {
