@@ -29,7 +29,7 @@ npm install --location=global xpm@latest
 
 With **xpm** available, installing
 the latest version of the package and adding it as
-a development dependency for a project is quite easy:
+a development dependency for a project is quite easy.
 
 At first use, add a `package.json` to the project, if not already there.
 

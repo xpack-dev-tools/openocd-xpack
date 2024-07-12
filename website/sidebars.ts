@@ -18,7 +18,7 @@ const sidebars: SidebarsConfig = {
   tutorialSidebar: [
     {
       type: 'doc',
-      id: 'overview',
+      id: 'overview/index',
       label: 'Getting Started'
     },
     {
@@ -28,22 +28,22 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'doc',
-      id: 'user-info',
+      id: 'user-info/index',
       label: 'User Info'
     },
     {
       type: 'doc',
-      id: 'faq',
+      id: 'faq/index',
       label: 'FAQ'
     },
     {
       type: 'doc',
-      id: 'support',
+      id: 'support/index',
       label: 'Support'
     },
     {
       type: 'doc',
-      id: 'releases',
+      id: 'releases/index',
       label: 'Releases'
     }
   ],
