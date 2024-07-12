@@ -125,7 +125,10 @@ const config: Config = {
               label: 'Archive',
               to: '/blog/archive'
             },
-
+            {
+              label: 'Tags',
+              to: '/blog/tags'
+            },
           ]
         },
         {
