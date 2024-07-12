@@ -1,5 +1,5 @@
 ---
-title: The xPack OpenOCD
+title: Getting Started with xPack OpenOCD
 
 date: 2020-09-28 17:49:00 +0300
 

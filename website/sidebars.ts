@@ -18,7 +18,7 @@ const sidebars: SidebarsConfig = {
   docsSidebar: [
     {
       type: 'doc',
-      id: 'overview/index',
+      id: 'getting-started/index',
       label: 'Getting Started'
     },
     {

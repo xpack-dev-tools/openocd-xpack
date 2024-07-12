@@ -107,12 +107,12 @@ const config: Config = {
         {
           type: 'dropdown',
           label: 'Docs',
-          to: 'docs/overview',
+          to: 'docs/getting-started',
           position: 'left',
           items: [
             {
               label: 'Getting Started',
-              to: '/docs/overview'
+              to: '/docs/getting-started'
             },
             {
               label: 'Install',
