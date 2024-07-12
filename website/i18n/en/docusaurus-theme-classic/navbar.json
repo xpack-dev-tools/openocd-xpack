@@ -1,0 +1,54 @@
+{
+  "title": {
+    "message": "The xPack Project",
+    "description": "The title in the navbar"
+  },
+  "logo.alt": {
+    "message": "xPack Logo",
+    "description": "The alt text of navbar logo"
+  },
+  "item.label.Docs": {
+    "message": "Docs",
+    "description": "Navbar item with label Docs"
+  },
+  "item.label.Blog": {
+    "message": "Blog",
+    "description": "Navbar item with label Blog"
+  },
+  "item.label.v0.12.0-3": {
+    "message": "v0.12.0-3",
+    "description": "Navbar item with label v0.12.0-3"
+  },
+  "item.label.xpack-dev-tools": {
+    "message": "xpack-dev-tools",
+    "description": "Navbar item with label xpack-dev-tools"
+  },
+  "item.label.Getting Started": {
+    "message": "Getting Started",
+    "description": "Navbar item with label Getting Started"
+  },
+  "item.label.Install": {
+    "message": "Install",
+    "description": "Navbar item with label Install"
+  },
+  "item.label.Support": {
+    "message": "Support",
+    "description": "Navbar item with label Support"
+  },
+  "item.label.Releases": {
+    "message": "Releases",
+    "description": "Navbar item with label Releases"
+  },
+  "item.label.Recent": {
+    "message": "Recent",
+    "description": "Navbar item with label Recent"
+  },
+  "item.label.Archive": {
+    "message": "Archive",
+    "description": "Navbar item with label Archive"
+  },
+  "item.label.Tags": {
+    "message": "Tags",
+    "description": "Navbar item with label Tags"
+  }
+}
