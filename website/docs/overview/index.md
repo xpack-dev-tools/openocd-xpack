@@ -12,7 +12,7 @@ date: 2020-09-28 17:49:00 +0300
 
 ## Overview
 
-The **xPack OpenOCD** is a standalone cross-platform (Windows, macOS, GNU/Linux)
+**xPack OpenOCD** is a standalone cross-platform (Windows, macOS, GNU/Linux)
 binary distribution of [OpenOCD](https://openocd.org),
 intended for reproducible builds.
 
