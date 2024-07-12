@@ -44,26 +44,6 @@ The full details of installing the **xPack OpenOCD** on various platforms
 are presented in the separate
 [Install](/docs/install/) page.
 
-### Easy install
-
-The easiest way to install OpenOCD is with
-[`xpm`](https://xpack.github.io/xpm/)
-by using the **binary xPack**, available as
-[`@xpack-dev-tools/openocd`](https://www.npmjs.com/package/@xpack-dev-tools/openocd)
-from the [`npmjs.com`](https://www.npmjs.com) registry.
-
-To install the latest version available, use:
-
-```sh
-xpm install --global @xpack-dev-tools/openocd@latest --verbose
-```
-
-To install this specific version, use:
-
-<CodeBlock language="sh">
-{'xpm install @xpack-dev-tools/openocd@' + frontMatter.version + '.' + frontMatter.npm_subversion + ' --verbose'}
-</CodeBlock>
-
 ## Compliance
 
 The **xPack OpenOCD** generally follows the official

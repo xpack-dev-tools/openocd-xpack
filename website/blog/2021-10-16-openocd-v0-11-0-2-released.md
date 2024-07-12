@@ -65,60 +65,6 @@ The full details of installing the **xPack OpenOCD** on various platforms
 are presented in the separate
 [Install](/docs/install/) page.
 
-### Easy install
-
-The easiest way to install OpenOCD is with
-[`xpm`](https://xpack.github.io/xpm/)
-by using the **binary xPack**, available as
-[`@xpack-dev-tools/openocd`](https://www.npmjs.com/package/@xpack-dev-tools/openocd)
-from the [`npmjs.com`](https://www.npmjs.com) registry.
-
-With the `xpm` tool available, installing
-the latest version of the package and adding it as
-a dependency for a project is quite easy:
-
-```sh
-cd my-project
-xpm init # Only at first use.
-
-xpm install @xpack-dev-tools/openocd@latest
-
-ls -l xpacks/.bin
-```
-
-To install this specific version, use:
-
-<CodeBlock language="sh">
-{'xpm install @xpack-dev-tools/openocd@' + frontMatter.version + '.' + frontMatter.npm_subversion + ' --verbose'}
-</CodeBlock>
-
-For xPacks aware tools, like the **Eclipse Embedded C/C++ plug-ins**,
-it is also possible to install OpenOCD globally, in the user home folder.
-
-```sh
-xpm install --global @xpack-dev-tools/openocd@latest --verbose
-```
-
-Eclipse will automatically
-identify binaries installed with
-`xpm` and provide a convenient method to manage paths.
-
-### Uninstall
-
-To remove the links from the current project:
-
-```sh
-cd my-project
-
-xpm uninstall @xpack-dev-tools/openocd
-```
-
-To completely remove the package from the central xPacks store:
-
-```sh
-xpm uninstall --global @xpack-dev-tools/openocd
-```
-
 ## Compliance
 
 The **xPack OpenOCD** generally follows the official
@@ -152,36 +98,6 @@ Compared to the upstream, the following changes were applied:
 ## Known problems
 
 - none
-
-## Shared libraries
-
-On all platforms the packages are standalone, and expect only the standard
-runtime to be present on the host.
-
-All dependencies that are build as shared libraries are copied locally
-in the `libexec` folder (or in the same folder as the executable for Windows).
-
-### `DT_RPATH` and `LD_LIBRARY_PATH`
-
-On GNU/Linux the binaries are adjusted to use a relative path:
-
-```console
-$ readelf -d library.so | grep runpath
- 0x000000000000001d (RPATH)            Library rpath: [$ORIGIN]
-```
-
-In the GNU ld.so search strategy, the `DT_RPATH` has
-the highest priority, higher than `LD_LIBRARY_PATH`, so if this later one
-is set in the environment, it should not interfere with the xPack binaries.
-
-Please note that previous versions, up to mid-2020, used `DT_RUNPATH`, which
-has a priority lower than `LD_LIBRARY_PATH`, and does not tolerate setting
-it in the environment.
-
-### `@executable_path`
-
-Similarly, on macOS, the binaries are adjusted with `otool` to use a
-relative path.
 
 ## Documentation
 
