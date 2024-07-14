@@ -1,6 +1,6 @@
 import CodeBlock from '@theme/CodeBlock';
 
-## Easy install
+## Automated install
 
 The easiest way to install OpenOCD is by using the **binary xPack**, available as
 [`@xpack-dev-tools/openocd`](https://www.npmjs.com/package/@xpack-dev-tools/openocd)
@@ -15,11 +15,12 @@ that complements [npm](https://docs.npmjs.com)
 with several extra features specific to
 **C/C++ projects**.
 
-To install it,
+To install **xpm**,
 follow the instructions in the
 [xpm install](https://xpack.github.io/xpm/install/) page.
 
-It is always a good idea to install/update to the latest version with:
+If already installed, it is always a good idea to update it to the
+latest version with:
 
 ```sh
 npm install --location=global xpm@latest
@@ -27,7 +28,7 @@ npm install --location=global xpm@latest
 
 :::tip
 
-It is always a good idea to also upgrade **npm** to the latest version, and
+It is also a good idea to upgrade **npm** to the latest version, and
 **node** to a reasonably recent version (currently **npm** requires
 a **node** >=18.17.0).
 
@@ -46,8 +47,7 @@ cd my-project
 xpm init
 ```
 
-then install the **openocd** package and add it to `package.json` as a
-development dependency for convenient subsequent installs:
+then install the **openocd** package:
 
 ```sh
 xpm install @xpack-dev-tools/openocd@latest --verbose
@@ -59,15 +59,19 @@ The main result is a set of { props.is_windows === 'True' ? (<><code>.cmd</code>
 `${ props.is_windows === 'True' ? 'dir xpacks\\.bin' : 'ls -l xpacks/.bin' }`
 }</CodeBlock>
 
-The `xpm install` command will:
+The above `xpm install` command will:
 
-* install the latest available version,
-into the **central xPacks store**, if not already there; the central
-xPacks store is a platform dependent location in the home folder;
-check the output of the `xpm` command for the actual
-folder used on your platform;
+* install the latest available OpenOCD version,
+into the **central xPacks store** (if not already there); the central
+xPacks store is a platform dependent location in the home folder
+(check the output of the `xpm` command for the actual
+folder used on your platform);
 * add { props.is_windows === 'True' ? (<><code>.cmd</code> forwarders</>) : 'symbolic links' }
-to the central store into the local `xpacks/.bin` folder.
+into the local `xpacks/.bin` folder, referring to the binaries in the central store;
+* add `@xpack-dev-tools/openocd` to `package.json` as a
+development dependency; this ties a specific OpenOCD version to the current project
+and allows convenient subsequent installs via `xpm install` when the
+project is cloned in a new location (for example in CI/CD environments).
 
 :::tip
 
@@ -89,7 +93,8 @@ settings like **Show Hidden Files**.
 
 For xPacks aware tools (like the **Eclipse Embedded C/C++ plug-ins**),
 it is also possible to install OpenOCD only globally in the **central
-xPacks store**, without any local { props.is_windows === 'True' ? (<><code>.cmd</code> forwarders</>) : 'symbolic links' }.
+xPacks store**, without any local { props.is_windows === 'True' ? (<><code>.cmd</code> forwarders</>) : 'symbolic links' }, assuming the tool is capable of handling
+the path itself.
 
 ```sh
 xpm install --global @xpack-dev-tools/openocd@latest --verbose
