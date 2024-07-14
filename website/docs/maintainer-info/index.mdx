@@ -140,8 +140,8 @@ as below.
 
 Determine the version (like <code>{ customFields.version }</code>) and update the `scripts/VERSION`
 file; the format is <code>{ customFields.version }-{ customFields.xpack_subversion }</code>. The fourth number is the xPack release number
-of this version. A fifth number will be added when publishing
-the package on the `npm` server.
+of this version. A fifth number will be added to the version in `package.json`
+when the package is published to the `npm` server.
 
 ### Fix possible open issues
 
@@ -164,7 +164,7 @@ but in the version specific release page.
 
 ### Update version in `package.json` to a pre-release
 
-Use the new version, suffixed by `pre`, like <code>{ customFields.version }-{ customFields.xpack_subversion }.pre</code>.
+Use the new version, suffixed by `.pre`, like <code>{ customFields.version }-{ customFields.xpack_subversion }.pre</code>.
 
 ### Update `CHANGELOG.md`
 
@@ -254,12 +254,8 @@ xpm run build-develop --config darwin-x64 -C ~/Work/xpack-dev-tools/openocd-xpac
 Several minutes later, the output of the build script is a compressed
 archive and its SHA signature, created in the `deploy` folder:
 
-<CodeBlock language="console"> {
-`$ ls -l ~/Work/xpack-dev-tools/openocd-xpack.git/build/darwin-x64/deploy
-total 4552
--rw-r--r--  1 ilg  staff  2325140 Apr  2 01:09 xpack-openocd-${ customFields.version }-${ customFields.xpack_subversion }-darwin-x64.tar.gz
--rw-r--r--  1 ilg  staff      107 Apr  2 01:09 xpack-openocd-${ customFields.version }-${ customFields.xpack_subversion }-darwin-x64.tar.gz.sha`
-}</CodeBlock>
+* <code>xpack-openocd-${ customFields.version }-${ customFields.xpack_subversion }-darwin-x64.tar.gz</code>
+* <code>xpack-openocd-${ customFields.version }-${ customFields.xpack_subversion }-darwin-x64.tar.gz.sha</code>
 
 #### Apple Silicon macOS
 
@@ -289,12 +285,8 @@ xpm run build-develop --config darwin-arm64 -C ~/Work/xpack-dev-tools/openocd-xp
 Several minutes later, the output of the build script is a compressed
 archive and its SHA signature, created in the `deploy` folder:
 
-<CodeBlock language="console"> {
-`$ ls -l ~/Work/xpack-dev-tools/openocd-xpack.git/build/darwin-arm64/deploy
-total 4400
--rw-r--r--  1 ilg  staff  2245438 Apr  2 01:08 xpack-openocd-${ customFields.version }-${ customFields.xpack_subversion }-darwin-arm64.tar.gz
--rw-r--r--  1 ilg  staff      109 Apr  2 01:08 xpack-openocd-${ customFields.version }-${ customFields.xpack_subversion }-darwin-arm64.tar.gz.sha`
-}</CodeBlock>
+* <code>xpack-openocd-${ customFields.version }-${ customFields.xpack_subversion }-darwin-arm64.tar.gz</code>
+* <code>xpack-openocd-${ customFields.version }-${ customFields.xpack_subversion }-darwin-arm64.tar.gz.sha</code>
 
 #### Intel GNU/Linux
 
@@ -326,12 +318,8 @@ xpm run docker-build-develop --config linux-x64 -C ~/Work/xpack-dev-tools/openoc
 Several minutes later, the output of the build script is a compressed
 archive and its SHA signature, created in the `deploy` folder:
 
-<CodeBlock language="console"> {
-`$ ls -l ~/Work/xpack-dev-tools/openocd-xpack.git/build/linux-x64/deploy
-total 2548
--rw-r--r-- 1 ilg ilg 2604809 Apr  1 22:07 xpack-openocd-${ customFields.version }-${ customFields.xpack_subversion }-linux-x64.tar.gz
--rw-r--r-- 1 ilg ilg     106 Apr  1 22:07 xpack-openocd-${ customFields.version }-${ customFields.xpack_subversion }-linux-x64.tar.gz.sha`
-}</CodeBlock>
+* <code>xpack-openocd-${ customFields.version }-${ customFields.xpack_subversion }-linux-x64.tar.gz</code>
+* <code>xpack-openocd-${ customFields.version }-${ customFields.xpack_subversion }-linux-x64.tar.gz.sha</code>
 
 ##### Build the Intel Windows binaries
 
@@ -354,12 +342,8 @@ xpm run docker-build-develop --config win32-x64 -C ~/Work/xpack-dev-tools/openoc
 Several minutes later, the output of the build script is a compressed
 archive and its SHA signature, created in the `deploy` folder:
 
-<CodeBlock language="console"> {
-`$ ls -l ~/Work/xpack-dev-tools/openocd-xpack.git/build/win32-x64/deploy
-total 2972
--rw-r--r-- 1 ilg ilg 3037341 Apr  1 22:08 xpack-openocd-${ customFields.version }-${ customFields.xpack_subversion }-win32-x64.zip
--rw-r--r-- 1 ilg ilg     103 Apr  1 22:08 xpack-openocd-${ customFields.version }-${ customFields.xpack_subversion }-win32-x64.zip.sha`
-}</CodeBlock>
+* <code>xpack-openocd-${ customFields.version }-${ customFields.xpack_subversion }-win32-x64.zip</code>
+* <code>xpack-openocd-${ customFields.version }-${ customFields.xpack_subversion }-win32-x64.zip.sha</code>
 
 #### Arm GNU/Linux 64-bit
 
@@ -389,12 +373,8 @@ xpm run docker-build-develop --config linux-arm64 -C ~/Work/xpack-dev-tools/open
 About 10 minutes later (3 minutes on ampere), the output of the build script is a compressed
 archive and its SHA signature, created in the `deploy` folder:
 
-<CodeBlock language="console"> {
-`$ ls -l ~/Work/xpack-dev-tools/openocd-xpack.git/build/linux-arm64/deploy
-total 2500
--rw-r--r-- 1 ilg ilg 2553855 Apr  1 22:17 xpack-openocd-${ customFields.version }-${ customFields.xpack_subversion }-linux-arm64.tar.gz
--rw-r--r-- 1 ilg ilg     108 Apr  1 22:17 xpack-openocd-${ customFields.version }-${ customFields.xpack_subversion }-linux-arm64.tar.gz.sha`
-}</CodeBlock>
+* <code>xpack-openocd-${ customFields.version }-${ customFields.xpack_subversion }-linux-arm64.tar.gz</code>
+* <code>xpack-openocd-${ customFields.version }-${ customFields.xpack_subversion }-linux-arm64.tar.gz.sha</code>
 
 #### Arm GNU/Linux 32-bit
 
@@ -424,12 +404,8 @@ xpm run docker-build-develop --config linux-arm -C ~/Work/xpack-dev-tools/openoc
 About 10 minutes later, the output of the build script is a compressed
 archive and its SHA signature, created in the `deploy` folder:
 
-<CodeBlock language="console"> {
-`$ ls -l ~/Work/xpack-dev-tools/openocd-xpack.git/build/linux-arm/deploy
-total 2424
--rw-r--r-- 1 ilg ilg 2477121 Apr  1 22:16 xpack-openocd-${ customFields.version }-${ customFields.xpack_subversion }-linux-arm.tar.gz
--rw-r--r-- 1 ilg ilg     106 Apr  1 22:16 xpack-openocd-${ customFields.version }-${ customFields.xpack_subversion }-linux-arm.tar.gz.sha`
-}</CodeBlock>
+* <code>xpack-openocd-${ customFields.version }-${ customFields.xpack_subversion }-linux-arm.tar.gz</code>
+* <code>xpack-openocd-${ customFields.version }-${ customFields.xpack_subversion }-linux-arm.tar.gz.sha</code>
 
 ### Update README-MAINTAINER listing output
 
@@ -445,8 +421,7 @@ Commit if necessary.
 
 ### How to build a debug version
 
-In some cases it is necessary to run a debug session in the binaries,
-or even in the libraries functions.
+In some cases it is necessary to run a debug session with the binaries.
 
 For these cases, the build script accepts the `--debug` options.
 
@@ -461,8 +436,8 @@ during the first run, later runs being able to use the cached files.
 However, occasionally some servers may not be available, and the builds
 may fail.
 
-The workaround is to manually download the files from an alternate
-location (like
+The workaround is to manually download the files from alternate
+locations (like
 https://github.com/xpack-dev-tools/files-cache/tree/master/libs),
 place them in the XBB cache (`Work/cache`) and restart the build.
 
