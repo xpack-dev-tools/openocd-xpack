@@ -115,11 +115,11 @@ const config: Config = {
               to: '/docs/getting-started'
             },
             {
-              label: 'Install',
+              label: 'Install Guide',
               to: '/docs/install'
             },
             {
-              label: 'Support',
+              label: 'Help Center',
               to: '/docs/support'
             },
             {
