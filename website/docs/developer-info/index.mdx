@@ -5,6 +5,9 @@ date: 2024-11-12 20:33:00 +0300
 
 ---
 
+import CodeBlock from '@theme/CodeBlock';
+import { customFields } from '/docusaurus.config';
+
 [![license](https://img.shields.io/github/license/xpack-dev-tools/openocd-xpack)](https://github.com/xpack-dev-tools/openocd-xpack/blob/xpack/LICENSE)
 
 This page is intended for those who want to build the xPack OpenOCD
@@ -139,12 +142,12 @@ xpm run build-develop --config darwin-x64 -C ~/Work/xpack-dev-tools/openocd-xpac
 About 10 minutes later, the output of the build script is a compressed
 archive and its SHA signature, created in the `deploy` folder:
 
-```console
-$ ls -l ~/Work/xpack-dev-tools/openocd-xpack.git/build/darwin-x64/deploy
+<CodeBlock language="console"> {
+`$ ls -l ~/Work/xpack-dev-tools/openocd-xpack.git/build/darwin-x64/deploy
 total 4840
--rw-r--r--  1 ilg  staff  2471148 Jan 30 11:19 xpack-openocd-0.12.0-2-darwin-x64.tar.gz
--rw-r--r--  1 ilg  staff      107 Jan 30 11:19 xpack-openocd-0.12.0-2-darwin-x64.tar.gz.sha
-```
+-rw-r--r--  1 ilg  staff  2471148 Jan 30 11:19 xpack-openocd-${ customFields.version }-${ customFields.xpack_subversion }-darwin-x64.tar.gz
+-rw-r--r--  1 ilg  staff      107 Jan 30 11:19 xpack-openocd-${ customFields.version }-${ customFields.xpack_subversion }-darwin-x64.tar.gz.sha`
+}</CodeBlock>
 
 To rerun the build, invoke the deep-clean action and repeat from install:
 
@@ -184,12 +187,12 @@ xpm run build-develop --config darwin-arm64 -C ~/Work/xpack-dev-tools/openocd-xp
 Several minutes later, the output of the build script is a compressed
 archive and its SHA signature, created in the `deploy` folder:
 
-```console
-$ ls -l ~/Work/xpack-dev-tools/openocd-xpack.git/build/darwin-arm64/deploy
+<CodeBlock language="console"> {
+`$ ls -l ~/Work/xpack-dev-tools/openocd-xpack.git/build/darwin-arm64/deploy
 total 4800
--rw-r--r--  1 ilg  staff  2451720 Jan 30 11:17 xpack-openocd-0.12.0-2-darwin-arm64.tar.gz
--rw-r--r--  1 ilg  staff      109 Jan 30 11:17 xpack-openocd-0.12.0-2-darwin-arm64.tar.gz.sha
-```
+-rw-r--r--  1 ilg  staff  2451720 Jan 30 11:17 xpack-openocd-${ customFields.version }-${ customFields.xpack_subversion }-darwin-arm64.tar.gz
+-rw-r--r--  1 ilg  staff      109 Jan 30 11:17 xpack-openocd-${ customFields.version }-${ customFields.xpack_subversion }-darwin-arm64.tar.gz.sha`
+}</CodeBlock>
 
 To rerun the build, invoke the deep-clean action and repeat from install:
 
@@ -234,12 +237,12 @@ xpm run docker-build-develop --config linux-x64 -C ~/Work/xpack-dev-tools/openoc
 Several minutes later, the output of the build script is a compressed
 archive and its SHA signature, created in the `deploy` folder:
 
-```console
-$ ls -l ~/Work/xpack-dev-tools/openocd-xpack.git/build/linux-x64/deploy
+<CodeBlock language="console"> {
+`$ ls -l ~/Work/xpack-dev-tools/openocd-xpack.git/build/linux-x64/deploy
 total 2732
--rw-r--r-- 1 ilg ilg 2789919 Jan 30 09:20 xpack-openocd-0.12.0-2-linux-x64.tar.gz
--rw-r--r-- 1 ilg ilg     106 Jan 30 09:20 xpack-openocd-0.12.0-2-linux-x64.tar.gz.sha
-```
+-rw-r--r-- 1 ilg ilg 2789919 Jan 30 09:20 xpack-openocd-${ customFields.version }-${ customFields.xpack_subversion }-linux-x64.tar.gz
+-rw-r--r-- 1 ilg ilg     106 Jan 30 09:20 xpack-openocd-${ customFields.version }-${ customFields.xpack_subversion }-linux-x64.tar.gz.sha`
+}</CodeBlock>
 
 To rerun the build, invoke the deep-clean action and repeat from docker-prepare:
 
@@ -280,12 +283,12 @@ xpm run docker-build-develop --config win32-x64 -C ~/Work/xpack-dev-tools/openoc
 About 5 minutes later, the output of the build script is a compressed
 archive and its SHA signature, created in the `deploy` folder:
 
-```console
-$ ls -l ~/Work/xpack-dev-tools/openocd-xpack.git/build/win32-x64/deploy
+<CodeBlock language="console"> {
+`$ ls -l ~/Work/xpack-dev-tools/openocd-xpack.git/build/win32-x64/deploy
 total 3088
--rw-r--r-- 1 ilg ilg 3156989 Jan 30 09:41 xpack-openocd-0.12.0-2-win32-x64.zip
--rw-r--r-- 1 ilg ilg     103 Jan 30 09:41 xpack-openocd-0.12.0-2-win32-x64.zip.sha
-```
+-rw-r--r-- 1 ilg ilg 3156989 Jan 30 09:41 xpack-openocd-${ customFields.version }-${ customFields.xpack_subversion }-win32-x64.zip
+-rw-r--r-- 1 ilg ilg     103 Jan 30 09:41 xpack-openocd-${ customFields.version }-${ customFields.xpack_subversion }-win32-x64.zip.sha`
+}</CodeBlock>
 
 To rerun the build, invoke the deep-clean action and repeat from docker-prepare:
 
@@ -326,12 +329,12 @@ xpm run docker-build-develop --config linux-arm64 -C ~/Work/xpack-dev-tools/open
 About 10 minutes later, the output of the build script is a compressed
 archive and its SHA signature, created in the `deploy` folder:
 
-```console
-$ ls -l ~/Work/xpack-dev-tools/openocd-xpack.git/build/linux-arm64/deploy
+<CodeBlock language="console"> {
+`$ ls -l ~/Work/xpack-dev-tools/openocd-xpack.git/build/linux-arm64/deploy
 total 2676
--rw-r--r-- 1 ilg ilg 2732671 Jan 30 09:24 xpack-openocd-0.12.0-2-linux-arm64.tar.gz
--rw-r--r-- 1 ilg ilg     108 Jan 30 09:24 xpack-openocd-0.12.0-2-linux-arm64.tar.gz.sha
-```
+-rw-r--r-- 1 ilg ilg 2732671 Jan 30 09:24 xpack-openocd-${ customFields.version }-${ customFields.xpack_subversion }-linux-arm64.tar.gz
+-rw-r--r-- 1 ilg ilg     108 Jan 30 09:24 xpack-openocd-${ customFields.version }-${ customFields.xpack_subversion }-linux-arm64.tar.gz.sha`
+}</CodeBlock>
 
 To rerun the build, invoke the deep-clean action and repeat from docker-prepare:
 
@@ -372,12 +375,12 @@ xpm run docker-build-develop --config linux-arm -C ~/Work/xpack-dev-tools/openoc
 About 10 minutes later, the output of the build script is a compressed
 archive and its SHA signature, created in the `deploy` folder:
 
-```console
-$ ls -l ~/Work/xpack-dev-tools/openocd-xpack.git/build/linux-arm/deploy
+<CodeBlock language="console"> {
+`$ ls -l ~/Work/xpack-dev-tools/openocd-xpack.git/build/linux-arm/deploy
 total 2592
--rw-r--r-- 1 ilg ilg 2649660 Jan 30 09:25 xpack-openocd-0.12.0-2-linux-arm.tar.gz
--rw-r--r-- 1 ilg ilg     106 Jan 30 09:25 xpack-openocd-0.12.0-2-linux-arm.tar.gz.sha
-```
+-rw-r--r-- 1 ilg ilg 2649660 Jan 30 09:25 xpack-openocd-${ customFields.version }-${ customFields.xpack_subversion }-linux-arm.tar.gz
+-rw-r--r-- 1 ilg ilg     106 Jan 30 09:25 xpack-openocd-${ customFields.version }-${ customFields.xpack_subversion }-linux-arm.tar.gz.sha`
+}</CodeBlock>
 
 To rerun the build, invoke the deep-clean action and repeat from docker-prepare:
 
@@ -419,16 +422,16 @@ it is necessary
 to configure the rights, otherwise LIBUSB will issue the _libusb_open
 failed: LIBUSB_ERROR_ACCESS_ error.
 
-```sh
-sudo cp ~/Downloads/xpack-openocd-0.12.0-2/contrib/60-openocd.rules /etc/udev/rules.d
-sudo udevadm control --reload-rules
-```
+<CodeBlock language="sh"> {
+`sudo cp ~/Downloads/xpack-openocd-${ customFields.version }-${ customFields.xpack_subversion }/contrib/60-openocd.rules /etc/udev/rules.d
+sudo udevadm control --reload-rules`
+}</CodeBlock>
 
 Then it is possible to start openocd:
 
-```console
-$ .../xpack-openocd-0.12.0-2/bin/openocd -f "board/stm32f4discovery.cfg"
-xPack Open On-Chip Debugger 0.12.0-01004-g9ea7f3d64-dirty (2023-01-30-16:23)
+<CodeBlock language="console"> {
+`$ .../xpack-openocd-${ customFields.version }-${ customFields.xpack_subversion }/bin/openocd -f "board/stm32f4discovery.cfg"
+xPack Open On-Chip Debugger ${ customFields.version }-01004-g9ea7f3d64-dirty
 Licensed under GNU GPL v2
 For bug reports, read
 	https://openocd.org/doc/doxygen/bugs.html
@@ -447,8 +450,8 @@ Info : Listening on port 3333 for gdb connections
 [stm32f4x.cpu] halted due to breakpoint, current mode: Handler HardFault
 xPSR: 0x61000003 pc: 0x080002d6 msp: 0x2001ff78
 ^C
-shutdown command invoked
-```
+shutdown command invoked`
+}</CodeBlock>
 
 Note: on recent macOS systems it might be necessary to allow individual
 programs to run.

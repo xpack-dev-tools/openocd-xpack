@@ -5,6 +5,7 @@ date: 2024-07-12 20:11:00 +0300
 
 ---
 
+import CodeBlock from '@theme/CodeBlock';
 import { customFields } from '/docusaurus.config';
 
 [![license](https://img.shields.io/github/license/xpack-dev-tools/openocd-xpack)](https://github.com/xpack-dev-tools/openocd-xpack/blob/xpack/LICENSE)
@@ -137,8 +138,8 @@ as below.
 
 ### Increase the version
 
-Determine the version (like `0.12.0`) and update the `scripts/VERSION`
-file; the format is `0.12.0-3`. The fourth number is the xPack release number
+Determine the version (like <code>{ customFields.version }</code>) and update the `scripts/VERSION`
+file; the format is <code>{ customFields.version }-{ customFields.xpack_subversion }</code>. The fourth number is the xPack release number
 of this version. A fifth number will be added when publishing
 the package on the `npm` server.
 
@@ -148,7 +149,7 @@ Check GitHub issues and pull requests:
 
 - https://github.com/xpack-dev-tools/openocd-xpack/issues/
 
-and fix them; assign them to a milestone (like `0.12.0-3`).
+and fix them; assign them to a milestone (like <code>{ customFields.version }-{ customFields.xpack_subversion }</code>).
 
 ### Check `README.md`
 
@@ -163,14 +164,14 @@ but in the version specific release page.
 
 ### Update version in `package.json` to a pre-release
 
-Use the new version, suffixed by `pre`, like `0.12.0-3.pre`.
+Use the new version, suffixed by `pre`, like <code>{ customFields.version }-{ customFields.xpack_subversion }.pre</code>.
 
 ### Update `CHANGELOG.md`
 
 - open the `CHANGELOG.md` file
 - check if all previous fixed issues are in
-- add a new entry like _* v0.12.0-3 prepared_
-- commit with a message like _prepare v0.12.0-3_
+- add a new entry like _* v{ customFields.version }-{ customFields.xpack_subversion } prepared_
+- commit with a message like _prepare v{ customFields.version }-{ customFields.xpack_subversion }_
 
 ### Update the version specific code
 
@@ -253,12 +254,12 @@ xpm run build-develop --config darwin-x64 -C ~/Work/xpack-dev-tools/openocd-xpac
 Several minutes later, the output of the build script is a compressed
 archive and its SHA signature, created in the `deploy` folder:
 
-```console
-$ ls -l ~/Work/xpack-dev-tools/openocd-xpack.git/build/darwin-x64/deploy
+<CodeBlock language="console"> {
+`$ ls -l ~/Work/xpack-dev-tools/openocd-xpack.git/build/darwin-x64/deploy
 total 4552
--rw-r--r--  1 ilg  staff  2325140 Apr  2 01:09 xpack-openocd-0.12.0-3-darwin-x64.tar.gz
--rw-r--r--  1 ilg  staff      107 Apr  2 01:09 xpack-openocd-0.12.0-3-darwin-x64.tar.gz.sha
-```
+-rw-r--r--  1 ilg  staff  2325140 Apr  2 01:09 xpack-openocd-${ customFields.version }-${ customFields.xpack_subversion }-darwin-x64.tar.gz
+-rw-r--r--  1 ilg  staff      107 Apr  2 01:09 xpack-openocd-${ customFields.version }-${ customFields.xpack_subversion }-darwin-x64.tar.gz.sha`
+}</CodeBlock>
 
 #### Apple Silicon macOS
 
@@ -288,12 +289,12 @@ xpm run build-develop --config darwin-arm64 -C ~/Work/xpack-dev-tools/openocd-xp
 Several minutes later, the output of the build script is a compressed
 archive and its SHA signature, created in the `deploy` folder:
 
-```console
-$ ls -l ~/Work/xpack-dev-tools/openocd-xpack.git/build/darwin-arm64/deploy
+<CodeBlock language="console"> {
+`$ ls -l ~/Work/xpack-dev-tools/openocd-xpack.git/build/darwin-arm64/deploy
 total 4400
--rw-r--r--  1 ilg  staff  2245438 Apr  2 01:08 xpack-openocd-0.12.0-3-darwin-arm64.tar.gz
--rw-r--r--  1 ilg  staff      109 Apr  2 01:08 xpack-openocd-0.12.0-3-darwin-arm64.tar.gz.sha
-```
+-rw-r--r--  1 ilg  staff  2245438 Apr  2 01:08 xpack-openocd-${ customFields.version }-${ customFields.xpack_subversion }-darwin-arm64.tar.gz
+-rw-r--r--  1 ilg  staff      109 Apr  2 01:08 xpack-openocd-${ customFields.version }-${ customFields.xpack_subversion }-darwin-arm64.tar.gz.sha`
+}</CodeBlock>
 
 #### Intel GNU/Linux
 
@@ -325,12 +326,12 @@ xpm run docker-build-develop --config linux-x64 -C ~/Work/xpack-dev-tools/openoc
 Several minutes later, the output of the build script is a compressed
 archive and its SHA signature, created in the `deploy` folder:
 
-```console
-$ ls -l ~/Work/xpack-dev-tools/openocd-xpack.git/build/linux-x64/deploy
+<CodeBlock language="console"> {
+`$ ls -l ~/Work/xpack-dev-tools/openocd-xpack.git/build/linux-x64/deploy
 total 2548
--rw-r--r-- 1 ilg ilg 2604809 Apr  1 22:07 xpack-openocd-0.12.0-3-linux-x64.tar.gz
--rw-r--r-- 1 ilg ilg     106 Apr  1 22:07 xpack-openocd-0.12.0-3-linux-x64.tar.gz.sha
-```
+-rw-r--r-- 1 ilg ilg 2604809 Apr  1 22:07 xpack-openocd-${ customFields.version }-${ customFields.xpack_subversion }-linux-x64.tar.gz
+-rw-r--r-- 1 ilg ilg     106 Apr  1 22:07 xpack-openocd-${ customFields.version }-${ customFields.xpack_subversion }-linux-x64.tar.gz.sha`
+}</CodeBlock>
 
 ##### Build the Intel Windows binaries
 
@@ -353,12 +354,12 @@ xpm run docker-build-develop --config win32-x64 -C ~/Work/xpack-dev-tools/openoc
 Several minutes later, the output of the build script is a compressed
 archive and its SHA signature, created in the `deploy` folder:
 
-```console
-$ ls -l ~/Work/xpack-dev-tools/openocd-xpack.git/build/win32-x64/deploy
+<CodeBlock language="console"> {
+`$ ls -l ~/Work/xpack-dev-tools/openocd-xpack.git/build/win32-x64/deploy
 total 2972
--rw-r--r-- 1 ilg ilg 3037341 Apr  1 22:08 xpack-openocd-0.12.0-3-win32-x64.zip
--rw-r--r-- 1 ilg ilg     103 Apr  1 22:08 xpack-openocd-0.12.0-3-win32-x64.zip.sha
-```
+-rw-r--r-- 1 ilg ilg 3037341 Apr  1 22:08 xpack-openocd-${ customFields.version }-${ customFields.xpack_subversion }-win32-x64.zip
+-rw-r--r-- 1 ilg ilg     103 Apr  1 22:08 xpack-openocd-${ customFields.version }-${ customFields.xpack_subversion }-win32-x64.zip.sha`
+}</CodeBlock>
 
 #### Arm GNU/Linux 64-bit
 
@@ -388,12 +389,12 @@ xpm run docker-build-develop --config linux-arm64 -C ~/Work/xpack-dev-tools/open
 About 10 minutes later (3 minutes on ampere), the output of the build script is a compressed
 archive and its SHA signature, created in the `deploy` folder:
 
-```console
-$ ls -l ~/Work/xpack-dev-tools/openocd-xpack.git/build/linux-arm64/deploy
+<CodeBlock language="console"> {
+`$ ls -l ~/Work/xpack-dev-tools/openocd-xpack.git/build/linux-arm64/deploy
 total 2500
--rw-r--r-- 1 ilg ilg 2553855 Apr  1 22:17 xpack-openocd-0.12.0-3-linux-arm64.tar.gz
--rw-r--r-- 1 ilg ilg     108 Apr  1 22:17 xpack-openocd-0.12.0-3-linux-arm64.tar.gz.sha
-```
+-rw-r--r-- 1 ilg ilg 2553855 Apr  1 22:17 xpack-openocd-${ customFields.version }-${ customFields.xpack_subversion }-linux-arm64.tar.gz
+-rw-r--r-- 1 ilg ilg     108 Apr  1 22:17 xpack-openocd-${ customFields.version }-${ customFields.xpack_subversion }-linux-arm64.tar.gz.sha`
+}</CodeBlock>
 
 #### Arm GNU/Linux 32-bit
 
@@ -423,12 +424,12 @@ xpm run docker-build-develop --config linux-arm -C ~/Work/xpack-dev-tools/openoc
 About 10 minutes later, the output of the build script is a compressed
 archive and its SHA signature, created in the `deploy` folder:
 
-```console
-$ ls -l ~/Work/xpack-dev-tools/openocd-xpack.git/build/linux-arm/deploy
+<CodeBlock language="console"> {
+`$ ls -l ~/Work/xpack-dev-tools/openocd-xpack.git/build/linux-arm/deploy
 total 2424
--rw-r--r-- 1 ilg ilg 2477121 Apr  1 22:16 xpack-openocd-0.12.0-3-linux-arm.tar.gz
--rw-r--r-- 1 ilg ilg     106 Apr  1 22:16 xpack-openocd-0.12.0-3-linux-arm.tar.gz.sha
-```
+-rw-r--r-- 1 ilg ilg 2477121 Apr  1 22:16 xpack-openocd-${ customFields.version }-${ customFields.xpack_subversion }-linux-arm.tar.gz
+-rw-r--r-- 1 ilg ilg     106 Apr  1 22:16 xpack-openocd-${ customFields.version }-${ customFields.xpack_subversion }-linux-arm.tar.gz.sha`
+}</CodeBlock>
 
 ### Update README-MAINTAINER listing output
 
@@ -658,16 +659,16 @@ it is necessary
 to configure the rights, otherwise LIBUSB will issue the _libusb_open
 failed: LIBUSB_ERROR_ACCESS_ error.
 
-```sh
-sudo cp ~/Downloads/xpack-openocd-0.12.0-3/contrib/60-openocd.rules /etc/udev/rules.d
-sudo udevadm control --reload-rules
-```
+<CodeBlock language="sh"> {
+`sudo cp ~/Downloads/xpack-openocd-${ customFields.version }-${ customFields.xpack_subversion }/contrib/60-openocd.rules /etc/udev/rules.d
+sudo udevadm control --reload-rules`
+}</CodeBlock>
 
 Then it is possible to start openocd:
 
-```console
-$ .../xpack-openocd-0.12.0-3/bin/openocd -f "board/stm32f4discovery.cfg"
-xPack Open On-Chip Debugger 0.12.0-01004-g9ea7f3d64-dirty (2023-01-30-16:23)
+<CodeBlock language="console"> {
+`$ .../xpack-openocd-${ customFields.version }-${ customFields.xpack_subversion }/bin/openocd -f "board/stm32f4discovery.cfg"
+xPack Open On-Chip Debugger ${ customFields.version }-01004-g9ea7f3d64-dirty
 Licensed under GNU GPL v2
 For bug reports, read
 	https://openocd.org/doc/doxygen/bugs.html
@@ -686,8 +687,8 @@ Info : Listening on port 3333 for gdb connections
 [stm32f4x.cpu] halted due to breakpoint, current mode: Handler HardFault
 xPSR: 0x61000003 pc: 0x080002d6 msp: 0x2001ff78
 ^C
-shutdown command invoked
-```
+shutdown command invoked`
+}</CodeBlock>
 
 Note: on recent macOS systems it might be necessary to allow individual
 programs to run.
@@ -701,7 +702,7 @@ launcher).
 
 ## Create a new GitHub pre-release draft
 
-- in `CHANGELOG.md`, add the release date and a message like _* v0.12.0-3 released_
+- in `CHANGELOG.md`, add the release date and a message like _* v{ customFields.version }-{ customFields.xpack_subversion } released_
 - commit with _CHANGELOG update_
 - check and possibly update the `templates/body-github-release-liquid.md`
 - push the `xpack-develop` branch
@@ -712,8 +713,8 @@ The workflow result and logs are available from the
 
 The result is a
 [draft pre-release](https://github.com/xpack-dev-tools/openocd-xpack/releases/)
-tagged like **v0.12.0-3** (mind the dash in the middle!) and
-named like **xPack OpenOCD v0.12.0-3** (mind the dash),
+tagged like **v{ customFields.version }-{ customFields.xpack_subversion }** (mind the dash in the middle!) and
+named like **xPack OpenOCD v{ customFields.version }-{ customFields.xpack_subversion }** (mind the dash),
 with all binaries attached.
 
 - edit the draft and attach it to the `xpack-develop` branch (important!)
@@ -736,7 +737,7 @@ If any, refer to closed
 ## Update the preview Web
 
 - commit the `develop` branch of `xpack/web-jekyll` GitHub repo;
-  use a message like _xPack OpenOCD v0.12.0-3 released_
+  use a message like _xPack OpenOCD v{ customFields.version }-{ customFields.xpack_subversion } released_
 - push to GitHub
 - wait for the GitHub Pages build to complete
 - the preview web is https://xpack.github.io/web-preview/news/
@@ -777,18 +778,18 @@ watching this project.
 - compare the SHA sums with those shown by `cat *.sha`
 - check the executable names
 - commit all changes, use a message like
-  _package.json: update urls for 0.12.0-3.1 release_ (without _v_)
+  _package.json: update urls for { customFields.version }-{ customFields.xpack_subversion }.{ customFields.npm_subversion } release_ (without _v_)
 
 ## Publish on the npmjs.com server
 
 - select the `xpack-develop` branch
 - check the latest commits `npm run git-log`
-- update `CHANGELOG.md`, add a line like _* v0.12.0-3 published on npmjs.com_
-- commit with a message like _CHANGELOG: publish npm v0.12.0-3.1_
+- update `CHANGELOG.md`, add a line like _* v{ customFields.version }-{ customFields.xpack_subversion } published on npmjs.com_
+- commit with a message like _CHANGELOG: publish npm v{ customFields.version }-{ customFields.xpack_subversion }.{ customFields.npm_subversion }_
 - `npm pack` and check the content of the archive, which should list
   only the `package.json`, the `README.md`, `LICENSE` and `CHANGELOG.md`;
   possibly adjust `.npmignore`
-- `npm version 0.12.0-3.1`; the first 4 numbers are the same as the
+- <code>npm version { customFields.version }-{ customFields.xpack_subversion }.{ customFields.npm_subversion }</code>; the first 4 numbers are the same as the
   GitHub release; the fifth number is the npm specific version
 - the commits and the tag should have been pushed by the `postversion` script;
   if not, push them with `git push origin --tags`
@@ -816,13 +817,13 @@ The tests results are available from the
 
 When the release is considered stable, promote it as `latest`:
 
-- `npm dist-tag ls @xpack-dev-tools/openocd`
-- `npm dist-tag add @xpack-dev-tools/openocd@0.12.0-3.1 latest`
-- `npm dist-tag ls @xpack-dev-tools/openocd`
+- <code>npm dist-tag ls @xpack-dev-tools/openocd</code>
+- <code>npm dist-tag add @xpack-dev-tools/openocd@{ customFields.version }-{ customFields.xpack_subversion }.{ customFields.npm_subversion } latest</code>
+- <code>npm dist-tag ls @xpack-dev-tools/openocd</code>
 
 In case the previous version is not functional and needs to be unpublished:
 
-- `npm unpublish @xpack-dev-tools/openocd@0.12.0-3.1`
+- <code>npm unpublish @xpack-dev-tools/openocd@{ customFields.version }-{ customFields.xpack_subversion }.{ customFields.npm_subversion }</code>
 
 ## Update the Web
 
@@ -844,7 +845,7 @@ In case the previous version is not functional and needs to be unpublished:
 
 - in a separate browser windows, open [X/Twitter](https://twitter.com)
 - using the `@xpack_project` account
-- paste the release name like **xPack OpenOCD v0.12.0-3 released**
+- paste the release name like **xPack OpenOCD v{ customFields.version }-{ customFields.xpack_subversion } released**
 - paste the link to the Web page
   [release](https://xpack.github.io/openocd/releases/)
 - click the **Tweet** button
