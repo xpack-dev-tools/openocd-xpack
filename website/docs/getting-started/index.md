@@ -64,7 +64,7 @@ The binaries can be installed automatically as **binary xPacks** or manually as
 
 The details of installing the **xPack OpenOCD** on various platforms are
 presented in the separate
-[Install](/docs/install/) page.
+[Install Guide](/docs/install/) page.
 
 ## Documentation
 
@@ -83,8 +83,8 @@ additional releases based on the current Git form time to time.
 The quick advice for getting support is to use the
 [GitHub Discussions](https://github.com/xpack-dev-tools/openocd-xpack/discussions/).
 
-For more details, please read the separate
-[Support](/docs/support/) page.
+For additional information, please refer to the
+[Help Center](/docs/support/) page.
 
 ## Change log
 

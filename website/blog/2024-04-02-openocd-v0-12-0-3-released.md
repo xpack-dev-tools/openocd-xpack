@@ -67,7 +67,7 @@ The binary files are available from
 
 The full details of installing the **xPack OpenOCD** on various platforms
 are presented in the separate
-[Install](/docs/install/) page.
+[Install Guide](/docs/install/) page.
 
 ## Compliance
 
