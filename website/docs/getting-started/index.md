@@ -24,7 +24,7 @@ OpenOCD, the **Open On-Chip Debugger**, is an open source project hosted on
 it provides the platform specific binaries as
 [release assets](https://github.com/xpack-dev-tools/openocd-xpack/releases).
 
-In addition to the the binary archives and the package metadata,
+In addition to the binary archives and the package metadata,
 this project also includes the
 [build scripts](https://github.com/xpack-dev-tools/openocd-xpack/tree/xpack/scripts).
 
