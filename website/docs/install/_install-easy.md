@@ -25,6 +25,14 @@ It is always a good idea to install/update to the latest version with:
 npm install --location=global xpm@latest
 ```
 
+:::tip
+
+It is always a good idea to also upgrade **npm** to the latest version, and
+**node** to a reasonably recent version (currently **npm** requires
+a **node** >=18.17.0).
+
+:::
+
 ### Install
 
 With **xpm** available, installing
@@ -38,7 +46,8 @@ cd my-project
 xpm init
 ```
 
-then install the package and add it as a dependency for convenient subsequent installs:
+then install the **openocd** package and add it to `package.json` as a
+development dependency for convenient subsequent installs:
 
 ```sh
 xpm install @xpack-dev-tools/openocd@latest --verbose
@@ -53,14 +62,12 @@ The main result is a set of { props.is_windows === 'True' ? (<><code>.cmd</code>
 The `xpm install` command will:
 
 * install the latest available version,
-into the **central xPacks store**, if not already there
+into the **central xPacks store**, if not already there; the central
+xPacks store is a platform dependent location in the home folder;
+check the output of the `xpm` command for the actual
+folder used on your platform;
 * add { props.is_windows === 'True' ? (<><code>.cmd</code> forwarders</>) : 'symbolic links' }
 to the central store into the local `xpacks/.bin` folder.
-
-The central xPacks store is a platform dependent
-location in the home folder;
-check the output of the `xpm` command for the actual
-folder used on your platform.
 
 :::tip
 
@@ -72,7 +79,7 @@ The install location can be configured using the
 
 :::tip
 
-The archive content is unpacked into a folder
+**xpm** unpacks the archive content into a folder
 named `.content`. On some platforms
 this might be hidden for normal browsing, and seeing it requires
 separate options (like `ls -A`) or, in file browsers, to enable
@@ -81,11 +88,12 @@ settings like **Show Hidden Files**.
 :::
 
 For xPacks aware tools (like the **Eclipse Embedded C/C++ plug-ins**),
-it is also possible to install OpenOCD globally, in the user home folder:
+it is also possible to install OpenOCD only globally in the **central
+xPacks store**, without any local { props.is_windows === 'True' ? (<><code>.cmd</code> forwarders</>) : 'symbolic links' }.
 
 ```sh
 xpm install --global @xpack-dev-tools/openocd@latest --verbose
 ```
 
-After install, the package should create a structure like the following
+After install, the package creates a folder hierarchy like the following
 (only the first two depth levels are shown):
