@@ -24,7 +24,7 @@ const sidebars: SidebarsConfig = {
     {
       type: 'doc',
       id: 'install/index',
-      label: 'Install'
+      label: 'Install Guide'
     },
     {
       type: 'doc',
@@ -39,7 +39,7 @@ const sidebars: SidebarsConfig = {
     {
       type: 'doc',
       id: 'support/index',
-      label: 'Support'
+      label: 'Help Center'
     },
     {
       type: 'doc',
