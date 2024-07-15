@@ -28,7 +28,8 @@ npm install --location=global xpm@latest
 
 :::tip
 
-It is also a good idea to upgrade **npm** to the latest version, and
+Although not mandated by **xpm**, it is also a good idea to upgrade
+**npm** to the latest version, and
 **node** to a reasonably recent version (currently **npm** requires
 a **node** >=18.17.0).
 
