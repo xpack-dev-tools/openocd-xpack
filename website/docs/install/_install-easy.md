@@ -62,18 +62,21 @@ The main result is a set of { props.is_windows === 'True' ? (<><code>.cmd</code>
 The above `xpm install` command will:
 
 * install the latest available version of OpenOCD
-into the **central xPacks store** (if not already there); the central
-xPacks store is a platform dependent folder located in the home folder
-designated for the installation of archives; this approach helps prevent
-multiple redundant copies of the same tools, such as large toolchains, thereby conserving disk space when these tools are utilized across multiple projects
-(check the output of the `xpm` command for the actual
-folder used on your platform);
+  into the **central xPacks store** (if not already there); the central
+  xPacks store is a platform dependent folder located in the home folder,
+  designated for the installation of archives; this approach helps prevent
+  multiple redundant copies of the same tools, such as large toolchains,
+  thereby conserving disk space when these tools are utilized across
+  multiple projects
+  (check the output of the `xpm` command for the actual
+  folder used on your platform);
 * add { props.is_windows === 'True' ? (<><code>.cmd</code> forwarders</>) : 'symbolic links' }
-into the local `xpacks/.bin` folder, referring to the binaries in the central store;
+  into the local `xpacks/.bin` folder, referring to the binaries in the central store;
 * add `@xpack-dev-tools/openocd` to `package.json` as a
-development dependency; this associates a specific version of OpenOCD with
-the current project, facilitating convenient subsequent installations via
-`xpm install` when the project is cloned to a new location, such as in CI/CD environments.
+  development dependency; this associates a specific version of OpenOCD with
+  the current project, facilitating convenient subsequent installations via
+  `xpm install` when the project is cloned to a new location, such as in
+  CI/CD environments.
 
 :::tip
 
