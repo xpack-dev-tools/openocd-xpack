@@ -163,8 +163,8 @@ xpm run build-develop --config darwin-x64 -C ~/Work/xpack-dev-tools/openocd-xpac
 About 10 minutes later, the output of the build script is a compressed
 archive and its SHA signature, created in the `deploy` folder:
 
-* <code>xpack-openocd-{ customFields.version }-{ customFields.xpack_subversion }-darwin-x64.tar.gz</code>
-* <code>xpack-openocd-{ customFields.version }-{ customFields.xpack_subversion }-darwin-x64.tar.gz.sha</code>
+* <code>xpack-openocd-{ customFields.upstreamVersion }-{ customFields.xpackSubversion }-darwin-x64.tar.gz</code>
+* <code>xpack-openocd-{ customFields.upstreamVersion }-{ customFields.xpackSubversion }-darwin-x64.tar.gz.sha</code>
 
 To rerun the build, invoke the deep-clean action and repeat from install:
 
@@ -204,8 +204,8 @@ xpm run build-develop --config darwin-arm64 -C ~/Work/xpack-dev-tools/openocd-xp
 Several minutes later, the output of the build script is a compressed
 archive and its SHA signature, created in the `deploy` folder:
 
-* <code>xpack-openocd-${ customFields.version }-${ customFields.xpack_subversion }-darwin-arm64.tar.gz</code>
-* <code>xpack-openocd-${ customFields.version }-${ customFields.xpack_subversion }-darwin-arm64.tar.gz.sha</code>
+* <code>xpack-openocd-{ customFields.upstreamVersion }-{ customFields.xpackSubversion }-darwin-arm64.tar.gz</code>
+* <code>xpack-openocd-{ customFields.upstreamVersion }-{ customFields.xpackSubversion }-darwin-arm64.tar.gz.sha</code>
 
 To rerun the build, invoke the deep-clean action and repeat from install:
 
@@ -250,8 +250,8 @@ xpm run docker-build-develop --config linux-x64 -C ~/Work/xpack-dev-tools/openoc
 Several minutes later, the output of the build script is a compressed
 archive and its SHA signature, created in the `deploy` folder:
 
-* <code>xpack-openocd-${ customFields.version }-${ customFields.xpack_subversion }-linux-x64.tar.gz</code>
-* <code>xpack-openocd-${ customFields.version }-${ customFields.xpack_subversion }-linux-x64.tar.gz.sha</code>
+* <code>xpack-openocd-{ customFields.upstreamVersion }-{ customFields.xpackSubversion }-linux-x64.tar.gz</code>
+* <code>xpack-openocd-{ customFields.upstreamVersion }-{ customFields.xpackSubversion }-linux-x64.tar.gz.sha</code>
 
 To rerun the build, invoke the deep-clean action and repeat from docker-prepare:
 
@@ -292,8 +292,8 @@ xpm run docker-build-develop --config win32-x64 -C ~/Work/xpack-dev-tools/openoc
 About 5 minutes later, the output of the build script is a compressed
 archive and its SHA signature, created in the `deploy` folder:
 
-* <code>xpack-openocd-${ customFields.version }-${ customFields.xpack_subversion }-win32-x64.zip</code>
-* <code>xpack-openocd-${ customFields.version }-${ customFields.xpack_subversion }-win32-x64.zip.sha</code>
+* <code>xpack-openocd-{ customFields.upstreamVersion }-{ customFields.xpackSubversion }-win32-x64.zip</code>
+* <code>xpack-openocd-{ customFields.upstreamVersion }-{ customFields.xpackSubversion }-win32-x64.zip.sha</code>
 
 To rerun the build, invoke the deep-clean action and repeat from docker-prepare:
 
@@ -334,8 +334,8 @@ xpm run docker-build-develop --config linux-arm64 -C ~/Work/xpack-dev-tools/open
 About 10 minutes later, the output of the build script is a compressed
 archive and its SHA signature, created in the `deploy` folder:
 
-* <code>xpack-openocd-${ customFields.version }-${ customFields.xpack_subversion }-linux-arm64.tar.gz</code>
-* <code>xpack-openocd-${ customFields.version }-${ customFields.xpack_subversion }-linux-arm64.tar.gz.sha</code>
+* <code>xpack-openocd-{ customFields.upstreamVersion }-{ customFields.xpackSubversion }-linux-arm64.tar.gz</code>
+* <code>xpack-openocd-{ customFields.upstreamVersion }-{ customFields.xpackSubversion }-linux-arm64.tar.gz.sha</code>
 
 To rerun the build, invoke the deep-clean action and repeat from docker-prepare:
 
@@ -376,8 +376,8 @@ xpm run docker-build-develop --config linux-arm -C ~/Work/xpack-dev-tools/openoc
 About 10 minutes later, the output of the build script is a compressed
 archive and its SHA signature, created in the `deploy` folder:
 
-* <code>xpack-openocd-${ customFields.version }-${ customFields.xpack_subversion }-linux-arm.tar.gz</code>
-* <code>xpack-openocd-${ customFields.version }-${ customFields.xpack_subversion }-linux-arm.tar.gz.sha</code>
+* <code>xpack-openocd-{ customFields.upstreamVersion }-{ customFields.xpackSubversion }-linux-arm.tar.gz</code>
+* <code>xpack-openocd-{ customFields.upstreamVersion }-{ customFields.xpackSubversion }-linux-arm.tar.gz.sha</code>
 
 To rerun the build, invoke the deep-clean action and repeat from docker-prepare:
 
@@ -419,7 +419,7 @@ to configure the rights, otherwise LIBUSB will issue the _libusb_open
 failed: LIBUSB_ERROR_ACCESS_ error.
 
 <CodeBlock language="sh"> {
-`sudo cp ~/Downloads/xpack-openocd-${ customFields.version }-${ customFields.xpack_subversion }/contrib/60-openocd.rules /etc/udev/rules.d
+`sudo cp ~/Downloads/xpack-openocd-${ customFields.upstreamVersion }-${ customFields.xpackSubversion }/contrib/60-openocd.rules /etc/udev/rules.d
 sudo udevadm control --reload-rules`
 }</CodeBlock>
 
@@ -427,7 +427,7 @@ Then it is possible to start openocd:
 
 <CodeBlock language="console"> {
 `$ .../bin/openocd -f "board/stm32f4discovery.cfg"
-xPack Open On-Chip Debugger ${ customFields.version }-01004-g9ea7f3d64-dirty
+xPack Open On-Chip Debugger ${ customFields.upstreamVersion }-01004-g9ea7f3d64-dirty
 Licensed under GNU GPL v2
 For bug reports, read
 	https://openocd.org/doc/doxygen/bugs.html
