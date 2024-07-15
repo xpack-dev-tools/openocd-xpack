@@ -22,7 +22,7 @@ type FeatureItem = {
 const FeatureList: FeatureItem[] = [
   {
     title: 'Multi-version, cross-platform',
-    Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
+    Svg: require('@site/static/img/mosaic.svg').default,
     description: (
       <>
         By design, <b>multiple versions</b> of the same tools
@@ -35,7 +35,7 @@ const FeatureList: FeatureItem[] = [
   },
   {
     title: 'Easy to Use & Reproducible',
-    Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
+    Svg: require('@site/static/img/check-badge.svg').default,
     description: (
       <>
         The xPack binaries can be added to projects
@@ -48,7 +48,7 @@ const FeatureList: FeatureItem[] = [
   },
   {
     title: 'Part of the Node.js ecosystem',
-    Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
+    Svg: require('@site/static/img/globe.svg').default,
     description: (
       <>
         The <b>xpm</b> tool complements <b>npm</b> with
@@ -64,9 +64,9 @@ const FeatureList: FeatureItem[] = [
 function Feature({title, Svg, description}: FeatureItem) {
   return (
     <div className={clsx('col col--4')}>
-      {/* <div className="text--center">
+      { <div className="text--center">
         <Svg className={styles.featureSvg} role="img" />
-      </div> */}
+      </div> }
       <div className="text--center padding-horiz--md">
         <Heading as="h3">{title}</Heading>
         <p>{description}</p>
