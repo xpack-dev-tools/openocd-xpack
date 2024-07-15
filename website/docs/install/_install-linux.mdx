@@ -8,7 +8,7 @@ import CodeBlock from '@theme/CodeBlock';
 
 <InstallEasy/>
 
-<InstallLinuxTree version={props.version} xpack_subversion={props.xpack_subversion} npm_subversion={props.npm_subversion}/>
+<InstallLinuxTree upstreamVersion={props.upstreamVersion} xpackSubversion={props.xpackSubversion} npmSubversion={props.npmSubversion}/>
 
 No other files are installed in any system folders or other locations.
 
@@ -19,8 +19,8 @@ No other files are installed in any system folders or other locations.
 To check if the OpenOCD installed by **xpm** starts properly, use something like:
 
 <CodeBlock language="console"> {
-`$ ~/.local/xPacks/@xpack-dev-tools/openocd/${ props.version }-${ props.xpack_subversion }.${ props.npm_subversion }/.content/bin/openocd --version
-${ props.version }`
+`$ ~/.local/xPacks/@xpack-dev-tools/openocd/${ props.upstreamVersion }-${ props.xpackSubversion }.${ props.npmSubversion }/.content/bin/openocd --version
+${ props.upstreamVersion }`
 }</CodeBlock>
 
 <InstallManual/>
@@ -31,9 +31,9 @@ The GNU/Linux versions of **xPack OpenOCD**
 are packed as `.tar.gz` archives.
 Download the latest version named like:
 
-* <code>xpack-openocd-{ props.version }-{ props.xpack_subversion }-linux-x64.tar.gz</code>
-* <code>xpack-openocd-{ props.version }-{ props.xpack_subversion }-linux-arm.tar.gz</code>
-* <code>xpack-openocd-{ props.version }-{ props.xpack_subversion }-linux-arm64.tar.gz</code>
+* <code>xpack-openocd-{ props.upstreamVersion }-{ props.xpackSubversion }-linux-x64.tar.gz</code>
+* <code>xpack-openocd-{ props.upstreamVersion }-{ props.xpackSubversion }-linux-arm.tar.gz</code>
+* <code>xpack-openocd-{ props.upstreamVersion }-{ props.xpackSubversion }-linux-arm64.tar.gz</code>
 
 As the name implies, these are GNU/Linux `tar.gz` archives; they were build on
 Ubuntu, but can be executed on most recent GNU/Linux distributions.
@@ -49,14 +49,14 @@ from, it is exactly the Node.js `process.platform` and `process.arch`.
 
 To manually install the <b>xPack OpenOCD</b>,
 unpack the archive and move it
-to <code>~/.local/xPacks/openocd/xpack-openocd-{ props.version }-{ props.xpack_subversion }</code>:
+to <code>~/.local/xPacks/openocd/xpack-openocd-{ props.upstreamVersion }-{ props.xpackSubversion }</code>:
 
 <CodeBlock language="console"> {
 `mkdir -p ~/.local/xPacks/openocd
 cd ~/.local/xPacks/openocd
 
-tar xvf ~/Downloads/xpack-openocd-${ props.version }-${ props.xpack_subversion }-linux-x64.tar.gz
-chmod -R -w xpack-openocd-${ props.version }-${ props.xpack_subversion }`
+tar xvf ~/Downloads/xpack-openocd-${ props.upstreamVersion }-${ props.xpackSubversion }-linux-x64.tar.gz
+chmod -R -w xpack-openocd-${ props.upstreamVersion }-${ props.xpackSubversion }`
 }</CodeBlock>
 
 <InstallManualInfo/>
@@ -66,8 +66,8 @@ chmod -R -w xpack-openocd-${ props.version }-${ props.xpack_subversion }`
 To check if the OpenOCD installed manually starts properly, use something like:
 
 <CodeBlock language="console"> {
-`$ ~/.local/xPacks/openocd/xpack-openocd-${ props.version }-${ props.xpack_subversion }/bin/openocd --version
-${ props.version }`
+`$ ~/.local/xPacks/openocd/xpack-openocd-${ props.upstreamVersion }-${ props.xpackSubversion }/bin/openocd --version
+${ props.upstreamVersion }`
 }</CodeBlock>
 
 ## Drivers
@@ -81,7 +81,7 @@ supported IDs; to install it, just copy the file to `/etc/udev/rules.d`
 and eventually notify the daemon:
 
 <CodeBlock language="sh"> {
-`sudo cp ~/.local/xPacks/@xpack-dev-tools/openocd/${ props.version }-${ props.xpack_subversion }.${ props.npm_subversion }/.content/contrib/60-openocd.rules /etc/udev/rules.d/`
+`sudo cp ~/.local/xPacks/@xpack-dev-tools/openocd/${ props.upstreamVersion }-${ props.xpackSubversion }.${ props.npmSubversion }/.content/contrib/60-openocd.rules /etc/udev/rules.d/`
 }</CodeBlock>
 
 To make the change effective, reload the rules:

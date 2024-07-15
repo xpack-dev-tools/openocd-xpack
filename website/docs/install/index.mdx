@@ -22,13 +22,13 @@ portable archives.
 
 <Tabs groupId="operating-systems">
   <TabItem value="windows" label="Windows" default>
-    <InstallWindows version={ customFields.version } xpack_subversion={ customFields.xpack_subversion } npm_subversion={ customFields.npm_subversion } is_windows="True"/>
+    <InstallWindows upstreamVersion={ customFields.upstreamVersion } xpackSubversion={ customFields.xpackSubversion } npmSubversion={ customFields.npmSubversion } isWindows="True"/>
   </TabItem>
   <TabItem value="macos" label="macOS">
-    <InstallMacOS version={ customFields.version } xpack_subversion={ customFields.xpack_subversion } npm_subversion={ customFields.npm_subversion }/>
+    <InstallMacOS upstreamVersion={ customFields.upstreamVersion } xpackSubversion={ customFields.xpackSubversion } npmSubversion={ customFields.npmSubversion }/>
   </TabItem>
   <TabItem value="linux" label="GNU/Linux">
-    <InstallLinux version={ customFields.version } xpack_subversion={ customFields.xpack_subversion } npm_subversion={ customFields.npm_subversion }/>
+    <InstallLinux upstreamVersion={ customFields.upstreamVersion } xpackSubversion={ customFields.xpackSubversion } npmSubversion={ customFields.npmSubversion }/>
   </TabItem>
 </Tabs>
 
@@ -37,8 +37,8 @@ portable archives.
 To test if OpenOCD is able to connect to a specific board, it is generally necessary to select the interface and the processor. As a shortcut, for some well known boards, there are ready made configuration files to set both the interface and the processor. For example to test a connection via ST/LINK to the STM32F4DISCOVERY board, you can use something like this:
 
 <CodeBlock language="console"> {
-`$ .../xPacks/@xpack-dev-tools/openocd/${ customFields.version }-${ customFields.xpack_subversion }.${ customFields.npm_subversion }/.content/bin/openocd -f board/stm32f4discovery.cfg
-xPack OpenOCD x86_64 Open On-Chip Debugger ${ customFields.version }+dev
+`$ .../xPacks/@xpack-dev-tools/openocd/${ customFields.upstreamVersion }-${ customFields.xpackSubversion }.${ customFields.npmSubversion }/.content/bin/openocd -f board/stm32f4discovery.cfg
+xPack OpenOCD x86_64 Open On-Chip Debugger ${ customFields.upstreamVersion }+dev
 Licensed under GNU GPL v2
 For bug reports, read
 	http://openocd.org/doc/doxygen/bugs.html

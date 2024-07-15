@@ -1,12 +1,11 @@
 import {themes as prismThemes} from 'prism-react-renderer';
 import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
+import { getCustomFields } from './src/lib/customFields';
+import logger from '@docusaurus/logger'
 
-export const customFields = {
-  version: '0.12.0',
-  xpack_subversion: '3',
-  npm_subversion: '1',
-};
+export const customFields = getCustomFields();
+logger.info(customFields)
 
 const config: Config = {
   title: 'xPack OpenOCD',
@@ -155,9 +154,9 @@ const config: Config = {
           'aria-label': 'GitHub repository',
         },
         {
-          label: `v${customFields.version}-${customFields.xpack_subversion}`,
+          label: `v${customFields.upstreamVersion}-${customFields.xpackSubversion}`,
           position: 'right',
-          href: `https://github.com/xpack-dev-tools/openocd-xpack/releases/tag/v${customFields.version}-${customFields.xpack_subversion}`,
+          href: `https://github.com/xpack-dev-tools/openocd-xpack/releases/tag/v${customFields.upstreamVersion}-${customFields.xpackSubversion}`,
         },
         {
           href: 'https://github.com/xpack-dev-tools/',

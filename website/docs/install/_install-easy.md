@@ -39,25 +39,26 @@ a **node** >=18.17.0).
 
 With **xpm** available, installing
 the latest version of the package and adding it as
-a development dependency for a project is quite easy.
+a development dependency for a project is straightforward.
 
-At first use, add a `package.json` to the project, if not already there.
+Upon initial use, ensure that a `package.json` file is added to the project,
+if it is not already present.
 
 ```sh
 cd my-project
 xpm init
 ```
 
-then install the **openocd** package:
+then install the **openocd** package in the local project:
 
 ```sh
 xpm install @xpack-dev-tools/openocd@latest --verbose
 ```
 
-The main result is a set of { props.is_windows === 'True' ? (<><code>.cmd</code> forwarders</>) : 'symbolic links'}:
+The main result is a set of { props.isWindows === 'True' ? (<><code>.cmd</code> forwarders</>) : 'symbolic links'}:
 
 <CodeBlock language="console"> {
-`${ props.is_windows === 'True' ? 'dir xpacks\\.bin' : 'ls -l xpacks/.bin' }`
+`${ props.isWindows === 'True' ? 'dir xpacks\\.bin' : 'ls -l xpacks/.bin' }`
 }</CodeBlock>
 
 The above `xpm install` command will:
@@ -71,7 +72,7 @@ The above `xpm install` command will:
   multiple projects
   (check the output of the `xpm` command for the actual
   folder used on your platform);
-* add { props.is_windows === 'True' ? (<><code>.cmd</code> forwarders</>) : 'symbolic links' }
+* add { props.isWindows === 'True' ? (<><code>.cmd</code> forwarders</>) : 'symbolic links' }
   into the local `xpacks/.bin` folder, referring to the binaries in the central store;
 * add `@xpack-dev-tools/openocd` to `package.json` as a
   development dependency; this associates a specific version of OpenOCD with
@@ -99,7 +100,7 @@ settings like **Show Hidden Files**.
 
 For xPacks aware tools (like the **Eclipse Embedded C/C++ plug-ins**),
 it is also possible to install OpenOCD only globally in the **central
-xPacks store**, without any local { props.is_windows === 'True' ? (<><code>.cmd</code> forwarders</>) : 'symbolic links' }, assuming the tool is capable of handling
+xPacks store**, without any local { props.isWindows === 'True' ? (<><code>.cmd</code> forwarders</>) : 'symbolic links' }, assuming the tool is capable of handling
 the path itself.
 
 ```sh
