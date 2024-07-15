@@ -13,16 +13,16 @@ to use the OpenOCD binaries in their workflows.
 ## Versioning
 
 The version string used by the OpenOCD project is a three number string
-like <code>{ customFields.version }</code>; to this string the xPack distribution adds a four number,
+like <code>{ customFields.upstreamVersion }</code>; to this string the xPack distribution adds a four number,
 but since semver allows only three numbers, all additional ones can
 be added only as pre-release strings, separated by a dash,
-like <code>{ customFields.version }-{ customFields.xpack_subversion }</code>. When published as a npm package, the version gets
-a fifth number, like <code>{ customFields.version }-{ customFields.xpack_subversion }.{ customFields.npm_subversion }</code>.
+like <code>{ customFields.upstreamVersion }-{ customFields.xpackSubversion }</code>. When published as a npm package, the version gets
+a fifth number, like <code>{ customFields.upstreamVersion }-{ customFields.xpackSubversion }.{ customFields.npmSubversion }</code>.
 
 Since adherence of third party packages to semver is not guaranteed,
 it is recommended to avoid referring to the OpenOCD dependency via
-a semver expressions like <code>^{ customFields.version }</code> or
-<code>~{ customFields.version }</code>, and prefer exact matches, like <code>{ customFields.version }-{ customFields.xpack_subversion }.{ customFields.npm_subversion }</code>.
+a semver expressions like <code>^{ customFields.upstreamVersion }</code> or
+<code>~{ customFields.upstreamVersion }</code>, and prefer exact matches, like <code>{ customFields.upstreamVersion }-{ customFields.xpackSubversion }.{ customFields.npmSubversion }</code>.
 
 ## Drivers
 
