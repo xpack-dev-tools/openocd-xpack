@@ -1,7 +1,8 @@
 import CodeBlock from '@theme/CodeBlock';
+import { customFields } from '/docusaurus.config';
 
 <CodeBlock language="console"> {
-`C:\> tree /f %USERPROFILE%\\AppData\\Roaming\\xPacks\\@xpack-dev-tools\\openocd\\${ props.upstreamVersion }-${ props.xpackSubversion }.${ props.npmSubversion }\\.content
+`C:\> tree /f %USERPROFILE%\\AppData\\Roaming\\xPacks\\@xpack-dev-tools\\openocd\\${ customFields.upstreamVersion }-${ customFields.xpackSubversion }.${ customFields.npmSubversion }\\.content
 Folder PATH listing
 Volume serial number is B02D-925C
 C:\\USERS\\ILG\\APPDATA\\ROAMING\\XPACKS\\@XPACK-DEV-TOOLS\\OPENOCD\\0.12.0-3.1\\.CONTENT

@@ -5,10 +5,11 @@ import UninstallEasy from './_uninstall-easy.md';
 import InstallManual from './_install-manual.md';
 import InstallManualInfo from './_install-manual-info.mdx';
 import CodeBlock from '@theme/CodeBlock';
+import { customFields } from '/docusaurus.config';
 
 <InstallEasy/>
 
-<InstallLinuxTree upstreamVersion={props.upstreamVersion} xpackSubversion={props.xpackSubversion} npmSubversion={props.npmSubversion}/>
+<InstallLinuxTree/>
 
 No other files are installed in any system folders or other locations.
 
@@ -19,8 +20,8 @@ No other files are installed in any system folders or other locations.
 To check if the OpenOCD installed by **xpm** starts properly, use something like:
 
 <CodeBlock language="console"> {
-`$ ~/.local/xPacks/@xpack-dev-tools/openocd/${ props.upstreamVersion }-${ props.xpackSubversion }.${ props.npmSubversion }/.content/bin/openocd --version
-${ props.upstreamVersion }`
+`$ ~/.local/xPacks/@xpack-dev-tools/openocd/${ customFields.upstreamVersion }-${ customFields.xpackSubversion }.${ customFields.npmSubversion }/.content/bin/openocd --version
+${ customFields.upstreamVersion }`
 }</CodeBlock>
 
 <InstallManual/>
@@ -31,9 +32,9 @@ The GNU/Linux versions of **xPack OpenOCD**
 are packed as `.tar.gz` archives.
 Download the latest version named like:
 
-* <code>xpack-openocd-{ props.upstreamVersion }-{ props.xpackSubversion }-linux-x64.tar.gz</code>
-* <code>xpack-openocd-{ props.upstreamVersion }-{ props.xpackSubversion }-linux-arm.tar.gz</code>
-* <code>xpack-openocd-{ props.upstreamVersion }-{ props.xpackSubversion }-linux-arm64.tar.gz</code>
+* <code>xpack-openocd-{ customFields.upstreamVersion }-{ customFields.xpackSubversion }-linux-x64.tar.gz</code>
+* <code>xpack-openocd-{ customFields.upstreamVersion }-{ customFields.xpackSubversion }-linux-arm.tar.gz</code>
+* <code>xpack-openocd-{ customFields.upstreamVersion }-{ customFields.xpackSubversion }-linux-arm64.tar.gz</code>
 
 As the name implies, these are GNU/Linux `tar.gz` archives; they were build on
 Ubuntu, but can be executed on most recent GNU/Linux distributions.
@@ -49,14 +50,14 @@ from, it is exactly the Node.js `process.platform` and `process.arch`.
 
 To manually install the <b>xPack OpenOCD</b>,
 unpack the archive and move it
-to <code>~/.local/xPacks/openocd/xpack-openocd-{ props.upstreamVersion }-{ props.xpackSubversion }</code>:
+to <code>~/.local/xPacks/openocd/xpack-openocd-{ customFields.upstreamVersion }-{ customFields.xpackSubversion }</code>:
 
 <CodeBlock language="console"> {
 `mkdir -p ~/.local/xPacks/openocd
 cd ~/.local/xPacks/openocd
 
-tar xvf ~/Downloads/xpack-openocd-${ props.upstreamVersion }-${ props.xpackSubversion }-linux-x64.tar.gz
-chmod -R -w xpack-openocd-${ props.upstreamVersion }-${ props.xpackSubversion }`
+tar xvf ~/Downloads/xpack-openocd-${ customFields.upstreamVersion }-${ customFields.xpackSubversion }-linux-x64.tar.gz
+chmod -R -w xpack-openocd-${ customFields.upstreamVersion }-${ customFields.xpackSubversion }`
 }</CodeBlock>
 
 <InstallManualInfo/>
@@ -66,8 +67,8 @@ chmod -R -w xpack-openocd-${ props.upstreamVersion }-${ props.xpackSubversion }`
 To check if the OpenOCD installed manually starts properly, use something like:
 
 <CodeBlock language="console"> {
-`$ ~/.local/xPacks/openocd/xpack-openocd-${ props.upstreamVersion }-${ props.xpackSubversion }/bin/openocd --version
-${ props.upstreamVersion }`
+`$ ~/.local/xPacks/openocd/xpack-openocd-${ customFields.upstreamVersion }-${ customFields.xpackSubversion }/bin/openocd --version
+${ customFields.upstreamVersion }`
 }</CodeBlock>
 
 ## Drivers
@@ -81,7 +82,7 @@ supported IDs; to install it, just copy the file to `/etc/udev/rules.d`
 and eventually notify the daemon:
 
 <CodeBlock language="sh"> {
-`sudo cp ~/.local/xPacks/@xpack-dev-tools/openocd/${ props.upstreamVersion }-${ props.xpackSubversion }.${ props.npmSubversion }/.content/contrib/60-openocd.rules /etc/udev/rules.d/`
+`sudo cp ~/.local/xPacks/@xpack-dev-tools/openocd/${ customFields.upstreamVersion }-${ customFields.xpackSubversion }.${ customFields.npmSubversion }/.content/contrib/60-openocd.rules /etc/udev/rules.d/`
 }</CodeBlock>
 
 To make the change effective, reload the rules:

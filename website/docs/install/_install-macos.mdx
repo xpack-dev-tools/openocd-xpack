@@ -5,10 +5,11 @@ import UninstallEasy from './_uninstall-easy.md';
 import InstallManual from './_install-manual.md';
 import InstallManualInfo from './_install-manual-info.mdx';
 import CodeBlock from '@theme/CodeBlock';
+import { customFields } from '/docusaurus.config';
 
 <InstallEasy/>
 
-<InstallMacTree upstreamVersion={ props.upstreamVersion } xpackSubversion={ props.xpackSubversion } npmSubversion={ props.npmSubversion }/>
+<InstallMacTree/>
 
 No other files are installed in any system folders or other locations.
 
@@ -19,8 +20,8 @@ No other files are installed in any system folders or other locations.
 To check if the OpenOCD installed by **xpm** starts properly, use something like:
 
 <CodeBlock language="console"> {
-`$ ~/.local/xPacks/@xpack-dev-tools/openocd/${ props.upstreamVersion }-${ props.xpackSubversion }.${ props.npmSubversion }/.content/bin/openocd --version
-${ props.upstreamVersion }`
+`$ ~/.local/xPacks/@xpack-dev-tools/openocd/${ customFields.upstreamVersion }-${ customFields.xpackSubversion }.${ customFields.npmSubversion }/.content/bin/openocd --version
+${ customFields.upstreamVersion }`
 }</CodeBlock>
 
 <InstallManual/>
@@ -31,8 +32,8 @@ The macOS versions of **xPack OpenOCD**
 are packed as `.tar.gz` archives.
 Download the latest version named like:
 
-* <code>xpack-openocd-{ props.upstreamVersion }-{ props.xpackSubversion }-darwin-x64.tar.gz</code>
-* <code>xpack-openocd-{ props.upstreamVersion }-{ props.xpackSubversion }-darwin-arm64.tar.gz</code>
+* <code>xpack-openocd-{ customFields.upstreamVersion }-{ customFields.xpackSubversion }-darwin-x64.tar.gz</code>
+* <code>xpack-openocd-{ customFields.upstreamVersion }-{ customFields.xpackSubversion }-darwin-arm64.tar.gz</code>
 
 :::note
 
@@ -44,14 +45,14 @@ from, it is exactly the Node.js `process.platform` and `process.arch`.
 ### Unpack
 
 To manually install the <b>xPack OpenOCD</b>,
-unpack the archive and move it to <code>~/.local/xPacks/openocd/xpack-openocd-{ props.upstreamVersion }-{ props.xpackSubversion }</code>:
+unpack the archive and move it to <code>~/.local/xPacks/openocd/xpack-openocd-{ customFields.upstreamVersion }-{ customFields.xpackSubversion }</code>:
 
 <CodeBlock language="console"> {
 `mkdir -p ~/.local/xPacks/openocd
 cd ~/.local/xPacks/openocd
 
-tar xvf ~/Downloads/xpack-openocd-${ props.upstreamVersion }-${ props.xpackSubversion }-darwin-x64.tar.gz
-chmod -R -w xpack-openocd-${ props.upstreamVersion }-${ props.xpackSubversion }`
+tar xvf ~/Downloads/xpack-openocd-${ customFields.upstreamVersion }-${ customFields.xpackSubversion }-darwin-x64.tar.gz
+chmod -R -w xpack-openocd-${ customFields.upstreamVersion }-${ customFields.xpackSubversion }`
 }</CodeBlock>
 
 <InstallManualInfo/>
@@ -63,8 +64,8 @@ The result is a structure identical to the above.
 To check if the OpenOCD installed manually starts properly, use something like:
 
 <CodeBlock language="console"> {
-`$ ~/.local/xPacks/openocd/${ props.upstreamVersion }-${ props.xpackSubversion }/bin/openocd --version
-${ props.upstreamVersion }`
+`$ ~/.local/xPacks/openocd/${ customFields.upstreamVersion }-${ customFields.xpackSubversion }/bin/openocd --version
+${ customFields.upstreamVersion }`
 }</CodeBlock>
 
 ## Drivers

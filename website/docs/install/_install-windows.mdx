@@ -5,10 +5,11 @@ import UninstallEasy from './_uninstall-easy.md';
 import InstallManual from './_install-manual.md';
 import InstallManualInfo from './_install-manual-info.mdx';
 import CodeBlock from '@theme/CodeBlock';
+import { customFields } from '/docusaurus.config';
 
 <InstallEasy isWindows={ props.isWindows }/>
 
-<InstallWindowsTree upstreamVersion={ props.upstreamVersion } xpackSubversion={ props.xpackSubversion } npmSubversion={ props.npmSubversion }/>
+<InstallWindowsTree/>
 
 No other files are installed in any system folders or other locations.
 
@@ -19,8 +20,8 @@ No other files are installed in any system folders or other locations.
 To check if the OpenOCD installed by **xpm** starts properly, use something like:
 
 <CodeBlock language="console"> {
-`C:\\> %USERPROFILE%\\AppData\\Roaming\\xPacks\\@xpack-dev-tools\\openocd\\${ props.upstreamVersion }-${ props.xpackSubversion }.${ props.npmSubversion }\\.content\\bin\\openocd.exe --version
-${ props.upstreamVersion }`
+`C:\\> %USERPROFILE%\\AppData\\Roaming\\xPacks\\@xpack-dev-tools\\openocd\\${ customFields.upstreamVersion }-${ customFields.xpackSubversion }.${ customFields.npmSubversion }\\.content\\bin\\openocd.exe --version
+${ customFields.upstreamVersion }`
 }</CodeBlock>
 
 <InstallManual/>
@@ -31,7 +32,7 @@ The Windows versions of **xPack OpenOCD**
 are packed as ZIP files.
 Download the latest version named like:
 
-* <code>xpack-openocd-{ props.upstreamVersion }-{ props.xpackSubversion }-win32-x64.zip</code>
+* <code>xpack-openocd-{ customFields.upstreamVersion }-{ customFields.xpackSubversion }-win32-x64.zip</code>
 
 :::note
 
@@ -45,8 +46,8 @@ The `win32` part is confusing, but we have to live with it.
 
 To manually install the <b>xPack OpenOCD</b>,
 unpack the archive and move it to the
-<code>%USERPROFILE%\\AppData\\Roaming\\xPacks\\openocd\\xpack-openocd-{ props.upstreamVersion }-{ props.xpackSubversion }</code> folder
-(for example <code>C:\\Users\\ilg\\AppData\\Roaming\\xPacks\\openocd\\xpack-openocd-{ props.upstreamVersion }-{ props.xpackSubversion }</code>);
+<code>%USERPROFILE%\\AppData\\Roaming\\xPacks\\openocd\\xpack-openocd-{ customFields.upstreamVersion }-{ customFields.xpackSubversion }</code> folder
+(for example <code>C:\\Users\\ilg\\AppData\\Roaming\\xPacks\\openocd\\xpack-openocd-{ customFields.upstreamVersion }-{ customFields.xpackSubversion }</code>);
 according to Microsoft, <code>AppData\\Roaming</code> is the recommended location for
 installing user specific packages.
 
@@ -57,8 +58,8 @@ installing user specific packages.
 To check if the OpenOCD installed manually starts properly, use something like:
 
 <CodeBlock language="console"> {
-`C:\\> %USERPROFILE%\\AppData\\Roaming\\xPacks\\openocd\\xpack-openocd-${ props.upstreamVersion }-${ props.xpackSubversion }\\bin\\openocd.exe --version
-${ props.upstreamVersion }`
+`C:\\> %USERPROFILE%\\AppData\\Roaming\\xPacks\\openocd\\xpack-openocd-${ customFields.upstreamVersion }-${ customFields.xpackSubversion }\\bin\\openocd.exe --version
+${ customFields.upstreamVersion }`
 }</CodeBlock>
 
 

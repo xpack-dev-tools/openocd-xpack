@@ -1,4 +1,5 @@
 import CodeBlock from '@theme/CodeBlock';
+import { customFields } from '/docusaurus.config';
 
 ## Automated install
 

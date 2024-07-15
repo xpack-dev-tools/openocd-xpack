@@ -1,8 +1,9 @@
 import CodeBlock from '@theme/CodeBlock';
+import { customFields } from '/docusaurus.config';
 
 <CodeBlock language="console"> {
-`$ tree -L 2 ~/.local/xPacks/\@xpack-dev-tools/openocd/${ props.upstreamVersion }-${ props.xpackSubversion }.${ props.npmSubversion }/.content/
-/home/ilg/.local/xPacks/\@xpack-dev-tools/openocd/${ props.upstreamVersion }-${ props.xpackSubversion }.${ props.npmSubversion }/.content/
+`$ tree -L 2 ~/.local/xPacks/\@xpack-dev-tools/openocd/${ customFields.upstreamVersion }-${ customFields.xpackSubversion }.${ customFields.npmSubversion }/.content/
+/home/ilg/.local/xPacks/\@xpack-dev-tools/openocd/${ customFields.upstreamVersion }-${ customFields.xpackSubversion }.${ customFields.npmSubversion }/.content/
 ├── README.md
 ├── bin
 │   └── openocd
