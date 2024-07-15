@@ -41,8 +41,8 @@ const FeatureList: FeatureItem[] = [
         The xPack binaries can be added to projects
         as <b>development dependencies</b>,
         and conveniently installed with <code>xpm install</code>.
-        This also provides reproducibility, a feature that is
-        especially useful in <b>CI/CD</b> environments.
+        This feature also ensures reproducibility, which is particularly
+        beneficial in <b>CI/CD</b> environments.
       </>
     ),
   },
