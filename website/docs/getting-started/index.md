@@ -33,10 +33,8 @@ this project also includes the
 All binaries are:
 
 - **self-contained** (include all required libraries)
-- **file-system relocatable** (can be installed in any location).
-
-Thus it is perfectly possible to install multiple versions concurrently on the
-same system, allowing different projects to be tied to specific versions.
+- **file-system relocatable** (can be installed in any location)
+- built on a slightly older system (to make them run on a wide range of systems)
 
 ## Benefits
 
@@ -49,8 +47,12 @@ The main advantages of using the **xPack OpenOCD** are:
   **Arm GNU/Linux** 64/32-bit,
   **Intel macOS** 64-bit,
   **Apple Silicon macOS** 64-bit)
+- multiple versions of the same package can be installed at the same time on
+  the same system
+- no need to worry about dependent libraries, all are included
 - a good integration with development environments (no need for Docker images)
-- an easy to use solution for **CI/CD** environments
+- projects can be tied to specific tools versions; this provides a good
+  reproducibility, especially useful in **CI/CD** environments.
 
 ## Compatibility
 
