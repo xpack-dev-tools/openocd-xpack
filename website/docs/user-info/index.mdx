@@ -5,7 +5,7 @@ date: 2024-07-11 18:56:00 +0300
 
 ---
 
-import { customFields } from '/docusaurus.config';
+import { customFields } from '@site/src/lib/customFields';
 
 {/* ------------------------------------------------------------------------ */}
 
@@ -73,6 +73,6 @@ it in the environment.
 
 ### `@rpath` and `@loader_path`
 
-Similarly, on macOS, the binaries are adjusted with `install_name_tool` to use a
-relative path.
+Similarly, on macOS, the binaries are adjusted with `install_name_tool`
+(part of CLT) to use a relative path.
 

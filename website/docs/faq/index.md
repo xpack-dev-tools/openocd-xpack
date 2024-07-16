@@ -22,5 +22,5 @@ Unfortunately not. The xPack OpenOCD is only a binary distribution of the standa
 <details>
   <summary>`libusb_open failed: LIBUSB_ERROR_ACCESS`</summary>
 
-You are using GNU/Linux and your user has no permission to write to USB. Please review the [Install Guide](/docs/install/) page.
+You are using GNU/Linux and your user has no permission to write to USB. Please review the [Install Guide](/docs/install/#drivers) page.
 </details>
