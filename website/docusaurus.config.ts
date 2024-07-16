@@ -1,11 +1,47 @@
 import {themes as prismThemes} from 'prism-react-renderer';
 import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
-import { getCustomFields } from './src/lib/customFields';
-import logger from '@docusaurus/logger'
+import logger from '@docusaurus/logger';
 
-export const customFields = getCustomFields();
-logger.info(customFields)
+import { fileURLToPath } from 'url';
+import path from 'path';
+import fs from 'fs';
+
+function getCustomFields() {
+  const pwd = fileURLToPath(import.meta.url);
+  const filePath = path.join(path.dirname(path.dirname(pwd)), 'package.json');
+  // logger.info(filePath);
+  const fileContent = fs.readFileSync(filePath);
+
+  const topPackageJson = JSON.parse(fileContent.toString());
+  const jsonVersion = topPackageJson.version.replace(".pre", "");
+
+  logger.info(`package version: ${topPackageJson.version}`);
+  // logger.info(jsonVersion)
+
+  const npmSubversion = jsonVersion.replace(/^.*[.]/, '');
+  // logger.info(npmSubversion)
+
+  const rest1 = jsonVersion.replace(/[.][0-9]*$/, '');
+  // logger.info(rest1)
+
+  const xpackSubversion = rest1.replace(/^.*[-]/, '');
+  // logger.info(xpackSubversion)
+
+  const upstreamVersion = rest1.replace(/[-][0-9]*$/, '');
+  // logger.info(upstreamVersion)
+
+  return {
+    appName: topPackageJson.xpack.properties.appName,
+    appLcName: topPackageJson.xpack.properties.appLcName,
+    upstreamVersion,
+    xpackSubversion,
+    npmSubversion,
+  }
+}
+
+const customFields = getCustomFields();
+logger.info(customFields);
 
 const config: Config = {
   title: 'xPack OpenOCD',
