@@ -1,0 +1,30 @@
+import CodeBlock from '@theme/CodeBlock';
+
+import { customFields } from '/docusaurus.config';
+
+{/* ------------------------------------------------------------------------ */}
+
+### Download
+
+The Windows versions of **xPack { customFields.appName }**
+are packed as ZIP files.
+Download the latest version named like:
+
+* <code>xpack-{ customFields.appLcName }-{ customFields.upstreamVersion }-{ customFields.xpackSubversion }-win32-x64.zip</code>
+
+:::note
+
+In case you wonder where the suffix comes
+from, it is exactly the Node.js `process.platform` and `process.arch`.
+The `win32` part is confusing, but we have to live with it.
+
+:::
+
+### Unpack
+
+To manually install the <b>xPack { customFields.appName }</b>,
+unpack the archive and move it to the
+<code>%USERPROFILE%\\AppData\\Roaming\\xPacks\\{ customFields.appLcName }\\xpack-{ customFields.appLcName }-{ customFields.upstreamVersion }-{ customFields.xpackSubversion }</code> folder
+(for example <code>C:\\Users\\ilg\\AppData\\Roaming\\xPacks\\{ customFields.appLcName }\\xpack-{ customFields.appLcName }-{ customFields.upstreamVersion }-{ customFields.xpackSubversion }</code>);
+according to Microsoft, <code>AppData\\Roaming</code> is the recommended location for
+installing user specific packages.

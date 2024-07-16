@@ -1,0 +1,34 @@
+import CodeBlock from '@theme/CodeBlock';
+
+import { customFields } from '/docusaurus.config';
+
+{/* ------------------------------------------------------------------------ */}
+
+### Download
+
+The macOS versions of **xPack { customFields.appName }**
+are packed as `.tar.gz` archives.
+Download the latest version named like:
+
+* <code>xpack-{ customFields.appLcName }-{ customFields.upstreamVersion }-{ customFields.xpackSubversion }-darwin-x64.tar.gz</code>
+* <code>xpack-{ customFields.appLcName }-{ customFields.upstreamVersion }-{ customFields.xpackSubversion }-darwin-arm64.tar.gz</code>
+
+:::note
+
+In case you wonder where the suffix comes
+from, it is exactly the Node.js `process.platform` and `process.arch`.
+
+:::
+
+### Unpack
+
+To manually install the <b>xPack { customFields.appName }</b>,
+unpack the archive and move it to <code>~/.local/xPacks/{ customFields.appLcName }/xpack-{ customFields.appLcName }-{ customFields.upstreamVersion }-{ customFields.xpackSubversion }</code>:
+
+<CodeBlock language="console"> {
+`mkdir -p ~/.local/xPacks/{ customFields.appLcName }
+cd ~/.local/xPacks/{ customFields.appLcName }
+
+tar xvf ~/Downloads/xpack-${ customFields.appLcName }-${ customFields.upstreamVersion }-${ customFields.xpackSubversion }-darwin-x64.tar.gz
+chmod -R -w xpack-${ customFields.appLcName }-${ customFields.upstreamVersion }-${ customFields.xpackSubversion }`
+}</CodeBlock>

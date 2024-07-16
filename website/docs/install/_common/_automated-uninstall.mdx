@@ -1,0 +1,32 @@
+import CodeBlock from '@theme/CodeBlock';
+
+import { customFields } from '/docusaurus.config';
+
+{/* ------------------------------------------------------------------------ */}
+
+No other files are installed in any system folders or other locations.
+
+### Uninstall
+
+The binaries are distributed as portable archives; thus they do not need
+to run a setup and do not require an uninstall; simply removing the
+links and possibly the central store folder is enough.
+
+To remove the links created by xpm in the current project,
+go to the project folder:
+
+```sh
+cd my-project
+```
+
+and ask **xpm** to uninstall the package:
+
+<CodeBlock language="sh"> {
+`xpm uninstall @xpack-dev-tools/${ customFields.appLcName }`
+}</CodeBlock>
+
+To completely remove the package from the central store:
+
+<CodeBlock language="sh"> {
+`xpm uninstall --global @xpack-dev-tools/${ customFields.appLcName } --verbose`
+}</CodeBlock>

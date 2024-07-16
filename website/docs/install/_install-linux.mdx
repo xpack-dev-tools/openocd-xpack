@@ -1,70 +1,64 @@
 
-import InstallEasy from './_install-easy.md';
-import InstallLinuxTree from './_install-linux-tree.mdx';
-import UninstallEasy from './_uninstall-easy.md';
-import InstallManual from './_install-manual.md';
-import InstallManualInfo from './_install-manual-info.mdx';
 import CodeBlock from '@theme/CodeBlock';
+
 import { customFields } from '/docusaurus.config';
 
-<InstallEasy/>
+import AutomatedInstall from './_common/_automated-install.mdx';
+import AutomatedUninstall from './_common/_automated-uninstall.mdx';
+import ManualInstall from './_common/_manual-install.mdx';
+import ManualInstallInfo from './_common/_manual-info.mdx';
+import ManualInstallLinux from './_common/_manual-install-linux.mdx'
 
-<InstallLinuxTree/>
+{/* ------------------------------------------------------------------------ */}
 
-No other files are installed in any system folders or other locations.
+<AutomatedInstall/>
 
-<UninstallEasy/>
+<CodeBlock language="console"> {
+`$ tree -L 2 ~/.local/xPacks/\@xpack-dev-tools/openocd/${ customFields.upstreamVersion }-${ customFields.xpackSubversion }.${ customFields.npmSubversion }/.content/
+/home/ilg/.local/xPacks/\@xpack-dev-tools/openocd/${ customFields.upstreamVersion }-${ customFields.xpackSubversion }.${ customFields.npmSubversion }/.content/
+├── README.md
+├── bin
+│   └── openocd
+├── distro-info
+│   └── licenses
+├── libexec
+│   ├── libftdi1.so.2 -> libftdi1.so.2.5.0
+│   ├── libftdi1.so.2.5.0
+│   ├── libhidapi-hidraw.so.0 -> libhidapi-hidraw.so.0.14.0
+│   ├── libhidapi-hidraw.so.0.14.0
+│   ├── libudev.so.1 -> libudev.so.1.6.9
+│   ├── libudev.so.1.6.9
+│   ├── libusb-1.0.so.0 -> libusb-1.0.so.0.4.0
+│   └── libusb-1.0.so.0.4.0
+└── openocd
+    ├── OpenULINK
+    ├── angie
+    ├── contrib
+    └── scripts
+
+9 directories, 10 files`
+}</CodeBlock>
+
+<AutomatedUninstall/>
 
 ### Quick test
 
-To check if the OpenOCD installed by **xpm** starts properly, use something like:
+To check if the { customFields.appName } installed by **xpm** starts properly, use something like:
 
 <CodeBlock language="console"> {
 `$ ~/.local/xPacks/@xpack-dev-tools/openocd/${ customFields.upstreamVersion }-${ customFields.xpackSubversion }.${ customFields.npmSubversion }/.content/bin/openocd --version
 ${ customFields.upstreamVersion }`
 }</CodeBlock>
 
-<InstallManual/>
+<ManualInstall/>
 
-### Download
+<ManualInstallLinux/>
 
-The GNU/Linux versions of **xPack OpenOCD**
-are packed as `.tar.gz` archives.
-Download the latest version named like:
-
-* <code>xpack-openocd-{ customFields.upstreamVersion }-{ customFields.xpackSubversion }-linux-x64.tar.gz</code>
-* <code>xpack-openocd-{ customFields.upstreamVersion }-{ customFields.xpackSubversion }-linux-arm.tar.gz</code>
-* <code>xpack-openocd-{ customFields.upstreamVersion }-{ customFields.xpackSubversion }-linux-arm64.tar.gz</code>
-
-As the name implies, these are GNU/Linux `tar.gz` archives; they were build on
-Ubuntu, but can be executed on most recent GNU/Linux distributions.
-
-:::note
-
-In case you wonder where the suffix comes
-from, it is exactly the Node.js `process.platform` and `process.arch`.
-
-:::
-
-### Unpack
-
-To manually install the <b>xPack OpenOCD</b>,
-unpack the archive and move it
-to <code>~/.local/xPacks/openocd/xpack-openocd-{ customFields.upstreamVersion }-{ customFields.xpackSubversion }</code>:
-
-<CodeBlock language="console"> {
-`mkdir -p ~/.local/xPacks/openocd
-cd ~/.local/xPacks/openocd
-
-tar xvf ~/Downloads/xpack-openocd-${ customFields.upstreamVersion }-${ customFields.xpackSubversion }-linux-x64.tar.gz
-chmod -R -w xpack-openocd-${ customFields.upstreamVersion }-${ customFields.xpackSubversion }`
-}</CodeBlock>
-
-<InstallManualInfo/>
+<ManualInstallInfo/>
 
 ### Quick test
 
-To check if the OpenOCD installed manually starts properly, use something like:
+To check if the { customFields.appName } installed manually starts properly, use something like:
 
 <CodeBlock language="console"> {
 `$ ~/.local/xPacks/openocd/xpack-openocd-${ customFields.upstreamVersion }-${ customFields.xpackSubversion }/bin/openocd --version

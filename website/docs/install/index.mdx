@@ -7,30 +7,15 @@ date: 2020-09-27 11:09:00 +0300
 
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
-import InstallWindows from './_install-windows.mdx';
-import InstallMacOS from './_install-macos.mdx';
-import InstallLinux from './_install-linux.mdx';
 import CodeBlock from '@theme/CodeBlock';
+
 import { customFields } from '/docusaurus.config';
 
-The **xPack OpenOCD** can be installed automatically, using the `xpm` command
-(the recommended method), or manually, by downloading and unpacking one of the
-portable archives.
+import Install from './_common/_install.mdx';
 
-<Tabs groupId="operating-systems">
-  <TabItem value="windows" label="Windows" default>
-    <InstallWindows isWindows="True"/>
-  </TabItem>
-  <TabItem value="macos" label="macOS">
-    <InstallMacOS/>
-  </TabItem>
-  <TabItem value="linux" label="GNU/Linux">
-    <InstallLinux/>
-  </TabItem>
-</Tabs>
+{/* ------------------------------------------------------------------------ */}
+
+<Install/>
 
 ### Testing
 
@@ -56,3 +41,4 @@ Info : stm32f4x.cpu: hardware has 6 breakpoints, 4 watchpoints
 Info : Listening on port 3333 for gdb connections
 ^C`
 }</CodeBlock>
+

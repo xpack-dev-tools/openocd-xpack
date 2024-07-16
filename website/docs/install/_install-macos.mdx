@@ -1,67 +1,62 @@
 
-import InstallEasy from './_install-easy.md';
-import InstallMacTree from './_install-macos-tree.mdx';
-import UninstallEasy from './_uninstall-easy.md';
-import InstallManual from './_install-manual.md';
-import InstallManualInfo from './_install-manual-info.mdx';
 import CodeBlock from '@theme/CodeBlock';
+
 import { customFields } from '/docusaurus.config';
 
-<InstallEasy/>
+import AutomatedInstall from './_common/_automated-install.mdx';
+import AutomatedUninstall from './_common/_automated-uninstall.mdx';
+import ManualInstall from './_common/_manual-install.mdx';
+import ManualInstallMacOS from './_common/_manual-install-macos.mdx';
+import ManualInstallInfo from './_common/_manual-info.mdx';
 
-<InstallMacTree/>
+{/* ------------------------------------------------------------------------ */}
 
-No other files are installed in any system folders or other locations.
+<AutomatedInstall/>
 
-<UninstallEasy/>
+<CodeBlock language="console"> {
+`$ tree -L 2 ~/Library/xPacks/\@xpack-dev-tools/openocd/${ customFields.upstreamVersion }-${ customFields.xpackSubversion }.${ customFields.npmSubversion }/.content/
+/Users/ilg/Library/xPacks/\@xpack-dev-tools/openocd/${ customFields.upstreamVersion }-${ customFields.xpackSubversion }.${ customFields.npmSubversion }/.content/
+├── README.md
+├── bin
+│   └── openocd
+├── distro-info
+│   └── licenses
+├── libexec
+│   ├── libftdi1.2.5.0.dylib
+│   ├── libftdi1.2.dylib -> libftdi1.2.5.0.dylib
+│   ├── libhidapi.0.14.0.dylib
+│   └── libusb-1.0.0.dylib
+└── openocd
+    ├── OpenULINK
+    ├── angie
+    ├── contrib
+    └── scripts
+
+10 directories, 6 files`
+}</CodeBlock>
+
+<AutomatedUninstall/>
 
 ### Quick test
 
-To check if the OpenOCD installed by **xpm** starts properly, use something like:
+To check if the { customFields.appName } installed by **xpm** starts properly, use something like:
 
 <CodeBlock language="console"> {
 `$ ~/.local/xPacks/@xpack-dev-tools/openocd/${ customFields.upstreamVersion }-${ customFields.xpackSubversion }.${ customFields.npmSubversion }/.content/bin/openocd --version
 ${ customFields.upstreamVersion }`
 }</CodeBlock>
 
-<InstallManual/>
+<ManualInstall/>
 
-### Download
+<ManualInstallMacOS/>
 
-The macOS versions of **xPack OpenOCD**
-are packed as `.tar.gz` archives.
-Download the latest version named like:
-
-* <code>xpack-openocd-{ customFields.upstreamVersion }-{ customFields.xpackSubversion }-darwin-x64.tar.gz</code>
-* <code>xpack-openocd-{ customFields.upstreamVersion }-{ customFields.xpackSubversion }-darwin-arm64.tar.gz</code>
-
-:::note
-
-In case you wonder where the suffix comes
-from, it is exactly the Node.js `process.platform` and `process.arch`.
-
-:::
-
-### Unpack
-
-To manually install the <b>xPack OpenOCD</b>,
-unpack the archive and move it to <code>~/.local/xPacks/openocd/xpack-openocd-{ customFields.upstreamVersion }-{ customFields.xpackSubversion }</code>:
-
-<CodeBlock language="console"> {
-`mkdir -p ~/.local/xPacks/openocd
-cd ~/.local/xPacks/openocd
-
-tar xvf ~/Downloads/xpack-openocd-${ customFields.upstreamVersion }-${ customFields.xpackSubversion }-darwin-x64.tar.gz
-chmod -R -w xpack-openocd-${ customFields.upstreamVersion }-${ customFields.xpackSubversion }`
-}</CodeBlock>
-
-<InstallManualInfo/>
+<ManualInstallInfo/>
 
 The result is a structure identical to the above.
 
 ### Quick test
 
-To check if the OpenOCD installed manually starts properly, use something like:
+To check if the { customFields.appName } installed manually starts properly, use something like:
 
 <CodeBlock language="console"> {
 `$ ~/.local/xPacks/openocd/${ customFields.upstreamVersion }-${ customFields.xpackSubversion }/bin/openocd --version
