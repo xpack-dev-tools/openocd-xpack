@@ -1,6 +1,6 @@
 import CodeBlock from '@theme/CodeBlock';
 
-import { customFields } from '@site/src/lib/customFields';
+import siteConfig from '@site/docusaurus.config';
 
 {/* ------------------------------------------------------------------------ */}
 
@@ -13,7 +13,7 @@ Intel macOS and Apple Silicon macOS).
 ### Update the repo
 
 <CodeBlock language="sh"> {
-`git -C ~/Work/xpack-dev-tools/${ customFields.appLcName }-xpack.git pull`
+`git -C ~/Work/xpack-dev-tools/${ siteConfig.customFields.appLcName }-xpack.git pull`
 }</CodeBlock>
 
 and, if needed, the helper, when using a writeable helper:
@@ -42,40 +42,40 @@ provides convenient upport to invoke xPack actions from the VS Code.
 To prepare the native build on an Intel Mac:
 
 <CodeBlock language="sh"> {
-`xpm run install -C ~/Work/xpack-dev-tools/${ customFields.appLcName }-xpack.git && \\
-xpm install --config darwin-x64 -C ~/Work/xpack-dev-tools/${ customFields.appLcName }-xpack.git`
+`xpm run install -C ~/Work/xpack-dev-tools/${ siteConfig.customFields.appLcName }-xpack.git && \\
+xpm install --config darwin-x64 -C ~/Work/xpack-dev-tools/${ siteConfig.customFields.appLcName }-xpack.git`
 }</CodeBlock>
 
 or, with the writeable helper:
 
 <CodeBlock language="sh"> {
-`xpm run install -C ~/Work/xpack-dev-tools/${ customFields.appLcName }-xpack.git && \\
-xpm run link-deps -C ~/Work/xpack-dev-tools/${ customFields.appLcName }-xpack.git && \\
-xpm install --config darwin-x64 -C ~/Work/xpack-dev-tools/${ customFields.appLcName }-xpack.git`
+`xpm run install -C ~/Work/xpack-dev-tools/${ siteConfig.customFields.appLcName }-xpack.git && \\
+xpm run link-deps -C ~/Work/xpack-dev-tools/${ siteConfig.customFields.appLcName }-xpack.git && \\
+xpm install --config darwin-x64 -C ~/Work/xpack-dev-tools/${ siteConfig.customFields.appLcName }-xpack.git`
 }</CodeBlock>
 
 To run the build:
 
 <CodeBlock language="sh"> {
-`xpm run build --config darwin-x64 -C ~/Work/xpack-dev-tools/${ customFields.appLcName }-xpack.git`
+`xpm run build --config darwin-x64 -C ~/Work/xpack-dev-tools/${ siteConfig.customFields.appLcName }-xpack.git`
 }</CodeBlock>
 
 or, for more verbosity:
 
 <CodeBlock language="sh"> {
-`xpm run build-develop --config darwin-x64 -C ~/Work/xpack-dev-tools/${ customFields.appLcName }-xpack.git`
+`xpm run build-develop --config darwin-x64 -C ~/Work/xpack-dev-tools/${ siteConfig.customFields.appLcName }-xpack.git`
 }</CodeBlock>
 
 About 10 minutes later, the output of the build script is a compressed
 archive and its SHA signature, created in the `deploy` folder:
 
-* <code>xpack-{ customFields.appLcName }-{ customFields.upstreamVersion }-{ customFields.xpackSubversion }-darwin-x64.tar.gz</code>
-* <code>xpack-{ customFields.appLcName }-{ customFields.upstreamVersion }-{ customFields.xpackSubversion }-darwin-x64.tar.gz.sha</code>
+* <code>xpack-{ siteConfig.customFields.appLcName }-{ siteConfig.customFields.upstreamVersion }-{ siteConfig.customFields.xpackSubversion }-darwin-x64.tar.gz</code>
+* <code>xpack-{ siteConfig.customFields.appLcName }-{ siteConfig.customFields.upstreamVersion }-{ siteConfig.customFields.xpackSubversion }-darwin-x64.tar.gz.sha</code>
 
 To rerun the build, invoke the deep-clean action and repeat from install:
 
 <CodeBlock language="sh"> {
-`xpm run deep-clean --config darwin-x64 -C ~/Work/xpack-dev-tools/${ customFields.appLcName }-xpack.git`
+`xpm run deep-clean --config darwin-x64 -C ~/Work/xpack-dev-tools/${ siteConfig.customFields.appLcName }-xpack.git`
 }</CodeBlock>
 
 #### Apple Silicon macOS
@@ -83,40 +83,40 @@ To rerun the build, invoke the deep-clean action and repeat from install:
 To prepare the native build on an Apple Silicon Mac:
 
 <CodeBlock language="sh"> {
-`xpm run install -C ~/Work/xpack-dev-tools/${ customFields.appLcName }-xpack.git && \\
-xpm install --config darwin-arm64 -C ~/Work/xpack-dev-tools/${ customFields.appLcName }-xpack.git`
+`xpm run install -C ~/Work/xpack-dev-tools/${ siteConfig.customFields.appLcName }-xpack.git && \\
+xpm install --config darwin-arm64 -C ~/Work/xpack-dev-tools/${ siteConfig.customFields.appLcName }-xpack.git`
 }</CodeBlock>
 
 or, with the writeable helper:
 
 <CodeBlock language="sh"> {
-`xpm run install -C ~/Work/xpack-dev-tools/${ customFields.appLcName }-xpack.git && \\
-xpm run link-deps -C ~/Work/xpack-dev-tools/${ customFields.appLcName }-xpack.git && \\
-xpm install --config darwin-arm64 -C ~/Work/xpack-dev-tools/${ customFields.appLcName }-xpack.git`
+`xpm run install -C ~/Work/xpack-dev-tools/${ siteConfig.customFields.appLcName }-xpack.git && \\
+xpm run link-deps -C ~/Work/xpack-dev-tools/${ siteConfig.customFields.appLcName }-xpack.git && \\
+xpm install --config darwin-arm64 -C ~/Work/xpack-dev-tools/${ siteConfig.customFields.appLcName }-xpack.git`
 }</CodeBlock>
 
 To run the build:
 
 <CodeBlock language="sh"> {
-`xpm run build --config darwin-arm64 -C ~/Work/xpack-dev-tools/${ customFields.appLcName }-xpack.git`
+`xpm run build --config darwin-arm64 -C ~/Work/xpack-dev-tools/${ siteConfig.customFields.appLcName }-xpack.git`
 }</CodeBlock>
 
 or, for more verbosity:
 
 <CodeBlock language="sh"> {
-`xpm run build-develop --config darwin-arm64 -C ~/Work/xpack-dev-tools/${ customFields.appLcName }-xpack.git`
+`xpm run build-develop --config darwin-arm64 -C ~/Work/xpack-dev-tools/${ siteConfig.customFields.appLcName }-xpack.git`
 }</CodeBlock>
 
 Several minutes later, the output of the build script is a compressed
 archive and its SHA signature, created in the `deploy` folder:
 
-* <code>xpack-{ customFields.appLcName }-{ customFields.upstreamVersion }-{ customFields.xpackSubversion }-darwin-arm64.tar.gz</code>
-* <code>xpack-{ customFields.appLcName }-{ customFields.upstreamVersion }-{ customFields.xpackSubversion }-darwin-arm64.tar.gz.sha</code>
+* <code>xpack-{ siteConfig.customFields.appLcName }-{ siteConfig.customFields.upstreamVersion }-{ siteConfig.customFields.xpackSubversion }-darwin-arm64.tar.gz</code>
+* <code>xpack-{ siteConfig.customFields.appLcName }-{ siteConfig.customFields.upstreamVersion }-{ siteConfig.customFields.xpackSubversion }-darwin-arm64.tar.gz.sha</code>
 
 To rerun the build, invoke the deep-clean action and repeat from install:
 
 <CodeBlock language="sh"> {
-`xpm run deep-clean --config darwin-arm64 -C ~/Work/xpack-dev-tools/${ customFields.appLcName }-xpack.git`
+`xpm run deep-clean --config darwin-arm64 -C ~/Work/xpack-dev-tools/${ siteConfig.customFields.appLcName }-xpack.git`
 }</CodeBlock>
 
 #### Intel GNU/Linux
@@ -128,41 +128,41 @@ The docker builds run on a 64-bit Intel GNU/Linux.
 To prepare the build on Intel GNU/Linux:
 
 <CodeBlock language="sh"> {
-`xpm run install -C ~/Work/xpack-dev-tools/${ customFields.appLcName }-xpack.git && \\
-xpm run docker-prepare --config linux-x64 -C ~/Work/xpack-dev-tools/${ customFields.appLcName }-xpack.git`
+`xpm run install -C ~/Work/xpack-dev-tools/${ siteConfig.customFields.appLcName }-xpack.git && \\
+xpm run docker-prepare --config linux-x64 -C ~/Work/xpack-dev-tools/${ siteConfig.customFields.appLcName }-xpack.git`
 }</CodeBlock>
 
 or, with the writeable helper:
 
 <CodeBlock language="sh"> {
-`xpm run install -C ~/Work/xpack-dev-tools/${ customFields.appLcName }-xpack.git && \\
-xpm run link-deps -C ~/Work/xpack-dev-tools/${ customFields.appLcName }-xpack.git && \\
-xpm run docker-prepare --config linux-x64 -C ~/Work/xpack-dev-tools/${ customFields.appLcName }-xpack.git && \\
-xpm run docker-link-deps --config linux-x64 -C ~/Work/xpack-dev-tools/${ customFields.appLcName }-xpack.git`
+`xpm run install -C ~/Work/xpack-dev-tools/${ siteConfig.customFields.appLcName }-xpack.git && \\
+xpm run link-deps -C ~/Work/xpack-dev-tools/${ siteConfig.customFields.appLcName }-xpack.git && \\
+xpm run docker-prepare --config linux-x64 -C ~/Work/xpack-dev-tools/${ siteConfig.customFields.appLcName }-xpack.git && \\
+xpm run docker-link-deps --config linux-x64 -C ~/Work/xpack-dev-tools/${ siteConfig.customFields.appLcName }-xpack.git`
 }</CodeBlock>
 
 To run the build:
 
 <CodeBlock language="sh"> {
-`xpm run docker-build --config linux-x64 -C ~/Work/xpack-dev-tools/${ customFields.appLcName }-xpack.git`
+`xpm run docker-build --config linux-x64 -C ~/Work/xpack-dev-tools/${ siteConfig.customFields.appLcName }-xpack.git`
 }</CodeBlock>
 
 or, for more verbosity:
 
 <CodeBlock language="sh"> {
-`xpm run docker-build-develop --config linux-x64 -C ~/Work/xpack-dev-tools/${ customFields.appLcName }-xpack.git`
+`xpm run docker-build-develop --config linux-x64 -C ~/Work/xpack-dev-tools/${ siteConfig.customFields.appLcName }-xpack.git`
 }</CodeBlock>
 
 Several minutes later, the output of the build script is a compressed
 archive and its SHA signature, created in the `deploy` folder:
 
-* <code>xpack-{ customFields.appLcName }-{ customFields.upstreamVersion }-{ customFields.xpackSubversion }-linux-x64.tar.gz</code>
-* <code>xpack-{ customFields.appLcName }-{ customFields.upstreamVersion }-{ customFields.xpackSubversion }-linux-x64.tar.gz.sha</code>
+* <code>xpack-{ siteConfig.customFields.appLcName }-{ siteConfig.customFields.upstreamVersion }-{ siteConfig.customFields.xpackSubversion }-linux-x64.tar.gz</code>
+* <code>xpack-{ siteConfig.customFields.appLcName }-{ siteConfig.customFields.upstreamVersion }-{ siteConfig.customFields.xpackSubversion }-linux-x64.tar.gz.sha</code>
 
 To rerun the build, invoke the deep-clean action and repeat from docker-prepare:
 
 <CodeBlock language="sh"> {
-`xpm run deep-clean --config linux-x64 -C ~/Work/xpack-dev-tools/${ customFields.appLcName }-xpack.git`
+`xpm run deep-clean --config linux-x64 -C ~/Work/xpack-dev-tools/${ siteConfig.customFields.appLcName }-xpack.git`
 }</CodeBlock>
 
 ##### Build the Intel Windows binaries
@@ -170,41 +170,41 @@ To rerun the build, invoke the deep-clean action and repeat from docker-prepare:
 To prepare the build on Intel GNU/Linux:
 
 <CodeBlock language="sh"> {
-`xpm run install -C ~/Work/xpack-dev-tools/${ customFields.appLcName }-xpack.git && \\
-xpm run docker-prepare --config win32-x64 -C ~/Work/xpack-dev-tools/${ customFields.appLcName }-xpack.git`
+`xpm run install -C ~/Work/xpack-dev-tools/${ siteConfig.customFields.appLcName }-xpack.git && \\
+xpm run docker-prepare --config win32-x64 -C ~/Work/xpack-dev-tools/${ siteConfig.customFields.appLcName }-xpack.git`
 }</CodeBlock>
 
 or, with the writeable helper:
 
 <CodeBlock language="sh"> {
-`xpm run install -C ~/Work/xpack-dev-tools/${ customFields.appLcName }-xpack.git && \\
-xpm run link-deps -C ~/Work/xpack-dev-tools/${ customFields.appLcName }-xpack.git && \\
-xpm run docker-prepare --config win32-x64 -C ~/Work/xpack-dev-tools/${ customFields.appLcName }-xpack.git && \\
-xpm run docker-link-deps --config win32-x64 -C ~/Work/xpack-dev-tools/${ customFields.appLcName }-xpack.git`
+`xpm run install -C ~/Work/xpack-dev-tools/${ siteConfig.customFields.appLcName }-xpack.git && \\
+xpm run link-deps -C ~/Work/xpack-dev-tools/${ siteConfig.customFields.appLcName }-xpack.git && \\
+xpm run docker-prepare --config win32-x64 -C ~/Work/xpack-dev-tools/${ siteConfig.customFields.appLcName }-xpack.git && \\
+xpm run docker-link-deps --config win32-x64 -C ~/Work/xpack-dev-tools/${ siteConfig.customFields.appLcName }-xpack.git`
 }</CodeBlock>
 
 To run the build:
 
 <CodeBlock language="sh"> {
-`xpm run docker-build --config win32-x64 -C ~/Work/xpack-dev-tools/${ customFields.appLcName }-xpack.git`
+`xpm run docker-build --config win32-x64 -C ~/Work/xpack-dev-tools/${ siteConfig.customFields.appLcName }-xpack.git`
 }</CodeBlock>
 
 or, for more verbosity:
 
 <CodeBlock language="sh"> {
-`xpm run docker-build-develop --config win32-x64 -C ~/Work/xpack-dev-tools/${ customFields.appLcName }-xpack.git`
+`xpm run docker-build-develop --config win32-x64 -C ~/Work/xpack-dev-tools/${ siteConfig.customFields.appLcName }-xpack.git`
 }</CodeBlock>
 
 About 5 minutes later, the output of the build script is a compressed
 archive and its SHA signature, created in the `deploy` folder:
 
-* <code>xpack-{ customFields.appLcName }-{ customFields.upstreamVersion }-{ customFields.xpackSubversion }-win32-x64.zip</code>
-* <code>xpack-{ customFields.appLcName }-{ customFields.upstreamVersion }-{ customFields.xpackSubversion }-win32-x64.zip.sha</code>
+* <code>xpack-{ siteConfig.customFields.appLcName }-{ siteConfig.customFields.upstreamVersion }-{ siteConfig.customFields.xpackSubversion }-win32-x64.zip</code>
+* <code>xpack-{ siteConfig.customFields.appLcName }-{ siteConfig.customFields.upstreamVersion }-{ siteConfig.customFields.xpackSubversion }-win32-x64.zip.sha</code>
 
 To rerun the build, invoke the deep-clean action and repeat from docker-prepare:
 
 <CodeBlock language="sh"> {
-`xpm run deep-clean --config win32-x64 -C ~/Work/xpack-dev-tools/${ customFields.appLcName }-xpack.git`
+`xpm run deep-clean --config win32-x64 -C ~/Work/xpack-dev-tools/${ siteConfig.customFields.appLcName }-xpack.git`
 }</CodeBlock>
 
 #### Arm GNU/Linux 64-bit
@@ -212,41 +212,41 @@ To rerun the build, invoke the deep-clean action and repeat from docker-prepare:
 To prepare the docker build on a 64-bit aarch64 GNU/Linux machine:
 
 <CodeBlock language="sh"> {
-`xpm run install -C ~/Work/xpack-dev-tools/${ customFields.appLcName }-xpack.git && \\
-xpm run docker-prepare --config linux-arm64 -C ~/Work/xpack-dev-tools/${ customFields.appLcName }-xpack.git`
+`xpm run install -C ~/Work/xpack-dev-tools/${ siteConfig.customFields.appLcName }-xpack.git && \\
+xpm run docker-prepare --config linux-arm64 -C ~/Work/xpack-dev-tools/${ siteConfig.customFields.appLcName }-xpack.git`
 }</CodeBlock>
 
 or, with the writeable helper:
 
 <CodeBlock language="sh"> {
-`xpm run install -C ~/Work/xpack-dev-tools/${ customFields.appLcName }-xpack.git && \\
-xpm run link-deps -C ~/Work/xpack-dev-tools/${ customFields.appLcName }-xpack.git && \\
-xpm run docker-prepare --config linux-arm64 -C ~/Work/xpack-dev-tools/${ customFields.appLcName }-xpack.git && \\
-xpm run docker-link-deps --config linux-arm64 -C ~/Work/xpack-dev-tools/${ customFields.appLcName }-xpack.git`
+`xpm run install -C ~/Work/xpack-dev-tools/${ siteConfig.customFields.appLcName }-xpack.git && \\
+xpm run link-deps -C ~/Work/xpack-dev-tools/${ siteConfig.customFields.appLcName }-xpack.git && \\
+xpm run docker-prepare --config linux-arm64 -C ~/Work/xpack-dev-tools/${ siteConfig.customFields.appLcName }-xpack.git && \\
+xpm run docker-link-deps --config linux-arm64 -C ~/Work/xpack-dev-tools/${ siteConfig.customFields.appLcName }-xpack.git`
 }</CodeBlock>
 
 To run the build:
 
 <CodeBlock language="sh"> {
-`xpm run docker-build --config linux-arm64 -C ~/Work/xpack-dev-tools/${ customFields.appLcName }-xpack.git`
+`xpm run docker-build --config linux-arm64 -C ~/Work/xpack-dev-tools/${ siteConfig.customFields.appLcName }-xpack.git`
 }</CodeBlock>
 
 or, for more verbosity:
 
 <CodeBlock language="sh"> {
-`xpm run docker-build-develop --config linux-arm64 -C ~/Work/xpack-dev-tools/${ customFields.appLcName }-xpack.git`
+`xpm run docker-build-develop --config linux-arm64 -C ~/Work/xpack-dev-tools/${ siteConfig.customFields.appLcName }-xpack.git`
 }</CodeBlock>
 
 About 10 minutes later, the output of the build script is a compressed
 archive and its SHA signature, created in the `deploy` folder:
 
-* <code>xpack-{ customFields.appLcName }-{ customFields.upstreamVersion }-{ customFields.xpackSubversion }-linux-arm64.tar.gz</code>
-* <code>xpack-{ customFields.appLcName }-{ customFields.upstreamVersion }-{ customFields.xpackSubversion }-linux-arm64.tar.gz.sha</code>
+* <code>xpack-{ siteConfig.customFields.appLcName }-{ siteConfig.customFields.upstreamVersion }-{ siteConfig.customFields.xpackSubversion }-linux-arm64.tar.gz</code>
+* <code>xpack-{ siteConfig.customFields.appLcName }-{ siteConfig.customFields.upstreamVersion }-{ siteConfig.customFields.xpackSubversion }-linux-arm64.tar.gz.sha</code>
 
 To rerun the build, invoke the deep-clean action and repeat from docker-prepare:
 
 <CodeBlock language="sh"> {
-`xpm run deep-clean --config linux-arm64 -C ~/Work/xpack-dev-tools/${ customFields.appLcName }-xpack.git`
+`xpm run deep-clean --config linux-arm64 -C ~/Work/xpack-dev-tools/${ siteConfig.customFields.appLcName }-xpack.git`
 }</CodeBlock>
 
 #### Arm GNU/Linux 32-bit
@@ -254,41 +254,41 @@ To rerun the build, invoke the deep-clean action and repeat from docker-prepare:
 To prepare the docker build on a 32-bit armhf GNU/Linux machine:
 
 <CodeBlock language="sh"> {
-`xpm run install -C ~/Work/xpack-dev-tools/${ customFields.appLcName }-xpack.git && \\
-xpm run docker-prepare --config linux-arm -C ~/Work/xpack-dev-tools/${ customFields.appLcName }-xpack.git`
+`xpm run install -C ~/Work/xpack-dev-tools/${ siteConfig.customFields.appLcName }-xpack.git && \\
+xpm run docker-prepare --config linux-arm -C ~/Work/xpack-dev-tools/${ siteConfig.customFields.appLcName }-xpack.git`
 }</CodeBlock>
 
 or, with the writeable helper:
 
 <CodeBlock language="sh"> {
-`xpm run install -C ~/Work/xpack-dev-tools/${ customFields.appLcName }-xpack.git && \\
-xpm run link-deps -C ~/Work/xpack-dev-tools/${ customFields.appLcName }-xpack.git && \\
-xpm run docker-prepare --config linux-arm -C ~/Work/xpack-dev-tools/${ customFields.appLcName }-xpack.git && \\
-xpm run docker-link-deps --config linux-arm -C ~/Work/xpack-dev-tools/${ customFields.appLcName }-xpack.git`
+`xpm run install -C ~/Work/xpack-dev-tools/${ siteConfig.customFields.appLcName }-xpack.git && \\
+xpm run link-deps -C ~/Work/xpack-dev-tools/${ siteConfig.customFields.appLcName }-xpack.git && \\
+xpm run docker-prepare --config linux-arm -C ~/Work/xpack-dev-tools/${ siteConfig.customFields.appLcName }-xpack.git && \\
+xpm run docker-link-deps --config linux-arm -C ~/Work/xpack-dev-tools/${ siteConfig.customFields.appLcName }-xpack.git`
 }</CodeBlock>
 
 To run the build:
 
 <CodeBlock language="sh"> {
-`xpm run docker-build --config linux-arm -C ~/Work/xpack-dev-tools/${ customFields.appLcName }-xpack.git`
+`xpm run docker-build --config linux-arm -C ~/Work/xpack-dev-tools/${ siteConfig.customFields.appLcName }-xpack.git`
 }</CodeBlock>
 
 or, for more verbosity:
 
 <CodeBlock language="sh"> {
-`xpm run docker-build-develop --config linux-arm -C ~/Work/xpack-dev-tools/${ customFields.appLcName }-xpack.git`
+`xpm run docker-build-develop --config linux-arm -C ~/Work/xpack-dev-tools/${ siteConfig.customFields.appLcName }-xpack.git`
 }</CodeBlock>
 
 About 10 minutes later, the output of the build script is a compressed
 archive and its SHA signature, created in the `deploy` folder:
 
-* <code>xpack-{ customFields.appLcName }-{ customFields.upstreamVersion }-{ customFields.xpackSubversion }-linux-arm.tar.gz</code>
-* <code>xpack-{ customFields.appLcName }-{ customFields.upstreamVersion }-{ customFields.xpackSubversion }-linux-arm.tar.gz.sha</code>
+* <code>xpack-{ siteConfig.customFields.appLcName }-{ siteConfig.customFields.upstreamVersion }-{ siteConfig.customFields.xpackSubversion }-linux-arm.tar.gz</code>
+* <code>xpack-{ siteConfig.customFields.appLcName }-{ siteConfig.customFields.upstreamVersion }-{ siteConfig.customFields.xpackSubversion }-linux-arm.tar.gz.sha</code>
 
 To rerun the build, invoke the deep-clean action and repeat from docker-prepare:
 
 <CodeBlock language="sh"> {
-`xpm run deep-clean --config linux-arm -C ~/Work/xpack-dev-tools/${ customFields.appLcName }-xpack.git`
+`xpm run deep-clean --config linux-arm -C ~/Work/xpack-dev-tools/${ siteConfig.customFields.appLcName }-xpack.git`
 }</CodeBlock>
 
 ### How to build a debug version

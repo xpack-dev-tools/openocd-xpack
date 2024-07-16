@@ -2,7 +2,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import CodeBlock from '@theme/CodeBlock';
 
-import { customFields } from '@site/src/lib/customFields';
+import siteConfig from '@site/docusaurus.config';
 
 import InstallWindows from '../_install-windows.mdx';
 import InstallMacOS from '../_install-macos.mdx';
@@ -10,7 +10,7 @@ import InstallLinux from '../_install-linux.mdx';
 
 {/* ------------------------------------------------------------------------ */}
 
-The **xPack { customFields.appName }** can be installed automatically, using the `xpm` command
+The **xPack { siteConfig.customFields.appName }** can be installed automatically, using the `xpm` command
 (the recommended method), or manually, by downloading and unpacking one of the
 portable archives.
 

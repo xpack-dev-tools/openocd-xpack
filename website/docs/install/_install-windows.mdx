@@ -1,7 +1,7 @@
 
 import CodeBlock from '@theme/CodeBlock';
 
-import { customFields } from '@site/src/lib/customFields';
+import siteConfig from '@site/docusaurus.config';
 
 import AutomatedInstall from './_common/_automated-install.mdx';
 import AutomatedUninstall from './_common/_automated-uninstall.mdx';
@@ -14,7 +14,7 @@ import ManualInstallInfo from './_common/_manual-info.mdx';
 <AutomatedInstall isWindows={ props.isWindows }/>
 
 <CodeBlock language="console"> {
-`C:\> tree /f %USERPROFILE%\\AppData\\Roaming\\xPacks\\@xpack-dev-tools\\openocd\\${ customFields.upstreamVersion }-${ customFields.xpackSubversion }.${ customFields.npmSubversion }\\.content
+`C:\> tree /f %USERPROFILE%\\AppData\\Roaming\\xPacks\\@xpack-dev-tools\\openocd\\${ siteConfig.customFields.upstreamVersion }-${ siteConfig.customFields.xpackSubversion }.${ siteConfig.customFields.npmSubversion }\\.content
 Folder PATH listing
 Volume serial number is B02D-925C
 C:\\USERS\\ILG\\APPDATA\\ROAMING\\XPACKS\\@XPACK-DEV-TOOLS\\OPENOCD\\0.12.0-3.1\\.CONTENT
@@ -37,11 +37,11 @@ C:\\USERS\\ILG\\APPDATA\\ROAMING\\XPACKS\\@XPACK-DEV-TOOLS\\OPENOCD\\0.12.0-3.1\
 
 ### Quick test
 
-To check if the { customFields.appName } installed by **xpm** starts properly, use something like:
+To check if the { siteConfig.customFields.appName } installed by **xpm** starts properly, use something like:
 
 <CodeBlock language="console"> {
-`C:\\> %USERPROFILE%\\AppData\\Roaming\\xPacks\\@xpack-dev-tools\\openocd\\${ customFields.upstreamVersion }-${ customFields.xpackSubversion }.${ customFields.npmSubversion }\\.content\\bin\\openocd.exe --version
-${ customFields.upstreamVersion }`
+`C:\\> %USERPROFILE%\\AppData\\Roaming\\xPacks\\@xpack-dev-tools\\openocd\\${ siteConfig.customFields.upstreamVersion }-${ siteConfig.customFields.xpackSubversion }.${ siteConfig.customFields.npmSubversion }\\.content\\bin\\openocd.exe --version
+${ siteConfig.customFields.upstreamVersion }`
 }</CodeBlock>
 
 <ManualInstall/>
@@ -52,11 +52,11 @@ ${ customFields.upstreamVersion }`
 
 ### Quick test
 
-To check if the { customFields.appName } installed manually starts properly, use something like:
+To check if the { siteConfig.customFields.appName } installed manually starts properly, use something like:
 
 <CodeBlock language="console"> {
-`C:\\> %USERPROFILE%\\AppData\\Roaming\\xPacks\\openocd\\xpack-openocd-${ customFields.upstreamVersion }-${ customFields.xpackSubversion }\\bin\\openocd.exe --version
-${ customFields.upstreamVersion }`
+`C:\\> %USERPROFILE%\\AppData\\Roaming\\xPacks\\openocd\\xpack-openocd-${ siteConfig.customFields.upstreamVersion }-${ siteConfig.customFields.xpackSubversion }\\bin\\openocd.exe --version
+${ siteConfig.customFields.upstreamVersion }`
 }</CodeBlock>
 
 

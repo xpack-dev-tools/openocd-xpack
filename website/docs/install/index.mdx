@@ -9,7 +9,7 @@ date: 2020-09-27 11:09:00 +0300
 
 import CodeBlock from '@theme/CodeBlock';
 
-import { customFields } from '@site/src/lib/customFields';
+import siteConfig from '@site/docusaurus.config';
 
 import Install from './_common/_install.mdx';
 
@@ -22,8 +22,8 @@ import Install from './_common/_install.mdx';
 To test if OpenOCD is able to connect to a specific board, it is generally necessary to select the interface and the processor. As a shortcut, for some well known boards, there are ready made configuration files to set both the interface and the processor. For example to test a connection via ST/LINK to the STM32F4DISCOVERY board, you can use something like this:
 
 <CodeBlock language="console"> {
-`$ .../xPacks/@xpack-dev-tools/openocd/${ customFields.upstreamVersion }-${ customFields.xpackSubversion }.${ customFields.npmSubversion }/.content/bin/openocd -f board/stm32f4discovery.cfg
-xPack OpenOCD x86_64 Open On-Chip Debugger ${ customFields.upstreamVersion }+dev
+`$ .../xPacks/@xpack-dev-tools/openocd/${ siteConfig.customFields.upstreamVersion }-${ siteConfig.customFields.xpackSubversion }.${ siteConfig.customFields.npmSubversion }/.content/bin/openocd -f board/stm32f4discovery.cfg
+xPack OpenOCD x86_64 Open On-Chip Debugger ${ siteConfig.customFields.upstreamVersion }+dev
 Licensed under GNU GPL v2
 For bug reports, read
 	http://openocd.org/doc/doxygen/bugs.html

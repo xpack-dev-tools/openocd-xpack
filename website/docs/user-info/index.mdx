@@ -5,7 +5,7 @@ date: 2024-07-11 18:56:00 +0300
 
 ---
 
-import { customFields } from '@site/src/lib/customFields';
+import siteConfig from '@site/docusaurus.config';
 
 {/* ------------------------------------------------------------------------ */}
 
@@ -15,16 +15,16 @@ to use the OpenOCD binaries in their workflows.
 ## Versioning
 
 The version string used by the OpenOCD project is a three number string
-like <code>{ customFields.upstreamVersion }</code>; to this string the xPack distribution adds a four number,
+like <code>{ siteConfig.customFields.upstreamVersion }</code>; to this string the xPack distribution adds a four number,
 but since semver allows only three numbers, all additional ones can
 be added only as pre-release strings, separated by a dash,
-like <code>{ customFields.upstreamVersion }-{ customFields.xpackSubversion }</code>. When published as a npm package, the version gets
-a fifth number, like <code>{ customFields.upstreamVersion }-{ customFields.xpackSubversion }.{ customFields.npmSubversion }</code>.
+like <code>{ siteConfig.customFields.upstreamVersion }-{ siteConfig.customFields.xpackSubversion }</code>. When published as a npm package, the version gets
+a fifth number, like <code>{ siteConfig.customFields.upstreamVersion }-{ siteConfig.customFields.xpackSubversion }.{ siteConfig.customFields.npmSubversion }</code>.
 
 Since adherence of third party packages to semver is not guaranteed,
 it is recommended to avoid referring to the OpenOCD dependency via
-a semver expressions like <code>^{ customFields.upstreamVersion }</code> or
-<code>~{ customFields.upstreamVersion }</code>, and prefer exact matches, like <code>{ customFields.upstreamVersion }-{ customFields.xpackSubversion }.{ customFields.npmSubversion }</code>.
+a semver expressions like <code>^{ siteConfig.customFields.upstreamVersion }</code> or
+<code>~{ siteConfig.customFields.upstreamVersion }</code>, and prefer exact matches, like <code>{ siteConfig.customFields.upstreamVersion }-{ siteConfig.customFields.xpackSubversion }.{ siteConfig.customFields.npmSubversion }</code>.
 
 ## Drivers
 

@@ -1,13 +1,13 @@
 import CodeBlock from '@theme/CodeBlock';
 
-import { customFields } from '@site/src/lib/customFields';
+import siteConfig from '@site/docusaurus.config';
 
 {/* ------------------------------------------------------------------------ */}
 
 ## Automated install
 
-The easiest way to install { customFields.appName } is by using the **binary xPack**, available as
-<a href="https://www.npmjs.com/package/@xpack-dev-tools/{ customFields.appLcName }"><code>@xpack-dev-tools/{ customFields.appLcName }</code></a>
+The easiest way to install { siteConfig.customFields.appName } is by using the **binary xPack**, available as
+<a href="https://www.npmjs.com/package/@xpack-dev-tools/{ siteConfig.customFields.appLcName }"><code>@xpack-dev-tools/{ siteConfig.customFields.appLcName }</code></a>
 from the [`npmjs.com`](https://www.npmjs.com) registry.
 
 ### Prerequisites
@@ -53,10 +53,10 @@ cd my-project
 xpm init
 ```
 
-then install the **{ customFields.appLcName }** package in the local project:
+then install the **{ siteConfig.customFields.appLcName }** package in the local project:
 
 <CodeBlock language="sh"> {
-`xpm install @xpack-dev-tools/${ customFields.appLcName }@latest --verbose`
+`xpm install @xpack-dev-tools/${ siteConfig.customFields.appLcName }@latest --verbose`
 }</CodeBlock>
 
 The main result is a set of { props.isWindows === 'True' ? (<><code>.cmd</code> forwarders</>) : 'symbolic links'}:
@@ -67,7 +67,7 @@ The main result is a set of { props.isWindows === 'True' ? (<><code>.cmd</code> 
 
 The above `xpm install` command will:
 
-* install the latest available version of { customFields.appName }
+* install the latest available version of { siteConfig.customFields.appName }
   into the **central xPacks store** (if not already there); the central
   xPacks store is a platform dependent folder located in the home folder,
   designated for the installation of archives; this approach helps prevent
@@ -78,8 +78,8 @@ The above `xpm install` command will:
   folder used on your platform);
 * add { props.isWindows === 'True' ? (<><code>.cmd</code> forwarders</>) : 'symbolic links' }
   into the local `xpacks/.bin` folder, referring to the binaries in the central store;
-* add <code>@xpack-dev-tools/{ customFields.appLcName }</code> to `package.json` as a
-  development dependency; this associates a specific version of { customFields.appName } with
+* add <code>@xpack-dev-tools/{ siteConfig.customFields.appLcName }</code> to `package.json` as a
+  development dependency; this associates a specific version of { siteConfig.customFields.appName } with
   the current project, facilitating convenient subsequent installations via
   `xpm install` when the project is cloned to a new location, such as in
   CI/CD environments.
@@ -103,12 +103,12 @@ settings like **Show Hidden Files**.
 :::
 
 For xPacks aware tools (like the **Eclipse Embedded C/C++ plug-ins**),
-it is also possible to install { customFields.appName } only globally in the **central
+it is also possible to install { siteConfig.customFields.appName } only globally in the **central
 xPacks store**, without any local { props.isWindows === 'True' ? (<><code>.cmd</code> forwarders</>) : 'symbolic links' }, assuming the tool is capable of handling
 the path itself.
 
 <CodeBlock language="sh"> {
-`xpm install --global @xpack-dev-tools/${ customFields.appLcName }@latest --verbose`
+`xpm install --global @xpack-dev-tools/${ siteConfig.customFields.appLcName }@latest --verbose`
 }</CodeBlock>
 
 After install, the package creates a folder hierarchy like the following

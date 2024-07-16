@@ -1,8 +1,8 @@
 import CodeBlock from '@theme/CodeBlock';
 
-import { customFields } from '@site/src/lib/customFields';
+import siteConfig from '@site/docusaurus.config';
 
-export const gitUrl = `https://github.com/xpack-dev-tools/${ customFields.appLcName }-xpack.git`
+export const gitUrl = `https://github.com/xpack-dev-tools/${ siteConfig.customFields.appLcName }-xpack.git`
 
 {/* ------------------------------------------------------------------------ */}
 
@@ -51,20 +51,20 @@ To clone the stable branch (`xpack`), run the following commands in a
 terminal (on Windows use the _Git Bash_ console):
 
 <CodeBlock language="sh"> {
-`rm -rf ~/Work/xpack-dev-tools/${ customFields.appLcName }-xpack.git && \\
-git clone https://github.com/xpack-dev-tools/${ customFields.appLcName }-xpack.git \\
-  ~/Work/xpack-dev-tools/${ customFields.appLcName }-xpack.git`
+`rm -rf ~/Work/xpack-dev-tools/${ siteConfig.customFields.appLcName }-xpack.git && \\
+git clone https://github.com/xpack-dev-tools/${ siteConfig.customFields.appLcName }-xpack.git \\
+  ~/Work/xpack-dev-tools/${ siteConfig.customFields.appLcName }-xpack.git`
 }</CodeBlock>
 
 For development purposes, clone the `xpack-develop` branch:
 
 <CodeBlock language="sh"> {
-`rm -rf ~/Work/xpack-dev-tools/${ customFields.appLcName }-xpack.git && \\
+`rm -rf ~/Work/xpack-dev-tools/${ siteConfig.customFields.appLcName }-xpack.git && \\
 mkdir -p ~/Work/xpack-dev-tools && \\
 git clone \\
   --branch xpack-develop \\
-  https://github.com/xpack-dev-tools/${ customFields.appLcName }-xpack.git \\
-  ~/Work/xpack-dev-tools/${ customFields.appLcName }-xpack.git`
+  https://github.com/xpack-dev-tools/${ siteConfig.customFields.appLcName }-xpack.git \\
+  ~/Work/xpack-dev-tools/${ siteConfig.customFields.appLcName }-xpack.git`
 }</CodeBlock>
 
 ## Get helper sources (optional, for development purposes)
