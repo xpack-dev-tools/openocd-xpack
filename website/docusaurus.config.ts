@@ -3,8 +3,6 @@ import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 import logger from '@docusaurus/logger';
 
-import { customFields } from './src/lib/customFields.js';
-
 // // These node.js modules cannot be used in separate modules:
 // // webpack < 5 used to include polyfills for node.js core modules by default.
 // // so the entire initialisation code must be in this file, that is
@@ -47,6 +45,15 @@ import { customFields } from './src/lib/customFields.js';
 // }
 
 // const customFields = getCustomFields();
+
+const customFields = {
+  appName: "OpenOCD",
+  appLcName: "openocd",
+  upstreamVersion: "0.12.0",
+  xpackSubversion: "3",
+  npmSubversion: "1"
+}
+
 logger.info(customFields);
 
 const config: Config = {
