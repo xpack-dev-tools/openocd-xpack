@@ -9,7 +9,15 @@
  * be obtained from https://opensource.org/licenses/MIT/.
  */
 
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
-const { siteConfig } = useDocusaurusContext();
+// import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+// const { siteConfig } = useDocusaurusContext();
 
-export const { customFields } = siteConfig
+// export const { customFields } = siteConfig
+
+export const customFields = {
+  appName: "OpenOCD",
+  appLcName: "openocd",
+  upstreamVersion: "0.12.0",
+  xpackSubversion: "3",
+  npmSubversion: "1"
+}

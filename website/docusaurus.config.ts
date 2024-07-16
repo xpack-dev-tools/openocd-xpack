@@ -3,44 +3,50 @@ import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 import logger from '@docusaurus/logger';
 
-import { fileURLToPath } from 'url';
-import path from 'path';
-import fs from 'fs';
+import { customFields } from './src/lib/customFields.js';
 
-function getCustomFields() {
-  const pwd = fileURLToPath(import.meta.url);
-  const filePath = path.join(path.dirname(path.dirname(pwd)), 'package.json');
-  // logger.info(filePath);
-  const fileContent = fs.readFileSync(filePath);
+// // These node.js modules cannot be used in separate modules:
+// // webpack < 5 used to include polyfills for node.js core modules by default.
+// // so the entire initialisation code must be in this file, that is
+// // not processed by webpack.
+// import { fileURLToPath } from 'url';
+// import path from 'path';
+// import fs from 'fs';
 
-  const topPackageJson = JSON.parse(fileContent.toString());
-  const jsonVersion = topPackageJson.version.replace(".pre", "");
+// function getCustomFields() {
+//   const pwd = fileURLToPath(import.meta.url);
+//   const filePath = path.join(path.dirname(path.dirname(pwd)), 'package.json');
+//   // logger.info(filePath);
+//   const fileContent = fs.readFileSync(filePath);
 
-  logger.info(`package version: ${topPackageJson.version}`);
-  // logger.info(jsonVersion)
+//   const topPackageJson = JSON.parse(fileContent.toString());
+//   const jsonVersion = topPackageJson.version.replace(".pre", "");
 
-  const npmSubversion = jsonVersion.replace(/^.*[.]/, '');
-  // logger.info(npmSubversion)
+//   logger.info(`package version: ${topPackageJson.version}`);
+//   // logger.info(jsonVersion)
 
-  const rest1 = jsonVersion.replace(/[.][0-9]*$/, '');
-  // logger.info(rest1)
+//   const npmSubversion = jsonVersion.replace(/^.*[.]/, '');
+//   // logger.info(npmSubversion)
 
-  const xpackSubversion = rest1.replace(/^.*[-]/, '');
-  // logger.info(xpackSubversion)
+//   const rest1 = jsonVersion.replace(/[.][0-9]*$/, '');
+//   // logger.info(rest1)
 
-  const upstreamVersion = rest1.replace(/[-][0-9]*$/, '');
-  // logger.info(upstreamVersion)
+//   const xpackSubversion = rest1.replace(/^.*[-]/, '');
+//   // logger.info(xpackSubversion)
 
-  return {
-    appName: topPackageJson.xpack.properties.appName,
-    appLcName: topPackageJson.xpack.properties.appLcName,
-    upstreamVersion,
-    xpackSubversion,
-    npmSubversion,
-  }
-}
+//   const upstreamVersion = rest1.replace(/[-][0-9]*$/, '');
+//   // logger.info(upstreamVersion)
 
-const customFields = getCustomFields();
+//   return {
+//     appName: topPackageJson.xpack.properties.appName,
+//     appLcName: topPackageJson.xpack.properties.appLcName,
+//     upstreamVersion,
+//     xpackSubversion,
+//     npmSubversion,
+//   }
+// }
+
+// const customFields = getCustomFields();
 logger.info(customFields);
 
 const config: Config = {
