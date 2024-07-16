@@ -52,6 +52,8 @@
 
 export function getCustomFields() {
   return {
+    appName: 'OpenOCD',
+    appLcName: 'openocd',
     upstreamVersion: '0.12.0',
     xpackSubversion: '3',
     npmSubversion: '1'
