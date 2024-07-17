@@ -11,7 +11,7 @@ import ManualInstallInfo from './_common/_manual-info.mdx';
 
 {/* ------------------------------------------------------------------------ */}
 
-<AutomatedInstall label="macOS"/>
+<AutomatedInstall label={ props.label }/>
 
 <CodeBlock language="console"> {
 `$ tree -L 2 ~/Library/xPacks/\@xpack-dev-tools/openocd/${ siteConfig.customFields.upstreamVersion }-${ siteConfig.customFields.xpackSubversion }.${ siteConfig.customFields.npmSubversion }/.content/
