@@ -2,8 +2,6 @@ import CodeBlock from '@theme/CodeBlock';
 
 import siteConfig from '@site/docusaurus.config';
 
-export const gitUrl = `https://github.com/xpack-dev-tools/${ siteConfig.customFields.appLcName }-xpack.git`
-
 {/* ------------------------------------------------------------------------ */}
 
 This page is intended for those who want to build the xPack OpenOCD
@@ -44,7 +42,7 @@ For details on installing the prerequisites, please read the
 The project is hosted on GitHub:
 
 <ul>
-<li><a href="{ gitUrl }">{ gitUrl }</a></li>
+<li><a href={ `https://github.com/xpack-dev-tools/${ siteConfig.customFields.appLcName }-xpack.git` }>{ `https://github.com/xpack-dev-tools/${ siteConfig.customFields.appLcName }-xpack.git` }</a></li>
 </ul>
 
 To clone the stable branch (`xpack`), run the following commands in a
