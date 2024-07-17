@@ -45,15 +45,17 @@ With **xpm** available, installing
 the latest version of the package and adding it as
 a development dependency for a project is straightforward.
 
-Upon initial use, ensure that a `package.json` file is added to the project,
-if it is not already present:
+Upon initial use, ensure that a `package.json` file is present in the project.
+This can be achieved by running `xpm init` in the project folder
+(substitute `my-project` with the name of your project):
 
 ```sh
 cd my-project
 xpm init
 ```
 
-then install the **{ siteConfig.customFields.appLcName }** package in the local project:
+The next step is to install the
+**{ siteConfig.customFields.appLcName }** package in the project:
 
 <CodeBlock language="sh"> {
 `xpm install @xpack-dev-tools/${ siteConfig.customFields.appLcName }@latest --verbose`
@@ -65,7 +67,7 @@ The main result is a set of { props.isWindows === 'True' ? (<><code>.cmd</code> 
 `${ props.isWindows === 'True' ? 'dir xpacks\\.bin' : 'ls -l xpacks/.bin' }`
 }</CodeBlock>
 
-The above `xpm install` command will:
+The above `xpm install` command will do the following:
 
 * install the latest available version of { siteConfig.customFields.appName }
   into the **central xPacks store** (if not already there); the central
@@ -73,9 +75,9 @@ The above `xpm install` command will:
   designated for the installation of archives; this approach helps prevent
   multiple redundant copies of the same tools, such as large toolchains,
   thereby conserving disk space when these tools are utilized across
-  multiple projects
-  (check the output of the `xpm` command for the actual
-  folder used on your platform);
+  multiple projects;
+  check the output of the `xpm` command for the actual
+  folder used on your platform;
 * add { props.isWindows === 'True' ? (<><code>.cmd</code> forwarders</>) : 'symbolic links' }
   into the local `xpacks/.bin` folder, referring to the binaries in the central store;
 * add <code>@xpack-dev-tools/{ siteConfig.customFields.appLcName }</code> to `package.json` as a
