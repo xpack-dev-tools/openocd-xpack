@@ -167,6 +167,10 @@ const config: Config = {
               to: '/docs/install'
             },
             {
+              label: 'User Info',
+              to: '/docs/user-info'
+            },
+            {
               label: 'Help Center',
               to: '/docs/support'
             },
