@@ -106,8 +106,18 @@ settings like **Show Hidden Files**.
 
 For xPacks aware tools (like the **Eclipse Embedded C/C++ plug-ins**),
 it is also possible to install { siteConfig.customFields.appName } only globally in the **central
-xPacks store**, without any local { props.isWindows === 'True' ? (<><code>.cmd</code> forwarders</>) : 'symbolic links' }, assuming the tool is capable of handling
-the path itself.
+xPacks store**, without any local
+{ props.isWindows === 'True' ? (<><code>.cmd</code> forwarders</>) : 'symbolic links' },
+assuming the tools are capable of handling
+the paths themselves.
+
+:::note
+
+Installing packages locally into a project always installs the
+packages in the **central xPacks store**, and subsequent attempts to
+install the package globally will fail with _already installed_.
+
+:::
 
 <CodeBlock language="sh"> {
 `xpm install --global @xpack-dev-tools/${ siteConfig.customFields.appLcName }@latest --verbose`
