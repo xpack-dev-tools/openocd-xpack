@@ -11,7 +11,7 @@ import ManualInstallInfo from './_common/_manual-info.mdx';
 
 {/* ------------------------------------------------------------------------ */}
 
-<AutomatedInstall isWindows={ props.isWindows }/>
+<AutomatedInstall label="Windows" isWindows={ props.isWindows }/>
 
 <CodeBlock language="console"> {
 `C:\> tree /f %USERPROFILE%\\AppData\\Roaming\\xPacks\\@xpack-dev-tools\\openocd\\${ siteConfig.customFields.upstreamVersion }-${ siteConfig.customFields.xpackSubversion }.${ siteConfig.customFields.npmSubversion }\\.content
