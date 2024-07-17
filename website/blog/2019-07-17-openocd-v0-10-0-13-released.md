@@ -32,7 +32,7 @@ There are separate binaries for **Windows**, **macOS** and
 ## Download
 
 The binary files are available from
-<a href={frontMatter.download_url}>GitHub Releases</a>.
+<a href={ frontMatter.download_url }>GitHub Releases</a>.
 
 ## Install
 
@@ -124,7 +124,7 @@ xpack-openocd-0.10.0-13-win32-x64.zip
 import Image from '@theme/IdealImage';
 
 - GitHub [xpack-dev-tools/openocd-xpack](https://github.com/xpack-dev-tools/openocd-xpack/)
-  - this release <a href={ 'https://github.com/xpack-dev-tools/openocd-xpack/releases/v' + frontMatter.version + '/' }><Image img={ 'https://img.shields.io/github/downloads/xpack-dev-tools/openocd-xpack/v' + frontMatter.version + '/total.svg' } alt='Github Release'/></a>
+  - this release <a href={ `https://github.com/xpack-dev-tools/openocd-xpack/releases/v${ frontMatter.version }/` }><Image img={ `https://img.shields.io/github/downloads/xpack-dev-tools/openocd-xpack/v${ frontMatter.version }/total.svg` } alt='Github Release'/></a>
   - all xPack releases [![Github All Releases](https://img.shields.io/github/downloads/xpack-dev-tools/openocd-xpack/total.svg)](https://github.com/xpack-dev-tools/openocd-xpack/releases/)
   - all GNU MCU Eclipse releases [![Github All Releases](https://img.shields.io/github/downloads/gnu-mcu-eclipse/openocd/total.svg)](https://github.com/gnu-mcu-eclipse/openocd/releases/)
   - [individual file counters](https://somsubhra.github.io/github-release-stats/?username=xpack-dev-tools&repository=openocd-xpack) (grouped per release)
