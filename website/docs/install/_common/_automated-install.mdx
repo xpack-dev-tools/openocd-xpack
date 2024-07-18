@@ -122,9 +122,7 @@ The above `xpm install` command will do the following:
   into the local `xpacks/.bin` folder, referring to the binaries in the central store;
 * add <code>@xpack-dev-tools/{ siteConfig.customFields.appLcName }</code> to `package.json` as a
   development dependency; this associates a specific version of { siteConfig.customFields.appName } with
-  the current project, facilitating convenient subsequent installations via
-  `xpm install` when the project is cloned to a new location, such as in
-  CI/CD environments.
+  the current project (details below).
 
 :::tip
 
@@ -143,6 +141,40 @@ separate options (like `ls -A`) or, in file browsers, to enable
 settings like **Show Hidden Files**.
 
 :::
+
+### devDependencies
+
+As mentioned before, **xpm** adds all locally installed binary packages
+as development dependencies in the project `package.json` file.
+
+The result looks like this:
+
+<CodeBlock language="json"> {
+`  "xpack": {
+    "minimumXpmRequired": "0.19.1",
+    "dependencies": {},
+    "devDependencies": {
+      "@xpack-dev-tools/${ siteConfig.customFields.appLcName }": {
+        "specifier": "${ siteConfig.customFields.upstreamVersion }-${ siteConfig.customFields.xpackSubversion }.${ siteConfig.customFields.npmSubversion }",
+        "local": "link",
+        "platforms": "all"
+      }
+    },
+    "properties": {},
+    "actions": {},
+    "buildConfigurations": {}
+  }`
+}</CodeBlock>
+
+If the `package.json` is saved in the revision system, the project gets
+a hard reference to the specific version of
+**xPack { siteConfig.customFields.appName }**.
+
+After cloning the project to a different location, the command `xpm install`
+can be used to install all development dependencies.
+
+This is particularly useful for CI/CD environments.
+
 
 ### Install globally
 
