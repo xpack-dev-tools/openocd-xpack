@@ -26,8 +26,8 @@ To manually install the <b>xPack { customField('appName') }</b>,
 unpack the archive and move it to <code>~/.local/xPacks/{ customField('appLcName') }/xpack-{ customField('appLcName') }-{ customField('upstreamVersion') }-{ customField('xpackSubversion') }</code>:
 
 <CodeBlock language="console"> {
-`mkdir -p ~/.local/xPacks/{ customField('appLcName') }
-cd ~/.local/xPacks/{ customField('appLcName') }
+`mkdir -p ~/.local/xPacks/${ customField('appLcName') }
+cd ~/.local/xPacks/${ customField('appLcName') }
 
 tar xvf ~/Downloads/xpack-${ customField('appLcName') }-${ customField('upstreamVersion') }-${ customField('xpackSubversion') }-darwin-x64.tar.gz
 chmod -R -w xpack-${ customField('appLcName') }-${ customField('upstreamVersion') }-${ customField('xpackSubversion') }`
