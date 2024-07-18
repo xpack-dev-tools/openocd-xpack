@@ -39,23 +39,64 @@ a **node** >=18.17.0).
 
 :::
 
-### Install
+### Local vs. global installs
 
-With **xpm** available, installing
-the latest version of the package and adding it as
-a development dependency for a project is straightforward.
+To ensure reproducibility, it is essential to use specific versions
+of the tools for each project.
 
-Upon initial use, ensure that a `package.json` file is present in the project.
-This can be achieved by running `xpm init` in the project folder
-(substitute `my-project` with the name of your project):
+Similarly to **npm** being able to install specific versions of the
+JavaScript tools into each project,
+**xpm** was also designed to install specific versions of the
+required binary tools into each project.
+
+Thus, similarly to the JavaScript tools installed by **npm** in
+`node_modules/.bin`, **xpm** installs the binary tools in
+`xpacks/.bin`.
+
+### The central xPacks store
+
+Given that some binary tools (such as toolchains) can be very large
+(hundreds of megabytes or more), it is impractical to maintain multiple
+copies of these tools, one for each project.
+
+Instead, the binary packages can be installed in a platform-dependent folder
+within the home directory, thereby conserving disk space when these tools are
+used across multiple projects.
+
+Then, in order to allow the projects to access the binary tools,
+**xpm** adds { props.isWindows === 'True' ? (<><code>.cmd</code> forwarders</>) : 'symbolic links'}
+into the projects pointing to the **central xPacks store**.
+
+The outcome is functionally equivalent to installing the tools in each project,
+but it avoids wasting disk space.
+
+:::tip
+
+It is possible to force a local install by passyng `--copy` to `xpm install`.
+
+:::
+
+However, if needed, it is also possible to install packages only globally,
+without creating local { props.isWindows === 'True' ? (<><code>.cmd</code> forwarders</>) : 'symbolic links'}
+(see below).
+
+### Initialise the project
+
+Upon initial use, ensure that a `package.json` file is present in the
+project root folder.
+
+This can be achieved by running `xpm init` in the desired folder
+(substitute `my-project` accordingly):
 
 ```sh
 cd my-project
 xpm init
 ```
 
+### Install locally
+
 The next step is to install the
-**{ siteConfig.customFields.appLcName }** package in the project:
+**{ siteConfig.customFields.appLcName }** package into the project:
 
 <CodeBlock language="sh"> {
 `xpm install @xpack-dev-tools/${ siteConfig.customFields.appLcName }@latest --verbose`
@@ -69,13 +110,10 @@ The main result is a set of { props.isWindows === 'True' ? (<><code>.cmd</code> 
 
 The above `xpm install` command will do the following:
 
-* install the latest available version of { siteConfig.customFields.appName }
-  into the **central xPacks store** (if not already there); the central
-  xPacks store is a platform dependent folder located in the home folder,
-  designated for the installation of archives; this approach helps prevent
-  multiple redundant copies of the same tools, such as large toolchains,
-  thereby conserving disk space when these tools are utilized across
-  multiple projects;
+* identify the platform specific archive for the latest available version
+  of { siteConfig.customFields.appName }, download it in a cache and unpack
+  it into a versioned folder
+  in the **central xPacks store** (if not already there);
   check the output of the `xpm` command for the actual
   folder used on your platform;
 * add { props.isWindows === 'True' ? (<><code>.cmd</code> forwarders</>) : 'symbolic links' }
@@ -104,17 +142,19 @@ settings like **Show Hidden Files**.
 
 :::
 
-For xPacks aware tools (like the **Eclipse Embedded C/C++ plug-ins**),
+### Install globally
+
+For xPacks aware development environments (like the **Eclipse Embedded C/C++ plug-ins**),
 it is also possible to install { siteConfig.customFields.appName } only globally in the **central
 xPacks store**, without any local
 { props.isWindows === 'True' ? (<><code>.cmd</code> forwarders</>) : 'symbolic links' },
-assuming the tools are capable of handling
+assuming the development environments are capable of handling
 the paths themselves.
 
 :::note
 
 Installing packages locally into a project always installs the
-packages in the **central xPacks store**, and subsequent attempts to
+packages in the **central xPacks store**; subsequent attempts to
 install the package globally will fail with _already installed_.
 
 :::
@@ -122,6 +162,8 @@ install the package globally will fail with _already installed_.
 <CodeBlock language="sh"> {
 `xpm install --global @xpack-dev-tools/${ siteConfig.customFields.appLcName }@latest --verbose`
 }</CodeBlock>
+
+### Folder hierarchy
 
 After install, the package creates a folder hierarchy like the following
 (only the first two depth levels are shown):
