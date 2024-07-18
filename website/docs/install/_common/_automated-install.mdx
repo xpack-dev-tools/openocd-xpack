@@ -106,13 +106,13 @@ The next step is to install the
 
 <CodeBlock language="sh"> {
 `xpm install @xpack-dev-tools/${ customField('appLcName') }@latest --verbose`
-}</CodeBlock>
+} </CodeBlock>
 
 The main result is a set of <LinksVsForwarders isWindows={ props.isWindows }/>:
 
 <CodeBlock language="console"> {
 `${ props.isWindows === 'True' ? 'dir xpacks\\.bin' : 'ls -l xpacks/.bin' }`
-}</CodeBlock>
+} </CodeBlock>
 
 <details>
 <summary>Install details</summary>
@@ -174,7 +174,7 @@ The result looks like this:
     "actions": {},
     "buildConfigurations": {}
   }`
-}</CodeBlock>
+} </CodeBlock>
 
 If the `package.json` is saved in the revision system, the project gets
 a hard reference to the specific version of
@@ -205,6 +205,6 @@ install the package globally will fail with _already installed_.
 
 <CodeBlock language="sh"> {
 `xpm install @xpack-dev-tools/${ customField('appLcName') }@latest --global --verbose`
-}</CodeBlock>
+} </CodeBlock>
 
 </details>

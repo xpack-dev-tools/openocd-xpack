@@ -43,7 +43,7 @@ After install, the package creates a folder hierarchy like the following
     └── scripts
 
 9 directories, 10 files`
-}</CodeBlock>
+} </CodeBlock>
 
 No other files are installed in any system folders or other locations.
 
@@ -58,7 +58,7 @@ To check if the { customField('appName') } installed by **xpm** starts properly,
 <CodeBlock language="console"> {
 `$ ~/.local/xPacks/@xpack-dev-tools/openocd/${ customField('upstreamVersion') }-${ customField('xpackSubversion') }.${ customField('npmSubversion') }/.content/bin/openocd --version
 ${ customField('upstreamVersion') }`
-}</CodeBlock>
+} </CodeBlock>
 
 <ManualInstall/>
 
@@ -73,7 +73,7 @@ To check if the { customField('appName') } installed manually starts properly, u
 <CodeBlock language="console"> {
 `$ ~/.local/xPacks/openocd/xpack-openocd-${ customField('upstreamVersion') }-${ customField('xpackSubversion') }/bin/openocd --version
 ${ customField('upstreamVersion') }`
-}</CodeBlock>
+} </CodeBlock>
 
 ## Drivers
 
@@ -87,7 +87,7 @@ and eventually notify the daemon:
 
 <CodeBlock language="sh"> {
 `sudo cp ~/.local/xPacks/@xpack-dev-tools/openocd/${ customField('upstreamVersion') }-${ customField('xpackSubversion') }.${ customField('npmSubversion') }/.content/contrib/60-openocd.rules /etc/udev/rules.d/`
-}</CodeBlock>
+} </CodeBlock>
 
 To make the change effective, reload the rules:
 
