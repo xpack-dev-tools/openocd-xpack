@@ -99,7 +99,7 @@ cd my-project
 xpm init
 ```
 
-### Install
+### Install into the project
 
 The next step is to install the
 **{ customField('appLcName') }** package into the project:
@@ -115,7 +115,7 @@ The main result is a set of <LinksVsForwarders isWindows={ props.isWindows }/>:
 } </CodeBlock>
 
 <details>
-<summary>Install details</summary>
+<summary>Installation details</summary>
 
 The above `xpm install` command will do the following:
 
@@ -186,14 +186,17 @@ can be used to install all development dependencies.
 This is particularly useful for CI/CD environments.
 </details>
 
-<details>
-<summary>Install globally</summary>
+### Install globally
 
 For older development environments (like the initial **Eclipse Embedded C/C++ plug-ins**; the current version also supports project installs),
 it is also possible to install { customField('appName') } only globally in the **central
 xPacks store**, without any local <LinksVsForwarders isWindows={ props.isWindows }/>,
 assuming the development environments are capable of handling
 the paths themselves.
+
+<CodeBlock language="sh"> {
+`xpm install @xpack-dev-tools/${ customField('appLcName') }@latest --global --verbose`
+} </CodeBlock>
 
 :::note
 
@@ -202,9 +205,3 @@ packages in the **central xPacks store**; subsequent attempts to
 install the package globally will fail with _already installed_.
 
 :::
-
-<CodeBlock language="sh"> {
-`xpm install @xpack-dev-tools/${ customField('appLcName') }@latest --global --verbose`
-} </CodeBlock>
-
-</details>
