@@ -41,7 +41,8 @@ a **node** >=18.17.0).
 
 :::
 
-### Local vs. global installs
+<details>
+<summary>Local vs. global installs</summary>
 
 To ensure reproducibility, it is essential to use specific versions
 of the tools for each project.
@@ -54,8 +55,10 @@ required binary tools into each project.
 Thus, similarly to the JavaScript tools installed by **npm** in
 `node_modules/.bin`, **xpm** installs the binary tools in
 `xpacks/.bin`.
+</details>
 
-### The central xPacks store
+<details>
+<summary>The central xPacks store</summary>
 
 Given that some binary tools (such as toolchains) can be very large
 (hundreds of megabytes or more), it is impractical to maintain multiple
@@ -81,6 +84,7 @@ It is possible to force a local install by passyng `--copy` to `xpm install`.
 However, if needed, it is also possible to install packages only globally,
 without creating local <LinksVsForwarders isWindows={ props.isWindows }/>
 (see below).
+</details>
 
 ### Initialise the project
 
@@ -110,6 +114,9 @@ The main result is a set of <LinksVsForwarders isWindows={ props.isWindows }/>:
 `${ props.isWindows === 'True' ? 'dir xpacks\\.bin' : 'ls -l xpacks/.bin' }`
 }</CodeBlock>
 
+<details>
+<summary>Install details</summary>
+
 The above `xpm install` command will do the following:
 
 * identify the platform specific archive for the latest available version
@@ -120,7 +127,8 @@ The above `xpm install` command will do the following:
   folder used on your platform;
 * add <LinksVsForwarders isWindows={ props.isWindows }/>
   into the local `xpacks/.bin` folder, referring to the binaries in the central store;
-* add <code>@xpack-dev-tools/{ customField('appLcName') }</code> to `package.json` as a
+* add <code>@xpack-dev-tools/{ customField('appLcName') }</code> to
+  `package.json` as a
   development dependency; this associates a specific version of { customField('appName') } with
   the current project (details below).
 
@@ -141,8 +149,10 @@ separate options (like `ls -A`) or, in file browsers, to enable
 settings like **Show Hidden Files**.
 
 :::
+</details>
 
-### devDependencies
+<details>
+<summary>devDependencies</summary>
 
 As mentioned before, **xpm** adds all locally installed binary packages
 as development dependencies in the project `package.json` file.
@@ -174,7 +184,7 @@ After cloning the project to a different location, the command `xpm install`
 can be used to install all development dependencies.
 
 This is particularly useful for CI/CD environments.
-
+</details>
 
 ### Install globally
 
@@ -195,8 +205,3 @@ install the package globally will fail with _already installed_.
 <CodeBlock language="sh"> {
 `xpm install --global @xpack-dev-tools/${ customField('appLcName') }@latest --verbose`
 }</CodeBlock>
-
-### Folder hierarchy
-
-After install, the package creates a folder hierarchy like the following
-(only the first two depth levels are shown):

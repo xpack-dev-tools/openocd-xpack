@@ -13,6 +13,12 @@ import ManualInstallInfo from './_common/_manual-info.mdx';
 
 <AutomatedInstall label={ props.label }/>
 
+<details>
+<summary>Folder hierarchy</summary>
+
+After install, the package creates a folder hierarchy like the following
+(only the first two depth levels are shown):
+
 <CodeBlock language="console"> {
 `$ tree -L 2 ~/Library/xPacks/\@xpack-dev-tools/openocd/${ customField('upstreamVersion') }-${ customField('xpackSubversion') }.${ customField('npmSubversion') }/.content/
 /Users/ilg/Library/xPacks/\@xpack-dev-tools/openocd/${ customField('upstreamVersion') }-${ customField('xpackSubversion') }.${ customField('npmSubversion') }/.content/
@@ -34,6 +40,8 @@ import ManualInstallInfo from './_common/_manual-info.mdx';
 
 10 directories, 6 files`
 }</CodeBlock>
+
+</details>
 
 <AutomatedUninstall/>
 

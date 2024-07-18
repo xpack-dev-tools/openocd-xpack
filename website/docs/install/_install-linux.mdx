@@ -13,6 +13,12 @@ import ManualInstallLinux from './_common/_manual-install-linux.mdx'
 
 <AutomatedInstall label={ props.label }/>
 
+<details>
+<summary>Folder hierarchy</summary>
+
+After install, the package creates a folder hierarchy like the following
+(only the first two depth levels are shown):
+
 <CodeBlock language="console"> {
 `$ tree -L 2 ~/.local/xPacks/\@xpack-dev-tools/openocd/${ customField('upstreamVersion') }-${ customField('xpackSubversion') }.${ customField('npmSubversion') }/.content/
 /home/ilg/.local/xPacks/\@xpack-dev-tools/openocd/${ customField('upstreamVersion') }-${ customField('xpackSubversion') }.${ customField('npmSubversion') }/.content/
@@ -38,6 +44,8 @@ import ManualInstallLinux from './_common/_manual-install-linux.mdx'
 
 9 directories, 10 files`
 }</CodeBlock>
+
+</details>
 
 <AutomatedUninstall/>
 
