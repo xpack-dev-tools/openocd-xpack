@@ -3,13 +3,16 @@ import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 import logger from '@docusaurus/logger';
 
-// These node.js modules cannot be used in separate modules:
+// The node.js modules cannot be used in modules imported in browser code:
 // webpack < 5 used to include polyfills for node.js core modules by default.
 // so the entire initialisation code must be in this file, that is
 // not processed by webpack.
-import { fileURLToPath } from 'url';
-import path from 'path';
-import fs from 'fs';
+// Also the configuration must be imported via
+// import siteConfig from '@generated/docusaurus.config';
+
+import { fileURLToPath } from 'node:url';
+import path from 'node:path';
+import fs from 'node:fs';
 
 function getCustomFields() {
   const pwd = fileURLToPath(import.meta.url);
