@@ -2,6 +2,8 @@ import CodeBlock from '@theme/CodeBlock';
 
 import siteConfig from '@site/docusaurus.config';
 
+import LinksVsForwarders from '@site/src/components/LinksVsForwarders'
+
 {/* ------------------------------------------------------------------------ */}
 
 ## Automated install
@@ -64,7 +66,7 @@ within the home directory, thereby conserving disk space when these tools are
 used across multiple projects.
 
 Then, in order to allow the projects to access the binary tools,
-**xpm** adds { props.isWindows === 'True' ? (<><code>.cmd</code> forwarders</>) : 'symbolic links'}
+**xpm** adds <LinksVsForwarders isWindows={ props.isWindows }/>
 into the projects pointing to the **central xPacks store**.
 
 The outcome is functionally equivalent to installing the tools in each project,
@@ -77,7 +79,7 @@ It is possible to force a local install by passyng `--copy` to `xpm install`.
 :::
 
 However, if needed, it is also possible to install packages only globally,
-without creating local { props.isWindows === 'True' ? (<><code>.cmd</code> forwarders</>) : 'symbolic links'}
+without creating local <LinksVsForwarders isWindows={ props.isWindows }/>
 (see below).
 
 ### Initialise the project
@@ -102,7 +104,7 @@ The next step is to install the
 `xpm install @xpack-dev-tools/${ siteConfig.customFields.appLcName }@latest --verbose`
 }</CodeBlock>
 
-The main result is a set of { props.isWindows === 'True' ? (<><code>.cmd</code> forwarders</>) : 'symbolic links'}:
+The main result is a set of <LinksVsForwarders isWindows={ props.isWindows }/>:
 
 <CodeBlock language="console"> {
 `${ props.isWindows === 'True' ? 'dir xpacks\\.bin' : 'ls -l xpacks/.bin' }`
@@ -116,7 +118,7 @@ The above `xpm install` command will do the following:
   in the **central xPacks store** (if not already there);
   check the output of the `xpm` command for the actual
   folder used on your platform;
-* add { props.isWindows === 'True' ? (<><code>.cmd</code> forwarders</>) : 'symbolic links' }
+* add <LinksVsForwarders isWindows={ props.isWindows }/>
   into the local `xpacks/.bin` folder, referring to the binaries in the central store;
 * add <code>@xpack-dev-tools/{ siteConfig.customFields.appLcName }</code> to `package.json` as a
   development dependency; this associates a specific version of { siteConfig.customFields.appName } with
@@ -146,8 +148,7 @@ settings like **Show Hidden Files**.
 
 For xPacks aware development environments (like the **Eclipse Embedded C/C++ plug-ins**),
 it is also possible to install { siteConfig.customFields.appName } only globally in the **central
-xPacks store**, without any local
-{ props.isWindows === 'True' ? (<><code>.cmd</code> forwarders</>) : 'symbolic links' },
+xPacks store**, without any local <LinksVsForwarders isWindows={ props.isWindows }/>,
 assuming the development environments are capable of handling
 the paths themselves.
 

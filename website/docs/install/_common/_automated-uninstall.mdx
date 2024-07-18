@@ -2,6 +2,8 @@ import CodeBlock from '@theme/CodeBlock';
 
 import siteConfig from '@site/docusaurus.config';
 
+import LinksVsForwarders from '@site/src/components/LinksVsForwarders'
+
 {/* ------------------------------------------------------------------------ */}
 
 No other files are installed in any system folders or other locations.
@@ -12,7 +14,8 @@ The binaries are distributed as portable archives; thus they do not need
 to run a setup and do not require an uninstall; simply removing the
 links and possibly the central store folder is enough.
 
-To remove the links created by xpm in the current project,
+To remove the <LinksVsForwarders isWindows={ props.isWindows }/> created by
+**xpm** in the current project,
 go to the project folder:
 
 ```sh
