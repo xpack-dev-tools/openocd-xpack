@@ -99,7 +99,7 @@ cd my-project
 xpm init
 ```
 
-### Install locally
+### Install into the project
 
 The next step is to install the
 **{ customField('appLcName') }** package into the project:
@@ -203,5 +203,5 @@ install the package globally will fail with _already installed_.
 :::
 
 <CodeBlock language="sh"> {
-`xpm install --global @xpack-dev-tools/${ customField('appLcName') }@latest --verbose`
+`xpm install @xpack-dev-tools/${ customField('appLcName') }@latest --global --verbose`
 }</CodeBlock>
