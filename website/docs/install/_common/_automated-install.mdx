@@ -6,13 +6,13 @@ import siteConfig from '@site/docusaurus.config';
 
 ## Automated install
 
-The easiest way to install { siteConfig.customFields.appName } on { props.label } is by using the **binary xPack**, available as
+The easiest (and recommended) way to install { siteConfig.customFields.appName } on { props.label } is by using the **binary xPack**, available as
 <a href={ `https://www.npmjs.com/package/@xpack-dev-tools/${ siteConfig.customFields.appLcName}` }><code>@xpack-dev-tools/{ siteConfig.customFields.appLcName }</code></a>
 from the [`npmjs.com`](https://www.npmjs.com) registry.
 
 ### Prerequisites
 
-The only requirement is a recent
+The only requirement for an automated install is a recent
 [xpm](https://xpack.github.io/xpm/), which is a portable
 [Node.js](https://nodejs.org) command line application
 that complements [npm](https://docs.npmjs.com)
@@ -59,7 +59,7 @@ Given that some binary tools (such as toolchains) can be very large
 (hundreds of megabytes or more), it is impractical to maintain multiple
 copies of these tools, one for each project.
 
-Instead, the binary packages can be installed in a platform-dependent folder
+Instead, **xpm** installs the binary packages into a platform-dependent folder
 within the home directory, thereby conserving disk space when these tools are
 used across multiple projects.
 
@@ -68,7 +68,7 @@ Then, in order to allow the projects to access the binary tools,
 into the projects pointing to the **central xPacks store**.
 
 The outcome is functionally equivalent to installing the tools in each project,
-but it avoids wasting disk space.
+but without the wasted disk space.
 
 :::tip
 
