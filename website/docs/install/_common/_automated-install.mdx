@@ -99,7 +99,7 @@ cd my-project
 xpm init
 ```
 
-### Install into the project
+### Install
 
 The next step is to install the
 **{ customField('appLcName') }** package into the project:
@@ -186,7 +186,8 @@ can be used to install all development dependencies.
 This is particularly useful for CI/CD environments.
 </details>
 
-### Install globally
+<details>
+<summary>Install globally</summary>
 
 For xPacks aware development environments (like the **Eclipse Embedded C/C++ plug-ins**),
 it is also possible to install { customField('appName') } only globally in the **central
@@ -205,3 +206,5 @@ install the package globally will fail with _already installed_.
 <CodeBlock language="sh"> {
 `xpm install @xpack-dev-tools/${ customField('appLcName') }@latest --global --verbose`
 }</CodeBlock>
+
+</details>
