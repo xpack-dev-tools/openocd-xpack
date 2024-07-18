@@ -1,6 +1,6 @@
 import CodeBlock from '@theme/CodeBlock';
 
-import siteConfig from '@generated/docusaurus.config';
+import customField from '@site/src/libs/customField';
 
 {/* ------------------------------------------------------------------------ */}
 
@@ -42,27 +42,27 @@ For details on installing the prerequisites, please read the
 The project is hosted on GitHub:
 
 <ul>
-<li><a href={ `https://github.com/xpack-dev-tools/${ siteConfig.customFields.appLcName }-xpack.git` }>{ `https://github.com/xpack-dev-tools/${ siteConfig.customFields.appLcName }-xpack.git` }</a></li>
+<li><a href={ `https://github.com/xpack-dev-tools/${ customField('appLcName') }-xpack.git` }>{ `https://github.com/xpack-dev-tools/${ customField('appLcName') }-xpack.git` }</a></li>
 </ul>
 
 To clone the stable branch (`xpack`), run the following commands in a
 terminal (on Windows use the _Git Bash_ console):
 
 <CodeBlock language="sh"> {
-`rm -rf ~/Work/xpack-dev-tools/${ siteConfig.customFields.appLcName }-xpack.git && \\
-git clone https://github.com/xpack-dev-tools/${ siteConfig.customFields.appLcName }-xpack.git \\
-  ~/Work/xpack-dev-tools/${ siteConfig.customFields.appLcName }-xpack.git`
+`rm -rf ~/Work/xpack-dev-tools/${ customField('appLcName') }-xpack.git && \\
+git clone https://github.com/xpack-dev-tools/${ customField('appLcName') }-xpack.git \\
+  ~/Work/xpack-dev-tools/${ customField('appLcName') }-xpack.git`
 }</CodeBlock>
 
 For development purposes, clone the `xpack-develop` branch:
 
 <CodeBlock language="sh"> {
-`rm -rf ~/Work/xpack-dev-tools/${ siteConfig.customFields.appLcName }-xpack.git && \\
+`rm -rf ~/Work/xpack-dev-tools/${ customField('appLcName') }-xpack.git && \\
 mkdir -p ~/Work/xpack-dev-tools && \\
 git clone \\
   --branch xpack-develop \\
-  https://github.com/xpack-dev-tools/${ siteConfig.customFields.appLcName }-xpack.git \\
-  ~/Work/xpack-dev-tools/${ siteConfig.customFields.appLcName }-xpack.git`
+  https://github.com/xpack-dev-tools/${ customField('appLcName') }-xpack.git \\
+  ~/Work/xpack-dev-tools/${ customField('appLcName') }-xpack.git`
 }</CodeBlock>
 
 ## Get helper sources (optional, for development purposes)

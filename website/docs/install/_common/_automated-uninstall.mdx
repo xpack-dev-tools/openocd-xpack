@@ -1,6 +1,6 @@
 import CodeBlock from '@theme/CodeBlock';
 
-import siteConfig from '@generated/docusaurus.config';
+import customField from '@site/src/libs/customField';
 
 import LinksVsForwarders from '@site/src/components/LinksVsForwarders'
 
@@ -25,11 +25,11 @@ cd my-project
 and ask **xpm** to uninstall the package:
 
 <CodeBlock language="sh"> {
-`xpm uninstall @xpack-dev-tools/${ siteConfig.customFields.appLcName } --verbose`
+`xpm uninstall @xpack-dev-tools/${ customField('appLcName') } --verbose`
 }</CodeBlock>
 
 To completely remove the package from the central store:
 
 <CodeBlock language="sh"> {
-`xpm uninstall --global @xpack-dev-tools/${ siteConfig.customFields.appLcName } --verbose`
+`xpm uninstall --global @xpack-dev-tools/${ customField('appLcName') } --verbose`
 }</CodeBlock>

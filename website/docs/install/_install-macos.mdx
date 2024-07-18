@@ -1,7 +1,7 @@
 
 import CodeBlock from '@theme/CodeBlock';
 
-import siteConfig from '@generated/docusaurus.config';
+import customField from '@site/src/libs/customField';
 
 import AutomatedInstall from './_common/_automated-install.mdx';
 import AutomatedUninstall from './_common/_automated-uninstall.mdx';
@@ -14,8 +14,8 @@ import ManualInstallInfo from './_common/_manual-info.mdx';
 <AutomatedInstall label={ props.label }/>
 
 <CodeBlock language="console"> {
-`$ tree -L 2 ~/Library/xPacks/\@xpack-dev-tools/openocd/${ siteConfig.customFields.upstreamVersion }-${ siteConfig.customFields.xpackSubversion }.${ siteConfig.customFields.npmSubversion }/.content/
-/Users/ilg/Library/xPacks/\@xpack-dev-tools/openocd/${ siteConfig.customFields.upstreamVersion }-${ siteConfig.customFields.xpackSubversion }.${ siteConfig.customFields.npmSubversion }/.content/
+`$ tree -L 2 ~/Library/xPacks/\@xpack-dev-tools/openocd/${ customField('upstreamVersion') }-${ customField('xpackSubversion') }.${ customField('npmSubversion') }/.content/
+/Users/ilg/Library/xPacks/\@xpack-dev-tools/openocd/${ customField('upstreamVersion') }-${ customField('xpackSubversion') }.${ customField('npmSubversion') }/.content/
 ├── README.md
 ├── bin
 │   └── openocd
@@ -39,11 +39,11 @@ import ManualInstallInfo from './_common/_manual-info.mdx';
 
 ### Quick test
 
-To check if the { siteConfig.customFields.appName } installed by **xpm** starts properly, use something like:
+To check if the { customField('appName') } installed by **xpm** starts properly, use something like:
 
 <CodeBlock language="console"> {
-`$ ~/.local/xPacks/@xpack-dev-tools/openocd/${ siteConfig.customFields.upstreamVersion }-${ siteConfig.customFields.xpackSubversion }.${ siteConfig.customFields.npmSubversion }/.content/bin/openocd --version
-${ siteConfig.customFields.upstreamVersion }`
+`$ ~/.local/xPacks/@xpack-dev-tools/openocd/${ customField('upstreamVersion') }-${ customField('xpackSubversion') }.${ customField('npmSubversion') }/.content/bin/openocd --version
+${ customField('upstreamVersion') }`
 }</CodeBlock>
 
 <ManualInstall/>
@@ -56,11 +56,11 @@ The result is a structure identical to the above.
 
 ### Quick test
 
-To check if the { siteConfig.customFields.appName } installed manually starts properly, use something like:
+To check if the { customField('appName') } installed manually starts properly, use something like:
 
 <CodeBlock language="console"> {
-`$ ~/.local/xPacks/openocd/${ siteConfig.customFields.upstreamVersion }-${ siteConfig.customFields.xpackSubversion }/bin/openocd --version
-${ siteConfig.customFields.upstreamVersion }`
+`$ ~/.local/xPacks/openocd/${ customField('upstreamVersion') }-${ customField('xpackSubversion') }/bin/openocd --version
+${ customField('upstreamVersion') }`
 }</CodeBlock>
 
 ## Drivers

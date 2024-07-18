@@ -1,12 +1,12 @@
-import siteConfig from '@generated/docusaurus.config';
+import customField from '@site/src/libs/customField';
 
 {/* ------------------------------------------------------------------------ */}
 
 ## Manual install
 
-For all platforms, the **xPack { siteConfig.customFields.appName }** binaries are released as portable
+For all platforms, the **xPack { customField('appName') }** binaries are released as portable
 archives that can be installed in any location.
 
 The archives can be downloaded from the
-<a href={ `https://github.com/xpack-dev-tools/${ siteConfig.customFields.appLcName }-xpack/releases/` }>GitHub Releases</a>
+<a href={ `https://github.com/xpack-dev-tools/${ customField('appLcName') }-xpack/releases/` }>GitHub Releases</a>
 pages.

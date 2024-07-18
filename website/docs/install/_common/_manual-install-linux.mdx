@@ -1,18 +1,18 @@
 import CodeBlock from '@theme/CodeBlock';
 
-import siteConfig from '@generated/docusaurus.config';
+import customField from '@site/src/libs/customField';
 
 {/* ------------------------------------------------------------------------ */}
 
 ### Download
 
-The GNU/Linux versions of **xPack { siteConfig.customFields.appName }**
+The GNU/Linux versions of **xPack { customField('appName') }**
 are packed as `.tar.gz` archives.
 Download the latest version named like:
 
-* <code>xpack-{ siteConfig.customFields.appLcName }-{ siteConfig.customFields.upstreamVersion }-{ siteConfig.customFields.xpackSubversion }-linux-x64.tar.gz</code>
-* <code>xpack-{ siteConfig.customFields.appLcName }-{ siteConfig.customFields.upstreamVersion }-{ siteConfig.customFields.xpackSubversion }-linux-arm.tar.gz</code>
-* <code>xpack-{ siteConfig.customFields.appLcName }-{ siteConfig.customFields.upstreamVersion }-{ siteConfig.customFields.xpackSubversion }-linux-arm64.tar.gz</code>
+* <code>xpack-{ customField('appLcName') }-{ customField('upstreamVersion') }-{ customField('xpackSubversion') }-linux-x64.tar.gz</code>
+* <code>xpack-{ customField('appLcName') }-{ customField('upstreamVersion') }-{ customField('xpackSubversion') }-linux-arm.tar.gz</code>
+* <code>xpack-{ customField('appLcName') }-{ customField('upstreamVersion') }-{ customField('xpackSubversion') }-linux-arm64.tar.gz</code>
 
 :::note
 
@@ -23,14 +23,14 @@ from, it is exactly the Node.js `process.platform` and `process.arch`.
 
 ### Unpack
 
-To manually install the <b>xPack { siteConfig.customFields.appName }</b>,
+To manually install the <b>xPack { customField('appName') }</b>,
 unpack the archive and move it
-to <code>~/.local/xPacks/{ siteConfig.customFields.appLcName }/xpack-{ siteConfig.customFields.appLcName }-{ siteConfig.customFields.upstreamVersion }-{ siteConfig.customFields.xpackSubversion }</code>:
+to <code>~/.local/xPacks/{ customField('appLcName') }/xpack-{ customField('appLcName') }-{ customField('upstreamVersion') }-{ customField('xpackSubversion') }</code>:
 
 <CodeBlock language="console"> {
-`mkdir -p ~/.local/xPacks/${ siteConfig.customFields.appLcName }
-cd ~/.local/xPacks/${ siteConfig.customFields.appLcName }
+`mkdir -p ~/.local/xPacks/${ customField('appLcName') }
+cd ~/.local/xPacks/${ customField('appLcName') }
 
-tar xvf ~/Downloads/xpack-${ siteConfig.customFields.appLcName }-${ siteConfig.customFields.upstreamVersion }-${ siteConfig.customFields.xpackSubversion }-linux-x64.tar.gz
-chmod -R -w xpack-${ siteConfig.customFields.appLcName }-${ siteConfig.customFields.upstreamVersion }-${ siteConfig.customFields.xpackSubversion }`
+tar xvf ~/Downloads/xpack-${ customField('appLcName') }-${ customField('upstreamVersion') }-${ customField('xpackSubversion') }-linux-x64.tar.gz
+chmod -R -w xpack-${ customField('appLcName') }-${ customField('upstreamVersion') }-${ customField('xpackSubversion') }`
 }</CodeBlock>

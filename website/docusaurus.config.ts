@@ -7,8 +7,6 @@ import logger from '@docusaurus/logger';
 // webpack < 5 used to include polyfills for node.js core modules by default.
 // so the entire initialisation code must be in this file, that is
 // not processed by webpack.
-// Also the configuration must be imported via
-// import siteConfig from '@generated/docusaurus.config';
 
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';

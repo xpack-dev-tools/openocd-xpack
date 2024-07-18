@@ -7,7 +7,7 @@ date: 2024-11-12 20:33:00 +0300
 
 import CodeBlock from '@theme/CodeBlock';
 
-import siteConfig from '@generated/docusaurus.config';
+import customField from '@site/src/libs/customField';
 
 import Prepare from './_common/_prepare.mdx';
 import Build from './_common/_build.mdx'
@@ -39,7 +39,7 @@ to configure the rights, otherwise LIBUSB will issue the _libusb_open
 failed: LIBUSB_ERROR_ACCESS_ error.
 
 <CodeBlock language="sh"> {
-`sudo cp ~/Downloads/xpack-openocd-${ siteConfig.customFields.upstreamVersion }-${ siteConfig.customFields.xpackSubversion }/contrib/60-openocd.rules /etc/udev/rules.d
+`sudo cp ~/Downloads/xpack-openocd-${ customField('upstreamVersion') }-${ customField('xpackSubversion') }/contrib/60-openocd.rules /etc/udev/rules.d
 sudo udevadm control --reload-rules`
 }</CodeBlock>
 
@@ -47,7 +47,7 @@ Then it is possible to start openocd:
 
 <CodeBlock language="console"> {
 `$ .../bin/openocd -f "board/stm32f4discovery.cfg"
-xPack Open On-Chip Debugger ${ siteConfig.customFields.upstreamVersion }-01004-g9ea7f3d64-dirty
+xPack Open On-Chip Debugger ${ customField('upstreamVersion') }-01004-g9ea7f3d64-dirty
 Licensed under GNU GPL v2
 For bug reports, read
 	https://openocd.org/doc/doxygen/bugs.html
