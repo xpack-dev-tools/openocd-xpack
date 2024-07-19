@@ -13,6 +13,24 @@ import ManualInstallInfo from './_common/_manual-info.mdx';
 
 <AutomatedInstall label={ props.label } isWindows={ props.isWindows }/>
 
+<details>
+<summary>PATH</summary>
+
+In order to access the { customField('appName') } binaries installed in
+the central xPacks store,
+the project build configurations need a PATH adjustment:
+
+<CodeBlock language="sh"> {
+`export PATH=$HOME/AppData/Roaming/xPacks/\@pack-dev-tools/openocd/${ customField('upstreamVersion') }-${ customField('xpackSubversion') }.${ customField('npmSubversion') }/.content/bin:$PATH`
+} </CodeBlock>
+
+:::tip
+
+When not using the Git console, adjust the syntax for the
+corresponding shell.
+
+:::
+</details>
 
 <details>
 <summary>Folder hierarchy</summary>

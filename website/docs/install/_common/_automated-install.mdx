@@ -1,4 +1,5 @@
 import CodeBlock from '@theme/CodeBlock';
+import Admonition from '@theme/Admonition';
 
 import customField from '@site/src/libs/customField';
 
@@ -113,6 +114,25 @@ The main result is a set of <LinksVsForwarders isWindows={ props.isWindows }/>:
 <CodeBlock language="console"> {
 `${ props.isWindows === 'True' ? 'dir xpacks\\.bin' : 'ls -l xpacks/.bin' }`
 } </CodeBlock>
+
+<details>
+<summary>PATH</summary>
+
+With all binary tools installed in `xpacks/.bin`, the project build
+configurations need a single PATH adjustment:
+
+```sh
+export PATH=<...project-path...>/xpacks/.bin:$PATH
+```
+
+{ props.isWindows === 'True' ?
+  <Admonition type="tip">
+    <p>When not using the Git console, adjust the syntax for the
+  corresponding shell.</p>
+  </Admonition>
+ : ''
+}
+</details>
 
 <details>
 <summary>Installation details</summary>

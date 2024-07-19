@@ -14,6 +14,18 @@ import ManualInstallLinux from './_common/_manual-install-linux.mdx'
 <AutomatedInstall label={ props.label }/>
 
 <details>
+<summary>PATH</summary>
+
+In order to access the { customField('appName') } binaries installed in
+the central xPacks store,
+the project build configurations need a PATH adjustment:
+
+<CodeBlock language="sh"> {
+`export PATH=$HOME/.local/xPacks/@xpack-dev-tools/openocd/${ customField('upstreamVersion') }-${ customField('xpackSubversion') }.${ customField('npmSubversion') }/.content/bin:$PATH`
+} </CodeBlock>
+</details>
+
+<details>
 <summary>Folder hierarchy</summary>
 
 After install, the package creates a folder hierarchy like the following
@@ -65,6 +77,24 @@ ${ customField('upstreamVersion') }`
 <ManualInstallLinux/>
 
 <ManualInstallInfo/>
+
+<details>
+<summary>PATH</summary>
+
+With all binary tools installed in `xpacks/.bin`, the project build
+configurations need a single PATH adjustment:
+
+```sh
+export PATH=<...project-path...>/xpacks/.bin:$PATH
+```
+
+:::tip
+
+On Windows, when not using the Git console, adjust the syntax for the
+corresponding shell.
+
+:::
+</details>
 
 ### Quick test
 

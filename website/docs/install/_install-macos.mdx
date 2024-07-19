@@ -14,6 +14,18 @@ import ManualInstallInfo from './_common/_manual-info.mdx';
 <AutomatedInstall label={ props.label }/>
 
 <details>
+<summary>PATH</summary>
+
+In order to access the { customField('appName') } binaries installed in
+the central xPacks store,
+the project build configurations need a PATH adjustment:
+
+<CodeBlock language="sh"> {
+`export PATH=$HOME/Library/xPacks/\@pack-dev-tools/openocd/${ customField('upstreamVersion') }-${ customField('xpackSubversion') }.${ customField('npmSubversion') }/.content/bin:$PATH`
+} </CodeBlock>
+</details>
+
+<details>
 <summary>Folder hierarchy</summary>
 
 After install, the package creates a folder hierarchy like the following
