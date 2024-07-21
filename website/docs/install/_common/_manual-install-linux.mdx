@@ -6,13 +6,13 @@ import customField from '@site/src/libs/customField';
 
 ### Download
 
-The GNU/Linux versions of **xPack { customField('appName') }**
+The GNU/Linux versions of **xPack OpenOCD**
 are packed as `.tar.gz` archives.
 Download the latest version named like:
 
-* <code>xpack-{ customField('appLcName') }-{ customField('upstreamVersion') }-{ customField('xpackSubversion') }-linux-x64.tar.gz</code>
-* <code>xpack-{ customField('appLcName') }-{ customField('upstreamVersion') }-{ customField('xpackSubversion') }-linux-arm.tar.gz</code>
-* <code>xpack-{ customField('appLcName') }-{ customField('upstreamVersion') }-{ customField('xpackSubversion') }-linux-arm64.tar.gz</code>
+* <code>xpack-openocd-{ customField('upstreamVersion') }-{ customField('xpackSubversion') }-linux-x64.tar.gz</code>
+* <code>xpack-openocd-{ customField('upstreamVersion') }-{ customField('xpackSubversion') }-linux-arm.tar.gz</code>
+* <code>xpack-openocd-{ customField('upstreamVersion') }-{ customField('xpackSubversion') }-linux-arm64.tar.gz</code>
 
 :::note
 
@@ -23,14 +23,14 @@ from, it is exactly the Node.js `process.platform` and `process.arch`.
 
 ### Unpack
 
-To manually install the <b>xPack { customField('appName') }</b>,
+To manually install the <b>xPack OpenOCD</b>,
 unpack the archive and move it
-to <code>~/.local/xPacks/{ customField('appLcName') }/xpack-{ customField('appLcName') }-{ customField('upstreamVersion') }-{ customField('xpackSubversion') }</code>:
+to <code>~/.local/xPacks/openocd/xpack-openocd-{ customField('upstreamVersion') }-{ customField('xpackSubversion') }</code>:
 
 <CodeBlock language="console"> {
-`mkdir -p ~/.local/xPacks/${ customField('appLcName') }
-cd ~/.local/xPacks/${ customField('appLcName') }
+`mkdir -p ~/.local/xPacks/openocd
+cd ~/.local/xPacks/openocd
 
-tar xvf ~/Downloads/xpack-${ customField('appLcName') }-${ customField('upstreamVersion') }-${ customField('xpackSubversion') }-linux-x64.tar.gz
-chmod -R -w xpack-${ customField('appLcName') }-${ customField('upstreamVersion') }-${ customField('xpackSubversion') }`
+tar xvf ~/Downloads/xpack-openocd-${ customField('upstreamVersion') }-${ customField('xpackSubversion') }-linux-x64.tar.gz
+chmod -R -w xpack-openocd-${ customField('upstreamVersion') }-${ customField('xpackSubversion') }`
 } </CodeBlock>

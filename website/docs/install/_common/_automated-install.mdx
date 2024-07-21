@@ -9,8 +9,8 @@ import LinksVsForwarders from '@site/src/components/LinksVsForwarders'
 
 ## Automated install
 
-The easiest (and recommended) way to install { customField('appName') } on { props.label } is by using the **binary xPack**, available as
-<a href={ `https://www.npmjs.com/package/@xpack-dev-tools/${ customField('appLcName')}` }><code>@xpack-dev-tools/{ customField('appLcName') }</code></a>
+The easiest (and recommended) way to install OpenOCD on { props.label } is by using the **binary xPack**, available as
+<a href={ `https://www.npmjs.com/package/@xpack-dev-tools/openocd` }><code>@xpack-dev-tools/openocd</code></a>
 from the [`npmjs.com`](https://www.npmjs.com) registry.
 
 ### Prerequisites
@@ -103,10 +103,10 @@ xpm init
 ### Install into the project
 
 The next step is to install the
-**{ customField('appLcName') }** package into the project:
+**openocd** package into the project:
 
 <CodeBlock language="sh"> {
-`xpm install @xpack-dev-tools/${ customField('appLcName') }@latest --verbose`
+`xpm install @xpack-dev-tools/openocd@latest --verbose`
 } </CodeBlock>
 
 The main result is a set of <LinksVsForwarders isWindows={ props.isWindows }/>:
@@ -140,16 +140,16 @@ export PATH=<...project-path...>/xpacks/.bin:$PATH
 The above `xpm install` command will do the following:
 
 * identify the platform specific archive for the latest available version
-  of { customField('appName') }, download it in a cache and unpack
+  of OpenOCD, download it in a cache and unpack
   it into a versioned folder
   in the **central xPacks store** (if not already there);
   check the output of the `xpm` command for the actual
   folder used on your platform;
 * add <LinksVsForwarders isWindows={ props.isWindows }/>
   into the local `xpacks/.bin` folder, referring to the binaries in the central store;
-* add <code>@xpack-dev-tools/{ customField('appLcName') }</code> to
+* add <code>@xpack-dev-tools/openocd</code> to
   `package.json` as a
-  development dependency; this associates a specific version of { customField('appName') } with
+  development dependency; this associates a specific version of OpenOCD with
   the current project (details below).
 
 :::tip
@@ -184,7 +184,7 @@ The result looks like this:
     "minimumXpmRequired": "0.19.1",
     "dependencies": {},
     "devDependencies": {
-      "@xpack-dev-tools/${ customField('appLcName') }": {
+      "@xpack-dev-tools/openocd": {
         "specifier": "${ customField('upstreamVersion') }-${ customField('xpackSubversion') }.${ customField('npmSubversion') }",
         "local": "link",
         "platforms": "all"
@@ -198,7 +198,7 @@ The result looks like this:
 
 If the `package.json` is saved in the revision system, the project gets
 a hard reference to the specific version of
-**xPack { customField('appName') }**.
+**xPack OpenOCD**.
 
 After cloning the project to a different location, the command `xpm install`
 can be used to install all development dependencies.
@@ -209,13 +209,13 @@ This is particularly useful for CI/CD environments.
 ### Install globally
 
 For older development environments (like the initial **Eclipse Embedded C/C++ plug-ins**; the current version also supports project installs),
-it is also possible to install { customField('appName') } only globally in the **central
+it is also possible to install OpenOCD only globally in the **central
 xPacks store**, without any local <LinksVsForwarders isWindows={ props.isWindows }/>,
 assuming the development environments are capable of handling
 the paths themselves.
 
 <CodeBlock language="sh"> {
-`xpm install @xpack-dev-tools/${ customField('appLcName') }@latest --global --verbose`
+`xpm install @xpack-dev-tools/openocd@latest --global --verbose`
 } </CodeBlock>
 
 :::note
