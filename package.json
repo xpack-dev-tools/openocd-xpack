@@ -118,6 +118,7 @@
         "cp xpacks/@xpack-dev-tools/xbb-helper/templates/build.sh scripts/",
         "cp xpacks/@xpack-dev-tools/xbb-helper/templates/test.sh scripts/"
       ],
+      "generate-website-commons": "bash xpacks/@xpack-dev-tools/xbb-helper/maintainer-scripts/generate-website-commons.sh",
       "trigger-workflow-build-darwin-x64": "bash xpacks/@xpack-dev-tools/xbb-helper/github-actions/trigger-workflow-build.sh --workflow build-darwin-x64.yml --xpm-version {{ properties.xpm-version }} --loglevel {{ properties.xpm-install-loglevel }}",
       "trigger-workflow-build-darwin-arm64": "bash xpacks/@xpack-dev-tools/xbb-helper/github-actions/trigger-workflow-build.sh --workflow build-darwin-arm64.yml --xpm-version {{ properties.xpm-version }} --loglevel {{ properties.xpm-install-loglevel }}",
       "trigger-workflow-build-linux-x64": "bash xpacks/@xpack-dev-tools/xbb-helper/github-actions/trigger-workflow-build.sh --workflow build-linux-x64.yml --xpm-version {{ properties.xpm-version }} --loglevel {{ properties.xpm-install-loglevel }}",
