@@ -1,6 +1,6 @@
 {
   "title": {
-    "message": "The xPack Project",
+    "message": "xPack OpenOCD",
     "description": "The title in the navbar"
   },
   "logo.alt": {
@@ -22,6 +22,10 @@
   "item.label.xpack-dev-tools": {
     "message": "xpack-dev-tools",
     "description": "Navbar item with label xpack-dev-tools"
+  },
+  "item.label.xpack": {
+    "message": "xpack",
+    "description": "Navbar item with label xpack"
   },
   "item.label.Getting Started": {
     "message": "Getting Started",

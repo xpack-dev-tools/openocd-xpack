@@ -127,7 +127,8 @@ const config: Config = {
       logo: {
         alt: 'xPack Logo',
         src: 'img/components-256.png',
-        href: 'https://xpack.github.io/',
+        // href: 'https://xpack.github.io/',
+        // href: 'https://xpack-dev-tools.github.io/openocd-xpack/'
       },
       items: [
         {
@@ -200,6 +201,11 @@ const config: Config = {
           label: 'xpack-dev-tools',
           position: 'right',
         },
+        {
+          href: 'https://github.com/xpack/',
+          label: 'xpack',
+          position: 'right',
+        },
       ],
     },
     footer: {
@@ -247,12 +253,16 @@ const config: Config = {
               to: '/blog',
             },
             {
-              label: 'GitHub',
+              label: 'GitHub openocd-xpack',
               href: 'https://github.com/xpack-dev-tools/openocd-xpack/',
             },
             {
-              label: 'xpack-dev-tools',
+              label: 'GitHub xpack-dev-tools',
               href: 'https://github.com/xpack-dev-tools/',
+            },
+            {
+              label: 'GitHub xpack',
+              href: 'https://github.com/xpack/',
             },
           ],
         },
