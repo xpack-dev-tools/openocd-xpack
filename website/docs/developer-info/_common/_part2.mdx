@@ -1,0 +1,312 @@
+import customField from '@site/src/libs/customField';
+
+{/* ------------------------------------------------------------------------ */}
+
+## How to build
+
+The builds require dedicated machines for each platform
+(Intel GNU/Linux, Arm 32 GNU/Linux, Arm 64 GNU/Linux,
+Intel macOS and Apple Silicon macOS).
+
+### Update the repo
+
+```sh
+git -C ~/Work/xpack-dev-tools/openocd-xpack.git pull
+```
+
+and, if needed, the helper, when using a writeable helper:
+
+```sh
+git -C ~/Work/xpack-dev-tools/xbb-helper-xpack.git pull
+```
+
+### xPack actions
+
+The following instructions make use of xPack actions, which are a
+an extension of npm scripts, i.e. sequences of commands executed
+via `xpm run <name>` in an
+environment where the PATH is adjusted to include the current project
+dependencies.
+
+To see the commands associated with each action, see the `xpack.actions`
+definitions in the `package.json` file.
+
+The [xPack C/C++ Managed Build Tools](https://marketplace.visualstudio.com/items?itemName=ilg-vscode.xpack)
+Visual Studio Code extension
+provides convenient upport to invoke xPack actions from the VS Code.
+
+### Intel macOS
+
+To prepare the native build on an Intel Mac:
+
+```sh
+xpm run install -C ~/Work/xpack-dev-tools/openocd-xpack.git && \
+xpm install --config darwin-x64 -C ~/Work/xpack-dev-tools/openocd-xpack.git
+```
+
+or, with the writeable helper:
+
+```sh
+xpm run install -C ~/Work/xpack-dev-tools/openocd-xpack.git && \
+xpm run link-deps -C ~/Work/xpack-dev-tools/openocd-xpack.git && \
+xpm install --config darwin-x64 -C ~/Work/xpack-dev-tools/openocd-xpack.git
+```
+
+To run the build:
+
+```sh
+xpm run build --config darwin-x64 -C ~/Work/xpack-dev-tools/openocd-xpack.git
+```
+
+or, for more verbosity:
+
+```sh
+xpm run build-develop --config darwin-x64 -C ~/Work/xpack-dev-tools/openocd-xpack.git
+```
+
+About 10 minutes later, the output of the build script is a compressed
+archive and its SHA signature, created in the `deploy` folder:
+
+* <code>xpack-openocd-{ customField('upstreamVersion') }-{ customField('xpackSubversion') }-darwin-x64.tar.gz</code>
+* <code>xpack-openocd-{ customField('upstreamVersion') }-{ customField('xpackSubversion') }-darwin-x64.tar.gz.sha</code>
+
+To rerun the build, invoke the deep-clean action and repeat from install:
+
+```sh
+xpm run deep-clean --config darwin-x64 -C ~/Work/xpack-dev-tools/openocd-xpack.git
+```
+
+#### Apple Silicon macOS
+
+To prepare the native build on an Apple Silicon Mac:
+
+```sh
+xpm run install -C ~/Work/xpack-dev-tools/openocd-xpack.git && \
+xpm install --config darwin-arm64 -C ~/Work/xpack-dev-tools/openocd-xpack.git
+```
+
+or, with the writeable helper:
+
+```sh
+xpm run install -C ~/Work/xpack-dev-tools/openocd-xpack.git && \
+xpm run link-deps -C ~/Work/xpack-dev-tools/openocd-xpack.git && \
+xpm install --config darwin-arm64 -C ~/Work/xpack-dev-tools/openocd-xpack.git
+```
+
+To run the build:
+
+```sh
+xpm run build --config darwin-arm64 -C ~/Work/xpack-dev-tools/openocd-xpack.git
+```
+
+or, for more verbosity:
+
+```sh
+xpm run build-develop --config darwin-arm64 -C ~/Work/xpack-dev-tools/openocd-xpack.git
+```
+
+Several minutes later, the output of the build script is a compressed
+archive and its SHA signature, created in the `deploy` folder:
+
+* <code>xpack-openocd-{ customField('upstreamVersion') }-{ customField('xpackSubversion') }-darwin-arm64.tar.gz</code>
+* <code>xpack-openocd-{ customField('upstreamVersion') }-{ customField('xpackSubversion') }-darwin-arm64.tar.gz.sha</code>
+
+To rerun the build, invoke the deep-clean action and repeat from install:
+
+```sh
+xpm run deep-clean --config darwin-arm64 -C ~/Work/xpack-dev-tools/openocd-xpack.git
+```
+
+#### Intel GNU/Linux
+
+The docker builds run on a 64-bit Intel GNU/Linux.
+
+##### Build the Intel GNU/Linux binaries
+
+To prepare the build on Intel GNU/Linux:
+
+```sh
+xpm run install -C ~/Work/xpack-dev-tools/openocd-xpack.git && \
+xpm run docker-prepare --config linux-x64 -C ~/Work/xpack-dev-tools/openocd-xpack.git
+```
+
+or, with the writeable helper:
+
+```sh
+xpm run install -C ~/Work/xpack-dev-tools/openocd-xpack.git && \
+xpm run link-deps -C ~/Work/xpack-dev-tools/openocd-xpack.git && \
+xpm run docker-prepare --config linux-x64 -C ~/Work/xpack-dev-tools/openocd-xpack.git && \
+xpm run docker-link-deps --config linux-x64 -C ~/Work/xpack-dev-tools/openocd-xpack.git
+```
+
+To run the build:
+
+```sh
+xpm run docker-build --config linux-x64 -C ~/Work/xpack-dev-tools/openocd-xpack.git
+```
+
+or, for more verbosity:
+
+```sh
+xpm run docker-build-develop --config linux-x64 -C ~/Work/xpack-dev-tools/openocd-xpack.git
+```
+
+Several minutes later, the output of the build script is a compressed
+archive and its SHA signature, created in the `deploy` folder:
+
+* <code>xpack-openocd-{ customField('upstreamVersion') }-{ customField('xpackSubversion') }-linux-x64.tar.gz</code>
+* <code>xpack-openocd-{ customField('upstreamVersion') }-{ customField('xpackSubversion') }-linux-x64.tar.gz.sha</code>
+
+To rerun the build, invoke the deep-clean action and repeat from docker-prepare:
+
+```sh
+xpm run deep-clean --config linux-x64 -C ~/Work/xpack-dev-tools/openocd-xpack.git
+```
+
+##### Build the Intel Windows binaries
+
+To prepare the build on Intel GNU/Linux:
+
+```sh
+xpm run install -C ~/Work/xpack-dev-tools/openocd-xpack.git && \
+xpm run docker-prepare --config win32-x64 -C ~/Work/xpack-dev-tools/openocd-xpack.git
+```
+
+or, with the writeable helper:
+
+```sh
+xpm run install -C ~/Work/xpack-dev-tools/openocd-xpack.git && \
+xpm run link-deps -C ~/Work/xpack-dev-tools/openocd-xpack.git && \
+xpm run docker-prepare --config win32-x64 -C ~/Work/xpack-dev-tools/openocd-xpack.git && \
+xpm run docker-link-deps --config win32-x64 -C ~/Work/xpack-dev-tools/openocd-xpack.git
+```
+
+To run the build:
+
+```sh
+xpm run docker-build --config win32-x64 -C ~/Work/xpack-dev-tools/openocd-xpack.git
+```
+
+or, for more verbosity:
+
+```sh
+xpm run docker-build-develop --config win32-x64 -C ~/Work/xpack-dev-tools/openocd-xpack.git
+```
+
+About 5 minutes later, the output of the build script is a compressed
+archive and its SHA signature, created in the `deploy` folder:
+
+* <code>xpack-openocd-{ customField('upstreamVersion') }-{ customField('xpackSubversion') }-win32-x64.zip</code>
+* <code>xpack-openocd-{ customField('upstreamVersion') }-{ customField('xpackSubversion') }-win32-x64.zip.sha</code>
+
+To rerun the build, invoke the deep-clean action and repeat from docker-prepare:
+
+```sh
+xpm run deep-clean --config win32-x64 -C ~/Work/xpack-dev-tools/openocd-xpack.git
+```
+
+#### Arm GNU/Linux 64-bit
+
+To prepare the docker build on a 64-bit aarch64 GNU/Linux machine:
+
+```sh
+xpm run install -C ~/Work/xpack-dev-tools/openocd-xpack.git && \
+xpm run docker-prepare --config linux-arm64 -C ~/Work/xpack-dev-tools/openocd-xpack.git
+```
+
+or, with the writeable helper:
+
+```sh
+xpm run install -C ~/Work/xpack-dev-tools/openocd-xpack.git && \
+xpm run link-deps -C ~/Work/xpack-dev-tools/openocd-xpack.git && \
+xpm run docker-prepare --config linux-arm64 -C ~/Work/xpack-dev-tools/openocd-xpack.git && \
+xpm run docker-link-deps --config linux-arm64 -C ~/Work/xpack-dev-tools/openocd-xpack.git
+```
+
+To run the build:
+
+```sh
+xpm run docker-build --config linux-arm64 -C ~/Work/xpack-dev-tools/openocd-xpack.git
+```
+
+or, for more verbosity:
+
+```sh
+xpm run docker-build-develop --config linux-arm64 -C ~/Work/xpack-dev-tools/openocd-xpack.git
+```
+
+About 10 minutes later, the output of the build script is a compressed
+archive and its SHA signature, created in the `deploy` folder:
+
+* <code>xpack-openocd-{ customField('upstreamVersion') }-{ customField('xpackSubversion') }-linux-arm64.tar.gz</code>
+* <code>xpack-openocd-{ customField('upstreamVersion') }-{ customField('xpackSubversion') }-linux-arm64.tar.gz.sha</code>
+
+To rerun the build, invoke the deep-clean action and repeat from docker-prepare:
+
+```sh
+xpm run deep-clean --config linux-arm64 -C ~/Work/xpack-dev-tools/openocd-xpack.git
+```
+
+#### Arm GNU/Linux 32-bit
+
+To prepare the docker build on a 32-bit armhf GNU/Linux machine:
+
+```sh
+xpm run install -C ~/Work/xpack-dev-tools/openocd-xpack.git && \
+xpm run docker-prepare --config linux-arm -C ~/Work/xpack-dev-tools/openocd-xpack.git
+```
+
+or, with the writeable helper:
+
+```sh
+xpm run install -C ~/Work/xpack-dev-tools/openocd-xpack.git && \
+xpm run link-deps -C ~/Work/xpack-dev-tools/openocd-xpack.git && \
+xpm run docker-prepare --config linux-arm -C ~/Work/xpack-dev-tools/openocd-xpack.git && \
+xpm run docker-link-deps --config linux-arm -C ~/Work/xpack-dev-tools/openocd-xpack.git
+```
+
+To run the build:
+
+```sh
+xpm run docker-build --config linux-arm -C ~/Work/xpack-dev-tools/openocd-xpack.git
+```
+
+or, for more verbosity:
+
+```sh
+xpm run docker-build-develop --config linux-arm -C ~/Work/xpack-dev-tools/openocd-xpack.git
+```
+
+About 10 minutes later, the output of the build script is a compressed
+archive and its SHA signature, created in the `deploy` folder:
+
+* <code>xpack-openocd-{ customField('upstreamVersion') }-{ customField('xpackSubversion') }-linux-arm.tar.gz</code>
+* <code>xpack-openocd-{ customField('upstreamVersion') }-{ customField('xpackSubversion') }-linux-arm.tar.gz.sha</code>
+
+To rerun the build, invoke the deep-clean action and repeat from docker-prepare:
+
+```sh
+xpm run deep-clean --config linux-arm -C ~/Work/xpack-dev-tools/openocd-xpack.git
+```
+
+### How to build a debug version
+
+In some cases it is necessary to run a debug session with the binaries.
+
+For these cases, the build script accepts the `--debug` options.
+
+There are also xPack actions that use this option (`build-develop-debug`
+and `docker-build-develop-debug`).
+
+### Files cache
+
+The XBB build scripts use a local cache such that files are downloaded only
+during the first run, later runs being able to use the cached files.
+
+However, occasionally some servers may not be available, and the builds
+may fail.
+
+The workaround is to manually download the files from alternate
+locations (like
+https://github.com/xpack-dev-tools/files-cache/tree/master/libs),
+place them in the XBB cache (`Work/cache`) and restart the build.

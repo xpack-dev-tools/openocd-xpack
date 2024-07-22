@@ -40,7 +40,7 @@ export default function Home(): JSX.Element {
   return (
     <Layout
       title={`Hello from ${siteConfig.title}`}
-      description="A binary xPack with the Docus Mock executables">
+      description="A binary xPack with the OpenOCD executables">
       <HomepageHeader />
       <main>
         <HomepageFeatures />
