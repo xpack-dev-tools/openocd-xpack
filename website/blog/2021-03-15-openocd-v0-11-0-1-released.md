@@ -39,8 +39,7 @@ armv6 is not supported).
 
 ## Download
 
-The binary files are available from
-<a href={ frontMatter.download_url }>GitHub Releases</a>.
+The binary files are available from <a href={ frontMatter.download_url }>GitHub Releases</a>.
 
 ## Install
 

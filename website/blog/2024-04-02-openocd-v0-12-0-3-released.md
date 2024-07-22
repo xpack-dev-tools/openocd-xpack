@@ -46,8 +46,7 @@ armv6 is not supported).
 
 ## Download
 
-The binary files are available from
-<a href={ frontMatter.download_url }>GitHub Releases</a>.
+The binary files are available from <a href={ frontMatter.download_url }>GitHub Releases</a>.
 
 ## Prerequisites
 
@@ -76,8 +75,7 @@ The **xPack OpenOCD** generally follows the official
 
 The current version is based on:
 
-- OpenOCD version { frontMatter.upstream_version }, the development commit
-<a href={ `https://github.com/xpack-dev-tools/openocd/commit/${ frontMatter.upstream_commit }/` }>{ frontMatter.upstream_commit }</a>
+- OpenOCD version { frontMatter.upstream_version }, the development commit <a href={ `https://github.com/xpack-dev-tools/openocd/commit/${ frontMatter.upstream_commit }/` }>{ frontMatter.upstream_commit }</a>
 from { frontMatter.upstream_release_date }.
 
 ## Changes

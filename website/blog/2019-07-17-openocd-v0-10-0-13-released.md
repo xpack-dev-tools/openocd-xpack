@@ -31,8 +31,7 @@ There are separate binaries for **Windows**, **macOS** and
 
 ## Download
 
-The binary files are available from
-<a href={ frontMatter.download_url }>GitHub Releases</a>.
+The binary files are available from <a href={ frontMatter.download_url }>GitHub Releases</a>.
 
 ## Install
 
