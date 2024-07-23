@@ -63,7 +63,7 @@
       "openocd": "./.content/bin/openocd"
     },
     "devDependencies": {
-      "@xpack-dev-tools/xbb-helper": "^2.1.36"
+      "@xpack-dev-tools/xbb-helper": "^2.1.37"
     },
     "properties": {
       "appName": "OpenOCD",
