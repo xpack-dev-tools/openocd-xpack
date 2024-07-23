@@ -1,3 +1,15 @@
+# -----------------------------------------------------------------------------
+# DO NOT EDIT!
+# Generated from xpacks/@xpack-dev-tools/xbb-helper/templates/workflows/*.
+#
+# This file is part of the xPack distribution.
+#   (https://xpack.github.io)
+# Copyright (c) 2021 Liviu Ionescu.
+#
+# Permission to use, copy, modify, and/or distribute this software
+# for any purpose is hereby granted, under the terms of the MIT license.
+# -----------------------------------------------------------------------------
+
 # Simple workflow for deploying static content to GitHub Pages
 name: GitHub Pages
 
