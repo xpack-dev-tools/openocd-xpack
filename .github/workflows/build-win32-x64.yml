@@ -66,7 +66,7 @@ jobs:
   win32-x64-build:
     name: 'win32-x64 openocd ${{ github.event.inputs.version }} build'
     timeout-minutes: 5760 # 4 days
-    runs-on: [self-hosted, linux, x64]
+    runs-on: [self-hosted, linux, x64, xbbliw]
     container:
       image: ilegeul/ubuntu:amd64-18.04-xbb-v5.2.1
     defaults:
@@ -111,8 +111,29 @@ jobs:
           xpm install --config win32-x64 --loglevel ${{ github.event.inputs.xpm_install_loglevel }} ${{ github.event.inputs.xpm_install_options }}
           xpm run build --config win32-x64
 
+  win32-x64-upload:
+    name: 'win32-x64 openocd ${{ github.event.inputs.version }} upload'
+    timeout-minutes: 5760 # 4 days
+    runs-on: [self-hosted, linux, x64, xbbliw]
+    defaults:
+      run:
+        shell: bash
+    needs: [win32-x64-build]
+
+    steps:
+      - name: 'Show environment'
+        run: |
+          uname -a
+          lsb_release -sd
+          echo "whoami: $(whoami)"
+          echo "pwd: $(pwd)"
+          echo "node: $(node --version)"
+          echo "npm: $(npm --version)"
+          ls -lLA
+          env | sort | grep -E '^[^ \t]+='
+
       - name: Upload platform artefacts
-        uses: actions/upload-artifact@v3 # v3 for 18.04
+        uses: actions/upload-artifact@v4
         with:
           name: deploy-win32-x64
           path: ${{ github.workspace }}/build/win32-x64/deploy/*
@@ -140,12 +161,12 @@ jobs:
 
       - name: 'Rename working area'
         # For just in case absolute paths remain unprocessed.
-        run: mv -v build build-$(date -u +%Y%m%d-%H%M%S)
+        run: echo mv -v build build-$(date -u +%Y%m%d-%H%M%S)
 
   win32-x64-test:
     name: 'win32-x64 openocd ${{ github.event.inputs.version }} test'
     runs-on: windows-2022
-    needs: [win32-x64-build]
+    needs: [win32-x64-upload]
     defaults:
       run:
         # https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstepsshell

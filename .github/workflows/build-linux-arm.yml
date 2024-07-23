@@ -111,8 +111,29 @@ jobs:
           xpm install --config linux-arm --loglevel ${{ github.event.inputs.xpm_install_loglevel }} ${{ github.event.inputs.xpm_install_options }}
           xpm run build --config linux-arm
 
+  linux-arm-upload:
+    name: 'linux-arm openocd ${{ github.event.inputs.version }} upload'
+    timeout-minutes: 2880 # 2 days
+    runs-on: [self-hosted, linux, arm, xbbla32]
+    defaults:
+      run:
+        shell: bash
+    needs: [linux-arm-build]
+
+    steps:
+      - name: 'Show environment'
+        run: |
+          uname -a
+          lsb_release -sd
+          echo "whoami: $(whoami)"
+          echo "pwd: $(pwd)"
+          echo "node: $(node --version)"
+          echo "npm: $(npm --version)"
+          ls -lLA
+          env | sort | grep -E '^[^ \t]+='
+
       - name: Upload platform artefacts
-        uses: actions/upload-artifact@v3 # v3 for 18.04
+        uses: actions/upload-artifact@v4
         with:
           name: deploy-linux-arm
           path: ${{ github.workspace }}/build/linux-arm/deploy/*
@@ -140,12 +161,12 @@ jobs:
 
       - name: 'Rename working area'
         # For just in case absolute paths remain unprocessed.
-        run: mv -v build build-$(date -u +%Y%m%d-%H%M%S)
+        run: echo mv -v build build-$(date -u +%Y%m%d-%H%M%S)
 
   linux-arm-test:
     name: 'linux-arm openocd@${{ github.event.inputs.version }} test'
     runs-on: [self-hosted, linux, arm, xbbla32]
-    needs: [linux-arm-build]
+    needs: [linux-arm-upload]
 
     steps:
       - name: 'Show environment'
@@ -164,7 +185,7 @@ jobs:
 
       # https://github.com/actions/checkout
       - name: 'Checkout project'
-        uses: actions/checkout@v3 # v3 for 18.04
+        uses: actions/checkout@v4
         with:
           fetch-depth: 3
 
@@ -183,7 +204,7 @@ jobs:
           args: /github/workspace/scripts/test.sh --image debian --version ${{ github.event.inputs.version }} --base-url pre-release
 
       - name: Upload platform tests report
-        uses: actions/upload-artifact@v3 # v3 for 18.04
+        uses: actions/upload-artifact@v4
         with:
           name: tests-report-linux-arm
           path: ${{ github.workspace }}/build/linux-arm/artefacts/tests-report-*.md
