@@ -63,7 +63,7 @@
       "openocd": "./.content/bin/openocd"
     },
     "devDependencies": {
-      "@xpack-dev-tools/xbb-helper": "^2.1.37"
+      "@xpack-dev-tools/xbb-helper": "^2.1.38"
     },
     "properties": {
       "appName": "OpenOCD",
@@ -136,6 +136,7 @@
       "trigger-workflow-deep-clean": "bash xpacks/@xpack-dev-tools/xbb-helper/github-actions/trigger-workflow-deep-clean.sh",
       "test-native": "bash {{ properties.dbg }} scripts/test.sh",
       "test-pre-release": "bash {{ properties.dbg }} scripts/test.sh --base-url pre-release --develop --cache",
+      "test-release": "bash {{ properties.dbg }} scripts/test.sh --base-url pre-release --develop --cache",
       "test-xpm": "bash {{ properties.dbg }} scripts/test.sh --xpm",
       "build-native": "bash {{ properties.dbg }} scripts/build.sh",
       "build-native-develop": "bash {{ properties.dbg }} scripts/build.sh --develop",
