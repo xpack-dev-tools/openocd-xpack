@@ -1,3 +1,20 @@
+---
+
+# DO NOT EDIT!
+# Automatically generated from xbb-helper/templates/docusaurus/common.
+
+title: Getting Started with xPack OpenOCD
+
+date: 2020-09-28 17:49:00 +0300
+
+---
+
+import Compatibility from './_compatibility.mdx';
+import Documentation from './_documentation.mdx'
+import ReleaseSchedule from './_release-schedule.mdx'
+
+{/* ------------------------------------------------------------------------ */}
+
 [![GitHub package.json version](https://img.shields.io/github/package-json/v/xpack-dev-tools/openocd-xpack)](https://github.com/xpack-dev-tools/openocd-xpack/blob/xpack/package.json)
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/xpack-dev-tools/openocd-xpack)](https://github.com/xpack-dev-tools/openocd-xpack/releases/)
 [![npm (scoped)](https://img.shields.io/npm/v/@xpack-dev-tools/openocd.svg?color=blue)](https://www.npmjs.com/package/@xpack-dev-tools/openocd/)
@@ -47,3 +64,58 @@ The main advantages of using the **xPack OpenOCD** are:
 - projects can be tied to specific tools versions; this provides a good
   reproducibility, especially useful in **CI/CD** environments.
 
+<Compatibility/>
+
+## Install
+
+The binaries can be installed automatically as **binary xPacks** or manually as
+**portable archives**.
+
+The details of installing the **xPack OpenOCD** on various platforms are
+presented in the separate
+[Install Guide](/docs/install/) page.
+
+<Documentation/>
+
+<ReleaseSchedule/>
+
+## Support
+
+The quick advice for getting support is to use the
+[GitHub Discussions](https://github.com/xpack-dev-tools/openocd-xpack/discussions/).
+
+For additional information, please refer to the
+[Help Center](/docs/support/) page.
+
+## Change log
+
+The release and change log is available in the repository
+[`CHANGELOG.md`](https://github.com/xpack-dev-tools/openocd-xpack/blob/xpack/CHANGELOG.md) file.
+
+## Maintainer & Developer info
+
+For information on the workflow used to make releases, please see the
+[Maintainer Info](/docs/maintainer-info/) page.
+
+For information on how to build the binaries, please see the
+[Developer Info](/docs/developer-info/) page.
+
+However, the ultimate source for details are the build scripts themselves,
+all available from the
+[`openocd-xpack.git/scripts`](https://github.com/xpack-dev-tools/openocd-xpack/tree/xpack/scripts/)
+folder. The scripts include common code from the [`@xpack-dev-tools/xbb-helper`](https://github.com/xpack-dev-tools/xbb-helper-xpack) package.
+
+## License
+
+Unless otherwise stated, the original content is released under the terms of the
+[MIT License](https://opensource.org/licenses/mit/),
+with all rights reserved to
+[Liviu Ionescu](https://github.com/ilg-ul).
+
+The binary distributions include several open-source components; the
+corresponding licenses are available in the installed
+`distro-info/licenses` folder.
+
+## Releases
+
+The list of releases is available in the [Releases](/docs/releases/) pages.

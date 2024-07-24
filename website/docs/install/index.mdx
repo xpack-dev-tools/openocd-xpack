@@ -1,4 +1,8 @@
 ---
+
+# DO NOT EDIT!
+# Automatically generated from xbb-helper/templates/docusaurus/common.
+
 title: How to install the xPack OpenOCD binaries
 
 hide_table_of_contents: true
@@ -7,38 +11,34 @@ date: 2020-09-27 11:09:00 +0300
 
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 import CodeBlock from '@theme/CodeBlock';
 
 import customField from '@site/src/libs/customField';
 
-import Install from './_common/_install.mdx';
+import InstallWindows from './_install-windows.mdx';
+import InstallMacOS from './_install-macos.mdx';
+import InstallLinux from './_install-linux.mdx';
+
+import Testing from './_testing.mdx';
 
 {/* ------------------------------------------------------------------------ */}
 
-<Install/>
+The **xPack OpenOCD** can be installed automatically, using the `xpm` command
+(the recommended method), or manually, by downloading and unpacking one of the
+portable archives.
 
-### Testing
+<Tabs groupId="operating-systems">
+  <TabItem value="windows" label="Windows" default>
+    <InstallWindows isWindows="True" label="Windows"/>
+  </TabItem>
+  <TabItem value="macos" label="macOS">
+    <InstallMacOS label="macOS"/>
+  </TabItem>
+  <TabItem value="linux" label="GNU/Linux">
+    <InstallLinux label="GNU/Linux"/>
+  </TabItem>
+</Tabs>
 
-To test if OpenOCD is able to connect to a specific board, it is generally necessary to select the interface and the processor. As a shortcut, for some well known boards, there are ready made configuration files to set both the interface and the processor. For example to test a connection via ST/LINK to the STM32F4DISCOVERY board, you can use something like this:
-
-<CodeBlock language="console"> {
-`$ .../xPacks/@xpack-dev-tools/openocd/${ customField('upstreamVersion') }-${ customField('xpackSubversion') }.${ customField('npmSubversion') }/.content/bin/openocd -f board/stm32f4discovery.cfg
-xPack OpenOCD x86_64 Open On-Chip Debugger ${ customField('upstreamVersion') }+dev
-Licensed under GNU GPL v2
-For bug reports, read
-	http://openocd.org/doc/doxygen/bugs.html
-Info : The selected transport took over low-level target control. The results might differ compared to plain JTAG/SWD
-adapter speed: 2000 kHz
-adapter_nsrst_delay: 100
-none separate
-srst_only separate srst_nogate srst_open_drain connect_deassert_srst
-Info : Listening on port 6666 for tcl connections
-Info : Listening on port 4444 for telnet connections
-Info : clock speed 2000 kHz
-Info : STLINK V2J14S0 (API v2) VID:PID 0483:3748
-Info : Target voltage: 2.881412
-Info : stm32f4x.cpu: hardware has 6 breakpoints, 4 watchpoints
-Info : Listening on port 3333 for gdb connections
-^C`
-} </CodeBlock>
-
+<Testing/>

@@ -1,4 +1,8 @@
 ---
+
+# DO NOT EDIT!
+# Automatically generated from xbb-helper/templates/docusaurus/common.
+
 title: The xPack OpenOCD releases
 
 hide_table_of_contents: true
