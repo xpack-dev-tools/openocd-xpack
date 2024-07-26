@@ -3,7 +3,7 @@
 
 ### Linux minimum requirements
 
-The minimum requirement is GLIBC 2.27, available starting
+The minimum requirement is **GLIBC 2.27**, available starting
 with Ubuntu 18, Debian 10 and RedHat 8.
 Support for RedHat 7 was dropped in 2022.
 
