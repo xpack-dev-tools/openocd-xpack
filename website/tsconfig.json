@@ -1,4 +1,7 @@
 {
+  // DO NOT EDIT!
+  // Automatically generated from xbb-helper/templates/docusaurus/common.
+
   // This file is not used in compilation. It is here just for a nice editor experience.
   "extends": "@docusaurus/tsconfig",
   "compilerOptions": {

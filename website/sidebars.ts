@@ -1,3 +1,6 @@
+// DO NOT EDIT!
+// Automatically generated from xbb-helper/templates/docusaurus/common.
+
 import type {SidebarsConfig} from '@docusaurus/plugin-content-docs';
 
 /**
