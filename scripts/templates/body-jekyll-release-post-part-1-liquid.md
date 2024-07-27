@@ -19,7 +19,7 @@ download_url: https://github.com/xpack-dev-tools/openocd-xpack/releases/tag/v{{ 
 
 comments: true
 
-date:   {{ RELEASE_DATE }}
+date: {{ RELEASE_DATE }}
 
 # For Jekyll releases selection.
 categories:
@@ -131,7 +131,7 @@ The xPack OpenOCD generally follows the official
 The current version is based on:
 
 - OpenOCD version {% raw %}{{ page.upstream_version }}{% endraw %}, the development commit
-[{% raw %}{{ page.upstream_commit }}{% endraw %}](https://github.com/xpack-dev-tools/openocd/commit/{% raw %}{{ page.upstream_commit }}{% endraw %}/)
+[{% raw %}{{ page.upstream_commit }}{% endraw %}](https://github.com/openocd-org/openocd/commit/{% raw %}{{ page.upstream_commit }}{% endraw %}/)
 from {% raw %}{{ page.upstream_release_date }}{% endraw %}.
 
 ## Changes
