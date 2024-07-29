@@ -170,9 +170,9 @@
         "hidden": true,
         "actions": {
           "build": "{{ properties.commandBashBuild }}",
-          "build-develop": "{{ properties.commandBashBuild }} --develop",
-          "build-develop-debug": "{{ properties.commandBashBuild }} --develop --debug",
-          "build-develop-tests-only": "{{ properties.commandBashBuild }} --develop --tests-only"
+          "build-development": "{{ properties.commandBashBuild }} --develop",
+          "build-development-debug": "{{ properties.commandBashBuild }} --develop --debug",
+          "build-development-tests-only": "{{ properties.commandBashBuild }} --develop --tests-only"
         }
       },
       "common-docker": {
@@ -205,14 +205,14 @@
           "docker-build": [
             "docker exec --user $(id -un) {{ properties.containerName }} {{ properties.force32 }} xpm run build --config {{ configuration.name }}"
           ],
-          "docker-build-develop": [
-            "docker exec --user $(id -un) {{ properties.containerName }} {{ properties.force32 }} xpm run build-develop --config {{ configuration.name }}"
+          "docker-build-development": [
+            "docker exec --user $(id -un) {{ properties.containerName }} {{ properties.force32 }} xpm run build-development --config {{ configuration.name }}"
           ],
-          "docker-build-develop-debug": [
-            "docker exec --user $(id -un) {{ properties.containerName }} {{ properties.force32 }} xpm run build-develop-debug --config {{ configuration.name }}"
+          "docker-build-development-debug": [
+            "docker exec --user $(id -un) {{ properties.containerName }} {{ properties.force32 }} xpm run build-development-debug --config {{ configuration.name }}"
           ],
-          "docker-build-develop-tests-only": [
-            "docker exec --user $(id -un) {{ properties.containerName }} {{ properties.force32 }} xpm run build-develop-tests-only --config {{ configuration.name }}"
+          "docker-build-development-tests-only": [
+            "docker exec --user $(id -un) {{ properties.containerName }} {{ properties.force32 }} xpm run build-development-tests-only --config {{ configuration.name }}"
           ],
           "docker-remove": [
             "docker stop {{ properties.containerName }}",
@@ -233,9 +233,9 @@
         },
         "actions": {
           "build": "caffeinate {{ properties.commandBashBuild }}",
-          "build-develop": "caffeinate {{ properties.commandBashBuild }} --develop",
-          "build-develop-debug": "caffeinate {{ properties.commandBashBuild }} --develop --debug",
-          "build-develop-tests-only": "caffeinate {{ properties.commandBashBuild }} --develop --tests-only"
+          "build-development": "caffeinate {{ properties.commandBashBuild }} --develop",
+          "build-development-debug": "caffeinate {{ properties.commandBashBuild }} --develop --debug",
+          "build-development-tests-only": "caffeinate {{ properties.commandBashBuild }} --develop --tests-only"
         }
       },
       "darwin-arm64": {
@@ -291,9 +291,9 @@
         },
         "actions": {
           "build": "{{ properties.commandBashBuild }} --windows",
-          "build-develop": "{{ properties.commandBashBuild }} --windows --develop",
-          "build-develop-debug": "{{ properties.commandBashBuild }} --windows --develop --debug",
-          "build-develop-tests-only": "{{ properties.commandBashBuild }} --windows --develop --tests-only"
+          "build-development": "{{ properties.commandBashBuild }} --windows --develop",
+          "build-development-debug": "{{ properties.commandBashBuild }} --windows --develop --debug",
+          "build-development-tests-only": "{{ properties.commandBashBuild }} --windows --develop --tests-only"
         }
       }
     }
