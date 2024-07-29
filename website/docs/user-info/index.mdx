@@ -91,7 +91,9 @@ are beyound the scope of this page.
 
 ### CMake example
 
-The easiest way to build automated test is with CMake in an xPack application.
+The easiest way to build automated tests is with CMake in xPack applications.
+
+:::tip Windows
 
 Since on Windows the xPack OpenOCD uses `.cmd` forwarders, it is necessary
 to explicitly define the extension, later used when invoking `openocd`:
@@ -101,6 +103,8 @@ if("${CMAKE_HOST_SYSTEM_NAME}" STREQUAL "Windows")
   set(extension ".cmd")
 endif()
 ```
+
+:::
 
 To run the test, the semihosted application must be first programmed
 into the board and executed in an environment with semihosting enabled.

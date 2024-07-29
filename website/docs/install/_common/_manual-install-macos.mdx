@@ -26,11 +26,12 @@ from, it is exactly the Node.js `process.platform` and `process.arch`.
 ### Unpack
 
 To manually install the <b>xPack OpenOCD</b>,
-unpack the archive and move it to <code>~/.local/xPacks/openocd/xpack-openocd-{ customField('upstreamVersion') }-{ customField('xpackSubversion') }</code>:
+unpack the archive and move it to <code>~/Library/xPacks/openocd</code> folder,
+for example <code>/Users/ilg/Library/xPacks/openocd/xpack-openocd-{ customField('upstreamVersion') }-{ customField('xpackSubversion') }</code>:
 
 <CodeBlock language="console"> {
-`mkdir -p ~/.local/xPacks/openocd
-cd ~/.local/xPacks/openocd
+`mkdir -p ~/Library/xPacks/openocd
+cd ~/Library/xPacks/openocd
 
 tar xvf ~/Downloads/xpack-openocd-${ customField('upstreamVersion') }-${ customField('xpackSubversion') }-darwin-x64.tar.gz
 chmod -R -w xpack-openocd-${ customField('upstreamVersion') }-${ customField('xpackSubversion') }`

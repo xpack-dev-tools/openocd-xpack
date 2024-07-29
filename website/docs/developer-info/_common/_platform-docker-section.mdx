@@ -1,0 +1,78 @@
+{/* DO NOT EDIT! */}
+{/* Automatically generated from xbb-helper/templates/docusaurus/common. */}
+
+import CodeBlock from '@theme/CodeBlock';
+
+import customField from '@site/src/libs/customField';
+import { durations } from '../_durations.mdx'
+
+{/* ------------------------------------------------------------------------ */}
+
+{/* Arguments: props.platform */}
+
+export const platforms = {
+    "linux-x64": {
+        sectionName: 'Intel GNU/Linux',
+        machineName: 'a 64-bit Intel GNU/Linux'
+    },
+    "win32-x64": {
+        sectionName: 'Intel Windows',
+        machineName: 'a 64-bit Intel GNU/Linux'
+    },
+    "linux-arm64": {
+        sectionName: 'Arm GNU/Linux 64-bit',
+        machineName: 'a 64-bit aarch64 GNU/Linux'
+    },
+    "linux-arm": {
+        sectionName: 'Arm GNU/Linux 32-bit',
+        machineName: 'a 32-bit armhf GNU/Linux'
+    },
+}
+
+#### Build the { platforms[props.platform].sectionName } binaries
+
+{ props.platform == "win32-x64" ? ( <p>The Windows builds run on GNU/Linux, using <a href="https://mingw-w64.org">mingw-w64</a>.</p> ) : ''}
+
+To prepare the docker build on { platforms[props.platform].machineName }:
+
+<CodeBlock language="sh"> {
+`xpm run install -C ~/Work/xpack-dev-tools/openocd-xpack.git && \\
+xpm run docker-prepare --config ${ props.platform } -C ~/Work/xpack-dev-tools/openocd-xpack.git`
+} </CodeBlock>
+
+<details>
+<summary>... or, with the writable helper ...</summary>
+
+<CodeBlock language="sh"> {
+`xpm run install -C ~/Work/xpack-dev-tools/openocd-xpack.git && \\
+xpm run link-deps -C ~/Work/xpack-dev-tools/openocd-xpack.git && \\
+xpm run docker-prepare --config ${ props.platform } -C ~/Work/xpack-dev-tools/openocd-xpack.git && \\
+xpm run docker-link-deps --config ${ props.platform } -C ~/Work/xpack-dev-tools/openocd-xpack.git`
+} </CodeBlock>
+
+</details>
+
+To run the build:
+
+<CodeBlock language="sh"> {
+`xpm run docker-build --config ${ props.platform } -C ~/Work/xpack-dev-tools/openocd-xpack.git`
+} </CodeBlock>
+
+or, for more verbosity, invoke the development build:
+
+<CodeBlock language="sh"> {
+`xpm run docker-build-development --config ${ props.platform } -C ~/Work/xpack-dev-tools/openocd-xpack.git`
+} </CodeBlock>
+
+{ durations[ props.platform ] }, the output of the build script is a compressed
+archive and its SHA signature, created in the `deploy` folder:
+
+* <code>xpack-openocd-{ customField('upstreamVersion') }-{ customField('xpackSubversion') }-{ props.platform }.tar.gz</code>
+* <code>xpack-openocd-{ customField('upstreamVersion') }-{ customField('xpackSubversion') }-{ props.platform }.tar.gz.sha</code>
+
+To rerun the build, invoke the deep-clean action and repeat from install:
+
+<CodeBlock language="sh"> {
+`xpm run deep-clean --config ${ props.platform } -C ~/Work/xpack-dev-tools/openocd-xpack.git`
+} </CodeBlock>
+

@@ -1,0 +1,67 @@
+{/* DO NOT EDIT! */}
+{/* Automatically generated from xbb-helper/templates/docusaurus/common. */}
+
+import CodeBlock from '@theme/CodeBlock';
+
+import customField from '@site/src/libs/customField';
+import { durations } from '../_durations.mdx'
+
+{/* ------------------------------------------------------------------------ */}
+
+{/* Arguments: props.platform */}
+
+export const platforms = {
+    "darwin-x64": {
+        sectionName: 'Intel macOS',
+        machineName: 'an Intel Mac'
+    },
+    "darwin-arm64": {
+        sectionName: 'Apple Silicon macOS',
+        machineName: 'an Apple Silicon Mac'
+    }
+}
+
+#### Build the { platforms[props.platform].sectionName } binaries
+
+To prepare the native build on { platforms[props.platform].machineName }:
+
+<CodeBlock language="sh"> {
+`xpm run install -C ~/Work/xpack-dev-tools/openocd-xpack.git && \\
+xpm install --config ${ props.platform } -C ~/Work/xpack-dev-tools/openocd-xpack.git`
+} </CodeBlock>
+
+<details>
+<summary>... or, with the writable helper ...</summary>
+
+<CodeBlock language="sh"> {
+`xpm run install -C ~/Work/xpack-dev-tools/openocd-xpack.git && \\
+xpm run link-deps -C ~/Work/xpack-dev-tools/openocd-xpack.git && \\
+xpm install --config ${ props.platform } -C ~/Work/xpack-dev-tools/openocd-xpack.git`
+} </CodeBlock>
+
+</details>
+
+To run the build:
+
+<CodeBlock language="sh"> {
+`xpm run build --config ${ props.platform } -C ~/Work/xpack-dev-tools/openocd-xpack.git`
+} </CodeBlock>
+
+or, for more verbosity, invoke the development build:
+
+<CodeBlock language="sh"> {
+`xpm run build-development --config ${ props.platform } -C ~/Work/xpack-dev-tools/openocd-xpack.git`
+} </CodeBlock>
+
+{ durations[ props.platform ] }, the output of the build script is a compressed
+archive and its SHA signature, created in the `deploy` folder:
+
+* <code>xpack-openocd-{ customField('upstreamVersion') }-{ customField('xpackSubversion') }-{ props.platform }.tar.gz</code>
+* <code>xpack-openocd-{ customField('upstreamVersion') }-{ customField('xpackSubversion') }-{ props.platform }.tar.gz.sha</code>
+
+To rerun the build, invoke the deep-clean action and repeat from install:
+
+<CodeBlock language="sh"> {
+`xpm run deep-clean --config ${ props.platform } -C ~/Work/xpack-dev-tools/openocd-xpack.git`
+} </CodeBlock>
+

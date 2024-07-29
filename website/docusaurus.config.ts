@@ -143,7 +143,7 @@ const config: Config = {
         },
         {
           type: 'dropdown',
-          label: 'Docs',
+          label: 'Documentation',
           to: 'docs/getting-started',
           position: 'left',
           items: [

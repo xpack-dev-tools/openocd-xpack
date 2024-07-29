@@ -9,6 +9,8 @@ date: 2020-09-28 17:49:00 +0300
 
 ---
 
+import Overview from './_overview.mdx';
+import UpgradeNotice from './_upgrade-notice.mdx';
 import Compatibility from './_compatibility.mdx';
 import Documentation from './_documentation.mdx'
 import ReleaseSchedule from './_release-schedule.mdx'
@@ -23,11 +25,10 @@ import ReleaseSchedule from './_release-schedule.mdx'
 ## Overview
 
 **xPack OpenOCD** is a standalone cross-platform (Windows, macOS, GNU/Linux)
-binary distribution of [OpenOCD](https://openocd.org),
+binary distribution of OpenOCD,
 intended for reproducible builds.
 
-OpenOCD, the **Open On-Chip Debugger**, is an open source project hosted on
-[SourceForge](http://sourceforge.net/p/openocd/code/).
+<Overview/>
 
 **xPack OpenOCD** is an open source project hosted on GitHub as
 [`xpack-dev-tools/openocd-xpack`](https://github.com/xpack-dev-tools/openocd-xpack);
@@ -37,6 +38,8 @@ it provides the platform specific binaries as
 In addition to the binary archives and the package metadata,
 this project also includes the
 [build scripts](https://github.com/xpack-dev-tools/openocd-xpack/tree/xpack/scripts).
+
+<UpgradeNotice/>
 
 ## Features
 
@@ -72,8 +75,8 @@ The binaries can be installed automatically as **binary xPacks** or manually as
 **portable archives**.
 
 The details of installing the **xPack OpenOCD** on various platforms are
-presented in the separate
-[Install Guide](/docs/install/) page.
+presented in the
+[Install Guide](/docs/install/).
 
 <Documentation/>
 

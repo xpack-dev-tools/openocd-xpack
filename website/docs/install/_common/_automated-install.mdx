@@ -50,14 +50,14 @@ a **node** >=18.17.0).
 <summary>Local vs. global installs</summary>
 
 To ensure reproducibility, it is essential for each project to be able to
-use specific versions of each tool.
+use specific versions of the required tools.
 
 Similarly to **npm** being able to install specific versions of the
 JavaScript tools into each project,
 **xpm** was also designed to be able to install specific versions of the
 required binary tools into each project.
 
-Thus, similarly to the JavaScript tools installed by **npm** in
+Therefore, similarly to the way **npm** installs the JavaScript tools in
 `node_modules/.bin`, **xpm** installs the binary tools in
 `xpacks/.bin`.
 </details>
@@ -66,27 +66,30 @@ Thus, similarly to the JavaScript tools installed by **npm** in
 <summary>The central xPacks store</summary>
 
 Given that some binary tools (such as toolchains) can be very large
-(hundreds of megabytes or more), it is impractical to maintain multiple
+(hundreds of megabytes or more), it is impractical to keep multiple
 copies of these tools, one for each project.
 
-Instead, **xpm** installs the binary packages into a platform-dependent folder
-within the home directory, thereby conserving disk space when these tools are
+Instead, **xpm** installs the binary packages only once
+into a central store, a platform-dependent folder
+within the home folder, thereby conserving disk space when the same tools are
 used across multiple projects.
 
-Then, in order to allow the projects to access the binary tools,
+In order to allow the projects to access the binary tools installed in the
+central folder,
 **xpm** adds <LinksVsForwarders isWindows={ props.isWindows }/>
-into the projects pointing to the **central xPacks store**.
+into the projects, pointing to the **central xPacks store**.
 
 The outcome is functionally equivalent to installing the tools in each project,
 but without the wasted disk space.
 
 :::tip
 
-It is possible to force a local install by passyng `--copy` to `xpm install`.
+It is possible to force a local install into a project
+by passing `--copy` to `xpm install`.
 
 :::
 
-However, if needed, it is also possible to install packages only globally,
+If needed, it is also possible to install packages only globally,
 without creating local <LinksVsForwarders isWindows={ props.isWindows }/>
 (see below).
 </details>
@@ -96,7 +99,7 @@ without creating local <LinksVsForwarders isWindows={ props.isWindows }/>
 Upon initial use, ensure that a `package.json` file is present in the
 project root folder.
 
-This can be achieved by running `xpm init` in the desired folder
+This can be achieved by running `xpm init` in the desired project folder
 (substitute `my-project` accordingly):
 
 ```sh
@@ -113,7 +116,7 @@ The next step is to install the
 `xpm install @xpack-dev-tools/openocd@latest --verbose`
 } </CodeBlock>
 
-The main result is a set of <LinksVsForwarders isWindows={ props.isWindows }/>:
+The main result is a set of <LinksVsForwarders isWindows={ props.isWindows }/> in the `.bin` folder:
 
 <CodeBlock language="console"> {
 `${ props.isWindows === 'True' ? 'dir xpacks\\.bin' : 'ls -l xpacks/.bin' }`
@@ -200,7 +203,8 @@ The result looks like this:
   }`
 } </CodeBlock>
 
-If the `package.json` is saved in the revision system, the project gets
+If the `package.json` is saved in the revision system, the above
+definition adds
 a hard reference to the specific version of
 **xPack OpenOCD**.
 
