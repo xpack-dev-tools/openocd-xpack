@@ -23,6 +23,7 @@ Version **0.10.0-15** is a maintenance release; it updates to the latest upstrea
 <!-- truncate -->
 
 import Image from '@theme/IdealImage';
+import CodeBlock from '@theme/CodeBlock';
 
 [The xPack OpenOCD](https://xpack-dev-tools.github.io/openocd-xpack)
 is the **xPack** distribution of

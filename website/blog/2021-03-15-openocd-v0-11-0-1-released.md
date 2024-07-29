@@ -23,6 +23,7 @@ Version **0.11.0-1** is a new major release; it updates to the latest upstream m
 <!-- truncate -->
 
 import Image from '@theme/IdealImage';
+import CodeBlock from '@theme/CodeBlock';
 
 [The xPack OpenOCD](https://xpack-dev-tools.github.io/openocd-xpack)
 is the **xPack** distribution of

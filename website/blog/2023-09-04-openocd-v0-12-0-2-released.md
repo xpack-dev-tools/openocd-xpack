@@ -27,6 +27,7 @@ Version **0.12.0-2** is a maintenance release; it updates to the latest upstream
 <!-- truncate -->
 
 import Image from '@theme/IdealImage';
+import CodeBlock from '@theme/CodeBlock';
 
 [The xPack OpenOCD](https://xpack.github.io/openocd/)
 is a standalone cross-platform binary distribution of

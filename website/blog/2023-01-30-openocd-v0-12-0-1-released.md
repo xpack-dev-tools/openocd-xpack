@@ -26,6 +26,7 @@ Version **0.12.0-1** is a new release; it follows the upstream release.
 <!-- truncate -->
 
 import Image from '@theme/IdealImage';
+import CodeBlock from '@theme/CodeBlock';
 
 [The xPack OpenOCD](https://xpack-dev-tools.github.io/openocd-xpack)
 is a standalone cross-platform binary distribution of
