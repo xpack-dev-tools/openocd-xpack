@@ -2,9 +2,30 @@
 
 Entries in this file are in reverse chronological order.
 
+## 2024-08-03
+
+* v0.12.0-4 published on npmjs.com
+* ae17d43 package.json: update urls for 0.12.0-4.1 release
+* 4b0479b website: maintainer-info update
+* 6db2458 website: add blog release
+* 5287403 build-assets/templates: rename .mdx
+* 9aced53 build-assets/package.json: generate-website-blog-post
+* 127e98a build-assets/templates updates
+* 4ee0f3a website: maintainer-info update
+* 1ba11a4 build-assets/package.json: rename generate-website-blog-post
+* 1c9f8b7 rename templates/body-blog-*
+
 ## 2024-08-02
 
-* v0.12.0-4 released
+* 4b94b9e re-generate workflows
+* 0952aea re-generate workflows
+* 6c70d04 re-generate workflows
+* 9b7503b build-assets/package.json bump deps
+* ce27e1b website: maintainer-info update
+* 2ac9abf re-generate workflows
+* 2a8db31 move templates from up from inside scripts
+* c916a46 CHANGELOG update
+* e4bd355 website: maintainer-info update
 * a84c1c8 build-assets/package.json bump deps
 * 0115820 website: install update
 * 79c7b2f website: maintainer-info update
