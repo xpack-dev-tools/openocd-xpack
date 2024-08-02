@@ -172,18 +172,18 @@ or run the following in a terminal:
 
 Navigate to the **Maintainer Info** page.
 
+### Update the version specific code
+
+- open the `build-assets/scripts/versioning.sh` file
+- add a new `if` with the new version before the existing code
+- update `XBB_OPENOCD_GIT_COMMIT` to the desired commit id from the upstream repo
+
 ### Update `CHANGELOG.md`
 
 - open the `CHANGELOG.md` file
 - check if all previous fixed issues are in
 - add a new entry like _* v{ customField('upstreamVersion') }-{ customField('xpackSubversion') } prepared_
 - commit with a message like _prepare v{ customField('upstreamVersion') }-{ customField('xpackSubversion') }_
-
-### Update the version specific code
-
-- open the `build-assets/scripts/versioning.sh` file
-- add a new `if` with the new version before the existing code
-- update `XBB_OPENOCD_GIT_COMMIT` to the desired commit id
 
 ## Build
 
