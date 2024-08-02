@@ -124,10 +124,10 @@ In the `xpack-dev-tools/openocd-xpack` Git repo:
 
 No need to add a tag here, it'll be added when the release is created.
 
-### Update helper & other dependencies
+### Update the helper & the other dependencies
 
 Check the latest versions at https://github.com/xpack-dev-tools/ and
-update the dependencies in `package.json`.
+update the dependencies in `build-assets/package.json`.
 
 ### Check the latest upstream release
 
@@ -156,10 +156,21 @@ The fourth number is the xPack release number
 of this version. A fifth number will be added to the version in `package.json`
 when the package is published to the `npm` server.
 
-### Update the version in `package.json` to a pre-release
+### Update the version in top `package.json` to a pre-release
 
 Use the new version, suffixed by `.pre`,
 like <code>{ customField('upstreamVersion') }-{ customField('xpackSubversion') }.{ customField('npmSubversion') }.pre</code>.
+
+### Restart local web server
+
+Execute the npm script `start` in the website sub-project,
+or run the following in a terminal:
+
+```sh
+(cd ~/Work/xpack-dev-tools/xbb-helper-xpack.git/website; npm run start)
+```
+
+Navigate to the **Maintainer Info** page.
 
 ### Update `CHANGELOG.md`
 
@@ -253,7 +264,7 @@ archive and its SHA signature, created in the `deploy` folder:
 * <code>xpack-openocd-{ customField('upstreamVersion') }-{ customField('xpackSubversion') }-darwin-x64.tar.gz</code>
 * <code>xpack-openocd-{ customField('upstreamVersion') }-{ customField('xpackSubversion') }-darwin-x64.tar.gz.sha</code>
 
-#### Apple Silicon macOS
+#### arm64 Silicon macOS
 
 Run the native build on the production machine
 (`xbbma`, an older macOS);
@@ -284,7 +295,7 @@ archive and its SHA signature, created in the `deploy` folder:
 * <code>xpack-openocd-{ customField('upstreamVersion') }-{ customField('xpackSubversion') }-darwin-arm64.tar.gz</code>
 * <code>xpack-openocd-{ customField('upstreamVersion') }-{ customField('xpackSubversion') }-darwin-arm64.tar.gz.sha</code>
 
-#### Intel GNU/Linux
+#### x64 GNU/Linux
 
 Run the docker build on the production machine (`xbbli`);
 start a VS Code remote session, or connect with a terminal:
@@ -293,7 +304,7 @@ start a VS Code remote session, or connect with a terminal:
 caffeinate ssh xbbli
 ```
 
-##### Build the Intel GNU/Linux binaries
+##### Build the x64 GNU/Linux binaries
 
 Update the build scripts (or clone them at the first use):
 
@@ -317,7 +328,7 @@ archive and its SHA signature, created in the `deploy` folder:
 * <code>xpack-openocd-{ customField('upstreamVersion') }-{ customField('xpackSubversion') }-linux-x64.tar.gz</code>
 * <code>xpack-openocd-{ customField('upstreamVersion') }-{ customField('xpackSubversion') }-linux-x64.tar.gz.sha</code>
 
-##### Build the Intel Windows binaries
+##### Build the x64 Windows binaries
 
 Clean the build folder and prepare the docker container:
 
@@ -327,8 +338,10 @@ git -C ~/Work/xpack-dev-tools/openocd-xpack.git pull && \
 xpm run install -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets && \
 git -C ~/Work/xpack-dev-tools/xbb-helper-xpack.git pull && \
 xpm link -C ~/Work/xpack-dev-tools/xbb-helper-xpack.git && \
-xpm run link-deps -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets && \
-\
+xpm run link-deps -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets
+```
+
+```sh
 xpm run deep-clean --config win32-x64 -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets && \
 xpm run docker-prepare --config win32-x64 -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets && \
 xpm run docker-link-deps --config win32-x64 -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets && \
@@ -341,7 +354,7 @@ archive and its SHA signature, created in the `deploy` folder:
 * <code>xpack-openocd-{ customField('upstreamVersion') }-{ customField('xpackSubversion') }-win32-x64.zip</code>
 * <code>xpack-openocd-{ customField('upstreamVersion') }-{ customField('xpackSubversion') }-win32-x64.zip.sha</code>
 
-#### Arm GNU/Linux 64-bit
+#### arm64 GNU/Linux
 
 Run the docker build on the production machine (`xbbla`);
 start a VS Code remote session, or connect with a terminal:
@@ -372,7 +385,7 @@ archive and its SHA signature, created in the `deploy` folder:
 * <code>xpack-openocd-{ customField('upstreamVersion') }-{ customField('xpackSubversion') }-linux-arm64.tar.gz</code>
 * <code>xpack-openocd-{ customField('upstreamVersion') }-{ customField('xpackSubversion') }-linux-arm64.tar.gz.sha</code>
 
-#### Arm GNU/Linux 32-bit
+#### arm GNU/Linux (32-bit)
 
 Run the docker build on the production machine (`xbbla32`);
 start a VS Code remote session, or connect with a terminal:
@@ -403,9 +416,22 @@ archive and its SHA signature, created in the `deploy` folder:
 * <code>xpack-openocd-{ customField('upstreamVersion') }-{ customField('xpackSubversion') }-linux-arm.tar.gz</code>
 * <code>xpack-openocd-{ customField('upstreamVersion') }-{ customField('xpackSubversion') }-linux-arm.tar.gz.sha</code>
 
-### Update README-MAINTAINER listing output
+### Updte the trees in the Install Guide page
 
-- check and possibly update the `ls -l` output in README-MAINTAINER
+Copy the trees displayed at the end of the test builds and paste to
+**Folder hierarchy** section in the web files:
+
+- `website/docs/install/_install-linux.mdx`
+- `website/docs/install/_install-macos.mdx`
+- `website/docs/install/_install-windows.mdx`
+
+:::tip
+
+macOS does not have a `tree` command; either compile it from
+[sources](https://github.com/Old-Man-Programmer/tree), or install it
+via HomeBrew, and make a link to `/usr/local/bin`.
+
+:::
 
 ### Update the list of links in package.json
 
@@ -437,7 +463,7 @@ locations (like
 https://github.com/xpack-dev-tools/files-cache/tree/master/libs),
 place them in the XBB cache (`Work/cache`) and restart the build.
 
-## Run the CI build
+## Run the CI builds
 
 The automation is provided by GitHub Actions and three self-hosted runners.
 
@@ -489,17 +515,21 @@ From here it'll be cloned on the production machines.
 
 ### Publish helper
 
-Publish a new release of the helper and update the reference in `package.json`.
+Publish a new release of the helper and update the reference
+in `build-assets/package.json`.
 
 ### Check for disk space
 
 Check if the build machines have enough free space and eventually
-do some cleanups (`df -BG -H /` on Linux, `df -gH /` on macOS).
+do some cleanups
+
+- GNU/Linux: `df -BG -H /`
+- macOS: `df -gH /`
 
 To remove previous builds, use:
 
 ```sh
-rm -rf ~/Work/xpack-dev-tools/*/build
+rm -rf ~/Work/xpack-dev-tools/*/build-assets/build ~/Work/xpack-dev-tools/*/build
 ```
 
 ### Manually trigger the build GitHub Actions
@@ -536,11 +566,12 @@ These commands use the `xpack-development` branch of this repo.
 
 The builds take about 10 minutes to complete:
 
-- `xbbmi`: 5 min
-- `xbbma`: 4 min
-- `xbbli`: 5 min (4 min Linux, 5 min Windows)
-- `xbbla`: 11 min
-- `xbbla32`: 11 min
+- `darwin-x64`: 5m (nuc)
+- `darwin-arm64`: 4m (m1)
+- `linux-x64`: 4m (amd)
+- `win32-x64`: 5m (amd)
+- `linux-arm64`: 11m (rpi4)
+- `linux-arm`: 11m (rpi4)
 
 The workflow result and logs are available from the
 [Actions](https://github.com/xpack-dev-tools/openocd-xpack/actions/) page.
