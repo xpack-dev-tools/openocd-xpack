@@ -44,15 +44,22 @@ script_folder_name="$(basename "${script_folder_path}")"
 # Build the application.
 
 scripts_folder_path="${script_folder_path}"
-project_folder_path="$(dirname ${script_folder_path})"
-helper_folder_path="${project_folder_path}/xpacks/@xpack-dev-tools/xbb-helper"
+root_folder_path="$(dirname ${script_folder_path})"
+if [ "$(basename "${root_folder_path}")" == "build-assets" ]
+then
+  project_folder_path="$(dirname "${root_folder_path}")"
+else
+  project_folder_path="${root_folder_path}"
+fi
+
+helper_folder_path="${root_folder_path}/xpacks/@xpack-dev-tools/xbb-helper"
 
 # -----------------------------------------------------------------------------
 
 source "${scripts_folder_path}/application.sh"
 
 # Common definitions.
-source "${helper_folder_path}/scripts/build-common.sh"
+source "${helper_folder_path}/build-scripts/build-common.sh"
 
 source "${scripts_folder_path}/versioning.sh"
 
@@ -76,7 +83,7 @@ fi
 
 # -----------------------------------------------------------------------------
 
-help_message="    bash $0 [--win] [--debug] [--develop] [--jobs N] [--help]"
+help_message="    bash $0 [--win] [--debug] [--development] [--jobs N] [--help]"
 build_common_parse_options "${help_message}" "$@"
 
 build_common_run

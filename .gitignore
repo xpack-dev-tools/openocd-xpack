@@ -135,7 +135,7 @@ dist
 
 # xpm
 xpacks/
-build*/
+build/
 
 /*.tgz
 

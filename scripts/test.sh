@@ -46,8 +46,15 @@ script_folder_name="$(basename "${script_folder_path}")"
 # Run the application tests.
 
 scripts_folder_path="${script_folder_path}"
-project_folder_path="$(dirname ${script_folder_path})"
-helper_folder_path="${project_folder_path}/xpacks/@xpack-dev-tools/xbb-helper"
+root_folder_path="$(dirname ${script_folder_path})"
+if [ "$(basename "${root_folder_path}")" == "build-assets" ]
+then
+  project_folder_path="$(dirname "${root_folder_path}")"
+else
+  project_folder_path="${root_folder_path}"
+fi
+
+helper_folder_path="${root_folder_path}/xpacks/@xpack-dev-tools/xbb-helper"
 
 tests_folder_path="$(dirname "${scripts_folder_path}")/tests"
 
@@ -58,7 +65,7 @@ export XBB_WHILE_RUNNING_SEPARATE_TESTS="y"
 # -----------------------------------------------------------------------------
 # Options must be parsed as early as possible, being used even in application.sh.
 
-source "${helper_folder_path}/scripts/test-parse-options.sh"
+source "${helper_folder_path}/build-scripts/test-parse-options.sh"
 
 tests_parse_options "$@"
 
@@ -67,7 +74,7 @@ tests_parse_options "$@"
 source "${scripts_folder_path}/application.sh"
 
 # Common definitions.
-source "${helper_folder_path}/scripts/test-common.sh"
+source "${helper_folder_path}/build-scripts/test-common.sh"
 
 # Possibly override common definitions.
 source "${scripts_folder_path}/tests/run.sh"
