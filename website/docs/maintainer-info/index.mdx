@@ -27,7 +27,7 @@ The content of this page is still work in progress and will be updated shortly.
 ## Prerequisites
 
 The build scripts run on GNU/Linux and macOS. The Windows binaries are
-generated on Intel GNU/Linux, using [mingw-w64](https://mingw-w64.org).
+generated on x64 GNU/Linux, using [mingw-w64](https://mingw-w64.org).
 
 For details on installing the prerequisites, please read the
 [XBB prerequisites page](https://xpack.github.io/xbb/prerequisites/).
@@ -47,13 +47,13 @@ git clone https://github.com/xpack-dev-tools/openocd-xpack.git \
   ~/Work/xpack-dev-tools/openocd-xpack.git
 ```
 
-For development purposes, clone the `xpack-develop` branch:
+For development purposes, clone the `xpack-development` branch:
 
 ```sh
 rm -rf ~/Work/xpack-dev-tools/openocd-xpack.git && \
 mkdir -p ~/Work/xpack-dev-tools && \
 git clone \
-  --branch xpack-develop \
+  --branch xpack-development \
   https://github.com/xpack-dev-tools/openocd-xpack.git \
   ~/Work/xpack-dev-tools/openocd-xpack.git
 ```
@@ -69,13 +69,13 @@ git -C ~/Work/xpack-dev-tools/openocd-xpack.git pull
 The project has a dependency to a common **helper**, that is
 normally installed as a read-only dependency; for development
 purposes, to be able to make changes to the helper, clone the
-`xpack-develop` branch and link it to the central xPacks store:
+`xpack-development` branch and link it to the central xPacks store:
 
 ```sh
 rm -rf ~/Work/xpack-dev-tools/xbb-helper-xpack.git && \
 mkdir -p ~/Work/xpack-dev-tools && \
 git clone \
-  --branch xpack-develop \
+  --branch xpack-development \
   https://github.com/xpack-dev-tools/xbb-helper-xpack.git \
   ~/Work/xpack-dev-tools/xbb-helper-xpack.git && \
 xpm link -C ~/Work/xpack-dev-tools/xbb-helper-xpack.git
@@ -107,18 +107,18 @@ Before starting the build, perform some checks and tweaks.
 
 ### Download the build scripts
 
-The build scripts are available in the `scripts` folder of the
+The build scripts are available in the `build-scripts/scripts` folder of the
 [`xpack-dev-tools/openocd-xpack`](https://github.com/xpack-dev-tools/openocd-xpack)
 Git repo.
 
-To download them on a new machine, clone the `xpack-develop` branch,
+To download them on a new machine, clone the `xpack-development` branch,
 as seen above.
 
 ### Check Git
 
 In the `xpack-dev-tools/openocd-xpack` Git repo:
 
-- switch to the `xpack-develop` branch
+- switch to the `xpack-development` branch
 - pull new changes
 - if needed, merge the `xpack` branch
 
@@ -139,13 +139,6 @@ Compare the latest tag with the current xPack
 If necessary, update the triplet, otherwise increase the fourth number,
 as below.
 
-### Increase the version
-
-Determine the version (like <code>{ customField('upstreamVersion') }</code>) and update the `scripts/VERSION`
-file; the format is <code>{ customField('upstreamVersion') }-{ customField('xpackSubversion') }</code>. The fourth number is the xPack release number
-of this version. A fifth number will be added to the version in `package.json`
-when the package is published to the `npm` server.
-
 ### Fix possible open issues
 
 Check GitHub issues and pull requests:
@@ -154,20 +147,19 @@ Check GitHub issues and pull requests:
 
 and fix them; assign them to a milestone (like <code>{ customField('upstreamVersion') }-{ customField('xpackSubversion') }</code>).
 
-### Check `README.md`
+### Increase the version and update VERSION
 
-Normally `README.md` should not need changes, but better check.
-Information related to the new version should not be included here,
-but in the version specific release page.
+Determine the version (like <code>{ customField('upstreamVersion') }</code>)
+and update the `build-scripts/scripts/VERSION` file; the format
+is <code>{ customField('upstreamVersion') }-{ customField('xpackSubversion') }</code>.
+The fourth number is the xPack release number
+of this version. A fifth number will be added to the version in `package.json`
+when the package is published to the `npm` server.
 
-### Update versions in `README` files
+### Update the version in `package.json` to a pre-release
 
-- update version in `README-MAINTAINER.md`
-- update version in `README.md`
-
-### Update version in `package.json` to a pre-release
-
-Use the new version, suffixed by `.pre`, like <code>{ customField('upstreamVersion') }-{ customField('xpackSubversion') }.{ customField('npmSubversion') }.pre</code>.
+Use the new version, suffixed by `.pre`,
+like <code>{ customField('upstreamVersion') }-{ customField('xpackSubversion') }.{ customField('npmSubversion') }.pre</code>.
 
 ### Update `CHANGELOG.md`
 
@@ -204,8 +196,9 @@ For Intel macOS, first run the build on the development machine
 
 ```sh
 export XBB_ENVIRONMENT_SKIP_CHECKS="y"
+```
 
-# Update the build scripts.
+```sh
 rm -f ~/Work/xpack-dev-tools/openocd-xpack.git/package-lock.json
 git -C ~/Work/xpack-dev-tools/openocd-xpack.git pull
 
@@ -229,7 +222,7 @@ xpm run build-development-debug --config darwin-x64 -C ~/Work/xpack-dev-tools/op
 
 The build takes about 7 minutes.
 
-When functional, push the `xpack-develop` branch to GitHub.
+When functional, push the `xpack-development` branch to GitHub.
 
 Run the native build on the production machine
 (`xbbmi`, an older macOS);
@@ -489,7 +482,7 @@ screen -S ga
 
 ### Push the build scripts
 
-- push the `xpack-develop` branch to GitHub
+- push the `xpack-development` branch to GitHub
 - possibly push the helper project too
 
 From here it'll be cloned on the production machines.
@@ -537,7 +530,7 @@ Settings → Action →
 [Secrets](https://github.com/xpack-dev-tools/openocd-xpack/settings/secrets/actions)
 page.
 
-These commands use the `xpack-develop` branch of this repo.
+These commands use the `xpack-development` branch of this repo.
 
 ## Durations & results
 
@@ -578,7 +571,7 @@ bash ~/Work/xpack-dev-tools/openocd-xpack.git/xpacks/@xpack-dev-tools/xbb-helper
 These scripts require the `GITHUB_API_DISPATCH_TOKEN` variable to be present
 in the environment.
 
-These actions use the `xpack-develop` branch of this repo and the
+These actions use the `xpack-development` branch of this repo and the
 [pre-releases/test](https://github.com/xpack-dev-tools/pre-releases/releases/tag/test/)
 binaries.
 
@@ -683,7 +676,7 @@ launcher).
 - in `CHANGELOG.md`, add the release date and a message like _* v{ customField('upstreamVersion') }-{ customField('xpackSubversion') } released_
 - commit with _CHANGELOG update_
 - check and possibly update the `templates/body-github-release-liquid.md`
-- push the `xpack-develop` branch
+- push the `xpack-development` branch
 - run the xPack action `trigger-workflow-publish-release`
 
 The workflow result and logs are available from the
@@ -695,7 +688,7 @@ tagged like **v{ customField('upstreamVersion') }-{ customField('xpackSubversion
 named like **xPack OpenOCD v{ customField('upstreamVersion') }-{ customField('xpackSubversion') }** (mind the dash),
 with all binaries attached.
 
-- edit the draft and attach it to the `xpack-develop` branch (important!)
+- edit the draft and attach it to the `xpack-development` branch (important!)
 - save the draft (do **not** publish yet!)
 
 ## Prepare a new blog post
@@ -747,7 +740,7 @@ watching this project.
 
 ## Update package.json binaries
 
-- select the `xpack-develop` branch
+- select the `xpack-development` branch
 - run the xPack action `update-package-binaries`
 - open the `package.json` file
 - check the `baseUrl:` it should match the file URLs (including the tag/version);
@@ -760,7 +753,7 @@ watching this project.
 
 ## Publish on the npmjs.com server
 
-- select the `xpack-develop` branch
+- select the `xpack-development` branch
 - check the latest commits `npm run git-log`
 - update `CHANGELOG.md`, add a line like _* v{ customField('upstreamVersion') }-{ customField('xpackSubversion') } published on npmjs.com_
 - commit with a message like _CHANGELOG: publish npm v{ customField('upstreamVersion') }-{ customField('xpackSubversion') }.{ customField('npmSubversion') }_
@@ -788,7 +781,7 @@ The tests results are available from the
 
 ## Update the repo
 
-- merge `xpack-develop` into `xpack`
+- merge `xpack-development` into `xpack`
 - push to GitHub
 
 ## Tag the npm package as `latest`
