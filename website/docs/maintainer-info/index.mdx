@@ -793,11 +793,6 @@ will install the package via `xpm install` on all supported platforms.
 The tests results are available from the
 [GitHub Actions](https://github.com/xpack-dev-tools/openocd-xpack/actions/) page.
 
-## Update the repo
-
-- merge `xpack-development` into `xpack`
-- push to GitHub
-
 ## Tag the npm package as `latest`
 
 When the release is considered stable, promote it as `latest`:
@@ -810,11 +805,14 @@ In case the previous version is not functional and needs to be unpublished:
 
 - <code>npm unpublish @xpack-dev-tools/openocd@{ customField('upstreamVersion') }-{ customField('xpackSubversion') }.{ customField('npmSubversion') }</code>
 
-## Update the Web
+## Update the repo & publish the website
 
-- in the `master` branch, merge the `develop` branch
-- wait for the GitHub Pages build to complete
-- the result is in https://xpack.github.io/news/
+- merge `xpack-development` into `xpack`
+- push to GitHub
+
+At this moment the website is also generated.
+
+- the result is in https://xpack-dev-tools.github.io/openocd-xpack/blog/
 - remember the post URL, since it must be updated in the release page
 
 ## Create the final GitHub release
@@ -831,8 +829,8 @@ In case the previous version is not functional and needs to be unpublished:
 - in a separate browser windows, open [X/Twitter](https://twitter.com)
 - using the `@xpack_project` account
 - paste the release name like **xPack OpenOCD v{ customField('upstreamVersion') }-{ customField('xpackSubversion') } released**
-- paste the link to the Web page
-  [release](https://xpack.github.io/openocd/releases/)
+- paste the link to the blog post
+  [release]( https://xpack-dev-tools.github.io/openocd-xpack/blog/)
 - click the **Tweet** button
 
 ## Check SourceForge mirror
