@@ -95,7 +95,7 @@ jobs:
           token: ${{ secrets.PUBLISH_TOKEN }}
 
       - name: 'Gather artifacts'
-        run: 'bash xpacks/@xpack-dev-tools/xbb-helper/github-actions/download-all-binaries.sh'
+        run: 'bash build-assets/xpacks/@xpack-dev-tools/xbb-helper/github-actions/download-all-binaries.sh'
 
       - name: 'Publish artifacts'
         # https://github.com/ncipollo/release-action
