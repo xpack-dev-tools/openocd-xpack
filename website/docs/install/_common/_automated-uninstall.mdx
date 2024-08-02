@@ -11,8 +11,10 @@ import LinksVsForwarders from '@site/src/components/LinksVsForwarders'
 
 ### Uninstall
 
-The binaries are distributed as portable archives; therefore they do not need
-to run a setup and do not require an uninstall; simply removing the
+The binaries do not use any form of installer; instead they
+are distributed as
+portable { props.isWindows ? <code>.zip</code> : <code>.tar.gz</code> } archives;
+therefore they do not require to run any uninstaller; simply removing the
 links and possibly the central store folder is enough.
 
 To remove the <LinksVsForwarders isWindows={ props.isWindows }/> created by

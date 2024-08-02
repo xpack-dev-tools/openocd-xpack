@@ -17,6 +17,28 @@ is by using the **binary xPack**, available
 as <a href={ `https://www.npmjs.com/package/@xpack-dev-tools/openocd` }><code>@xpack-dev-tools/openocd</code></a> from
 the [`npmjs.com`](https://www.npmjs.com) registry.
 
+<details>
+<summary>xPacks 101</summary>
+
+While the initial appearance may seem complex, utilizing xPacks is,
+in fact, straightforward. The design rationale is to automate frequent
+operations that occur during software development, in this case the
+installation of
+dependencies, and to ensure reproducibility.
+
+xPacks are standard archives that are extracted into separate folders
+within the project. If the xPacks contain
+executables, <LinksVsForwarders isWindows={ props.isWindows }/> to
+these executables are created in a `.bin` folder,
+eliminating the need to add multiple folders to the `PATH`.
+
+Given that some binary xPacks, such as toolchains, can be quite large,
+the archives are extracted only once into a central/global location to
+conserve space. In projects, instead of duplicating the content of these
+archives, symbolic links are created.
+
+</details>
+
 ### Prerequisites
 
 The only requirement for an automated install is a recent
@@ -47,40 +69,75 @@ a **node** >=18.17.0).
 :::
 
 <details>
-<summary>Local vs. global installs</summary>
+<summary>Local installs</summary>
 
-To ensure reproducibility, it is essential for each project to be able to
-use specific versions of the required tools.
+One of the xPack design goals is to allow each project to
+choose the exact versions of the tools it requires.
 
 Similarly to **npm** being able to install specific versions of the
 JavaScript tools into each project,
 **xpm** was also designed to be able to install specific versions of the
-required binary tools into each project.
+required binary tools locally into each project.
 
-Therefore, similarly to the way **npm** installs the JavaScript tools in
-`node_modules/.bin`, **xpm** installs the binary tools in
-`xpacks/.bin`.
+Therefore, similarly to the way **npm** installs the JavaScript packages into
+`node_modules`, **xpm** installs the binary tools into
+`xpacks`. Here there will be separate folders with the installed
+packages, for example
+<code>xpacks/@xpack-dev-tools/openocd</code>.
+
+Each such folder includes the `package.json` file with the
+project metadata and a sub-folder `.content` with the extracted
+binary archive. The executables are usually in `.content/bin`.
+
+:::tip
+
+On some platforms, names starting with `.` (dot) might be hidden for
+normal browsing, and seeing them requires
+separate options (like `ls -A`) or, in file browsers, to enable
+settings like **Show Hidden Files**.
+
+:::
+
 </details>
 
 <details>
-<summary>The central xPacks store</summary>
+<summary>The `xpacks/.bin` folder</summary>
+
+If multiple binary packages are installed, in order to allow
+the executables to be accessed, one possible solution is to add
+all `<package>/.content/bin` folders to the `PATH`.
+
+To simplify things, **npm** employs a separate `node_modules/.bin` folder
+where it places <LinksVsForwarders isWindows={ props.isWindows }/>
+pointing to the actual executable files.
+
+Similarly, **xpm** adds <LinksVsForwarders isWindows={ props.isWindows }/> into
+a separate `xpacks/.bin` folder.
+
+With this setup, the project needs to prepend only this `.bin` folder
+to the `PATH`, and all the required tools are accesible
+and prefered to possible system tools.
+
+</details>
+
+<details>
+<summary>Global installs and the central xPacks store</summary>
 
 Given that some binary tools (such as toolchains) can be very large
 (hundreds of megabytes or more), it is impractical to keep multiple
 copies of these tools, one for each project.
 
 Instead, **xpm** installs the binary packages only once
-into a central store, a platform-dependent folder
-within the home folder, thereby conserving disk space when the same tools are
-used across multiple projects.
+into a central store (a platform-dependent folder
+within the home folder), thereby conserving disk space when the same
+tools are used across multiple projects.
 
 In order to allow the projects to access the binary tools installed in the
-central folder,
-**xpm** adds <LinksVsForwarders isWindows={ props.isWindows }/>
-into the projects, pointing to the **central xPacks store**.
+central folder, instead of unpacking the archives in `xpacks`,
+**xpm** adds symbolic links pointing to the **central xPacks store**.
 
-The outcome is functionally equivalent to installing the tools in each project,
-but without the wasted disk space.
+The outcome is functionally equivalent to installing the tools into
+each project, but without the wasted disk space.
 
 :::tip
 
@@ -89,9 +146,9 @@ by passing `--copy` to `xpm install`.
 
 :::
 
-If needed, it is also possible to install packages only globally,
-without creating local <LinksVsForwarders isWindows={ props.isWindows }/>
-(see below).
+If needed, it is also possible to install packages only globally, without
+creating local <LinksVsForwarders isWindows={ props.isWindows }/> (see below).
+
 </details>
 
 ### Initialise the project
@@ -116,7 +173,9 @@ The next step is to install the
 `xpm install @xpack-dev-tools/openocd@latest --verbose`
 } </CodeBlock>
 
-The main result is a set of <LinksVsForwarders isWindows={ props.isWindows }/> in the `.bin` folder:
+The main result is a set
+of <LinksVsForwarders isWindows={ props.isWindows }/> in
+the `.bin` folder:
 
 <CodeBlock language="console"> {
 `${ props.isWindows === 'True' ? 'dir xpacks\\.bin' : 'ls -l xpacks/.bin' }`
@@ -126,7 +185,7 @@ The main result is a set of <LinksVsForwarders isWindows={ props.isWindows }/> i
 <summary>PATH setup</summary>
 
 With all binary tools installed in `xpacks/.bin`, the project build
-configurations need a single PATH adjustment:
+configurations need only a single PATH adjustment:
 
 ```sh
 export PATH=<...project-path...>/xpacks/.bin:$PATH
@@ -134,8 +193,10 @@ export PATH=<...project-path...>/xpacks/.bin:$PATH
 
 { props.isWindows === 'True' ?
   <Admonition type="tip">
-    <p>When not using the Git console, adjust the syntax for the
-  corresponding shell.</p>
+    <p>This syntax is for the Git Bash console.
+      When using COMMAND.EXE or Power Shell,
+      adjust the syntax for the corresponding Windows specific shell.
+    </p>
   </Admonition>
  : ''
 }
@@ -147,13 +208,17 @@ export PATH=<...project-path...>/xpacks/.bin:$PATH
 The above `xpm install` command will do the following:
 
 * identify the platform specific archive for the latest available version
-  of OpenOCD, download it in a cache and unpack
+  of OpenOCD, download it into a cache and unpack
   it into a versioned folder
   in the **central xPacks store** (if not already there);
-  check the output of the `xpm` command for the actual
+  check the output of the `xpm install` command for the actual
   folder used on your platform;
-* add <LinksVsForwarders isWindows={ props.isWindows }/>
-  into the local `xpacks/.bin` folder, referring to the binaries in the central store;
+* create a local symbolic link
+  like <code>xpacks/@xpack-dev-tools/openocd</code> pointing to the
+  versioned folder in the central xPacks store
+* add <LinksVsForwarders isWindows={ props.isWindows }/> into
+  the local `xpacks/.bin` folder, referring to the binaries in
+  <code>xpacks/@xpack-dev-tools/openocd/.content/bin</code>;
 * add <code>@xpack-dev-tools/openocd</code> to
   `package.json` as a
   development dependency; this associates a specific version of OpenOCD with
@@ -167,21 +232,16 @@ The install location can be configured using the
 
 :::
 
-:::tip
-
-**xpm** unpacks the archive content into a folder
-named `.content`. On some platforms
-this might be hidden for normal browsing, and seeing it requires
-separate options (like `ls -A`) or, in file browsers, to enable
-settings like **Show Hidden Files**.
-
-:::
 </details>
 
 <details>
-<summary>devDependencies</summary>
+<summary>Reproducibility and `devDependencies`</summary>
 
-As mentioned before, **xpm** adds all locally installed binary packages
+To ensure reproducibility, it is essential for each project to always
+use the exact desired versions of the required tools, regardless of the
+tools installed in the system.
+
+To achieve this goal, **xpm** records all locally installed binary packages
 as development dependencies in the project `package.json` file.
 
 The result looks like this:
@@ -204,23 +264,25 @@ The result looks like this:
 } </CodeBlock>
 
 If the `package.json` is saved in the revision system, the above
-definition adds
-a hard reference to the specific version of
+definition acts as a hard reference to the specific version of
 **xPack OpenOCD**.
 
-After cloning the project to a different location, the command `xpm install`
+After cloning the project into a different location, the command `xpm install`
 can be used to install all development dependencies.
 
 This is particularly useful for CI/CD environments.
+
 </details>
 
 ### Install globally
 
-For older development environments (like the initial **Eclipse Embedded C/C++ plug-ins**; the current version also supports project installs),
+For older development environments,
 it is also possible to install OpenOCD only globally in the **central
-xPacks store**, without any local <LinksVsForwarders isWindows={ props.isWindows }/>,
-assuming the development environments are capable of handling
-the paths themselves.
+xPacks store**, without any
+local <LinksVsForwarders isWindows={ props.isWindows }/>; it
+is the developer's responsibility to configure the path to the tools.
+
+No other files are installed in any system folders or other locations.
 
 <CodeBlock language="sh"> {
 `xpm install @xpack-dev-tools/openocd@latest --global --verbose`
@@ -230,6 +292,6 @@ the paths themselves.
 
 Installing packages locally into a project always installs the
 packages in the **central xPacks store**; subsequent attempts to
-install the package globally will fail with _already installed_.
+install the packages globally will fail with _already installed_.
 
 :::

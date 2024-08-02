@@ -9,7 +9,7 @@ On all platforms the binary xPack packages are standalone,
 and expect only the standard
 runtime to be present on the host.
 
-All dependencies that are build as shared libraries are copied locally
+All dependencies that are built as shared libraries are copied locally
 in the `libexec` folder (or in the same folder as the executable for Windows).
 
 ### `DT_RPATH` and `LD_LIBRARY_PATH`
@@ -21,13 +21,14 @@ $ readelf -d library.so | grep runpath
  0x000000000000001d (RPATH)            Library rpath: [$ORIGIN]
 ```
 
-In the GNU ld.so search strategy, the `DT_RPATH` has
-the highest priority, higher than `LD_LIBRARY_PATH`, so if this later one
+In the GNU `ld.so` search strategy, the `DT_RPATH` has
+the highest priority, higher than `LD_LIBRARY_PATH`, so if this latter one
 is set in the environment, it should not interfere with the xPack binaries.
 
 Please note that previous versions, up to mid-2020, used `DT_RUNPATH`, which
-has a priority lower than `LD_LIBRARY_PATH`, and does not tolerate setting
-it in the environment.
+has a priority lower than `LD_LIBRARY_PATH`; setting `LD_LIBRARY_PATH`
+in the environment overrode `DT_RUNPATH`, resulting in failures to load
+the libraries.
 
 ### `@rpath` and `@loader_path`
 

@@ -42,7 +42,7 @@ const sidebars: SidebarsConfig = {
     {
       type: 'doc',
       id: 'support/index',
-      label: 'Help Center'
+      label: 'Help Centre'
     },
     {
       type: 'doc',

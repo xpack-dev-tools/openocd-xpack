@@ -16,15 +16,7 @@ import clsx from 'clsx';
 
 export default function LinksVsForwarders({isWindows}): JSX.Element {
   if (isWindows)
-    return (
-        <>
-          <code>.cmd</code> forwarders
-        </>
-      )
+    return ( <>forwarder scripts</> )
   else
-    return (
-      <>
-        symbolic links
-      </>
-    )
+    return ( <>symbolic links</> )
 }

@@ -17,9 +17,21 @@ import fs from 'node:fs';
 
 function getCustomFields() {
   const pwd = fileURLToPath(import.meta.url);
-  const filePath = path.join(path.dirname(path.dirname(pwd)), 'package.json');
-  // logger.info(filePath);
-  const fileContent = fs.readFileSync(filePath);
+  // logger.info(pwd);
+
+  let filePath
+  let fileContent
+
+  try {
+    filePath = path.join(path.dirname(path.dirname(pwd)), 'build-assets', 'package.json');
+    // logger.info(filePath);
+    fileContent = fs.readFileSync(filePath);
+  } catch (error) {
+    // Try again with the top file.
+    filePath = path.join(path.dirname(path.dirname(pwd)), 'package.json');
+    // logger.info(filePath);
+    fileContent = fs.readFileSync(filePath);
+  }
 
   const topPackageJson = JSON.parse(fileContent.toString());
   const jsonVersion = topPackageJson.version.replace(".pre", "");
@@ -160,7 +172,7 @@ const config: Config = {
               to: '/docs/user-info'
             },
             {
-              label: 'Help Center',
+              label: 'Help Centre',
               to: '/docs/support'
             },
             {

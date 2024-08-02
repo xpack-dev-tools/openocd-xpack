@@ -47,7 +47,19 @@ All binaries are:
 
 - **self-contained** (include all required libraries)
 - **file-system relocatable** (can be installed in any location)
-- built on a slightly older system (to make them run on a wide range of systems)
+- built on slightly older systems (to make them run on both old and new systems)
+
+<details>
+<summary>Compatibility with older systems</summary>
+
+Given that most operating systems maintain significant compatibility
+with older versions, building an application on an older system ensures
+that the same binary can run on newer versions. Conversely, building an
+application on a newer system may utilize library features that are
+not available in older versions, making backward compatibility less
+feasible.
+
+</details>
 
 ## Benefits
 
@@ -55,15 +67,17 @@ The main advantages of using the **xPack OpenOCD** are:
 
 - a convenient, uniform and portable install/uninstall/upgrade procedure;
   the same procedure is used for all major
-  platforms (**Intel Windows** 64-bit,
-  **Intel GNU/Linux** 64-bit,
-  **Arm GNU/Linux** 64/32-bit,
-  **Intel macOS** 64-bit,
-  **Apple Silicon macOS** 64-bit)
+  platforms (**x86_64 Windows**,
+  **x86_64 GNU/Linux**,
+  **aarch64 GNU/Linux**,
+  **armhf GNU/Linux**,
+  **x86_64 macOS**,
+  **arm64 macOS**)
 - multiple versions of the same package can be installed at the same time on
   the same system
 - no need to worry about dependent libraries, all are included
-- a good integration with development environments (no need for Docker images)
+- significantly lighter and easier to use than Docker images that provide
+  similar functionality and are GNU/Linux centric
 - projects can be tied to specific tools versions; this provides a good
   reproducibility, especially useful in **CI/CD** environments.
 
@@ -88,7 +102,7 @@ The quick advice for getting support is to use the
 [GitHub Discussions](https://github.com/xpack-dev-tools/openocd-xpack/discussions/).
 
 For additional information, please refer to the
-[Help Center](/docs/support/) page.
+[Help Centre](/docs/support/) page.
 
 ## Change log
 
@@ -116,7 +130,7 @@ with all rights reserved to
 [Liviu Ionescu](https://github.com/ilg-ul).
 
 The binary distributions include several open-source components; the
-corresponding licenses are available in the installed
+corresponding licenses are available in each archive in the
 `distro-info/licenses` folder.
 
 ## Releases

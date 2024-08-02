@@ -32,7 +32,7 @@ const FeatureList: FeatureItem[] = [
         can be installed
         at the same time on the same system. <b>Windows</b>, <b>macOS</b>, <b>GNU/Linux</b> are
         supported. The tools include all
-        needed libraries and can be installed in any folder.
+        required libraries and can be installed in any folder.
       </>
     ),
   },

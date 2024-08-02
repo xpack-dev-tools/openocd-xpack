@@ -14,13 +14,19 @@ import LinksVsForwarders from '@site/src/components/LinksVsForwarders'
 
 The version string used by the { props.upstreamName ? props.upstreamName : 'OpenOCD' } project
 is a three number string
-like <code>{ customField('upstreamVersion') }</code>; to this string the xPack distribution adds a four number,
-but since semver allows only three numbers, all additional ones can
+like <code>{ customField('upstreamVersion') }</code>;
+to this string the xPack distribution adds a fourth number,
+but since [SemVer](https://semver.org) allows only three numbers,
+all additional ones can
 be added only as pre-release strings, separated by a dash,
-like <code>{ customField('upstreamVersion') }-{ customField('xpackSubversion') }</code>. When published as a npm package, the version gets
-a fifth number, like <code>{ customField('upstreamVersion') }-{ customField('xpackSubversion') }.{ customField('npmSubversion') }</code>.
+like <code>{ customField('upstreamVersion') }-{ customField('xpackSubversion') }</code>. When
+published as a npm package, the version gets
+a fifth number,
+like <code>{ customField('upstreamVersion') }-{ customField('xpackSubversion') }.{ customField('npmSubversion') }</code>.
 
-Since adherence of third party packages to semver is not guaranteed,
+Since adherence of third party packages to SemVer is not guaranteed,
 it is recommended to avoid referring to the xPack OpenOCD dependency via
-a semver expressions like <code>^{ customField('upstreamVersion') }</code> or
-<code>~{ customField('upstreamVersion') }</code>, and prefer exact matches, like <code>{ customField('upstreamVersion') }-{ customField('xpackSubversion') }.{ customField('npmSubversion') }</code>.
+a SemVer expressions
+like <code>^{ customField('upstreamVersion') }</code> or <code>~{ customField('upstreamVersion') }</code>, and
+prefer exact matches,
+like <code>{ customField('upstreamVersion') }-{ customField('xpackSubversion') }.{ customField('npmSubversion') }</code>.
