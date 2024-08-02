@@ -63,14 +63,14 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: xpack-dev-tools/xbb-helper-xpack
-          path: xpacks/@xpack-dev-tools/xbb-helper
+          path: ./xpacks/@xpack-dev-tools/xbb-helper
           ref: ${{ github.event.inputs.helper-git-ref }}
           fetch-depth: 3
 
       - name: 'Create body'
         run: |
           npm install
-          npm run liquidjs --silent -- --context '{ "XBB_RELEASE_VERSION": "${{ github.event.inputs.version }}" }' --template @scripts/templates/body-github-release-liquid.md >.github/workflows/body-github-release.md
+          npm run liquidjs --silent -- --context '{ "XBB_RELEASE_VERSION": "${{ github.event.inputs.version }}" }' --template @./scripts/templates/body-github-release-liquid.md >.github/workflows/body-github-release.md
           cat .github/workflows/body-github-release.md
 
       - name: 'Publish release'

@@ -104,13 +104,13 @@ jobs:
 
       - name: 'Install project dependencies'
         timeout-minutes: 1440
-        run: xpm install --loglevel ${{ github.event.inputs.xpm_install_loglevel }} ${{ github.event.inputs.xpm_install_options }}
+        run: xpm install --loglevel ${{ github.event.inputs.xpm_install_loglevel }} ${{ github.event.inputs.xpm_install_options }} -C .
 
       - name: 'Build linux-x64 binaries'
         timeout-minutes: 1440
         run: |
-          xpm install --config linux-x64 --loglevel ${{ github.event.inputs.xpm_install_loglevel }} ${{ github.event.inputs.xpm_install_options }}
-          xpm run build --config linux-x64
+          xpm install --config linux-x64 --loglevel ${{ github.event.inputs.xpm_install_loglevel }} ${{ github.event.inputs.xpm_install_options }} -C .
+          xpm run build --config linux-x64 -C .
 
   linux-x64-upload:
     name: 'linux-x64 openocd ${{ github.event.inputs.version }} upload'
@@ -143,7 +143,7 @@ jobs:
         uses: ncipollo/release-action@v1.13.0 # v1.13 for 18.04
         with:
           allowUpdates: true
-          artifacts: 'build/linux-x64/deploy/*'
+          artifacts: './build/linux-x64/deploy/*'
           bodyFile: '.github/workflows/body-github-pre-releases-test.md'
           commit: 'master'
           draft: false
@@ -160,7 +160,7 @@ jobs:
 
       - name: 'Rename working area'
         # For just in case absolute paths remain unprocessed.
-        run: echo mv -v build build-$(date -u +%Y%m%d-%H%M%S)
+        run: echo mv -v ./build ./build-$(date -u +%Y%m%d-%H%M%S)
 
   linux-x64-test:
     name: 'linux-x64 openocd ${{ github.event.inputs.version }} test'
@@ -186,16 +186,16 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: xpack-dev-tools/xbb-helper-xpack
-          path: xpacks/@xpack-dev-tools/xbb-helper
+          path: ./xpacks/@xpack-dev-tools/xbb-helper
           ref: ${{ github.event.inputs.helper-git-ref }}
           fetch-depth: 3
 
       - name: 'Run ${{ github.event.inputs.version }} native test'
-        run: bash scripts/test.sh --image github-actions-ubuntu-latest --version ${{ github.event.inputs.version }} --base-url pre-release
+        run: bash ./scripts/test.sh --image github-actions-ubuntu-latest --version ${{ github.event.inputs.version }} --base-url pre-release
 
       - name: Upload platform tests report
         uses: actions/upload-artifact@v4
         with:
           name: tests-report-linux-x64
-          path: ${{ github.workspace }}/build/linux-x64/artefacts/tests-report-*.md
+          path: ${{ github.workspace }}/./build/linux-x64/artefacts/tests-report-*.md
           overwrite: true
