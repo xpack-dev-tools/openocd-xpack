@@ -69,8 +69,8 @@ jobs:
 
       - name: 'Create body'
         run: |
-          npm install
-          npm run liquidjs --silent -- --context '{ "XBB_RELEASE_VERSION": "${{ github.event.inputs.version }}" }' --template @build-assets/templates/body-github-release-liquid.md >.github/workflows/body-github-release.md
+          (cd build-assets; npm install)
+          (cd build-assets; npm run liquidjs --silent -- --context '{ "XBB_RELEASE_VERSION": "${{ github.event.inputs.version }}" }' --template @build-assets/templates/body-github-release-liquid.md --output ../.github/workflows/body-github-release.md)
           cat .github/workflows/body-github-release.md
 
       - name: 'Publish release'
