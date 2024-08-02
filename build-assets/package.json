@@ -53,7 +53,7 @@
       "trigger-workflow-test-docker-linux-arm": "bash xpacks/@xpack-dev-tools/xbb-helper/github-actions/trigger-workflow-test-docker-linux-arm.sh",
       "trigger-travis-macos": "bash xpacks/@xpack-dev-tools/xbb-helper/travis/trigger-travis-macos.sh",
       "trigger-workflow-publish-release": "bash xpacks/@xpack-dev-tools/xbb-helper/github-actions/trigger-workflow-publish-release.sh",
-      "generate-website-blog-post": "bash xpacks/@xpack-dev-tools/xbb-helper/github-actions/generate-jekyll-post.sh",
+      "generate-website-blog-post": "bash xpacks/@xpack-dev-tools/xbb-helper/github-actions/generate-website-blog-post.sh",
       "update-package-binaries": "bash xpacks/@xpack-dev-tools/xbb-helper/github-actions/update-package-binaries.sh",
       "trigger-workflow-test-xpm": "bash xpacks/@xpack-dev-tools/xbb-helper/github-actions/trigger-workflow-test-xpm.sh",
       "trigger-workflow-deep-clean": "bash xpacks/@xpack-dev-tools/xbb-helper/github-actions/trigger-workflow-deep-clean.sh",
