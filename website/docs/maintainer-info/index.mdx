@@ -107,7 +107,7 @@ Before starting the build, perform some checks and tweaks.
 
 ### Download the build scripts
 
-The build scripts are available in the `build-scripts/scripts` folder of the
+The build scripts are available in the `build-assets/scripts` folder of the
 [`xpack-dev-tools/openocd-xpack`](https://github.com/xpack-dev-tools/openocd-xpack)
 Git repo.
 
@@ -150,7 +150,7 @@ and fix them; assign them to a milestone (like <code>{ customField('upstreamVers
 ### Increase the version and update VERSION
 
 Determine the version (like <code>{ customField('upstreamVersion') }</code>)
-and update the `build-scripts/scripts/VERSION` file; the format
+and update the `build-assets/scripts/VERSION` file; the format
 is <code>{ customField('upstreamVersion') }-{ customField('xpackSubversion') }</code>.
 The fourth number is the xPack release number
 of this version. A fifth number will be added to the version in `package.json`
@@ -170,14 +170,14 @@ like <code>{ customField('upstreamVersion') }-{ customField('xpackSubversion') }
 
 ### Update the version specific code
 
-- open the `scripts/versioning.sh` file
+- open the `build-assets/scripts/versioning.sh` file
 - add a new `if` with the new version before the existing code
 - update `XBB_OPENOCD_GIT_COMMIT` to the desired commit id
 
 ## Build
 
-The builds currently run on 5 dedicated machines (Intel GNU/Linux,
-Arm 32 GNU/Linux, Arm 64 GNU/Linux, Intel macOS and Apple Silicon macOS).
+The builds currently run on 5 dedicated machines (x64 GNU/Linux,
+arm64 GNU/Linux, arm GNU/Linux, x64 macOS and arm64 macOS).
 
 ### Development run the build scripts
 
@@ -189,9 +189,9 @@ All actions are defined as **xPack actions** and can be conveniently
 triggered via the VS Code graphical interface, using the
 [xPack extension](https://marketplace.visualstudio.com/items?itemName=ilg-vscode.xpack).
 
-#### Intel macOS
+#### x64 macOS
 
-For Intel macOS, first run the build on the development machine
+For x64 macOS, first run the build on the development machine
 (`wksi`, a recent macOS):
 
 ```sh
@@ -202,22 +202,22 @@ export XBB_ENVIRONMENT_SKIP_CHECKS="y"
 rm -f ~/Work/xpack-dev-tools/openocd-xpack.git/package-lock.json
 git -C ~/Work/xpack-dev-tools/openocd-xpack.git pull
 
-xpm run install -C ~/Work/xpack-dev-tools/openocd-xpack.git
+xpm run install -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets
 
 git -C ~/Work/xpack-dev-tools/xbb-helper-xpack.git pull
 xpm link -C ~/Work/xpack-dev-tools/xbb-helper-xpack.git
 
-xpm run link-deps -C ~/Work/xpack-dev-tools/openocd-xpack.git
+xpm run link-deps -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets
 
-xpm run deep-clean --config darwin-x64  -C ~/Work/xpack-dev-tools/openocd-xpack.git && \
-xpm install --config darwin-x64 -C ~/Work/xpack-dev-tools/openocd-xpack.git && \
-xpm run build-development --config darwin-x64 -C ~/Work/xpack-dev-tools/openocd-xpack.git
+xpm run deep-clean --config darwin-x64  -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets && \
+xpm install --config darwin-x64 -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets && \
+xpm run build-development --config darwin-x64 -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets
 ```
 
 For a debug build:
 
 ```sh
-xpm run build-development-debug --config darwin-x64 -C ~/Work/xpack-dev-tools/openocd-xpack.git
+xpm run build-development-debug --config darwin-x64 -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets
 ```
 
 The build takes about 7 minutes.
@@ -237,14 +237,14 @@ Repeat the same steps as before.
 ```sh
 rm -f ~/Work/xpack-dev-tools/openocd-xpack.git/package-lock.json && \
 git -C ~/Work/xpack-dev-tools/openocd-xpack.git pull && \
-xpm run install -C ~/Work/xpack-dev-tools/openocd-xpack.git && \
+xpm run install -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets && \
 git -C ~/Work/xpack-dev-tools/xbb-helper-xpack.git pull && \
 xpm link -C ~/Work/xpack-dev-tools/xbb-helper-xpack.git && \
-xpm run link-deps -C ~/Work/xpack-dev-tools/openocd-xpack.git && \
+xpm run link-deps -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets && \
 \
-xpm run deep-clean --config darwin-x64  -C ~/Work/xpack-dev-tools/openocd-xpack.git && \
-xpm install --config darwin-x64 -C ~/Work/xpack-dev-tools/openocd-xpack.git && \
-xpm run build-development --config darwin-x64 -C ~/Work/xpack-dev-tools/openocd-xpack.git
+xpm run deep-clean --config darwin-x64  -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets && \
+xpm install --config darwin-x64 -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets && \
+xpm run build-development --config darwin-x64 -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets
 ```
 
 Several minutes later, the output of the build script is a compressed
@@ -268,14 +268,14 @@ Update the build scripts (or clone them at the first use):
 ```sh
 rm -f ~/Work/xpack-dev-tools/openocd-xpack.git/package-lock.json && \
 git -C ~/Work/xpack-dev-tools/openocd-xpack.git pull && \
-xpm run install -C ~/Work/xpack-dev-tools/openocd-xpack.git && \
+xpm run install -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets && \
 git -C ~/Work/xpack-dev-tools/xbb-helper-xpack.git pull && \
 xpm link -C ~/Work/xpack-dev-tools/xbb-helper-xpack.git && \
-xpm run link-deps -C ~/Work/xpack-dev-tools/openocd-xpack.git && \
+xpm run link-deps -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets && \
 \
-xpm run deep-clean --config darwin-arm64  -C ~/Work/xpack-dev-tools/openocd-xpack.git && \
-xpm install --config darwin-arm64 -C ~/Work/xpack-dev-tools/openocd-xpack.git && \
-xpm run build-development --config darwin-arm64 -C ~/Work/xpack-dev-tools/openocd-xpack.git
+xpm run deep-clean --config darwin-arm64  -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets && \
+xpm install --config darwin-arm64 -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets && \
+xpm run build-development --config darwin-arm64 -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets
 ```
 
 Several minutes later, the output of the build script is a compressed
@@ -300,15 +300,15 @@ Update the build scripts (or clone them at the first use):
 ```sh
 rm -f ~/Work/xpack-dev-tools/openocd-xpack.git/package-lock.json && \
 git -C ~/Work/xpack-dev-tools/openocd-xpack.git pull && \
-xpm run install -C ~/Work/xpack-dev-tools/openocd-xpack.git && \
+xpm run install -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets && \
 git -C ~/Work/xpack-dev-tools/xbb-helper-xpack.git pull && \
 xpm link -C ~/Work/xpack-dev-tools/xbb-helper-xpack.git && \
-xpm run link-deps -C ~/Work/xpack-dev-tools/openocd-xpack.git && \
+xpm run link-deps -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets && \
 \
-xpm run deep-clean --config linux-x64 -C ~/Work/xpack-dev-tools/openocd-xpack.git && \
-xpm run docker-prepare --config linux-x64 -C ~/Work/xpack-dev-tools/openocd-xpack.git && \
-xpm run docker-link-deps --config linux-x64 -C ~/Work/xpack-dev-tools/openocd-xpack.git && \
-xpm run docker-build-development --config linux-x64 -C ~/Work/xpack-dev-tools/openocd-xpack.git
+xpm run deep-clean --config linux-x64 -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets && \
+xpm run docker-prepare --config linux-x64 -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets && \
+xpm run docker-link-deps --config linux-x64 -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets && \
+xpm run docker-build-development --config linux-x64 -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets
 ```
 
 Several minutes later, the output of the build script is a compressed
@@ -324,15 +324,15 @@ Clean the build folder and prepare the docker container:
 ```sh
 rm -f ~/Work/xpack-dev-tools/openocd-xpack.git/package-lock.json && \
 git -C ~/Work/xpack-dev-tools/openocd-xpack.git pull && \
-xpm run install -C ~/Work/xpack-dev-tools/openocd-xpack.git && \
+xpm run install -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets && \
 git -C ~/Work/xpack-dev-tools/xbb-helper-xpack.git pull && \
 xpm link -C ~/Work/xpack-dev-tools/xbb-helper-xpack.git && \
-xpm run link-deps -C ~/Work/xpack-dev-tools/openocd-xpack.git && \
+xpm run link-deps -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets && \
 \
-xpm run deep-clean --config win32-x64 -C ~/Work/xpack-dev-tools/openocd-xpack.git && \
-xpm run docker-prepare --config win32-x64 -C ~/Work/xpack-dev-tools/openocd-xpack.git && \
-xpm run docker-link-deps --config win32-x64 -C ~/Work/xpack-dev-tools/openocd-xpack.git && \
-xpm run docker-build-development --config win32-x64 -C ~/Work/xpack-dev-tools/openocd-xpack.git
+xpm run deep-clean --config win32-x64 -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets && \
+xpm run docker-prepare --config win32-x64 -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets && \
+xpm run docker-link-deps --config win32-x64 -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets && \
+xpm run docker-build-development --config win32-x64 -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets
 ```
 
 Several minutes later, the output of the build script is a compressed
@@ -355,15 +355,15 @@ Update the build scripts (or clone them at the first use):
 ```sh
 rm -f ~/Work/xpack-dev-tools/openocd-xpack.git/package-lock.json && \
 git -C ~/Work/xpack-dev-tools/openocd-xpack.git pull && \
-xpm run install -C ~/Work/xpack-dev-tools/openocd-xpack.git && \
+xpm run install -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets && \
 git -C ~/Work/xpack-dev-tools/xbb-helper-xpack.git pull && \
 xpm link -C ~/Work/xpack-dev-tools/xbb-helper-xpack.git && \
-xpm run link-deps -C ~/Work/xpack-dev-tools/openocd-xpack.git && \
+xpm run link-deps -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets && \
 \
-xpm run deep-clean --config linux-arm64 -C ~/Work/xpack-dev-tools/openocd-xpack.git && \
-xpm run docker-prepare --config linux-arm64 -C ~/Work/xpack-dev-tools/openocd-xpack.git && \
-xpm run docker-link-deps --config linux-arm64 -C ~/Work/xpack-dev-tools/openocd-xpack.git && \
-xpm run docker-build-development --config linux-arm64 -C ~/Work/xpack-dev-tools/openocd-xpack.git
+xpm run deep-clean --config linux-arm64 -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets && \
+xpm run docker-prepare --config linux-arm64 -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets && \
+xpm run docker-link-deps --config linux-arm64 -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets && \
+xpm run docker-build-development --config linux-arm64 -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets
 ```
 
 About 10 minutes later (3 minutes on ampere), the output of the build script is a compressed
@@ -386,15 +386,15 @@ Update the build scripts (or clone them at the first use):
 ```sh
 rm -f ~/Work/xpack-dev-tools/openocd-xpack.git/package-lock.json && \
 git -C ~/Work/xpack-dev-tools/openocd-xpack.git pull && \
-xpm run install -C ~/Work/xpack-dev-tools/openocd-xpack.git && \
+xpm run install -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets && \
 git -C ~/Work/xpack-dev-tools/xbb-helper-xpack.git pull && \
 xpm link -C ~/Work/xpack-dev-tools/xbb-helper-xpack.git && \
-xpm run link-deps -C ~/Work/xpack-dev-tools/openocd-xpack.git && \
+xpm run link-deps -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets && \
 \
-xpm run deep-clean --config linux-arm -C ~/Work/xpack-dev-tools/openocd-xpack.git && \
-xpm run docker-prepare --config linux-arm -C ~/Work/xpack-dev-tools/openocd-xpack.git && \
-xpm run docker-link-deps --config linux-arm -C ~/Work/xpack-dev-tools/openocd-xpack.git && \
-xpm run docker-build-development --config linux-arm -C ~/Work/xpack-dev-tools/openocd-xpack.git
+xpm run deep-clean --config linux-arm -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets && \
+xpm run docker-prepare --config linux-arm -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets && \
+xpm run docker-link-deps --config linux-arm -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets && \
+xpm run docker-build-development --config linux-arm -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets
 ```
 
 About 10 minutes later, the output of the build script is a compressed
@@ -604,8 +604,8 @@ and run the tests, use:
 
 ```sh
 git -C ~/Work/xpack-dev-tools/openocd-xpack.git pull
-xpm run install -C ~/Work/xpack-dev-tools/openocd-xpack.git
-xpm run test-pre-release -C ~/Work/xpack-dev-tools/openocd-xpack.git
+xpm run install -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets
+xpm run test-pre-release -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets
 ```
 
 For even more tests, on each platform (MacOS, GNU/Linux, Windows),
