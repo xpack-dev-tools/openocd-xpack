@@ -2,9 +2,285 @@
 
 Entries in this file are in reverse chronological order.
 
+## 2024-08-02
+
+* v0.12.0-4 prepared
+* 03f9f13 website: maintainer-info updates
+* 6b4593c website: re-generate commons
+* fd91935 build-assets cleanups
+* a78a1fc build-assets/package.json: update --development
+* 95b5ec5 package.json: bump docker 5.2.2
+* fc76cbe website: updates
+* 5a62190 move code to build-assets
+* a2c127f re-generate workflows
+* 10ce185 website: maintainer-info update
+* a105a92 website: re-generate commons
+* a1b6e73 re-generate scripts and dot files
+* 4497381 re-generate workflows
+* c949b9b openocd.sh: update is_development
+
+## 2024-07-29
+
+* b89a0bf website: re-generate blog posts with import CodeBlock
+* e174273 website: re-generate blog releases
+* 28d7ffd website: move images to sub-folders
+* 41b1838 website: re-generate common
+* e763304 package.json: build-development
+
+## 2024-07-27
+
+* d36cf63 package.json: add actions, bump deps
+* 6eb580b templates/jekyll update
+
+## 2024-07-26
+
+* 0650439 templates/jekyll update
+* 233a697 website: re-generate commons
+
+## 2024-07-24
+
+* fddba31 website: rework common code
+* a79f364 package.json: bump deps
+
+## 2024-07-23
+
+* 5541ffd re-generate workflows
+* 4093572 re-generate workflows
+* b7640f7 website: re-generate with top authors
+* 69a1bdf website: update from template
+* cc5252b re-generate workflows
+* 3ddc80e package.json: bump deps
+
+## 2024-07-22
+
+* 25e0223 package.json: bump deps
+* 448502d website: blog <a...
+* 29d5bd9 website: docs <a ...
+* 2cde9a5 website: updates from template
+
+## 2024-07-21
+
+* 77a1c70 re-generate website
+* c7c497b package.json: add generate-website-commons
+* 0a7e5a4 website: reorder menu bar
+
+## 2024-07-19
+
+* b795ec2 website: install - add PATH collapsable sections
+* 847974a website: install updates
+* 79f6bb0 website: install updates
+
+## 2024-07-18
+
+* 62a6ee9 website: cosmetise CodeBlock in docs
+* 2330d6c website: cosmetise CodeBlock in blog posts
+* d5b2ab3 website: install update
+* 378c4e1 website: install fix syntax
+* 426b11e website: install update
+* 1b71718 website: install updates
+* 5d886ae website: install use more <details>
+* 58fc471 website: faq cosmetics
+* c0fa253 website: developer-info revert to parametrised list
+* ade98b4 Revert "website: remove unused InstallWithCopy"
+* 0aa0db7 website: remove unused InstallWithCopy
+* 01ae9ba website: use customField() hook
+* d17d58e website: install devDependencies
+* 7d337bf website: config cosmetics
+* f5a56a9 website: enable package.json parsing
+* d6a8eca website: refer to '@generated/docusaurus.config'
+* 7bce054 website: install use LinksVsForwarders
+* 4e761e5 website: add LinksVsForwarders component
+* ffbd7de website: install updates
+* 6627618 website: install rework
+
+## 2024-07-17
+
+* 8f5b0f4 website: cosmetise urls
+* 2e2463b website: fix parametrised urls
+* 04e30e6 website: install rework passing label
+* e80b125 website: install - add label
+* 79f0f05 website: install update
+* c31389e website: install updates
+* 3b63869 website: readme update
+* 102ecd4 website: user-info add testing
+* 6359e6f website: add User Info to top menu
+* 66f279a website: docusaurus.config static fields
+* 9cdfd0e website: import siteConfig
+
+## 2024-07-16
+
+* 0a4a367 website: revert to static customFields
+* 88160da website: update package-lock.json
+* 5d89e4d website: update import { customFields }
+* 97433ed website: read customFields from package.json
+* a0e2129 website: cosmetics
+* b32162b website: customFields add appName
+* 9a3fe29 website: developer-info extract common
+* 925a7ed website: install extract common
+* f2b6fb0 website: install use customFields directly
+* aa08922 website: fix subsitutions
+* 3c1fcbf website: fix user-info
+* bdd8089 rename custom fields
+
+## 2024-07-15
+
+* 0b541de website: install update
+* 831ca41 website: home page update
+* cf67257 website: README cosmetics
+* 3e8b246 website: add home page icons
+* ae74348 website: developer-info fix
+* 48ce89f website: install update
+* efd0241 website: install update
+* 20ca17a website: releases update
+* 864642e website: getting-started update
+* e9efe70 website: install rephrases
+* e3e7da5 website: getting-started fix
+
+## 2024-07-14
+
+* c08cb15 website: developer-info update
+* 608bf0d website: maintainer-info update
+* 6ac2d92 website: developer-info update
+* 06b5ac6 website: maintainer-info update
+* fdb15a7 website: developer-info update
+* 961a3c8 website: menus update
+* 5bc324a website: update top menu
+* c3826e1 website: sidebar update
+* 59f73d3 website: install updates
+* 3afd448 website: install updates
+* 48c12eb website: home page update
+* 09b0f0e website: parametrise maintainer & developer
+
+## 2024-07-12
+
+* 36eb289 website: add post for new site
+* 02367f4 website: docs updates
+* 78b05bc website: rename getting-started
+* e535651 website: developer info update
+* 1e12575 website: updates
+* 09aba88 README update
+* 6d4dea2 README update
+* 3edf231 README update
+* a4d7066 README update
+* 1558187 README simplification
+* 7bcab25 website: overview update
+* c56e921 website: add developer-info
+* a9c9f45 website: maintainer-info update
+* 0a8d5da website: config.ts update
+* 765b51f website: add maintainer-info
+* adf699e website: rename docsSidebar
+* aecf9a8 website: move docs to folders
+* a17e878 website: update archive titles
+* 856d61c website: npm run write-translations
+* 09391ed website: add gtag trackingID
+* fc290f3 website: overview cosmetics
+* d5b6427 website: move ## Shared libraries to user info
+* 3180ea8 website: home page update
+* ab40565 website: config.ts: fix url to release
+* 27b5f3a use PDF icon
+* 512a172 ISSUE_TEMPLATE update
+* 6d576b4 website: define customFields
+* 5089d89 website: add copyright notice to code
+* 7e1a07a website: tag releases (plural)
+* 0fa8646 website: config add Tags menu
+* cd2a0a8 website: install update
+* 643cca4 website: authors (ilg)
+
+## 2024-07-11
+
+* 8465271 website: faq update
+* 998a1a9 website: overview update
+* bf2d5ba website: config.ts update menus
+* 33cbf16 website: install cosmetics
+* c0dad2b website: user-info add frontMatter properties
+* c9c721f README update
+* a179803 website: rework home page
+* 6d1c985 website: add user-info
+* feeb617 website: overview update
+* 5ac6cd5 website: sidebar rename Getting Started
+* 141ce0b website: test.md update
+* 8a965de website: rework install
+* 41135a0 website: remove TODO from install
+* ed5cda2 website: update testing path in releases
+* a8650a4 website: revert to text download link
+* 47ff398 website: update download-icon.png
+* bb516cf website cosmetise frontMatter
+* d075ce9 website: bold GLIBC
+
+## 2024-07-10
+
+* f649d7f website: cosmetise project name
+* 095ce13 website: cosmetise project name
+* 7b7707c website: cosmetise GitHub links
+* d9c8322 website: use download-icon.png
+* b957b85 website: cosmetise download_url
+* e9ffb86 website: fix broken link
+* 369cbf2 website: custom.css reduce titles
+* b3f1a56 website: add past releases
+* b536924 website: add releases list
+
+## 2024-06-29
+
+* bff34ac website: overview update
+* 3f9bf36 website: overview update
+* ecc784e website: overview update
+* 42e41cb website: overview update
+* 3855edf website: add some content
+* a25365d package.json: bump deps
+* ba5d21b add website with demo content
+* f1072d2 package.json: generate publish-github-pages.yml
+* 111b865 package.json: loglevel info
+* 5a19113 package.json: bump deps
+* 7b9b5e6 prepare 0.12.0-4
+* 8cbfa44 body-jekyll update
+* 2ad24bb tests update
+* 127778e re-generate workflows
+
+## 2024-06-18
+
+* 4aa2a2f re-generate .npmignore
+* 3d16727 re-generate test.sh
+* 745359b re-generate workflows
+* ffc7fe0 READMEs update
+
+## 2024-06-17
+
+* 5fa9ed6 package.json: rework generate workflows
+* c436acd package.json: bump deps
+* 95af0d2 application.sh: update
+
+## 2024-05-23
+
+* c5e8dde package.json: clang 16.0.6-1.1
+
+## 2024-05-18
+
+* 6b6a9ea rework git_clone call
+* bf2edf6 READMEs update
+* 00497ec package.json: XBB_ENVIRONMENT_SKIP_CHECKS
+
+## 2024-05-16
+
+* 6cf8d60 READMEs update
+
+## 2024-05-09
+
+* 2e93323 use is_develop and with_strip
+
+## 2024-05-03
+
+* 722c16e package.json: add bison to deps
+
 ## 2024-04-02
 
-* v0.12.0-3 published on npmjs.com
+*
+
+## 2024-05-02
+
+* b40f814 package.json: clang 17.0.6-1.1
+* faaa191 README update
+* a28baf0 0.12.0-3.1
+* 8465154 CHANGELOG: publish npm v0.12.0-3.1
 * b45a5c4 package.json: update urls for 0.12.0-3.1 release
 * e7192fb README update
 * 6d81c5d body-jekyll update
@@ -18,28 +294,40 @@ Entries in this file are in reverse chronological order.
 
 ## 2024-03-24
 
+*
+
 * d3024ab README update
 * fa87ff7 prepare v0.12.0-3
 
 ## 2024-03-22
 
+*
+
 * ea317ed package.json: xpm-version 0.18.0
 
 ## 2024-03-08
 
+*
+
 * e668afb package.json: xpm-version 0.18.0
 
 ## 2024-03-07
+
+*
 
 * 9f36bdd package.json: xpm-version 0.18.0
 * bdad9eb package.json: bump deps
 
 ## 2024-03-06
 
+*
+
 * d0d5720 body-jekyll update
 * 25c27ad package.json: bump deps
 
 ## 2024-02-07
+
+*
 
 * fac8054 READMEs update
 * f77984e package.json: bump deps
