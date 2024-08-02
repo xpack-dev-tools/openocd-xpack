@@ -4,7 +4,11 @@ Entries in this file are in reverse chronological order.
 
 ## 2024-08-02
 
-* v0.12.0-4 prepared
+* v0.12.0-4 released
+* a84c1c8 build-assets/package.json bump deps
+* 0115820 website: install update
+* 79c7b2f website: maintainer-info update
+* 8eaa2dc prepare v0.12.0-4
 * 03f9f13 website: maintainer-info updates
 * 6b4593c website: re-generate commons
 * fd91935 build-assets cleanups
