@@ -113,7 +113,7 @@ function openocd_build()
           echo
           echo "Running openocd configure..."
 
-          if is_develop
+          if is_development
           then
             bash "${XBB_SOURCES_FOLDER_PATH}/${openocd_src_folder_name}/configure" --help
           fi
@@ -142,7 +142,7 @@ function openocd_build()
 
           config_options+=("--disable-debug") # HB
           config_options+=("--disable-dependency-tracking") # HB
-          if is_develop
+          if is_development
           then
             config_options+=("--disable-silent-rules") # HB
           fi
