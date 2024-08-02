@@ -59,7 +59,7 @@ on:
       helper-git-ref:
         description: 'The helper branch, tag or SHA to checkout'
         required: false
-        default: 'xpack-develop'
+        default: 'xpack-development'
 
 # The scripts are executed in the Docker context by GitHub Actions,
 # so `native-test.sh` should be fine, it already takes care of updates.
@@ -97,7 +97,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: xpack-dev-tools/xbb-helper-xpack
-          path: ./xpacks/@xpack-dev-tools/xbb-helper
+          path: build-assets/xpacks/@xpack-dev-tools/xbb-helper
           ref: ${{ github.event.inputs.helper-git-ref }}
           fetch-depth: 3
 
@@ -105,19 +105,19 @@ jobs:
         uses: docker://ubuntu:22.04
         with:
           entrypoint: /bin/bash
-          args: /github/workspace/./scripts/test.sh --image ubuntu:22.04 --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+          args: /github/workspace/build-assets/scripts/test.sh --image ubuntu:22.04 --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
 
       - name: 'Ubuntu 20.04 arm64'
         uses: docker://ubuntu:20.04
         with:
           entrypoint: /bin/bash
-          args: /github/workspace/./scripts/test.sh --image ubuntu:20.04 --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+          args: /github/workspace/build-assets/scripts/test.sh --image ubuntu:20.04 --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
 
       - name: 'Ubuntu 18.04 arm64'
         uses: docker://ubuntu:18.04
         with:
           entrypoint: /bin/bash
-          args: /github/workspace/./scripts/test.sh --image ubuntu:18.04 --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+          args: /github/workspace/build-assets/scripts/test.sh --image ubuntu:18.04 --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
 
   # https://en.wikipedia.org/wiki/Debian_version_history
   # https://hub.docker.com/_/debian
@@ -150,7 +150,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: xpack-dev-tools/xbb-helper-xpack
-          path: ./xpacks/@xpack-dev-tools/xbb-helper
+          path: build-assets/xpacks/@xpack-dev-tools/xbb-helper
           ref: ${{ github.event.inputs.helper-git-ref }}
           fetch-depth: 3
 
@@ -158,13 +158,13 @@ jobs:
         uses: docker://debian:bullseye
         with:
           entrypoint: /bin/bash
-          args: /github/workspace/./scripts/test.sh --image debian:bullseye --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+          args: /github/workspace/build-assets/scripts/test.sh --image debian:bullseye --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
 
       - name: 'Debian 10 arm64'
         uses: docker://debian:buster
         with:
           entrypoint: /bin/bash
-          args: /github/workspace/./scripts/test.sh --image debian:buster --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+          args: /github/workspace/build-assets/scripts/test.sh --image debian:buster --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
 
 
   # https://hub.docker.com/r/redhat/ubi8
@@ -198,7 +198,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: xpack-dev-tools/xbb-helper-xpack
-          path: ./xpacks/@xpack-dev-tools/xbb-helper
+          path: build-assets/xpacks/@xpack-dev-tools/xbb-helper
           ref: ${{ github.event.inputs.helper-git-ref }}
           fetch-depth: 3
 
@@ -206,7 +206,7 @@ jobs:
         uses: docker://redhat/ubi8
         with:
           entrypoint: /bin/bash
-          args: /github/workspace/./scripts/test.sh --image redhat/ubi8 --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+          args: /github/workspace/build-assets/scripts/test.sh --image redhat/ubi8 --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
 
   # https://en.wikipedia.org/wiki/Fedora_version_history
   # https://hub.docker.com/_/fedora
@@ -240,7 +240,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: xpack-dev-tools/xbb-helper-xpack
-          path: ./xpacks/@xpack-dev-tools/xbb-helper
+          path: build-assets/xpacks/@xpack-dev-tools/xbb-helper
           ref: ${{ github.event.inputs.helper-git-ref }}
           fetch-depth: 3
 
@@ -248,19 +248,19 @@ jobs:
         uses: docker://fedora:37
         with:
           entrypoint: /bin/bash
-          args: /github/workspace/./scripts/test.sh --image fedora:37 --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+          args: /github/workspace/build-assets/scripts/test.sh --image fedora:37 --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
 
       - name: 'Fedora 33 arm64'
         uses: docker://fedora:33
         with:
           entrypoint: /bin/bash
-          args: /github/workspace/./scripts/test.sh --image fedora:33 --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+          args: /github/workspace/build-assets/scripts/test.sh --image fedora:33 --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
 
       - name: 'Fedora 29 arm64'
         uses: docker://fedora:29
         with:
           entrypoint: /bin/bash
-          args: /github/workspace/./scripts/test.sh --image fedora:29 --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+          args: /github/workspace/build-assets/scripts/test.sh --image fedora:29 --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
 
   # https://en.wikipedia.org/wiki/OpenSUSE#Releases
   # https://hub.docker.com/u/opensuse
@@ -294,7 +294,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: xpack-dev-tools/xbb-helper-xpack
-          path: ./xpacks/@xpack-dev-tools/xbb-helper
+          path: build-assets/xpacks/@xpack-dev-tools/xbb-helper
           ref: ${{ github.event.inputs.helper-git-ref }}
           fetch-depth: 3
 
@@ -302,13 +302,13 @@ jobs:
         uses: docker://opensuse/leap:15.4
         with:
           entrypoint: /bin/bash
-          args: /github/workspace/./scripts/test.sh --image opensuse/leap:15.4 --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+          args: /github/workspace/build-assets/scripts/test.sh --image opensuse/leap:15.4 --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
 
       - name: 'OpenSUSE 15.3 arm64'
         uses: docker://opensuse/leap:15.3
         with:
           entrypoint: /bin/bash
-          args: /github/workspace/./scripts/test.sh --image opensuse/leap:15.3 --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+          args: /github/workspace/build-assets/scripts/test.sh --image opensuse/leap:15.3 --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
 
   # ---------------------------------------------------------------------------
 
@@ -341,7 +341,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: xpack-dev-tools/xbb-helper-xpack
-          path: ./xpacks/@xpack-dev-tools/xbb-helper
+          path: build-assets/xpacks/@xpack-dev-tools/xbb-helper
           ref: ${{ github.event.inputs.helper-git-ref }}
           fetch-depth: 3
 
@@ -349,7 +349,7 @@ jobs:
         uses: docker://ubuntu:22.04
         with:
           entrypoint: /bin/bash
-          args: /github/workspace/./scripts/test.sh --image ubuntu:22.04 --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+          args: /github/workspace/build-assets/scripts/test.sh --image ubuntu:22.04 --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
       # ubuntu:rolling fails during update
 
   debian-arm64-latest:
@@ -381,7 +381,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: xpack-dev-tools/xbb-helper-xpack
-          path: ./xpacks/@xpack-dev-tools/xbb-helper
+          path: build-assets/xpacks/@xpack-dev-tools/xbb-helper
           ref: ${{ github.event.inputs.helper-git-ref }}
           fetch-depth: 3
 
@@ -389,13 +389,13 @@ jobs:
         uses: docker://debian:testing
         with:
           entrypoint: /bin/bash
-          args: /github/workspace/./scripts/test.sh --image debian:testing --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+          args: /github/workspace/build-assets/scripts/test.sh --image debian:testing --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
 
       - name: 'Debian latest arm64'
         uses: docker://debian:latest
         with:
           entrypoint: /bin/bash
-          args: /github/workspace/./scripts/test.sh --image debian:latest --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+          args: /github/workspace/build-assets/scripts/test.sh --image debian:latest --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
 
   # https://en.wikipedia.org/wiki/Fedora_version_history
   # https://hub.docker.com/_/fedora
@@ -429,7 +429,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: xpack-dev-tools/xbb-helper-xpack
-          path: ./xpacks/@xpack-dev-tools/xbb-helper
+          path: build-assets/xpacks/@xpack-dev-tools/xbb-helper
           ref: ${{ github.event.inputs.helper-git-ref }}
           fetch-depth: 3
 
@@ -437,7 +437,7 @@ jobs:
         uses: docker://fedora:latest
         with:
           entrypoint: /bin/bash
-          args: /github/workspace/./scripts/test.sh --image fedora:latest --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+          args: /github/workspace/build-assets/scripts/test.sh --image fedora:latest --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
 
   # - https://hub.docker.com/r/opensuse/tumbleweed
   opensuse-arm64-latest:
@@ -469,7 +469,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: xpack-dev-tools/xbb-helper-xpack
-          path: ./xpacks/@xpack-dev-tools/xbb-helper
+          path: build-assets/xpacks/@xpack-dev-tools/xbb-helper
           ref: ${{ github.event.inputs.helper-git-ref }}
           fetch-depth: 3
 
@@ -477,7 +477,7 @@ jobs:
         uses: docker://opensuse/tumbleweed
         with:
           entrypoint: /bin/bash
-          args: /github/workspace/./scripts/test.sh --image opensuse/tumbleweed --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+          args: /github/workspace/build-assets/scripts/test.sh --image opensuse/tumbleweed --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
 
   # https://hub.docker.com/r/arm32v7/ubuntu/
   ubuntu-arm:
@@ -509,7 +509,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: xpack-dev-tools/xbb-helper-xpack
-          path: ./xpacks/@xpack-dev-tools/xbb-helper
+          path: build-assets/xpacks/@xpack-dev-tools/xbb-helper
           ref: ${{ github.event.inputs.helper-git-ref }}
           fetch-depth: 3
 
@@ -517,19 +517,19 @@ jobs:
         uses: docker://arm32v7/ubuntu:22.04
         with:
           entrypoint: /bin/bash # /usr/bin/linux32
-          args: /github/workspace/./scripts/test.sh --image arm32v7/ubuntu:22.04 --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+          args: /github/workspace/build-assets/scripts/test.sh --image arm32v7/ubuntu:22.04 --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
 
       - name: 'Ubuntu 20.04 arm'
         uses: docker://arm32v7/ubuntu:20.04
         with:
           entrypoint: /bin/bash # /usr/bin/linux32
-          args: /github/workspace/./scripts/test.sh --image arm32v7/ubuntu:20.04 --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+          args: /github/workspace/build-assets/scripts/test.sh --image arm32v7/ubuntu:20.04 --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
 
       - name: 'Ubuntu 18.04 arm'
         uses: docker://arm32v7/ubuntu:18.04
         with:
           entrypoint: /bin/bash # /usr/bin/linux32
-          args: /github/workspace/./scripts/test.sh --image arm32v7/ubuntu:18.04 --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+          args: /github/workspace/build-assets/scripts/test.sh --image arm32v7/ubuntu:18.04 --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
 
   # https://hub.docker.com/r/arm32v7/debian
   debian-arm:
@@ -561,7 +561,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: xpack-dev-tools/xbb-helper-xpack
-          path: ./xpacks/@xpack-dev-tools/xbb-helper
+          path: build-assets/xpacks/@xpack-dev-tools/xbb-helper
           ref: ${{ github.event.inputs.helper-git-ref }}
           fetch-depth: 3
 
@@ -569,13 +569,13 @@ jobs:
         uses: docker://arm32v7/debian:bullseye
         with:
           entrypoint: /bin/bash # /usr/bin/linux32
-          args: /github/workspace/./scripts/test.sh --image arm32v7/debian:bullseye --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+          args: /github/workspace/build-assets/scripts/test.sh --image arm32v7/debian:bullseye --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
 
       - name: 'Debian 10 arm'
         uses: docker://arm32v7/debian:buster
         with:
           entrypoint: /bin/bash # /usr/bin/linux32
-          args: /github/workspace/./scripts/test.sh --image arm32v7/debian:buster --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+          args: /github/workspace/build-assets/scripts/test.sh --image arm32v7/debian:buster --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
 
   # https://hub.docker.com/r/arm32v7/ubuntu/
   ubuntu-arm-latest:
@@ -607,7 +607,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: xpack-dev-tools/xbb-helper-xpack
-          path: ./xpacks/@xpack-dev-tools/xbb-helper
+          path: build-assets/xpacks/@xpack-dev-tools/xbb-helper
           ref: ${{ github.event.inputs.helper-git-ref }}
           fetch-depth: 3
 
@@ -615,7 +615,7 @@ jobs:
         uses: docker://arm32v7/ubuntu:22.04
         with:
           entrypoint: /bin/bash # /usr/bin/linux32
-          args: /github/workspace/./scripts/test.sh --image arm32v7/ubuntu:22.04 --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+          args: /github/workspace/build-assets/scripts/test.sh --image arm32v7/ubuntu:22.04 --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
 
   # https://hub.docker.com/r/arm32v7/debian
   debian-arm-latest:
@@ -647,7 +647,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: xpack-dev-tools/xbb-helper-xpack
-          path: ./xpacks/@xpack-dev-tools/xbb-helper
+          path: build-assets/xpacks/@xpack-dev-tools/xbb-helper
           ref: ${{ github.event.inputs.helper-git-ref }}
           fetch-depth: 3
 
@@ -655,13 +655,13 @@ jobs:
         uses: docker://arm32v7/debian:testing
         with:
           entrypoint: /bin/bash # /usr/bin/linux32
-          args: /github/workspace/./scripts/test.sh --image arm32v7/debian:testing --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+          args: /github/workspace/build-assets/scripts/test.sh --image arm32v7/debian:testing --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
 
       - name: 'Debian latest arm'
         uses: docker://arm32v7/debian:latest
         with:
           entrypoint: /bin/bash # /usr/bin/linux32
-          args: /github/workspace/./scripts/test.sh --image arm32v7/debian:latest --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+          args: /github/workspace/build-assets/scripts/test.sh --image arm32v7/debian:latest --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
 
   # https://en.wikipedia.org/wiki/Fedora_version_history
   # https://hub.docker.com/r/arm32v7/fedora
@@ -695,7 +695,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: xpack-dev-tools/xbb-helper-xpack
-          path: ./xpacks/@xpack-dev-tools/xbb-helper
+          path: build-assets/xpacks/@xpack-dev-tools/xbb-helper
           ref: ${{ github.event.inputs.helper-git-ref }}
           fetch-depth: 3
 
@@ -703,7 +703,7 @@ jobs:
         uses: docker://arm32v7/fedora:latest
         with:
           entrypoint: /bin/bash
-          args: /github/workspace/./scripts/test.sh --image arm32v7/fedora:latest --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+          args: /github/workspace/build-assets/scripts/test.sh --image arm32v7/fedora:latest --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
 
   # - https://hub.docker.com/r/arm32v7/opensuse
   # arm32v7/opensuse:latest is leap 42.3 and fails due to http: URLs
