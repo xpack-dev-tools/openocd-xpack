@@ -725,31 +725,15 @@ with all binaries attached.
 ## Prepare a new blog post
 
 - check and possibly update the `build-assets/templates/body-blog-release-*-liquid.md`
-- run the xPack action `generate-website-blog-post`; this will leave a file
-on the Desktop.
-
-In the `xpack/web-jekyll` GitHub repo:
-
-- select the `develop` branch
-- copy the new file to `_posts/releases/openocd`
-
-If any, refer to closed
-[issues](https://github.com/xpack-dev-tools/openocd-xpack/issues/).
-
-## Update the preview Web
-
-- commit the `develop` branch of `xpack/web-jekyll` GitHub repo;
-  use a message like _xPack OpenOCD v{ customField('upstreamVersion') }-{ customField('xpackSubversion') } released_
-- push to GitHub
-- wait for the GitHub Pages build to complete
-- the preview web is https://xpack.github.io/web-preview/news/
+- run the xPack action `generate-website-blog-post`; this will add a file
+in the `website/blog` folder.
+- edit the front matter properties
+- fix the TODO
 
 ## Create the pre-release
 
-- go to the GitHub [Releases](https://github.com/xpack-dev-tools/openocd-xpack/releases/) page
+- go to the [GitHub Releases](https://github.com/xpack-dev-tools/openocd-xpack/releases/) page
 - perform the final edits and check if everything is fine
-- temporarily fill in the _Continue Reading »_ with the URL of the
-  web-preview release
 - **keep the pre-release button enabled**
 - do not enable Discussions yet
 - publish the release
@@ -760,7 +744,7 @@ watching this project.
 ## Update the READMEs listings and examples
 
 - check and possibly update the output of `tree -L 2` in README
-- check and possibly update the output of the `--version` runs in README-MAINTAINER
+- check and possibly update the output of the `--version` runs in `website/docs/install`
 - commit changes
 
 ## Check the list of links in package.json
@@ -836,7 +820,7 @@ In case the previous version is not functional and needs to be unpublished:
 
 ## Create the final GitHub release
 
-- go to the GitHub [Releases](https://github.com/xpack-dev-tools/openocd-xpack/releases/) page
+- go to the [GitHub Releases](https://github.com/xpack-dev-tools/openocd-xpack/releases/) page
 - check the download counter, it should match the number of tests
 - add a link to the Web page `[Continue reading »]()`; use an same blog URL
 - remove the _tests only_ notice
