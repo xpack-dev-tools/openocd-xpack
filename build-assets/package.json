@@ -1,7 +1,6 @@
 {
-  "name": "@xpack-dev-tools/openocd",
-  "version": "0.12.0-3.1",
-  "description": "A binary xPack with the OpenOCD executable",
+  "name": "build-assets",
+  "version": "0.0.0",
   "private": true,
   "scripts": {
   },
@@ -93,9 +92,9 @@
         "hidden": true,
         "actions": {
           "build": "{{ properties.commandBashBuild }}",
-          "build-development": "{{ properties.commandBashBuild }} --develop",
-          "build-development-debug": "{{ properties.commandBashBuild }} --develop --debug",
-          "build-development-tests-only": "{{ properties.commandBashBuild }} --develop --tests-only"
+          "build-development": "{{ properties.commandBashBuild }} --development",
+          "build-development-debug": "{{ properties.commandBashBuild }} --development --debug",
+          "build-development-tests-only": "{{ properties.commandBashBuild }} --development --tests-only"
         }
       },
       "common-docker": {
@@ -156,9 +155,9 @@
         },
         "actions": {
           "build": "caffeinate {{ properties.commandBashBuild }}",
-          "build-development": "caffeinate {{ properties.commandBashBuild }} --develop",
-          "build-development-debug": "caffeinate {{ properties.commandBashBuild }} --develop --debug",
-          "build-development-tests-only": "caffeinate {{ properties.commandBashBuild }} --develop --tests-only"
+          "build-development": "caffeinate {{ properties.commandBashBuild }} --development",
+          "build-development-debug": "caffeinate {{ properties.commandBashBuild }} --development --debug",
+          "build-development-tests-only": "caffeinate {{ properties.commandBashBuild }} --development --tests-only"
         }
       },
       "darwin-arm64": {
@@ -214,9 +213,9 @@
         },
         "actions": {
           "build": "{{ properties.commandBashBuild }} --windows",
-          "build-development": "{{ properties.commandBashBuild }} --windows --develop",
-          "build-development-debug": "{{ properties.commandBashBuild }} --windows --develop --debug",
-          "build-development-tests-only": "{{ properties.commandBashBuild }} --windows --develop --tests-only"
+          "build-development": "{{ properties.commandBashBuild }} --windows --development",
+          "build-development-debug": "{{ properties.commandBashBuild }} --windows --development --debug",
+          "build-development-tests-only": "{{ properties.commandBashBuild }} --windows --development --tests-only"
         }
       }
     }
