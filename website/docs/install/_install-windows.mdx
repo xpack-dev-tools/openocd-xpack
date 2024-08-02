@@ -40,21 +40,21 @@ After install, the package creates a folder hierarchy like the following
 
 <CodeBlock language="console"> {
 `C:\> tree /f %USERPROFILE%\\AppData\\Roaming\\xPacks\\@xpack-dev-tools\\openocd\\${ customField('upstreamVersion') }-${ customField('xpackSubversion') }.${ customField('npmSubversion') }\\.content
-Folder PATH listing
-Volume serial number is B02D-925C
-C:\\USERS\\ILG\\APPDATA\\ROAMING\\XPACKS\\@XPACK-DEV-TOOLS\\OPENOCD\\0.12.0-3.1\\.CONTENT
-│   README.md
-├───bin
-│       libftdi1.dll
-│       libusb-1.0.dll
-│       openocd.exe
-├───distro-info
-│   └───licenses
-└───openocd
-    ├───angie
-    ├───contrib
-    ├───OpenULINK
-    └───scripts`
+├── README.md
+├── bin
+│   ├── libftdi1.dll
+│   ├── libusb-1.0.dll
+│   └── openocd.exe
+├── distro-info
+│   └── licenses
+└── openocd
+    ├── OpenULINK
+    ├── angie
+    ├── contrib
+    └── scripts
+
+8 directories, 4 files
+`
 } </CodeBlock>
 
 No other files are installed in any system folders or other locations.
