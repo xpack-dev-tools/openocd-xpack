@@ -1,8 +1,8 @@
 // DO NOT EDIT!
 // Automatically generated from xbb-helper/templates/docusaurus/common.
 
-import {themes as prismThemes} from 'prism-react-renderer';
-import type {Config} from '@docusaurus/types';
+import { themes as prismThemes } from 'prism-react-renderer';
+import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 import logger from '@docusaurus/logger';
 
@@ -19,21 +19,12 @@ function getCustomFields() {
   const pwd = fileURLToPath(import.meta.url);
   // logger.info(pwd);
 
-  let filePath
-  let fileContent
+  // First get the version from the top package.json.
+  const topFilePath = path.join(path.dirname(path.dirname(pwd)), 'package.json');
+  // logger.info(filePath);
+  const topFileContent = fs.readFileSync(topFilePath);
 
-  try {
-    filePath = path.join(path.dirname(path.dirname(pwd)), 'build-assets', 'package.json');
-    // logger.info(filePath);
-    fileContent = fs.readFileSync(filePath);
-  } catch (error) {
-    // Try again with the top file.
-    filePath = path.join(path.dirname(path.dirname(pwd)), 'package.json');
-    // logger.info(filePath);
-    fileContent = fs.readFileSync(filePath);
-  }
-
-  const topPackageJson = JSON.parse(fileContent.toString());
+  const topPackageJson = JSON.parse(topFileContent.toString());
   const jsonVersion = topPackageJson.version.replace(".pre", "");
 
   logger.info(`package version: ${topPackageJson.version}`);
@@ -43,9 +34,19 @@ function getCustomFields() {
   const xpackSubversion = rest1.replace(/^.*[-]/, '');
   const upstreamVersion = rest1.replace(/[-][0-9]*$/, '');
 
+  let rootPackageJson
+  try {
+    const rootFilePath = path.join(path.dirname(path.dirname(pwd)), 'build-assets', 'package.json');
+    // logger.info(filePath);
+    const rootFileContent = fs.readFileSync(rootFilePath);
+    rootPackageJson = JSON.parse(rootFileContent.toString());
+  } catch (error) {
+    rootPackageJson = topPackageJson;
+  }
+
   return {
-    appName: topPackageJson.xpack.properties.appName,
-    appLcName: topPackageJson.xpack.properties.appLcName,
+    appName: rootPackageJson.xpack.properties.appName,
+    appLcName: rootPackageJson.xpack.properties.appLcName,
     upstreamVersion,
     xpackSubversion,
     npmSubversion,
@@ -98,7 +99,7 @@ const config: Config = {
             'https://github.com/xpack-dev-tools/openocd-xpack/edit/xpack/website/',
           // showLastUpdateAuthor: true,
           showLastUpdateTime: true,
-          },
+        },
         blog: {
           showReadingTime: true,
           // Please change this to your repo.
