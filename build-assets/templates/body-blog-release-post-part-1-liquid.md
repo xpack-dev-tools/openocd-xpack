@@ -20,7 +20,6 @@ npm_subversion: "1"
 
 download_url: https://github.com/xpack-dev-tools/openocd-xpack/releases/tag/v{{ XBB_RELEASE_VERSION }}/
 
-
 ---
 
 TODO: select one summary
@@ -57,17 +56,17 @@ The binary files are available from <a href={ frontMatter.download_url }>GitHub 
 
 ## Prerequisites
 
-- GNU/Linux x64: any system with **GLIBC 2.27** or higher
+- x64 GNU/Linux: any system with **GLIBC 2.27** or higher
   (like Ubuntu 18 or later, Debian 10 or later, RedHat 8 later,
   Fedora 29 or later, etc)
-- GNU/Linux arm64/arm: any system with **GLIBC 2.27** or higher
+- arm64/arm GNU/Linux: any system with **GLIBC 2.27** or higher
   (like Raspberry Pi OS, Ubuntu 18 or later, Debian 10 or later, RedHat 8 later,
   Fedora 29 or later, etc)
-- Windows x64: Windows 7 with the Universal C Runtime
+- x64 Windows: Windows 7 with the Universal C Runtime
   ([UCRT](https://support.microsoft.com/en-us/topic/update-for-universal-c-runtime-in-windows-c0514201-7fe6-95a3-b0a5-287930f3560c)),
   Windows 8, Windows 10
-- macOS x64: 10.13 or later
-- macOS arm64: 11.6 or later
+- x64 macOS: 10.13 or later
+- arm64 macOS: 11.6 or later
 
 ## Install
 
@@ -132,10 +131,7 @@ set of platforms. The results are available from:
 
 ## Tests
 
-The binaries were testes on Windows 10 Pro 32/64-bit, Intel Ubuntu 18
-LTS 64-bit, Intel Xubuntu 18 LTS 32-bit and macOS 10.15.
-
-Install the package with xpm.
+For more tests, install the package with xpm.
 
 The simple test, consists in starting the binaries
 only to identify the STM32F4DISCOVERY board.

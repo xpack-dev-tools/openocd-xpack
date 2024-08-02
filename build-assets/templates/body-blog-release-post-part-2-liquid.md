@@ -37,7 +37,7 @@ ensure a smooth transition to the next xPack releases.
 ## Download analytics
 
 - GitHub [xpack-dev-tools/openocd-xpack](https://github.com/xpack-dev-tools/openocd-xpack/)
-  - this release [![Github All Releases](https://img.shields.io/github/downloads/xpack-dev-tools/openocd-xpack/v{% raw %}{{ page.version }}{% endraw %}/total.svg)](https://github.com/xpack-dev-tools/openocd-xpack/releases/v{% raw %}{{ page.version }}{% endraw %}/)
+  - this release <a href={ `https://github.com/xpack-dev-tools/openocd-xpack/releases/v${ frontMatter.version }/` } ><Image img={ `https://img.shields.io/github/downloads/xpack-dev-tools/openocd-xpack/v${ frontMatter.version }/total.svg` } alt='Github Release' /></a>
   - all xPack releases [![Github All Releases](https://img.shields.io/github/downloads/xpack-dev-tools/openocd-xpack/total.svg)](https://github.com/xpack-dev-tools/openocd-xpack/releases/)
   - all GNU MCU Eclipse releases [![Github All Releases](https://img.shields.io/github/downloads/gnu-mcu-eclipse/openocd/total.svg)](https://github.com/gnu-mcu-eclipse/openocd/releases/)
   - [individual file counters](https://somsubhra.github.io/github-release-stats/?username=xpack-dev-tools&repository=openocd-xpack) (grouped per release)
