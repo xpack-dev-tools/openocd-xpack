@@ -1,0 +1,47 @@
+{/* DO NOT EDIT! */}
+{/* Automatically generated from xbb-helper/templates/docusaurus/common. */}
+
+import CodeBlock from '@theme/CodeBlock';
+
+import customField from '@site/src/libs/customField';
+
+import { durations } from '../_durations.mdx'
+
+{/* ------------------------------------------------------------------------ */}
+
+To update the build scripts and build the development binaries:
+
+<CodeBlock language="sh"> {
+`rm -f ~/Work/xpack-dev-tools/openocd-xpack.git/package-lock.json && \\
+git -C ~/Work/xpack-dev-tools/openocd-xpack.git pull && \\
+xpm run install -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets && \\
+git -C ~/Work/xpack-dev-tools/xbb-helper-xpack.git pull && \\
+xpm link -C ~/Work/xpack-dev-tools/xbb-helper-xpack.git && \\
+xpm run link-deps -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets && \\
+\\
+xpm run deep-clean --config ${ props.platform }  -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets && \\
+xpm run docker-prepare --config ${ props.platform } -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets && \\
+xpm run docker-link-deps --config ${ props.platform } -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets && \\
+xpm run docker-build-development --config ${ props.platform } -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets`
+} </CodeBlock>
+
+{ durations[ props.platform ] }, the output of the build script is a compressed
+archive and its SHA signature, created in
+the <code>buils-assets/build/{ props.platform }/deploy</code> folder:
+
+* <code>xpack-openocd-{ customField('upstreamVersion') }-{ customField('xpackSubversion') }-{ props.platform }.tar.gz</code>
+* <code>xpack-openocd-{ customField('upstreamVersion') }-{ customField('xpackSubversion') }-{ props.platform }.tar.gz.sha</code>
+
+To update the build scripts and build the release binaries:
+
+<CodeBlock language="sh"> {
+`rm -f ~/Work/xpack-dev-tools/openocd-xpack.git/package-lock.json && \\
+git -C ~/Work/xpack-dev-tools/openocd-xpack.git pull && \\
+xpm run install -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets && \\
+\\
+xpm run deep-clean --config ${ props.platform }  -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets && \\
+xpm run docker-prepare --config ${ props.platform } -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets && \\
+xpm run docker-build-development --config ${ props.platform } -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets`
+} </CodeBlock>
+
+
