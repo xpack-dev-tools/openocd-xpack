@@ -1,0 +1,130 @@
+
+{/* ------------------------------------------------------------------------ */}
+
+## Drivers
+
+### Windows drivers
+
+Most JTAG probes require separate drivers on Windows.
+For additional information, please refer to the
+[Install Guide](/docs/install/) page.
+
+### GNU/Linux UDEV subsystem
+
+For the JTAG probes implemented as USB devices (actually most of them),
+the last installation step on GNU/Linux is to configure the UDEV subsystem.
+For additional information, please refer to the
+[Install Guide](https://xpack.github.io/openocd/install/) page.
+
+### macOS
+
+On macOS, JTAG probes implemented as USB devices usually are
+recognised directly and do not need explicit drivers.
+
+## Using openocd in testing
+
+OpenOCD provides a fairly good implementation of Arm semihosting
+which can be used for automated testing. For this the application must
+be build with full semihosting support.
+
+:::note
+
+The details of semihosted builds
+are beyound the scope of this page.
+
+:::
+
+### CMake example
+
+The easiest way to build automated tests is with CMake in xPack applications.
+
+:::tip Windows
+
+Since on Windows the xPack OpenOCD uses `.cmd` forwarders, it is necessary
+to explicitly define the extension, later used when invoking `openocd`:
+
+```cmake
+if("${CMAKE_HOST_SYSTEM_NAME}" STREQUAL "Windows")
+  set(extension ".cmd")
+endif()
+```
+
+:::
+
+To run the test, the semihosted application must be first programmed
+into the board and executed in an environment with semihosting enabled.
+
+An example of such a test running on a STM32F4 board can be:
+
+```cmake
+if (ENABLE_RTOS_APIS_TEST)
+
+  add_executable(rtos-apis-test)
+  set_target_properties(rtos-apis-test PROPERTIES OUTPUT_NAME "rtos-apis-test")
+
+  // ... definitions to build the application with semihosting support ...
+
+  add_test(
+    NAME "rtos-apis-test"
+
+    COMMAND openocd${extension}
+      # -d3
+      -c "gdb_port disabled"
+      -c "tcl_port disabled"
+      -c "telnet_port disabled"
+      -f interface/stlink-dap.cfg
+      -f target/stm32f4x.cfg
+      -c "program rtos-apis-test.elf verify"
+      -c "arm semihosting enable"
+      -c "arm semihosting_cmdline rtos-apis-test"
+      -c "reset"
+    )
+
+endif ()
+```
+
+:::tip
+
+The commands to disable the various ports are required to avoid
+possible port collisions with other debug sessions or tests running
+in parallel on other boards.
+
+The commented out `-d3` is there for just in case something wrong
+happens, to enable a detailed debug log.
+
+:::
+
+In an xPack application, the tests can be invoked by running an xPack action,
+like this:
+
+```sh
+xpm run test
+```
+
+This asssumes that in `package.json` there is an action named `test`
+and that all required tools were previously installed:
+
+```json
+{
+  "...": "...",
+
+  "xpack": {
+    "actions": {
+      "...": "...",
+      "test": "ctest -V"
+    },
+    "devDependencies": {
+      "@xpack-dev-tools/cmake": "3.26.5-1.1",
+      "@xpack-dev-tools/ninja-build": "1.11.1-3.1",
+      "@xpack-dev-tools/openocd": "0.12.0-3.1",
+      "@xpack-dev-tools/arm-none-eabi-gcc": "12.3.1-1.2.1"
+    }
+  }
+}
+```
+
+The xPack action runs the defined command (`ctest -V` in this case)
+in an environment where `xpacks/.bin` is prepended to the PATH, so
+the tools installed locally by **xpm** are available and prefered to
+possibly other similar tools installed in the system, thus
+achieving a good reproducibility.

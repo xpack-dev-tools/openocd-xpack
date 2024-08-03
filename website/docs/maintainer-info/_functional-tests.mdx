@@ -1,0 +1,58 @@
+
+import CodeBlock from '@theme/CodeBlock';
+
+import customField from '@site/src/libs/customField';
+
+{/* ------------------------------------------------------------------------ */}
+
+Functional tests cannot run on CI since they require physical hardware.
+
+For the simplest functional case, plug a common board like the
+STM32F4DISCOVERY into an USB port, start the program and check
+if the CPU is identified.
+
+Note: If this is the first time openocd is executed, on GNU/Linux
+it is necessary
+to configure the rights, otherwise LIBUSB will issue the _libusb_open
+failed: LIBUSB_ERROR_ACCESS_ error.
+
+<CodeBlock language="sh"> {
+`sudo cp ~/Downloads/xpack-openocd-${ customField('upstreamVersion') }-${ customField('xpackSubversion') }/contrib/60-openocd.rules /etc/udev/rules.d
+sudo udevadm control --reload-rules`
+} </CodeBlock>
+
+Then it is possible to start openocd:
+
+<CodeBlock language="console"> {
+`$ .../xpack-openocd-${ customField('upstreamVersion') }-${ customField('xpackSubversion') }/bin/openocd -f "board/stm32f4discovery.cfg"
+xPack Open On-Chip Debugger ${ customField('upstreamVersion') }-01004-g9ea7f3d64-dirty
+Licensed under GNU GPL v2
+For bug reports, read
+	https://openocd.org/doc/doxygen/bugs.html
+Info : The selected transport took over low-level target control. The results might differ compared to plain JTAG/SWD
+srst_only separate srst_nogate srst_open_drain connect_deassert_srst
+
+Info : Listening on port 6666 for tcl connections
+Info : Listening on port 4444 for telnet connections
+Info : clock speed 2000 kHz
+Info : STLINK V2J39S0 (API v2) VID:PID 0483:3748
+Info : Target voltage: 2.901598
+Info : [stm32f4x.cpu] Cortex-M4 r0p1 processor detected
+Info : [stm32f4x.cpu] target has 6 breakpoints, 4 watchpoints
+Info : starting gdb server for stm32f4x.cpu on 3333
+Info : Listening on port 3333 for gdb connections
+[stm32f4x.cpu] halted due to breakpoint, current mode: Handler HardFault
+xPSR: 0x61000003 pc: 0x080002d6 msp: 0x2001ff78
+^C
+shutdown command invoked`
+} </CodeBlock>
+
+Note: on recent macOS systems it might be necessary to allow individual
+programs to run.
+
+For a more thorough test, run a debug session with
+the Eclipse STM32F4DISCOVERY blinky test
+available in the xpack-arm-none-eabi-openocd package, which uses
+the `-f "board/stm32f4discovery.cfg"` configuration file
+(import the `arm-f4b-fs` project and start the `arm-f4b-fs-debug-oocd`
+launcher).

@@ -1,8 +1,4 @@
 ---
-
-# DO NOT EDIT!
-# Automatically generated from xbb-helper/templates/docusaurus/common.
-
 title: Information for xPack OpenOCD maintainers
 
 date: 2024-07-12 20:11:00 +0300
@@ -13,23 +9,14 @@ import CodeBlock from '@theme/CodeBlock';
 
 import customField from '@site/src/libs/customField';
 
-import MoreRepos from './_more-repos.mdx';
-import ReleaseSchedule from './_release-schedule.mdx';
-import CheckUpstreamRelease from './_check-upstream-release.mdx'
-import UpdateVersionSpecific from './_update-version-specific.mdx'
-import CiDurations from './_ci-durations.mdx'
-import FunctionalTests from './_functional-tests.mdx'
-import ShareCustom from './_share-custom.mdx'
-
 {/* ------------------------------------------------------------------------ */}
 
 [![license](https://img.shields.io/github/license/xpack-dev-tools/openocd-xpack)](https://github.com/xpack-dev-tools/openocd-xpack/blob/xpack/LICENSE)
 [![GitHub issues](https://img.shields.io/github/issues/xpack-dev-tools/openocd-xpack.svg)](https://github.com/xpack-dev-tools/openocd-xpack/issues/)
 [![GitHub pulls](https://img.shields.io/github/issues-pr/xpack-dev-tools/openocd-xpack.svg)](https://github.com/xpack-dev-tools/openocd-xpack/pulls)
 
-This page is intended for those who maintain
-**xPack OpenOCD**
-and documents how to make new releases.
+This page is intended for those who maintain xPack OpenOCD and documents
+how to make new releases.
 
 :::note
 
@@ -101,9 +88,18 @@ git -C ~/Work/xpack-dev-tools/xbb-helper-xpack.git pull
 xpm link -C ~/Work/xpack-dev-tools/xbb-helper-xpack.git
 ```
 
-<MoreRepos/>
+Other repositories in use are:
 
-<ReleaseSchedule/>
+- https://github.com/openocd-org/openocd.git - a read-only mirror of the
+  upstream OpenOCD (git://git.code.sf.net/p/openocd/code)
+
+## Release schedule
+
+In the past, the OpenOCD had no release schedule, and very rare
+[releases](https://github.com/openocd-org/openocd/releases).
+The xPack OpenOCD releases also had no schedules, and were done on an
+as-needed basis. As a general rule, it is planned to follow the upstream
+releases and add releases from the repo HEAD from time to time.
 
 ## How to make new releases
 
@@ -128,12 +124,20 @@ In the `xpack-dev-tools/openocd-xpack` Git repo:
 
 No need to add a tag here, it'll be added when the release is created.
 
-### Update helper & other dependencies
+### Update the helper & the other dependencies
 
 Check the latest versions at https://github.com/xpack-dev-tools/ and
 update the dependencies in `build-assets/package.json`.
 
-<CheckUpstreamRelease/>
+### Check the latest upstream release
+
+The current release must be announced in the [OpenOCD](https://openocd.org)
+web, and reflected in the Git
+[tags](https://sourceforge.net/p/openocd/code/ci/master/tree/).
+Compare the latest tag with the current xPack
+[release](https://github.com/xpack-dev-tools/openocd-xpack/releases).
+If necessary, update the triplet, otherwise increase the fourth number,
+as below.
 
 ### Fix possible open issues
 
@@ -168,14 +172,18 @@ or run the following in a terminal:
 
 Navigate to the **Maintainer Info** page.
 
-<UpdateVersionSpecific/>
+### Update the version specific code
+
+- open the `build-assets/scripts/versioning.sh` file
+- add a new `if` with the new version before the existing code
+- update `XBB_OPENOCD_GIT_COMMIT` to the desired commit id from the upstream repo
 
 ### Update `CHANGELOG.md`
 
 - open the `CHANGELOG.md` file
 - check if all previous fixed issues are in
-- add a new entry like _**\* v{ customField('upstreamVersion') }-{ customField('xpackSubversion') } prepared**_
-- commit with a message like _**prepare v{ customField('upstreamVersion') }-{ customField('xpackSubversion') }**_
+- add a new entry like _* v{ customField('upstreamVersion') }-{ customField('xpackSubversion') } prepared_
+- commit with a message like _prepare v{ customField('upstreamVersion') }-{ customField('xpackSubversion') }_
 
 ## Build
 
@@ -455,7 +463,7 @@ locations (like
 https://github.com/xpack-dev-tools/files-cache/tree/master/libs),
 place them in the XBB cache (`Work/cache`) and restart the build.
 
-## Run the CI build
+## Run the CI builds
 
 The automation is provided by GitHub Actions and three self-hosted runners.
 
@@ -538,12 +546,12 @@ To trigger the GitHub Actions builds, use the xPack actions:
 These are equivalent to:
 
 ```sh
-bash ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets/xpacks/@xpack-dev-tools/xbb-helper/github-actions/trigger-workflow-build.sh --workflow build-darwin-x64.yml
-bash ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets/xpacks/@xpack-dev-tools/xbb-helper/github-actions/trigger-workflow-build.sh --workflow build-darwin-arm64.yml
-bash ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets/xpacks/@xpack-dev-tools/xbb-helper/github-actions/trigger-workflow-build.sh --workflow build-linux-x64.yml
-bash ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets/xpacks/@xpack-dev-tools/xbb-helper/github-actions/trigger-workflow-build.sh --workflow build-win32-x64.yml
-bash ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets/xpacks/@xpack-dev-tools/xbb-helper/github-actions/trigger-workflow-build.sh --workflow build-linux-arm64.yml
-bash ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets/xpacks/@xpack-dev-tools/xbb-helper/github-actions/trigger-workflow-build.sh --workflow build-linux-arm.yml
+bash ~/Work/xpack-dev-tools/openocd-xpack.git/xpacks/@xpack-dev-tools/xbb-helper/github-actions/trigger-workflow-build.sh --workflow build-darwin-x64.yml
+bash ~/Work/xpack-dev-tools/openocd-xpack.git/xpacks/@xpack-dev-tools/xbb-helper/github-actions/trigger-workflow-build.sh --workflow build-darwin-arm64.yml
+bash ~/Work/xpack-dev-tools/openocd-xpack.git/xpacks/@xpack-dev-tools/xbb-helper/github-actions/trigger-workflow-build.sh --workflow build-linux-x64.yml
+bash ~/Work/xpack-dev-tools/openocd-xpack.git/xpacks/@xpack-dev-tools/xbb-helper/github-actions/trigger-workflow-build.sh --workflow build-win32-x64.yml
+bash ~/Work/xpack-dev-tools/openocd-xpack.git/xpacks/@xpack-dev-tools/xbb-helper/github-actions/trigger-workflow-build.sh --workflow build-linux-arm64.yml
+bash ~/Work/xpack-dev-tools/openocd-xpack.git/xpacks/@xpack-dev-tools/xbb-helper/github-actions/trigger-workflow-build.sh --workflow build-linux-arm.yml
 ```
 
 These scripts require the `GITHUB_API_DISPATCH_TOKEN` variable to be present
@@ -554,9 +562,16 @@ page.
 
 These commands use the `xpack-development` branch of this repo.
 
-## Durations & resulting binaries
+## Durations & results
 
-<CiDurations/>
+The builds take about 10 minutes to complete:
+
+- `darwin-x64`: 5m (nuc)
+- `darwin-arm64`: 4m (m1)
+- `linux-x64`: 4m (amd)
+- `win32-x64`: 5m (amd)
+- `linux-arm64`: 11m (rpi4)
+- `linux-arm`: 11m (rpi4)
 
 The workflow result and logs are available from the
 [GitHub Actions](https://github.com/xpack-dev-tools/openocd-xpack/actions/) page.
@@ -579,9 +594,9 @@ To trigger the GitHub Actions tests, use the xPack actions:
 These are equivalent to:
 
 ```sh
-bash ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets/xpacks/@xpack-dev-tools/xbb-helper/github-actions/trigger-workflow-test-prime.sh
-bash ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets/xpacks/@xpack-dev-tools/xbb-helper/github-actions/trigger-workflow-test-docker-linux-intel.sh
-bash ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets/xpacks/@xpack-dev-tools/xbb-helper/github-actions/trigger-workflow-test-docker-linux-arm.sh
+bash ~/Work/xpack-dev-tools/openocd-xpack.git/xpacks/@xpack-dev-tools/xbb-helper/github-actions/trigger-workflow-test-prime.sh
+bash ~/Work/xpack-dev-tools/openocd-xpack.git/xpacks/@xpack-dev-tools/xbb-helper/github-actions/trigger-workflow-test-docker-linux-intel.sh
+bash ~/Work/xpack-dev-tools/openocd-xpack.git/xpacks/@xpack-dev-tools/xbb-helper/github-actions/trigger-workflow-test-docker-linux-arm.sh
 ```
 
 These scripts require the `GITHUB_API_DISPATCH_TOKEN` variable to be present
@@ -594,7 +609,7 @@ binaries.
 The tests results are available from the
 [GitHub Actions](https://github.com/xpack-dev-tools/openocd-xpack/actions/) page.
 
-Since GitHub Actions provides a single version of a macOS runner, the
+Since GitHub Actions provides a single version of macOS, the
 multi-version macOS tests run on Travis.
 
 To trigger the Travis test, use the xPack action:
@@ -604,7 +619,7 @@ To trigger the Travis test, use the xPack action:
 This is equivalent to:
 
 ```sh
-bash ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets/xpacks/@xpack-dev-tools/xbb-helper/github-actions/trigger-travis-macos.sh
+bash ~/Work/xpack-dev-tools/openocd-xpack.git/xpacks/@xpack-dev-tools/xbb-helper/github-actions/trigger-travis-macos.sh
 ```
 
 This script requires the `TRAVIS_COM_TOKEN` variable to be present
@@ -635,17 +650,65 @@ On macOS, remove the `com.apple.quarantine` flag:
 xattr -cr ${HOME}/Downloads/xpack-*
 ```
 
-<FunctionalTests/>
+Functional tests cannot run on CI since they require physical hardware.
+
+For the simplest functional case, plug a common board like the
+STM32F4DISCOVERY into an USB port, start the program and check
+if the CPU is identified.
+
+Note: If this is the first time openocd is executed, on GNU/Linux
+it is necessary
+to configure the rights, otherwise LIBUSB will issue the _libusb_open
+failed: LIBUSB_ERROR_ACCESS_ error.
+
+<CodeBlock language="sh"> {
+`sudo cp ~/Downloads/xpack-openocd-${ customField('upstreamVersion') }-${ customField('xpackSubversion') }/contrib/60-openocd.rules /etc/udev/rules.d
+sudo udevadm control --reload-rules`
+} </CodeBlock>
+
+Then it is possible to start openocd:
+
+<CodeBlock language="console"> {
+`$ .../xpack-openocd-${ customField('upstreamVersion') }-${ customField('xpackSubversion') }/bin/openocd -f "board/stm32f4discovery.cfg"
+xPack Open On-Chip Debugger ${ customField('upstreamVersion') }-01004-g9ea7f3d64-dirty
+Licensed under GNU GPL v2
+For bug reports, read
+	https://openocd.org/doc/doxygen/bugs.html
+Info : The selected transport took over low-level target control. The results might differ compared to plain JTAG/SWD
+srst_only separate srst_nogate srst_open_drain connect_deassert_srst
+
+Info : Listening on port 6666 for tcl connections
+Info : Listening on port 4444 for telnet connections
+Info : clock speed 2000 kHz
+Info : STLINK V2J39S0 (API v2) VID:PID 0483:3748
+Info : Target voltage: 2.901598
+Info : [stm32f4x.cpu] Cortex-M4 r0p1 processor detected
+Info : [stm32f4x.cpu] target has 6 breakpoints, 4 watchpoints
+Info : starting gdb server for stm32f4x.cpu on 3333
+Info : Listening on port 3333 for gdb connections
+[stm32f4x.cpu] halted due to breakpoint, current mode: Handler HardFault
+xPSR: 0x61000003 pc: 0x080002d6 msp: 0x2001ff78
+^C
+shutdown command invoked`
+} </CodeBlock>
+
+Note: on recent macOS systems it might be necessary to allow individual
+programs to run.
+
+For a more thorough test, run a debug session with
+the Eclipse STM32F4DISCOVERY blinky test
+available in the xpack-arm-none-eabi-openocd package, which uses
+the `-f "board/stm32f4discovery.cfg"` configuration file
+(import the `arm-f4b-fs` project and start the `arm-f4b-fs-debug-oocd`
+launcher).
 
 ## Create a new GitHub pre-release draft
 
-- in `CHANGELOG.md`, add the release date and a message
-  like _**\* v{ customField('upstreamVersion') }-{ customField('xpackSubversion') } released**_
-- commit with _**CHANGELOG update**_
-- check and possibly update the `build-assets/templates/body-github-release-liquid.mdx`
+- in `CHANGELOG.md`, add the release date and a message like _* v{ customField('upstreamVersion') }-{ customField('xpackSubversion') } released_
+- commit with _CHANGELOG update_
+- check and possibly update the `build-assets/templates/body-github-release-liquid.md`
 - push the `xpack-development` branch
-- run the xPack action
-  - **`trigger-workflow-publish-release`**
+- run the xPack action `trigger-workflow-publish-release`
 
 The workflow result and logs are available from the
 [GitHub Actions](https://github.com/xpack-dev-tools/openocd-xpack/actions/) page.
@@ -662,11 +725,10 @@ with all binaries attached.
 ## Prepare a new blog post
 
 - check and possibly update the `build-assets/templates/body-blog-release-*-liquid.md`
-- run the xPack action
-  - **`generate-website-blog-post`**; this will add a file
+- run the xPack action `generate-website-blog-post`; this will add a file
 in the `website/blog` folder.
 - edit the front matter properties
-- select the summary
+- fix the TODO
 
 ## Create the pre-release
 
@@ -693,9 +755,8 @@ watching this project.
 ## Update package.json binaries
 
 - select the `xpack-development` branch
-- run the xPack action
-  - **`update-package-binaries`**
-- open the top `package.json` file
+- run the xPack action `update-package-binaries`
+- open the `package.json` file
 - check the `baseUrl:` it should match the file URLs (including the tag/version);
   no terminating `/` is required
 - from the release, check the SHA & file names
@@ -708,16 +769,16 @@ watching this project.
 
 - select the `xpack-development` branch
 - check the latest commits `npm run git-log`
-- update `CHANGELOG.md`, add a line like _**\* v{ customField('upstreamVersion') }-{ customField('xpackSubversion') } published on npmjs.com**_
-- commit with a message like _**CHANGELOG: publish npm v{ customField('upstreamVersion') }-{ customField('xpackSubversion') }.{ customField('npmSubversion') }**_
+- update `CHANGELOG.md`, add a line like _* v{ customField('upstreamVersion') }-{ customField('xpackSubversion') } published on npmjs.com_
+- commit with a message like _CHANGELOG: publish npm v{ customField('upstreamVersion') }-{ customField('xpackSubversion') }.{ customField('npmSubversion') }_
 - `npm pack` and check the content of the archive, which should list
   only the `package.json`, the `README.md`, `LICENSE` and `CHANGELOG.md`;
   possibly adjust `.npmignore`
-- <code><b>npm version { customField('upstreamVersion') }-{ customField('xpackSubversion') }.{ customField('npmSubversion') }</b></code>; the first 4 numbers are the same as the
+- <code>npm version { customField('upstreamVersion') }-{ customField('xpackSubversion') }.{ customField('npmSubversion') }</code>; the first 4 numbers are the same as the
   GitHub release; the fifth number is the npm specific version
 - the commits and the tag should have been pushed by the `postversion` script;
   if not, push them with `git push origin --tags`
-- **`npm publish --tag next`** (use `npm publish --access public`
+- `npm publish --tag next` (use `npm publish --access public`
   when publishing for the first time; add the `next` tag)
 
 After a few moments the version will be visible at:
@@ -726,11 +787,8 @@ After a few moments the version will be visible at:
 
 ## Test if the binaries can be installed with xpm
 
-Run the xPack action
-
-- **`trigger-workflow-test-xpm`**
-
-This will install the package via `xpm install` on all supported platforms.
+Run the xPack action `trigger-workflow-test-xpm`, this
+will install the package via `xpm install` on all supported platforms.
 
 The tests results are available from the
 [GitHub Actions](https://github.com/xpack-dev-tools/openocd-xpack/actions/) page.
@@ -761,7 +819,7 @@ At this moment the website is also generated.
 
 - go to the [GitHub Releases](https://github.com/xpack-dev-tools/openocd-xpack/releases/) page
 - check the download counter, it should match the number of tests
-- add a link to the Web blog `[Continue reading »]()`; use an same blog URL
+- add a link to the Web page `[Continue reading »]()`; use an same blog URL
 - remove the _tests only_ notice
 - **disable** the **pre-release** button
 - click the **Update Release** button
@@ -777,11 +835,8 @@ At this moment the website is also generated.
 
 ## Clean the work area
 
-Run the xPack action
-
-  - **`trigger-workflow-deep-clean`**
-
-This will remove the build folders on all supported platforms.
+Run the xPack action `trigger-workflow-deep-clean`, this
+will remove the build folders on all supported platforms.
 
 The results are available from the
 [GitHub Actions](https://github.com/xpack-dev-tools/openocd-xpack/actions/) page.
@@ -789,13 +844,19 @@ The results are available from the
 ## Share on Twitter
 
 - in a separate browser windows, open [X/Twitter](https://twitter.com)
-- using the **`@xpack_project`** account
-- paste the release name like _**xPack OpenOCD v{ customField('upstreamVersion') }-{ customField('xpackSubversion') } released**_
+- using the `@xpack_project` account
+- paste the release name like **xPack OpenOCD v{ customField('upstreamVersion') }-{ customField('xpackSubversion') } released**
 - paste the link to the blog post
-  [release](https://xpack.github.io/openocd/releases/)
+  [release]( https://xpack-dev-tools.github.io/openocd-xpack/blog/)
 - click the **Tweet** button
 
-<ShareCustom/>
+## Share on openocd-user
+
+Send email to <a href="mailto:openocd-user@lists.sourceforge.net">openocd-user@lists.sourceforge.net</a> with:
+
+- Subject: **xPack OpenOCD v{ customField('upstreamVersion') }-{ customField('xpackSubversion') } released**
+- a link to the blog post
+  [release]( https://xpack-dev-tools.github.io/openocd-xpack/blog/)
 
 ## Download analytics
 
@@ -803,6 +864,7 @@ The results are available from the
   - latest xPack release
 [![Github All Releases](https://img.shields.io/github/downloads/xpack-dev-tools/openocd-xpack/latest/total.svg)](https://github.com/xpack-dev-tools/openocd-xpack/releases/)
   - all xPack releases [![Github All Releases](https://img.shields.io/github/downloads/xpack-dev-tools/openocd-xpack/total.svg)](https://github.com/xpack-dev-tools/openocd-xpack/releases/)
+  - previous GNU MCU Eclipse all releases [![Github All Releases](https://img.shields.io/github/downloads/gnu-mcu-eclipse/openocd/total.svg)](https://github.com/gnu-mcu-eclipse/openocd/releases/)
   - [individual file counters](https://somsubhra.github.io/github-release-stats/?username=xpack-dev-tools&repository=openocd-xpack) (grouped per release)
 - npmjs.com [`@xpack-dev-tools/openocd`](https://www.npmjs.com/package/@xpack-dev-tools/openocd/) xPack
   - latest release, per month

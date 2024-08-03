@@ -5,9 +5,8 @@
 
 ## Shared libraries
 
-On all platforms the binary xPack packages are standalone,
-and expect only the standard
-runtime to be present on the host.
+On all platforms the binary xPack packages are **standalone**,
+and expect only the standard runtime to be present on the host.
 
 All dependencies that are built as shared libraries are copied locally
 in the `libexec` folder (or in the same folder as the executable for Windows).
@@ -17,7 +16,7 @@ in the `libexec` folder (or in the same folder as the executable for Windows).
 On GNU/Linux the binaries are adjusted to use a relative path:
 
 ```console
-$ readelf -d library.so | grep runpath
+$ readelf -d library.so | grep rpath
  0x000000000000001d (RPATH)            Library rpath: [$ORIGIN]
 ```
 
