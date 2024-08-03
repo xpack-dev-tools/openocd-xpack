@@ -42,7 +42,8 @@ armv6 is not supported).
 
 ## Download
 
-The binary files are available from <a href={ frontMatter.download_url }>GitHub Releases</a>.
+The binary files can be downloaded automatically with **xpm** or manually
+from <a href={ frontMatter.download_url }>GitHub Releases</a>.
 
 ## Prerequisites
 
@@ -82,7 +83,7 @@ Compared to the upstream, the following changes were applied:
 - a configure option was added to configure branding (`--enable-branding`)
 - the `src/openocd.c` file was edited to display the branding string
 - the `contrib/60-openocd.rules` file was simplified to avoid protection
-  related issues.
+  related issues (the `GROUP` and `TAG` definitions were removed).
 
 ## Bug fixes
 
