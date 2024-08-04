@@ -15,7 +15,8 @@ The binaries do not use any form of installer; instead they
 are distributed as
 portable { props.isWindows ? <code>.zip</code> : <code>.tar.gz</code> } archives;
 therefore they do not require to run any uninstaller; simply removing the
-links and possibly the central store folder is enough.
+links and possibly the central xPack store folder and
+the central cache folder is enough.
 
 To remove the <LinksVsForwarders isWindows={ props.isWindows }/> created by
 **xpm** in the current project,
@@ -31,7 +32,7 @@ and ask **xpm** to uninstall the package:
 `xpm uninstall @xpack-dev-tools/openocd --verbose`
 } </CodeBlock>
 
-To completely remove the package from the central store:
+To completely remove the package from the central xPack store:
 
 <CodeBlock language="sh"> {
 `xpm uninstall --global @xpack-dev-tools/openocd --verbose`

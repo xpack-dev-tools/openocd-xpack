@@ -10,20 +10,7 @@ import { durations } from '../_durations.mdx'
 
 {/* Arguments: props.platform */}
 
-export const platforms = {
-    "darwin-x64": {
-        sectionName: 'x64 macOS',
-        machineName: 'an Intel Mac'
-    },
-    "darwin-arm64": {
-        sectionName: 'arm64 macOS',
-        machineName: 'an Apple Silicon Mac'
-    }
-}
-
-#### Build the { platforms[props.platform].sectionName } binaries
-
-To prepare the native build on { platforms[props.platform].machineName }:
+To prepare the native build:
 
 <CodeBlock language="sh"> {
 `xpm run install -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets && \\

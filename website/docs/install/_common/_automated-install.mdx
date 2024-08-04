@@ -133,7 +133,7 @@ within the home folder), thereby conserving disk space when the same
 tools are used across multiple projects.
 
 In order to allow the projects to access the binary tools installed in the
-central folder, instead of unpacking the archives in `xpacks`,
+central store, instead of unpacking the archives in `xpacks`,
 **xpm** adds symbolic links pointing to the **central xPacks store**.
 
 The outcome is functionally equivalent to installing the tools into
@@ -148,6 +148,18 @@ by passing `--copy` to `xpm install`.
 
 If needed, it is also possible to install packages only globally, without
 creating local <LinksVsForwarders isWindows={ props.isWindows }/> (see below).
+
+</details>
+
+<details>
+<summary>The central xPacks cache</summary>
+
+To save download time, all archives are first stored in a
+cache, and all subsequent downloads are replaced with the
+cached content.
+
+Therefore all published archives should be read-only and
+it is not allowed to replace them at a later time.
 
 </details>
 
@@ -277,8 +289,8 @@ This is particularly useful for CI/CD environments.
 ### Install globally
 
 For older development environments,
-it is also possible to install OpenOCD only globally in the **central
-xPacks store**, without any
+it is also possible to install OpenOCD only globally in
+the **central xPacks store**, without any
 local <LinksVsForwarders isWindows={ props.isWindows }/>; it
 is the developer's responsibility to configure the path to the tools.
 

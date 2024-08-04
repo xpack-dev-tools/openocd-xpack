@@ -38,7 +38,7 @@ and documents how to make new releases.
 ## Prerequisites
 
 The build scripts run on GNU/Linux and macOS. The Windows binaries are
-generated on x64 GNU/Linux, using [mingw-w64](https://mingw-w64.org).
+compiled on x64 GNU/Linux, using [mingw-w64](https://mingw-w64.org).
 
 For details on installing the prerequisites, please read the
 [XBB prerequisites page](https://xpack.github.io/xbb/prerequisites/).
@@ -75,12 +75,13 @@ Or, if the repo was already cloned:
 git -C ~/Work/xpack-dev-tools/openocd-xpack.git pull
 ```
 
-## Get helper sources
+## Get the writable helper sources
 
 The project has a dependency to a common **helper**, that is
-normally installed as a read-only dependency; for development
-purposes, to be able to make changes to the helper, clone the
-`xpack-development` branch and link it to the central xPacks store:
+normally installed as a read-only dependency; for **development
+purposes**, to be able to make changes to the scripts located inside the helper,
+clone the `xpack-development` branch and link it to
+the central xPacks store:
 
 ```sh
 rm -rf ~/Work/xpack-dev-tools/xbb-helper-xpack.git && \
@@ -103,7 +104,7 @@ xpm link -C ~/Work/xpack-dev-tools/xbb-helper-xpack.git
 
 <ReleaseSchedule/>
 
-## How to make new releases
+## Prepare the new releases
 
 Before starting the build, perform some checks and tweaks.
 
@@ -175,22 +176,20 @@ Navigate to the **Maintainer Info** page.
 - add a new entry like _**\* v{ customField('upstreamVersion') }-{ customField('xpackSubversion') } prepared**_
 - commit with a message like _**prepare v{ customField('upstreamVersion') }-{ customField('xpackSubversion') }**_
 
-## Build
+## Run the development builds
 
 The builds currently run on 5 dedicated machines (x64 GNU/Linux,
 arm64 GNU/Linux, arm GNU/Linux, x64 macOS and arm64 macOS).
 
-### Development run the build scripts
-
 Before the real build, run test builds on all platforms.
 
-#### Visual Studio Code
+### Visual Studio Code
 
 All actions are defined as **xPack actions** and can be conveniently
 triggered via the VS Code graphical interface, using the
 [xPack extension](https://marketplace.visualstudio.com/items?itemName=ilg-vscode.xpack).
 
-#### x64 macOS
+### Build the x64 macOS binaries
 
 For x64 macOS, first run the build on the development machine
 (`wksi`, a recent macOS):
@@ -235,7 +234,7 @@ caffeinate ssh xbbmi
 
 <PlatformNativeBuild platform="darwin-x64"/>
 
-#### arm64 macOS
+### Build the arm64 macOS binaries
 
 Run the native build on the production machine
 (`xbbma`, an older macOS);
@@ -247,7 +246,7 @@ caffeinate ssh xbbma
 
 <PlatformNativeBuild platform="darwin-arm64"/>
 
-#### x64 GNU/Linux
+### Build the x64 GNU/Linux binaries
 
 Run the docker build on the production machine (`xbbli`);
 start a VS Code remote session, or connect with a terminal:
@@ -256,15 +255,20 @@ start a VS Code remote session, or connect with a terminal:
 caffeinate ssh xbbli
 ```
 
-##### Build the x64 GNU/Linux binaries
-
 <PlatformDockerBuild platform="linux-x64"/>
 
-##### Build the x64 Windows binaries
+### Build the x64 Windows binaries
+
+Run the docker build on the production machine (`xbbli`);
+start a VS Code remote session, or connect with a terminal:
+
+```sh
+caffeinate ssh xbbli
+```
 
 <PlatformDockerBuild platform="win32-x64"/>
 
-#### arm64 GNU/Linux
+### Build the arm64 GNU/Linux binaries
 
 Run the docker build on the production machine (`xbbla`);
 start a VS Code remote session, or connect with a terminal:
@@ -275,7 +279,7 @@ caffeinate ssh xbbla
 
 <PlatformDockerBuild platform="linux-arm64"/>
 
-#### arm GNU/Linux (32-bit)
+### Build the arm GNU/Linux (32-bit) binaries
 
 Run the docker build on the production machine (`xbbla32`);
 start a VS Code remote session, or connect with a terminal:
@@ -333,7 +337,7 @@ locations (like
 https://github.com/xpack-dev-tools/files-cache/tree/master/libs),
 place them in the XBB cache (`Work/cache`) and restart the build.
 
-## Run the CI build
+## Run the CI/CD builds
 
 The automation is provided by GitHub Actions and three self-hosted runners.
 
@@ -432,7 +436,7 @@ page.
 
 These commands use the `xpack-development` branch of this repo.
 
-## Durations & resulting binaries
+### Durations & resulting binaries
 
 <CiDurations/>
 
@@ -442,7 +446,7 @@ The workflow result and logs are available from the
 The resulting binaries are available for testing from
 [pre-releases/test](https://github.com/xpack-dev-tools/pre-releases/releases/tag/test/).
 
-## Testing
+## Run the tests
 
 ### CI tests
 
@@ -515,7 +519,9 @@ xattr -cr ${HOME}/Downloads/xpack-*
 
 <FunctionalTests/>
 
-## Create a new GitHub pre-release draft
+## Publish the release
+
+### Create a new GitHub pre-release draft
 
 - in `CHANGELOG.md`, add the release date and a message
   like _**\* v{ customField('upstreamVersion') }-{ customField('xpackSubversion') } released**_
@@ -537,7 +543,7 @@ with all binaries attached.
 - edit the draft and attach it to the `xpack-development` branch (important!)
 - save the draft (do **not** publish yet!)
 
-## Prepare a new blog post
+### Prepare a new blog post
 
 - check and possibly update the `build-assets/templates/body-blog-release-*-liquid.md`
 - run the xPack action
@@ -546,7 +552,7 @@ in the `website/blog` folder.
 - edit the front matter properties
 - select the summary
 
-## Create the pre-release
+### Create the GitHub pre-release
 
 - go to the [GitHub Releases](https://github.com/xpack-dev-tools/openocd-xpack/releases/) page
 - perform the final edits and check if everything is fine
@@ -557,18 +563,18 @@ in the `website/blog` folder.
 Note: at this moment the system should send a notification to all clients
 watching this project.
 
-## Update the web install page
+### Update the web install page
 
-- check and possibly update the output of the `--version` runs in `website/docs/install`
+- check and possibly update the output of the `--version` runs in `website/docs/install/_install-*.mdx`
 - commit changes
 
-## Check the list of links in package.json
+### Check the list of links in package.json
 
 - open the `package.json` file
 - check if the links in the `bin` property cover the actual binaries
 - if necessary, also check on Windows
 
-## Update package.json binaries
+### Update the package.json list of binaries
 
 - select the `xpack-development` branch
 - run the xPack action
@@ -580,9 +586,9 @@ watching this project.
 - compare the SHA sums with those shown by `cat *.sha`
 - check the executable names
 - commit all changes, use a message like
-  _package.json: update urls for { customField('upstreamVersion') }-{ customField('xpackSubversion') }.{ customField('npmSubversion') } release_ (without _v_)
+  _**package.json: update urls for { customField('upstreamVersion') }-{ customField('xpackSubversion') }.{ customField('npmSubversion') } release**_ (without _v_)
 
-## Publish on the npmjs.com server
+### Publish on the npmjs.com server
 
 - select the `xpack-development` branch
 - check the latest commits `npm run git-log`
@@ -602,7 +608,7 @@ After a few moments the version will be visible at:
 
 - https://www.npmjs.com/package/@xpack-dev-tools/openocd?activeTab=versions
 
-## Test if the binaries can be installed with xpm
+### Test if the binaries can be installed with xpm
 
 Run the xPack action
 
@@ -613,7 +619,7 @@ This will install the package via `xpm install` on all supported platforms.
 The tests results are available from the
 [GitHub Actions](https://github.com/xpack-dev-tools/openocd-xpack/actions/) page.
 
-## Tag the npm package as `latest`
+### Tag the npm package as `latest`
 
 When the release is considered stable, promote it as `latest`:
 
@@ -625,7 +631,7 @@ In case the previous version is not functional and needs to be unpublished:
 
 - <code>npm unpublish @xpack-dev-tools/openocd@{ customField('upstreamVersion') }-{ customField('xpackSubversion') }.{ customField('npmSubversion') }</code>
 
-## Update the repo & publish the website
+### Update the repo & publish the website
 
 - merge `xpack-development` into `xpack`
 - push to GitHub
@@ -635,7 +641,7 @@ At this moment the website is also generated.
 - the result is in https://xpack-dev-tools.github.io/openocd-xpack/blog/
 - remember the post URL, since it must be updated in the release page
 
-## Create the final GitHub release
+### Create the final GitHub release
 
 - go to the [GitHub Releases](https://github.com/xpack-dev-tools/openocd-xpack/releases/) page
 - check the download counter, it should match the number of tests
@@ -644,22 +650,24 @@ At this moment the website is also generated.
 - **disable** the **pre-release** button
 - click the **Update Release** button
 
-## Check SourceForge mirror
+### Check SourceForge mirror
 
 - https://sourceforge.net/projects/openocd-xpack/files/
 
-## Remove the pre-release binaries
+## Cleanups
+
+### Remove the pre-release binaries
 
 - go to https://github.com/xpack-dev-tools/pre-releases/releases/tag/test/
 - remove the test binaries
 
-## Clean the work area
+### Clean the work area
 
 Run the xPack action
 
   - **`trigger-workflow-deep-clean`**
 
-This will remove the build folders on all supported platforms.
+This will remove the build folders on all self-hosted runners.
 
 The results are available from the
 [GitHub Actions](https://github.com/xpack-dev-tools/openocd-xpack/actions/) page.
