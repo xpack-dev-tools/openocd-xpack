@@ -22,6 +22,7 @@
       "dbg": ""
     },
     "actions": {
+      "npm-install": "npm install",
       "npm-pack": "cd .. && npm pack",
       "npm-version-patch": "cd .. && npm version patch",
       "npm-version-minor": "cd .. && npm version minor",
