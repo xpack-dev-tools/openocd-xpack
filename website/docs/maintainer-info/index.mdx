@@ -22,6 +22,8 @@ import FunctionalTests from './_functional-tests.mdx'
 import ShareCustom from './_share-custom.mdx'
 
 import { durations } from './_durations.mdx'
+import Patches from './_patches.mdx'
+
 import PlatformNativeBuild from './_common/_platform-native-build.mdx'
 import PlatformDockerBuild from './_common/_platform-docker-build.mdx'
 
@@ -49,7 +51,7 @@ The project is hosted on GitHub:
 
 - https://github.com/xpack-dev-tools/openocd-xpack.git
 
-To clone the stable branch (`xpack`), run the following commands in a
+To clone the **stable** branch (`xpack`), run the following commands in a
 terminal (on Windows use the _Git Bash_ console):
 
 ```sh
@@ -58,7 +60,7 @@ git clone https://github.com/xpack-dev-tools/openocd-xpack.git \
   ~/Work/xpack-dev-tools/openocd-xpack.git
 ```
 
-For development purposes, clone the `xpack-development` branch:
+For **development** purposes, clone the `xpack-development` branch:
 
 ```sh
 rm -rf ~/Work/xpack-dev-tools/openocd-xpack.git && \
@@ -125,8 +127,6 @@ In the `xpack-dev-tools/openocd-xpack` Git repo:
 - pull new changes
 - if needed, merge the `xpack` branch
 
-No need to add a tag here, it'll be added when the release is created.
-
 ### Update helper & other dependencies
 
 Check the latest versions at https://github.com/xpack-dev-tools/ and
@@ -188,6 +188,8 @@ Before the real build, run test builds on all platforms.
 All actions are defined as **xPack actions** and can be conveniently
 triggered via the VS Code graphical interface, using the
 [xPack extension](https://marketplace.visualstudio.com/items?itemName=ilg-vscode.xpack).
+
+<Patches/>
 
 ### Build the x64 macOS binaries
 
@@ -683,7 +685,7 @@ The results are available from the
 
 <ShareCustom/>
 
-## Download analytics
+## Analytics
 
 - GitHub [`xpack-dev-tools/openocd-xpack`](https://github.com/xpack-dev-tools/openocd-xpack/) repo
   - latest xPack release
