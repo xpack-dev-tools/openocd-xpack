@@ -7,13 +7,13 @@
   "xpack": {
     "minimumXpmRequired": "0.16.3",
     "devDependencies": {
-      "@xpack-dev-tools/xbb-helper": "^3.0.2"
+      "@xpack-dev-tools/xbb-helper": "^3.0.3"
     },
     "properties": {
       "appName": "OpenOCD",
       "appLcName": "openocd",
       "platforms": "all",
-      "showGnuMcuAnalytics": "true",
+      "showDeprecatedGnuMcuAnalytics": "true",
       "buildFolderRelativePath": "{{ 'build' | path_join: configuration.name | to_filename | downcase }}",
       "buildFolderRelativePathPosix": "{{ 'build' | path_posix_join: configuration.name | downcase }}",
       "commandBashBuild": "bash {{ properties.dbg }} scripts/build.sh --target {{ configuration.name }} --build-folder {{ properties.buildFolderRelativePathPosix }}",
