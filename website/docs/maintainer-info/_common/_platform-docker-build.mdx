@@ -29,8 +29,8 @@ xpm run docker-build-development --config ${ props.platform } -C ~/Work/xpack-de
 archive and its SHA signature, created in
 the <code>buils-assets/build/{ props.platform }/deploy</code> folder:
 
-* <code>xpack-openocd-{ customField('upstreamVersion') }-{ customField('xpackSubversion') }-{ props.platform }.tar.gz</code>
-* <code>xpack-openocd-{ customField('upstreamVersion') }-{ customField('xpackSubversion') }-{ props.platform }.tar.gz.sha</code>
+* <code>xpack-openocd-{ customField('upstreamVersion') }-{ customField('xpackSubversion') }-{ props.platform }.{ props.platform === 'win32-x64' ? 'zip' : 'tar.gz' }</code>
+* <code>xpack-openocd-{ customField('upstreamVersion') }-{ customField('xpackSubversion') }-{ props.platform }.{ props.platform === 'win32-x64' ? 'zip' : 'tar.gz' }.sha</code>
 
 To update the build scripts and build the release binaries:
 

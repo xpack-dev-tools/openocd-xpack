@@ -17,7 +17,7 @@ import MoreRepos from './_more-repos.mdx';
 import ReleaseSchedule from './_release-schedule.mdx';
 import CheckUpstreamRelease from './_check-upstream-release.mdx'
 import UpdateVersionSpecific from './_update-version-specific.mdx'
-import CiDurations from './_ci-durations.mdx'
+import GitHubActionsDurations from './_github-actions-durations.mdx'
 import FunctionalTests from './_functional-tests.mdx'
 import ShareCustom from './_share-custom.mdx'
 
@@ -89,7 +89,7 @@ the central xPacks store:
 rm -rf ~/Work/xpack-dev-tools/xbb-helper-xpack.git && \
 mkdir -p ~/Work/xpack-dev-tools && \
 git clone \
-  --branch xpack-development \
+  --branchxpack-development \
   https://github.com/xpack-dev-tools/xbb-helper-xpack.git \
   ~/Work/xpack-dev-tools/xbb-helper-xpack.git && \
 xpm link -C ~/Work/xpack-dev-tools/xbb-helper-xpack.git
@@ -156,16 +156,17 @@ when the package is published to the `npm` server.
 Use the new version, suffixed by `.pre`,
 like <code>{ customField('upstreamVersion') }-{ customField('xpackSubversion') }.{ customField('npmSubversion') }.pre</code>.
 
-### Restart local web server
+### Start the local web server
 
-Execute the npm script `start` in the website sub-project,
+Execute the npm script `clean` then `start` in the website sub-project,
 or run the following in a terminal:
 
 ```sh
-(cd ~/Work/xpack-dev-tools/xbb-helper-xpack.git/website; npm run start)
+(cd ~/Work/xpack-dev-tools/xbb-helper-xpack.git/website; npm run clean; npm run start)
 ```
 
-Navigate to the **Maintainer Info** page.
+Navigate to the **Maintainer Info** page,
+the **Update the version specific code** section.
 
 <UpdateVersionSpecific/>
 
@@ -175,6 +176,18 @@ Navigate to the **Maintainer Info** page.
 - check if all previous fixed issues are in
 - add a new entry like _**\* v{ customField('upstreamVersion') }-{ customField('xpackSubversion') } prepared**_
 - commit with a message like _**prepare v{ customField('upstreamVersion') }-{ customField('xpackSubversion') }**_
+
+### Push the changes to Git
+
+Be sure that the latest commit that updates `VERSION` is pushed
+to the `xpack-development` branch!
+
+:::caution
+
+This is really important, otherwise the next steps
+will build again the previous release!
+
+:::
 
 ## Run the development builds
 
@@ -190,6 +203,19 @@ triggered via the VS Code graphical interface, using the
 [xPack extension](https://marketplace.visualstudio.com/items?itemName=ilg-vscode.xpack).
 
 <Patches/>
+
+### Restart the docker daemons
+
+If, for any reasons, the docker builds need to be canceled, it is very
+likely that some processes will continue to run in the background.
+
+To completely terminate them, and ensure that docker runs
+from a clean slate, restart the docker daemons on all GNU/Linux
+machines:
+
+```sh
+sudo systemctl restart docker
+```
 
 ### Build the x64 macOS binaries
 
@@ -295,11 +321,12 @@ caffeinate ssh xbbla32
 ### Update the trees in the Install Guide page
 
 Copy the trees displayed at the end of the test builds and paste to
-**Folder hierarchy** section in the web files:
+**Folder hierarchy** section in the web file:
 
-- `website/docs/install/_install-linux.mdx`
-- `website/docs/install/_install-macos.mdx`
-- `website/docs/install/_install-windows.mdx`
+- `website/docs/install/_miscellaneous.mdx`
+
+Replace **{ customField('upstreamVersion') }** with
+`${ customField('upstreamVersion') }` (there must be 6 occurences).
 
 :::tip
 
@@ -339,14 +366,10 @@ locations (like
 https://github.com/xpack-dev-tools/files-cache/tree/master/libs),
 place them in the XBB cache (`Work/cache`) and restart the build.
 
-## Run the CI/CD builds
+## Run the production builds
 
 The automation is provided by GitHub Actions and three self-hosted runners.
 
-### Generate the GitHub workflows
-
-Run the `generate-workflows` to re-generate the
-GitHub workflow files; commit and push if necessary.
 
 ### Start the self-hosted runners
 
@@ -361,76 +384,103 @@ caffeinate ssh xbbla
 caffeinate ssh xbbla32
 ```
 
-For `xbbli` & `xbbla` start two runners:
+Create a `screen` session, to provide a persistent standard output for
+the runners:
 
 ```sh
 screen -S ga
+```
 
+To quit it, use `# Ctrl-a Ctrl-d`.
+
+For `xbbli` & `xbbla`, which have more memory, start two runners:
+
+```sh
 ~/actions-runners/xpack-dev-tools/1/run.sh &
 ~/actions-runners/xpack-dev-tools/2/run.sh &
-
-# Ctrl-a Ctrl-d
 ```
 
 On all other machines start a single runner:
 
 ```sh
-screen -S ga
-
 ~/actions-runners/xpack-dev-tools/run.sh &
-
-# Ctrl-a Ctrl-d
 ```
 
-### Push the build scripts
+To check the status of the runners locally:
 
-- push the `xpack-development` branch to GitHub
-- possibly push the helper project too
+```sh
+ps -a | grep 'Runner.Listener'
+```
 
-From here it'll be cloned on the production machines.
+To kill them:
 
-### Publish helper
+```sh
+killall Runner.Listener
+```
 
-Publish a new release of the helper and update the reference
-in `build-assets/package.json`.
+### Check the status of the runners
+
+The status of all self-hosted runners is available at the [GitHub Runners](https://github.com/organizations/xpack-dev-tools/settings/actions/runners) page.
+
+### Publish the helper
+
+Publish a new release of the helper on **npmjs**.
+
+### Update the dependency to the new helper
+
+In `build-assets/package.json`, update the reference
+to `"@xpack-dev-tools/xbb-helper":`
+(possibly in all xPack projects).
+
+### Commit the changes to `build-assets/package.json`
+
+Use the message **build-assets/package.json: bump deps**.
 
 ### Check for disk space
 
 Check if the build machines have enough free space and eventually
 do some cleanups
 
-- GNU/Linux: `df -BG -H /`
-- macOS: `df -gH /`
+GNU/Linux:
 
-To remove previous builds, use:
+```sh
+df -BG -H /
+```
+
+macOS:
+```
+df -gH /
+```
+
+To free the space used by previous builds:
 
 ```sh
 rm -rf ~/Work/xpack-dev-tools/*/build-assets/build ~/Work/xpack-dev-tools/*/build
 ```
 
+### Generate the GitHub workflows
+
+Run the **`generate-workflows`** to update the
+GitHub workflow files.
+
+### Commit and push
+
+- commit with the message **Re-generate workflows**
+- push the `xpack-dependency` branch to GitHub
+
 ### Manually trigger the build GitHub Actions
 
 To trigger the GitHub Actions builds, use the xPack actions:
 
-- `trigger-workflow-build-darwin-x64`
-- `trigger-workflow-build-darwin-arm64`
-- `trigger-workflow-build-linux-x64`
-- `trigger-workflow-build-win32-x64`
-- `trigger-workflow-build-linux-arm64`
-- `trigger-workflow-build-linux-arm`
+- **`trigger-workflow-build-darwin-x64`**
+- **`trigger-workflow-build-darwin-arm64`**
+- **`trigger-workflow-build-linux-x64`**
+- **`trigger-workflow-build-win32-x64`**
+- **`trigger-workflow-build-linux-arm64`**
+- **`trigger-workflow-build-linux-arm`**
 
-These are equivalent to:
-
-```sh
-bash ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets/xpacks/@xpack-dev-tools/xbb-helper/github-actions/trigger-workflow-build.sh --workflow build-darwin-x64.yml
-bash ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets/xpacks/@xpack-dev-tools/xbb-helper/github-actions/trigger-workflow-build.sh --workflow build-darwin-arm64.yml
-bash ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets/xpacks/@xpack-dev-tools/xbb-helper/github-actions/trigger-workflow-build.sh --workflow build-linux-x64.yml
-bash ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets/xpacks/@xpack-dev-tools/xbb-helper/github-actions/trigger-workflow-build.sh --workflow build-win32-x64.yml
-bash ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets/xpacks/@xpack-dev-tools/xbb-helper/github-actions/trigger-workflow-build.sh --workflow build-linux-arm64.yml
-bash ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets/xpacks/@xpack-dev-tools/xbb-helper/github-actions/trigger-workflow-build.sh --workflow build-linux-arm.yml
-```
-
-These scripts require the `GITHUB_API_DISPATCH_TOKEN` variable to be present
+The scripts behind these actions require the `GITHUB_API_DISPATCH_TOKEN`
+variable to be present
 in the environment, and the organization `PUBLISH_TOKEN` to be visible in the
 Settings → Action →
 [Secrets](https://github.com/xpack-dev-tools/openocd-xpack/settings/secrets/actions)
@@ -440,7 +490,7 @@ These commands use the `xpack-development` branch of this repo.
 
 ### Durations & resulting binaries
 
-<CiDurations/>
+<GitHubActionsDurations/>
 
 The workflow result and logs are available from the
 [GitHub Actions](https://github.com/xpack-dev-tools/openocd-xpack/actions/) page.
@@ -450,25 +500,17 @@ The resulting binaries are available for testing from
 
 ## Run the tests
 
-### CI tests
+### Automated tests
 
 The automation is provided by GitHub Actions.
 
 To trigger the GitHub Actions tests, use the xPack actions:
 
-- `trigger-workflow-test-prime`
-- `trigger-workflow-test-docker-linux-intel`
-- `trigger-workflow-test-docker-linux-arm`
+- **`trigger-workflow-test-prime`**
+- **`trigger-workflow-test-docker-linux-intel`**
+- **`trigger-workflow-test-docker-linux-arm`**
 
-These are equivalent to:
-
-```sh
-bash ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets/xpacks/@xpack-dev-tools/xbb-helper/github-actions/trigger-workflow-test-prime.sh
-bash ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets/xpacks/@xpack-dev-tools/xbb-helper/github-actions/trigger-workflow-test-docker-linux-intel.sh
-bash ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets/xpacks/@xpack-dev-tools/xbb-helper/github-actions/trigger-workflow-test-docker-linux-arm.sh
-```
-
-These scripts require the `GITHUB_API_DISPATCH_TOKEN` variable to be present
+The scripts behind these accesible require the `GITHUB_API_DISPATCH_TOKEN` variable to be present
 in the environment.
 
 These actions use the `xpack-development` branch of this repo and the
@@ -478,12 +520,12 @@ binaries.
 The tests results are available from the
 [GitHub Actions](https://github.com/xpack-dev-tools/openocd-xpack/actions/) page.
 
-Since GitHub Actions provides a single version of a macOS runner, the
-multi-version macOS tests run on Travis.
+Since GitHub Actions provides a limited range of versions for the macOS
+runner, the multi-version macOS tests run on Travis.
 
 To trigger the Travis test, use the xPack action:
 
-- `trigger-travis-macos`
+- **`trigger-travis-macos`**
 
 This is equivalent to:
 
@@ -529,7 +571,7 @@ xattr -cr ${HOME}/Downloads/xpack-*
   like _**\* v{ customField('upstreamVersion') }-{ customField('xpackSubversion') } released**_
 - commit with _**CHANGELOG update**_
 - check and possibly update the `build-assets/templates/body-github-release-liquid.mdx`
-- push the `xpack-development` branch
+- push the `xpack-development` branch to GitHub
 - run the xPack action
   - **`trigger-workflow-publish-release`**
 
@@ -578,7 +620,7 @@ watching this project.
 
 ### Update the package.json list of binaries
 
-- select the `xpack-development` branch
+- select the `xpack-development` branch
 - run the xPack action
   - **`update-package-binaries`**
 - open the top `package.json` file
@@ -592,7 +634,7 @@ watching this project.
 
 ### Publish on the npmjs.com server
 
-- select the `xpack-development` branch
+- select the `xpack-development` branch
 - check the latest commits `npm run git-log`
 - update `CHANGELOG.md`, add a line like _**\* v{ customField('upstreamVersion') }-{ customField('xpackSubversion') } published on npmjs.com**_
 - commit with a message like _**CHANGELOG: publish npm v{ customField('upstreamVersion') }-{ customField('xpackSubversion') }.{ customField('npmSubversion') }**_
@@ -602,7 +644,7 @@ watching this project.
 - <code><b>npm version { customField('upstreamVersion') }-{ customField('xpackSubversion') }.{ customField('npmSubversion') }</b></code>; the first 4 numbers are the same as the
   GitHub release; the fifth number is the npm specific version
 - the commits and the tag should have been pushed by the `postversion` script;
-  if not, push them with `git push origin --tags`
+  if not, push them with `git push origin --tags` to GitHub
 - **`npm publish --tag next`** (use `npm publish --access public`
   when publishing for the first time; add the `next` tag)
 
@@ -636,7 +678,7 @@ In case the previous version is not functional and needs to be unpublished:
 ### Update the repo & publish the website
 
 - merge `xpack-development` into `xpack`
-- push to GitHub
+- push the `xpack` branch to GitHub
 
 At this moment the website is also generated.
 
