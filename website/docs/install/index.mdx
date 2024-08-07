@@ -53,7 +53,7 @@ these executables are created in a `.bin` folder,
 eliminating the need to add multiple folders to the `PATH`.
 
 Given that some binary xPacks, such as toolchains, can be quite large,
-the archives are extracted only once into a central/global location to
+the archives are extracted only once into a user global location to
 conserve space. In projects, instead of duplicating the content of these
 archives, symbolic links are created.
 
@@ -141,20 +141,20 @@ and prefered to possible system tools.
 </details>
 
 <details>
-<summary>Global installs and the central xPacks store</summary>
+<summary>Global installs and the user global xPacks store</summary>
 
 Given that some binary tools (such as toolchains) can be very large
 (hundreds of megabytes or more), it is impractical to keep multiple
 copies of these tools, one for each project.
 
 Instead, **xpm** installs the binary packages only once
-into a central store (a platform-dependent folder
+into a user global store (a platform-dependent folder
 within the home folder), thereby conserving disk space when the same
 tools are used across multiple projects.
 
 In order to allow the projects to access the binary tools installed in the
-central store, instead of unpacking the archives in `xpacks`,
-**xpm** adds symbolic links pointing to the **central xPacks store**.
+user global store, instead of unpacking the archives in `xpacks`,
+**xpm** adds symbolic links pointing to the **user global xPacks store**.
 
 The outcome is functionally equivalent to installing the tools into
 each project, but without the wasted disk space.
@@ -172,7 +172,7 @@ creating local links/forwarders (see below).
 </details>
 
 <details>
-<summary>The central xPacks cache</summary>
+<summary>The user xPacks cache</summary>
 
 To save download time, all archives are first stored in a
 cache, and all subsequent downloads are replaced with the
@@ -302,12 +302,12 @@ The above `xpm install` command will do the following:
 * identify the platform specific archive for the latest available version
   of OpenOCD, download it into a cache and unpack
   it into a versioned folder
-  in the **central xPacks store** (if not already there);
+  in the **user global xPacks store** (if not already there);
   check the output of the `xpm install` command for the actual
   folder used on your platform;
 * create a local symbolic link
   like <code>xpacks/@xpack-dev-tools/openocd</code> pointing to the
-  versioned folder in the central xPacks store
+  versioned folder in the user global xPacks store
 * add links/forwarders into
   the local `xpacks/.bin` folder, referring to the binaries in
   <code>xpacks/@xpack-dev-tools/openocd/.content/bin</code>;
@@ -370,7 +370,7 @@ This is particularly useful for CI/CD environments.
 
 For older development environments,
 it is also possible to install OpenOCD only globally in
-the **central xPacks store**, without any
+the **user global xPacks store**, without any
 local links/forwarders; it
 is the developer's responsibility to configure the path to the tools.
 
@@ -383,7 +383,7 @@ No other files are installed in any system folders or other locations.
 :::note
 
 Installing packages locally into a project always installs the
-packages in the **central xPacks store**; subsequent attempts to
+packages in the **user global xPacks store**; subsequent attempts to
 install the packages globally will fail with _already installed_.
 
 :::
@@ -393,7 +393,7 @@ install the packages globally will fail with _already installed_.
 <summary>PATH setup</summary>
 
 In order to access the GNU RISC-V Embedded GCC binaries installed in
-the central xPacks store,
+the user global xPacks store,
 the project build configurations need a PATH adjustment:
 
 <Tabs groupId="operating-systems">
@@ -436,8 +436,8 @@ The binaries do not use any form of installer; instead they
 are distributed as
 portable { props.isWindows ? <code>.zip</code> : <code>.tar.gz</code> } archives;
 therefore they do not require to run any uninstaller; simply removing the
-links and possibly the central xPack store folder and
-the central cache folder is enough.
+links and possibly the user global xPack store folder and
+the user xPack cache folder is enough.
 
 To remove the <LinksVsForwarders isWindows={ props.isWindows }/> created by
 **xpm** in the current project,
@@ -453,7 +453,7 @@ and ask **xpm** to uninstall the package:
 `xpm uninstall @xpack-dev-tools/openocd --verbose`
 } </CodeBlock>
 
-To completely remove the package from the central xPack store:
+To completely remove the package from the user global xPack store:
 
 <CodeBlock language="sh"> {
 `xpm uninstall --global @xpack-dev-tools/openocd --verbose`
@@ -488,7 +488,7 @@ For a thorough clean-up, please note that **xpm** uses only two folders:
 They can be removed at any time and space reclaimed;
 **xpm** will recreate them on new installs.
 
-However, projects linking to the central xPack store will fail with
+However, projects linking to the user global xPack store will fail with
 broken paths.
 
 </details>

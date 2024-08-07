@@ -32,7 +32,7 @@ const sidebars: SidebarsConfig = {
     {
       type: 'doc',
       id: 'user-info/index',
-      label: 'User Info'
+      label: 'User Information'
     },
     {
       type: 'doc',
@@ -47,12 +47,12 @@ const sidebars: SidebarsConfig = {
     {
       type: 'doc',
       id: 'developer-info/index',
-      label: 'Developer Info'
+      label: 'Developer Information'
     },
     {
       type: 'doc',
       id: 'maintainer-info/index',
-      label: 'Maintainer Info'
+      label: 'Maintainer Information'
     },
     {
       type: 'doc',

@@ -170,7 +170,7 @@ const config: Config = {
               to: '/docs/install'
             },
             {
-              label: 'User Info',
+              label: 'User Information',
               to: '/docs/user-info'
             },
             {
