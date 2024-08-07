@@ -134,6 +134,69 @@ const config: Config = {
         disableInDev: false,
       },
     ],
+    [
+      // https://docusaurus.io/docs/next/api/plugins/@docusaurus/plugin-client-redirects#redirects
+      '@docusaurus/plugin-client-redirects',
+      {
+        // fromExtensions: ['html', 'htm'], // /myPage.html -> /myPage
+        // toExtensions: ['exe', 'zip'], // /myAsset -> /myAsset.zip (if latter exists)
+        redirects: [
+          //   // /docs/oldDoc -> /docs/newDoc
+          //   {
+          //     to: '/docs/newDoc',
+          //     from: '/docs/oldDoc',
+          //   },
+          //   // Redirect from multiple old paths to the new path
+          //   {
+          //     to: '/docs/newDoc2',
+          //     from: ['/docs/oldDocFrom2019', '/docs/legacyDocFrom2016'],
+          //   },
+          {
+            to: '/docs/developer',
+            from: '/docs/developer-info'
+          },
+          {
+            to: '/docs/maintainer',
+            from: '/docs/maintainer-info'
+          },
+          {
+            to: '/docs/user',
+            from: '/docs/user-info'
+          }
+        ],
+        createRedirects(existingPath) {
+          logger.info(existingPath);
+          //   if (existingPath.includes('/evenimente')) {
+          //     // logger.info(`to ${existingPath} from ${existingPath.replace('/evenimente', '/events')}`);
+          //     // Redirect from /events/X to /evenimente/X
+          //     return [
+          //       existingPath.replace('/evenimente', '/events')
+          //     ];
+          //   } else if (existingPath.includes('/amintiri')) {
+          //     // logger.info(`to ${existingPath} from ${existingPath.replace('/amintiri', '/blog')}`);
+          //     // Redirect from /blog/Z to /amintiri/X
+          //     return [
+          //       existingPath.replace('/amintiri', '/blog')
+          //     ];
+          //   }
+          //   return undefined; // Return a falsy value: no redirect created
+          //   },
+          if (existingPath.includes('/user-info')) {
+            return [
+              existingPath.replace('/user-info', '/user')
+            ];
+          } else if (existingPath.includes('/developer-info')) {
+            return [
+              existingPath.replace('/developer-info', '/developer')
+            ];
+          } else if (existingPath.includes('/maintainer-info')) {
+            return [
+              existingPath.replace('/maintainer-info', '/maintainer')
+            ];
+          }
+        }
+      }
+    ],
     './src/plugins/SelectReleasesPlugin',
   ],
 
@@ -171,7 +234,7 @@ const config: Config = {
             },
             {
               label: 'User Information',
-              to: '/docs/user-info'
+              to: '/docs/user'
             },
             {
               label: 'Help Centre',

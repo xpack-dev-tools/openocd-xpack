@@ -13,7 +13,7 @@
   },
   "sidebar.docsSidebar.doc.User Info": {
     "message": "User Info",
-    "description": "The label for the doc item User Info in sidebar docsSidebar, linking to the doc user-info"
+    "description": "The label for the doc item User Info in sidebar docsSidebar, linking to the doc user"
   },
   "sidebar.docsSidebar.doc.FAQ": {
     "message": "FAQ",

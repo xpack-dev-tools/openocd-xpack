@@ -31,7 +31,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'doc',
-      id: 'user-info/index',
+      id: 'user/index',
       label: 'User Information'
     },
     {
@@ -46,12 +46,12 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'doc',
-      id: 'developer-info/index',
+      id: 'developer/index',
       label: 'Developer Information'
     },
     {
       type: 'doc',
-      id: 'maintainer-info/index',
+      id: 'maintainer/index',
       label: 'Maintainer Information'
     },
     {
