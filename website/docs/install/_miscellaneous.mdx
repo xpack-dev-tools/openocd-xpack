@@ -24,7 +24,18 @@ Folder PATH listing
 Volume serial number is B02D-925C
 ├── README.md
 ├── bin
-TODO
+│   ├── libftdi1.dll
+│   ├── libusb-1.0.dll
+│   └── openocd.exe
+├── distro-info
+│   └── licenses
+└── openocd
+    ├── OpenULINK
+    ├── angie
+    ├── contrib
+    └── scripts
+
+8 directories, 4 files
 `} </CodeBlock>
 
 </TabItem>
@@ -35,7 +46,21 @@ TODO
 /Users/ilg/Library/xPacks/\@xpack-dev-tools/openocd/${ customField('upstreamVersion') }-${ customField('xpackSubversion') }.${ customField('npmSubversion') }/.content/
 ├── README.md
 ├── bin
-TODO
+│   └── openocd
+├── distro-info
+│   └── licenses
+├── libexec
+│   ├── libftdi1.2.5.0.dylib
+│   ├── libftdi1.2.dylib -> libftdi1.2.5.0.dylib
+│   ├── libhidapi.0.14.0.dylib
+│   └── libusb-1.0.0.dylib
+└── openocd
+    ├── OpenULINK
+    ├── angie
+    ├── contrib
+    └── scripts
+
+10 directories, 6 files
 `} </CodeBlock>
 
 </TabItem>
@@ -46,10 +71,155 @@ TODO
 /home/ilg/.local/xPacks/\@xpack-dev-tools/openocd/${ customField('upstreamVersion') }-${ customField('xpackSubversion') }.${ customField('npmSubversion') }/.content/
 ├── README.md
 ├── bin
-TODO
+│   └── openocd
+├── distro-info
+│   └── licenses
+├── libexec
+│   ├── libftdi1.so.2 -> libftdi1.so.2.5.0
+│   ├── libftdi1.so.2.5.0
+│   ├── libhidapi-hidraw.so.0 -> libhidapi-hidraw.so.0.14.0
+│   ├── libhidapi-hidraw.so.0.14.0
+│   ├── libudev.so.1 -> libudev.so.1.6.9
+│   ├── libudev.so.1.6.9
+│   ├── libusb-1.0.so.0 -> libusb-1.0.so.0.4.0
+│   └── libusb-1.0.so.0.4.0
+└── openocd
+    ├── OpenULINK
+    ├── angie
+    ├── contrib
+    └── scripts
+
+9 directories, 10 files
 `} </CodeBlock>
 
 </TabItem>
 </Tabs>
 
 </details>
+
+## Drivers
+
+<Tabs groupId="operating-systems">
+<TabItem value="windows" label="Windows" default>
+
+As usual on Windows, mastering drivers is a challenge and OpenOCD is no
+exceptions, so don't be surprised to encounter many incompatible drivers
+for various JTAG probes.
+
+<h3>Zadig</h3>
+
+The OpenOCD distribution includes some libusb
+drivers, and recommends to run the [`zadig.exe`](https://zadig.akeo.ie) tool to activate them.
+
+For example
+[ARM-USB-OCD](https://www.olimex.com/Products/ARM/JTAG/) from
+[Olimex](https://www.olimex.com/), after installing the vendor drivers,
+asks to install Zadig and convert the vendor drivers to WinUSB drivers.
+
+:::caution
+
+Although converting the vendor drivers
+to WinUSB drivers will make OpenOCD happy, please be aware that other
+tools using the original drivers will no longer work while Zadig is
+active, and to make them work you need to uninstall the Zadig driver
+for the device and reinstall the vendor driver (see
+[Zadig FAQ](https://github.com/pbatard/libwdi/wiki/FAQ#Help_Zadig_replaced_the_driver_for_the_wrong_device_How_do_I_restore_it)).
+Our
+recommendation is to use Zadig only as a last resort solution, and, when
+possible, prefer the manufacturer drivers.
+
+:::
+
+<h3>ST-LINK</h3>
+
+One example of compatible drivers are the ST-LINK USB drivers, from ST,
+available as part number
+[STSW-LINK009](https://www.st.com/web/en/catalog/tools/FM147/SC1887/PF260219).
+Download the latest `stsw-link009.zip` archive, extract its content into a separate
+folder, and run the `dpinst_amd64.exe` (or `dpinst_x86.exe`) with
+administrative privileges.
+
+As for most Windows drivers, to complete the installation, a restart
+usually helps.
+
+Connect the ST-LINK or the DISCOVERY board and check in **Control Panel** 
+→ **System** → **Device Manager** if the JTAG is operational.
+
+![ST-LINK Windows device](/img/windows-devices-stlink.png)
+
+For other probes follow the manufacturer instructions.
+
+:::note
+
+All Windows tests were performed on Windows 11.
+If, for any
+reasons, you still need to use older versions, especially the venerable Windows XP,
+some differences may be observed in the USB subsystem; to stay on the
+safe side, try to always use original manufacturer drivers.
+
+:::
+
+</TabItem>
+<TabItem value="macos" label="macOS">
+
+On macOS, JTAG probes implemented as USB devices usually are
+recognised directly and do not need explicit drivers.
+
+</TabItem>
+<TabItem value="linux" label="GNU/Linux">
+
+<h3>UDEV</h3>
+
+For the JTAG probes implemented as USB devices (actually most of them),
+the last installation step on GNU/Linux is to configure the **UDEV**
+subsystem. OpenOCD provides an UDEV rules file defining all the
+supported IDs; to install it, just copy the file to `/etc/udev/rules.d`
+and eventually notify the daemon:
+
+<CodeBlock language="sh"> {
+`sudo cp ~/.local/xPacks/@xpack-dev-tools/openocd/${ customField('upstreamVersion') }-${ customField('xpackSubversion') }.${ customField('npmSubversion') }/.content/contrib/60-openocd.rules /etc/udev/rules.d/`
+} </CodeBlock>
+
+To make the change effective, reload the rules:
+
+```sh
+sudo udevadm control --reload-rules
+```
+
+:::tip
+
+If you previously installed the
+J-Link binaries, the USB IDs were
+already added to UDEV. The above OpenOCD rules file also defines the
+J-Link ID. Apparently UDEV does not complain; if you encounter
+problems, just comment out the definition in the OpenOCD file.
+
+:::
+
+<h3>USB access rights</h3>
+
+On some GNU/Linux distributions, the UDEV definitions are not enough,
+or are not effective, and when trying to access the JTAG probe,
+an error is issued:
+
+```console
+libusb_open failed: LIBUSB_ERROR_ACCESS
+```
+
+If this happens, first try to start openocd with `sudo`; if this works,
+for regular work you also need to grant your user permission to use the USB.
+
+For example, on Ubuntu you need to issue something like:
+
+```sh
+sudo usermod -aG plugdev $USER
+```
+
+Then restart and login again.
+
+If you still have problems, check your distribution documentation and
+when you have a functional solution post it on the project
+[GitHub Discussions](https://github.com/xpack-dev-tools/openocd-xpack/discussions/).
+
+</TabItem>
+</Tabs>
