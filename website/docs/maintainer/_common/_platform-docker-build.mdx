@@ -5,7 +5,7 @@ import CodeBlock from '@theme/CodeBlock';
 
 import customField from '@site/src/libs/customField';
 
-import { durations } from '../_durations.mdx'
+import { developmentDurations } from '../_development-durations.mdx'
 
 {/* ------------------------------------------------------------------------ */}
 
@@ -25,7 +25,7 @@ xpm run docker-link-deps --config ${ props.platform } -C ~/Work/xpack-dev-tools/
 xpm run docker-build-development --config ${ props.platform } -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets`
 } </CodeBlock>
 
-{ durations[ props.platform ] }, the output of the build script is a compressed
+{ developmentDurations[ props.platform ] }, the output of the build script is a compressed
 archive and its SHA signature, created in
 the <code>buils-assets/build/{ props.platform }/deploy</code> folder:
 

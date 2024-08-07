@@ -4,7 +4,7 @@
 import CodeBlock from '@theme/CodeBlock';
 
 import customField from '@site/src/libs/customField';
-import { durations } from '../_durations.mdx'
+import { developmentDurations } from '../../maintainer/_development-durations.mdx'
 
 {/* ------------------------------------------------------------------------ */}
 
@@ -40,7 +40,7 @@ or, for more verbosity, run the similar development build:
 `xpm run build-development --config ${ props.platform } -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets`
 } </CodeBlock>
 
-{ durations[ props.platform ] }, the output of the build script is a compressed
+{ developmentDurations[ props.platform ] }, the output of the build script is a compressed
 archive and its SHA signature, created in
 the <code>buils-assets/build/{ props.platform }/deploy</code> folder:
 
