@@ -51,7 +51,7 @@
       "trigger-workflow-build-linux-arm64": "bash xpacks/@xpack-dev-tools/xbb-helper/github-actions/trigger-workflow-build.sh --workflow build-linux-arm64.yml --xpm-version {{ properties.xpm-version }} --loglevel {{ properties.xpm-install-loglevel }}",
       "trigger-workflow-build-linux-arm": "bash xpacks/@xpack-dev-tools/xbb-helper/github-actions/trigger-workflow-build.sh --workflow build-linux-arm.yml --xpm-version {{ properties.xpm-version }} --loglevel {{ properties.xpm-install-loglevel }}",
       "trigger-workflow-test-prime": "bash xpacks/@xpack-dev-tools/xbb-helper/github-actions/trigger-workflow-test-prime.sh",
-      "trigger-workflow-test-docker-linux-intel": "bash xpacks/@xpack-dev-tools/xbb-helper/github-actions/trigger-workflow-test-docker-linux-intel.sh",
+      "trigger-workflow-test-docker-linux-x64": "bash xpacks/@xpack-dev-tools/xbb-helper/github-actions/trigger-workflow-test-docker-linux-x64.sh",
       "trigger-workflow-test-docker-linux-arm": "bash xpacks/@xpack-dev-tools/xbb-helper/github-actions/trigger-workflow-test-docker-linux-arm.sh",
       "trigger-travis-macos": "bash xpacks/@xpack-dev-tools/xbb-helper/travis/trigger-travis-macos.sh",
       "trigger-workflow-publish-release": "bash xpacks/@xpack-dev-tools/xbb-helper/github-actions/trigger-workflow-publish-release.sh",
