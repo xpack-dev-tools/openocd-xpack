@@ -89,7 +89,7 @@ the central xPacks store:
 rm -rf ~/Work/xpack-dev-tools/xbb-helper-xpack.git && \
 mkdir -p ~/Work/xpack-dev-tools && \
 git clone \
-  --branchxpack-development \
+  --branch xpack-development \
   https://github.com/xpack-dev-tools/xbb-helper-xpack.git \
   ~/Work/xpack-dev-tools/xbb-helper-xpack.git && \
 xpm link -C ~/Work/xpack-dev-tools/xbb-helper-xpack.git
@@ -460,8 +460,12 @@ rm -rf ~/Work/xpack-dev-tools/*/build-assets/build ~/Work/xpack-dev-tools/*/buil
 
 ### Generate the GitHub workflows
 
-Run the **`generate-workflows`** to update the
+Run the **generate-workflows** xPack action to update the
 GitHub workflow files.
+
+```sh
+xpm run generate-workflows -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets
+```
 
 ### Commit and push
 
@@ -472,12 +476,21 @@ GitHub workflow files.
 
 To trigger the GitHub Actions builds, use the xPack actions:
 
-- **`trigger-workflow-build-darwin-x64`**
-- **`trigger-workflow-build-darwin-arm64`**
-- **`trigger-workflow-build-linux-x64`**
-- **`trigger-workflow-build-win32-x64`**
-- **`trigger-workflow-build-linux-arm64`**
-- **`trigger-workflow-build-linux-arm`**
+- **trigger-workflow-build-darwin-x64**
+- **trigger-workflow-build-darwin-arm64**
+- **trigger-workflow-build-linux-x64**
+- **trigger-workflow-build-win32-x64**
+- **trigger-workflow-build-linux-arm64**
+- **trigger-workflow-build-linux-arm**
+
+```sh
+xpm run trigger-workflow-build-darwin-x64 -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets
+xpm run trigger-workflow-build-darwin-arm64 -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets
+xpm run trigger-workflow-build-linux-x64 -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets
+xpm run trigger-workflow-build-win32-x64 -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets
+xpm run trigger-workflow-build-darwin-x64 -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets
+xpm run trigger-workflow-build-darwin-x64 -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets
+```
 
 The scripts behind these actions require the `GITHUB_API_DISPATCH_TOKEN`
 variable to be present
@@ -504,11 +517,19 @@ The resulting binaries are available for testing from
 
 The automation is provided by GitHub Actions.
 
-To trigger the GitHub Actions tests, use the xPack actions:
+To trigger the GitHub Actions tests, run the xPack actions:
 
-- **`trigger-workflow-test-prime`**
-- **`trigger-workflow-test-docker-linux-intel`**
-- **`trigger-workflow-test-docker-linux-arm`**
+use the xPack actions:
+
+- **trigger-workflow-test-prime**
+- **trigger-workflow-test-docker-linux-x64**
+- **trigger-workflow-test-docker-linux-arm**
+
+```sh
+xpm run trigger-workflow-test-prime -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets
+xpm run trigger-workflow-test-docker-linux-x64 -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets
+xpm run trigger-workflow-test-docker-linux-arm -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets
+```
 
 The scripts behind these accesible require the `GITHUB_API_DISPATCH_TOKEN` variable to be present
 in the environment.
@@ -523,14 +544,10 @@ The tests results are available from the
 Since GitHub Actions provides a limited range of versions for the macOS
 runner, the multi-version macOS tests run on Travis.
 
-To trigger the Travis test, use the xPack action:
-
-- **`trigger-travis-macos`**
-
-This is equivalent to:
+To trigger the Travis test, run the **trigger-travis-macos** xPack action:
 
 ```sh
-bash ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets/xpacks/@xpack-dev-tools/xbb-helper/github-actions/trigger-travis-macos.sh
+xpm run trigger-travis-macos -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets
 ```
 
 This script requires the `TRAVIS_COM_TOKEN` variable to be present
@@ -572,8 +589,11 @@ xattr -cr ${HOME}/Downloads/xpack-*
 - commit with _**CHANGELOG update**_
 - check and possibly update the `build-assets/templates/body-github-release-liquid.mdx`
 - push the `xpack-development` branch to GitHub
-- run the xPack action
-  - **`trigger-workflow-publish-release`**
+- run the **trigger-workflow-publish-release** xPack action:
+
+```sh
+xpm run trigger-workflow-publish-release -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets
+```
 
 The workflow result and logs are available from the
 [GitHub Actions](https://github.com/xpack-dev-tools/openocd-xpack/actions/) page.
@@ -590,11 +610,16 @@ with all binaries attached.
 ### Prepare a new blog post
 
 - check and possibly update the `build-assets/templates/body-blog-release-*-liquid.md`
-- run the xPack action
-  - **`generate-website-blog-post`**; this will add a file
-in the `website/blog` folder.
+- run the **generate-website-blog-post** xPack action;
+this will add a file in the `website/blog` folder:
+
+```sh
+xpm run generate-website-blog-post -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets
+```
+
 - edit the front matter properties
-- select the summary
+- select the correct summary
+- commit with _**blog post release { customField('upstreamVersion') }-{ customField('xpackSubversion') } published**_
 
 ### Create the GitHub pre-release
 
@@ -602,14 +627,16 @@ in the `website/blog` folder.
 - perform the final edits and check if everything is fine
 - **keep the pre-release button enabled**
 - do not enable Discussions yet
-- publish the release
+- click the **Publish release** button
 
 Note: at this moment the system should send a notification to all clients
 watching this project.
 
 ### Update the web install page
 
-- check and possibly update the output of the `--version` runs in `website/docs/install/_install-*.mdx`
+- check and possibly update the output of the `--version` runs in
+  - `website/docs/install/_automatic-install-quick-test.mdx`
+  - `website/docs/install/_manual-install-quick-test.mdx`
 - commit changes
 
 ### Check the list of links in package.json
@@ -621,8 +648,12 @@ watching this project.
 ### Update the package.json list of binaries
 
 - select the `xpack-development` branch
-- run the xPack action
-  - **`update-package-binaries`**
+- run the **update-package-binaries** xPack action:
+
+```sh
+xpm run update-package-binaries -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets
+```
+
 - open the top `package.json` file
 - check the `baseUrl:` it should match the file URLs (including the tag/version);
   no terminating `/` is required
@@ -630,7 +661,7 @@ watching this project.
 - compare the SHA sums with those shown by `cat *.sha`
 - check the executable names
 - commit all changes, use a message like
-  _**package.json: update urls for { customField('upstreamVersion') }-{ customField('xpackSubversion') }.{ customField('npmSubversion') } release**_ (without _v_)
+  _**package.json: update urls for { customField('upstreamVersion') }-{ customField('xpackSubversion') }.{ customField('npmSubversion') } release**_
 
 ### Publish on the npmjs.com server
 
@@ -641,22 +672,37 @@ watching this project.
 - `npm pack` and check the content of the archive, which should list
   only the `package.json`, the `README.md`, `LICENSE` and `CHANGELOG.md`;
   possibly adjust `.npmignore`
-- <code><b>npm version { customField('upstreamVersion') }-{ customField('xpackSubversion') }.{ customField('npmSubversion') }</b></code>; the first 4 numbers are the same as the
-  GitHub release; the fifth number is the npm specific version
+- configure the version; the first 4 numbers are the same as the
+  GitHub release; the fifth number is the npm specific version:
+
+<CodeBlock language="sh"> {
+`npm version ${ customField('upstreamVersion') }-${ customField('xpackSubversion') }.${ customField('npmSubversion') }
+`} </CodeBlock>
+
 - the commits and the tag should have been pushed by the `postversion` script;
   if not, push them with `git push origin --tags` to GitHub
-- **`npm publish --tag next`** (use `npm publish --access public`
-  when publishing for the first time; add the `next` tag)
+- publish and add the `next` tag:
 
-After a few moments the version will be visible at:
+```sh
+npm publish --tag next
+```
 
-- https://www.npmjs.com/package/@xpack-dev-tools/openocd?activeTab=versions
+- when publishing for the first time, use:
+
+```sh
+npm publish --access public
+```
+
+After a few moments the version will be visible at
+<a href="https://www.npmjs.com/package/@xpack-dev-tools/openocd?activeTab=versions">npmjs.com</a>.
 
 ### Test if the binaries can be installed with xpm
 
-Run the xPack action
+Run the **trigger-workflow-test-xpm** xPack action:
 
-- **`trigger-workflow-test-xpm`**
+```sh
+xpm run trigger-workflow-test-xpm -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets
+```
 
 This will install the package via `xpm install` on all supported platforms.
 
@@ -667,13 +713,17 @@ The tests results are available from the
 
 When the release is considered stable, promote it as `latest`:
 
-- <code>npm dist-tag ls @xpack-dev-tools/openocd</code>
-- <code>npm dist-tag add @xpack-dev-tools/openocd@{ customField('upstreamVersion') }-{ customField('xpackSubversion') }.{ customField('npmSubversion') } latest</code>
-- <code>npm dist-tag ls @xpack-dev-tools/openocd</code>
+<CodeBlock language="sh"> {
+`npm dist-tag ls @xpack-dev-tools/openocd
+npm dist-tag add @xpack-dev-tools/openocd@${ customField('upstreamVersion') }-${ customField('xpackSubversion') }.${ customField('npmSubversion') } latest
+npm dist-tag ls @xpack-dev-tools/openocd`
+} </CodeBlock>
 
 In case the previous version is not functional and needs to be unpublished:
 
-- <code>npm unpublish @xpack-dev-tools/openocd@{ customField('upstreamVersion') }-{ customField('xpackSubversion') }.{ customField('npmSubversion') }</code>
+<CodeBlock language="sh"> {
+`npm unpublish @xpack-dev-tools/openocd@${ customField('upstreamVersion') }-${ customField('xpackSubversion') }.${ customField('npmSubversion') }`
+} </CodeBlock>
 
 ### Update the repo & publish the website
 
@@ -707,9 +757,11 @@ At this moment the website is also generated.
 
 ### Clean the work area
 
-Run the xPack action
+Run the **trigger-workflow-deep-clean** xPack action
 
-  - **`trigger-workflow-deep-clean`**
+```sh
+xpm run trigger-workflow-deep-clean -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets
+```
 
 This will remove the build folders on all self-hosted runners.
 
