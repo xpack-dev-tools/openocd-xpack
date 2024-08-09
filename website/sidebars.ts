@@ -46,6 +46,11 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'doc',
+      id: 'releases/index',
+      label: 'Releases'
+    },
+    {
+      type: 'doc',
       id: 'developer/index',
       label: 'Developer Information'
     },
@@ -54,11 +59,6 @@ const sidebars: SidebarsConfig = {
       id: 'maintainer/index',
       label: 'Maintainer Information'
     },
-    {
-      type: 'doc',
-      id: 'releases/index',
-      label: 'Releases'
-    }
   ],
 };
 

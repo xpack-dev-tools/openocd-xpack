@@ -16,7 +16,7 @@ import customField from '@site/src/libs/customField';
 import PlatformNativeSection from './_common/_platform-native-section.mdx'
 import PlatformDockerSection from './_common/_platform-docker-section.mdx'
 import OtherRepositories from './_other-repositories.mdx';
-import ManualTests from './_manual-tests.mdx'
+import More from './_more.mdx'
 
 {/* ------------------------------------------------------------------------ */}
 
@@ -192,16 +192,20 @@ The project is hosted on GitHub:
 <details>
 <summary>Branches</summary>
 
-Apart from the unused `master` branch, there are two active branches:
+Apart from the unused `master` branch, there are three active branches:
 
 - `xpack`, with the latest stable version (default)
-- <code>xpack-development</code>, with the current development version
+- `xpack-development`, with the current development version
+- `website`, with the current content of the website
 
-All development is done in the <code>xpack-development</code> branch, and contributions via
+All development is done in the `xpack-development` branch, and contributions via
 Pull Requests should be directed to this branch.
 
-When new releases are published, the <code>xpack-development</code> branch is merged
+When new releases are published, the `xpack-development` branch is merged
 into `xpack`.
+
+Pushes to the `website` branch trigger a GitHub Action to generate
+and publish the project web site.
 
 </details>
 
@@ -215,7 +219,7 @@ git clone https://github.com/xpack-dev-tools/openocd-xpack.git \
 ```
 
 <details>
-<summary>For development purposes, clone the <code>xpack-development</code> branch.</summary>
+<summary>For development purposes, clone the `xpack-development` branch.</summary>
 
 ```sh
 rm -rf ~/Work/xpack-dev-tools/openocd-xpack.git && \
@@ -234,7 +238,7 @@ git clone \
 The project has a dependency to a common **helper**, that is
 normally installed as a read-only dependency; **for development
 purposes**, to be able to make changes to the scripts located inside the helper,
-clone the <code>xpack-development</code> branch and link it to
+clone the `xpack-development` branch and link it to
 the user global xPacks store:
 
 ```sh
@@ -322,4 +326,4 @@ locations (like
 https://github.com/xpack-dev-tools/files-cache/tree/master/libs),
 place them in the XBB cache (`Work/cache`) and restart the build.
 
-<ManualTests/>
+<More/>
