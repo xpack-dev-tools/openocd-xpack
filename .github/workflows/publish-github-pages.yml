@@ -17,9 +17,9 @@ name: GitHub Pages
 on:
   # Runs on pushes, if all conditions are met:
   push:
-    # ... on the xpack branch ...
+    # ... on the `website` branch ...
     branches:
-      - 'xpack'
+      - 'website'
     # ... skip tags only ...
     tags-ignore:
       - '**'

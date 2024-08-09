@@ -345,7 +345,7 @@ jobs:
           echo >>${{ github.workspace }}/build-assets/artefacts/tests-report.md
           echo "---" >>${{ github.workspace }}/build-assets/artefacts/tests-report.md
           echo >>${{ github.workspace }}/build-assets/artefacts/tests-report.md
-          (cd ${{ github.workspace }}; cat -s artefacts/tests-report-linux-x64.md artefacts/tests-report-linux-arm64.md artefacts/tests-report-linux-arm.md artefacts/tests-report-darwin-x64.md artefacts/tests-report-darwin-arm64.md artefacts/tests-report-win32-x64.md  | tee -a build-assets/artefacts/tests-report.md)
+          (cd ${{ github.workspace }}; cat -s build-assets/artefacts/tests-report-linux-x64.md build-assets/artefacts/tests-report-linux-arm64.md build-assets/artefacts/tests-report-linux-arm.md build-assets/artefacts/tests-report-darwin-x64.md build-assets/artefacts/tests-report-darwin-arm64.md build-assets/artefacts/tests-report-win32-x64.md  | tee -a build-assets/artefacts/tests-report.md)
           mv -v ${{ github.workspace }}/build-assets/artefacts/tests-report.md ${{ github.workspace }}/build-assets/artefacts/${{ github.event.inputs.version }}.md
 
       - name: Upload tests report
