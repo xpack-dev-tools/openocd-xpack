@@ -1,38 +1,17 @@
-import CodeBlock from '@theme/CodeBlock';
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
-import customField from '@site/src/libs/customField';
+import AutomaticInstallQuickTest from './_common/_automatic-install-quick-test.mdx'
+
+export const appName = 'OpenOCD';
+export const appLcName = 'openocd';
+export const programName = 'openocd';
+export const branding = '';
 
 {/* ------------------------------------------------------------------------ */}
 
-### Quick test
+<AutomaticInstallQuickTest
+  appName={ appName }
+  appLcName={ appLcName }
+  programName={ programName }
+  branding={ branding }
+/>
 
-To check if the xPack OpenOCD installed by **xpm** starts properly, use something like:
-
-<Tabs groupId="operating-systems">
-<TabItem value="windows" label="Windows" default>
-
-<CodeBlock language="console"> {
-`C:\\> %USERPROFILE%\\AppData\\Roaming\\xPacks\\@xpack-dev-tools\\openocd\\${ customField('upstreamVersion') }-${ customField('xpackSubversion') }.${ customField('npmSubversion') }\\.content\\bin\\openocd.exe --version
-${ customField('upstreamVersion') }`
-} </CodeBlock>
-
-</TabItem>
-<TabItem value="macos" label="macOS">
-
-<CodeBlock language="console"> {
-`$ ~/Library/xPacks/@xpack-dev-tools/openocd/${ customField('upstreamVersion') }-${ customField('xpackSubversion') }.${ customField('npmSubversion') }/.content/bin/openocd  --version
-${ customField('upstreamVersion') }`
-} </CodeBlock>
-
-</TabItem>
-<TabItem value="linux" label="GNU/Linux">
-
-<CodeBlock language="console"> {
-`$ ~/.local/xPacks/@xpack-dev-tools/openocd/${ customField('upstreamVersion') }-${ customField('xpackSubversion') }.${ customField('npmSubversion') }/.content/bin/openocd  --version
-${ customField('upstreamVersion') }`
-} </CodeBlock>
-
-</TabItem>
-</Tabs>

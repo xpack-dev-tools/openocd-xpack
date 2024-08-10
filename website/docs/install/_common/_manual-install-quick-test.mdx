@@ -1,0 +1,41 @@
+{/* DO NOT EDIT! */}
+{/* Automatically generated from xbb-helper/templates/docusaurus/common. */}
+
+import CodeBlock from '@theme/CodeBlock';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+import customField from '@site/src/libs/customField';
+
+{/* ------------------------------------------------------------------------ */}
+
+### Quick test {#manual-install-quick-test}
+
+To check if the { props.appName } installed manually starts properly, use something like:
+
+<Tabs groupId="operating-systems">
+<TabItem value="windows" label="Windows" default>
+
+<CodeBlock language="console"> {
+`C:\\> %USERPROFILE%\\AppData\\Roaming\\xPacks\\${ props.appLcName }\\xpack-${ props.appLcName }-${ customField('upstreamVersion') }-${ customField('xpackSubversion') }\\bin\\${ props.programName }.exe --version
+${ props.branding }${ customField('upstreamVersion') }`
+} </CodeBlock>
+
+</TabItem>
+<TabItem value="macos" label="macOS">
+
+<CodeBlock language="console"> {
+`% ~/Library/xPacks/${ props.appLcName }/xpack-${ props.appLcName }-${ customField('upstreamVersion') }-${ customField('xpackSubversion') }/bin/${ props.programName } --version
+${ props.branding }${ customField('upstreamVersion') }`
+} </CodeBlock>
+
+</TabItem>
+<TabItem value="linux" label="GNU/Linux">
+
+<CodeBlock language="console"> {
+`$ ~/.local/xPacks/${ props.appLcName }/xpack-${ props.appLcName }-${ customField('upstreamVersion') }-${ customField('xpackSubversion') }/bin/${ props.programName } --version
+${ props.branding }${ customField('upstreamVersion') }`
+} </CodeBlock>
+
+</TabItem>
+</Tabs>
