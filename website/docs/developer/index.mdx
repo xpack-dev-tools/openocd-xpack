@@ -9,6 +9,8 @@ date: 2024-11-12 20:33:00 +0300
 
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 import CodeBlock from '@theme/CodeBlock';
 
 import customField from '@site/src/libs/customField';
@@ -280,29 +282,35 @@ git -C ~/Work/xpack-dev-tools/xbb-helper-xpack.git pull
 
 </details>
 
-### Build the x64 macOS binaries
+### Build the binaries
 
+<Tabs groupId="platforms">
+
+<TabItem value="darwin-x64" label="macOS x64" default>
 <PlatformNativeSection platform="darwin-x64"/>
+</TabItem>
 
-### Build the arm64 macOS binaries
-
+<TabItem value="darwin-arm64" label="macOS arm64" default>
 <PlatformNativeSection platform="darwin-arm64"/>
+</TabItem>
 
-### Build the x64 GNU/Linux binaries
-
+<TabItem value="linux-x64" label="GNU/Linux x64" default>
 <PlatformDockerSection platform="linux-x64"/>
+</TabItem>
 
-### Build the x64 Windows binaries
-
-<PlatformDockerSection platform="win32-x64"/>
-
-### Build the arm64 GNU/Linux binaries
-
+<TabItem value="linux-arm64" label="GNU/Linux arm64" default>
 <PlatformDockerSection platform="linux-arm64"/>
+</TabItem>
 
-### Build the arm GNU/Linux (32-bit) binaries
-
+<TabItem value="linux-arm" label="GNU/Linux arm" default>
 <PlatformDockerSection platform="linux-arm"/>
+</TabItem>
+
+<TabItem value="win32-x64" label="Windows" default>
+<PlatformDockerSection platform="win32-x64"/>
+</TabItem>
+
+</Tabs>
 
 ### Compile with debug info
 
