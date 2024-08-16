@@ -6,6 +6,6 @@ Or (TODO: edit!):
 
 Version **{{ XBB_RELEASE_VERSION }}** is a new release of the **xPack OpenOCD** package, following the upstream OpenOCD release.
 
-[Continue reading »](TODO: edit, add URL!)
+[Continue reading »](will-be-updated-shortly)
 
 _At this moment the binaries are provided for tests only!_
