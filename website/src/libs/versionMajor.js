@@ -15,5 +15,6 @@
 import customField from '@site/src/libs/customField';
 
 export default function getVersionMajor() {
+  // Remove from the first dot to the end.
   return parseInt(customField('upstreamVersion').replace(/[.].*/, ''), 10);
 }

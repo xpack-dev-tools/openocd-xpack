@@ -4,7 +4,7 @@
 import CodeBlock from '@theme/CodeBlock';
 
 import customField from '@site/src/libs/customField';
-import { developmentDurations } from '../../maintainer/_development-durations.mdx'
+import {developmentDurations} from '../../maintainer/_development-durations.mdx'
 
 {/* ------------------------------------------------------------------------ */}
 
@@ -14,8 +14,8 @@ To prepare the native build:
 
 <CodeBlock language="sh"> {
 `xpm run install -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets && \\
-xpm install --config ${ props.platform } -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets`
-} </CodeBlock>
+xpm install --config ${props.platform} -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets
+`} </CodeBlock>
 
 <details>
 <summary>... or, with the writable helper ...</summary>
@@ -23,32 +23,32 @@ xpm install --config ${ props.platform } -C ~/Work/xpack-dev-tools/openocd-xpack
 <CodeBlock language="sh"> {
 `xpm run install -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets && \\
 xpm run link-deps -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets && \\
-xpm install --config ${ props.platform } -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets`
-} </CodeBlock>
+xpm install --config ${props.platform} -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets
+`} </CodeBlock>
 
 </details>
 
 To run the native build:
 
 <CodeBlock language="sh"> {
-`xpm run build --config ${ props.platform } -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets`
-} </CodeBlock>
+`xpm run build --config ${props.platform} -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets
+`} </CodeBlock>
 
 or, for more verbosity, run the similar development build:
 
 <CodeBlock language="sh"> {
-`xpm run build-development --config ${ props.platform } -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets`
-} </CodeBlock>
+`xpm run build-development --config ${props.platform} -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets
+`} </CodeBlock>
 
-{ developmentDurations[ props.platform ] }, the output of the build script is a compressed
+{developmentDurations[ props.platform ]}, the output of the build script is a compressed
 archive and its SHA signature, created in
-the <code>buils-assets/build/{ props.platform }/deploy</code> folder:
+the <code>buils-assets/build/{props.platform}/deploy</code> folder:
 
-* <code>xpack-openocd-{ customField('upstreamVersion') }-{ customField('xpackSubversion') }-{ props.platform }.tar.gz</code>
-* <code>xpack-openocd-{ customField('upstreamVersion') }-{ customField('xpackSubversion') }-{ props.platform }.tar.gz.sha</code>
+* <code>xpack-openocd-{customField('upstreamVersion')}-{customField('xpackSubversion')}-{props.platform}.tar.gz</code>
+* <code>xpack-openocd-{customField('upstreamVersion')}-{customField('xpackSubversion')}-{props.platform}.tar.gz.sha</code>
 
 To rerun the build, invoke the **deep-clean** action and repeat from install:
 
 <CodeBlock language="sh"> {
-`xpm run deep-clean --config ${ props.platform } -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets`
-} </CodeBlock>
+`xpm run deep-clean --config ${props.platform} -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets
+`} </CodeBlock>

@@ -12,13 +12,8 @@
  * be obtained from https://opensource.org/licenses/MIT/.
  */
 
-import React from 'react';
-import CodeBlock from '@theme/CodeBlock';
+import customField from '@site/src/libs/customField';
 
-export default function InstallWithCopy({children}): JSX.Element {
-    return (
-        <CodeBlock>
-            {children}
-        </CodeBlock>
-    );
+export default function isXpackSubversionDouble() {
+  return (customField('xpackSubversion').indexOf('.') !== -1);
 }

@@ -5,31 +5,43 @@ import CodeBlock from '@theme/CodeBlock';
 
 import customField from '@site/src/libs/customField';
 
-import { developmentDurations } from '../_development-durations.mdx'
+import {developmentDurations} from '../_development-durations.mdx'
 
 {/* ------------------------------------------------------------------------ */}
+
+To check the available space:
+
+```sh
+xpm run check-space -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets
+```
+
+To free the space used by all previous builds of all `xpack-dev-tools` packages:
+
+```sh
+xpm run clear-all-project-builds -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets
+```
 
 To update the build scripts and build the development binaries:
 
 <CodeBlock language="sh"> {
-`rm -f ~/Work/xpack-dev-tools/openocd-xpack.git/package-lock.json && \\
+`rm -f ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets/package-lock.json && \\
 git -C ~/Work/xpack-dev-tools/openocd-xpack.git pull && \\
 xpm run install -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets && \\
 git -C ~/Work/xpack-dev-tools/xbb-helper-xpack.git pull && \\
 xpm link -C ~/Work/xpack-dev-tools/xbb-helper-xpack.git && \\
 xpm run link-deps -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets && \\
 \\
-xpm run deep-clean --config ${ props.platform }  -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets && \\
-xpm install --config ${ props.platform } -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets && \\
-xpm run build-development --config ${ props.platform } -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets`
-} </CodeBlock>
+xpm run deep-clean --config ${props.platform}  -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets && \\
+xpm install --config ${props.platform} -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets && \\
+xpm run build-development --config ${props.platform} -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets
+`} </CodeBlock>
 
-{ developmentDurations[ props.platform ] }, the output of the build script is a compressed
+{developmentDurations[ props.platform ]}, the output of the build script is a compressed
 archive and its SHA signature, created in
-the <code>buils-assets/build/{ props.platform }/deploy</code> folder:
+the <code>buils-assets/build/{props.platform}/deploy</code> folder:
 
-* <code>xpack-openocd-{ customField('upstreamVersion') }-{ customField('xpackSubversion') }-{ props.platform }.tar.gz</code>
-* <code>xpack-openocd-{ customField('upstreamVersion') }-{ customField('xpackSubversion') }-{ props.platform }.tar.gz.sha</code>
+* <code>xpack-openocd-{customField('upstreamVersion')}-{customField('xpackSubversion')}-{props.platform}.tar.gz</code>
+* <code>xpack-openocd-{customField('upstreamVersion')}-{customField('xpackSubversion')}-{props.platform}.tar.gz.sha</code>
 
 To update the build scripts and build the release binaries:
 
@@ -38,7 +50,7 @@ To update the build scripts and build the release binaries:
 git -C ~/Work/xpack-dev-tools/openocd-xpack.git pull && \\
 xpm run install -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets && \\
 \\
-xpm run deep-clean --config ${ props.platform }  -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets && \\
-xpm install --config ${ props.platform } -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets && \\
-xpm run build --config ${ props.platform } -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets`
-} </CodeBlock>
+xpm run deep-clean --config ${props.platform}  -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets && \\
+xpm install --config ${props.platform} -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets && \\
+xpm run build --config ${props.platform} -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets
+`} </CodeBlock>

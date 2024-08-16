@@ -1,0 +1,54 @@
+{/* DO NOT EDIT! */}
+{/* Automatically generated from xbb-helper/templates/docusaurus/common. */}
+
+import customField from '@site/src/libs/customField';
+
+import versionMajor from '@site/src/libs/versionMajor';
+import versionMinor from '@site/src/libs/versionMinor';
+
+{/* ------------------------------------------------------------------------ */}
+
+### Update the version specific code
+
+- open the `build-assets/scripts/versioning.sh` file
+- add a new `if` with the new version before the existing code
+
+### Update local binutils-gdb fork
+
+With a Git client:
+
+- checkout the branch mentioned in the release notes
+  (like <code>binutils-{customField('binutilsVersionMajor')}_{customField('binutilsVersionMinor')}-branch</code>)
+- push it to origin with the same name
+- identify the commit ID (search back in time)
+- add a tag like <code>binutils-{customField('binutilsVersionMajor')}.{customField('binutilsVersionMinor')}--{versionMajor()}.{versionMinor()}.rel{customField('armSubRelease')}</code>
+- push the tag to origin
+- check the tag at https://github.com/xpack-dev-tools/binutils-gdb/tags/
+
+Similarly for GDB:
+
+- checkout the branch mentioned in the release notes
+  (like <code>gdb-{customField('gdbVersionMajor')}-branch</code>)
+- identify the commit ID (search back in time)
+- add a tag like <code>gdb-{customField('gdbVersionMajor')}--{versionMajor()}.{versionMinor()}.rel{customField('armSubRelease')}</code>
+- push the tag to origin
+- check the tag at https://github.com/xpack-dev-tools/binutils-gdb/tags/
+
+### Update the local gcc fork (if the commit ID present in manifest.txt)
+
+With a Git client:
+
+- checkout the branch mentioned in the release notes
+  (like <code>ARM/arm-{versionMajor()}</code>)
+- identify the commit ID (filter by branch and search downwards)
+- create a branch like <code>arm-{customField('gdbVersionMajor')}--{versionMajor()}.{versionMinor()}.rel{customField('armSubRelease')}</code>
+
+### Update the gdb-*-cross.git.patch in helper
+
+Copy/paste a previous one; adjust if necessary.
+
+### Check configure options
+
+Verify if the configure options used in
+the <code>arm-gnu-toolchain--abe-manifest.txt</code> file
+are used in the build scripts.

@@ -1,8 +1,8 @@
 // DO NOT EDIT!
 // Automatically generated from xbb-helper/templates/docusaurus/common.
 
-import { themes as prismThemes } from 'prism-react-renderer';
-import type { Config } from '@docusaurus/types';
+import {themes as prismThemes} from 'prism-react-renderer';
+import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 import logger from '@docusaurus/logger';
 
@@ -11,7 +11,7 @@ import logger from '@docusaurus/logger';
 // so the entire initialisation code must be in this file, that is
 // not processed by webpack.
 
-import { fileURLToPath } from 'node:url';
+import {fileURLToPath} from 'node:url';
 import path from 'node:path';
 import fs from 'node:fs';
 
@@ -25,14 +25,21 @@ function getCustomFields() {
   const topFileContent = fs.readFileSync(topFilePath);
 
   const topPackageJson = JSON.parse(topFileContent.toString());
-  const jsonVersion = topPackageJson.version.replace(".pre", "");
+  const jsonVersion = topPackageJson.version.replace(/[.-]pre/, '');
 
   logger.info(`package version: ${topPackageJson.version}`);
 
+  // Remove the first part, up to the last dot.
   const npmSubversion = jsonVersion.replace(/^.*[.]/, '');
+
+  // Remove from the last dot to the end.
   const rest1 = jsonVersion.replace(/[.][0-9]*$/, '');
+
+  // Remove the first part, up to the dash.
   const xpackSubversion = rest1.replace(/^.*[-]/, '');
-  const upstreamVersion = rest1.replace(/[-][0-9]*$/, '');
+
+  // Remove from the dash to the end.
+  const upstreamVersion = rest1.replace(/[-].*$/, '');
 
   let rootPackageJson
   try {
@@ -44,12 +51,16 @@ function getCustomFields() {
     rootPackageJson = topPackageJson;
   }
 
+  const customFields = rootPackageJson?.xpack?.properties?.customFields ?? {};
+
   return {
     appName: rootPackageJson.xpack.properties.appName,
     appLcName: rootPackageJson.xpack.properties.appLcName,
+    version: jsonVersion,
     upstreamVersion,
     xpackSubversion,
     npmSubversion,
+    ...customFields,
   }
 }
 

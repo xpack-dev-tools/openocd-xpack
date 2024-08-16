@@ -33,9 +33,8 @@ The [xPack OpenOCD](https://xpack.github.io/openocd/)
 is a standalone cross-platform binary distribution of
 [OpenOCD](https://openocd.org).
 
-There are separate binaries for **Windows** (Intel 64-bit),
-**macOS** (Intel 64-bit, Apple Silicon 64-bit)
-and **GNU/Linux** (Intel 64-bit, Arm 32/64-bit).
+There are separate binaries for **Windows** (x64),
+**macOS** (x64 and arm64) and **GNU/Linux** (x64, arm64 and arm).
 
 :::note Raspberry Pi
 
@@ -47,21 +46,21 @@ armv6 is not supported).
 
 ## Download
 
-The binary files are available from <a href={ frontMatter.download_url }>GitHub Releases</a>.
+The binary files are available from <a href={frontMatter.download_url}>GitHub Releases</a>.
 
 ## Prerequisites
 
-- GNU/Linux Intel 64-bit: any system with **GLIBC 2.27** or higher
+- x64 GNU/Linux: any system with **GLIBC 2.27** or higher
   (like Ubuntu 18 or later, Debian 10 or later, RedHat 8 or later,
   Fedora 29 or later, etc)
-- GNU/Linux Arm 32/64-bit: any system with **GLIBC 2.27** or higher
+- arm64/arm GNU/Linux: any system with **GLIBC 2.27** or higher
   (like Raspberry Pi OS, Ubuntu 18 or later, Debian 10 or later, RedHat 8 or later,
   Fedora 29 or later, etc)
-- Intel Windows 64-bit: Windows 7 with the Universal C Runtime
+- x64 Windows: Windows 7 with the Universal C Runtime
   ([UCRT](https://support.microsoft.com/en-us/topic/update-for-universal-c-runtime-in-windows-c0514201-7fe6-95a3-b0a5-287930f3560c)),
   Windows 8, Windows 10
-- Intel macOS 64-bit: 10.13 or later
-- Apple Silicon macOS 64-bit: 11.6 or later
+- x64 macOS: 10.13 or later
+- arm64 macOS: 11.6 or later
 
 ## Install
 
@@ -75,7 +74,7 @@ The **xPack OpenOCD** generally follows the official
 
 The current version is based on:
 
-- OpenOCD version { frontMatter.upstream_version }, the development commit <a href={ `https://github.com/openocd-org/openocd/commit/${ frontMatter.upstream_commit }/` }>{ frontMatter.upstream_commit }</a> from { frontMatter.upstream_release_date }.
+- OpenOCD version {frontMatter.upstream_version}, the development commit <a href={`https://github.com/openocd-org/openocd/commit/${frontMatter.upstream_commit}/`}>{frontMatter.upstream_commit}</a> from {frontMatter.upstream_release_date}.
 
 ## Changes
 
@@ -135,8 +134,8 @@ The simple test, consists in starting the binaries
 only to identify the STM32F4DISCOVERY board.
 
 <CodeBlock language="sh"> {
-`~/Library/xPacks/@xpack-dev-tools/openocd/${ frontMatter.version }.${ frontMatter.npm_subversion }/.content/bin/openocd -f board/stm32f4discovery.cfg
-`} </CodeBlock>
+`~/Library/xPacks/@xpack-dev-tools/openocd/${frontMatter.version}.${frontMatter.npm_subversion}/.content/bin/openocd -f board/stm32f4discovery.cfg`
+} </CodeBlock>
 
 A more complex test consist in programming and debugging a simple blinky
 application on the STM32F4DISCOVERY board. The binaries were
@@ -207,7 +206,7 @@ ensure a smooth transition to the next xPack releases.
 ## Download analytics
 
 - GitHub [xpack-dev-tools/openocd-xpack](https://github.com/xpack-dev-tools/openocd-xpack/)
-  - this release <a href={ `https://github.com/xpack-dev-tools/openocd-xpack/releases/v${ frontMatter.version }/` } ><Image img={ `https://img.shields.io/github/downloads/xpack-dev-tools/openocd-xpack/v${ frontMatter.version }/total.svg` } alt='Github Release' /></a>
+  - this release <a href={`https://github.com/xpack-dev-tools/openocd-xpack/releases/v${frontMatter.version}/`} ><Image img={`https://img.shields.io/github/downloads/xpack-dev-tools/openocd-xpack/v${frontMatter.version}/total.svg`} alt='Github Release' /></a>
   - all xPack releases [![Github All Releases](https://img.shields.io/github/downloads/xpack-dev-tools/openocd-xpack/total.svg)](https://github.com/xpack-dev-tools/openocd-xpack/releases/)
   - all GNU MCU Eclipse releases [![Github All Releases](https://img.shields.io/github/downloads/gnu-mcu-eclipse/openocd/total.svg)](https://github.com/gnu-mcu-eclipse/openocd/releases/)
   - [individual file counters](https://somsubhra.github.io/github-release-stats/?username=xpack-dev-tools&repository=openocd-xpack) (grouped per release)

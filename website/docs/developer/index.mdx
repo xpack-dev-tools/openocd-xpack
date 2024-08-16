@@ -92,8 +92,8 @@ The build configurations are defined in the `package.json` file, in the
   "...":"...",
   "xpack": {
     "buildConfigurations": {
-       "...": {
-       },
+      "...": {
+      },
       "win32-x64": {
         "inherit": [
           "common-dependencies",
@@ -109,10 +109,10 @@ The build configurations are defined in the `package.json` file, in the
           "dockerImage": "ilegeul/ubuntu:amd64-18.04-xbb-v5.2.2"
         },
         "actions": {
-          "build": "{{ properties.commandBashBuild }} --windows",
-          "build-development": "{{ properties.commandBashBuild }} --windows --development",
-          "build-development-debug": "{{ properties.commandBashBuild }} --windows --development --debug",
-          "build-development-tests-only": "{{ properties.commandBashBuild }} --windows --development --tests-only"
+          "build": "{{properties.commandBashBuild}} --windows",
+          "build-development": "{{properties.commandBashBuild}} --windows --development",
+          "build-development-debug": "{{properties.commandBashBuild}} --windows --development --debug",
+          "build-development-tests-only": "{{properties.commandBashBuild}} --windows --development --tests-only"
         }
       }
     }

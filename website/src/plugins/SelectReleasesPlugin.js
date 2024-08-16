@@ -20,7 +20,7 @@
 export default async function SelectReleasesPlugin(context, options) {
   return {
     name: 'select-releases',
-    async allContentLoaded({ allContent, actions }) {
+    async allContentLoaded({allContent, actions}) {
 
       const allBlogs = allContent['docusaurus-plugin-content-blog']
       // logger.info('SelectReleasesPlugin 1 ' + util.inspect(allBlogs))

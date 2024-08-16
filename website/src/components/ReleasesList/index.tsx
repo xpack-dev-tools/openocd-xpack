@@ -12,11 +12,11 @@
  * be obtained from https://opensource.org/licenses/MIT/.
  */
 
-import { usePluginData } from '@docusaurus/useGlobalData';
+import {usePluginData} from '@docusaurus/useGlobalData';
 import logger from '@docusaurus/logger'
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-export function ReleasesList({ items }): JSX.Element {
+export function ReleasesList({items}): JSX.Element {
   const pluginData = usePluginData('select-releases');
 
   pluginData.releasesTable.forEach((item) => logger.info(item))
@@ -25,7 +25,7 @@ export function ReleasesList({ items }): JSX.Element {
       {
         pluginData.releasesTable.map(release => (
           <li>
-            <a href={ release.permalink }>{ release.title }</a> (<a href={ release.downloadUrl }>download</a>)
+            <a href={release.permalink}>{release.title}</a> (<a href={release.downloadUrl}>download</a>)
           </li>
         ))
       }

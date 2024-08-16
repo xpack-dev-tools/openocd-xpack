@@ -9,19 +9,24 @@ date: 2024-07-12 20:11:00 +0300
 
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 import CodeBlock from '@theme/CodeBlock';
 
 import customField from '@site/src/libs/customField';
+import isXpackSubversionDouble from '@site/src/libs/isXpackSubversionDouble';
 
 import MoreRepos from './_more-repos.mdx';
-import ReleaseSchedule from './_release-schedule.mdx';
+import ReleaseSchedule from '../getting-started/_release-schedule.mdx';
 import CheckUpstreamRelease from './_check-upstream-release.mdx'
 import UpdateVersionSpecific from './_update-version-specific.mdx'
 import GitHubActionsDurations from './_github-actions-durations.mdx'
 import MoreTests from './_more-tests.mdx'
 import ShareCustom from './_share-custom.mdx'
-
-import { developmentDurations } from './_development-durations.mdx'
+import FirstDevelopmentRun from './_first-development-run.mdx'
+import FirstProductionRun from './_first-production-run.mdx'
+import {developmentDurations} from './_development-durations.mdx'
 import Patches from './_patches.mdx'
 
 import PlatformNativeBuild from './_common/_platform-native-build.mdx'
@@ -33,9 +38,9 @@ import PlatformDockerBuild from './_common/_platform-docker-build.mdx'
 [![GitHub issues](https://img.shields.io/github/issues/xpack-dev-tools/openocd-xpack.svg)](https://github.com/xpack-dev-tools/openocd-xpack/issues/)
 [![GitHub pulls](https://img.shields.io/github/issues-pr/xpack-dev-tools/openocd-xpack.svg)](https://github.com/xpack-dev-tools/openocd-xpack/pulls)
 
-This page is intended for those who maintain
+This page is intended for those who maintain the
 **xPack OpenOCD**
-and documents how to make new releases.
+project and documents how to make new releases.
 
 ## Prerequisites
 
@@ -125,7 +130,13 @@ In the `xpack-dev-tools/openocd-xpack` Git repo:
 
 - switch to the `xpack-development` branch
 - pull new changes
-- if needed, merge the `website` branch
+- if necessary, merge the `website` branch
+
+:::caution
+
+This is really important, otherwise the next steps will build again the previous release!
+
+:::
 
 The `xpack` branch should be unchanged since the previous release
 and will be updated when the new release is out.
@@ -135,29 +146,17 @@ and will be updated when the new release is out.
 Check the latest versions at https://github.com/xpack-dev-tools/ and
 update the dependencies in `build-assets/package.json`.
 
-<CheckUpstreamRelease/>
+### Increase the version and update it in the top `package.json`
 
-### Fix possible open issues
+- determine the version (like <code>{customField('upstreamVersion')}</code>)
+- update the version in top `package.json`
+- use the new version, suffixed by `.pre`,
+like <code>{customField('upstreamVersion')}-{customField('xpackSubversion')}.{customField('npmSubversion')}.pre</code>.
 
-Check GitHub issues and pull requests:
+### Update the `customFields` in `build-assets/package.json` (if necessary)
 
-- https://github.com/xpack-dev-tools/openocd-xpack/issues/
-
-and fix them; assign them to a milestone (like <code>{ customField('upstreamVersion') }-{ customField('xpackSubversion') }</code>).
-
-### Increase the version and update VERSION
-
-Determine the version (like <code>{ customField('upstreamVersion') }</code>)
-and update the `build-assets/scripts/VERSION` file; the format
-is <code>{ customField('upstreamVersion') }-{ customField('xpackSubversion') }</code>.
-The fourth number is the xPack release number
-of this version. A fifth number will be added to the version in `package.json`
-when the package is published to the `npm` server.
-
-### Update the version in top `package.json` to a pre-release
-
-Use the new version, suffixed by `.pre`,
-like <code>{ customField('upstreamVersion') }-{ customField('xpackSubversion') }.{ customField('npmSubversion') }.pre</code>.
+If the project uses `customFields` in `build-assets/package.json`,
+update them.
 
 ### Start the local web server
 
@@ -171,16 +170,42 @@ or run the following in a terminal:
 Navigate to the **Maintainer Info** page,
 the **Update the version specific code** section.
 
+### Increase the version and update VERSION
+
+Determine the version (like <code>{customField('upstreamVersion')}</code>)
+and update the `build-assets/scripts/VERSION` file; the format
+is <code>{customField('upstreamVersion')}-{customField('xpackSubversion')}</code>.
+{isXpackSubversionDouble() ?
+'The fourth & fifth numbers are the xPack release number of this version. A sixth number will be added to the version in `package.json` when the package is published to the `npm` server' :
+'The fourth number is the xPack release number of this version. A fifth number will be added to the version in `package.json` when the package is published to the `npm` server'}.
+
+<CheckUpstreamRelease/>
+
+### Update the `customFields` (if necessary)
+
+If the project uses `customFields` in `build-assets/package.json`
+
+- update the release specific properties (if any)
+- restart the local web server
+
 <UpdateVersionSpecific/>
+
+### Fix possible open issues
+
+Check GitHub issues and pull requests:
+
+- https://github.com/xpack-dev-tools/openocd-xpack/issues/
+
+and fix them; assign them to a milestone (like <code>{customField('upstreamVersion')}-{customField('xpackSubversion')}</code>).
 
 ### Update `CHANGELOG.md`
 
 - open the `CHANGELOG.md` file
 - check if all previous fixed issues are in
-- add a new entry like _**\* v{ customField('upstreamVersion') }-{ customField('xpackSubversion') } prepared**_
-- commit with a message like _**prepare v{ customField('upstreamVersion') }-{ customField('xpackSubversion') }**_
+- add a new entry like _**\* v{customField('upstreamVersion')}-{customField('xpackSubversion')} prepared**_
+- commit with a message like _**prepare v{customField('upstreamVersion')}-{customField('xpackSubversion')}**_
 
-### Push the changes to Git
+### Push the changes to the `xpack-development` branch
 
 Be sure that the latest commit that updates `VERSION` is pushed
 to the `xpack-development` branch!
@@ -199,11 +224,13 @@ arm64 GNU/Linux, arm GNU/Linux, x64 macOS and arm64 macOS).
 
 Before the real build, run test builds on all platforms.
 
-### Visual Studio Code
+<FirstDevelopmentRun/>
+
+### Visual Studio Code extension
 
 All actions are defined as **xPack actions** and can be conveniently
 triggered via the VS Code graphical interface, using the
-[xPack extension](https://marketplace.visualstudio.com/items?itemName=ilg-vscode.xpack).
+[xPack C/C++ Managed Build Tools extension](https://marketplace.visualstudio.com/items?itemName=ilg-vscode.xpack).
 
 <Patches/>
 
@@ -220,6 +247,12 @@ machines:
 sudo systemctl restart docker
 ```
 
+### Check if both projects are pushed
+
+Check if both the current project and the helper are
+on the `xpack-development` branch and the latest
+commits are pushed to GitHub.
+
 ### Build the x64 macOS binaries
 
 For x64 macOS, first run the build on the development machine
@@ -230,7 +263,7 @@ export XBB_ENVIRONMENT_SKIP_CHECKS="y"
 ```
 
 ```sh
-rm -f ~/Work/xpack-dev-tools/openocd-xpack.git/package-lock.json
+rm -f ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets/package-lock.json
 git -C ~/Work/xpack-dev-tools/openocd-xpack.git pull
 
 xpm run install -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets
@@ -251,7 +284,7 @@ For a debug build:
 xpm run build-development-debug --config darwin-x64 -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets
 ```
 
-The build takes { developmentDurations["work"] }.
+The build takes {developmentDurations["work"]}.
 
 When functional, push the `xpack-development` branch to GitHub.
 
@@ -328,8 +361,11 @@ Copy the trees displayed at the end of the test builds and paste to
 
 - `website/docs/install/_miscellaneous.mdx`
 
-Replace **{ customField('upstreamVersion') }** with
-`${ customField('upstreamVersion') }`.
+Replace **{customField('upstreamVersion')}** with the following expression:
+
+```txt
+${customField('upstreamVersion')}
+```
 
 :::tip
 
@@ -339,11 +375,18 @@ via HomeBrew, and make a link to `/usr/local/bin`.
 
 :::
 
-### Update the list of links in package.json
+### Update the list of links in top package.json
 
 Copy/paste the full list of links displayed at the end of the build, in
 sequence, for each platform (GNU/Linux, macOS, Windows), and check the
 differences compared to the repository.
+
+Commit if necessary.
+
+### Update the durations of the development builds
+
+In `website/docs/maintainer/_development-durations.mdx`, update
+the durations of the builds.
 
 Commit if necessary.
 
@@ -372,7 +415,6 @@ place them in the XBB cache (`Work/cache`) and restart the build.
 ## Run the production builds
 
 The automation is provided by GitHub Actions and three self-hosted runners.
-
 
 ### Start the self-hosted runners
 
@@ -442,23 +484,44 @@ Use the message **build-assets/package.json: bump deps**.
 ### Check for disk space
 
 Check if the build machines have enough free space and eventually
-do some cleanups
+do some cleanups:
 
-GNU/Linux:
+```sh
+xpm run check-space -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets
+```
+
+This is equivalent to running a `df` command.
+
+<Tabs groupId="operating-systems">
+
+<TabItem value="macos" label="macOS">
+
+```
+df -gH /
+```
+
+</TabItem>
+
+<TabItem value="linux" label="GNU/Linux">
 
 ```sh
 df -BG -H /
 ```
 
-macOS:
-```
-df -gH /
-```
+</TabItem>
 
-To free the space used by previous builds:
+</Tabs>
+
+To free the space used by all previous builds of all `xpack-dev-tools` packages:
 
 ```sh
-rm -rf ~/Work/xpack-dev-tools/*/build-assets/build ~/Work/xpack-dev-tools/*/build
+xpm run clear-all-project-builds -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets
+```
+
+This is equivalent to running a wide `rm` to remove the `build` folders:
+
+```sh
+rm -rf ~/Work/xpack-dev-tools/*/build-assets/build
 ```
 
 ### Generate the GitHub workflows
@@ -473,7 +536,9 @@ xpm run generate-workflows -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-ass
 ### Commit and push
 
 - commit with the message **Re-generate workflows**
-- push the `xpack-dependency` branch to GitHub
+- push the `xpack-development` branch to GitHub
+
+<FirstProductionRun/>
 
 ### Manually trigger the build GitHub Actions
 
@@ -591,10 +656,10 @@ xattr -cr ${HOME}/Downloads/xpack-*
 
 ## Publish the release
 
-### Create a new GitHub pre-release draft
+### Create a new GitHub pre-release
 
 - in `CHANGELOG.md`, add the release date and a message
-  like _**\* v{ customField('upstreamVersion') }-{ customField('xpackSubversion') } released**_
+  like _**\* v{customField('upstreamVersion')}-{customField('xpackSubversion')} released**_
 - commit with _**CHANGELOG update**_
 - check and possibly update the `build-assets/templates/body-github-release-liquid.mdx`
 - push the `xpack-development` branch to GitHub
@@ -609,12 +674,18 @@ The workflow result and logs are available from the
 
 The result is a
 [draft pre-release](https://github.com/xpack-dev-tools/openocd-xpack/releases/)
-tagged like **v{ customField('upstreamVersion') }-{ customField('xpackSubversion') }** (mind the dash in the middle!) and
-named like **xPack OpenOCD v{ customField('upstreamVersion') }-{ customField('xpackSubversion') }** (mind the dash),
+tagged like **v{customField('upstreamVersion')}-{customField('xpackSubversion')}** (mind the dash in the middle!) and
+named like **xPack OpenOCD v{customField('upstreamVersion')}-{customField('xpackSubversion')}** (mind the dash),
 with all binaries attached.
 
 - edit the draft and attach it to the `xpack-development` branch (important!)
-- save the draft (do **not** publish yet!)
+- perform the final edits and check if everything is fine
+- **keep the pre-release button enabled**
+- do **not** enable Discussions yet
+- click the **Publish release** button
+
+Note: at this moment the system should send a notification to all clients
+watching this project.
 
 ### Prepare a new blog post
 
@@ -628,18 +699,8 @@ xpm run generate-website-blog-post -C ~/Work/xpack-dev-tools/openocd-xpack.git/b
 
 - edit the front matter properties
 - select the correct summary
-- commit with _**blog post release { customField('upstreamVersion') }-{ customField('xpackSubversion') } published**_
+- commit with _**blog post release {customField('upstreamVersion')}-{customField('xpackSubversion')} published**_
 
-### Create the GitHub pre-release
-
-- go to the [GitHub Releases](https://github.com/xpack-dev-tools/openocd-xpack/releases/) page
-- perform the final edits and check if everything is fine
-- **keep the pre-release button enabled**
-- do not enable Discussions yet
-- click the **Publish release** button
-
-Note: at this moment the system should send a notification to all clients
-watching this project.
 
 ### Update the web install page
 
@@ -648,7 +709,7 @@ watching this project.
   - `website/docs/install/_manual-install-quick-test.mdx`
 - commit changes
 
-### Check the list of links in package.json
+### Check the list of links in top package.json
 
 - open the `package.json` file
 - check if the links in the `bin` property cover the actual binaries
@@ -657,6 +718,7 @@ watching this project.
 ### Update the package.json list of binaries
 
 - select the `xpack-development` branch
+- be sure that the binaries were attached to the pre-release
 - run the **update-package-binaries** xPack action:
 
 ```sh
@@ -670,14 +732,14 @@ xpm run update-package-binaries -C ~/Work/xpack-dev-tools/openocd-xpack.git/buil
 - compare the SHA sums with those shown by `cat *.sha`
 - check the executable names
 - commit all changes, use a message like
-  _**package.json: update urls for { customField('upstreamVersion') }-{ customField('xpackSubversion') }.{ customField('npmSubversion') } release**_
+  _**package.json: update urls for {customField('upstreamVersion')}-{customField('xpackSubversion')}.{customField('npmSubversion')} release**_
 
 ### Publish on the npmjs.com server
 
 - select the `xpack-development` branch
 - check the latest commits `npm run git-log`
-- update `CHANGELOG.md`, add a line like _**\* v{ customField('upstreamVersion') }-{ customField('xpackSubversion') } published on npmjs.com**_
-- commit with a message like _**CHANGELOG: publish npm v{ customField('upstreamVersion') }-{ customField('xpackSubversion') }.{ customField('npmSubversion') }**_
+- update `CHANGELOG.md`, add a line like _**\* v{customField('upstreamVersion')}-{customField('xpackSubversion')} published on npmjs.com**_
+- commit with a message like _**CHANGELOG: publish npm v{customField('upstreamVersion')}-{customField('xpackSubversion')}.{customField('npmSubversion')}**_
 - `npm pack` and check the content of the archive, which should list
   only the `package.json`, the `README.md`, `LICENSE` and `CHANGELOG.md`;
   possibly adjust `.npmignore`
@@ -685,7 +747,7 @@ xpm run update-package-binaries -C ~/Work/xpack-dev-tools/openocd-xpack.git/buil
   GitHub release; the fifth number is the npm specific version:
 
 <CodeBlock language="sh"> {
-`npm version ${ customField('upstreamVersion') }-${ customField('xpackSubversion') }.${ customField('npmSubversion') }
+`npm version ${customField('upstreamVersion')}-${customField('xpackSubversion')}.${customField('npmSubversion')}
 `} </CodeBlock>
 
 - the commits and the tag should have been pushed by the `postversion` script;
@@ -734,15 +796,15 @@ When the release is considered stable, promote it as `latest`:
 
 <CodeBlock language="sh"> {
 `npm dist-tag ls @xpack-dev-tools/openocd
-npm dist-tag add @xpack-dev-tools/openocd@${ customField('upstreamVersion') }-${ customField('xpackSubversion') }.${ customField('npmSubversion') } latest
-npm dist-tag ls @xpack-dev-tools/openocd`
-} </CodeBlock>
+npm dist-tag add @xpack-dev-tools/openocd@${customField('upstreamVersion')}-${customField('xpackSubversion')}.${customField('npmSubversion')} latest
+npm dist-tag ls @xpack-dev-tools/openocd
+`} </CodeBlock>
 
-In case the previous version is not functional and needs to be unpublished:
+In case the release proves problematic and needs to be unpublished:
 
 <CodeBlock language="sh"> {
-`npm unpublish @xpack-dev-tools/openocd@${ customField('upstreamVersion') }-${ customField('xpackSubversion') }.${ customField('npmSubversion') }`
-} </CodeBlock>
+`npm unpublish @xpack-dev-tools/openocd@${customField('upstreamVersion')}-${customField('xpackSubversion')}.${customField('npmSubversion')}
+`} </CodeBlock>
 
 ### Build the static website locally
 
@@ -767,7 +829,7 @@ and the X/Twitter announcement
 The `website` branch may be subsequently updated, as long as the
 version in `package.json` is not changed.
 
-### Update the repo main branch
+### Update the `xpack` branch
 
 - merge `xpack-development` into `xpack`
 - push the `xpack` branch to GitHub
@@ -815,7 +877,7 @@ The results are available from the
 
 - in a separate browser windows, open [X/Twitter](https://twitter.com)
 - using the **`@xpack_project`** account
-- paste the release name like _**xPack OpenOCD v{ customField('upstreamVersion') }-{ customField('xpackSubversion') } released**_
+- paste the release name like _**xPack OpenOCD v{customField('upstreamVersion')}-{customField('xpackSubversion')} released**_
 - paste the link to the blog post
   [release](https://xpack.github.io/openocd/releases/)
 - click the **Tweet** button
@@ -829,7 +891,7 @@ The results are available from the
 [![Github All Releases](https://img.shields.io/github/downloads/xpack-dev-tools/openocd-xpack/latest/total.svg)](https://github.com/xpack-dev-tools/openocd-xpack/releases/)
   - all xPack releases [![Github All Releases](https://img.shields.io/github/downloads/xpack-dev-tools/openocd-xpack/total.svg)](https://github.com/xpack-dev-tools/openocd-xpack/releases/)
   - previous GNU MCU Eclipse all releases [![Github All Releases](https://img.shields.io/github/downloads/gnu-mcu-eclipse/openocd/total.svg)](https://github.com/gnu-mcu-eclipse/openocd/releases/)
-  - [individual file counters](https://somsubhra.github.io/github-release-stats/?username=xpack-dev-tools&repository=openocd-xpack) (grouped per release)
+  - [individual file counters](https://somsubhra.github.io/github-release-stats/?username=xpack-dev-tools&repository=openocd-xpack) (grouped by release)
 - npmjs.com [`@xpack-dev-tools/openocd`](https://www.npmjs.com/package/@xpack-dev-tools/openocd/) xPack
   - latest release, per month
 [![npm (scoped)](https://img.shields.io/npm/v/@xpack-dev-tools/openocd.svg)](https://www.npmjs.com/package/@xpack-dev-tools/openocd/)
