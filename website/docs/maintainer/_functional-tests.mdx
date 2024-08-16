@@ -18,8 +18,8 @@ failed: LIBUSB_ERROR_ACCESS_ error.
 
 <CodeBlock language="sh"> {
 `sudo cp ~/Downloads/xpack-openocd-${ customField('upstreamVersion') }-${ customField('xpackSubversion') }/contrib/60-openocd.rules /etc/udev/rules.d
-sudo udevadm control --reload-rules`
-} </CodeBlock>
+sudo udevadm control --reload-rules
+`} </CodeBlock>
 
 Then it is possible to start openocd:
 
@@ -44,8 +44,8 @@ Info : Listening on port 3333 for gdb connections
 [stm32f4x.cpu] halted due to breakpoint, current mode: Handler HardFault
 xPSR: 0x61000003 pc: 0x080002d6 msp: 0x2001ff78
 ^C
-shutdown command invoked`
-} </CodeBlock>
+shutdown command invoked
+`} </CodeBlock>
 
 Note: on recent macOS systems it might be necessary to allow individual
 programs to run.
