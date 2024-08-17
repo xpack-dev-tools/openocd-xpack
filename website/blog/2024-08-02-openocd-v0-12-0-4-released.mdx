@@ -53,7 +53,7 @@ armv6 is not supported).
 ## Download
 
 The binary files can be downloaded automatically with **xpm** or manually
-from <a href={ frontMatter.download_url }>GitHub Releases</a>.
+from <a href={frontMatter.download_url}>GitHub Releases</a>.
 
 <Prerequisites/>
 
@@ -69,7 +69,7 @@ The xPack OpenOCD generally follows the official
 
 The current version is based on:
 
-- OpenOCD version { frontMatter.upstream_version }, the development commit <a href={ `https://github.com/openocd-org/openocd/commit/${ frontMatter.upstream_commit }/` }>{ frontMatter.upstream_commit }</a> from { frontMatter.upstream_release_date }.
+- OpenOCD version {frontMatter.upstream_version}, the development commit <a href={ `https://github.com/openocd-org/openocd/commit/${frontMatter.upstream_commit}/` }>{frontMatter.upstream_commit}</a> from {frontMatter.upstream_release_date}.
 
 ## Changes
 
@@ -126,7 +126,7 @@ The simple test, consists in starting the binaries
 only to identify the STM32F4DISCOVERY board.
 
 <CodeBlock language="sh"> {
-`~/Library/xPacks/@xpack-dev-tools/openocd/${ frontMatter.version }.${ frontMatter.npm_subversion }/.content/bin/openocd -f board/stm32f4discovery.cfg
+`~/Library/xPacks/@xpack-dev-tools/openocd/${frontMatter.version}.${frontMatter.npm_subversion}/.content/bin/openocd -f board/stm32f4discovery.cfg
 `} </CodeBlock>
 
 A more complex test consist in programming and debugging a simple blinky
@@ -162,4 +162,4 @@ xpack-openocd-0.12.0-4-win32-x64.zip
 
 <DeprecationNotices/>
 
-<DownloadAnalytics version={ frontMatter.version }/>
+<DownloadAnalytics version={frontMatter.version}/>

@@ -1,15 +1,13 @@
-import ManualInstallQuickTest from './_common/_manual-install-quick-test.mdx'
 
-export const appName = 'OpenOCD';
-export const appLcName = 'openocd';
-export const programName = 'openocd';
-export const branding = '';
+import customField from '@site/src/libs/customField';
+
+import ManualInstallQuickTest from './_common/_manual-install-quick-test.mdx'
 
 {/* ------------------------------------------------------------------------ */}
 
 <ManualInstallQuickTest
-  appName={ appName }
-  appLcName={ appLcName }
-  programName={ programName }
-  branding={ branding }
+  appName={customField('appName')}
+  appLcName={customField('appLcName')}
+  programName={customField('programName')}
+  branding={customField('branding')}
 />
