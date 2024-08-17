@@ -14,6 +14,8 @@
       "appLcName": "openocd",
       "platforms": "all",
       "customFields": {
+        "programName": "",
+        "branding": "xPack x86_64 clang version ",
         "showDeprecatedGnuMcuAnalytics": "true"
       },
       "buildFolderRelativePath": "{{ 'build' | path_join: configuration.name | to_filename | downcase }}",
