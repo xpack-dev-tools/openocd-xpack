@@ -59,19 +59,19 @@ jobs:
         with:
           fetch-depth: 3
 
-      - name: 'Checkout helper ${{ github.event.inputs.helper-git-ref }}'
+      - name: 'Checkout helper ${{github.event.inputs.helper-git-ref}}'
         uses: actions/checkout@v4
         with:
           repository: xpack-dev-tools/xbb-helper-xpack
           path: build-assets/xpacks/@xpack-dev-tools/xbb-helper
-          ref: ${{ github.event.inputs.helper-git-ref }}
+          ref: ${{github.event.inputs.helper-git-ref}}
           fetch-depth: 3
 
       - name: 'Create body'
         run: |
           ls -lLA
           npm --prefix build-assets install -dd
-          ./build-assets/node_modules/.bin/liquidjs --context '{ "XBB_RELEASE_VERSION": "${{ github.event.inputs.version }}" }' --template @build-assets/templates/body-github-release-liquid.md --output .github/workflows/body-github-release.md
+          ./build-assets/node_modules/.bin/liquidjs --context '{ "XBB_RELEASE_VERSION": "${{github.event.inputs.version}}" }' --template @build-assets/templates/body-github-release-liquid.md --output .github/workflows/body-github-release.md
           cat .github/workflows/body-github-release.md
 
       - name: 'Publish release'
@@ -82,7 +82,7 @@ jobs:
           bodyFile: '.github/workflows/body-github-release.md'
           commit: 'xpack-development'
           draft: true
-          name: 'xPack OpenOCD v${{ github.event.inputs.version }}'
+          name: 'xPack OpenOCD v${{github.event.inputs.version}}'
           omitBodyDuringUpdate: true
           omitDraftDuringUpdate: true
           omitNameDuringUpdate: true
@@ -91,8 +91,8 @@ jobs:
           prerelease: true
           replacesArtifacts: false
           repo: 'openocd-xpack'
-          tag: 'v${{ github.event.inputs.version }}'
-          token: ${{ secrets.PUBLISH_TOKEN }}
+          tag: 'v${{github.event.inputs.version}}'
+          token: ${{secrets.PUBLISH_TOKEN}}
 
       - name: 'Gather artifacts'
         run: 'bash build-assets/xpacks/@xpack-dev-tools/xbb-helper/github-actions/download-all-binaries.sh'
@@ -113,5 +113,5 @@ jobs:
           prerelease: true
           replacesArtifacts: false
           repo: 'openocd-xpack'
-          tag: 'v${{ github.event.inputs.version }}'
-          token: ${{ secrets.PUBLISH_TOKEN }}
+          tag: 'v${{github.event.inputs.version}}'
+          token: ${{secrets.PUBLISH_TOKEN}}

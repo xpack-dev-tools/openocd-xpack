@@ -65,7 +65,7 @@ on:
 jobs:
 
   linux-x64-build:
-    name: 'linux-x64 openocd ${{ github.event.inputs.version }} build'
+    name: 'linux-x64 openocd ${{github.event.inputs.version}} build'
     timeout-minutes: 5760 # 4 days
     runs-on: [self-hosted, linux, x64, xbblix]
     container:
@@ -99,21 +99,21 @@ jobs:
       - name: 'Install xpm'
         timeout-minutes: 1440
         run: |
-          npm install --location=global xpm@${{ github.event.inputs.xpm_version }}
+          npm install --location=global xpm@${{github.event.inputs.xpm_version}}
           xpm --version
 
       - name: 'Install project dependencies'
         timeout-minutes: 1440
-        run: xpm install --loglevel ${{ github.event.inputs.xpm_install_loglevel }} ${{ github.event.inputs.xpm_install_options }} -C build-assets
+        run: xpm install --loglevel ${{github.event.inputs.xpm_install_loglevel}} ${{github.event.inputs.xpm_install_options}} -C build-assets
 
       - name: 'Build linux-x64 binaries'
         timeout-minutes: 1440
         run: |
-          xpm install --config linux-x64 --loglevel ${{ github.event.inputs.xpm_install_loglevel }} ${{ github.event.inputs.xpm_install_options }} -C build-assets
+          xpm install --config linux-x64 --loglevel ${{github.event.inputs.xpm_install_loglevel}} ${{github.event.inputs.xpm_install_options}} -C build-assets
           xpm run build --config linux-x64 -C build-assets
 
   linux-x64-upload:
-    name: 'linux-x64 openocd ${{ github.event.inputs.version }} upload'
+    name: 'linux-x64 openocd ${{github.event.inputs.version}} upload'
     timeout-minutes: 5760 # 4 days
     runs-on: [self-hosted, linux, x64, xbblix]
     defaults:
@@ -156,14 +156,14 @@ jobs:
           replacesArtifacts: true
           repo: 'pre-releases'
           tag: 'test'
-          token: ${{ secrets.PUBLISH_TOKEN }}
+          token: ${{secrets.PUBLISH_TOKEN}}
 
       - name: 'Rename working area'
         # For just in case absolute paths remain unprocessed.
         run: echo mv -v build-assets/build build-assets/build-$(date -u +%Y%m%d-%H%M%S)
 
   linux-x64-test:
-    name: 'linux-x64 openocd ${{ github.event.inputs.version }} test'
+    name: 'linux-x64 openocd ${{github.event.inputs.version}} test'
     runs-on: ubuntu-22.04
     needs: [linux-x64-upload]
 
@@ -182,20 +182,20 @@ jobs:
         with:
           fetch-depth: 3
 
-      - name: 'Checkout helper ${{ github.event.inputs.helper-git-ref }}'
+      - name: 'Checkout helper ${{github.event.inputs.helper-git-ref}}'
         uses: actions/checkout@v4
         with:
           repository: xpack-dev-tools/xbb-helper-xpack
           path: build-assets/xpacks/@xpack-dev-tools/xbb-helper
-          ref: ${{ github.event.inputs.helper-git-ref }}
+          ref: ${{github.event.inputs.helper-git-ref}}
           fetch-depth: 3
 
-      - name: 'Run ${{ github.event.inputs.version }} native test'
-        run: bash build-assets/scripts/test.sh --image github-actions-ubuntu-latest --version ${{ github.event.inputs.version }} --base-url pre-release
+      - name: 'Run ${{github.event.inputs.version}} native test'
+        run: bash build-assets/scripts/test.sh --image github-actions-ubuntu-latest --version ${{github.event.inputs.version}} --base-url pre-release
 
       - name: Upload platform tests report
         uses: actions/upload-artifact@v4
         with:
           name: tests-report-linux-x64
-          path: ${{ github.workspace }}/build-assets/build/linux-x64/artefacts/tests-report-*.md
+          path: ${{github.workspace}}/build-assets/build/linux-x64/artefacts/tests-report-*.md
           overwrite: true

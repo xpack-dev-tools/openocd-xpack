@@ -37,7 +37,7 @@ on:
 jobs:
 
   linux-x64:
-    name: 'linux-x64 openocd ${{ github.event.inputs.version }} clean'
+    name: 'linux-x64 openocd ${{github.event.inputs.version}} clean'
     timeout-minutes: 5760 # 4 days
     runs-on: [self-hosted, linux, x64]
     steps:
@@ -58,7 +58,7 @@ jobs:
 
 
   win32-x64:
-    name: 'win32-x64 openocd ${{ github.event.inputs.version }} clean'
+    name: 'win32-x64 openocd ${{github.event.inputs.version}} clean'
     timeout-minutes: 5760 # 4 days
     runs-on: [self-hosted, linux, x64]
     steps:
@@ -79,7 +79,7 @@ jobs:
 
 
   linux-arm:
-    name: 'linux-arm openocd ${{ github.event.inputs.version }} clean'
+    name: 'linux-arm openocd ${{github.event.inputs.version}} clean'
     timeout-minutes: 2880 # 2 days
     runs-on: [self-hosted, linux, arm, xbbla32]
 
@@ -101,7 +101,7 @@ jobs:
 
 
   linux-arm64:
-    name: 'linux-arm64 openocd ${{ github.event.inputs.version }} clean'
+    name: 'linux-arm64 openocd ${{github.event.inputs.version}} clean'
     timeout-minutes: 2880 # 2 days
     runs-on: [self-hosted, linux, arm64, xbbla]
     steps:
@@ -122,7 +122,7 @@ jobs:
 
 
   darwin-x64:
-    name: 'darwin-x64 openocd ${{ github.event.inputs.version }} clean'
+    name: 'darwin-x64 openocd ${{github.event.inputs.version}} clean'
     timeout-minutes: 2880 # 2 days
 
     runs-on: [self-hosted, macos, intel]
@@ -145,7 +145,7 @@ jobs:
 
 
   darwin-arm64:
-    name: 'darwin-arm64 openocd ${{ github.event.inputs.version }} clean'
+    name: 'darwin-arm64 openocd ${{github.event.inputs.version}} clean'
     timeout-minutes: 2880 # 2 days
 
     runs-on: [self-hosted, macos, apple]

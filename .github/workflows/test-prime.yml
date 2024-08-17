@@ -46,7 +46,7 @@ on:
 jobs:
 
   linux-x64-test:
-    name: 'linux-x64 openocd ${{ github.event.inputs.version }} test'
+    name: 'linux-x64 openocd ${{github.event.inputs.version}} test'
     runs-on: ubuntu-22.04
 
     steps:
@@ -64,26 +64,26 @@ jobs:
         with:
           fetch-depth: 3
 
-      - name: 'Checkout helper ${{ github.event.inputs.helper-git-ref }}'
+      - name: 'Checkout helper ${{github.event.inputs.helper-git-ref}}'
         uses: actions/checkout@v4
         with:
           repository: xpack-dev-tools/xbb-helper-xpack
           path: build-assets/xpacks/@xpack-dev-tools/xbb-helper
-          ref: ${{ github.event.inputs.helper-git-ref }}
+          ref: ${{github.event.inputs.helper-git-ref}}
           fetch-depth: 3
 
-      - name: 'Run ${{ github.event.inputs.version }} native test'
-        run: bash build-assets/scripts/test.sh --image github-actions-ubuntu-latest --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+      - name: 'Run ${{github.event.inputs.version}} native test'
+        run: bash build-assets/scripts/test.sh --image github-actions-ubuntu-latest --version ${{github.event.inputs.version}} --base-url ${{github.event.inputs.base_url}}
 
       - name: Upload platform tests report
         uses: actions/upload-artifact@v4
         with:
           name: tests-report-linux-x64
-          path: ${{ github.workspace }}/build-assets/build/linux-x64/artefacts/tests-report-*.md
+          path: ${{github.workspace}}/build-assets/build/linux-x64/artefacts/tests-report-*.md
           overwrite: true
 
   linux-arm64-test:
-    name: 'linux-arm64 openocd ${{ github.event.inputs.version }} test'
+    name: 'linux-arm64 openocd ${{github.event.inputs.version}} test'
     runs-on: [self-hosted, linux, arm64, xbbla]
 
     steps:
@@ -107,29 +107,29 @@ jobs:
         with:
           fetch-depth: 3
 
-      - name: 'Checkout helper ${{ github.event.inputs.helper-git-ref }}'
+      - name: 'Checkout helper ${{github.event.inputs.helper-git-ref}}'
         uses: actions/checkout@v4
         with:
           repository: xpack-dev-tools/xbb-helper-xpack
           path: build-assets/xpacks/@xpack-dev-tools/xbb-helper
-          ref: ${{ github.event.inputs.helper-git-ref }}
+          ref: ${{github.event.inputs.helper-git-ref}}
           fetch-depth: 3
 
-      - name: 'Run ${{ github.event.inputs.version }} docker test'
+      - name: 'Run ${{github.event.inputs.version}} docker test'
         uses: docker://node:lts-slim # Currently based on debian:12-slim
         with:
           entrypoint: /bin/bash
-          args: /github/workspace/build-assets/scripts/test.sh --image ubuntu:22.04 --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+          args: /github/workspace/build-assets/scripts/test.sh --image ubuntu:22.04 --version ${{github.event.inputs.version}} --base-url ${{github.event.inputs.base_url}}
 
       - name: Upload platform tests report
         uses: actions/upload-artifact@v4
         with:
           name: tests-report-linux-arm64
-          path: ${{ github.workspace }}/build-assets/build/linux-arm64/artefacts/tests-report-*.md
+          path: ${{github.workspace}}/build-assets/build/linux-arm64/artefacts/tests-report-*.md
           overwrite: true
 
   linux-arm-test:
-    name: 'linux-arm openocd ${{ github.event.inputs.version }} test'
+    name: 'linux-arm openocd ${{github.event.inputs.version}} test'
     runs-on: [self-hosted, linux, arm, xbbla32]
 
     steps:
@@ -153,29 +153,29 @@ jobs:
         with:
           fetch-depth: 3
 
-      - name: 'Checkout helper ${{ github.event.inputs.helper-git-ref }}'
+      - name: 'Checkout helper ${{github.event.inputs.helper-git-ref}}'
         uses: actions/checkout@v4
         with:
           repository: xpack-dev-tools/xbb-helper-xpack
           path: build-assets/xpacks/@xpack-dev-tools/xbb-helper
-          ref: ${{ github.event.inputs.helper-git-ref }}
+          ref: ${{github.event.inputs.helper-git-ref}}
           fetch-depth: 3
 
-      - name: 'Run ${{ github.event.inputs.version }} docker test'
+      - name: 'Run ${{github.event.inputs.version}} docker test'
         uses: docker://arm32v7/node:lts-slim # Currently based on debian:12-slim
         with:
           entrypoint: /bin/bash # /usr/bin/linux32
-          args: /github/workspace/build-assets/scripts/test.sh --image debian --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+          args: /github/workspace/build-assets/scripts/test.sh --image debian --version ${{github.event.inputs.version}} --base-url ${{github.event.inputs.base_url}}
 
       - name: Upload platform tests report
         uses: actions/upload-artifact@v4
         with:
           name: tests-report-linux-arm
-          path: ${{ github.workspace }}/build-assets/build/linux-arm/artefacts/tests-report-*.md
+          path: ${{github.workspace}}/build-assets/build/linux-arm/artefacts/tests-report-*.md
           overwrite: true
 
   darwin-x64-test:
-    name: 'darwin-x64 openocd ${{ github.event.inputs.version }} test'
+    name: 'darwin-x64 openocd ${{github.event.inputs.version}} test'
     # https://github.com/actions/runner-images/blob/main/images/macos/macos-12-Readme.md
     runs-on: macos-12
 
@@ -207,26 +207,26 @@ jobs:
         with:
           fetch-depth: 3
 
-      - name: 'Checkout helper ${{ github.event.inputs.helper-git-ref }}'
+      - name: 'Checkout helper ${{github.event.inputs.helper-git-ref}}'
         uses: actions/checkout@v4
         with:
           repository: xpack-dev-tools/xbb-helper-xpack
           path: build-assets/xpacks/@xpack-dev-tools/xbb-helper
-          ref: ${{ github.event.inputs.helper-git-ref }}
+          ref: ${{github.event.inputs.helper-git-ref}}
           fetch-depth: 3
 
-      - name: 'Run ${{ github.event.inputs.version }} native test'
-        run: bash build-assets/scripts/test.sh --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+      - name: 'Run ${{github.event.inputs.version}} native test'
+        run: bash build-assets/scripts/test.sh --version ${{github.event.inputs.version}} --base-url ${{github.event.inputs.base_url}}
 
       - name: Upload platform tests report
         uses: actions/upload-artifact@v4
         with:
           name: tests-report-darwin-x64
-          path: ${{ github.workspace }}/build-assets/build/darwin-x64/artefacts/tests-report-*.md
+          path: ${{github.workspace}}/build-assets/build/darwin-x64/artefacts/tests-report-*.md
           overwrite: true
 
   darwin-arm64-test:
-    name: 'darwin-arm64 openocd ${{ github.event.inputs.version }} test'
+    name: 'darwin-arm64 openocd ${{github.event.inputs.version}} test'
     # https://github.com/actions/runner-images/blob/main/images/macos/macos-14-Readme.md
     runs-on: macos-14
 
@@ -258,26 +258,26 @@ jobs:
         with:
           fetch-depth: 3
 
-      - name: 'Checkout helper ${{ github.event.inputs.helper-git-ref }}'
+      - name: 'Checkout helper ${{github.event.inputs.helper-git-ref}}'
         uses: actions/checkout@v4
         with:
           repository: xpack-dev-tools/xbb-helper-xpack
           path: build-assets/xpacks/@xpack-dev-tools/xbb-helper
-          ref: ${{ github.event.inputs.helper-git-ref }}
+          ref: ${{github.event.inputs.helper-git-ref}}
           fetch-depth: 3
 
-      - name: 'Run ${{ github.event.inputs.version }} native test'
-        run: bash build-assets/scripts/test.sh --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+      - name: 'Run ${{github.event.inputs.version}} native test'
+        run: bash build-assets/scripts/test.sh --version ${{github.event.inputs.version}} --base-url ${{github.event.inputs.base_url}}
 
       - name: Upload platform tests report
         uses: actions/upload-artifact@v4
         with:
           name: tests-report-darwin-arm64
-          path: ${{ github.workspace }}/build-assets/build/darwin-arm64/artefacts/tests-report-*.md
+          path: ${{github.workspace}}/build-assets/build/darwin-arm64/artefacts/tests-report-*.md
           overwrite: true
 
   win32-x64-test:
-    name: 'win32-x64 openocd ${{ github.event.inputs.version }} test'
+    name: 'win32-x64 openocd ${{github.event.inputs.version}} test'
     runs-on: windows-2022
     defaults:
       run:
@@ -300,26 +300,26 @@ jobs:
         with:
           fetch-depth: 3
 
-      - name: 'Checkout helper ${{ github.event.inputs.helper-git-ref }}'
+      - name: 'Checkout helper ${{github.event.inputs.helper-git-ref}}'
         uses: actions/checkout@v4
         with:
           repository: xpack-dev-tools/xbb-helper-xpack
           path: build-assets/xpacks/@xpack-dev-tools/xbb-helper
-          ref: ${{ github.event.inputs.helper-git-ref }}
+          ref: ${{github.event.inputs.helper-git-ref}}
           fetch-depth: 3
 
-      - name: 'Run ${{ github.event.inputs.version }} native test'
-        run: bash build-assets/scripts/test.sh --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+      - name: 'Run ${{github.event.inputs.version}} native test'
+        run: bash build-assets/scripts/test.sh --version ${{github.event.inputs.version}} --base-url ${{github.event.inputs.base_url}}
 
       - name: Upload platform tests report
         uses: actions/upload-artifact@v4
         with:
           name: tests-report-win32-x64
-          path: ${{ github.workspace }}/build-assets/build/win32-x64/artefacts/tests-report-*.md
+          path: ${{github.workspace}}/build-assets/build/win32-x64/artefacts/tests-report-*.md
           overwrite: true
 
   generate-tests-report:
-    name: 'Generate tests report for OpenOCD@${{ github.event.inputs.version }}'
+    name: 'Generate tests report for OpenOCD@${{github.event.inputs.version}}'
     runs-on: ubuntu-22.04
     needs: [linux-x64-test, linux-arm64-test, linux-arm-test, darwin-x64-test, darwin-arm64-test, win32-x64-test]
 
@@ -327,28 +327,28 @@ jobs:
       - name: Download platform test reports
         uses: actions/download-artifact@v4
         with:
-          path: ${{ github.workspace }}/build-assets/artefacts
+          path: ${{github.workspace}}/build-assets/artefacts
           merge-multiple: true
 
       - name: Concatenate platform test reports
         run: |
-          ls -lR ${{ github.workspace }}/build-assets/artefacts
-          touch ${{ github.workspace }}/build-assets/artefacts/tests-report.md
-          echo "---" >>${{ github.workspace }}/build-assets/artefacts/tests-report.md
-          echo "title: OpenOCD ${{ github.event.inputs.version }} test results" >>${{ github.workspace }}/build-assets/artefacts/tests-report.md
-          echo >>${{ github.workspace }}/build-assets/artefacts/tests-report.md
-          echo "date: $(date "+%Y-%m-%d %H:%M:%S %z")" >>${{ github.workspace }}/build-assets/artefacts/tests-report.md
-          echo >>${{ github.workspace }}/build-assets/artefacts/tests-report.md
-          echo "---" >>${{ github.workspace }}/build-assets/artefacts/tests-report.md
-          echo >>${{ github.workspace }}/build-assets/artefacts/tests-report.md
-          (cd ${{ github.workspace }}; cat -s build-assets/artefacts/tests-report-linux-x64.md build-assets/artefacts/tests-report-linux-arm64.md build-assets/artefacts/tests-report-linux-arm.md build-assets/artefacts/tests-report-darwin-x64.md build-assets/artefacts/tests-report-darwin-arm64.md build-assets/artefacts/tests-report-win32-x64.md  | tee -a build-assets/artefacts/tests-report.md)
-          mv -v ${{ github.workspace }}/build-assets/artefacts/tests-report.md ${{ github.workspace }}/build-assets/artefacts/${{ github.event.inputs.version }}.md
+          ls -lR ${{github.workspace}}/build-assets/artefacts
+          touch ${{github.workspace}}/build-assets/artefacts/tests-report.md
+          echo "---" >>${{github.workspace}}/build-assets/artefacts/tests-report.md
+          echo "title: OpenOCD ${{github.event.inputs.version}} test results" >>${{github.workspace}}/build-assets/artefacts/tests-report.md
+          echo >>${{github.workspace}}/build-assets/artefacts/tests-report.md
+          echo "date: $(date "+%Y-%m-%d %H:%M:%S %z")" >>${{github.workspace}}/build-assets/artefacts/tests-report.md
+          echo >>${{github.workspace}}/build-assets/artefacts/tests-report.md
+          echo "---" >>${{github.workspace}}/build-assets/artefacts/tests-report.md
+          echo >>${{github.workspace}}/build-assets/artefacts/tests-report.md
+          (cd ${{github.workspace}}; cat -s build-assets/artefacts/tests-report-linux-x64.md build-assets/artefacts/tests-report-linux-arm64.md build-assets/artefacts/tests-report-linux-arm.md build-assets/artefacts/tests-report-darwin-x64.md build-assets/artefacts/tests-report-darwin-arm64.md build-assets/artefacts/tests-report-win32-x64.md  | tee -a build-assets/artefacts/tests-report.md)
+          mv -v ${{github.workspace}}/build-assets/artefacts/tests-report.md ${{github.workspace}}/build-assets/artefacts/${{github.event.inputs.version}}.md
 
       - name: Upload tests report
         uses: actions/upload-artifact@v4
         with:
           name: tests-report
-          path: ${{ github.workspace }}/build-assets/artefacts/${{ github.event.inputs.version }}.md
+          path: ${{github.workspace}}/build-assets/artefacts/${{github.event.inputs.version}}.md
           overwrite: true
 
 # -----------------------------------------------------------------------------

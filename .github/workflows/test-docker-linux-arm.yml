@@ -69,7 +69,7 @@ jobs:
   # https://hub.docker.com/_/ubuntu
   # The ubuntu:12.04 image fails to update.
   ubuntu-arm64:
-    name: 'arm64 openocd ${{ github.event.inputs.version }} test on Ubuntu stable'
+    name: 'arm64 openocd ${{github.event.inputs.version}} test on Ubuntu stable'
     runs-on: [self-hosted, linux, arm64, xbbla]
 
     steps:
@@ -93,36 +93,36 @@ jobs:
         with:
           fetch-depth: 3
 
-      - name: 'Checkout helper ${{ github.event.inputs.helper-git-ref }}'
+      - name: 'Checkout helper ${{github.event.inputs.helper-git-ref}}'
         uses: actions/checkout@v4
         with:
           repository: xpack-dev-tools/xbb-helper-xpack
           path: build-assets/xpacks/@xpack-dev-tools/xbb-helper
-          ref: ${{ github.event.inputs.helper-git-ref }}
+          ref: ${{github.event.inputs.helper-git-ref}}
           fetch-depth: 3
 
       - name: 'Ubuntu 22.04 arm64'
         uses: docker://ubuntu:22.04
         with:
           entrypoint: /bin/bash
-          args: /github/workspace/build-assets/scripts/test.sh --image ubuntu:22.04 --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+          args: /github/workspace/build-assets/scripts/test.sh --image ubuntu:22.04 --version ${{github.event.inputs.version}} --base-url ${{github.event.inputs.base_url}}
 
       - name: 'Ubuntu 20.04 arm64'
         uses: docker://ubuntu:20.04
         with:
           entrypoint: /bin/bash
-          args: /github/workspace/build-assets/scripts/test.sh --image ubuntu:20.04 --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+          args: /github/workspace/build-assets/scripts/test.sh --image ubuntu:20.04 --version ${{github.event.inputs.version}} --base-url ${{github.event.inputs.base_url}}
 
       - name: 'Ubuntu 18.04 arm64'
         uses: docker://ubuntu:18.04
         with:
           entrypoint: /bin/bash
-          args: /github/workspace/build-assets/scripts/test.sh --image ubuntu:18.04 --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+          args: /github/workspace/build-assets/scripts/test.sh --image ubuntu:18.04 --version ${{github.event.inputs.version}} --base-url ${{github.event.inputs.base_url}}
 
   # https://en.wikipedia.org/wiki/Debian_version_history
   # https://hub.docker.com/_/debian
   debian-arm64:
-    name: 'arm64 openocd ${{ github.event.inputs.version }} test on Debian stable'
+    name: 'arm64 openocd ${{github.event.inputs.version}} test on Debian stable'
     runs-on: [self-hosted, linux, arm64, xbbla]
 
     steps:
@@ -146,31 +146,31 @@ jobs:
         with:
           fetch-depth: 3
 
-      - name: 'Checkout helper ${{ github.event.inputs.helper-git-ref }}'
+      - name: 'Checkout helper ${{github.event.inputs.helper-git-ref}}'
         uses: actions/checkout@v4
         with:
           repository: xpack-dev-tools/xbb-helper-xpack
           path: build-assets/xpacks/@xpack-dev-tools/xbb-helper
-          ref: ${{ github.event.inputs.helper-git-ref }}
+          ref: ${{github.event.inputs.helper-git-ref}}
           fetch-depth: 3
 
       - name: 'Debian 11 arm64'
         uses: docker://debian:bullseye
         with:
           entrypoint: /bin/bash
-          args: /github/workspace/build-assets/scripts/test.sh --image debian:bullseye --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+          args: /github/workspace/build-assets/scripts/test.sh --image debian:bullseye --version ${{github.event.inputs.version}} --base-url ${{github.event.inputs.base_url}}
 
       - name: 'Debian 10 arm64'
         uses: docker://debian:buster
         with:
           entrypoint: /bin/bash
-          args: /github/workspace/build-assets/scripts/test.sh --image debian:buster --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+          args: /github/workspace/build-assets/scripts/test.sh --image debian:buster --version ${{github.event.inputs.version}} --base-url ${{github.event.inputs.base_url}}
 
 
   # https://hub.docker.com/r/redhat/ubi8
   # For `-static` to work, explicit static packages must be present.
   redhat-arm64:
-    name: 'arm64 openocd ${{ github.event.inputs.version }} test on RedHat stable'
+    name: 'arm64 openocd ${{github.event.inputs.version}} test on RedHat stable'
     runs-on: [self-hosted, linux, arm64, xbbla]
 
     steps:
@@ -194,25 +194,25 @@ jobs:
         with:
           fetch-depth: 3
 
-      - name: 'Checkout helper ${{ github.event.inputs.helper-git-ref }}'
+      - name: 'Checkout helper ${{github.event.inputs.helper-git-ref}}'
         uses: actions/checkout@v4
         with:
           repository: xpack-dev-tools/xbb-helper-xpack
           path: build-assets/xpacks/@xpack-dev-tools/xbb-helper
-          ref: ${{ github.event.inputs.helper-git-ref }}
+          ref: ${{github.event.inputs.helper-git-ref}}
           fetch-depth: 3
 
       - name: 'RedHat 8 arm64'
         uses: docker://redhat/ubi8
         with:
           entrypoint: /bin/bash
-          args: /github/workspace/build-assets/scripts/test.sh --image redhat/ubi8 --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+          args: /github/workspace/build-assets/scripts/test.sh --image redhat/ubi8 --version ${{github.event.inputs.version}} --base-url ${{github.event.inputs.base_url}}
 
   # https://en.wikipedia.org/wiki/Fedora_version_history
   # https://hub.docker.com/_/fedora
   # For `-static` to work, explicit static packages must be present.
   fedora-arm64:
-    name: 'arm64 openocd ${{ github.event.inputs.version }} test on Fedora stable'
+    name: 'arm64 openocd ${{github.event.inputs.version}} test on Fedora stable'
     runs-on: [self-hosted, linux, arm64, xbbla]
 
     steps:
@@ -236,37 +236,37 @@ jobs:
         with:
           fetch-depth: 3
 
-      - name: 'Checkout helper ${{ github.event.inputs.helper-git-ref }}'
+      - name: 'Checkout helper ${{github.event.inputs.helper-git-ref}}'
         uses: actions/checkout@v4
         with:
           repository: xpack-dev-tools/xbb-helper-xpack
           path: build-assets/xpacks/@xpack-dev-tools/xbb-helper
-          ref: ${{ github.event.inputs.helper-git-ref }}
+          ref: ${{github.event.inputs.helper-git-ref}}
           fetch-depth: 3
 
       - name: 'Fedora 37 arm64'
         uses: docker://fedora:37
         with:
           entrypoint: /bin/bash
-          args: /github/workspace/build-assets/scripts/test.sh --image fedora:37 --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+          args: /github/workspace/build-assets/scripts/test.sh --image fedora:37 --version ${{github.event.inputs.version}} --base-url ${{github.event.inputs.base_url}}
 
       - name: 'Fedora 33 arm64'
         uses: docker://fedora:33
         with:
           entrypoint: /bin/bash
-          args: /github/workspace/build-assets/scripts/test.sh --image fedora:33 --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+          args: /github/workspace/build-assets/scripts/test.sh --image fedora:33 --version ${{github.event.inputs.version}} --base-url ${{github.event.inputs.base_url}}
 
       - name: 'Fedora 29 arm64'
         uses: docker://fedora:29
         with:
           entrypoint: /bin/bash
-          args: /github/workspace/build-assets/scripts/test.sh --image fedora:29 --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+          args: /github/workspace/build-assets/scripts/test.sh --image fedora:29 --version ${{github.event.inputs.version}} --base-url ${{github.event.inputs.base_url}}
 
   # https://en.wikipedia.org/wiki/OpenSUSE#Releases
   # https://hub.docker.com/u/opensuse
   # `-static` disabled, there is no static libc.a.
   opensuse-arm64:
-    name: 'arm64 openocd ${{ github.event.inputs.version }} test on OpenSUSE stable'
+    name: 'arm64 openocd ${{github.event.inputs.version}} test on OpenSUSE stable'
     runs-on: [self-hosted, linux, arm64, xbbla]
 
     steps:
@@ -290,30 +290,30 @@ jobs:
         with:
           fetch-depth: 3
 
-      - name: 'Checkout helper ${{ github.event.inputs.helper-git-ref }}'
+      - name: 'Checkout helper ${{github.event.inputs.helper-git-ref}}'
         uses: actions/checkout@v4
         with:
           repository: xpack-dev-tools/xbb-helper-xpack
           path: build-assets/xpacks/@xpack-dev-tools/xbb-helper
-          ref: ${{ github.event.inputs.helper-git-ref }}
+          ref: ${{github.event.inputs.helper-git-ref}}
           fetch-depth: 3
 
       - name: 'OpenSUSE 15.4 arm64'
         uses: docker://opensuse/leap:15.4
         with:
           entrypoint: /bin/bash
-          args: /github/workspace/build-assets/scripts/test.sh --image opensuse/leap:15.4 --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+          args: /github/workspace/build-assets/scripts/test.sh --image opensuse/leap:15.4 --version ${{github.event.inputs.version}} --base-url ${{github.event.inputs.base_url}}
 
       - name: 'OpenSUSE 15.3 arm64'
         uses: docker://opensuse/leap:15.3
         with:
           entrypoint: /bin/bash
-          args: /github/workspace/build-assets/scripts/test.sh --image opensuse/leap:15.3 --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+          args: /github/workspace/build-assets/scripts/test.sh --image opensuse/leap:15.3 --version ${{github.event.inputs.version}} --base-url ${{github.event.inputs.base_url}}
 
   # ---------------------------------------------------------------------------
 
   ubuntu-arm64-latest:
-    name: 'arm64 openocd ${{ github.event.inputs.version }} test on Ubuntu latest'
+    name: 'arm64 openocd ${{github.event.inputs.version}} test on Ubuntu latest'
     runs-on: [self-hosted, linux, arm64, xbbla]
 
     steps:
@@ -337,23 +337,23 @@ jobs:
         with:
           fetch-depth: 3
 
-      - name: 'Checkout helper ${{ github.event.inputs.helper-git-ref }}'
+      - name: 'Checkout helper ${{github.event.inputs.helper-git-ref}}'
         uses: actions/checkout@v4
         with:
           repository: xpack-dev-tools/xbb-helper-xpack
           path: build-assets/xpacks/@xpack-dev-tools/xbb-helper
-          ref: ${{ github.event.inputs.helper-git-ref }}
+          ref: ${{github.event.inputs.helper-git-ref}}
           fetch-depth: 3
 
       - name: 'Ubuntu latest arm64'
         uses: docker://ubuntu:22.04
         with:
           entrypoint: /bin/bash
-          args: /github/workspace/build-assets/scripts/test.sh --image ubuntu:22.04 --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+          args: /github/workspace/build-assets/scripts/test.sh --image ubuntu:22.04 --version ${{github.event.inputs.version}} --base-url ${{github.event.inputs.base_url}}
       # ubuntu:rolling fails during update
 
   debian-arm64-latest:
-    name: 'arm64 openocd ${{ github.event.inputs.version }} test on Debian latest'
+    name: 'arm64 openocd ${{github.event.inputs.version}} test on Debian latest'
     runs-on: [self-hosted, linux, arm64, xbbla]
 
     steps:
@@ -377,31 +377,31 @@ jobs:
         with:
           fetch-depth: 3
 
-      - name: 'Checkout helper ${{ github.event.inputs.helper-git-ref }}'
+      - name: 'Checkout helper ${{github.event.inputs.helper-git-ref}}'
         uses: actions/checkout@v4
         with:
           repository: xpack-dev-tools/xbb-helper-xpack
           path: build-assets/xpacks/@xpack-dev-tools/xbb-helper
-          ref: ${{ github.event.inputs.helper-git-ref }}
+          ref: ${{github.event.inputs.helper-git-ref}}
           fetch-depth: 3
 
       - name: 'Debian testing arm64'
         uses: docker://debian:testing
         with:
           entrypoint: /bin/bash
-          args: /github/workspace/build-assets/scripts/test.sh --image debian:testing --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+          args: /github/workspace/build-assets/scripts/test.sh --image debian:testing --version ${{github.event.inputs.version}} --base-url ${{github.event.inputs.base_url}}
 
       - name: 'Debian latest arm64'
         uses: docker://debian:latest
         with:
           entrypoint: /bin/bash
-          args: /github/workspace/build-assets/scripts/test.sh --image debian:latest --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+          args: /github/workspace/build-assets/scripts/test.sh --image debian:latest --version ${{github.event.inputs.version}} --base-url ${{github.event.inputs.base_url}}
 
   # https://en.wikipedia.org/wiki/Fedora_version_history
   # https://hub.docker.com/_/fedora
   # `-static` disabled, there is no static libc.a.
   fedora-arm64-latest:
-    name: 'arm64 openocd ${{ github.event.inputs.version }} test on Fedora latest'
+    name: 'arm64 openocd ${{github.event.inputs.version}} test on Fedora latest'
     runs-on: [self-hosted, linux, arm64, xbbla]
 
     steps:
@@ -425,23 +425,23 @@ jobs:
         with:
           fetch-depth: 3
 
-      - name: 'Checkout helper ${{ github.event.inputs.helper-git-ref }}'
+      - name: 'Checkout helper ${{github.event.inputs.helper-git-ref}}'
         uses: actions/checkout@v4
         with:
           repository: xpack-dev-tools/xbb-helper-xpack
           path: build-assets/xpacks/@xpack-dev-tools/xbb-helper
-          ref: ${{ github.event.inputs.helper-git-ref }}
+          ref: ${{github.event.inputs.helper-git-ref}}
           fetch-depth: 3
 
       - name: 'Fedora latest arm64'
         uses: docker://fedora:latest
         with:
           entrypoint: /bin/bash
-          args: /github/workspace/build-assets/scripts/test.sh --image fedora:latest --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+          args: /github/workspace/build-assets/scripts/test.sh --image fedora:latest --version ${{github.event.inputs.version}} --base-url ${{github.event.inputs.base_url}}
 
   # - https://hub.docker.com/r/opensuse/tumbleweed
   opensuse-arm64-latest:
-    name: 'arm64 openocd ${{ github.event.inputs.version }} test on OpenSUSE latest'
+    name: 'arm64 openocd ${{github.event.inputs.version}} test on OpenSUSE latest'
     runs-on: [self-hosted, linux, arm64, xbbla]
 
     steps:
@@ -465,23 +465,23 @@ jobs:
         with:
           fetch-depth: 3
 
-      - name: 'Checkout helper ${{ github.event.inputs.helper-git-ref }}'
+      - name: 'Checkout helper ${{github.event.inputs.helper-git-ref}}'
         uses: actions/checkout@v4
         with:
           repository: xpack-dev-tools/xbb-helper-xpack
           path: build-assets/xpacks/@xpack-dev-tools/xbb-helper
-          ref: ${{ github.event.inputs.helper-git-ref }}
+          ref: ${{github.event.inputs.helper-git-ref}}
           fetch-depth: 3
 
       - name: 'OpenSUSE tumbleweed arm64'
         uses: docker://opensuse/tumbleweed
         with:
           entrypoint: /bin/bash
-          args: /github/workspace/build-assets/scripts/test.sh --image opensuse/tumbleweed --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+          args: /github/workspace/build-assets/scripts/test.sh --image opensuse/tumbleweed --version ${{github.event.inputs.version}} --base-url ${{github.event.inputs.base_url}}
 
   # https://hub.docker.com/r/arm32v7/ubuntu/
   ubuntu-arm:
-    name: 'arm openocd ${{ github.event.inputs.version }} test on Ubuntu stable'
+    name: 'arm openocd ${{github.event.inputs.version}} test on Ubuntu stable'
     runs-on: [self-hosted, linux, arm, xbbla32]
 
     steps:
@@ -505,35 +505,35 @@ jobs:
         with:
           fetch-depth: 3
 
-      - name: 'Checkout helper ${{ github.event.inputs.helper-git-ref }}'
+      - name: 'Checkout helper ${{github.event.inputs.helper-git-ref}}'
         uses: actions/checkout@v4
         with:
           repository: xpack-dev-tools/xbb-helper-xpack
           path: build-assets/xpacks/@xpack-dev-tools/xbb-helper
-          ref: ${{ github.event.inputs.helper-git-ref }}
+          ref: ${{github.event.inputs.helper-git-ref}}
           fetch-depth: 3
 
       - name: 'Ubuntu 22.04 arm'
         uses: docker://arm32v7/ubuntu:22.04
         with:
           entrypoint: /bin/bash # /usr/bin/linux32
-          args: /github/workspace/build-assets/scripts/test.sh --image arm32v7/ubuntu:22.04 --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+          args: /github/workspace/build-assets/scripts/test.sh --image arm32v7/ubuntu:22.04 --version ${{github.event.inputs.version}} --base-url ${{github.event.inputs.base_url}}
 
       - name: 'Ubuntu 20.04 arm'
         uses: docker://arm32v7/ubuntu:20.04
         with:
           entrypoint: /bin/bash # /usr/bin/linux32
-          args: /github/workspace/build-assets/scripts/test.sh --image arm32v7/ubuntu:20.04 --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+          args: /github/workspace/build-assets/scripts/test.sh --image arm32v7/ubuntu:20.04 --version ${{github.event.inputs.version}} --base-url ${{github.event.inputs.base_url}}
 
       - name: 'Ubuntu 18.04 arm'
         uses: docker://arm32v7/ubuntu:18.04
         with:
           entrypoint: /bin/bash # /usr/bin/linux32
-          args: /github/workspace/build-assets/scripts/test.sh --image arm32v7/ubuntu:18.04 --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+          args: /github/workspace/build-assets/scripts/test.sh --image arm32v7/ubuntu:18.04 --version ${{github.event.inputs.version}} --base-url ${{github.event.inputs.base_url}}
 
   # https://hub.docker.com/r/arm32v7/debian
   debian-arm:
-    name: 'arm openocd ${{ github.event.inputs.version }} test on Debian stable'
+    name: 'arm openocd ${{github.event.inputs.version}} test on Debian stable'
     runs-on: [self-hosted, linux, arm, xbbla32]
 
     steps:
@@ -557,29 +557,29 @@ jobs:
         with:
           fetch-depth: 3
 
-      - name: 'Checkout helper ${{ github.event.inputs.helper-git-ref }}'
+      - name: 'Checkout helper ${{github.event.inputs.helper-git-ref}}'
         uses: actions/checkout@v4
         with:
           repository: xpack-dev-tools/xbb-helper-xpack
           path: build-assets/xpacks/@xpack-dev-tools/xbb-helper
-          ref: ${{ github.event.inputs.helper-git-ref }}
+          ref: ${{github.event.inputs.helper-git-ref}}
           fetch-depth: 3
 
       - name: 'Debian 11 arm'
         uses: docker://arm32v7/debian:bullseye
         with:
           entrypoint: /bin/bash # /usr/bin/linux32
-          args: /github/workspace/build-assets/scripts/test.sh --image arm32v7/debian:bullseye --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+          args: /github/workspace/build-assets/scripts/test.sh --image arm32v7/debian:bullseye --version ${{github.event.inputs.version}} --base-url ${{github.event.inputs.base_url}}
 
       - name: 'Debian 10 arm'
         uses: docker://arm32v7/debian:buster
         with:
           entrypoint: /bin/bash # /usr/bin/linux32
-          args: /github/workspace/build-assets/scripts/test.sh --image arm32v7/debian:buster --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+          args: /github/workspace/build-assets/scripts/test.sh --image arm32v7/debian:buster --version ${{github.event.inputs.version}} --base-url ${{github.event.inputs.base_url}}
 
   # https://hub.docker.com/r/arm32v7/ubuntu/
   ubuntu-arm-latest:
-    name: 'arm openocd ${{ github.event.inputs.version }} test on Ubuntu latest'
+    name: 'arm openocd ${{github.event.inputs.version}} test on Ubuntu latest'
     runs-on: [self-hosted, linux, arm, xbbla32]
 
     steps:
@@ -603,23 +603,23 @@ jobs:
         with:
           fetch-depth: 3
 
-      - name: 'Checkout helper ${{ github.event.inputs.helper-git-ref }}'
+      - name: 'Checkout helper ${{github.event.inputs.helper-git-ref}}'
         uses: actions/checkout@v4
         with:
           repository: xpack-dev-tools/xbb-helper-xpack
           path: build-assets/xpacks/@xpack-dev-tools/xbb-helper
-          ref: ${{ github.event.inputs.helper-git-ref }}
+          ref: ${{github.event.inputs.helper-git-ref}}
           fetch-depth: 3
 
       - name: 'Ubuntu latest arm'
         uses: docker://arm32v7/ubuntu:22.04
         with:
           entrypoint: /bin/bash # /usr/bin/linux32
-          args: /github/workspace/build-assets/scripts/test.sh --image arm32v7/ubuntu:22.04 --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+          args: /github/workspace/build-assets/scripts/test.sh --image arm32v7/ubuntu:22.04 --version ${{github.event.inputs.version}} --base-url ${{github.event.inputs.base_url}}
 
   # https://hub.docker.com/r/arm32v7/debian
   debian-arm-latest:
-    name: 'arm openocd ${{ github.event.inputs.version }} test on Debian latest'
+    name: 'arm openocd ${{github.event.inputs.version}} test on Debian latest'
     runs-on: [self-hosted, linux, arm, xbbla32]
 
     steps:
@@ -643,31 +643,31 @@ jobs:
         with:
           fetch-depth: 3
 
-      - name: 'Checkout helper ${{ github.event.inputs.helper-git-ref }}'
+      - name: 'Checkout helper ${{github.event.inputs.helper-git-ref}}'
         uses: actions/checkout@v4
         with:
           repository: xpack-dev-tools/xbb-helper-xpack
           path: build-assets/xpacks/@xpack-dev-tools/xbb-helper
-          ref: ${{ github.event.inputs.helper-git-ref }}
+          ref: ${{github.event.inputs.helper-git-ref}}
           fetch-depth: 3
 
       - name: 'Debian testing arm'
         uses: docker://arm32v7/debian:testing
         with:
           entrypoint: /bin/bash # /usr/bin/linux32
-          args: /github/workspace/build-assets/scripts/test.sh --image arm32v7/debian:testing --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+          args: /github/workspace/build-assets/scripts/test.sh --image arm32v7/debian:testing --version ${{github.event.inputs.version}} --base-url ${{github.event.inputs.base_url}}
 
       - name: 'Debian latest arm'
         uses: docker://arm32v7/debian:latest
         with:
           entrypoint: /bin/bash # /usr/bin/linux32
-          args: /github/workspace/build-assets/scripts/test.sh --image arm32v7/debian:latest --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+          args: /github/workspace/build-assets/scripts/test.sh --image arm32v7/debian:latest --version ${{github.event.inputs.version}} --base-url ${{github.event.inputs.base_url}}
 
   # https://en.wikipedia.org/wiki/Fedora_version_history
   # https://hub.docker.com/r/arm32v7/fedora
   # `-static` disabled, there is no static libc.a.
   fedora-arm-latest:
-    name: 'arm openocd ${{ github.event.inputs.version }} test on Fedora latest'
+    name: 'arm openocd ${{github.event.inputs.version}} test on Fedora latest'
     runs-on: [self-hosted, linux, arm, xbbla32]
 
     steps:
@@ -691,19 +691,19 @@ jobs:
         with:
           fetch-depth: 3
 
-      - name: 'Checkout helper ${{ github.event.inputs.helper-git-ref }}'
+      - name: 'Checkout helper ${{github.event.inputs.helper-git-ref}}'
         uses: actions/checkout@v4
         with:
           repository: xpack-dev-tools/xbb-helper-xpack
           path: build-assets/xpacks/@xpack-dev-tools/xbb-helper
-          ref: ${{ github.event.inputs.helper-git-ref }}
+          ref: ${{github.event.inputs.helper-git-ref}}
           fetch-depth: 3
 
       - name: 'Fedora latest arm'
         uses: docker://arm32v7/fedora:latest
         with:
           entrypoint: /bin/bash
-          args: /github/workspace/build-assets/scripts/test.sh --image arm32v7/fedora:latest --version ${{ github.event.inputs.version }} --base-url ${{ github.event.inputs.base_url }}
+          args: /github/workspace/build-assets/scripts/test.sh --image arm32v7/fedora:latest --version ${{github.event.inputs.version}} --base-url ${{github.event.inputs.base_url}}
 
   # - https://hub.docker.com/r/arm32v7/opensuse
   # arm32v7/opensuse:latest is leap 42.3 and fails due to http: URLs
