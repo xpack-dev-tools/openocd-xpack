@@ -253,6 +253,36 @@ Check if both the current project and the helper are
 on the `xpack-development` branch and the latest
 commits are pushed to GitHub.
 
+
+
+
+
+
+
+
+
+
+
+
+### Build the x64 Windows binaries
+
+Run the docker build on the production machine (`xbbli`);
+start a VS Code remote session, or connect with a terminal:
+
+```sh
+caffeinate ssh xbbli
+```
+
+<PlatformDockerBuild platform="win32-x64"/>
+
+
+
+
+
+
+
+
+
 ### Build the x64 macOS binaries
 
 For x64 macOS, first run the build on the development machine
@@ -284,7 +314,7 @@ For a debug build:
 xpm run build-development-debug --config darwin-x64 -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets
 ```
 
-The build takes {developmentDurations["work"]}.
+The build takes {developmentDurations["work"]} to complete.
 
 When functional, push the `xpack-development` branch to GitHub.
 
@@ -298,6 +328,22 @@ caffeinate ssh xbbmi
 
 <PlatformNativeBuild platform="darwin-x64"/>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ### Build the arm64 macOS binaries
 
 Run the native build on the production machine
@@ -310,6 +356,22 @@ caffeinate ssh xbbma
 
 <PlatformNativeBuild platform="darwin-arm64"/>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ### Build the x64 GNU/Linux binaries
 
 Run the docker build on the production machine (`xbbli`);
@@ -321,16 +383,23 @@ caffeinate ssh xbbli
 
 <PlatformDockerBuild platform="linux-x64"/>
 
-### Build the x64 Windows binaries
 
-Run the docker build on the production machine (`xbbli`);
-start a VS Code remote session, or connect with a terminal:
 
-```sh
-caffeinate ssh xbbli
-```
 
-<PlatformDockerBuild platform="win32-x64"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ### Build the arm64 GNU/Linux binaries
 
@@ -343,6 +412,22 @@ caffeinate ssh xbbla
 
 <PlatformDockerBuild platform="linux-arm64"/>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ### Build the arm GNU/Linux (32-bit) binaries
 
 Run the docker build on the production machine (`xbbla32`);
@@ -354,6 +439,9 @@ caffeinate ssh xbbla32
 
 <PlatformDockerBuild platform="linux-arm"/>
 
+
+
+
 ### Update the trees in the Install Guide page
 
 Copy the trees displayed at the end of the test builds and paste to
@@ -361,7 +449,8 @@ Copy the trees displayed at the end of the test builds and paste to
 
 - `website/docs/install/_miscellaneous.mdx`
 
-Replace **{customField('upstreamVersion')}** with the following expression:
+If present, replace the actual version
+(like **{customField('upstreamVersion')}**) with the following expression:
 
 ```txt
 ${customField('upstreamVersion')}
@@ -418,13 +507,58 @@ The automation is provided by GitHub Actions and three self-hosted runners.
 
 ### Start the self-hosted runners
 
-- on the development machine (`wksi`) open ssh sessions to the build
-machines (`xbbmi`, `xbbma`, `xbbli`, `xbbla` and `xbbla32`):
+
+
+
+
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+
+
+
+
+- on the development machine (`wksi`) open
+ssh sessions to the build machines (`xbbli`, `xbbmi`, `xbbma`, `xbbla`, `xbbla32`):
 
 ```sh
+caffeinate ssh xbbli
 caffeinate ssh xbbmi
 caffeinate ssh xbbma
-caffeinate ssh xbbli
 caffeinate ssh xbbla
 caffeinate ssh xbbla32
 ```
@@ -438,6 +572,7 @@ screen -S ga
 
 To quit it, use `# Ctrl-a Ctrl-d`.
 
+
 For `xbbli` & `xbbla`, which have more memory, start two runners:
 
 ```sh
@@ -445,11 +580,14 @@ For `xbbli` & `xbbla`, which have more memory, start two runners:
 ~/actions-runners/xpack-dev-tools/2/run.sh &
 ```
 
+
+
 On all other machines start a single runner:
 
 ```sh
 ~/actions-runners/xpack-dev-tools/run.sh &
 ```
+
 
 To check the status of the runners locally:
 
@@ -492,7 +630,30 @@ xpm run check-space -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets
 
 This is equivalent to running a `df` command.
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <Tabs groupId="operating-systems">
+
 
 <TabItem value="macos" label="macOS">
 
@@ -502,6 +663,8 @@ df -gH /
 
 </TabItem>
 
+
+
 <TabItem value="linux" label="GNU/Linux">
 
 ```sh
@@ -509,6 +672,7 @@ df -BG -H /
 ```
 
 </TabItem>
+
 
 </Tabs>
 
@@ -544,20 +708,16 @@ xpm run generate-workflows -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-ass
 
 To trigger the GitHub Actions builds, use the xPack actions:
 
+
+- **trigger-workflow-build-win32-x64**
 - **trigger-workflow-build-darwin-x64**
 - **trigger-workflow-build-darwin-arm64**
 - **trigger-workflow-build-linux-x64**
-- **trigger-workflow-build-win32-x64**
 - **trigger-workflow-build-linux-arm64**
 - **trigger-workflow-build-linux-arm**
 
 ```sh
-xpm run trigger-workflow-build-darwin-x64 -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets
-xpm run trigger-workflow-build-darwin-arm64 -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets
-xpm run trigger-workflow-build-linux-x64 -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets
-xpm run trigger-workflow-build-win32-x64 -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets
-xpm run trigger-workflow-build-darwin-x64 -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets
-xpm run trigger-workflow-build-darwin-x64 -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets
+xpm run trigger-workflow-build-win32-x64 -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assetsxpm run trigger-workflow-build-darwin-x64 -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assetsxpm run trigger-workflow-build-darwin-arm64 -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assetsxpm run trigger-workflow-build-linux-x64 -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assetsxpm run trigger-workflow-build-linux-arm64 -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assetsxpm run trigger-workflow-build-linux-arm -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets
 ```
 
 The scripts behind these actions require the `GITHUB_API_DISPATCH_TOKEN`
@@ -588,6 +748,35 @@ The resulting binaries are available for testing from
 
 The automation is provided by GitHub Actions.
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 To trigger the GitHub Actions tests, run the xPack actions:
 
 - **trigger-workflow-test-prime**
@@ -613,6 +802,7 @@ The tests results are available from the
 After running the prime tests, download the test results and compare
 with previous runs.
 
+
 #### More macOS tests
 
 Since GitHub Actions provides a limited range of versions for the macOS
@@ -629,6 +819,7 @@ in the environment.
 
 The test results are available from
 [Travis CI](https://app.travis-ci.com/github/xpack-dev-tools/openocd-xpack/builds/).
+
 
 ### Manual tests
 
@@ -678,8 +869,8 @@ tagged like **v{customField('upstreamVersion')}-{customField('xpackSubversion')}
 named like **xPack OpenOCD v{customField('upstreamVersion')}-{customField('xpackSubversion')}** (mind the dash),
 with all binaries attached.
 
-- edit the draft and attach it to the `xpack-development` branch (important!)
-- perform the final edits and check if everything is fine
+- edit the draft and be sure it is attached to the `xpack-development` branch (important!)
+- perform the final edits (maintenance vs. new release) and check if everything is fine
 - **keep the pre-release button enabled**
 - do **not** enable Discussions yet
 - click the **Publish release** button
@@ -700,7 +891,6 @@ xpm run generate-website-blog-post -C ~/Work/xpack-dev-tools/openocd-xpack.git/b
 - edit the front matter properties
 - select the correct summary
 - commit with _**blog post release {customField('upstreamVersion')}-{customField('xpackSubversion')} published**_
-
 
 ### Update the web install page
 
@@ -752,10 +942,10 @@ xpm run update-package-binaries -C ~/Work/xpack-dev-tools/openocd-xpack.git/buil
 
 - the commits and the tag should have been pushed by the `postversion` script;
   if not, push them with `git push origin --tags` to GitHub
-- publish and add the `next` tag:
+- publish and add the `test` tag:
 
 ```sh
-npm publish --tag next
+npm publish --tag test
 ```
 
 - when publishing for the first time, use:

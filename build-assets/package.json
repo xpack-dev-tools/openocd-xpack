@@ -7,15 +7,15 @@
   "xpack": {
     "minimumXpmRequired": "0.16.3",
     "devDependencies": {
-      "@xpack-dev-tools/xbb-helper": "^3.0.10"
+      "@xpack-dev-tools/xbb-helper": "^3.0.16"
     },
     "properties": {
       "appName": "OpenOCD",
       "appLcName": "openocd",
       "platforms": "all",
       "customFields": {
-        "programName": "",
-        "branding": "xPack x86_64 clang version ",
+        "programName": "openocd",
+        "branding": "xPack Open On-Chip Debugger ",
         "showDeprecatedGnuMcuAnalytics": "true"
       },
       "buildFolderRelativePath": "{{ 'build' | path_join: configuration.name | to_filename | downcase }}",

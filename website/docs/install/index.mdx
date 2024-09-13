@@ -26,6 +26,13 @@ import Testing from './_testing.mdx';
 
 {/* ------------------------------------------------------------------------ */}
 
+[![GitHub package.json version](https://img.shields.io/github/package-json/v/xpack-dev-tools/openocd-xpack)](https://github.com/xpack-dev-tools/openocd-xpack/blob/xpack/package.json)
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/xpack-dev-tools/openocd-xpack)](https://github.com/xpack-dev-tools/openocd-xpack/releases/)
+[![GitHub Release Date](https://img.shields.io/github/release-date/xpack-dev-tools/openocd-xpack)](https://github.com/xpack-dev-tools/openocd-xpack/releases/)
+[![npm (scoped)](https://img.shields.io/npm/v/%40xpack-dev-tools%2Fopenocd?label=xpm&color=blue)](https://www.npmjs.com/package/@xpack-dev-tools/openocd/)
+![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/xpack-dev-tools/openocd-xpack/total)
+[![npm](https://img.shields.io/npm/dm/%40xpack-dev-tools%2Fopenocd?label=xpm%20downloads)](https://www.npmjs.com/package/@xpack-dev-tools/openocd/)
+
 The **xPack OpenOCD** can be installed automatically, using the `xpm` command
 (the recommended method), or manually, by downloading and unpacking one of the
 portable archives.
@@ -217,7 +224,40 @@ The next step is to install the
 `xpm install @xpack-dev-tools/openocd@latest --verbose
 `} </CodeBlock>
 
+
+
+
+
+  
+  
+  
+
+  
+  
+  
+
+  
+  
+  
+
+  
+  
+  
+
+  
+  
+  
+
+  
+  
+  
+
+
+
+
 <Tabs groupId="operating-systems">
+
+
 
 <TabItem value="windows" label="Windows" default>
 
@@ -250,6 +290,16 @@ adjust the syntax for the corresponding Windows specific shell.
 
 </TabItem>
 
+
+
+
+
+
+
+
+
+
+
 <TabItem value="macos" label="macOS">
 
 The main result is a set
@@ -273,6 +323,16 @@ export PATH=<...project-path...>/xpacks/.bin:$PATH
 
 </TabItem>
 
+
+
+
+
+
+
+
+
+
+
 <TabItem value="linux" label="GNU/Linux">
 
 The main result is a set
@@ -295,6 +355,8 @@ export PATH=<...project-path...>/xpacks/.bin:$PATH
 </details>
 
 </TabItem>
+
+
 
 </Tabs>
 
@@ -392,7 +454,6 @@ install the packages globally will fail with _already installed_.
 
 :::
 
-
 <details>
 <summary>PATH setup</summary>
 
@@ -402,10 +463,12 @@ the project build configurations need a PATH adjustment:
 
 <Tabs groupId="operating-systems">
 
+
+
 <TabItem value="windows" label="Windows" default>
 
 <CodeBlock language="sh"> {
-`export PATH=$HOME/AppData/Roaming/xPacks/\@pack-dev-tools/openocd /${customField('upstreamVersion')}-${customField('xpackSubversion')}.${customField('npmSubversion')}/.content/bin:$PATH
+`export PATH=$HOME/AppData/Roaming/xPacks/\@pack-dev-tools/openocd/${customField('upstreamVersion')}-${customField('xpackSubversion')}.${customField('npmSubversion')}/.content/bin:$PATH
 `} </CodeBlock>
 
 :::tip
@@ -417,26 +480,47 @@ corresponding shell.
 
 </TabItem>
 
+
+
+
+
+
+
+
+
+
+
 <TabItem value="macos" label="macOS">
 
 <CodeBlock language="sh"> {
-`export PATH=$HOME/Library/xPacks/\@pack-dev-tools/openocd /${customField('upstreamVersion')}-${customField('xpackSubversion')}.${customField('npmSubversion')}/.content/bin:$PATH
+`export PATH=$HOME/Library/xPacks/\@pack-dev-tools/openocd/${customField('upstreamVersion')}-${customField('xpackSubversion')}.${customField('npmSubversion')}/.content/bin:$PATH
 `} </CodeBlock>
 
 </TabItem>
+
+
+
+
+
+
+
+
+
+
 
 <TabItem value="linux" label="GNU/Linux">
 
 <CodeBlock language="sh"> {
-`export PATH=$HOME/.local/xPacks/@xpack-dev-tools/openocd /${customField('upstreamVersion')}-${customField('xpackSubversion')}.${customField('npmSubversion')}/.content/bin:$PATH
+`export PATH=$HOME/.local/xPacks/@xpack-dev-tools/openocd/${customField('upstreamVersion')}-${customField('xpackSubversion')}.${customField('npmSubversion')}/.content/bin:$PATH
 `} </CodeBlock>
 
 </TabItem>
 
+
+
 </Tabs>
 
 </details>
-
 
 ### Uninstall
 
@@ -474,12 +558,24 @@ For a thorough clean-up, please note that **xpm** uses only two folders:
 
 <Tabs groupId="operating-systems">
 
+
+
 <TabItem value="windows" label="Windows" default>
 
 - `%APPDATA%\Roaming\xPacks`
 - `%APPDATA%\Local\Caches\xPacks`
 
 </TabItem>
+
+
+
+
+
+
+
+
+
+
 
 <TabItem value="macos" label="macOS">
 
@@ -488,12 +584,24 @@ For a thorough clean-up, please note that **xpm** uses only two folders:
 
 </TabItem>
 
+
+
+
+
+
+
+
+
+
+
 <TabItem value="linux" label="GNU/Linux">
 
 - `${HOME}/.local/xPacks`
 - `${HOME}/.cache/xPacks`
 
 </TabItem>
+
+
 
 </Tabs>
 
@@ -518,6 +626,8 @@ the <a href={`https://github.com/xpack-dev-tools/openocd-xpack/releases/`}>GitHu
 ### Download & unpack {#manual-install-download-and-unpack}
 
 <Tabs groupId="operating-systems">
+
+
 
 <TabItem value="windows" label="Windows" default>
 
@@ -550,6 +660,16 @@ installing user specific packages.
 :::
 
 </TabItem>
+
+
+
+
+
+
+
+
+
+
 
 <TabItem value="macos" label="macOS">
 
@@ -584,6 +704,16 @@ chmod -R -w xpack-openocd-${customField('upstreamVersion')}-${customField('xpack
 
 </TabItem>
 
+
+
+
+
+
+
+
+
+
+
 <TabItem value="linux" label="GNU/Linux">
 
 The GNU/Linux versions of **xPack OpenOCD**
@@ -617,6 +747,8 @@ chmod -R -w xpack-openocd-${customField('upstreamVersion')}-${customField('xpack
 `} </CodeBlock>
 
 </TabItem>
+
+
 
 </Tabs>
 
