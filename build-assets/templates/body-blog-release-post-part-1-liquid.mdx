@@ -11,9 +11,9 @@ tags:
 
 # ----- Custom properties -----------------------------------------------------
 
-upstream_version: "0.12.0"
-upstream_commit: "dd175827"
-upstream_release_date: "1 Apr 2024"
+openocd_version: "{{upstreamVersion}}"
+openocd_commit: "{{customFields.openocdCommitId}}"
+openocd_release_date: "{{customFields.openocdCommitDate}}"
 
 version: "{{releaseVersion}}"
 npm_subversion: "1"
@@ -68,12 +68,12 @@ are presented in the [Install Guide](/docs/install/).
 
 ## Compliance
 
-The xPack OpenOCD generally follows the official
-[OpenOCD](https://openocd.org) releases.
+The **xPack OpenOCD** is based on the official
+[OpenOCD](https://openocd.org) sources.
 
 The current version is based on:
 
-- OpenOCD version {frontMatter.upstream_version}, the development commit <a href={ `https://github.com/openocd-org/openocd/commit/${frontMatter.upstream_commit}/` }>{frontMatter.upstream_commit}</a> from {frontMatter.upstream_release_date}.
+- OpenOCD version {frontMatter.openocd_version}, the development commit <a href={ `https://github.com/openocd-org/openocd/commit/${frontMatter.openocd_commit}/` }>{frontMatter.openocd_commit}</a> from {frontMatter.openocd_release_date}.
 
 ## Changes
 
