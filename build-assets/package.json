@@ -16,6 +16,9 @@
       "customFields": {
         "programName": "openocd",
         "branding": "xPack Open On-Chip Debugger ",
+        "$link": "https://github.com/openocd-org/openocd.git",
+        "openocdCommitId": "dd175827",
+        "openocdCommitDate": "1 Apr 2024",
         "showDeprecatedGnuMcuAnalytics": "true"
       },
       "buildFolderRelativePath": "{{ 'build' | path_join: configuration.name | to_filename | downcase }}",
