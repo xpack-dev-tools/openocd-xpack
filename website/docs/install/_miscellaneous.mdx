@@ -6,99 +6,10 @@ import customField from '@site/src/libs/customField';
 
 {/* ------------------------------------------------------------------------ */}
 
-## Miscellaneous
-
-<details>
-<summary>Folder hierarchy</summary>
-
-After install, the package creates a folder hierarchy like the following
-(only the first two depth levels are shown):
-
-<Tabs groupId="operating-systems">
-<TabItem value="windows" label="Windows" default>
-
-<CodeBlock language="console"> {
-`C:\> tree /f %USERPROFILE%\\AppData\\Roaming\\xPacks\\@xpack-dev-tools\\openocd\\${ customField('upstreamVersion') }-${ customField('xpackSubversion') }.${ customField('npmSubversion') }\\.content
-Folder PATH listing
-Volume serial number is B02D-925C
-├── README.md
-├── bin
-│   ├── libftdi1.dll
-│   ├── libusb-1.0.dll
-│   └── openocd.exe
-├── distro-info
-│   └── licenses
-└── openocd
-    ├── OpenULINK
-    ├── angie
-    ├── contrib
-    └── scripts
-
-8 directories, 4 files
-`} </CodeBlock>
-
-</TabItem>
-<TabItem value="macos" label="macOS">
-
-<CodeBlock language="console"> {
-`$ tree -L 2 ~/Library/xPacks/\@xpack-dev-tools/openocd/${ customField('upstreamVersion') }-${ customField('xpackSubversion') }.${ customField('npmSubversion') }/.content/
-/Users/ilg/Library/xPacks/\@xpack-dev-tools/openocd/${ customField('upstreamVersion') }-${ customField('xpackSubversion') }.${ customField('npmSubversion') }/.content/
-├── README.md
-├── bin
-│   └── openocd
-├── distro-info
-│   └── licenses
-├── libexec
-│   ├── libftdi1.2.5.0.dylib
-│   ├── libftdi1.2.dylib -> libftdi1.2.5.0.dylib
-│   ├── libhidapi.0.14.0.dylib
-│   └── libusb-1.0.0.dylib
-└── openocd
-    ├── OpenULINK
-    ├── angie
-    ├── contrib
-    └── scripts
-
-10 directories, 6 files
-`} </CodeBlock>
-
-</TabItem>
-<TabItem value="linux" label="GNU/Linux">
-
-<CodeBlock language="console"> {
-`$ tree -L 2 ~/.local/xPacks/\@xpack-dev-tools/openocd/${ customField('upstreamVersion') }-${ customField('xpackSubversion') }.${ customField('npmSubversion') }/.content/
-/home/ilg/.local/xPacks/\@xpack-dev-tools/openocd/${ customField('upstreamVersion') }-${ customField('xpackSubversion') }.${ customField('npmSubversion') }/.content/
-├── README.md
-├── bin
-│   └── openocd
-├── distro-info
-│   └── licenses
-├── libexec
-│   ├── libftdi1.so.2 -> libftdi1.so.2.5.0
-│   ├── libftdi1.so.2.5.0
-│   ├── libhidapi-hidraw.so.0 -> libhidapi-hidraw.so.0.14.0
-│   ├── libhidapi-hidraw.so.0.14.0
-│   ├── libudev.so.1 -> libudev.so.1.6.9
-│   ├── libudev.so.1.6.9
-│   ├── libusb-1.0.so.0 -> libusb-1.0.so.0.4.0
-│   └── libusb-1.0.so.0.4.0
-└── openocd
-    ├── OpenULINK
-    ├── angie
-    ├── contrib
-    └── scripts
-
-9 directories, 10 files
-`} </CodeBlock>
-
-</TabItem>
-</Tabs>
-
-</details>
-
 ## Drivers
 
 <Tabs groupId="operating-systems">
+
 <TabItem value="windows" label="Windows" default>
 
 As usual on Windows, mastering drivers is a challenge and OpenOCD is no
@@ -159,12 +70,14 @@ safe side, try to always use original manufacturer drivers.
 :::
 
 </TabItem>
+
 <TabItem value="macos" label="macOS">
 
 On macOS, JTAG probes implemented as USB devices usually are
 recognised directly and do not need explicit drivers.
 
 </TabItem>
+
 <TabItem value="linux" label="GNU/Linux">
 
 <h3>UDEV</h3>
@@ -221,4 +134,5 @@ when you have a functional solution post it on the project
 [GitHub Discussions](https://github.com/xpack-dev-tools/openocd-xpack/discussions/).
 
 </TabItem>
+
 </Tabs>

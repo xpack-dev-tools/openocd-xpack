@@ -20,21 +20,21 @@ upstream **Arm GNU Toolchain** project is a bit unusual and unstable in time,
 (like <code>{versionMajor()}.{versionMinor()}.Rel1</code>)
 therefore the upstream GCC version is prefered, which
 is a three number string
-like <code>{customField('upstreamVersion')}</code>;
+like <code>{customField('xpackVersion')}</code>;
 to this string the xPack distribution adds a fourth number that represents
 the Arm release with the same GCC release, and a fifth number
 that represents the xPack release of the same Arm release;
 since [SemVer](https://semver.org) allows only three numbers,
 all additional ones can
 be added only as pre-release strings, separated by a dash,
-like <code>{customField('upstreamVersion')}-<b>{customField('xpackSubversion')}</b></code>. When
+like <code>{customField('xpackVersion')}-<b>{customField('xpackSubversion')}</b></code>. When
 published as a npm package, the version gets
 a sixth number,
-like <code>{customField('upstreamVersion')}-{customField('xpackSubversion')}.<b>{customField('npmSubversion')}</b></code>.
+like <code>{customField('xpackVersion')}.<b>{customField('npmSubversion')}</b></code>.
 
 Since adherence of third party packages to SemVer is not guaranteed,
 it is recommended to avoid referring to the xPack GNU AArch64 Embedded GCC dependency via
 a SemVer expressions
-like <code>^{customField('upstreamVersion')}</code> or <code>~{customField('upstreamVersion')}</code>, and
+like <code>^{customField('xpackVersion')}</code> or <code>~{customField('xpackVersion')}</code>, and
 prefer exact matches,
-like <code>{customField('upstreamVersion')}-{customField('xpackSubversion')}.{customField('npmSubversion')}</code>.
+like <code>{customField('xpackVersion')}.{customField('npmSubversion')}</code>.

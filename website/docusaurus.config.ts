@@ -33,13 +33,13 @@ function getCustomFields() {
   const npmSubversion = jsonVersion.replace(/^.*[.]/, '');
 
   // Remove from the last dot to the end.
-  const rest1 = jsonVersion.replace(/[.][0-9]*$/, '');
+  const xpackVersion = jsonVersion.replace(/[.][0-9]*$/, '');
+
+  // Remove the pre-release.
+  const xpackSemver = xpackVersion.replace(/[-][0-9]*$/, '');
 
   // Remove the first part, up to the dash.
-  const xpackSubversion = rest1.replace(/^.*[-]/, '');
-
-  // Remove from the dash to the end.
-  const upstreamVersion = rest1.replace(/[-].*$/, '');
+  const xpackSubversion = xpackVersion.replace(/^.*[-]/, '');
 
   let rootPackageJson
   try {
@@ -53,11 +53,21 @@ function getCustomFields() {
 
   const customFields = rootPackageJson?.xpack?.properties?.customFields ?? {};
 
+  let upstreamVersion
+  if (customFields.hasTwoNumbersVersion === 'true' && xpackSemver.endsWith('.0')) {
+    // Remove the patch number if zero (wine uses both 2 and 3 numbers).
+    upstreamVersion = xpackSemver.replace(/[.]0*$/, '');
+  } else {
+    upstreamVersion = xpackSemver;
+  }
+
   return {
     appName: rootPackageJson.xpack.properties.appName,
     appLcName: rootPackageJson.xpack.properties.appLcName,
     version: jsonVersion,
     upstreamVersion,
+    xpackVersion,
+    xpackSemver,
     xpackSubversion,
     npmSubversion,
     ...customFields,

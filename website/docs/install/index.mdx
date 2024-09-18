@@ -21,6 +21,7 @@ import LinksVsForwarders from '@site/src/components/LinksVsForwarders'
 
 import AutomaticInstallQuickTest from './_automatic-install-quick-test.mdx'
 import ManualInstallQuickTest from './_manual-install-quick-test.mdx'
+import FolderHierarchies from './_folder-hierarchies.mdx'
 import Miscellaneous from './_miscellaneous.mdx'
 import Testing from './_testing.mdx';
 
@@ -224,40 +225,7 @@ The next step is to install the
 `xpm install @xpack-dev-tools/openocd@latest --verbose
 `} </CodeBlock>
 
-
-
-
-
-  
-  
-  
-
-  
-  
-  
-
-  
-  
-  
-
-  
-  
-  
-
-  
-  
-  
-
-  
-  
-  
-
-
-
-
 <Tabs groupId="operating-systems">
-
-
 
 <TabItem value="windows" label="Windows" default>
 
@@ -290,16 +258,6 @@ adjust the syntax for the corresponding Windows specific shell.
 
 </TabItem>
 
-
-
-
-
-
-
-
-
-
-
 <TabItem value="macos" label="macOS">
 
 The main result is a set
@@ -323,16 +281,6 @@ export PATH=<...project-path...>/xpacks/.bin:$PATH
 
 </TabItem>
 
-
-
-
-
-
-
-
-
-
-
 <TabItem value="linux" label="GNU/Linux">
 
 The main result is a set
@@ -355,8 +303,6 @@ export PATH=<...project-path...>/xpacks/.bin:$PATH
 </details>
 
 </TabItem>
-
-
 
 </Tabs>
 
@@ -410,7 +356,7 @@ The result looks like this:
     "dependencies": {},
     "devDependencies": {
       "@xpack-dev-tools/openocd": {
-        "specifier": "${customField('upstreamVersion')}-${customField('xpackSubversion')}.${customField('npmSubversion')}",
+        "specifier": "${customField('xpackVersion')}.${customField('npmSubversion')}",
         "local": "link",
         "platforms": "all"
       }
@@ -463,12 +409,10 @@ the project build configurations need a PATH adjustment:
 
 <Tabs groupId="operating-systems">
 
-
-
 <TabItem value="windows" label="Windows" default>
 
 <CodeBlock language="sh"> {
-`export PATH=$HOME/AppData/Roaming/xPacks/\@pack-dev-tools/openocd/${customField('upstreamVersion')}-${customField('xpackSubversion')}.${customField('npmSubversion')}/.content/bin:$PATH
+`export PATH=$HOME/AppData/Roaming/xPacks/\@pack-dev-tools/openocd/${customField('xpackVersion')}.${customField('npmSubversion')}/.content/bin:$PATH
 `} </CodeBlock>
 
 :::tip
@@ -480,43 +424,21 @@ corresponding shell.
 
 </TabItem>
 
-
-
-
-
-
-
-
-
-
-
 <TabItem value="macos" label="macOS">
 
 <CodeBlock language="sh"> {
-`export PATH=$HOME/Library/xPacks/\@pack-dev-tools/openocd/${customField('upstreamVersion')}-${customField('xpackSubversion')}.${customField('npmSubversion')}/.content/bin:$PATH
+`export PATH=$HOME/Library/xPacks/\@pack-dev-tools/openocd/${customField('xpackVersion')}.${customField('npmSubversion')}/.content/bin:$PATH
 `} </CodeBlock>
 
 </TabItem>
-
-
-
-
-
-
-
-
-
-
 
 <TabItem value="linux" label="GNU/Linux">
 
 <CodeBlock language="sh"> {
-`export PATH=$HOME/.local/xPacks/@xpack-dev-tools/openocd/${customField('upstreamVersion')}-${customField('xpackSubversion')}.${customField('npmSubversion')}/.content/bin:$PATH
+`export PATH=$HOME/.local/xPacks/@xpack-dev-tools/openocd/${customField('xpackVersion')}.${customField('npmSubversion')}/.content/bin:$PATH
 `} </CodeBlock>
 
 </TabItem>
-
-
 
 </Tabs>
 
@@ -558,24 +480,12 @@ For a thorough clean-up, please note that **xpm** uses only two folders:
 
 <Tabs groupId="operating-systems">
 
-
-
 <TabItem value="windows" label="Windows" default>
 
 - `%APPDATA%\Roaming\xPacks`
 - `%APPDATA%\Local\Caches\xPacks`
 
 </TabItem>
-
-
-
-
-
-
-
-
-
-
 
 <TabItem value="macos" label="macOS">
 
@@ -584,24 +494,12 @@ For a thorough clean-up, please note that **xpm** uses only two folders:
 
 </TabItem>
 
-
-
-
-
-
-
-
-
-
-
 <TabItem value="linux" label="GNU/Linux">
 
 - `${HOME}/.local/xPacks`
 - `${HOME}/.cache/xPacks`
 
 </TabItem>
-
-
 
 </Tabs>
 
@@ -627,15 +525,13 @@ the <a href={`https://github.com/xpack-dev-tools/openocd-xpack/releases/`}>GitHu
 
 <Tabs groupId="operating-systems">
 
-
-
 <TabItem value="windows" label="Windows" default>
 
 The Windows versions of **xPack OpenOCD**
 are packed as `.zip` files.
 Download the latest version named like:
 
-* <code>xpack-openocd-{customField('upstreamVersion')}-{customField('xpackSubversion')}-win32-x64.zip</code>
+- <code>xpack-openocd-{customField('xpackVersion')}-win32-x64.zip</code>
 
 :::note
 
@@ -650,7 +546,7 @@ unpack the archive and move it to a location of your choice.
 
 The recommended location is
 the <code>%USERPROFILE%\\AppData\\Roaming\\xPacks\\openocd</code> folder, for
-example <code>C:\\Users\\ilg\\AppData\\Roaming\\xPacks\\openocd\\xpack-openocd-{customField('upstreamVersion')}-{customField('xpackSubversion')}</code>.
+example <code>C:\\Users\\ilg\\AppData\\Roaming\\xPacks\\openocd\\xpack-openocd-{customField('xpackVersion')}</code>.
 
 :::note
 
@@ -661,24 +557,13 @@ installing user specific packages.
 
 </TabItem>
 
-
-
-
-
-
-
-
-
-
-
 <TabItem value="macos" label="macOS">
 
 The macOS versions of **xPack OpenOCD**
 are packed as `.tar.gz` archives.
 Download the latest version named like:
 
-* <code>xpack-openocd-{customField('upstreamVersion')}-{customField('xpackSubversion')}-darwin-x64.tar.gz</code>
-* <code>xpack-openocd-{customField('upstreamVersion')}-{customField('xpackSubversion')}-darwin-arm64.tar.gz</code>
+- <code>xpack-openocd-{customField('xpackVersion')}-darwin-x64.tar.gz</code>- <code>xpack-openocd-{customField('xpackVersion')}-darwin-arm64.tar.gz</code>
 
 :::note
 
@@ -692,27 +577,17 @@ unpack the archive and move it to a location of your choice.
 
 The recommended location is
 the <code>~/Library/xPacks/openocd</code> folder, for
-example <code>/Users/ilg/Library/xPacks/openocd/xpack-openocd-{customField('upstreamVersion')}-{customField('xpackSubversion')}</code>:
+example <code>/Users/ilg/Library/xPacks/openocd/xpack-openocd-{customField('xpackVersion')}</code>:
 
 <CodeBlock language="console"> {
 `mkdir -p ~/Library/xPacks/openocd
 cd ~/Library/xPacks/openocd
 
-tar xvf ~/Downloads/xpack-openocd-${customField('upstreamVersion')}-${customField('xpackSubversion')}-darwin-x64.tar.gz
-chmod -R -w xpack-openocd-${customField('upstreamVersion')}-${customField('xpackSubversion')}
+tar xvf ~/Downloads/xpack-openocd-${customField('xpackVersion')}-darwin-x64.tar.gz
+chmod -R -w xpack-openocd-${customField('xpackVersion')}
 `} </CodeBlock>
 
 </TabItem>
-
-
-
-
-
-
-
-
-
-
 
 <TabItem value="linux" label="GNU/Linux">
 
@@ -720,9 +595,7 @@ The GNU/Linux versions of **xPack OpenOCD**
 are packed as `.tar.gz` archives.
 Download the latest version named like:
 
-* <code>xpack-openocd-{customField('upstreamVersion')}-{customField('xpackSubversion')}-darwin-x64.tar.gz</code>
-* <code>xpack-openocd-{customField('upstreamVersion')}-{customField('xpackSubversion')}-darwin-arm64.tar.gz</code>
-* <code>xpack-openocd-{customField('upstreamVersion')}-{customField('xpackSubversion')}-darwin-arm.tar.gz</code>
+- <code>xpack-openocd-{customField('xpackVersion')}-linux-x64.tar.gz</code>- <code>xpack-openocd-{customField('xpackVersion')}-linux-arm64.tar.gz</code>- <code>xpack-openocd-{customField('xpackVersion')}-linux-arm.tar.gz</code>
 
 :::note
 
@@ -736,19 +609,17 @@ unpack the archive and move it to a location of your choice.
 
 The recommended location is
 the <code>~/.local/xPacks/openocd</code> folder, for
-example <code>/home/ilg/.local/xPacks/openocd/xpack-openocd-{customField('upstreamVersion')}-{customField('xpackSubversion')}</code>:
+example <code>/home/ilg/.local/xPacks/openocd/xpack-openocd-{customField('xpackVersion')}</code>:
 
 <CodeBlock language="console"> {
 `mkdir -p ~/.local/xPacks/openocd
 cd ~/.local/xPacks/openocd
 
-tar xvf ~/Downloads/xpack-openocd-${customField('upstreamVersion')}-${customField('xpackSubversion')}-linux-x64.tar.gz
-chmod -R -w xpack-openocd-${customField('upstreamVersion')}-${customField('xpackSubversion')}
+tar xvf ~/Downloads/xpack-openocd-${customField('xpackVersion')}-linux-x64.tar.gz
+chmod -R -w xpack-openocd-${customField('xpackVersion')}
 `} </CodeBlock>
 
 </TabItem>
-
-
 
 </Tabs>
 
@@ -762,6 +633,8 @@ and `.content` to store the unpacked archive.
 :::
 
 <ManualInstallQuickTest/>
+
+<FolderHierarchies/>
 
 <Miscellaneous/>
 

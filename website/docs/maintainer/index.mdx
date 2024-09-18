@@ -44,7 +44,8 @@ project and documents how to make new releases.
 
 ## Prerequisites
 
-The build scripts run on GNU/Linux and macOS. The Windows binaries are
+The build scripts run on GNU/Linux and macOS.
+The Windows binaries are
 compiled on x64 GNU/Linux, using [mingw-w64](https://mingw-w64.org).
 
 For details on installing the prerequisites, please read the
@@ -148,10 +149,10 @@ update the dependencies in `build-assets/package.json`.
 
 ### Increase the version and update it in the top `package.json`
 
-- determine the version (like <code>{customField('upstreamVersion')}</code>)
+- determine the version (like <code>{customField('xpackVersion')}</code>)
 - update the version in top `package.json`
 - use the new version, suffixed by `.pre`,
-like <code>{customField('upstreamVersion')}-{customField('xpackSubversion')}.{customField('npmSubversion')}.pre</code>.
+like <code>{customField('xpackVersion')}.{customField('npmSubversion')}.pre</code>.
 
 ### Update the `customFields` in `build-assets/package.json` (if necessary)
 
@@ -172,9 +173,9 @@ the **Update the version specific code** section.
 
 ### Increase the version and update VERSION
 
-Determine the version (like <code>{customField('upstreamVersion')}</code>)
+Determine the version (like <code>{customField('xpackVersion')}</code>)
 and update the `build-assets/scripts/VERSION` file; the format
-is <code>{customField('upstreamVersion')}-{customField('xpackSubversion')}</code>.
+is <code>{customField('xpackVersion')}</code>.
 {isXpackSubversionDouble() ?
 'The fourth & fifth numbers are the xPack release number of this version. A sixth number will be added to the version in `package.json` when the package is published to the `npm` server' :
 'The fourth number is the xPack release number of this version. A fifth number will be added to the version in `package.json` when the package is published to the `npm` server'}.
@@ -196,14 +197,46 @@ Check GitHub issues and pull requests:
 
 - https://github.com/xpack-dev-tools/openocd-xpack/issues/
 
-and fix them; assign them to a milestone (like <code>{customField('upstreamVersion')}-{customField('xpackSubversion')}</code>).
+and fix them; assign them to a milestone (like <code>{customField('xpackVersion')}</code>).
 
 ### Update `CHANGELOG.md`
 
 - open the `CHANGELOG.md` file
 - check if all previous fixed issues are in
-- add a new entry like _**\* v{customField('upstreamVersion')}-{customField('xpackSubversion')} prepared**_
-- commit with a message like _**prepare v{customField('upstreamVersion')}-{customField('xpackSubversion')}**_
+- check the latest commits `xpm run git-log`; if necessary, copy/paste lines,
+  group by dates and edit them using the below regular expressions
+- add a new entry like _**\* v{customField('xpackVersion')} prepared**_
+- commit with a message like _**prepare v{customField('xpackVersion')}**_
+
+To turn the dates into headings, change from:
+
+```txt
+
+
+([0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]) [*]
+```
+
+to:
+
+```txt
+
+
+## $1
+
+*
+```
+
+To remove the rest of the dates, change from:
+
+```txt
+^[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9] [*]
+```
+
+to:
+
+```txt
+*
+```
 
 ### Push the changes to the `xpack-development` branch
 
@@ -219,10 +252,9 @@ will build again the previous release!
 
 ## Run the development builds
 
-The builds currently run on 5 dedicated machines (x64 GNU/Linux,
-arm64 GNU/Linux, arm GNU/Linux, x64 macOS and arm64 macOS).
+The builds currently run on 5 dedicated machines (x64 GNU/Linux, x64 macOS, arm64 macOS, arm64 GNU/Linux, arm GNU/Linux).
 
-Before the real build, run test builds on all platforms.
+Before the real build, run test/development builds on all platforms.
 
 <FirstDevelopmentRun/>
 
@@ -252,35 +284,6 @@ sudo systemctl restart docker
 Check if both the current project and the helper are
 on the `xpack-development` branch and the latest
 commits are pushed to GitHub.
-
-
-
-
-
-
-
-
-
-
-
-
-### Build the x64 Windows binaries
-
-Run the docker build on the production machine (`xbbli`);
-start a VS Code remote session, or connect with a terminal:
-
-```sh
-caffeinate ssh xbbli
-```
-
-<PlatformDockerBuild platform="win32-x64"/>
-
-
-
-
-
-
-
 
 
 ### Build the x64 macOS binaries
@@ -328,22 +331,6 @@ caffeinate ssh xbbmi
 
 <PlatformNativeBuild platform="darwin-x64"/>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ### Build the arm64 macOS binaries
 
 Run the native build on the production machine
@@ -356,22 +343,6 @@ caffeinate ssh xbbma
 
 <PlatformNativeBuild platform="darwin-arm64"/>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ### Build the x64 GNU/Linux binaries
 
 Run the docker build on the production machine (`xbbli`);
@@ -382,24 +353,16 @@ caffeinate ssh xbbli
 ```
 
 <PlatformDockerBuild platform="linux-x64"/>
+### Build the x64 Windows binaries
 
+Run the docker build on the production machine (`xbbli`);
+start a VS Code remote session, or connect with a terminal:
 
+```sh
+caffeinate ssh xbbli
+```
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<PlatformDockerBuild platform="win32-x64"/>
 
 ### Build the arm64 GNU/Linux binaries
 
@@ -411,22 +374,6 @@ caffeinate ssh xbbla
 ```
 
 <PlatformDockerBuild platform="linux-arm64"/>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 ### Build the arm GNU/Linux (32-bit) binaries
 
@@ -440,8 +387,6 @@ caffeinate ssh xbbla32
 <PlatformDockerBuild platform="linux-arm"/>
 
 
-
-
 ### Update the trees in the Install Guide page
 
 Copy the trees displayed at the end of the test builds and paste to
@@ -450,10 +395,10 @@ Copy the trees displayed at the end of the test builds and paste to
 - `website/docs/install/_miscellaneous.mdx`
 
 If present, replace the actual version
-(like **{customField('upstreamVersion')}**) with the following expression:
+(like **{customField('xpackVersion')}**) with the following expression:
 
 ```txt
-${customField('upstreamVersion')}
+${customField('xpackVersion')}
 ```
 
 :::tip
@@ -467,7 +412,8 @@ via HomeBrew, and make a link to `/usr/local/bin`.
 ### Update the list of links in top package.json
 
 Copy/paste the full list of links displayed at the end of the build, in
-sequence, for each platform (GNU/Linux, macOS, Windows), and check the
+sequence, for each platform (Windows, macOS, GNU/Linux),
+and check the
 differences compared to the repository.
 
 Commit if necessary.
@@ -507,51 +453,6 @@ The automation is provided by GitHub Actions and three self-hosted runners.
 
 ### Start the self-hosted runners
 
-
-
-
-
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-
-
-
-
 - on the development machine (`wksi`) open
 ssh sessions to the build machines (`xbbli`, `xbbmi`, `xbbma`, `xbbla`, `xbbla32`):
 
@@ -572,7 +473,6 @@ screen -S ga
 
 To quit it, use `# Ctrl-a Ctrl-d`.
 
-
 For `xbbli` & `xbbla`, which have more memory, start two runners:
 
 ```sh
@@ -580,14 +480,11 @@ For `xbbli` & `xbbla`, which have more memory, start two runners:
 ~/actions-runners/xpack-dev-tools/2/run.sh &
 ```
 
-
-
 On all other machines start a single runner:
 
 ```sh
 ~/actions-runners/xpack-dev-tools/run.sh &
 ```
-
 
 To check the status of the runners locally:
 
@@ -630,30 +527,7 @@ xpm run check-space -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets
 
 This is equivalent to running a `df` command.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <Tabs groupId="operating-systems">
-
 
 <TabItem value="macos" label="macOS">
 
@@ -663,8 +537,6 @@ df -gH /
 
 </TabItem>
 
-
-
 <TabItem value="linux" label="GNU/Linux">
 
 ```sh
@@ -672,7 +544,6 @@ df -BG -H /
 ```
 
 </TabItem>
-
 
 </Tabs>
 
@@ -708,16 +579,21 @@ xpm run generate-workflows -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-ass
 
 To trigger the GitHub Actions builds, use the xPack actions:
 
-
-- **trigger-workflow-build-win32-x64**
 - **trigger-workflow-build-darwin-x64**
 - **trigger-workflow-build-darwin-arm64**
 - **trigger-workflow-build-linux-x64**
+- **trigger-workflow-build-win32-x64**
 - **trigger-workflow-build-linux-arm64**
 - **trigger-workflow-build-linux-arm**
 
+
 ```sh
-xpm run trigger-workflow-build-win32-x64 -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assetsxpm run trigger-workflow-build-darwin-x64 -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assetsxpm run trigger-workflow-build-darwin-arm64 -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assetsxpm run trigger-workflow-build-linux-x64 -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assetsxpm run trigger-workflow-build-linux-arm64 -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assetsxpm run trigger-workflow-build-linux-arm -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets
+xpm run trigger-workflow-build-darwin-x64 -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets
+xpm run trigger-workflow-build-darwin-arm64 -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets
+xpm run trigger-workflow-build-linux-x64 -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets
+xpm run trigger-workflow-build-win32-x64 -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets
+xpm run trigger-workflow-build-linux-arm64 -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets
+xpm run trigger-workflow-build-linux-arm -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets
 ```
 
 The scripts behind these actions require the `GITHUB_API_DISPATCH_TOKEN`
@@ -748,40 +624,13 @@ The resulting binaries are available for testing from
 
 The automation is provided by GitHub Actions.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 To trigger the GitHub Actions tests, run the xPack actions:
 
-- **trigger-workflow-test-prime**
-- **trigger-workflow-test-docker-linux-x64**
-- **trigger-workflow-test-docker-linux-arm**
+<ul>
+<li><b>trigger-workflow-test-prime</b></li>
+<li><b>trigger-workflow-test-docker-linux-x64</b></li>
+<li><b>trigger-workflow-test-docker-linux-arm</b></li>
+</ul>
 
 ```sh
 xpm run trigger-workflow-test-prime -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets
@@ -802,7 +651,6 @@ The tests results are available from the
 After running the prime tests, download the test results and compare
 with previous runs.
 
-
 #### More macOS tests
 
 Since GitHub Actions provides a limited range of versions for the macOS
@@ -820,7 +668,6 @@ in the environment.
 The test results are available from
 [Travis CI](https://app.travis-ci.com/github/xpack-dev-tools/openocd-xpack/builds/).
 
-
 ### Manual tests
 
 To download the pre-released archive for the specific platform
@@ -832,7 +679,7 @@ xpm run install -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets
 xpm run test-pre-release -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets
 ```
 
-For even more tests, on each platform (MacOS, GNU/Linux, Windows),
+For even more tests, on each platform,
 download the archive from
 [pre-releases/test](https://github.com/xpack-dev-tools/pre-releases/releases/tag/test/)
 and check the binaries.
@@ -850,7 +697,7 @@ xattr -cr ${HOME}/Downloads/xpack-*
 ### Create a new GitHub pre-release
 
 - in `CHANGELOG.md`, add the release date and a message
-  like _**\* v{customField('upstreamVersion')}-{customField('xpackSubversion')} released**_
+  like _**\* v{customField('xpackVersion')} released**_
 - commit with _**CHANGELOG update**_
 - check and possibly update the `build-assets/templates/body-github-release-liquid.mdx`
 - push the `xpack-development` branch to GitHub
@@ -865,8 +712,8 @@ The workflow result and logs are available from the
 
 The result is a
 [draft pre-release](https://github.com/xpack-dev-tools/openocd-xpack/releases/)
-tagged like **v{customField('upstreamVersion')}-{customField('xpackSubversion')}** (mind the dash in the middle!) and
-named like **xPack OpenOCD v{customField('upstreamVersion')}-{customField('xpackSubversion')}** (mind the dash),
+tagged like **v{customField('xpackVersion')}** (mind the dash in the middle!) and
+named like **xPack OpenOCD v{customField('xpackVersion')}** (mind the dash),
 with all binaries attached.
 
 - edit the draft and be sure it is attached to the `xpack-development` branch (important!)
@@ -890,7 +737,7 @@ xpm run generate-website-blog-post -C ~/Work/xpack-dev-tools/openocd-xpack.git/b
 
 - edit the front matter properties
 - select the correct summary
-- commit with _**blog post release {customField('upstreamVersion')}-{customField('xpackSubversion')} published**_
+- commit with _**blog post release {customField('xpackVersion')} published**_
 
 ### Update the web install page
 
@@ -922,14 +769,14 @@ xpm run update-package-binaries -C ~/Work/xpack-dev-tools/openocd-xpack.git/buil
 - compare the SHA sums with those shown by `cat *.sha`
 - check the executable names
 - commit all changes, use a message like
-  _**package.json: update urls for {customField('upstreamVersion')}-{customField('xpackSubversion')}.{customField('npmSubversion')} release**_
+  _**package.json: update urls for {customField('xpackVersion')}.{customField('npmSubversion')} release**_
 
 ### Publish on the npmjs.com server
 
 - select the `xpack-development` branch
-- check the latest commits `npm run git-log`
-- update `CHANGELOG.md`, add a line like _**\* v{customField('upstreamVersion')}-{customField('xpackSubversion')} published on npmjs.com**_
-- commit with a message like _**CHANGELOG: publish npm v{customField('upstreamVersion')}-{customField('xpackSubversion')}.{customField('npmSubversion')}**_
+- check the latest commits `xpm run git-log`
+- update `CHANGELOG.md`, add a line like _**\* v{customField('xpackVersion')} published on npmjs.com**_
+- commit with a message like _**CHANGELOG: publish npm v{customField('xpackVersion')}.{customField('npmSubversion')}**_
 - `npm pack` and check the content of the archive, which should list
   only the `package.json`, the `README.md`, `LICENSE` and `CHANGELOG.md`;
   possibly adjust `.npmignore`
@@ -937,7 +784,7 @@ xpm run update-package-binaries -C ~/Work/xpack-dev-tools/openocd-xpack.git/buil
   GitHub release; the fifth number is the npm specific version:
 
 <CodeBlock language="sh"> {
-`npm version ${customField('upstreamVersion')}-${customField('xpackSubversion')}.${customField('npmSubversion')}
+`npm version ${customField('xpackVersion')}.${customField('npmSubversion')}
 `} </CodeBlock>
 
 - the commits and the tag should have been pushed by the `postversion` script;
@@ -970,15 +817,7 @@ This will install the package via `xpm install` on all supported platforms.
 The tests results are available from the
 [GitHub Actions](https://github.com/xpack-dev-tools/openocd-xpack/actions/) page.
 
-### Copy the test results
 
-For the toolchain projects, download the `test-report.zip` file, unzip it
-and copy the markdown file to `website/docs/tests`.
-
-Edit the `website/docs/tests/index.md` file to add the
-new page.
-
-Commit with _**website: add tests results**_.
 
 ### Tag the npm package as `latest`
 
@@ -986,14 +825,14 @@ When the release is considered stable, promote it as `latest`:
 
 <CodeBlock language="sh"> {
 `npm dist-tag ls @xpack-dev-tools/openocd
-npm dist-tag add @xpack-dev-tools/openocd@${customField('upstreamVersion')}-${customField('xpackSubversion')}.${customField('npmSubversion')} latest
+npm dist-tag add @xpack-dev-tools/openocd@${customField('xpackVersion')}.${customField('npmSubversion')} latest
 npm dist-tag ls @xpack-dev-tools/openocd
 `} </CodeBlock>
 
 In case the release proves problematic and needs to be unpublished:
 
 <CodeBlock language="sh"> {
-`npm unpublish @xpack-dev-tools/openocd@${customField('upstreamVersion')}-${customField('xpackSubversion')}.${customField('npmSubversion')}
+`npm unpublish @xpack-dev-tools/openocd@${customField('xpackVersion')}.${customField('npmSubversion')}
 `} </CodeBlock>
 
 ### Build the static website locally
@@ -1067,7 +906,7 @@ The results are available from the
 
 - in a separate browser windows, open [X/Twitter](https://twitter.com)
 - using the **`@xpack_project`** account
-- paste the release name like _**xPack OpenOCD v{customField('upstreamVersion')}-{customField('xpackSubversion')} released**_
+- paste the release name like _**xPack OpenOCD v{customField('xpackVersion')} released**_
 - paste the link to the blog post
   [release](https://xpack.github.io/openocd/releases/)
 - click the **Tweet** button

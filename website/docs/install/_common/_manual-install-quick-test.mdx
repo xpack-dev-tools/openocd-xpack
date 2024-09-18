@@ -13,88 +13,33 @@ import customField from '@site/src/libs/customField';
 
 To check if the {props.appName} installed manually starts properly, use something like:
 
-
-
-
-
-  
-  
-  
-
-  
-  
-  
-
-  
-  
-  
-
-  
-  
-  
-
-  
-  
-  
-
-  
-  
-  
-
-
-
-
 <Tabs groupId="operating-systems">
-
-
 
 <TabItem value="windows" label="Windows" default>
 
 <CodeBlock language="console"> {
-`C:\\> %USERPROFILE%\\AppData\\Roaming\\xPacks\\${props.appLcName}\\xpack-${props.appLcName}-${customField('upstreamVersion')}-${customField('xpackSubversion')}\\bin\\${props.programName}.exe --version
+`C:\\> %USERPROFILE%\\AppData\\Roaming\\xPacks\\${props.appLcName}\\xpack-${props.appLcName}-${customField('xpackVersion')}\\bin\\${props.programName}.exe --version
 ${props.branding}${customField('upstreamVersion')}
 `} </CodeBlock>
 
 </TabItem>
-
-
-
-
-
-
-
-
-
-
 
 <TabItem value="macos" label="macOS">
 
 <CodeBlock language="console"> {
-`% ~/Library/xPacks/${props.appLcName}/xpack-${props.appLcName}-${customField('upstreamVersion')}-${customField('xpackSubversion')}/bin/${props.programName} --version
+`% ~/Library/xPacks/${props.appLcName}/xpack-${props.appLcName}-${customField('xpackVersion')}/bin/${props.programName} --version
 ${props.branding}${customField('upstreamVersion')}
 `} </CodeBlock>
 
 </TabItem>
-
-
-
-
-
-
-
-
-
-
 
 <TabItem value="linux" label="GNU/Linux">
 
 <CodeBlock language="console"> {
-`$ ~/.local/xPacks/${props.appLcName}/xpack-${props.appLcName}-${customField('upstreamVersion')}-${customField('xpackSubversion')}/bin/${props.programName} --version
+`$ ~/.local/xPacks/${props.appLcName}/xpack-${props.appLcName}-${customField('xpackVersion')}/bin/${props.programName} --version
 ${props.branding}${customField('upstreamVersion')}
 `} </CodeBlock>
 
 </TabItem>
-
-
 
 </Tabs>
