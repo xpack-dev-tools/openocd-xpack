@@ -28,11 +28,10 @@ const FeatureList: FeatureItem[] = [
     Svg: require('@site/static/img/mosaic.svg').default,
     description: (
       <>
-        By design, <b>multiple versions</b> of the same tools
-        can be installed
-        at the same time on the same system. <b>Windows</b>, <b>macOS</b>, <b>GNU/Linux</b> are
-        supported. The tools include all
-        required libraries and can be installed in any folder.
+        By design, <b>multiple versions</b> of the same tools can be
+        installed at the same time on the same
+        system. The supported platforms are: <b>Windows</b>, <b>macOS</b>, <b>GNU/Linux</b>.
+        The tools include all required libraries and can be installed in any folder.
       </>
     ),
   },

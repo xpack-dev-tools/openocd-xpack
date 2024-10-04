@@ -33,9 +33,9 @@ The [xPack OpenOCD](https://xpack.github.io/openocd/)
 is a standalone cross-platform binary distribution of
 [OpenOCD](https://openocd.org).
 
-There are separate binaries for **Windows** (Intel 64-bit),
-**macOS** (Intel 64-bit, Apple Silicon 64-bit)
-and **GNU/Linux** (Intel 64-bit, Arm 32/64-bit).
+There are separate binaries for **Windows** (x64),
+**macOS** (x64, arm64)
+and **GNU/Linux** (x64, arm64 and arm).
 
 :::note Raspberry Pi
 
@@ -65,8 +65,14 @@ The binary files are available from <a href={frontMatter.download_url}>GitHub Re
 
 ## Install
 
-The full details of installing the **xPack OpenOCD** on various platforms
-are presented in the [Install Guide](/docs/install/).
+The easiest way to install this specific version, is by using **xpm**:
+
+<CodeBlock language="console"> {
+`xpm install @xpack-dev-tools/openocd@${frontMatter.version}.${frontMatter.npm_subversion} -verbose
+`} </CodeBlock>
+
+Comprehensive instructions for installing **xPack OpenOCD** on different platforms
+can be found in the [Install Guide](/docs/install/).
 
 ## Compliance
 

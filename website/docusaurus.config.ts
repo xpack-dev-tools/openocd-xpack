@@ -61,13 +61,6 @@ function getCustomFields() {
     upstreamVersion = xpackSemver;
   }
 
-  const websiteFilePath = path.join(path.dirname(path.dirname(pwd)), 'website', 'package.json');
-  // logger.info(filePath);
-  const websiteFileContent = fs.readFileSync(websiteFilePath);
-  const websitePackageJson = JSON.parse(websiteFileContent.toString());
-
-  const docusaurusVersion = websitePackageJson.dependencies['@docusaurus/core'].replace ('^', '');
-
   return {
     appName: rootPackageJson.xpack.properties.appName,
     appLcName: rootPackageJson.xpack.properties.appLcName,
@@ -77,7 +70,8 @@ function getCustomFields() {
     xpackSubversion,
     npmSubversion,
     upstreamVersion,
-    docusaurusVersion,
+    docusaurusVersion: require('@docusaurus/core/package.json').version,
+    buildTime: new Date().getTime(),
     ...customFields,
   }
 }
@@ -272,6 +266,10 @@ const config: Config = {
             {
               label: 'Releases',
               to: '/docs/releases'
+            },
+            {
+              label: 'About',
+              to: '/docs/about'
             }
           ]
         },
@@ -302,9 +300,9 @@ const config: Config = {
           'aria-label': 'GitHub repository',
         },
         {
-          label: `v${customFields.upstreamVersion}-${customFields.xpackSubversion}`,
+          label: `v${customFields.xpackVersion}`,
           position: 'right',
-          href: `https://github.com/xpack-dev-tools/openocd-xpack/releases/tag/v${customFields.upstreamVersion}-${customFields.xpackSubversion}`,
+          href: `https://github.com/xpack-dev-tools/openocd-xpack/releases/tag/v${customFields.xpackVersion}`,
         },
         {
           href: 'https://github.com/xpack-dev-tools/',
@@ -322,7 +320,7 @@ const config: Config = {
       style: 'dark',
       links: [
         {
-          title: 'Docs',
+          title: 'Pages',
           items: [
             {
               label: 'Install',
@@ -336,11 +334,19 @@ const config: Config = {
               label: 'Releases',
               to: '/docs/releases',
             },
+            {
+              label: 'Blog',
+              to: '/blog',
+            },
           ],
         },
         {
           title: 'Community',
           items: [
+            {
+              label: 'GitHub Discussions',
+              href: 'https://github.com/xpack-dev-tools/openocd-xpack/discussions',
+            },
             {
               label: 'Stack Overflow',
               href: 'https://stackoverflow.com/questions/tagged/xpack',
@@ -350,7 +356,7 @@ const config: Config = {
               href: 'https://discord.gg/kbzWaJerFG',
             },
             {
-              label: 'Twitter',
+              label: 'X/Twitter',
               href: 'https://twitter.com/xpack_project',
             },
           ],
@@ -359,8 +365,8 @@ const config: Config = {
           title: 'More',
           items: [
             {
-              label: 'Blog',
-              to: '/blog',
+              label: 'Donate via PayPal',
+              href: 'https://www.paypal.com/donate/?hosted_button_id=5MFRG9ZRBETQ8',
             },
             {
               label: 'GitHub openocd-xpack',
@@ -377,7 +383,7 @@ const config: Config = {
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} Liviu Ionescu. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Liviu Ionescu. Built with Docusaurus v${customFields.docusaurusVersion} on ${new Date(customFields.buildTime).toDateString()}.`,
     },
     prism: {
       theme: prismThemes.github,

@@ -7,7 +7,7 @@ title: How to install the xPack OpenOCD binaries
 
 hide_table_of_contents: false
 
-date: 2020-09-27 11:09:00 +0300
+date: 2020-08-21 11:09:00 +0300
 
 ---
 
@@ -223,6 +223,14 @@ The next step is to install the
 
 <CodeBlock language="sh"> {
 `xpm install @xpack-dev-tools/openocd@latest --verbose
+`} </CodeBlock>
+
+This command will install the latest available version.
+
+To install a specific version, mention it explicitly:
+
+<CodeBlock language="sh"> {
+`xpm install @xpack-dev-tools/openocd@${customField('version')} --verbose
 `} </CodeBlock>
 
 <Tabs groupId="operating-systems">

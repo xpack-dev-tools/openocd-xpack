@@ -23,6 +23,7 @@ Version **0.10.0-13** is a maintenance release; it updates to the latest upstrea
 <!-- truncate -->
 
 import Image from '@theme/IdealImage';
+import CodeBlock from '@theme/CodeBlock';
 
 ## Download
 
@@ -30,8 +31,14 @@ The binary files are available from <a href={frontMatter.download_url}>GitHub Re
 
 ## Install
 
-The full details of installing the **xPack OpenOCD** on various platforms
-are presented in the [Install Guide](/docs/install/).
+The easiest way to install this specific version, is by using **xpm**:
+
+<CodeBlock language="console"> {
+`xpm install @xpack-dev-tools/openocd@${frontMatter.version}.${frontMatter.npm_subversion} -verbose
+`} </CodeBlock>
+
+Comprehensive instructions for installing **xPack OpenOCD** on different platforms
+can be found in the [Install Guide](/docs/install/).
 
 ## Compliance
 
