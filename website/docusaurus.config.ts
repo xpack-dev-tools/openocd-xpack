@@ -227,12 +227,13 @@ const config: Config = {
     // Replace with your project's social card
     // image: 'img/docusaurus-social-card.jpg',
     navbar: {
-      title: 'The xPack Project',
+       // overriden by i18n/en/docusaurus-theme-classic.
+      title: 'The xPack Binary Development Tools',
       logo: {
         alt: 'xPack Logo',
         src: 'img/components-256.png',
         // href: 'https://xpack.github.io/',
-        // href: 'https://xpack-dev-tools.github.io/openocd-xpack/'
+        href: 'https://xpack-dev-tools.github.io/'
       },
       items: [
         {
