@@ -6,15 +6,11 @@
 .features {
   display: flex;
   align-items: center;
-  padding: 2rem 0 0.5rem 0;
+  padding: 0rem 0 0rem 0;
   width: 100%;
 }
 
 .featureSvg {
   height: 100px;
   width: 100px;
-}
-
-svg.featureSvg path {
-  stroke: var(--docusaurus-svg-color);
 }
