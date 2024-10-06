@@ -25,6 +25,11 @@
 # -----------------------------------------------------------------------------
 
 
+
+
+
+
+
 # https://github.com/docker-library/official-images#architectures-other-than-amd64
 
 # Debian versions:
@@ -64,6 +69,9 @@ on:
 # The scripts are executed in the Docker context by GitHub Actions,
 # so `native-test.sh` should be fine, it already takes care of updates.
 jobs:
+
+
+
 
   # https://en.wikipedia.org/wiki/Ubuntu_version_history
   # https://hub.docker.com/_/ubuntu
@@ -479,6 +487,8 @@ jobs:
           entrypoint: /bin/bash
           args: /github/workspace/build-assets/scripts/test.sh --image opensuse/tumbleweed --version ${{github.event.inputs.version}} --base-url ${{github.event.inputs.base_url}}
 
+
+
   # https://hub.docker.com/r/arm32v7/ubuntu/
   ubuntu-arm:
     name: 'arm openocd ${{github.event.inputs.version}} test on Ubuntu stable'
@@ -708,5 +718,12 @@ jobs:
   # - https://hub.docker.com/r/arm32v7/opensuse
   # arm32v7/opensuse:latest is leap 42.3 and fails due to http: URLs
   # (zypper lr -u)
+
+
+
+
+
+
+
 
 # -----------------------------------------------------------------------------

@@ -25,6 +25,11 @@
 # -----------------------------------------------------------------------------
 
 
+
+
+
+
+
 name: 'Test xPack OpenOCD via xpm'
 
 on:
@@ -33,7 +38,7 @@ on:
       package-version:
         description: 'The semver of the npm release'
         required: false
-        default: 'next'
+        default: 'test'
       version:
         description: 'The GitHub release version'
         required: false
@@ -44,6 +49,7 @@ on:
         default: 'xpack-development'
 
 jobs:
+
 
   linux-x64-test:
     name: 'linux-x64 OpenOCD@${{github.event.inputs.version}} test'
@@ -78,12 +84,9 @@ jobs:
           entrypoint: /bin/bash
           args: /github/workspace/build-assets/scripts/test.sh --image debian --package-version ${{github.event.inputs.package-version}} --version ${{github.event.inputs.version}} --xpm
 
-      - name: Upload platform tests report
-        uses: actions/upload-artifact@v4
-        with:
-          name: tests-report-linux-x64
-          path: ${{github.workspace}}/build-assets/build/linux-x64/artefacts/tests-report-*.md
-          overwrite: true
+
+
+
 
   linux-arm64-test:
     name: 'linux-arm64 OpenOCD@${{github.event.inputs.version}} test'
@@ -124,12 +127,9 @@ jobs:
           entrypoint: /bin/bash
           args: /github/workspace/build-assets/scripts/test.sh --image debian --package-version ${{github.event.inputs.package-version}} --version ${{github.event.inputs.version}} --xpm
 
-      - name: Upload platform tests report
-        uses: actions/upload-artifact@v4
-        with:
-          name: tests-report-linux-arm64
-          path: ${{github.workspace}}/build-assets/build/linux-arm64/artefacts/tests-report-*.md
-          overwrite: true
+
+
+
 
   linux-arm-test:
     name: 'linux-arm OpenOCD@${{github.event.inputs.version}} test'
@@ -170,12 +170,9 @@ jobs:
           entrypoint: /bin/bash # /usr/bin/linux32
           args: /github/workspace/build-assets/scripts/test.sh --image debian --package-version ${{github.event.inputs.package-version}} --version ${{github.event.inputs.version}} --xpm
 
-      - name: Upload platform tests report
-        uses: actions/upload-artifact@v4
-        with:
-          name: tests-report-linux-arm
-          path: ${{github.workspace}}/build-assets/build/linux-arm/artefacts/tests-report-*.md
-          overwrite: true
+
+
+
 
   darwin-x64-test:
     name: 'darwin-x64 OpenOCD@${{github.event.inputs.version}} test'
@@ -220,12 +217,9 @@ jobs:
       - name: 'Run ${{github.event.inputs.version}} xpm test'
         run: bash build-assets/scripts/test.sh --package-version ${{github.event.inputs.package-version}} --version ${{github.event.inputs.version}} --xpm
 
-      - name: Upload platform tests report
-        uses: actions/upload-artifact@v4
-        with:
-          name: tests-report-darwin-x64
-          path: ${{github.workspace}}/build-assets/build/darwin-x64/artefacts/tests-report-*.md
-          overwrite: true
+
+
+
 
   darwin-arm64-test:
     name: 'darwin-arm64 OpenOCD@${{github.event.inputs.version}} test'
@@ -270,12 +264,9 @@ jobs:
       - name: 'Run ${{github.event.inputs.version}} xpm test'
         run: bash build-assets/scripts/test.sh --package-version ${{github.event.inputs.package-version}} --version ${{github.event.inputs.version}} --xpm
 
-      - name: Upload platform tests report
-        uses: actions/upload-artifact@v4
-        with:
-          name: tests-report-darwin-arm64
-          path: ${{github.workspace}}/build-assets/build/darwin-arm64/artefacts/tests-report-*.md
-          overwrite: true
+
+
+
 
   win32-x64-test:
     name: 'win32-x64 OpenOCD@${{github.event.inputs.version}} test'
@@ -312,47 +303,9 @@ jobs:
       - name: 'Run ${{github.event.inputs.version}} xpm test'
         run: bash build-assets/scripts/test.sh --package-version ${{github.event.inputs.package-version}} --version ${{github.event.inputs.version}} --xpm
 
-      - name: Upload platform tests report
-        uses: actions/upload-artifact@v4
-        with:
-          name: tests-report-win32-x64
-          path: ${{github.workspace}}/build-assets/build/win32-x64/artefacts/tests-report-*.md
-          overwrite: true
 
-  generate-tests-report:
-    name: 'Generate tests report for OpenOCD@${{github.event.inputs.version}}'
-    runs-on: ubuntu-22.04
-    needs: [linux-x64-test, linux-arm64-test, linux-arm-test, darwin-x64-test, darwin-arm64-test, win32-x64-test]
 
-    steps:
-      - name: Download platform test reports
-        uses: actions/download-artifact@v4
-        with:
-          path: ${{github.workspace}}/build-assets/artefacts
-          merge-multiple: true
 
-      - name: Concatenate platform test reports
-        run: |
-          ls -lR ${{github.workspace}}/build-assets/artefacts
-          touch ${{github.workspace}}/build-assets/artefacts/tests-report.md
-          echo "---" >>${{github.workspace}}/build-assets/artefacts/tests-report.md
-          echo "title: OpenOCD ${{github.event.inputs.version}} test results" >>${{github.workspace}}/build-assets/artefacts/tests-report.md
-          echo "permalink: /dev-tools/openocd/tests/${{github.event.inputs.version}}/" >>${{github.workspace}}/build-assets/artefacts/tests-report.md
-          echo >>${{github.workspace}}/build-assets/artefacts/tests-report.md
-          echo "comments: true" >>${{github.workspace}}/build-assets/artefacts/tests-report.md
-          echo >>${{github.workspace}}/build-assets/artefacts/tests-report.md
-          echo "date: $(date "+%Y-%m-%d %H:%M:%S %z")" >>${{github.workspace}}/build-assets/artefacts/tests-report.md
-          echo >>${{github.workspace}}/build-assets/artefacts/tests-report.md
-          echo "---" >>${{github.workspace}}/build-assets/artefacts/tests-report.md
-          echo >>${{github.workspace}}/build-assets/artefacts/tests-report.md
-          (cd ${{github.workspace}}; cat -s build-assets/artefacts/tests-report-linux-x64.md build-assets/artefacts/tests-report-linux-arm64.md build-assets/artefacts/tests-report-linux-arm.md build-assets/artefacts/tests-report-darwin-x64.md build-assets/artefacts/tests-report-darwin-arm64.md build-assets/artefacts/tests-report-win32-x64.md  | tee -a build-assets/artefacts/tests-report.md)
-          mv -v ${{github.workspace}}/build-assets/artefacts/tests-report.md ${{github.workspace}}/build-assets/artefacts/${{github.event.inputs.version}}.md
 
-      - name: Upload tests report
-        uses: actions/upload-artifact@v4
-        with:
-          name: tests-report
-          path: ${{github.workspace}}/build-assets/artefacts/${{github.event.inputs.version}}.md
-          overwrite: true
 
 # -----------------------------------------------------------------------------

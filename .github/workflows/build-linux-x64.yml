@@ -24,6 +24,11 @@
 # -----------------------------------------------------------------------------
 
 
+
+
+
+
+
 name: 'Build xPack OpenOCD linux-x64'
 
 on:
@@ -63,6 +68,7 @@ on:
         default: 'xpack-development'
 
 jobs:
+
 
   linux-x64-build:
     name: 'linux-x64 openocd ${{github.event.inputs.version}} build'
@@ -193,9 +199,5 @@ jobs:
       - name: 'Run ${{github.event.inputs.version}} native test'
         run: bash build-assets/scripts/test.sh --image github-actions-ubuntu-latest --version ${{github.event.inputs.version}} --base-url pre-release
 
-      - name: Upload platform tests report
-        uses: actions/upload-artifact@v4
-        with:
-          name: tests-report-linux-x64
-          path: ${{github.workspace}}/build-assets/build/linux-x64/artefacts/tests-report-*.md
-          overwrite: true
+
+

@@ -24,6 +24,11 @@
 # -----------------------------------------------------------------------------
 
 
+
+
+
+
+
 name: 'Build xPack OpenOCD linux-arm'
 
 on:
@@ -63,6 +68,11 @@ on:
         default: 'xpack-development'
 
 jobs:
+
+
+
+
+
 
   linux-arm-build:
     name: 'linux-arm openocd ${{github.event.inputs.version}} build'
@@ -204,9 +214,5 @@ jobs:
           entrypoint: /bin/bash # /usr/bin/linux32
           args: /github/workspace/build-assets/scripts/test.sh --image debian --version ${{github.event.inputs.version}} --base-url pre-release
 
-      - name: Upload platform tests report
-        uses: actions/upload-artifact@v4
-        with:
-          name: tests-report-linux-arm
-          path: ${{github.workspace}}/build-assets/build/linux-arm/artefacts/tests-report-*.md
-          overwrite: true
+
+

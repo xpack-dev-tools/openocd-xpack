@@ -24,6 +24,11 @@
 # -----------------------------------------------------------------------------
 
 
+
+
+
+
+
 name: 'Publish the xPack OpenOCD release'
 
 on:
@@ -71,7 +76,7 @@ jobs:
         run: |
           ls -lLA
           npm --prefix build-assets install -dd
-          ./build-assets/node_modules/.bin/liquidjs --context '{ "XBB_RELEASE_VERSION": "${{github.event.inputs.version}}" }' --template @build-assets/templates/body-github-release-liquid.md --output .github/workflows/body-github-release.md
+          ./build-assets/node_modules/.bin/liquidjs --context '{ "releaseVersion": "${{github.event.inputs.version}}" }' --template @build-assets/templates/body-github-release-liquid.md --output .github/workflows/body-github-release.md
           cat .github/workflows/body-github-release.md
 
       - name: 'Publish release'

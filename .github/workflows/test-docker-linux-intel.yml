@@ -25,6 +25,11 @@
 # -----------------------------------------------------------------------------
 
 
+
+
+
+
+
 # https://github.com/docker-library/official-images#architectures-other-than-amd64
 
 # Debian versions:
@@ -64,6 +69,7 @@ on:
 # The scripts are executed in the Docker context by GitHub Actions,
 # so `native-test.sh` should be fine, it already takes care of updates.
 jobs:
+
 
   # https://en.wikipedia.org/wiki/Ubuntu_version_history
   # https://hub.docker.com/_/ubuntu
@@ -442,5 +448,16 @@ jobs:
 
   # - https://hub.docker.com/r/gentoo/portage
   # docker://gentoo/portage - exec: "/bin/bash": stat /bin/bash: no such file or directory: unknown.
+
+
+
+
+
+
+
+
+
+
+
 
 # -----------------------------------------------------------------------------

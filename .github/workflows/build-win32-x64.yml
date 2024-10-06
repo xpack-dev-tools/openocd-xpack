@@ -24,6 +24,11 @@
 # -----------------------------------------------------------------------------
 
 
+
+
+
+
+
 name: 'Build xPack OpenOCD win32-x64'
 
 on:
@@ -63,6 +68,17 @@ on:
         default: 'xpack-development'
 
 jobs:
+
+
+
+
+
+
+
+
+
+
+
 
   win32-x64-build:
     name: 'win32-x64 openocd ${{github.event.inputs.version}} build'
@@ -200,9 +216,6 @@ jobs:
       - name: 'Run ${{github.event.inputs.version}} native test'
         run: bash build-assets/scripts/test.sh --version ${{github.event.inputs.version}} --base-url pre-release
 
-      - name: Upload platform tests report
-        uses: actions/upload-artifact@v4
-        with:
-          name: tests-report-win32-x64
-          path: ${{github.workspace}}/build-assets/build/win32-x64/artefacts/tests-report-*.md
-          overwrite: true
+
+
+
