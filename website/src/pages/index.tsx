@@ -42,7 +42,7 @@ export default function Home(): JSX.Element {
   const {siteConfig} = useDocusaurusContext();
   return (
     <Layout
-      title={`Hello from ${siteConfig.title}`}
+      title={`Hello from xPack Binary Development Tools`}
       description="A binary xPack with the OpenOCD executables">
       <HomepageHeader />
       <main>
