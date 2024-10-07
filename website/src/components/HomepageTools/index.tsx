@@ -18,6 +18,7 @@ import styles from './styles.module.css';
 
 import Link from '@docusaurus/Link';
 
+/* When updated, don't forget to add sitemap to robots.txt! */
 const PrimaryTools = [
   {
     appName: 'GNU AArch64 Embedded GCC',
@@ -73,7 +74,7 @@ const PrimaryTools = [
   },
 ]
 
-
+/* When updated, don't forget to add sitemap to robots.txt! */
 const SecondaryTools = [
   {
     appName: 'GNU bison',

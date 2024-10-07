@@ -88,7 +88,7 @@ const config: Config = {
   url: 'https://xpack-dev-tools.github.io',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/openocd-xpack',
+  baseUrl: '/openocd-xpack/',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
@@ -135,6 +135,18 @@ const config: Config = {
         },
         theme: {
           customCss: './src/css/custom.css',
+        },
+        // https://docusaurus.io/docs/api/plugins/@docusaurus/plugin-sitemap
+        sitemap: {
+          lastmod: 'date',
+          changefreq: 'weekly',
+          priority: 0.5,
+          ignorePatterns: [
+            '/openocd-xpack/blog/archive/**',
+            '/openocd-xpack/blog/authors/**',
+            '/openocd-xpack/blog/tags/**'
+          ],
+          filename: 'sitemap.xml',
         },
         // https://docusaurus.io/docs/api/plugins/@docusaurus/plugin-google-gtag
         // https://tagassistant.google.com

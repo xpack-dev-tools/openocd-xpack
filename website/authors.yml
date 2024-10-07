@@ -6,3 +6,9 @@ ilg-ul:
   email: ilg@livius.net
   url: https://github.com/ilg-ul
   image_url: https://github.com/ilg-ul.png
+  page: true
+  socials:
+    x: ilegeul
+    github: ilg-ul
+    linkedin: https://www.linkedin.com/in/liviu-ionescu/
+    wordpress: https://ilgthegeek.wordpress.com
