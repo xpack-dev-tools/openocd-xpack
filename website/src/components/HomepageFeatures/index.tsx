@@ -15,6 +15,7 @@
 import clsx from 'clsx';
 import Heading from '@theme/Heading';
 import styles from './styles.module.css';
+import Link from '@docusaurus/Link';
 
 type FeatureItem = {
   title: string;
@@ -28,10 +29,7 @@ const FeatureList: FeatureItem[] = [
     Svg: require('@site/static/img/mosaic.svg').default,
     description: (
       <>
-        By design, <b>multiple versions</b> of the same tools can be
-        installed at the same time on the same
-        system. The supported platforms are: <b>Windows</b>, <b>macOS</b>, <b>GNU/Linux</b>.
-        The tools include all required libraries and can be installed in any folder.
+        The <b>xPack Framework</b> aims to automate the installation of <b>multiple versions</b> of development tools that are otherwise not easily available in common software distributions, across multiple platforms (<b>Windows</b>, <b>macOS</b>, <b>GNU/Linux</b>).
       </>
     ),
   },
@@ -40,7 +38,7 @@ const FeatureList: FeatureItem[] = [
     Svg: require('@site/static/img/check-badge.svg').default,
     description: (
       <>
-        The xPack binaries can be added to projects
+        The binary xPacks can be added to projects
         as <b>development dependencies</b>,
         and conveniently installed with <code>xpm install</code>.
         This feature also ensures reproducibility, which is particularly
@@ -53,7 +51,8 @@ const FeatureList: FeatureItem[] = [
     Svg: require('@site/static/img/globe.svg').default,
     description: (
       <>
-        The <b>xpm</b> tool complements <b>npm</b> with
+        The <b><Link to="https://xpack.github.io/xpm/">xpm</Link></b> CLI tool
+        complements <b><Link to="https://docs.npmjs.com/cli/">npm</Link></b> with
         several extra features specific to <b>C/C++ projects</b>.
         This allows the
         binary xPacks to nicely integrate into the Node.js ecosystem,
