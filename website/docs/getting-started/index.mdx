@@ -9,6 +9,8 @@ date: 2020-07-21 17:49:00 +0300
 
 ---
 
+import Link from '@docusaurus/Link';
+
 import Overview from './_overview.mdx';
 import OtherBenefits from './_other-benefits.mdx';
 import UpgradeNotice from './_upgrade-notice.mdx';
@@ -77,6 +79,9 @@ xPacks are managed by **[xpm](https://xpack.github.io/xpm/)**
 a program that complements the **[npm](https://docs.npmjs.com/cli/)** CLI (the
 popular JavaScript package manager),
 with new language-neutral features.
+
+There is no magic behind **xpm**, it operates straightforwardly by
+unpacking platform-specific archives into distinct directories and then creating links in the project to the corresponding executables.
 
 In short, xPacks are just a way to automate installing source libraries and
 tools.
@@ -179,6 +184,15 @@ corresponding licenses are available in each archive in the
 ## Releases
 
 The list of releases is available in the [Releases](/docs/releases/) pages.
+
+<Link to="https://www.macstadium.com/"><img className="mac-stadium-img" src="https://uploads-ssl.webflow.com/5ac3c046c82724970fc60918/5c019d917bba312af7553b49_MacStadium-developerlogo.png"></img></Link>
+
+## Credits
+
+Special thanks to **MacStadium**, for providing the Apple Silicon
+development infrastructure as part of their generous
+[Free and Open Source Software](https://www.macstadium.com/company/opensource)
+program.
 
 ## Enjoyed Using This Project? Let Us Know!
 
