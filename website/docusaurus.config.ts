@@ -36,7 +36,7 @@ function getCustomFields() {
   const xpackVersion = jsonVersion.replace(/[.][0-9]*$/, '');
 
   // Remove the pre-release.
-  const xpackSemver = xpackVersion.replace(/[-][0-9]*$/, '');
+  const xpackSemver = xpackVersion.replace(/[-].*$/, '');
 
   // Remove the first part, up to the dash.
   const xpackSubversion = xpackVersion.replace(/^.*[-]/, '');

@@ -38,7 +38,7 @@ const FeatureList: FeatureItem[] = [
     Svg: require('@site/static/img/check-badge.svg').default,
     description: (
       <>
-        The binary xPacks can be added to projects
+        The binary packages can be added to projects
         as <b>development dependencies</b>,
         and conveniently installed with <code>xpm install</code>.
         This feature also ensures reproducibility, which is particularly
@@ -55,7 +55,7 @@ const FeatureList: FeatureItem[] = [
         complements <b><Link to="https://docs.npmjs.com/cli/">npm</Link></b> with
         several extra features specific to <b>C/C++ projects</b>.
         This allows the
-        binary xPacks to nicely integrate into the Node.js ecosystem,
+        binary packages to nicely integrate into the Node.js ecosystem,
         while still allowing the binary archives to be installed manually.
       </>
     ),

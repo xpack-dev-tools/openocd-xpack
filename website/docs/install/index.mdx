@@ -41,29 +41,26 @@ platform specific archives.
 ## Automated install
 
 The easiest (and recommended) way to install OpenOCD
-is by using the **binary xPack**, available
+is via **xpm** and the package available
 as <a href={`https://www.npmjs.com/package/@xpack-dev-tools/openocd`}><code>@xpack-dev-tools/openocd</code></a> from
 the [`npmjs.com`](https://www.npmjs.com) registry.
 
 <details>
-<summary>xPacks 101</summary>
+<summary>xPacks refresher</summary>
 
-While the initial appearance may seem complex, utilizing xPacks is,
-in fact, straightforward. The design rationale is to automate frequent
-operations that occur during software development, in this case the
-installation of
-dependencies, and to ensure reproducibility.
+xPacks (short for xpm packages) are general-purpose,
+language-neutral software packages.
+They use **the same format as npm packages**,
+which is a collection of files/folders
+and a `package.json` file with the package metadata.
 
-xPacks are regular archives that are extracted into separate folders
-within the project. If the xPacks contain
-executables, links/forwarders to
-these executables are created in a `.bin` folder,
-eliminating the need to add multiple folders to the `PATH`.
+Binary xPacks also include references to regular archives with the platform
+specific binaries (such as `.tar.gz` for Unix or `.zip` for Windows).
+These archives are unpacked and links/forwarders to
+the executables are created in a `.bin` folder.
 
-Given that some binary xPacks, such as toolchains, can be quite large,
-the archives are extracted only once into a user global location to
-conserve space. In projects, instead of duplicating the content of these
-archives, symbolic links are created.
+For more details, please see the previous explanation in the
+[Getting Started](/docs/getting-started/#xpacks) page.
 
 </details>
 
@@ -135,12 +132,12 @@ If multiple binary packages are installed, in order to allow
 the executables to be accessed, one possible solution is to add
 all `<package>/.content/bin` folders to the `PATH`.
 
-To simplify things, **npm** employs a separate `node_modules/.bin` folder
+To simplify things, **npm** employs a separate `<project>/node_modules/.bin` folder
 where it places links/forwarders
 pointing to the actual executable files.
 
 Similarly, **xpm** adds links/forwarders into
-a separate `xpacks/.bin` folder.
+a separate `<project>/xpacks/.bin` folder.
 
 With this setup, the project needs to prepend only this `.bin` folder
 to the `PATH`, and all the required tools are accesible
@@ -212,7 +209,7 @@ already present.
 
 In addition to `name` & `version`, the minimal `package.json` must
 include a property named `xpacks`, even empty. This property is
-mandatory to identify the package as an **xPack**.
+mandatory to identify the package as an **xpm package**.
 
 </details>
 
@@ -458,7 +455,7 @@ The binaries do not use any form of installer; instead they
 are distributed as
 portable {props.isWindows ? <code>.zip</code> : <code>.tar.gz</code>} archives;
 therefore they do not require to run any uninstaller; simply removing the
-links and possibly the user global xPack store folder and
+links and possibly the user global xPacks store folder and
 the user xPack cache folder is enough.
 
 To remove the <LinksVsForwarders isWindows={props.isWindows}/> created by
@@ -475,7 +472,7 @@ and ask **xpm** to uninstall the package:
 `xpm uninstall @xpack-dev-tools/openocd --verbose
 `} </CodeBlock>
 
-To completely remove the package from the user global xPack store:
+To completely remove the package from the user global xPacks store:
 
 <CodeBlock language="sh"> {
 `xpm uninstall --global @xpack-dev-tools/openocd --verbose
@@ -514,7 +511,7 @@ For a thorough clean-up, please note that **xpm** uses only two folders:
 They can be removed at any time and space reclaimed;
 **xpm** will recreate them on new installs.
 
-However, projects linking to the user global xPack store will fail with
+However, projects linking to the user global xPacks store will fail with
 broken paths.
 
 </details>

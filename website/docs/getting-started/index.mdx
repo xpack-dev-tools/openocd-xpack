@@ -55,39 +55,56 @@ this project also includes the
 
 ## xPacks
 
+**xPacks** (short for **xpm packages**) are general-purpose,
+language-neutral software packages.
+
 <details>
-<summary>What the heck are xPacks? Please, not yet another package format!</summary>
+<summary>What the heck are xPacks? Please, do not introduce another package format!</summary>
 
-**xPacks** are general purpose multi-version software packages.
+While the initial appearance may seem complex, utilizing xPacks
+(xpm packages) is, in fact, straightforward.
+The design rationale is to automate frequent
+operations that occur during software development, in this case the
+installation of
+dependencies, and to ensure reproducibility.
 
-There are two types of xPacks:
+xPacks are managed by **[xpm](https://xpack.github.io/xpm/)**
+(the xPack Project Manager),
+a program that complements the **[npm](https://docs.npmjs.com/cli/)** CLI
+(the popular JavaScript package manager), with new language-neutral features.
+
+The xPacks Framework **does NOT introduce a new package format**; instead,
+it uses **the same format as npm packages**, which is a collection of
+files/folders and a `package.json` file with the package metadata.
+
+**xpm** can install packages from the
+same repositories as **npm**, whether public or private.
+
+The packages (usually regular archives, but also git repositories),
+are extracted into separate folders within the project.
+
+Based on the content, there are two types of packets:
 
 - **source xPacks** (that install source files, usually libraries) and
 - **binary xPacks** (that install executables/binary files, usually tools).
 
-The xPacks project **does NOT introduce a new package format**; instead,
-it uses **the same format as npm**, which is a collection of files/folders
-and a `package.json` file with the package metadata. Additionally,
-installing binary xPacks also installs the archives with the platform specific
+The binary xPacks include references to archives with the platform specific
 binaries (such as `.tar.gz` for Unix or `.zip` for Windows).
 
-Also, xPacks can be installed from the
-same repositories as **npm** packages, whether public or private.
+These archives are also expanded along the package metadata. Since they
+include executables, links/forwarders to
+these executables are created in a `.bin` folder,
+eliminating the need to add multiple folders to the `PATH`.
 
-xPacks are managed by **[xpm](https://xpack.github.io/xpm/)**
-(the xPack Project Manager),
-a program that complements the **[npm](https://docs.npmjs.com/cli/)** CLI (the
-popular JavaScript package manager),
-with new language-neutral features.
+Given that some binary xPacks, such as toolchains, can have very large
+archives, the packages are extracted only once into a user global location to
+conserve space. In projects, instead of duplicating the content of these
+archives, symbolic links are created.
 
-There is no magic behind **xpm**, it operates straightforwardly by
-unpacking platform-specific archives into distinct directories and then creating links in the project to the corresponding executables.
-
-In short, xPacks are just a way to automate installing source libraries and
-tools.
+Simply put, xPacks can be used to further automate the installation of source
+libraries and tools.
 
 </details>
-
 
 ## Features
 
@@ -131,7 +148,7 @@ procedure; the same procedure is used for all major
 ## Install
 
 The executables and other related files can be installed automatically with
-**xpm** via the **binary xPacks** or manually by downloading the
+**xpm** or manually by downloading the
 **platform specific archives**.
 
 The details of installing the **xPack OpenOCD** on various platforms are
