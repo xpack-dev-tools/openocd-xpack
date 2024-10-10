@@ -41,9 +41,9 @@ function HomepageHeader() {
 export default function Home(): JSX.Element {
   const {siteConfig} = useDocusaurusContext();
   return (
-    <Layout
-      title={`Hello from xPack Binary Development Tools`}
-      description="A binary package with the OpenOCD executables">
+    <Layout 
+      title={`Hello from openocd`}
+      description="A binary package with the openocd executables">
       <HomepageHeader />
       <main>
         <HomepageFeatures />

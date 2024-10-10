@@ -3,7 +3,16 @@
 # DO NOT EDIT!
 # Automatically generated from xbb-helper/templates/docusaurus/common.
 
-title: How to install the xPack OpenOCD binaries
+title: How to install openocd
+description: Explain the prerequisites, how to perform an automated or manual installation, how to uninstall, and the folder hierarchies.
+keywords:
+  - xpack
+  - openocd
+  - prerequisites
+  - automated
+  - install
+  - uninstall
+  - files
 
 hide_table_of_contents: false
 
@@ -21,11 +30,17 @@ import LinksVsForwarders from '@site/src/components/LinksVsForwarders'
 
 import AutomaticInstallQuickTest from './_automatic-install-quick-test.mdx'
 import ManualInstallQuickTest from './_manual-install-quick-test.mdx'
-import FolderHierarchies from './_folder-hierarchies.mdx'
+
+import FoldersHierarchiesLinux from './_folders-hierarchies-linux.mdx'
+import FoldersHierarchiesWindows from './_folders-hierarchies-windows.mdx'
+import FoldersHierarchiesMacOS from './_folders-hierarchies-macos.mdx'
+
 import Miscellaneous from './_miscellaneous.mdx'
 import Testing from './_testing.mdx';
 
 {/* ------------------------------------------------------------------------ */}
+
+# How to install xPack OpenOCD
 
 [![GitHub package.json version](https://img.shields.io/github/package-json/v/xpack-dev-tools/openocd-xpack)](https://github.com/xpack-dev-tools/openocd-xpack/blob/xpack/package.json)
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/xpack-dev-tools/openocd-xpack)](https://github.com/xpack-dev-tools/openocd-xpack/releases/)
@@ -639,7 +654,32 @@ and `.content` to store the unpacked archive.
 
 <ManualInstallQuickTest/>
 
-<FolderHierarchies/>
+## Folders hierarchy
+
+After install, the package creates a hierarchy of folders like the following
+(only the first two depth levels are shown):
+
+<Tabs groupId="operating-systems">
+
+<TabItem value="windows" label="Windows" default>
+
+<FoldersHierarchiesWindows />
+
+</TabItem>
+
+<TabItem value="macos" label="macOS">
+
+<FoldersHierarchiesMacOS />
+
+</TabItem>
+
+<TabItem value="linux" label="GNU/Linux">
+
+<FoldersHierarchiesLinux />
+
+</TabItem>
+
+</Tabs>
 
 <Miscellaneous/>
 
