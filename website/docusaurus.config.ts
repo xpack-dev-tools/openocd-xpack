@@ -82,7 +82,8 @@ logger.info(customFields);
 const config: Config = {
   title: 'xPack OpenOCD',
   tagline: 'A binary distribution of OpenOCD',
-  favicon: 'img/favicon.ico',
+  // Explicitly set in headTags.
+  // favicon: '/img/favicon.ico',
 
   // Set the production url of your site here
   url: 'https://xpack-dev-tools.github.io',
@@ -235,9 +236,58 @@ const config: Config = {
     './src/plugins/SelectReleasesPlugin',
   ],
 
+  // https://docusaurus.io/docs/api/docusaurus-config#headTags
+  headTags: [
+    {
+      tagName: 'link',
+      attributes: {
+        rel: 'icon',
+        type: 'image/png',
+        href: '/openocd/favicons/favicon-48x48.png',
+        sizes: '48x48'
+      }
+    },
+    {
+      tagName: 'link',
+      attributes: {
+        rel: 'icon',
+        type: 'image/svg+xml',
+        href: '/openocd/favicons/favicon.svg'
+      }
+    },
+    {
+      tagName: 'link',
+      attributes: {
+        rel: 'shortcut icon',
+        href: '/openocd/favicons/favicon.ico'
+      }
+    },
+    {
+      // This might also go to themeConfig.metadata.
+      tagName: 'meta',
+      attributes: {
+        name: 'apple-mobile-web-app-title',
+        content: 'xPack'
+      }
+    },
+    {
+      tagName: 'link',
+      attributes: {
+        rel: 'manifest',
+        href: '/openocd/favicons/site.webmanifest'
+      }
+    }
+  ],
+  // https://docusaurus.io/docs/seo
   themeConfig: {
     // Replace with your project's social card
     // image: 'img/docusaurus-social-card.jpg',
+    metadata: [
+      {
+        name: 'keywords',
+        content: 'xpack, binary, development, tools, openocd'
+      }
+    ],
     navbar: {
        // overriden by i18n/en/docusaurus-theme-classic.
       title: 'The xPack Binary Development Tools',
