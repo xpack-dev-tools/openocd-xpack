@@ -42,7 +42,7 @@ export default function Home(): JSX.Element {
   const {siteConfig} = useDocusaurusContext();
   return (
     <Layout 
-      title={`Hello from openocd`}
+      title={`Welcome to openocd`}
       description="A binary package with the openocd executables">
       <HomepageHeader />
       <main>

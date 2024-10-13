@@ -12,6 +12,9 @@ something: "Some text"
 
 ---
 
+<head><title>{frontMatter.title}</title></head>
+<head><meta property="og:title" content={frontMatter.title}/></head>
+
 import CodeBlock from '@theme/CodeBlock';
 
 export const world = 'World'
@@ -20,7 +23,7 @@ export const xpackSubversion = '1.2'
 
 {/* ------------------------------------------------------------------------ */}
 
-# A test page
+# {frontMatter.title}
 
 {frontMatter.description}
 
