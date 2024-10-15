@@ -15,6 +15,10 @@ import {fileURLToPath} from 'node:url';
 import path from 'node:path';
 import fs from 'node:fs';
 
+
+
+// ----------------------------------------------------------------------------
+
 function getCustomFields() {
   const pwd = fileURLToPath(import.meta.url);
   // logger.info(pwd);
@@ -76,8 +80,14 @@ function getCustomFields() {
   }
 }
 
+// ----------------------------------------------------------------------------
+
 const customFields = getCustomFields();
 logger.info(customFields);
+
+
+
+// ----------------------------------------------------------------------------
 
 const config: Config = {
   title: 'xPack OpenOCD',
@@ -289,8 +299,9 @@ const config: Config = {
       }
     ],
     navbar: {
-       // overriden by i18n/en/docusaurus-theme-classic.
+      // Overriden by i18n/en/docusaurus-theme-classic.
       title: 'The xPack Binary Development Tools',
+
       logo: {
         alt: 'xPack Logo',
         src: 'img/components-256.png',

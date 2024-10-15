@@ -3,7 +3,7 @@
 # DO NOT EDIT!
 # Automatically generated from xbb-helper/templates/docusaurus/common.
 
-title: Getting Started with the xPack OpenOCD
+title: Getting Started
 description: The initial steps to explore the project, including what xpacks are, the project's features, benefits, compatibility, and available documentation.
 keywords:
   - xpack
@@ -19,9 +19,6 @@ date: 2020-07-21 17:49:00 +0300
 
 ---
 
-<head><title>{frontMatter.title}</title></head>
-<head><meta property="og:title" content={frontMatter.title}/></head>
-
 import Link from '@docusaurus/Link';
 
 import Overview from './_overview.mdx';
@@ -33,7 +30,7 @@ import ReleaseSchedule from './_release-schedule.mdx'
 
 {/* ------------------------------------------------------------------------ */}
 
-# {frontMatter.title}
+# Getting Started with the xPack OpenOCD
 
 [![license](https://img.shields.io/github/license/xpack-dev-tools/openocd-xpack)](https://github.com/xpack-dev-tools/openocd-xpack/blob/xpack/LICENSE)
 ![GitHub Repo stars](https://img.shields.io/github/stars/xpack-dev-tools/openocd-xpack)
@@ -141,6 +138,17 @@ feasible.
 
 </details>
 
+Similarly to [flatpacks](https://flatpak.org) or [snap](https://snapcraft.io),
+but significantly simpler, xPacks include all dependent shared libraries
+within the distributed archives, making the binaries independent of
+any similar libraries installed on the system. This ensures they
+can run on any system without needing specific libraries to be
+installed.
+
+Also the builds are configured so that the binaries do not depend on
+being installed in specific folders, and can be installed in any
+location, including in user folders.
+
 ## Benefits
 
 The main advantages of using the **xPack OpenOCD** are:
@@ -151,6 +159,8 @@ procedure; the same procedure is used for all major
 - multiple versions of the same package can be installed at the same time on
   the same system
 - no need to worry about dependent libraries, they are all included
+- not affected by system updates that
+  might change the versions of the dependent libraries
 - significantly lighter and easier to use than Docker images that provide
   similar functionality and are GNU/Linux centric
 - projects can be tied to specific tools versions; this provides a good
