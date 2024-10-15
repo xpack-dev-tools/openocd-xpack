@@ -1,5 +1,6 @@
 ---
 title: GNU ARM Eclipse OpenOCD v0.8.0-20150131* released
+seo_title: Version 0.8.0-20150131* released
 description: Version 0.8.0-20150131* is a maintenance release of GNU ARM Eclipse OpenOCD.
 keywords:
   - xpack
@@ -16,26 +17,25 @@ tags:
 
 # ----- Custom properties -----------------------------------------------------
 
-app_name: "GNU ARM Eclipse OpenOCD"
-
 download_url: https://github.com/gnu-mcu-eclipse/openocd/releases/tag/gae-0.8.0-20150131/
 
 ---
 
-<head>
-  <title>{frontMatter.title}</title>
-  <meta property="og:title" content={frontMatter.title} />
-</head>
+import {PageMetadata} from '@docusaurus/theme-common';
+import Image from '@theme/IdealImage';
+import CodeBlock from '@theme/CodeBlock';
 
-Version 0.8.0-20150131* is a maintenance release.
-
-<!-- truncate -->
-
-For a better integrations with the GNU ARM Eclipse debug plug-ins, a new distribution of OpenOCD was added as a subproject named **GNU ARM Eclipse OpenOCD**.
+Version **0.8.0-20150131*** is a maintenance release; for a better integrations with the GNU ARM Eclipse debug plug-ins, the new distribution of OpenOCD was moved to a subproject named **GNU ARM Eclipse OpenOCD**.
 
 <!-- truncate -->
 
-<p><a href={frontMatter.download_url}>Binary files »</a></p>
+<PageMetadata title={frontMatter.seo_title} />
+
+## Download
+
+The binary files are available from <a href={frontMatter.download_url}>GitHub Releases</a>.
+
+## Notes
 
 The first benefit of using this distribution is **user convenience**, on Windows and macOS the program is packed as a Setup package.
 

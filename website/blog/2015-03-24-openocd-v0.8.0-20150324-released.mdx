@@ -1,5 +1,6 @@
 ---
 title: GNU ARM Eclipse OpenOCD v0.8.0-20150324* released
+seo_title: Version 0.8.0-20150324* released
 description: Version 0.8.0-20150324* is a maintenance release of GNU ARM Eclipse OpenOCD.
 keywords:
   - xpack
@@ -16,23 +17,20 @@ tags:
 
 # ----- Custom properties -----------------------------------------------------
 
-app_name: "GNU ARM Eclipse OpenOCD"
-
 download_url: https://github.com/gnu-mcu-eclipse/openocd/releases/tag/gae-0.8.0-20150324/
 
 ---
 
-<head>
-  <title>{frontMatter.title}</title>
-  <meta property="og:title" content={frontMatter.title} />
-</head>
+import {PageMetadata} from '@docusaurus/theme-common';
+import Image from '@theme/IdealImage';
+import CodeBlock from '@theme/CodeBlock';
 
 Version **0.8.0-20150324*** is a maintenance release.
 
 <!-- truncate -->
 
-Version **0.8.0-20150324\*** is a maintenance release.
+<PageMetadata title={frontMatter.seo_title} />
 
-<!-- truncate -->
+## Download
 
-<p><a href={frontMatter.download_url}>Binary files »</a></p>
+The binary files are available from <a href={frontMatter.download_url}>GitHub Releases</a>.

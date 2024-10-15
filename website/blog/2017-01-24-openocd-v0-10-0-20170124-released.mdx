@@ -1,6 +1,7 @@
 ---
 title: GNU ARM Eclipse OpenOCD v0.10.0-20170124* released
-description: Version 0.10.0-201701241841 is a major stable release of GNU ARM Eclipse OpenOCD.
+seo_title: Version 0.10.0-20170124* released
+description: Version 0.10.0-201701241841 is a major stable release. It includes binaries for Windows of GNU ARM Eclipse OpenOCD.
 keywords:
   - xpack
   - openocd
@@ -16,26 +17,23 @@ tags:
 
 # ----- Custom properties -----------------------------------------------------
 
-app_name: "GNU ARM Eclipse OpenOCD"
-
 download_url: https://github.com/gnu-mcu-eclipse/openocd/releases/tag/gae-0.10.0-20170124/
 
 ---
 
-<head>
-  <title>{frontMatter.title}</title>
-  <meta property="og:title" content={frontMatter.title} />
-</head>
-
-Version **0.10.0-201701241841** is a major stable release.
-
-<!-- truncate -->
+import {PageMetadata} from '@docusaurus/theme-common';
+import Image from '@theme/IdealImage';
+import CodeBlock from '@theme/CodeBlock';
 
 Version **0.10.0-201701241841** is a major stable release. It includes binaries for Windows, macOS and GNU/Linux.
 
 <!-- truncate -->
 
-<p><a href={frontMatter.download_url}>Binary files »</a></p>
+<PageMetadata title={frontMatter.seo_title} />
+
+## Download
+
+The binary files are available from <a href={frontMatter.download_url}>GitHub Releases</a>.
 
 ## Stable version
 

@@ -27,19 +27,20 @@ download_url: https://github.com/xpack-dev-tools/openocd-xpack/releases/tag/v0.1
 
 ---
 
-<head><title>{frontMatter.title}</title></head>
-
-Version **0.12.0-4** is a maintenance release; it updates to
-the latest upstream master.
-
-<!-- truncate -->
-
+import {PageMetadata} from '@docusaurus/theme-common';
 import Image from '@theme/IdealImage';
 import CodeBlock from '@theme/CodeBlock';
 
 import Prerequisites from './_common/_prerequisites-glib-2.27.mdx'
 import DeprecationNotices from './_common/_deprecation-notices-glib-2.27.mdx'
 import DownloadAnalytics from './_common/_download-analytics.mdx'
+
+Version **0.12.0-4** is a maintenance release; it updates to
+the latest upstream master.
+
+<!-- truncate -->
+
+<PageMetadata title={frontMatter.seo_title} />
 
 [The xPack OpenOCD](https://xpack-dev-tools.github.io/openocd-xpack/)
 is a standalone cross-platform binary distribution of

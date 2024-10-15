@@ -1,5 +1,6 @@
 ---
 title: GNU ARM Eclipse OpenOCD v0.9.0-20150320*-dev released
+seo_title: Version 0.9.0-20150320*-dev released
 description: Version 0.9.0-20150320* is a new release of GNU ARM Eclipse OpenOCD.
 keywords:
   - xpack
@@ -16,26 +17,25 @@ tags:
 
 # ----- Custom properties -----------------------------------------------------
 
-app_name: "GNU ARM Eclipse OpenOCD"
-
 download_url: https://github.com/gnu-mcu-eclipse/openocd/releases/tag/gae-0.9.0-20150320/
 
 ---
 
-<head>
-  <title>{frontMatter.title}</title>
-  <meta property="og:title" content={frontMatter.title} />
-</head>
+import {PageMetadata} from '@docusaurus/theme-common';
+import Image from '@theme/IdealImage';
+import CodeBlock from '@theme/CodeBlock';
 
-Version 0.9.0-20150320* is a new release.
-
-<!-- truncate -->
-
-The latest development version of OpenOCD (**0.9.0-dev**) is now available as multiple platform specific binary packages.
+Version **0.9.0-20150320*** is a new release; the latest development version of OpenOCD (**0.9.0-dev**) is now available as multiple platform specific binary packages.
 
 <!-- truncate -->
 
-<p><a href={frontMatter.download_url}>Binary files »</a></p>
+<PageMetadata title={frontMatter.seo_title} />
+
+## Download
+
+The binary files are available from <a href={frontMatter.download_url}>GitHub Releases</a>.
+
+## Notes
 
 For those who want the latest OpenOCD features before the stable version is announced, the latest OpenOCD version built from the development repository was released in packages explicitly marked as **-dev**.
 

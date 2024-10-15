@@ -1,5 +1,6 @@
 ---
 title: xPack OpenOCD v0.10.0-14 released
+seo_title: Version 0.10.0-14 released
 description: Version 0.10.0-14 is a maintenance release of xPack OpenOCD.
 keywords:
   - xpack
@@ -23,17 +24,15 @@ download_url: https://github.com/xpack-dev-tools/openocd-xpack/releases/tag/v0.1
 
 ---
 
-<head>
-  <title>{frontMatter.title}</title>
-  <meta property="og:title" content={frontMatter.title} />
-</head>
+import {PageMetadata} from '@docusaurus/theme-common';
+import Image from '@theme/IdealImage';
+import CodeBlock from '@theme/CodeBlock';
 
 Version **0.10.0-14** is a maintenance release; it updates to the latest upstream master and adds support for running on Arm platforms, like Raspberry Pi.
 
 <!-- truncate -->
 
-import Image from '@theme/IdealImage';
-import CodeBlock from '@theme/CodeBlock';
+<PageMetadata title={frontMatter.seo_title} />
 
 The [xPack OpenOCD](https://xpack-dev-tools.github.io/openocd-xpack/)
 is the **xPack** distribution of

@@ -1,5 +1,6 @@
 ---
 title: GNU ARM Eclipse OpenOCD v0.9.0-20150519* released
+seo_title: Version 0.9.0-20150519* released
 description: Version 0.9.0-20150519* is a new release of GNU ARM Eclipse OpenOCD.
 keywords:
   - xpack
@@ -16,26 +17,25 @@ tags:
 
 # ----- Custom properties -----------------------------------------------------
 
-app_name: "GNU ARM Eclipse OpenOCD"
-
 download_url: https://github.com/gnu-mcu-eclipse/openocd/releases/tag/gae-0.9.0-20150519/
 
 ---
 
-<head>
-  <title>{frontMatter.title}</title>
-  <meta property="og:title" content={frontMatter.title} />
-</head>
+import {PageMetadata} from '@docusaurus/theme-common';
+import Image from '@theme/IdealImage';
+import CodeBlock from '@theme/CodeBlock';
 
-Version 0.9.0-20150519* is a new release.
-
-<!-- truncate -->
-
-The just released stable version of OpenOCD (**0.9.0**) is now also available as ready to install, platform specific, binary files.
+Version **0.9.0-20150519*** is a new release; the just released stable version of OpenOCD (**0.9.0**) is now also available as ready to install, platform specific, binary files.
 
 <!-- truncate -->
 
-<p><a href={frontMatter.download_url}>Binary files »</a></p>
+<PageMetadata title={frontMatter.seo_title} />
+
+## Download
+
+The binary files are available from <a href={frontMatter.download_url}>GitHub Releases</a>.
+
+## Notes
 
 Install the proper package, and then update the path in _Eclipse_ menu →  **(Window →) Preferences** → **Run/Debug** → **OpenOCD** to the new folder. If installed in the default location, the **Restore Defaults** button should automatically configure the proper path.
 

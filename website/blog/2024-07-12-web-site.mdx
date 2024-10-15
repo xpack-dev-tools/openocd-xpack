@@ -1,5 +1,6 @@
 ---
 title: The project has a new web site
+seo_title: New web site
 description: The new site is built with Docusaurus.
 keywords:
   - xpack
@@ -15,13 +16,15 @@ tags:
 
 ---
 
-<head><title>{frontMatter.title}</title></head>
+import {PageMetadata} from '@docusaurus/theme-common';
 
 After some experimentation with modern site generators,
 the **xPack OpenOCD**
 project has a new web site.
 
 <!--truncate-->
+
+<PageMetadata title={frontMatter.seo_title} />
 
 ## MDX
 
