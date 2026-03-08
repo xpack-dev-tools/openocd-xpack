@@ -59,7 +59,7 @@
       "trigger-workflow-test-xpm": "bash xpacks/@xpack-dev-tools/xbb-helper/github-actions/trigger-workflow-test-xpm.sh",
       "test-native": "bash {{properties.dbg}} scripts/test.sh",
       "test-pre-release": "bash {{properties.dbg}} scripts/test.sh --base-url pre-release --development --cache",
-      "test-release": "bash {{properties.dbg}} scripts/test.sh --base-url pre-release --development --cache",
+      "test-release": "bash {{properties.dbg}} scripts/test.sh --base-url release --development --cache",
       "test-xpm": "bash {{properties.dbg}} scripts/test.sh --xpm",
       "build-native": "bash {{properties.dbg}} scripts/build.sh",
       "build-native-develop": "bash {{properties.dbg}} scripts/build.sh --development",
