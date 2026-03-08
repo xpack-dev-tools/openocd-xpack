@@ -20,6 +20,7 @@
     "npm-install": "npm install",
     "npm-link-helpers": "npm link @xpack/docusaurus-template-liquid @xpack/npm-packages-helper",
     "npm-ci": "npm ci",
+    "clean": "del-cli .docusaurus build",
     "deep-clean": "del-cli .docusaurus build node_modules package-lock.json",
     "import-website-releases": "bash node_modules/@xpack/docusaurus-template-liquid/maintenance-scripts/import-releases.sh --xpack-dev-tools",
     "generate-website-blog-post": "bash node_modules/@xpack/docusaurus-template-liquid/maintenance-scripts/generate-blog-post.sh --xpack-dev-tools",
