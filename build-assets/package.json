@@ -20,7 +20,7 @@
   "xpack": {
     "minimumXpmRequired": "0.20.5",
     "devDependencies": {
-      "@xpack-dev-tools/xbb-helper": "github:xpack-dev-tools/xbb-helper-xpack#v5.1.0"
+      "@xpack-dev-tools/xbb-helper": "github:xpack-dev-tools/xbb-helper-xpack#v5.4.2"
     },
     "properties": {
       "platforms": "win32-x64,darwin-x64,darwin-arm64,linux-x64,linux-arm64",
