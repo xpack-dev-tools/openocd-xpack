@@ -3,6 +3,43 @@
   "name": "website",
   "version": "0.0.0",
   "private": true,
+  "author": {
+    "name": "Liviu Ionescu",
+    "email": "ilg@livius.net",
+    "url": "https://github.com/ilg-ul"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@docusaurus/core": "3.10.1",
+    "@docusaurus/faster": "3.10.1",
+    "@docusaurus/plugin-client-redirects": "3.10.1",
+    "@docusaurus/plugin-ideal-image": "3.10.1",
+    "@docusaurus/preset-classic": "3.10.1",
+    "@docusaurus/theme-search-algolia": "3.10.1",
+    "@mdx-js/react": "^3.1.1",
+    "clean-css": "~5.3.3",
+    "clsx": "^2.0.0",
+    "prism-react-renderer": "^2.3.0",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3"
+  },
+  "$dependenciesUrls": {
+    "del-cli": "https://www.npmjs.com/package/del-cli",
+    "json": "https://www.npmjs.com/package/json",
+    "liquidjs": "https://www.npmjs.com/package/liquidjs",
+    "typescript": "https://www.npmjs.com/package/typescript"
+  },
+  "devDependencies": {
+    "@docusaurus/module-type-aliases": "3.10.1",
+    "@docusaurus/tsconfig": "3.10.1",
+    "@docusaurus/types": "3.10.1",
+    "del-cli": "^7.0.0",
+    "json": "^11.0.0",
+    "liquidjs": "^10.25.0",
+    "typescript": "~5.9.3",
+    "@xpack/docusaurus-template-liquid": "github:xpack/docusaurus-template-liquid",
+    "@xpack/npm-packages-helper": "github:xpack/npm-packages-helper"
+  },
   "scripts": {
     "generate-website-commons": "bash node_modules/@xpack/docusaurus-template-liquid/maintenance-scripts/generate-website-commons.sh --xpack-dev-tools",
     "docusaurus": "docusaurus",
@@ -26,41 +63,6 @@
     "generate-website-blog-post": "bash node_modules/@xpack/docusaurus-template-liquid/maintenance-scripts/generate-blog-post.sh --xpack-dev-tools",
     "generate-dependencies-details": "bash node_modules/@xpack/docusaurus-template-liquid/maintenance-scripts/generate-dependencies-details.sh --xpack-dev-tools"
   },
-  "author": {
-    "name": "Liviu Ionescu",
-    "email": "ilg@livius.net",
-    "url": "https://github.com/ilg-ul"
-  },
-  "license": "MIT",
-  "dependencies": {
-    "@docusaurus/core": "3.9.2",
-    "@docusaurus/faster": "3.9.2",
-    "@docusaurus/plugin-client-redirects": "3.9.2",
-    "@docusaurus/plugin-ideal-image": "3.9.2",
-    "@docusaurus/preset-classic": "3.9.2",
-    "@docusaurus/theme-search-algolia": "3.9.2",
-    "@mdx-js/react": "^3.0.0",
-    "clean-css": "~5.3.3",
-    "clsx": "^2.0.0",
-    "prism-react-renderer": "^2.3.0",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0"
-  },
-  "devDependencies": {
-    "@docusaurus/module-type-aliases": "3.9.2",
-    "@docusaurus/tsconfig": "3.9.2",
-    "@docusaurus/types": "3.9.2",
-    "del-cli": "^7.0.0",
-    "json": "^11.0.0",
-    "liquidjs": "^10.23.0",
-    "typescript": "~5.9.3"
-  },
-  "$devDependenciesUrls": [
-    "https://www.npmjs.com/package/del-cli",
-    "https://www.npmjs.com/package/json",
-    "https://www.npmjs.com/package/liquidjs",
-    "https://www.npmjs.com/package/typescript"
-  ],
   "browserslist": {
     "production": [
       ">0.5%",
@@ -72,15 +74,6 @@
       "last 3 firefox version",
       "last 5 safari version"
     ]
-  },
-  "websiteConfig": {
-    "programName": "openocd",
-    "branding": "xPack Open On-Chip Debugger ",
-    "showDeprecatedGnuMcuAnalytics": "true",
-    "$link": "https://github.com/openocd-org/openocd.git",
-    "openocdCommitId": "e5888bda38f4952e2ae92f7dc5b25fc9a2d1c2b3",
-    "openocdCommitDate": "30 Sep 2025",
-    "shareOnTwitter": "true"
   },
   "engines": {
     "node": ">=20.0"

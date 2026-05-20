@@ -46,6 +46,7 @@ import CommonPlatformDockerBuild from '../_common/_platform-docker-build.mdx';
 
 import ProjectMoreRepos from '../_project/_more-repos.mdx';
 import ProjectCheckUpstreamRelease from '../_project/_check-upstream-release.mdx';
+import ProjectGetUpstreamVersions from '../_project/_get-upstream-versions.mdx';
 import ProjectUpdateVersionSpecific from '../_project/_update-version-specific.mdx';
 
 import ProjectMoreTests from '../_project/_more-tests.mdx';
@@ -104,21 +105,25 @@ update the dependencies in `build-assets/package.json`.
 
 <CommonIncreaseVersion />
 
-### Update VERSION
-
-Update the `build-assets/scripts/VERSION` file; the format
-is <code>0.12.0-7</code>.
-{isXpackSubversionDouble() ?
-'The fourth & fifth numbers are the xPack release number of this version. A sixth' :
-'The fourth number is the xPack release number of this version. A fifth'} number will be added to the version in `package.json` when the package is published to the `npm` server.
-
-<CommonUpdateWebsiteConfig />
-
 <CommonUpdateTopCommons />
 
 <CommonUpdateWebsiteCommons />
 
 <CommonStartLocalWebServer />
+
+<ProjectGetUpstreamVersions/>
+
+### Update VERSION
+
+Update the `build-assets/scripts/VERSION` file; the format
+is <code>0.12.0-7</code>.
+{isXpackSubversionDouble() ?
+'The fourth and fifth numbers are the xPack release number of this version. A sixth' :
+'The fourth number is the xPack release number of this version. A fifth'} number will be added to the version in `package.json` when the package is published to the `npm` server.
+
+<CommonUpdateWebsiteConfig />
+
+<CommonUpdateWebsiteCommons />
 
 <ProjectUpdateVersionSpecific/>
 
@@ -298,7 +303,7 @@ via Homebrew, and create a link to `/usr/local/bin`.
 
 Commit with the message _**website: update folder hierarchies**_
 
-### Update the list of links in top package.json
+### Update the list of links in the top `package.json`
 
 Copy and paste the complete list of links displayed at the end of the build, in
 sequence, for each platform (Windows, macOS, GNU/Linux),
@@ -319,7 +324,7 @@ and **docker-build-development-debug**).
 ### Files cache
 
 The XBB build scripts utilise a local cache such that files are downloaded only
-during the initial execution, with subsequent executions being able to utilise the cached files.
+during the initial execution, with subsequent executions utilising the cached files.
 
 However, occasionally some servers may not be available, and the builds
 may fail.
@@ -431,8 +436,12 @@ with previous runs.
 
 ### Manual tests
 
-To download the pre-released archive for the specific platform
-and execute the tests, utilise:
+Since the macOS builds were performed on more recent versions and rely on
+`MACOSX_DEPLOYMENT_TARGET`, it is recommended to also run the tests on an
+actual macOS 11 machine (like the `xbbmi11` virtual machine).
+
+To download the pre-release archive and execute the tests, utilise:
+
 
 ```sh
 git -C ~/Work/xpack-dev-tools/openocd-xpack.git pull
@@ -490,14 +499,14 @@ with all binaries attached.
 
 :::info
 
-At this moment the system should send an email notification to all clients
+At this moment, the system should send an email notification to all clients
 watching the openocd-xpack project.
 
 :::
 
 <CommonPrepareNewBlogPost />
 
-### Check the list of links in top package.json
+### Check the list of links in the top `package.json`
 
 - Open the top `package.json` file
 - Check if the links in the `xpack.executables` property cover the actual binaries
@@ -561,6 +570,13 @@ The test results are available from the
 
 - https://sourceforge.net/projects/openocd-xpack/files/
 
+### Add a new entry in the SourceForge download test
+
+Edit the `.github/workflows/test-sourceforge-downloads.yml` file
+and add one or more entries for the new release(s).
+
+Commit with the message _**test-sourceforge-downloads.yml update**_
+
 ## Clean-ups
 
 ### Remove the pre-release binaries
@@ -573,5 +589,20 @@ The test results are available from the
 <CommonShareOnTwitter />
 
 <ProjectShareCustom/>
+
+### Test the released binaries at a later stage
+
+To test the released binaries at a later stage on any platform, using the stable project branch, use:
+
+```sh
+rm -rf ~/Work/xpack-dev-tools/openocd-xpack.git && \
+mkdir -p ~/Work/xpack-dev-tools && \
+git clone \
+  https://github.com/xpack-dev-tools/openocd-xpack.git \
+  ~/Work/xpack-dev-tools/openocd-xpack.git && \
+npm --prefix ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets install && \
+xpm install -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets && \
+xpm run test-release -C ~/Work/xpack-dev-tools/openocd-xpack.git/build-assets
+```
 
 <CommonAnalytics />

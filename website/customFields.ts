@@ -77,7 +77,7 @@ export function getCustomFields() {
     // console.log(filePath);
     const websiteFileContent = fs.readFileSync(websiteFilePath);
     const websitePackageJson = JSON.parse(websiteFileContent.toString());
-    websiteFields = websitePackageJson?.websiteConfig?.customFields ?? {};
+    websiteFields = websitePackageJson?.websiteConfig ?? {};
   } catch (error) {
     // Most probably there is no website/package.json.
   }
