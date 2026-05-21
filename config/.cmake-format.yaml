@@ -1,0 +1,15 @@
+# .cmake-format.yaml
+# https://cmake-format.readthedocs.io/en/latest/configuration.html
+
+tab_size: 2
+use_tabchars: false
+line_width: 80
+
+# Put closing parens on a dedicated line for multi-line calls.
+dangle_parens: true
+
+# Insert a space after control and function names.
+separate_ctrl_name_with_space: true
+separate_fn_name_with_space: true
+
+enable_markup: true
