@@ -5,11 +5,11 @@
 # This file is part of the xPack project (http://xpack.github.io).
 # Copyright (c) 2021-2026 Liviu Ionescu. All rights reserved.
 #
-# Permission to use, copy, modify, and/or distribute this software
-# for any purpose is hereby granted, under the terms of the MIT license.
+# Permission to use, copy, modify, and/or distribute this software for any
+# purpose is hereby granted, under the terms of the MIT license.
 #
-# If a copy of the license was not distributed with this file, it can
-# be obtained from https://opensource.org/licenses/mit.
+# If a copy of the license was not distributed with this file, it can be
+# obtained from https://opensource.org/licenses/mit.
 #
 # -----------------------------------------------------------------------------
 
@@ -34,7 +34,6 @@ on:
     # ... any of these files changes ...
     paths:
       - 'website/**'
-      - 'typedoc.json'
       - '**/tsconfig*.json'
       - 'src/**/*.ts'
       - 'README.md'
@@ -54,33 +53,32 @@ permissions:
 # Allow one concurrent deployment.
 # https://docs.github.com/en/actions/using-jobs/using-concurrency
 concurrency:
-  group: "pages"
+  group: 'pages'
   cancel-in-progress: true
 
 jobs:
   # Single deploy job since we're just deploying.
-  # https://docs.github.com/en/actions/using-github-hosted-runners/using-github-hosted-runners/about-github-hosted-runners#standard-github-hosted-runners-for-public-repositories
   deploy:
     environment:
       name: github-pages
       url: ${{steps.deployment.outputs.page_url}}
-    # https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners#supported-runners-and-hardware-resources
+    # https://github.com/actions/runner-images
     runs-on: ubuntu-24.04
 
     steps:
       - name: Checkout
         # https://github.com/actions/checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6.0.2
         with:
           # The full history, required to compute lastUpdatedAt
           fetch-depth: 0
 
       - name: Use Nodejs
         # https://github.com/actions/setup-node
-        uses: actions/setup-node@v5
+        uses: actions/setup-node@v6.4.0
         with:
           # Node LTS version.
-          node-version: 20
+          node-version: 24
 
       - name: Install dependencies
         run: npm --prefix website ci
@@ -90,18 +88,18 @@ jobs:
 
       - name: Setup Pages
         # https://github.com/actions/configure-pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6.0.0
 
       - name: Upload Pages artifact
         # https://github.com/actions/upload-pages-artifact
-        uses: actions/upload-pages-artifact@v4
+        uses: actions/upload-pages-artifact@v5.0.0
         with:
-          # Upload entire repository
+          # Upload entire website
           path: './website/build'
 
       - name: Deploy to GitHub Pages
         id: deployment # referred by environment above, to get the URL.
         # https://github.com/actions/deploy-pages
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5.0.0
         with:
           artifact_name: github-pages

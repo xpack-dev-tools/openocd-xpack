@@ -1,0 +1,8 @@
+{
+  "descriptiveName": "xPack OpenOCD",
+  "permalinkName": "openocd",
+  "preferredName": "xPack OpenOCD",
+  "upstreamDescriptiveName": "OpenOCD",
+  "skipCiTests": true,
+  "useSelfHostedRunners": false
+}

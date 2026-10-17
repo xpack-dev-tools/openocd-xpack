@@ -5,16 +5,17 @@
 # This file is part of the xPack project (http://xpack.github.io).
 # Copyright (c) 2021-2026 Liviu Ionescu. All rights reserved.
 #
-# Permission to use, copy, modify, and/or distribute this software
-# for any purpose is hereby granted, under the terms of the MIT license.
+# Permission to use, copy, modify, and/or distribute this software for any
+# purpose is hereby granted, under the terms of the MIT license.
 #
-# If a copy of the license was not distributed with this file, it can
-# be obtained from https://opensource.org/licenses/mit.
+# If a copy of the license was not distributed with this file, it can be
+# obtained from https://opensource.org/licenses/mit.
 #
 # -----------------------------------------------------------------------------
 
 # https://help.github.com/en/actions
 # https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners
+# https://github.com/actions/runner-images
 
 # https://docs.github.com/en/actions/reference/events-that-trigger-workflows#workflow_dispatch
 # https://docs.github.com/en/developers/webhooks-and-events/webhooks/webhook-events-and-payloads#workflow_dispatch
@@ -118,6 +119,7 @@ jobs:
           chmod -Rf a+w * || true
           rm -rf * .git*
 
+      # https://github.com/actions/checkout
       - name: 'Checkout project'
         uses: actions/checkout@v1 # v1 for old Git
         with:
@@ -144,7 +146,7 @@ jobs:
 
       - name: 'Publish pre-release'
         # https://github.com/ncipollo/release-action
-        uses: ncipollo/release-action@v1.14.0
+        uses: ncipollo/release-action@v1.21.0
         with:
           allowUpdates: true
           artifacts: 'build-assets/build/darwin-x64/deploy/*'

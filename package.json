@@ -2,7 +2,6 @@
   "name": "@xpack-dev-tools/openocd",
   "version": "0.12.0-7.1",
   "description": "A binary xpm package with the OpenOCD executable",
-  "main": "",
   "scripts": {
     "generate-top-commons": "bash node_modules/@xpack/npm-packages-helper/maintenance-scripts/generate-top-commons.sh --xpack-dev-tools",
     "npm-install": "npm install",
@@ -64,12 +63,17 @@
       "openocd": "./.content/bin/openocd"
     }
   },
+  "$dependenciesUrls": {
+    "del-cli": "https://www.npmjs.com/package/del-cli",
+    "json": "https://www.npmjs.com/package/json",
+    "liquidjs": "https://www.npmjs.com/package/liquidjs"
+  },
   "devDependencies": {
     "del-cli": "^7.0.0",
     "json": "^11.0.0",
-    "liquidjs": "^10.23.0"
+    "liquidjs": "^10.27.0"
   },
-  "topConfig": {
+  "_topConfig": {
     "descriptiveName": "xPack OpenOCD",
     "upstreamDescriptiveName": "OpenOCD",
     "permalinkName": "openocd",
