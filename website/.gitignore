@@ -1,3 +1,6 @@
+# DO NOT EDIT!
+# Automatically generated from docusaurus-template-liquid/templates/docusaurus.
+
 # Dependencies
 /node_modules
 
@@ -5,8 +8,7 @@
 /build
 
 # Generated files
-.docusaurus
-.cache-loader
+/.docusaurus
 
 # Misc
 .DS_Store
@@ -18,3 +20,5 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+/tsdoc/doc-model/*.bak
