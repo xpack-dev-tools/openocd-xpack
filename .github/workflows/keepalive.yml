@@ -15,7 +15,7 @@ name: 'Keep Alive'
 
 on:
   schedule:
-    - cron: '0 0 1 * *' # Monthly on the 1st at midnight UTC
+    - cron: '5 16 17 10 *' # Temporary: 17 October at 16:05 UTC
   workflow_dispatch:
 
 jobs:
