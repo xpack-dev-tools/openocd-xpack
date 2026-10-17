@@ -6,6 +6,9 @@
 title: A markdown test page
 description: Some markdown examples.
 
+# Test pages are shown only by the development server.
+draft: true
+
 # https://docusaurus.io/docs/api/plugins/@docusaurus/plugin-content-docs#markdown-front-matter
 
 ---

@@ -1,5 +1,5 @@
 {
-  "DO NOT EDIT": "Automatically generated from docusaurus-template-liquid/templates/docusaurus",
+  "DO NOT EDIT": "Automatically generated from template file: docusaurus-template-liquid/templates/common/package-merge-liquid.json",
   "name": "website",
   "version": "0.0.0",
   "private": true,
@@ -27,7 +27,8 @@
     "del-cli": "https://www.npmjs.com/package/del-cli",
     "json": "https://www.npmjs.com/package/json",
     "liquidjs": "https://www.npmjs.com/package/liquidjs",
-    "typescript": "https://www.npmjs.com/package/typescript"
+    "typescript": "https://www.npmjs.com/package/typescript",
+    "glob": "https://www.npmjs.com/package/glob"
   },
   "devDependencies": {
     "@docusaurus/module-type-aliases": "3.10.1",
@@ -38,10 +39,11 @@
     "liquidjs": "^10.25.0",
     "typescript": "~5.9.3",
     "@xpack/docusaurus-template-liquid": "github:xpack/docusaurus-template-liquid",
-    "@xpack/npm-packages-helper": "github:xpack/npm-packages-helper"
+    "@xpack/npm-packages-helper": "github:xpack/npm-packages-helper",
+    "glob": "^13.0.6"
   },
   "scripts": {
-    "generate-website-commons": "bash node_modules/@xpack/docusaurus-template-liquid/maintenance-scripts/generate-website-commons.sh --xpack-dev-tools",
+    "generate-website-commons": "node node_modules/@xpack/docusaurus-template-liquid/maintenance/scripts/generate-website-commons.mjs --xpack-dev-tools",
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
     "build": "docusaurus build",
@@ -59,9 +61,9 @@
     "npm-ci": "npm ci",
     "clean": "del-cli .docusaurus build",
     "deep-clean": "del-cli .docusaurus build node_modules package-lock.json",
-    "import-website-releases": "bash node_modules/@xpack/docusaurus-template-liquid/maintenance-scripts/import-releases.sh --xpack-dev-tools",
-    "generate-website-blog-post": "bash node_modules/@xpack/docusaurus-template-liquid/maintenance-scripts/generate-blog-post.sh --xpack-dev-tools",
-    "generate-dependencies-details": "bash node_modules/@xpack/docusaurus-template-liquid/maintenance-scripts/generate-dependencies-details.sh --xpack-dev-tools"
+    "import-website-releases": "node node_modules/@xpack/docusaurus-template-liquid/maintenance/scripts/import-releases.mjs --xpack-dev-tools",
+    "generate-website-blog-post": "node node_modules/@xpack/docusaurus-template-liquid/maintenance/scripts/generate-blog-post.mjs --xpack-dev-tools",
+    "generate-dependencies-details": "node node_modules/@xpack/docusaurus-template-liquid/maintenance/scripts/generate-dependencies-details.mjs --xpack-dev-tools"
   },
   "browserslist": {
     "production": [
