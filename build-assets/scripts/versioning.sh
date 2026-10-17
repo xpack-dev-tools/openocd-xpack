@@ -35,7 +35,18 @@ function application_build_versioned_components()
     XBB_HIDAPI_VERSION="0.14.0"
 
     # https://github.com/openocd-org/openocd/commits/master/
-    if [[ "${XBB_RELEASE_VERSION}" =~ 0[.]12[.]0-[7] ]]
+    if [[ "${XBB_RELEASE_VERSION}" =~ 0[.]12[.]0-[8] ]]
+    then
+      # https://github.com/openocd-org/openocd/commits/master/
+      # ?? 30 Sep 2025
+      XBB_OPENOCD_GIT_URL=${XBB_APPLICATION_OPENOCD_GIT_URL:-"https://review.openocd.org/openocd"}
+      XBB_OPENOCD_GERRIT_REF=${XBB_APPLICATION_OPENOCD_GERRIT_REF:-"refs/changes/13/9913/12"}
+
+      XBB_LIBICONV_VERSION="1.18"
+      XBB_TEXINFO_VERSION="7.2"
+      XBB_LIBUSB1_VERSION="1.0.29"
+      XBB_HIDAPI_VERSION="0.15.0"
+    elif [[ "${XBB_RELEASE_VERSION}" =~ 0[.]12[.]0-[7] ]]
     then
       # https://github.com/openocd-org/openocd/commits/master/
       # 30 Sep 2025
