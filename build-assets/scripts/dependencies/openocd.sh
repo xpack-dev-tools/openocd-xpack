@@ -18,12 +18,27 @@ function openocd_download()
   if [ ! -d "${XBB_SOURCES_FOLDER_PATH}/${openocd_src_folder_name}" ]
   then
     (
-      run_verbose_develop cd "${XBB_SOURCES_FOLDER_PATH}"
-      run_verbose git_clone \
-        "${XBB_OPENOCD_GIT_URL}" \
-        "${openocd_src_folder_name}" \
-        --branch="${XBB_OPENOCD_GIT_BRANCH}" \
-        --commit="${XBB_OPENOCD_GIT_COMMIT}"
+      if [ -n "${XBB_OPENOCD_GERRIT_REF:-}" ]
+      then
+
+        run_verbose_develop mkdir -pv "${XBB_SOURCES_FOLDER_PATH}/${openocd_src_folder_name}"
+        run_verbose_develop cd "${XBB_SOURCES_FOLDER_PATH}/${openocd_src_folder_name}"
+
+        run_verbose git init
+        run_verbose git fetch "${XBB_OPENOCD_GIT_URL}" "${XBB_OPENOCD_GERRIT_REF}"
+        run_verbose git switch --detach FETCH_HEAD
+
+      else
+
+        run_verbose_develop cd "${XBB_SOURCES_FOLDER_PATH}"
+        run_verbose git_clone \
+          "${XBB_OPENOCD_GIT_URL}" \
+          "${openocd_src_folder_name}" \
+          --branch="${XBB_OPENOCD_GIT_BRANCH}" \
+          --commit="${XBB_OPENOCD_GIT_COMMIT}"
+
+      fi
+
       run_verbose_develop cd "${XBB_SOURCES_FOLDER_PATH}/${openocd_src_folder_name}"
       run_verbose git submodule update --init --recursive --remote
 
