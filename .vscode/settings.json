@@ -1,6 +1,6 @@
 {
-  // DO NOT EDIT!
-  // Automatically generated from npm-packages-helper/templates/*.
+  // DO NOT EDIT! Automatically generated from template file:
+  // npm-packages-helper/templates/common/.vscode/settings-liquid.json
   "editor.rulers": [
     80
   ],
@@ -13,10 +13,12 @@
   //
   "files.associations": {
     "*.json": "jsonc",
+    "*.jsonc": "jsonc",
     "*-liquid.*": "liquid",
     "*.liquid": "liquid",
     "*.rb": "ruby",
-    "*.mdx": "mdx"
+    "*.mdx": "mdx",
+    "*.S": "cpp"
   },
   //
   // Language/file type specific settings.
@@ -52,14 +54,14 @@
   "cSpell.language": "en-GB",
   "cSpell.ignoreWords": [],
   //
-  "prettier.configPath": "config/.prettierrc.json",
-  "prettier.ignorePath": "config/.prettierignore",
+  "prettier.configPath": "maintenance/config/.prettierrc.json",
+  "prettier.ignorePath": "maintenance/config/.prettierignore",
   //
   "cmake.configureOnEdit": false,
   "cmake.ignoreCMakeListsMissing": true,
   "cmake.configureOnOpen": false,
   "cmakeFormat.args": [
-    "--config-file=${workspaceFolder}/config/.cmake-format.yaml"
+    "--config-file=${workspaceFolder}/maintenance/config/.cmake-format.py"
   ],
   //
   "mesonbuild.configureOnOpen": false,
@@ -68,7 +70,7 @@
   "makefile.configureOnEdit": false,
   "makefile.configureAfterCommand": false,
   //
-  "C_Cpp.clang_format_style": "file:${workspaceFolder}/config/.clang-format",
+  "C_Cpp.clang_format_style": "file:${workspaceFolder}/maintenance/config/.clang-format",
   "C_Cpp.formatting": "clangFormat",
   "C_Cpp.vcpkg.enabled": false,
   "C_Cpp.clang_format_path": "${workspaceFolder}/xpacks/.bin/clang-format",
@@ -100,5 +102,9 @@
     "**/.github": true,
     "**/.idea": true,
     "**/.vscode-test": true
-  }
+  },
+  "cortex-debug.variableUseNaturalFormat": false,
+  "python.analysis.exclude": [
+    "**"
+  ]
 }

@@ -1,6 +1,6 @@
 # -----------------------------------------------------------------------------
-# DO NOT EDIT!
-# Automatically generated from npm-packages-helper/templates/*.
+# DO NOT EDIT! Automatically generated from template file:
+# npm-packages-helper/templates/common/.npmignore-liquid
 # -----------------------------------------------------------------------------
 
 # https://docs.npmjs.com/files/package.json#files
@@ -86,7 +86,7 @@ build-assets/
 wrappers/
 extras/
 inspiration/
-maintenance-scripts/
+maintenance/
 tests/
 config/
 
@@ -103,5 +103,7 @@ eslint.config.js
 **/.cmake-format.yaml
 **/code-review.md
 **/CODE-REVIEW.md
+**/CLAUDE.md
+.claude/
 
 #end
