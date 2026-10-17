@@ -1,28 +1,104 @@
 {
+  // DO NOT EDIT!
+  // Automatically generated from npm-packages-helper/templates/*.
+  "editor.rulers": [
+    80
+  ],
+  "editor.tabSize": 2,
   "editor.detectIndentation": false,
   "editor.insertSpaces": true,
-  "editor.tabSize": 2,
   "editor.formatOnSave": true,
-  "files.associations": { "*.json": "jsonc" },
-  "editor.stablePeek": true,
+  // "editor.stablePeek": true,
+  // "editor.wordWrap": "on",
+  //
+  "files.associations": {
+    "*.json": "jsonc",
+    "*-liquid.*": "liquid",
+    "*.liquid": "liquid",
+    "*.rb": "ruby",
+    "*.mdx": "mdx"
+  },
+  //
+  // Language/file type specific settings.
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[liquid]": {
+    "editor.formatOnSave": false,
+    "editor.formatOnType": false,
+    "editor.formatOnPaste": false,
+    "editor.defaultFormatter": null
+  },
+  "[cmake]": {
+    "editor.defaultFormatter": "cheshirekow.cmake-format"
+  },
+  "[mdx]": {
+    "editor.formatOnSave": false,
+    "editor.defaultFormatter": null
+  },
+  //
+  "markdownlint.config": {
+    "MD041": false
+  },
+  //
+  "spellright.language": [
+    "en_GB"
+  ],
+  "spellright.notificationClass": "warning",
+  //
+  "cSpell.language": "en-GB",
+  "cSpell.ignoreWords": [],
+  //
+  "prettier.configPath": "config/.prettierrc.json",
+  "prettier.ignorePath": "config/.prettierignore",
+  //
+  "cmake.configureOnEdit": false,
+  "cmake.ignoreCMakeListsMissing": true,
+  "cmake.configureOnOpen": false,
+  "cmakeFormat.args": [
+    "--config-file=${workspaceFolder}/config/.cmake-format.yaml"
+  ],
+  //
+  "mesonbuild.configureOnOpen": false,
+  //
+  "makefile.configureOnOpen": false,
+  "makefile.configureOnEdit": false,
+  "makefile.configureAfterCommand": false,
+  //
+  "C_Cpp.clang_format_style": "file:${workspaceFolder}/config/.clang-format",
+  "C_Cpp.formatting": "clangFormat",
+  "C_Cpp.vcpkg.enabled": false,
+  "C_Cpp.clang_format_path": "${workspaceFolder}/xpacks/.bin/clang-format",
+  "npm.exclude": [
+    "**/xpacks/**",
+    "**/build/**",
+    "**/tests/**",
+    "**/tmp/**"
+  ],
+  "xpack.exclude": [
+    "**/xpacks/**",
+    "**/build/**",
+    "**/tests/**",
+    "**/tmp/**"
+  ],
   "files.watcherExclude": {
     "**/.git/**": true,
     "**/node_modules/*/**": true,
     "**/build/**": true
   },
-  "C_Cpp.intelliSenseExclude": {
-    "**/build-assets": true,
-    "**/website": true,
+  //
+  "C_Cpp.files.exclude": {
     "**/node_modules": true,
-    "**/xpacks": true
-  },
-  "markdownlint.config": {
-    "MD041": false
-  },
-  "spellright.language": [
-    "en_GB"
-  ],
-  "spellright.notificationClass": "warning",
-  "cSpell.language": "en-GB",
-  "cSpell.ignoreWords": []
+    "**/xpacks": true,
+    "**/dist": true,
+    "**/build": true,
+    "**/.vscode": true,
+    "**/.git": true,
+    "**/.github": true,
+    "**/.idea": true,
+    "**/.vscode-test": true
+  }
 }
