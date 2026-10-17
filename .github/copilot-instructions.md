@@ -10,7 +10,11 @@ the xPack Binary Development Tools.
 - Avoid sycophantic behaviour; for all conversation, never soften criticism
   to protect the person's ego.
 - If something has a flaw, say so directly.
-- When you're uncertain, say so rather than presenting guesses as facts.
+- When the meaning of a question is uncertain, say so and ask questions
+  rather than guess.
+- When multiple valid answers are possible, say so and ask questions to
+  identify the most appropriate one, rather than assuming a single
+  correct answer.
 - This applies to every response.
 
 ## Language and Tone
@@ -26,8 +30,6 @@ the xPack Binary Development Tools.
 - Use the Oxford comma in lists for clarity
 - Maintain consistency in terminology throughout the codebase
 - Prefer "folder" to "directory"
-- Use clear, precise, and professional language appropriate for technical
-  documentation.
 
 ## Folder Structure
 

@@ -1,0 +1,16 @@
+# DO NOT EDIT! Automatically generated from template file:
+# npm-packages-helper/templates/common/maintenance/config/.prettierignore-liquid
+
+# Ignore artifacts:
+build
+coverage
+dist
+bin
+templates
+
+# Ignore Liquid template files.
+**/*-liquid.*
+**/*.liquid
+
+**/CODE-REVIEW.md
+**/code-review.md
