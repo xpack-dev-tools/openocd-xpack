@@ -15,7 +15,7 @@ name: 'Keep Alive'
 
 on:
   schedule:
-    - cron: '0 0 1 * *' # Monthly on the 1st at midnight UTC
+    - cron: '5 16 17 10 *' # Temporary: 17 October at 16:05 UTC
   workflow_dispatch:
 
 jobs:
@@ -25,6 +25,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
+          ref: xpack-development
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Update keepalive timestamp
@@ -49,19 +50,7 @@ jobs:
           else
             git commit -m "chore: update keepalive timestamp [skip ci]"
 
-            # Push to the default branch (xpack)
-            git push
-
-            # Merge into xpack-development branch if it exists
-            if git ls-remote --heads origin xpack-development | grep -q xpack-development; then
-              echo "Merging keepalive update into xpack-development branch"
-              current_branch=$(git rev-parse --abbrev-ref HEAD)
-              git fetch origin xpack-development
-              git checkout xpack-development
-              git merge --no-edit ${current_branch}
-              git push origin xpack-development
-              git checkout ${current_branch}
-            else
-              echo "xpack-development branch does not exist, skipping merge"
-            fi
+            # Push directly to xpack-development (checked out above);
+            # no merge, hence no merge commits.
+            git push origin xpack-development
           fi
