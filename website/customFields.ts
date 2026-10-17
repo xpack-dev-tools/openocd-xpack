@@ -73,13 +73,30 @@ export function getCustomFields() {
 
   let websiteFields = {};
   try {
-    const websiteFilePath = path.join(path.dirname(path.dirname(pwd)), 'website', 'package.json');
+    const websiteFilePath = path.join(
+      path.dirname(path.dirname(pwd)),
+      "website",
+      "config",
+      "website-templates.json",
+    );
     // console.log(filePath);
     const websiteFileContent = fs.readFileSync(websiteFilePath);
     const websitePackageJson = JSON.parse(websiteFileContent.toString());
-    websiteFields = websitePackageJson?.websiteConfig ?? {};
+    websiteFields = websitePackageJson ?? {};
   } catch (error) {
-    // Most probably there is no website/package.json.
+    try {
+      const websiteFilePath = path.join(
+        path.dirname(path.dirname(pwd)),
+        "website",
+        "package.json",
+      );
+      // console.log(filePath);
+      const websiteFileContent = fs.readFileSync(websiteFilePath);
+      const websitePackageJson = JSON.parse(websiteFileContent.toString());
+      websiteFields = websitePackageJson?.websiteConfig ?? {};
+    } catch (error) {
+      // Most probably there is no website/package.json.
+    }
   }
 
   return {
