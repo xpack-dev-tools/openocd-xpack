@@ -116,7 +116,7 @@ update the dependencies in `build-assets/package.json`.
 ### Update VERSION
 
 Update the `build-assets/scripts/VERSION` file; the format
-is <code>0.12.0-7</code>.
+is <code>0.12.0-8</code>.
 {isXpackSubversionDouble() ?
 'The fourth and fifth numbers are the xPack release number of this version. A sixth' :
 'The fourth number is the xPack release number of this version. A fifth'} number will be added to the version in `package.json` when the package is published to the `npm` server.
@@ -286,7 +286,7 @@ Copy the trees displayed at the end of the test builds and paste to the
 </ul>
 
 If present, replace the actual version
-(such as **0.12.0-7.1**) with the following expression:
+(such as **0.12.0-8.1**) with the following expression:
 
 ```txt
 ${customField('releaseVersion')}
@@ -473,7 +473,7 @@ xattr -cr ${HOME}/Downloads/xpack-*
 ### Create a new GitHub pre-release
 
 - In `CHANGELOG.md`, add the release date and a message
-  such as _**\* v0.12.0-7 released**_
+  such as _**\* v0.12.0-8 released**_
 - **Commit** with the message _**CHANGELOG update**_
 - Check and possibly update the `build-assets/templates/body-github-release-liquid.mdx`
 - **Push** the `xpack-development` branch to GitHub
@@ -487,8 +487,8 @@ The workflow result and logs are available from the
 
 The result is a
 [draft pre-release](https://github.com/xpack-dev-tools/openocd-xpack/releases)
-tagged such as **v0.12.0-7** (mind the dash in the middle!) and
-named such as **xPack OpenOCD v0.12.0-7** (mind the dash),
+tagged such as **v0.12.0-8** (mind the dash in the middle!) and
+named such as **xPack OpenOCD v0.12.0-8** (mind the dash),
 with all binaries attached.
 
 - Edit the draft and ensure it is attached to the `xpack-development` branch (important!)
@@ -527,7 +527,7 @@ watching the openocd-xpack project.
 - Compare the SHA sums with those shown by `cat *.sha`
 - Check the executable names
 - **Commit** all changes with the message
-  _**package.json: update URLs for 0.12.0-7.1 release**_
+  _**package.json: update URLs for 0.12.0-8.1 release**_
 
 <CommonPrepareRelease />
 
